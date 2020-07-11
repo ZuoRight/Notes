@@ -1,0 +1,11 @@
+site_name: name
+site_description: description
+site_author: 7c
+
+copyright: copyright
+# theme: readthedocs
+
+nav:
+    - Index: index.md
+    - About: about.md
+
