@@ -1,4 +1,4 @@
-site_name: name
+site_name: poems
 site_description: description
 site_author: 7c
 
@@ -8,4 +8,3 @@ copyright: copyright
 nav:
     - Index: index.md
     - About: about.md
-
