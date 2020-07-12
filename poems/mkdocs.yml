@@ -3,7 +3,7 @@ site_description: description
 site_author: 7c
 
 copyright: copyright
-# theme: readthedocs
+# theme_dir: readthedocs
 
 nav:
     - Index: index.md

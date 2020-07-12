@@ -1,71 +1,35 @@
-body {
-  background: #222;
-}
-
-.navbar-brand img {
-    height: 30px;
+.jumbotron {
+    margin-bottom: 0;
+    /* background-color: #e9ecef; */
 }
 
 hr {
     width: 270px;
 }
 
-header{
-    background-image: url(http://image.zuoright.com/background.jpg
-    );
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: inherit;
-    margin-top: 50px;
-    text-align: center;
-    color: black;
-}
-
-.gif img {
-    height: 120px;
-}
-
-.gif h3{
-    color:white;
-}
-
-.gif h4{
-    color:white;
-}
-
-.tab-content{
-    margin-top: 70px;
-    height: 400px;
-}
-
-.intro-header {
-    position: relative;
-    height: 751px;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-article{
-    background-color: #000;
-    margin-top: 0;
-}
-
 section{
-    background-color:#b89f81;
-    color: white;
-    padding: 100px 0;
+    color: #4c221b;
+    padding: 70px 0;
 }
 
 section h2 {
-    color: black;
+    color: #4a4266;
 }
 
-article > section:nth-child(2n){
-  background:#804000;
+#notes {
+    background-color: #fffbf0;
+}
+
+#essay {
+    background-color: #fa8c35;
+}
+
+#poems {
+    background-color: #bce672;
 }
 
 footer{
-    background-color: #000;
-    color: white;
-    padding: 100px 0;
+    background-color: #161823;
+    color: #f3f9f1;
+    padding: 50px 0;
 }
