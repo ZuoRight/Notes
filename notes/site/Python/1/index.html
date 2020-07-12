@@ -1,0 +1,610 @@
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="学习笔记与技术分享">
+      
+      
+        <link rel="canonical" href="http://zuoright.com/Python/1/">
+      
+      
+        <meta name="author" content="7c">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>1 - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ff7043">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://zuoright.com" title="Notes" class="md-header-nav__button md-logo" aria-label="Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13a9 9 0 01-9 9 9 9 0 01-9-9l.03-8.57C5.68 2.88 8.76 2 12.05 2c3.25 0 6.31.87 8.95 2.38V13m-8 6.93c3.39-.49 6-3.43 6-6.93V5.59C16.9 4.57 14.54 4 12.05 4c-2.55 0-4.97.6-7.11 1.66L5 13c0 3.5 2.63 6.44 6 6.93V18h2v1.93M11 16H8l-2-3 3 1h1l1-1h2l1 1h1l3-1-2 3h-3l-1-1-1 1M6 9.03c.64-.63 1.5-.98 2.5-.98.95 0 1.84.35 2.5.98-.66.62-1.55.97-2.5.97-1 0-1.86-.35-2.5-.97m7 0c.64-.63 1.5-.98 2.5-.98.95 0 1.84.35 2.5.98-.66.62-1.55.97-2.5.97-1 0-1.86-.35-2.5-.97z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Notes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              1
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://zuoright.com" title="Notes" class="md-nav__button md-logo" aria-label="Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13a9 9 0 01-9 9 9 9 0 01-9-9l.03-8.57C5.68 2.88 8.76 2 12.05 2c3.25 0 6.31.87 8.95 2.38V13m-8 6.93c3.39-.49 6-3.43 6-6.93V5.59C16.9 4.57 14.54 4 12.05 4c-2.55 0-4.97.6-7.11 1.66L5 13c0 3.5 2.63 6.44 6 6.93V18h2v1.93M11 16H8l-2-3 3 1h1l1-1h2l1 1h1l3-1-2 3h-3l-1-1-1 1M6 9.03c.64-.63 1.5-.98 2.5-.98.95 0 1.84.35 2.5.98-.66.62-1.55.97-2.5.97-1 0-1.86-.35-2.5-.97m7 0c.64-.63 1.5-.98 2.5-.98.95 0 1.84.35 2.5.98-.66.62-1.55.97-2.5.97-1 0-1.86-.35-2.5-.97z"/></svg>
+
+    </a>
+    Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="一级标题" class="md-nav__link">
+      一级标题
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../0/" title="0" class="md-nav__link">
+      0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="1" class="md-nav__link md-nav__link--active">
+      1
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../IO%E6%A8%A1%E5%9D%97%E6%93%8D%E4%BD%9C/" title="IO模块" class="md-nav__link">
+      IO模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../OS%E6%A8%A1%E5%9D%97%E6%93%8D%E4%BD%9C/" title="OS模块" class="md-nav__link">
+      OS模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dict%E5%92%8Cset/" title="字典dict" class="md-nav__link">
+      字典dict
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flask/" title="Flask" class="md-nav__link">
+      Flask
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../list%E5%92%8Ctuple/" title="数据结构" class="md-nav__link">
+      数据结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../uWSGI/" title="python web 服务部署" class="md-nav__link">
+      python web 服务部署
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E5%8F%98%E9%87%8F/" title="变量" class="md-nav__link">
+      变量
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E5%A3%B9%C2%B7%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="壹·环境搭建" class="md-nav__link">
+      壹·环境搭建
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="操作数据类型" class="md-nav__link">
+      操作数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="数据类型" class="md-nav__link">
+      数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E6%A8%A1%E5%9D%97/" title="模块 module" class="md-nav__link">
+      模块 module
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E8%AF%AD%E5%8F%A5/" title="语句" class="md-nav__link">
+      语句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E8%AF%AD%E6%B3%95%E8%A7%84%E8%8C%83/" title="语法规范" class="md-nav__link">
+      语法规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E9%9B%B6%C2%B7%E5%85%B3%E4%BA%8EPython/" title="零·关于Python" class="md-nav__link">
+      零·关于Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>1</h1>
+                
+                <p>linux，mac，win中python的安装，应该是讲完以下的概念最后再来讨论这个</p>
+<p>先以win为主，以后再补充linux和mac：不需要分开为3篇文章，而是一篇文章中以某一个为主，其它分别说明比较好</p>
+<p>https://www.cnblogs.com/mq0036/p/5014236.html</p>
+<p>编译器，解释器（历史原因，分2和3两个版本），讲到虚拟机，自举</p>
+<p>扩展：python历史更新时间轴</p>
+<p>发行版，aconda（需要先安装python么？他用的解释器是什么？）</p>
+<p>Anaconda：默认包含150+个包，可以自行安装其余的720+包</p>
+<blockquote>
+<p>Python</p>
+<p>conda</p>
+<p>jupyter
+</p>
+</blockquote>
+<p>Miniconda：conda的最小安装环境？只包含Python和conda以及它们所依赖的包</p>
+<p>清华大学镜像站已经停止服务：<a href="https://mirrors.tuna.tsinghua.edu.cn/news/#close-anaconda-service">https://mirrors.tuna.tsinghua.edu.cn/news/#close-anaconda-service</a></p>
+<p><a href="https://www.jianshu.com/p/eaee1fadc1e9">https://www.jianshu.com/p/eaee1fadc1e9</a></p>
+<p>原来conda是分2.7和3.x两个版本的，2.x和3.x版本有什么区别？</p>
+<blockquote>
+<p>必要性：包管理（不同包，同包不同版等等），环境管理</p>
+<p>pip：Python官方包管理器</p>
+<blockquote>
+<p>包格式：</p>
+<blockquote>
+<p>源码安装？，从PyPI下载（包含conda，但是不一定是最新的）</p>
+<p>weels安装？</p>
+</blockquote>
+<p>虚拟环境：</p>
+<blockquote>
+<p>自带（Python3）：venv</p>
+<p>第三方：virtualenv</p>
+</blockquote>
+</blockquote>
+<p>easy_install</p>
+<p>conda：（文档：<a href="https://conda.io/projects/conda/en/latest/">https://conda.io/projects/conda/en/latest/</a>，命令：<a href="https://conda.io/projects/conda/en/latest/commands.html">https://conda.io/projects/conda/en/latest/commands.html</a>）</p>
+<ol>
+<li>包管理器（不同包，同包不同版等等）：</li>
+</ol>
+<blockquote>
+<p>开源：python开发，BSD协议</p>
+<p>跨平台：只能安装在Anaconda环境中？</p>
+<p>多语言：虽然conda来自python社区且由python语言开发，但是它不止可以管理python语言及python的包，还可以管理其他语言的包（Java，R，Ruby，JS，Lua，Scala，C/C++，Fortran）</p>
+<p>扩展1：自带包/第三方包</p>
+<p>扩展2：yum，apt，npm等包管理器</p>
+</blockquote>
+<p>包格式：二进制安装？不能与pip互通</p>
+<ol>
+<li>环境管理器</li>
+</ol>
+<p>虚拟环境：虚拟环境的必要性：aconda自带的即可，其它的不推荐（envirtual只是隔离环境而已），aconda是基于envirtual的？</p>
+<blockquote>
+<p>其实更占空间，管理成本低，冲突概率小，索引速度快</p>
+</blockquote>
+<p>扩展：docker（只能分割同一发行版？）？虚拟机（可以安装不同发行版）</p>
+</blockquote>
+<p>总结：显然conda更好，他在安装时会自动安装好相关的所有依赖包，但我们依然需要pip，因为虽然conda包含1500+包，但与PyPI社区15w+的包比还是小巫见大巫了，而且conda的包都是数据科学，机器学习和AI相关的，所以很多其它的包只能用pip安装。（思考：conda为何不能安装PyPI社区的包？因为他们安装方式不互通，但是为什么不能搞互通呢？大概是因为conda的目的是不止用来安装Python的包，所以没法通，真的没法通嘛？pip是源码安装，conda是二进制安装，把PyPI的源码编译成二进制不能安装嘛？）</p>
+<p>多版本管理：有必要么？跟虚拟环境有何区别？个人感觉没有必要了，讲到Python2停止更新（python2.7有必要卸载么？我的意思是装了aconda的情况下）</p>
+<p>https://ieqi.net/2018/07/10/%E5%B7%B2%E7%BB%8F2018%E5%B9%B4%E4%BA%86%EF%BC%8C%E5%A6%82%E4%BD%95%E6%9B%B4%E5%A5%BD%E7%9A%84%E7%AE%A1%E7%90%86python%E7%89%88%E6%9C%AC%E3%80%81%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%8C%85%EF%BC%9F/#more-2037</p>
+<p>讲到IDE和编辑器的区别
+IDE：Pycharm
+编辑器：VSCode python环境插件指南，扩展VScode使用指南，扩展编辑器比较推荐</p>
+<p>Jupyter（优点：不用来回切换），扩展：jupyter的搭建+使用，本地，在线</p>
+<p>最后的总结，即使不做数据科学，我们也需要用Anaconda中的虚拟环境，因为它更好</p>
+<p>命令：</p>
+<p>--全称：--version</p>
+<p>-简称，而且一般大写：-V</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-07-12</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../0/" title="0" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                0
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../IO%E6%A8%A1%E5%9D%97%E6%93%8D%E4%BD%9C/" title="IO模块" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                IO模块
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2020 7c
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/ZuoRight" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+      </a>
+    
+      
+      
+      <a href="mailto:zuoright@foxmail.com" target="_blank" rel="noopener" title="" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 8l-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="http://zuoright.com" target="_blank" rel="noopener" title="zuoright.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
