@@ -1,6 +1,6 @@
 # Project information
-site_name: Notes
-site_description: 学习笔记与技术分享
+site_name: 拿了橘子跑喔
+site_description: Knowledge is power.
 site_author: 7c
 site_url: http://zuoright.com
 
@@ -9,7 +9,7 @@ site_url: http://zuoright.com
 # repo_url: https://github.com/squidfunk/mkdocs-material
 
 # Copyright
-copyright: Copyright &copy; 2016 - 2020 7c
+copyright: Copyright &copy; 2016 ~ Forever 7c
 
 # Configuration
 theme:

@@ -1,6 +1,6 @@
 # Project information
-site_name: Essay
-site_description: 杂文
+site_name: 无疆
+site_description: O ever youthful, O ever weeping.
 site_author: 7c
 site_url: http://zuoright.com
 
@@ -9,7 +9,7 @@ site_url: http://zuoright.com
 # repo_url: https://github.com/squidfunk/mkdocs-material
 
 # Copyright
-copyright: Copyright &copy; 2016 - 2020 7c
+copyright: Copyright &copy; 2016 ~ Forever 7c
 
 # Configuration
 theme:
