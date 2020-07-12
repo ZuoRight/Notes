@@ -2,9 +2,11 @@ site_name: poems
 site_description: description
 site_author: 7c
 
-copyright: copyright
-# theme_dir: readthedocs
+# theme:
+#     name: bootstrap4
+
+
+# copyright: 1992~Forever 7c. All rights reserved.
 
 nav:
     - Index: index.md
-    - About: about.md

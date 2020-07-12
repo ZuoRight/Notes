@@ -1,14 +1,13 @@
-.jumbotron {
-    margin-bottom: 0;
-    /* background-color: #e9ecef; */
+#info{
+    padding: 170px 0;
 }
 
 hr {
-    width: 270px;
+    width: 170px;
 }
 
 section{
-    color: #4c221b;
+    color: #8d4bbb;
     padding: 70px 0;
 }
 
@@ -30,6 +29,6 @@ section h2 {
 
 footer{
     background-color: #161823;
-    color: #f3f9f1;
-    padding: 50px 0;
+    padding: 70px 0;
+    color: #f0f0f4;
 }

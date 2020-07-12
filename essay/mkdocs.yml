@@ -1,0 +1,13 @@
+site_name: Essay
+site_description: 杂文
+site_author: 7c
+
+# theme:
+#     name: alabaster
+
+
+# copyright: 1992~Forever 7c.
+
+nav:
+    - Index: index.md
+    - About: about.md
