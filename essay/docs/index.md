@@ -1,11 +1,5 @@
 ---
-title: About
-
-tags: ["About"]
-
-excerpt: about me and here
-
-date: 2018-3-9
+title: Change is Good
 ---
 # about me
 一个懒人，略闷骚。

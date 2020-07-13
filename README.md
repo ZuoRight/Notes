@@ -1,4 +1,4 @@
-[ZuoRight](http://zuoright.com)
+# [ZuoRight](http://zuoright.com)
 
 ```python
 pip install mkdocs
@@ -6,9 +6,11 @@ pip install mkdocs-material
 pip install mkdocs-git-revision-date-localized-plugin
 ```
 
+## mkdocs.yml
+
 ```yaml
 site_name: ZuoRight
-site_description: Change is good.
+site_description: Right is right, left is also right.
 site_author: 7c
 site_url: http://www.zuoright.com
 
