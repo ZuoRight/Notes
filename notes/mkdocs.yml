@@ -50,6 +50,8 @@ markdown_extensions:
       permalink: true  # 固定链接
 
 plugins:
-  - search
+  - search:
+      lang:
+        - ja
   - git-revision-date-localized:  # 文章底部显示更新时间
       type: iso_date
