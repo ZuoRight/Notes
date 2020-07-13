@@ -1,17 +1,13 @@
-# Project information
 site_name: 无疆
 site_description: O ever youthful, O ever weeping.
 site_author: 7c
 site_url: http://zuoright.com
 
-# Repository
 # repo_name: squidfunk/mkdocs-material
 # repo_url: https://github.com/squidfunk/mkdocs-material
 
-# Copyright
 copyright: Copyright &copy; 2016 ~ Forever 7c
 
-# Configuration
 theme:
   name: material
   language: zh
@@ -27,9 +23,9 @@ theme:
     # repo: material/source-branch
   favicon: images/favicon.png
 
-# Extras
 extra:
-  social:  # 右下角社交图标和链接
+  # 右下角社交图标和链接
+  social:
     - icon: material/github
       link: https://github.com/ZuoRight
     - icon: material/email
@@ -50,6 +46,8 @@ markdown_extensions:
       permalink: true  # 固定链接
 
 plugins:
-  - search
-  - git-revision-date-localized:  # 文章底部显示更新时间
+  - search:
+      lang:
+        - ja
+  - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
       type: iso_date
