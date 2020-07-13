@@ -7,10 +7,10 @@ pip install mkdocs-git-revision-date-localized-plugin
 ```
 
 ```yaml
-site_name: site_name
-site_description: site_description
+site_name: ZuoRight
+site_description: Change is good.
 site_author: 7c
-site_url: http://zuoright.com
+site_url: http://www.zuoright.com
 
 # repo_name: squidfunk/mkdocs-material
 # repo_url: https://github.com/squidfunk/mkdocs-material
@@ -28,7 +28,7 @@ theme:
     text: Roboto
     code: Roboto Mono
   icon:
-    logo: material/guy-fawkes-mask
+    logo: material/home
     # repo: material/source-branch
   favicon: images/favicon.png
 
@@ -39,8 +39,6 @@ extra:
       link: https://github.com/ZuoRight
     - icon: material/email
       link: mailto:zuoright@foxmail.com
-    - icon: material/home
-      link: http://zuoright.com
 
 markdown_extensions:
   - meta  # 可以添加元信息
@@ -50,7 +48,6 @@ markdown_extensions:
       guess_lang: false
   - pymdownx.tabbed  # 分组式代码块
   - pymdownx.superfences
-
   - toc:
       permalink: true  # 固定链接
 
