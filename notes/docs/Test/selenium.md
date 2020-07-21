@@ -3,7 +3,26 @@ webdriver 网络驱动器
 IDE 浏览器插件
 Grid 可以做分布式测试
 
+## 配置环境变量
 
+如果不配置环境变量需要指定路径
+driver = webdriver.Chrome(executable_path='xxx/chromedriver')
+
+## [下载](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
+
+- [Chrome: chromedriver](https://chromedriver.storage.googleapis.com/index.html)
+- [FireFox: geckodriver](https://github.com/mozilla/geckodriver/releases)
+- Safari: safaridriver，自带(`usr/bin/`)
+
+### Mac
+
+1. 打开Finder，使用快捷键`Command+Shift+G`，前往文件夹`usr/local/bin`，将下载的驱动文件拖入。
+2. 打开终端，执行`vim ~/.bash_profile`，添加环境变量`export PATH=$PATH:/usr/local/bin/驱动名`，保存后执行`source ~/.bash_profile`生效。
+3. 执行`驱动名 --version`，如果返回版本号则说明配置正确
+
+Tips：启动Safari，需要勾选浏览器-工具栏-开发-允许远程自动化的选项。（如果没找到开发菜单，需要在Safari浏览器-偏好设置-高级下，勾选“在菜单中显示开发菜单”）
+
+### Windows
 
 ## [webdriver api](https://www.selenium.dev/selenium/docs/api/py/api.html)
 
