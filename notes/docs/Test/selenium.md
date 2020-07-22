@@ -1,3 +1,5 @@
+# Selenium
+
 SE三剑客
 webdriver 网络驱动器
 IDE 浏览器插件
@@ -24,12 +26,13 @@ Tips：启动Safari，需要勾选浏览器-工具栏-开发-允许远程自动�
 
 ### Windows
 
-## [webdriver api](https://www.selenium.dev/selenium/docs/api/py/api.html)
+## WebDriver类
+
+[webdriver api](https://www.selenium.dev/selenium/docs/api/py/api.html)
 
 `from selenium import webdriver`
 
-
-```text
+```python
 driver = webdriver.Chrome
 
 .ChromeOptions
@@ -45,39 +48,116 @@ driver = webdriver.Chrome
 .Proxy
 ```
 
-属性
+### 属性
 
-```text
-driver.name  浏览器名称
-driver.title  页面title
-driver.text  文本
-driver.tag_name 标签名
-driver.get_attribute("class")  类
-driver.get_attribute("value")  输入值
-driver.get_attribute("其他属性")
+```python
+driver.name  #浏览器名称
+driver.curent_url  # 当前url
+driver.title  # 当前页面标题
+driver.page_source  # 当前页面源码
+driver.window_handles  # 当前窗口所有句柄
+driver.current_window_handle  # 当前窗口句柄
+```
+
+### 方法
+
+```python
+driver.forward()  # 前进
+driver.back()  # 后退
+
+driver.refresh()  # 刷新页面
+driver.close()  # 关闭页面
+driver.quit()  # 退出浏览器
+
+driver.switch_to.alert()  # 切换到alert
+driver.switch_to.alert.accept()
+
+driver.switch_to.frame("frameName")  # 切换到frame
+driver.switch_to.window(driver.window_handles[1])  # 切换标签页
+driver.switch_to.active_element  # 切换到活动元素
 
 driver.get_cookies()
 ```
 
-```text
-driver.close() 关闭页面
-driver.quit() 关闭浏览器
-
-driver.forward() 前进
-driver.back() 后退
-
-driver.switch_to_alert() 切换到弹出对话框
-driver.switch_to_frame("frameName")
-driver.switch_to_window(driver.window_handles[1]) 切换标签页
+```python
+# 定位单个元素
+find_element_by_xxx
+# 定位多个元素
+find_elements_by_xxx
 ```
 
-查找元素
+定位到元素后会返回一个WebElement对象，用来描述一个元素
 
-```text
-# 查找单个元素
-find_element_by_xxx
-# 查找多个元素
-find_elements_by_xxx
+## WebElement类
+
+### 属性
+
+```python
+e.id  # 标示
+e.size  # 宽高
+e.rect  # 宽高和坐标
+e.text  # 文本内容
+e.tag_name  # 标签名
+```
+
+### 方法
+
+```python
+e.send_keys()  # 输入内容
+e.clear()  # 清空输入内容
+e.click()  # 单击
+e.is_selected  # 是否被选中
+e.is_enabled  # 是否可用
+e.is_displayed  # 是否显示
+e.value_of_css_property  # css属性值
+
+e.get_attribute("属性") # 获取属性值
+e.get_attribute("class")  # 获取类
+e.get_attribute("value")  # 获取输入值
+
+# 定位到父元素后还可以继续定位子元素
+e.find_element_by_xx()
+```
+
+## 下拉选项Select类
+
+```python
+from selenium import webdriver
+# 需要引入Select类
+from selenium.webdriver.support.select import Select
+
+se = self.driver.find_element_by_id('s4Id')
+select = Select(se)
+
+# 通过索引勾选
+select.select_by_index(3)
+
+for i in range(7):
+    select.select_by_index(i)
+
+# 通过选项value值勾选
+select.select_by_value('o4val')
+# 通过选项文本勾选
+select.select_by_visible_text('o1')
+
+# 取消勾选
+select.deselect_by_index(3)
+select.deselect_by_value('o4val')
+select.deselect_by_visible_text('o1')
+# 取消所有已选选项
+select.deselect_all()
+
+
+# 返回所有选项
+for option in select.options:
+    print(option.text)
+
+# 返回所有被选中的选项
+for option in select.all_selected_options:
+    print(option.text)
+
+# 返回被选中的第一个选项
+print(select.first_selected_option.text)
 ```
 
 
