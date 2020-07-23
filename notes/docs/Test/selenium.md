@@ -69,9 +69,6 @@ driver.refresh()  # 刷新页面
 driver.close()  # 关闭页面
 driver.quit()  # 退出浏览器
 
-driver.switch_to.alert()  # 切换到alert
-driver.switch_to.alert.accept()
-
 driver.switch_to.frame("frameName")  # 切换到frame
 driver.switch_to.window(driver.window_handles[1])  # 切换标签页
 driver.switch_to.active_element  # 切换到活动元素
@@ -79,11 +76,25 @@ driver.switch_to.active_element  # 切换到活动元素
 driver.get_cookies()
 ```
 
+三种弹框的处理：alert、confirm、prompt
+
+```python
+# 定位到弹框后，都需要先切换到alert
+a = driver.switch_to.alert()
+
+a.accept()  # 确认
+a.dismiss()  # 取消
+a.send_keys("xxx")  # 输入内容
+a.text  # 显示弹框的文本
+```
+
+元素定位
+
 ```python
 # 定位单个元素
-find_element_by_xxx
+driver.find_element_by_xxx
 # 定位多个元素
-find_elements_by_xxx
+driver.find_elements_by_xxx
 ```
 
 定位到元素后会返回一个WebElement对象，用来描述一个元素
@@ -206,29 +217,6 @@ select.options
 select.deselect_all()
 ```
 
-## EC
-
-`from selenium.webdriver.support import expected_conditions as EC`
-
-```text
-title_is: 判断当前页面的title是否精确等于预期
-title_contains: 判断当前页面的title是否包含预期字符串
-presence_of_element_located: 判断某个元素是否被加到了dom树里，并不代表该元素一定可见
-visibility_of_element_located: 判断某个元素是否可见.可见代表元素非隐藏，并且元素的宽和高都不等于0
-visibility_of: 跟上面的方法做一样的事情，只是上面的方法要传入locator，这个方法直接传定位到的element就好了
-presence_of_all_elements_located: 判断是否至少有1个元素存在于dom树中。举个例子，如果页面上有n个元素的class都是‘column-md-3‘，那么只要有1个元素存在，这个方法就返回true
-text_to_be_present_in_element: 判断某个元素中的text是否包含了预期的字符串
-text_to_be_present_in_element_value: 判断某个元素中的value属性是否包含了预期的字符串
-frame_to_be_available_and_switch_to_it: 判断该frame是否可以switch进去，如果可以的话，返回true并且switch进去，否则返回false
-invisibility_of_element_located: 判断某个元素中是否不存在于dom树或不可见
-element_to_be_clickable: 判断某个元素中是否可见并且是enable的，这样的话才叫clickable
-staleness_of: 等某个元素从dom树中移除，注意，这个方法也是返回true或false
-element_to_be_selected: 判断某个元素是否被选中了,一般用在下拉列表
-element_selection_state_to_be: 判断某个元素的选中状态是否符合预期
-element_located_selection_state_to_be: 跟上面的方法作用一样，只是上面的方法传入定位到的element，而这个方法传入locator
-alert_is_present: 判断页面上是否存在alert
-```
-
 ## 等待
 
 ### 强制等待
@@ -248,30 +236,78 @@ driver.implicitly_wait(5)
 
 ### 显性等待
 
-```text
+```python
 from selenium.webdriver.support.ui import WebDriverWait
 
-webdriverwait(driver, timeout, poll_frequency=0.5, ignored_exceptions=none)
-# driver 浏览器驱动
-# timeout 最长超长时间
-# poll_frequency 检测的间隔时间，默认0.5s
-# ignored_exceptions 超时后的异常信息，默认情况下抛nosuchelementexception异常
+wait = webdriverwait(driver, timeout)
+# driver 实例对象
+# timeout 超时时间
+# poll_frequency 检测的间隔时间，默认0.5s，一般默认
+# ignored_exceptions 超时后的异常信息，默认情况下抛nosuchelementexception异常，一般默认
 ```
 
-后面通常接until()或until_not()方法一起使用
+wait对象通常可以接until()或until_not()
 
-```text
-# 直到返回true
+```python
+# 一直等待，直到EC条件返回true
 .until(EC.method, message='')
 
-# 直到返回false
+# 一直等待，直到EC条件返回false
 .until_not(EC.method, message='')
 ```
 
----
+## EC模块（expected_conditions）
 
-element = driver.find_element_by_xxx
+`from selenium.webdriver.support import expected_conditions as EC`
 
-element.clear()
-element.send_keys()
-element.submit()
+```python
+# 判断页面上是否存在弹框
+EC.alert_is_present()
+
+# 判断该frame是否可以switch进去，如果可以的话，返回true并且switch进去，否则返回false
+EC.frame_to_be_available_and_switch_to_it()
+```
+
+```python
+# 判断title是否为xxx
+EC.title_is("xxx")
+# 判断title是否包含xxx
+EC.title_contains("xxx")
+
+# 判断某元素的文本是否包含xxx
+EC.text_to_be_present_in_element(locator, xxx)
+# 判断某元素的属性值是否包含xxx
+EC.text_to_be_present_in_element_value(locator, xxx)
+```
+
+```python
+# 判断某个元素中是否存在于dom或不可见
+EC.invisibility_of_element_located(locator)
+# 判断等待某个元素从dom树中是否移除
+EC.staleness_of()
+
+# 判断某个元素是否被加到了dom里，但不一定可见
+EC.presence_of_element_located(locator)
+# 判断是否至少有1个元素存在于dom中
+EC.presence_of_all_elements_located(locator)
+```
+
+```python
+# 判断元素是否可见，可见返回这个元素
+EC.visibility_of(element)
+# 判断某个元素是否可见，宽和高等大于0
+EC.visibility_of_element_located(locator)
+# 判断是否至少有一个元素可见
+EC.visibility_of_any_elements_located(locator)
+# 判断某个元素中是否可见并且是可点击的
+EC.element_to_be_clickable(locator)
+```
+
+```python
+# 判断某个元素是否被选中了,一般用在下拉列表中
+EC.element_to_be_selected(element)
+# 判断某个元素的选中状态是否符合预期
+EC.element_selection_state_to_be(element)
+# 判断某个元素的选中状态是否符合预期
+EC.element_located_selection_state_to_be(locator, is_selected)
+```
