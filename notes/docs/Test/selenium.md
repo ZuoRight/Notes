@@ -95,6 +95,10 @@ a.text  # 显示弹框的文本
 driver.find_element_by_xxx
 # 定位多个元素
 driver.find_elements_by_xxx
+
+# 通过By类定位
+from selenium.webdriver.common.by import By
+driver.find_element(By.ID, "")
 ```
 
 定位到元素后会返回一个WebElement对象，用来描述一个元素
@@ -239,7 +243,7 @@ driver.implicitly_wait(5)
 ```python
 from selenium.webdriver.support.ui import WebDriverWait
 
-wait = webdriverwait(driver, timeout)
+wait = WebDriverWait(driver, timeout)
 # driver 实例对象
 # timeout 超时时间
 # poll_frequency 检测的间隔时间，默认0.5s，一般默认
