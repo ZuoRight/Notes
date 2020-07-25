@@ -1,0 +1,1974 @@
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Right is right, left is also right.">
+      
+      
+        <link rel="canonical" href="http://www.zuoright.com/%E5%A4%A7%E5%89%8D%E7%AB%AF/JavaScript/">
+      
+      
+        <meta name="author" content="7c">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>JavaScript - ZuoRight</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ff7043">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reference" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://www.zuoright.com" title="ZuoRight" class="md-header-nav__button md-logo" aria-label="ZuoRight">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.59 11.59L23 13l-9.5 9.5-5.08-5.09L9.83 16l3.67 3.68 8.09-8.09M4 16V3h5a4 4 0 014 4c0 1.54-.87 2.88-2.15 3.55L14 16h-2l-2.89-5H6v5H4m2-7h3a2 2 0 002-2 2 2 0 00-2-2H6v4z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            ZuoRight
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              JavaScript
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://www.zuoright.com" title="ZuoRight" class="md-nav__button md-logo" aria-label="ZuoRight">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.59 11.59L23 13l-9.5 9.5-5.08-5.09L9.83 16l3.67 3.68 8.09-8.09M4 16V3h5a4 4 0 014 4c0 1.54-.87 2.88-2.15 3.55L14 16h-2l-2.89-5H6v5H4m2-7h3a2 2 0 002-2 2 2 0 00-2-2H6v4z"/></svg>
+
+    </a>
+    ZuoRight
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Basics
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/1/" title="1" class="md-nav__link">
+      1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/2/" title="2" class="md-nav__link">
+      2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/3.0/" title="3.0" class="md-nav__link">
+      3.0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/3.1/" title="3.1" class="md-nav__link">
+      3.1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/CPU/" title="CPU" class="md-nav__link">
+      CPU
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/C%E8%AF%AD%E8%A8%80/" title="C" class="md-nav__link">
+      C
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/all/" title="编程语言对比" class="md-nav__link">
+      编程语言对比
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/draft/" title="Draft" class="md-nav__link">
+      Draft
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/http/" title="HTTP" class="md-nav__link">
+      HTTP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/json/" title="JSON" class="md-nav__link">
+      JSON
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/mysql/" title="Mysql" class="md-nav__link">
+      Mysql
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式" class="md-nav__link">
+      正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/%E7%BC%96%E7%A0%81/" title="编码" class="md-nav__link">
+      编码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言" class="md-nav__link">
+      编程语言
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Linux
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Linux" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux/awk/" title="AWK" class="md-nav__link">
+      AWK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux/sed/" title="文本编辑器" class="md-nav__link">
+      文本编辑器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux/shell/" title="shell 编程" class="md-nav__link">
+      shell 编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux/ssh/" title="Ssh" class="md-nav__link">
+      Ssh
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux/%E6%9F%A5%E6%89%BE/" title="查找" class="md-nav__link">
+      查找
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Python
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/0/" title="0" class="md-nav__link">
+      0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/1/" title="1" class="md-nav__link">
+      1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/IO%E6%A8%A1%E5%9D%97%E6%93%8D%E4%BD%9C/" title="IO模块" class="md-nav__link">
+      IO模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/OS%E6%A8%A1%E5%9D%97%E6%93%8D%E4%BD%9C/" title="OS模块" class="md-nav__link">
+      OS模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/dict%E5%92%8Cset/" title="字典dict" class="md-nav__link">
+      字典dict
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/flask/" title="Flask" class="md-nav__link">
+      Flask
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/list%E5%92%8Ctuple/" title="数据结构" class="md-nav__link">
+      数据结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/uWSGI/" title="python web 服务部署" class="md-nav__link">
+      python web 服务部署
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E5%8F%98%E9%87%8F/" title="变量" class="md-nav__link">
+      变量
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E5%A3%B9%C2%B7%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="壹·环境搭建" class="md-nav__link">
+      壹·环境搭建
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="操作数据类型" class="md-nav__link">
+      操作数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="数据类型" class="md-nav__link">
+      数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E6%A8%A1%E5%9D%97/" title="模块 module" class="md-nav__link">
+      模块 module
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E8%AF%AD%E5%8F%A5/" title="语句" class="md-nav__link">
+      语句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E9%9B%B6%C2%B7%E5%85%B3%E4%BA%8EPython/" title="零·关于Python" class="md-nav__link">
+      零·关于Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Test
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Test" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Test
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/Appium/" title="Appium" class="md-nav__link">
+      Appium
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/Pytest/" title="pytest里固定的一些文件" class="md-nav__link">
+      pytest里固定的一些文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/selenium/" title="Selenium" class="md-nav__link">
+      Selenium
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/" title="测试开发" class="md-nav__link">
+      测试开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/" title="用例设计" class="md-nav__link">
+      用例设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/%E7%BC%BA%E9%99%B7%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9A%E4%BD%8D/" title="缺陷分析与定位" class="md-nav__link">
+      缺陷分析与定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" title="软件开发" class="md-nav__link">
+      软件开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" title="软件测试" class="md-nav__link">
+      软件测试
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      大前端
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="大前端" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        大前端
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        JavaScript
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="JavaScript" class="md-nav__link md-nav__link--active">
+      JavaScript
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dom" class="md-nav__link">
+    DOM
+  </a>
+  
+    <nav class="md-nav" aria-label="DOM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w3c" class="md-nav__link">
+    W3C定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    工作模式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    节点Node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    获取元素
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable" class="md-nav__link">
+    变量·Variable
+  </a>
+  
+    <nav class="md-nav" aria-label="变量·Variable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    变量定义
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    数据类型
+  </a>
+  
+    <nav class="md-nav" aria-label="数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    基本类型：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    引用类型:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statement" class="md-nav__link">
+    语句·Statement
+  </a>
+  
+    <nav class="md-nav" aria-label="语句·Statement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    条件语句
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    函数Function
+  </a>
+  
+    <nav class="md-nav" aria-label="函数Function">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    循环语句
+  </a>
+  
+    <nav class="md-nav" aria-label="循环语句">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    后测试语句
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    前测试语句
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    迭代语句
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    跳出循环语句
+  </a>
+  
+    <nav class="md-nav" aria-label="跳出循环语句">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#break" class="md-nav__link">
+    break语句
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continue" class="md-nav__link">
+    continue语句
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lable" class="md-nav__link">
+    lable语句
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    闭包
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    对象
+  </a>
+  
+    <nav class="md-nav" aria-label="对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#native-object" class="md-nav__link">
+    内置对象（native Object）
+  </a>
+  
+    <nav class="md-nav" aria-label="内置对象（native Object）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date" class="md-nav__link">
+    Date
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regexp" class="md-nav__link">
+    RegExp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function_1" class="md-nav__link">
+    Function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    单体内置对象
+  </a>
+  
+    <nav class="md-nav" aria-label="单体内置对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#global" class="md-nav__link">
+    Global对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#math" class="md-nav__link">
+    Math对象
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-object" class="md-nav__link">
+    宿主对象（host Object）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-defined-object" class="md-nav__link">
+    用户定义对象（user-defined object）
+  </a>
+  
+    <nav class="md-nav" aria-label="用户定义对象（user-defined object）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object" class="md-nav__link">
+    Object
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Layout/" title="Layout" class="md-nav__link">
+      Layout
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../iview/" title="View UI" class="md-nav__link">
+      View UI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../jQuery/" title="jQuery" class="md-nav__link">
+      jQuery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../js/" title="JS" class="md-nav__link">
+      JS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vue/" title="Vue" class="md-nav__link">
+      Vue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dom" class="md-nav__link">
+    DOM
+  </a>
+  
+    <nav class="md-nav" aria-label="DOM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w3c" class="md-nav__link">
+    W3C定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    工作模式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    节点Node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    获取元素
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable" class="md-nav__link">
+    变量·Variable
+  </a>
+  
+    <nav class="md-nav" aria-label="变量·Variable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    变量定义
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    数据类型
+  </a>
+  
+    <nav class="md-nav" aria-label="数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    基本类型：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    引用类型:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statement" class="md-nav__link">
+    语句·Statement
+  </a>
+  
+    <nav class="md-nav" aria-label="语句·Statement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    条件语句
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    函数Function
+  </a>
+  
+    <nav class="md-nav" aria-label="函数Function">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    循环语句
+  </a>
+  
+    <nav class="md-nav" aria-label="循环语句">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    后测试语句
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    前测试语句
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    迭代语句
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    跳出循环语句
+  </a>
+  
+    <nav class="md-nav" aria-label="跳出循环语句">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#break" class="md-nav__link">
+    break语句
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continue" class="md-nav__link">
+    continue语句
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lable" class="md-nav__link">
+    lable语句
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    闭包
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    对象
+  </a>
+  
+    <nav class="md-nav" aria-label="对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#native-object" class="md-nav__link">
+    内置对象（native Object）
+  </a>
+  
+    <nav class="md-nav" aria-label="内置对象（native Object）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date" class="md-nav__link">
+    Date
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regexp" class="md-nav__link">
+    RegExp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function_1" class="md-nav__link">
+    Function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    单体内置对象
+  </a>
+  
+    <nav class="md-nav" aria-label="单体内置对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#global" class="md-nav__link">
+    Global对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#math" class="md-nav__link">
+    Math对象
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-object" class="md-nav__link">
+    宿主对象（host Object）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-defined-object" class="md-nav__link">
+    用户定义对象（user-defined object）
+  </a>
+  
+    <nav class="md-nav" aria-label="用户定义对象（user-defined object）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object" class="md-nav__link">
+    Object
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>JavaScript</h1>
+                
+                <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>《JavaScript+DOM编程艺术》（第2版）        </p>
+<blockquote>
+<p><em>Jeremy Keith（吉姆·基斯）</em>              </p>
+</blockquote>
+</li>
+<li>
+<p>《JavaScript高级程序设计》（第3版）        </p>
+<blockquote>
+<p><em>Nicholas C. Zakas（尼古拉斯·泽卡斯）</em>        </p>
+</blockquote>
+</li>
+<li>
+<p>《JavaScript语言精粹》（修订版）       </p>
+<blockquote>
+<p><em>Douglas Crockford（道格拉斯·克劳克福德）</em>   </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="dom">DOM<a class="headerlink" href="#dom" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Document Object Model，可类比“世界对象模型”，在现实世界中，大家对很多事物都有一个共同的理解，属于一种API</p>
+</blockquote>
+<h3 id="w3c">W3C定义<a class="headerlink" href="#w3c" title="Permanent link">&para;</a></h3>
+<p>一个与系统平台和编程语言无关的接口，程序和脚本可以通过这个接口动态地对文档的内容、结构和样式进行访问和修改 <br />
+<em> D：文档，即网页文档 <br />
+</em> O：对象，DOM会在网页加载时根据网页文档创建一个文档对象    <br />
+* M：模型/Map，节点树  </p>
+<h3 id="_1">工作模式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>先加载文档的静态内容，再以动态方式对它们进行刷新，动态刷新不影响静态文档内容，即用户不需要刷新页面即可实现内容刷新     </p>
+<hr />
+<h3 id="node">节点Node<a class="headerlink" href="#node" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>元素节点：每个元素节点都是一个对象         <br />
+  文档节点    <br />
+  属性节点                </p>
+</blockquote>
+<h3 id="_2">获取元素<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>```document.getElementById(id)  //返回一个值         <br />
+document.getElementsByTagName(tag)  //返回一个数组
+document.getElementsByClassName(class1 class2)  //返回一个数组     <br />
+<div class="highlight"><pre><span></span><code>### 节点方法    
+```getAttribute(attribute)  //检索属性值        
+setAttribute(attribute,value)  //修改属性值    
+</code></pre></div></p>
+<h2 id="variable">变量·Variable<a class="headerlink" href="#variable" title="Permanent link">&para;</a></h2>
+<h3 id="_3">变量定义<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>var my_mood = "happy";       <br />
+  关键字 变量名 赋值 字面量 分号  <br />
+<strong>字面量（literal）</strong>，可以在JS代码中直接写出来的数据内容，字面量除了它本身所给出的内容外无任何附加含义  <br />
+<strong>命名规则</strong>：变量使用下划线分割单词<code>my_mood</code>，函数使用驼峰记号<code>myMood</code>        <br />
+<strong>作用域（scope）</strong>：全局和局部                                                 </p>
+</blockquote>
+<hr />
+<h2 id="_4">数据类型<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">基本类型：<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>基本类型值，指简单的数据段,按值访问  <br />
+<strong>标量</strong>：如果某个变量是标量的，它在任意时刻就只有一个值，字符串，数值和布尔值都是标量           </p>
+</blockquote>
+<ul>
+<li>Number:可用于表示所有数值，包括整数和浮点数  </li>
+<li>String</li>
+<li>Boolean  </li>
+<li>Undefined   </li>
+<li>Null  </li>
+</ul>
+<h3 id="_6">引用类型:<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>引用类型值，指那些可由多个值构成的对象，按引用访问，非离散
+  引用类型的值是引用类型的一个实例，即对象（具有属性和方法）
+  常被称为类，但不是类，因为它不具备传统语言所支持的类和接口等基本结构</p>
+</blockquote>
+<hr />
+<h2 id="statement">语句·Statement<a class="headerlink" href="#statement" title="Permanent link">&para;</a></h2>
+<h3 id="_7">条件语句<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><code>if(控制表达式1){...}else if(控制表达式2){...}else{...}</code></p>
+<p><code>switch(任何数据类型的变量){case 1:...;break;case 2:...;break;case 3:...;break;default:...}</code></p>
+<hr />
+<h2 id="function">函数Function<a class="headerlink" href="#function" title="Permanent link">&para;</a></h2>
+<h3 id="_8">循环语句<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<h4 id="_9">后测试语句<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>代码至少被执行一次  </p>
+</blockquote>
+<p><code>do{...}while(控制表达式)</code></p>
+<h4 id="_10">前测试语句<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>代码可能永不被执行，while循环做不到的for循环同样做不到，for循环只是把循环代码集中在了一个位置，较灵活</p>
+</blockquote>
+<p><code>while(控制表达式){...}</code></p>
+<p><code>for(定义&amp;初始化表达式;控制表达式;循环表达式){...}</code></p>
+<h4 id="_11">迭代语句<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>可用来枚举对象的属性  </p>
+</blockquote>
+<p><code>for(xx in xx){...}</code></p>
+<h3 id="_12">跳出循环语句<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<h4 id="break">break语句<a class="headerlink" href="#break" title="Permanent link">&para;</a></h4>
+<p>退出循环  </p>
+<h4 id="continue">continue语句<a class="headerlink" href="#continue" title="Permanent link">&para;</a></h4>
+<p>跳出本次循环，继续下次循环  </p>
+<h4 id="lable">lable语句<a class="headerlink" href="#lable" title="Permanent link">&para;</a></h4>
+<p>常被引用于循环嵌套中的break或continue语句中
+<code>自定义标签:for等循环语句等
+break + lable` 退出指定循环（内部或外部循环）
+continue + lable` 跳出内部循环，继续执行指定外部循环  
+<div class="highlight"><pre><span></span><code>### 创建函数
+&gt; 因不存在函数签名的特性，所以没有重载，如果定义了两个同名函数，后定义的会覆盖先定义的           
+
+#### 函数声明
+&gt; 函数声明的重要特征是函数声明提升，代码在之前会先读取函数声明，所以将函数放在其调用语句之后也正常运行    
+</code></pre></div>
+faction 函数名(参数1,参数2,...){   
+...;  函数体   
+}
+<div class="highlight"><pre><span></span><code>#### 函数表达式
+&gt; 此时的函数叫做匿名函数，也叫拉姆达函数
+  与其他表达式一样，必须先赋值，而且结尾要加分号   
+</code></pre></div>
+var faunctionName = faunction(arg0,arg1,arg2){   
+...;  函数体   
+};
+<div class="highlight"><pre><span></span><code>### 函数的属性
+</code></pre></div>
+.length  //参数个数           
+.prototype
+<div class="highlight"><pre><span></span><code>### 函数的方法
+* .call()        
+* .apply()       
+* .bind()        
+
+### 内部特殊对象   
+#### arguments
+</code></pre></div>
+arguments[0/1/2...]  //返回具体参数      
+arguments.length  //返回参数个数      
+arguments.callee  //指向正在执行的函数的指针      
+<div class="highlight"><pre><span></span><code>#### this     
+在网页全局作用域中，this对象引用的是window
+
+### return语句
+* 任何函数在任何时候都可以通过return语句返回值
+* 函数在定义时不必指定是否返回值
+* 函数会在执行完return语句后停止并立即跳出
+* return语句可以不必带返回值，函数将在停止后返回undefined值
+
+### 递归
+即调用自身的函数，一个经典的递归阶乘函数：   
+</code></pre></div>
+faunction factorial(num) {
+  if (num &lt;= 1 ){  
+  return 1;    
+  } else {    
+  return num * arguments.calles(num-1);    
+  } }</code>    </p>
+<h3 id="_13">闭包<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>在函数内部定义了其它函数，就创建了闭包     </li>
+<li>闭包有权访问包含函数内部的所有变量        </li>
+<li>通常函数的作用域及其所有变量都会被立即销毁            </li>
+<li>但当函数返回了一个闭包时，这个函数的作用域将会一直在内存中保存到闭包不存在为止</li>
+</ul>
+<hr />
+<h2 id="_14">对象<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>对象是自我包含的数据集合，包含在对象里的数据可以通过属性和方法访问             <br />
+  对象是由一些彼此相关的属性和方法集合在一起而构成的一个数据实体      <br />
+<strong>属性</strong>：是隶属于某个特定对象的变量，<code>person.age</code>         <br />
+<strong>方法</strong>：是只有某个特定对象才能调用的函数，<code>person.sleep</code></p>
+<p><strong>实例</strong>：        <br />
+  * 对象是统称（比如人），实例是个体，是对象的具体表现 （某某某）       <br />
+  * 创建新实例需要<code>new</code>关键字，当我们使用<code>new</code>去初始化一个数组时，其实就是在创建一个Array对象的新实例             </p>
+</blockquote>
+<h3 id="native-object">内置对象（native Object）<a class="headerlink" href="#native-object" title="Permanent link">&para;</a></h3>
+<h4 id="array">Array<a class="headerlink" href="#array" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>数组是由名字相同的多个值构成的一个集合，即用一个变量存储一组值，集合中的每个值都是这个数组的元素（element）    <br />
+<strong>创建</strong>  <br />
+  1. 构造函数（new可以省略）<br />
+    * <code>var colors = new Array();</code>
+    * <code>var colors = Array(3);</code>
+    * <code>var colors = Array("red","blue","green");</code>
+  2. 对象字面量<br />
+<code>var colors =["red","blue","green"];</code></p>
+<p><strong>访问</strong><br />
+  1. 数组长度<br />
+<code>colors.length</code>
+  2. 索引<br />
+<code>colors[0/1/2]</code></p>
+</blockquote>
+<h4 id="date">Date<a class="headerlink" href="#date" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><strong>创建</strong>
+  1. 当前时间       <br />
+<code>var now = new Date();</code><br />
+  2. 特定时间        <br />
+<code>var date = new Date(Date.parse(February 7,2017))</code><br />
+<code>var date = new Date(Date.UTC(2017,2,7,17,21))</code>  </p>
+</blockquote>
+<h4 id="regexp">RegExp<a class="headerlink" href="#regexp" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><strong>创建</strong>
+  1. 构造函数<br />
+<code>var expression = new RegExp{"正则表达式","标志（g/i/m）"};</code><br />
+  2. 对象字面量  <br />
+<code>var expression = /正则表达式/标志（全局/不分大小写/多行）;</code></p>
+</blockquote>
+<h4 id="function_1">Function<a class="headerlink" href="#function_1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>函数实际上也是对象，每个函数都是Function类型的实例，而且与其他引用类型一样，也具有属性和方法</p>
+<p><strong>创建</strong>  <br />
+<code>var sum = Function(num1，num2)｛</code>  <br />
+<code>return num1+num2;</code>   <br />
+<code>};</code>  （末尾要有分号）         </p>
+</blockquote>
+<hr />
+<h3 id="_15">单体内置对象<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<h4 id="global">Global对象<a class="headerlink" href="#global" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>所有在全局作用域中定义的属性和函数，不属于任何其它对象的属性和方法，都是Global对象的属性和方法<br />
+     window   </p>
+</blockquote>
+<h4 id="math">Math对象<a class="headerlink" href="#math" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>math.min()  <br />
+     math.max()  </p>
+</blockquote>
+<h3 id="host-object">宿主对象（host Object）<a class="headerlink" href="#host-object" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>预定义对象：预先定义好的、但不是JS本身的、而是由它的运行环境提供的对象   <br />
+  由web浏览器提供的预定义对象叫做宿主对象，例如<code>Form、Image、Element</code>等</p>
+<p>最基础的是<code>window</code>对象
+  window对应浏览器窗口本身，其属性和方法通常被称为BOM（浏览器对象模型），如window.open()，window.blur()          </p>
+<p>但我们一般使用<code>document</code>对象来获得某给定网页上的任何一个元素信息，即浏览器内容，而不使用宿主对象       </p>
+</blockquote>
+<h3 id="user-defined-object">用户定义对象（user-defined object）<a class="headerlink" href="#user-defined-object" title="Permanent link">&para;</a></h3>
+<h4 id="object">Object<a class="headerlink" href="#object" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><strong>创建</strong><br />
+  1. 构造函数  <br />
+<code>var person = new Object();</code><br />
+<code>person.name = "jc";</code><br />
+<code>person.age = 25;</code><br />
+  2. 对象字面量<br />
+<code>var person = {</code><br />
+<code>name : "jc";</code>  <br />
+<code>age : 25</code>  <br />
+<code>};</code></p>
+<p><strong>访问</strong> <br />
+  1. 点表示法  <br />
+<code>person.age</code><br />
+  2. 方括号语法    <br />
+<code>person[first name]</code>  </p>
+</blockquote>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-07-15</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../Test/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" title="软件测试" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                软件测试
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../Layout/" title="Layout" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                Layout
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 ~ Forever 7c
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/ZuoRight" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+      </a>
+    
+      
+      
+      <a href="mailto:zuoright@foxmail.com" target="_blank" rel="noopener" title="" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 8l-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/baidu-tongji.js"></script>
+      
+    
+  </body>
+</html>

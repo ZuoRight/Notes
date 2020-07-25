@@ -1,0 +1,1213 @@
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Right is right, left is also right.">
+      
+      
+        <link rel="canonical" href="http://www.zuoright.com/Basics/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">
+      
+      
+        <meta name="author" content="7c">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>编程语言 - ZuoRight</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ff7043">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lisp" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://www.zuoright.com" title="ZuoRight" class="md-header-nav__button md-logo" aria-label="ZuoRight">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.59 11.59L23 13l-9.5 9.5-5.08-5.09L9.83 16l3.67 3.68 8.09-8.09M4 16V3h5a4 4 0 014 4c0 1.54-.87 2.88-2.15 3.55L14 16h-2l-2.89-5H6v5H4m2-7h3a2 2 0 002-2 2 2 0 00-2-2H6v4z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            ZuoRight
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              编程语言
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://www.zuoright.com" title="ZuoRight" class="md-nav__button md-logo" aria-label="ZuoRight">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.59 11.59L23 13l-9.5 9.5-5.08-5.09L9.83 16l3.67 3.68 8.09-8.09M4 16V3h5a4 4 0 014 4c0 1.54-.87 2.88-2.15 3.55L14 16h-2l-2.89-5H6v5H4m2-7h3a2 2 0 002-2 2 2 0 00-2-2H6v4z"/></svg>
+
+    </a>
+    ZuoRight
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Basics
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Basics" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Basics
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1/" title="1" class="md-nav__link">
+      1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2/" title="2" class="md-nav__link">
+      2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.0/" title="3.0" class="md-nav__link">
+      3.0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.1/" title="3.1" class="md-nav__link">
+      3.1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../CPU/" title="CPU" class="md-nav__link">
+      CPU
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../C%E8%AF%AD%E8%A8%80/" title="C" class="md-nav__link">
+      C
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../all/" title="编程语言对比" class="md-nav__link">
+      编程语言对比
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../draft/" title="Draft" class="md-nav__link">
+      Draft
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../http/" title="HTTP" class="md-nav__link">
+      HTTP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../json/" title="JSON" class="md-nav__link">
+      JSON
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mysql/" title="Mysql" class="md-nav__link">
+      Mysql
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式" class="md-nav__link">
+      正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E7%BC%96%E7%A0%81/" title="编码" class="md-nav__link">
+      编码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        编程语言
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="编程语言" class="md-nav__link md-nav__link--active">
+      编程语言
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lisp" class="md-nav__link">
+    LISP：解释型语言起源
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schemelisp" class="md-nav__link">
+    Scheme：Lisp的“方言”之一
+  </a>
+  
+    <nav class="md-nav" aria-label="Scheme：Lisp的“方言”之一">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#racketscheme" class="md-nav__link">
+    Racket：Scheme的“实现”之一
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Linux
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Linux" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux/awk/" title="AWK" class="md-nav__link">
+      AWK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux/sed/" title="文本编辑器" class="md-nav__link">
+      文本编辑器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux/shell/" title="shell 编程" class="md-nav__link">
+      shell 编程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux/ssh/" title="Ssh" class="md-nav__link">
+      Ssh
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux/%E6%9F%A5%E6%89%BE/" title="查找" class="md-nav__link">
+      查找
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Python
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/0/" title="0" class="md-nav__link">
+      0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/1/" title="1" class="md-nav__link">
+      1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/IO%E6%A8%A1%E5%9D%97%E6%93%8D%E4%BD%9C/" title="IO模块" class="md-nav__link">
+      IO模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/OS%E6%A8%A1%E5%9D%97%E6%93%8D%E4%BD%9C/" title="OS模块" class="md-nav__link">
+      OS模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/dict%E5%92%8Cset/" title="字典dict" class="md-nav__link">
+      字典dict
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/flask/" title="Flask" class="md-nav__link">
+      Flask
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/list%E5%92%8Ctuple/" title="数据结构" class="md-nav__link">
+      数据结构
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/uWSGI/" title="python web 服务部署" class="md-nav__link">
+      python web 服务部署
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E5%8F%98%E9%87%8F/" title="变量" class="md-nav__link">
+      变量
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E5%A3%B9%C2%B7%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="壹·环境搭建" class="md-nav__link">
+      壹·环境搭建
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="操作数据类型" class="md-nav__link">
+      操作数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="数据类型" class="md-nav__link">
+      数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E6%A8%A1%E5%9D%97/" title="模块 module" class="md-nav__link">
+      模块 module
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E8%AF%AD%E5%8F%A5/" title="语句" class="md-nav__link">
+      语句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python/%E9%9B%B6%C2%B7%E5%85%B3%E4%BA%8EPython/" title="零·关于Python" class="md-nav__link">
+      零·关于Python
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Test
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Test" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Test
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/Appium/" title="Appium" class="md-nav__link">
+      Appium
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/Pytest/" title="pytest里固定的一些文件" class="md-nav__link">
+      pytest里固定的一些文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/selenium/" title="Selenium" class="md-nav__link">
+      Selenium
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/" title="测试开发" class="md-nav__link">
+      测试开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/" title="用例设计" class="md-nav__link">
+      用例设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/%E7%BC%BA%E9%99%B7%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9A%E4%BD%8D/" title="缺陷分析与定位" class="md-nav__link">
+      缺陷分析与定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" title="软件开发" class="md-nav__link">
+      软件开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" title="软件测试" class="md-nav__link">
+      软件测试
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      大前端
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="大前端" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        大前端
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF/JavaScript/" title="JavaScript" class="md-nav__link">
+      JavaScript
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF/Layout/" title="Layout" class="md-nav__link">
+      Layout
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF/iview/" title="View UI" class="md-nav__link">
+      View UI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF/jQuery/" title="jQuery" class="md-nav__link">
+      jQuery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF/js/" title="JS" class="md-nav__link">
+      JS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF/vue/" title="Vue" class="md-nav__link">
+      Vue
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lisp" class="md-nav__link">
+    LISP：解释型语言起源
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schemelisp" class="md-nav__link">
+    Scheme：Lisp的“方言”之一
+  </a>
+  
+    <nav class="md-nav" aria-label="Scheme：Lisp的“方言”之一">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#racketscheme" class="md-nav__link">
+    Racket：Scheme的“实现”之一
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>编程语言</h1>
+                
+                <p><a href="https://blog.youxu.info/2009/06/13/vm/">https://blog.youxu.info/2009/06/13/vm/</a></p>
+<p>https://blog.youxu.info/2009/07/02/fortran/</p>
+<p>https://blog.youxu.info/2009/08/31/lisp-and-ai-1/</p>
+<p><a href="https://blog.youxu.info/2010/02/10/lisp-and-ai-2/">https://blog.youxu.info/2010/02/10/lisp-and-ai-2/</a></p>
+<p><a href="https://blog.youxu.info/2010/07/12/scheme-1/">https://blog.youxu.info/2010/07/12/scheme-1/</a></p>
+<p><a href="https://blog.youxu.info/2011/09/27/lisp-prehistory/">https://blog.youxu.info/2011/09/27/lisp-prehistory/</a></p>
+<p><a href="https://blog.youxu.info/2012/02/02/software-tools-1/">https://blog.youxu.info/2012/02/02/software-tools-1/</a></p>
+<p><a href="https://blog.youxu.info/2013/03/03/unix-haters-2/">https://blog.youxu.info/2013/03/03/unix-haters-2/</a></p>
+<p><a href="https://blog.youxu.info/2014/05/11/language-and-vm/">https://blog.youxu.info/2014/05/11/language-and-vm/</a></p>
+<p><a href="https://blog.youxu.info/2014/06/10/postscript/">https://blog.youxu.info/2014/06/10/postscript/</a></p>
+<p><a href="https://blog.youxu.info/2014/12/04/coroutine/">https://blog.youxu.info/2014/12/04/coroutine/</a></p>
+<p><a href="http://www.yinwang.org/blog-cn/2017/07/06/master-pl">王垠：如何掌握所有语言</a></p>
+<p>语言都是图灵等价的，他们的语言组件都是大同小异的，所以学习一门语言最重要的是学习他的语言特性</p>
+<p>很多人盲目的崇拜语言设计者，只要听到有人设计（或者美其民曰“发明”）了一个语言，就热血沸腾，佩服的五体投地。他们却没有理解，其实所有的程序语言，不过是像 Dell，联想一样的“组装机”。语言特性的设计者，才是像 Intel，AMD，ARM，Qualcomm 那样核心技术的创造者。</p>
+<p>通常我们想要搞懂一些东西，最开始可能都需要看说明书，对于编程语言来说，官方文档无疑就是最好的说明书</p>
+<p><a href="http://fatiherikli.github.io/programming-language-network/">编程语言关系图谱（Programming language network）</a></p>
+<p><a href="https://exploring-data.com/vis/programming-languages-influence-network/">programming-languages-influence-network</a></p>
+<p><a href="https://blog.csdn.net/coding_dong/article/details/80920571">分类</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80%E6%AD%B7%E5%8F%B2">发展史</a></p>
+<p><a href="http://www.omegaxyz.com/2018/01/24/programmla_his/">编年史</a></p>
+<p>编程语言，是人与计算机之间交流的语言，所以谈到编程语言是肯定离不开计算机的，计算机最初是没有编程语言也没有操作系统的，三者之间的出现顺序是：计算机》编程语言》操作系统。</p>
+<p>计算机由软件和硬件共同组成，软件的发展离不开硬件</p>
+<p>所以我们可以分三个时期来讲：</p>
+<ol>
+<li>计算机没有编程语言之前是如何工作的，为何后来有了编程语言，由此可以直到编程语言的由来和被创造的意义。</li>
+<li>计算机有了编程语言，但是没有操作系统之前这段时间，这时期出现的编程语言可谓是影响了之后一直到今天所有编程语言的发展，尤其重要</li>
+<li>操作系统出现之后，编程语言产生了什么变化</li>
+</ol>
+<h4 id="lisp">LISP：解释型语言起源<a class="headerlink" href="#lisp" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>基于递归函数，丘奇的λ演算（灵魂：递归）</p>
+<p>列表+函数式</p>
+<p>Steve Russell 为LISP写了第一个解释器：REPL</p>
+</blockquote>
+<p>设计目的：只想做一种理论演算，用更简洁的方式定义图灵机。本质上不是一种技术，而是数学，数学不会项硬件一样过时，而是想算法一样长存（比如快速排序是1960年提出的，至今仍然是最快的通用排序算法），所以Lisp影响了之后的很多编程语言</p>
+<blockquote>
+<h4 id="schemelisp">Scheme：Lisp的“方言”之一<a class="headerlink" href="#schemelisp" title="Permanent link">&para;</a></h4>
+<blockquote>
+<h5 id="racketscheme">Racket：Scheme的“实现”之一<a class="headerlink" href="#racketscheme" title="Permanent link">&para;</a></h5>
+</blockquote>
+</blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665516226&amp;idx=1&amp;sn=6fea7e36d1aa769e6d5b0af6702ae3db&amp;chksm=80d67481b7a1fd9773b516c87f1e2cd3d9e392242430704243da3f4b45c2653d6304a749fa23&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;key=98ed5c14c3ff9f33573d9dd6c829d31021447a2475ed313c6112f9450a066c76720b2adf68ca773573cbfde7c6f21266436491b936c303246993a872647013b451cbc95aab408577a0d3a50dd8e7f39a&amp;ascene=1&amp;uin=MTY0MzI2ODAwMQ%3D%3D&amp;devicetype=Windows+10&amp;version=62060739&amp;lang=zh_CN&amp;pass_ticket=Wt14ITPPeFy%2FKQ%2FeEUIYY3NMILoRxn0s7ZUc2muNBezBS0rp2JU3%2BiOYN2LJ3Uin">码农翻身：为什么无人问津的Lisp可以这么狂</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2010/10/why_lisp_is_superior.html">黑客与画家，阮一峰译：为什么LIsp语言如此先进</a></p>
+<p>Ruby被称为Lisp的方言不为过</p>
+<p>Python模仿Lisp，甚至把很多Lisp黑客认为属于设计错误的功能一并模仿了</p>
+<p><img alt="1561560769507" src="C:\Users\IAWAI\AppData\Roaming\Typora\typora-user-images\1561560769507.png" /></p>
+<h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
+<p>1991</p>
+<p>语言参考（官方中文版）：<a href="https://docs.python.org/zh-cn/3.7/reference/index.html">https://docs.python.org/zh-cn/3.7/reference/index.html</a></p>
+<p>入门指南（官方中文版）：<a href="https://docs.python.org/zh-cn/3.7/">https://docs.python.org/zh-cn/3.7/</a></p>
+<p>静态类型语言相对于动态类型语言，在声明变量时已经指定了数据类型和表示方法，根据这一原理导致Python相对于C、Visual Basic等静态类型语言来说运行速度较慢。不过，根据<a href="https://zh.wikipedia.org/wiki/%E5%B8%95%E9%9B%B7%E6%89%98%E6%B3%95%E5%88%99">二八定律</a>，大多数程序对速度要求不高。在某些对运行速度要求很高的情况，Python设计师倾向于使用<a href="https://zh.wikipedia.org/wiki/%E5%8D%B3%E6%99%82%E7%B7%A8%E8%AD%AF">JIT技术</a>，或者用使用C/C++语言改写这部分程序。当前可用的JIT技术是<a href="https://zh.wikipedia.org/wiki/PyPy">PyPy</a></p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-07-15</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../%E7%BC%96%E7%A0%81/" title="编码" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                编码
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../Linux/awk/" title="AWK" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                AWK
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 ~ Forever 7c
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/ZuoRight" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+      </a>
+    
+      
+      
+      <a href="mailto:zuoright@foxmail.com" target="_blank" rel="noopener" title="" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 8l-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/baidu-tongji.js"></script>
+      
+    
+  </body>
+</html>
