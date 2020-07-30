@@ -69,14 +69,17 @@ driver.forward()  # 前进
 driver.back()  # 后退
 
 driver.refresh()  # 刷新页面
+
 driver.close()  # 关闭页面
 driver.quit()  # 退出浏览器
 
+driver.get_cookies()
+```
+
+```python
 driver.switch_to.frame("frameName")  # 切换到frame
 driver.switch_to.window(driver.window_handles[1])  # 切换标签页
 driver.switch_to.active_element  # 切换到活动元素
-
-driver.get_cookies()
 ```
 
 ## 定位元素
@@ -281,3 +284,17 @@ EC.element_selection_state_to_be(element)
 # 判断某个元素的选中状态是否符合预期
 EC.element_located_selection_state_to_be(locator, is_selected)
 ```
+
+## 鼠标和键盘操作
+
+```python
+from selenium.webdriver import ActionChains
+
+ActionChains(self.driver).func()
+```
+
+```python
+.click(element)
+```
+
+## 执行JS
