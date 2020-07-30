@@ -1,20 +1,24 @@
 # Selenium
 
-SE三剑客
-webdriver 网络驱动器
-IDE 浏览器插件
-Grid 可以做分布式测试
+- [官网](https://www.selenium.dev/)
+- [API文档](https://www.selenium.dev/selenium/docs/api/py/api.html)（[中文](https://selenium-python-zh.readthedocs.io/en/latest/)）
 
-## 配置环境变量
+## 原理
 
-如果不配置环境变量需要指定路径
-driver = webdriver.Chrome(executable_path='xxx/chromedriver')
+由以下三部分组成
 
-## [下载](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
+- **Webdriver** 网络驱动器
+- **IDE** 浏览器插件
+- **Grid** 可以做分布式测试
 
-- [Chrome: chromedriver](https://chromedriver.storage.googleapis.com/index.html)
-- [FireFox: geckodriver](https://github.com/mozilla/geckodriver/releases)
-- Safari: safaridriver，自带(`usr/bin/`)
+## 环境搭建
+
+1. 安装Selenium：`pip install selenium`
+2. [下载浏览器驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
+    - [Chrome: chromedriver](https://chromedriver.storage.googleapis.com/index.html)
+    - [FireFox: geckodriver](https://github.com/mozilla/geckodriver/releases)
+    - Safari: safaridriver(`usr/bin/`中已存在，无需再下载)
+3. 配置环境变量
 
 ### Mac
 
@@ -22,31 +26,30 @@ driver = webdriver.Chrome(executable_path='xxx/chromedriver')
 2. 打开终端，执行`vim ~/.bash_profile`，添加环境变量`export PATH=$PATH:/usr/local/bin/驱动名`，保存后执行`source ~/.bash_profile`生效。
 3. 执行`驱动名 --version`，如果返回版本号则说明配置正确
 
-Tips：启动Safari，需要勾选浏览器-工具栏-开发-允许远程自动化的选项。（如果没找到开发菜单，需要在Safari浏览器-偏好设置-高级下，勾选“在菜单中显示开发菜单”）
-
 ### Windows
 
-## WebDriver类
+1. 下载的驱动文件可以集中放在一个文件夹内，比如`selenium-driver`
+2. 然后将该文件路径添加到`环境变量\系统变量\Path`中
+3. 打开终端，执行`驱动名 --version`，如果返回版本号则说明配置正确
 
-[webdriver api](https://www.selenium.dev/selenium/docs/api/py/api.html)
-
-`from selenium import webdriver`
+## 启动浏览器
 
 ```python
-driver = webdriver.Chrome
+from selenium import webdriver
 
-.ChromeOptions
-.Firefox
-.FirefoxProfile
-.Ie
-.Opera
-.PhantomJS
-.Remote
-.DesiredCapabilities
-.ActionChains
-.TouchActions
-.Proxy
+# 启动Chrome
+driver = webdriver.Chrome()
+# 启动Firefox
+driver = webdriver.Firefox()
+# 启动Safari
+# 注意：需要先在【Safari浏览器-偏好设置-高级】，勾选【“在菜单中显示开发”】，然后在【开发】，勾选【允许远程自动化】
+driver = webdriver.Safari()
+
+# 如果没有配置环境变量，需要指定路径
+driver = webdriver.Chrome(executable_path='Xxx/chromedriver')
 ```
+
+## 操控浏览器·WebDriver
 
 ### 属性
 
@@ -76,34 +79,22 @@ driver.switch_to.active_element  # 切换到活动元素
 driver.get_cookies()
 ```
 
-三种弹框的处理：alert、confirm、prompt
-
-```python
-# 定位到弹框后，都需要先切换到alert
-a = driver.switch_to.alert()
-
-a.accept()  # 确认
-a.dismiss()  # 取消
-a.send_keys("xxx")  # 输入内容
-a.text  # 显示弹框的文本
-```
-
-元素定位
+## 定位元素
 
 ```python
 # 定位单个元素
-driver.find_element_by_xxx
+e = driver.find_element_by_xxx
 # 定位多个元素
-driver.find_elements_by_xxx
+e = driver.find_elements_by_xxx
 
 # 通过By类定位
 from selenium.webdriver.common.by import By
-driver.find_element(By.ID, "")
+e = driver.find_element(By.ID, "")
 ```
 
 定位到元素后会返回一个WebElement对象，用来描述一个元素
 
-## WebElement类
+## 操控元素·WebElement
 
 ### 属性
 
@@ -134,7 +125,26 @@ e.get_attribute("value")  # 获取输入值
 e.find_element_by_xx()
 ```
 
-## 下拉选项Select类
+## 弹框的处理
+
+弹框主要有三种，处理方式基本一致
+
+- alert
+- confirm
+- prompt
+
+```python
+# 先定位到弹框
+# 然后切换到alert
+a = driver.switch_to.alert()
+
+a.accept()  # 确认
+a.dismiss()  # 取消
+a.send_keys("xxx")  # 输入内容
+a.text  # 显示弹框的文本
+```
+
+## 下拉框的处理
 
 ```python
 from selenium import webdriver
@@ -143,7 +153,9 @@ from selenium.webdriver.support.select import Select
 
 se = self.driver.find_element_by_id('s4Id')
 select = Select(se)
+```
 
+```python
 # 通过索引勾选
 select.select_by_index(3)
 
@@ -175,66 +187,22 @@ for option in select.all_selected_options:
 print(select.first_selected_option.text)
 ```
 
-
-## from selenium.common.exceptions import [TheNameOfTheExceptionClass](https://www.selenium.dev/selenium/docs/api/py/common/selenium.common.exceptions.html#module-selenium.common.exceptions)
-
-
-## from selenium.webdriver.common.xxx import Xxx
-
-```text
-.by 鼠标操作
-.alert 弹窗操作
-.keys 按键操作
-.touch_actions 操作触控
-.action_chains 组合操作
-.utils
-.proxy
-.service
-.desired_capabilities
-.html5.application_cache
-```
-
-
-## from selenium.webdriver.support
-
-```text
-from selenium.webdriver.support import expected_conditions as EC
-```
-
-```text
-from selenium.webdriver.support.ui import webdriverwait
-```
-
-```text
-from selenium.webdriver.support.ui import Select
-
-select = Select(driver.find_element_by_xxx)
-# 不同选取方式
-select.select_by_index(index)
-select.select_by_visible_text("text")
-select.select_by_value(value)
-# 列出所有选项
-select.all_selected_options
-# 选取全部
-select.options
-# 取消全部
-select.deselect_all()
-```
-
-## 等待
+## 等待的处理
 
 ### 强制等待
 
-```text
+一般只在调试过程中使用
+
+```python
 import time
 sleep(5)
 ```
 
 ### 隐性等待
 
-需要注意的是，当find_element与click()连用，隐性等待会失效
+需要注意的是，当定位到元素后连用`.click()`时，隐性等待会失效
 
-```text
+```python
 driver.implicitly_wait(5)
 ```
 
@@ -243,24 +211,22 @@ driver.implicitly_wait(5)
 ```python
 from selenium.webdriver.support.ui import WebDriverWait
 
-wait = WebDriverWait(driver, timeout)
-# driver 实例对象
-# timeout 超时时间
-# poll_frequency 检测的间隔时间，默认0.5s，一般默认
-# ignored_exceptions 超时后的异常信息，默认情况下抛nosuchelementexception异常，一般默认
+wait = WebDriverWait(self.driver, timeout)
 ```
 
-wait对象通常可以接until()或until_not()
+参数：
 
-```python
-# 一直等待，直到EC条件返回true
-.until(EC.method, message='')
+- `driver`
+- `timeout` 超时时间
+- `poll_frequency` 检测的间隔时间，默认为0.5s
+- `ignored_exceptions` 超时后抛出异常，默认为`nosuchelementexception`
 
-# 一直等待，直到EC条件返回false
-.until_not(EC.method, message='')
-```
+停止等待：
 
-## EC模块（expected_conditions）
+- 满足预期条件时停止：`wait.until(EC.method, message='')`
+- 不满足预期条件时停止：`wait.until_not(EC.method, message='')`
+
+## 预期条件·EC
 
 `from selenium.webdriver.support import expected_conditions as EC`
 
