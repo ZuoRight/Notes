@@ -77,9 +77,19 @@ driver.get_cookies()
 ```
 
 ```python
-driver.switch_to.frame("frameName")  # 切换到frame
+driver.switch_to.frame(element)  # 切换到frame
+driver.switch_to.default_content()  # 返回主frame
+driver.switch_to.parent_frame()  # 返回父frame
+
 driver.switch_to.window(driver.window_handles[1])  # 切换标签页
+
 driver.switch_to.active_element  # 切换到活动元素
+```
+
+```python
+# 执行js脚本
+driver.execute_script(js)  # 同步
+driver.execute_async_script(js)  # 异步
 ```
 
 ## 定位元素
@@ -112,7 +122,9 @@ e.tag_name  # 标签名
 ### 方法
 
 ```python
-e.send_keys()  # 输入内容
+e.send_keys("xxx")  # 输入内容
+e.send_keys(Keys.CONTROL, "v")  # 还可以输入快捷键
+
 e.clear()  # 清空输入内容
 e.click()  # 单击
 e.is_selected  # 是否被选中
@@ -285,16 +297,66 @@ EC.element_selection_state_to_be(element)
 EC.element_located_selection_state_to_be(locator, is_selected)
 ```
 
-## 鼠标和键盘操作
+## ActionChains
+
+### 鼠标操作
 
 ```python
 from selenium.webdriver import ActionChains
 
-ActionChains(self.driver).func()
+ActionChains(self.driver).func1().func2().perform()  # 按顺序执行func1和func2
+
+.reset_actions()  # 清除已存储的actions
+.pause(seconds)  # 保持n秒
 ```
 
 ```python
-.click(element)
+.click(element=None)  # 单击左键
+.context_click(element=None)  # 单击右键
+.double_click(element=None)  # 双击左键
+
+.click_and_hold(element=None)  # 单击左键，不松开
+.release(element=None)  # 在某个元素上松开按键
+.drag_and_drop(source, target)  # 拖拽到某个元素后松开
+.drag_and_drop_by_offset(source, xoffset, yoffset)  # 拖拽到某个坐标后松开
+
+.move_to_element(to_element)  # 鼠标移到某个元素hover
+.move_by_offset(xoffset, yoffset)  # 鼠标移到某个坐标hover
+.move_to_element_with_offset(to_element, xoffset, yoffset)  # 鼠标移动到距某个元素一定距离的位置hover
 ```
 
-## 执行JS
+### 按键操作
+
+```python
+# Actions类中的sendKeys
+from selenium.webdriver.common.keys import Keys
+
+element = driver.find_element_by_xxx
+element.click()
+
+# 注意：执行完perform后面如果再想执行其它actions，需要重新实例化actions
+actions = ActionChains(self.driver)
+
+actions.send_keys(Keys.SPACE)
+actions.send_keys_to_element(element, Keys.xxx)
+
+actions.key_down(Keys.CONTROL).send_keys("a").key_up(Keys.CONTROL)
+
+actions.perform()
+```
+
+还可以
+
+```python
+# WebElement.sendKeys
+e.send_keys(Keys.CONTROL, "a")
+```
+
+## 截图
+
+```python
+driver.save_screenshot('xxx.png')  # 保存截图
+driver.get_screenshot_as_file(file_path)  # 获取当前截图的完整路径
+driver.get_screenshot_as_base64()  # 获取当前截图的base64字符串
+driver.get_screenshot_as_png()  # 获取当前截图的二进制数据
+```

@@ -30,6 +30,7 @@ os.remove()  # 移除文件
 
 ```python
 os.path.abspath('.')  # 查看当前目录的绝对路径
+os.path.abspath('xxx')    # 获取xxx的绝对路径
 
 os.path.splitext('/path/to/file.txt')  # ('/path/to/file', '.txt')
 
