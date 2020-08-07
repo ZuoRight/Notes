@@ -839,6 +839,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../Git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -1208,7 +1220,7 @@
                 
                 <h1 id="mac">Mac<a class="headerlink" href="#mac" title="Permanent link">&para;</a></h1>
 <h2 id="_1">常用快捷键<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>显示隐藏文件：Cmd + Shift + .</p>
+<p>显示隐藏文件：<code>Cmd + Shift + .</code></p>
 <h2 id="mac_1">Mac环境变量<a class="headerlink" href="#mac_1" title="Permanent link">&para;</a></h2>
 <h3 id="_2">加载顺序<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>系统变量：</p>
@@ -1232,7 +1244,12 @@
 </code></pre></div>
 
 <h2 id="homebrew"><a href="https://brew.sh">Homebrew</a><a class="headerlink" href="#homebrew" title="Permanent link">&para;</a></h2>
+<blockquote>
 <p>Mac下包和服务的管理器</p>
+<p>参考文章
+- <a href="https://www.cnblogs.com/joyce33/p/13376752.html">https://www.cnblogs.com/joyce33/p/13376752.html</a>
+- <a href="https://www.xiebruce.top/720.html">https://www.xiebruce.top/720.html</a></p>
+</blockquote>
 <h3 id="_3">安装方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li>官网安装方法：<code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"</code></li>
@@ -1316,11 +1333,6 @@ brew services list
 brew services run/start/stop/restart xxx
 </code></pre></div>
 
-<p>参考文章：</p>
-<ul>
-<li><a href="https://www.cnblogs.com/joyce33/p/13376752.html">https://www.cnblogs.com/joyce33/p/13376752.html</a></li>
-<li><a href="https://www.xiebruce.top/720.html">https://www.xiebruce.top/720.html</a></li>
-</ul>
 <h3 id="_6">图形管理工具<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://www.cakebrew.com/">Cakebrew</a></li>
@@ -1332,14 +1344,16 @@ brew services run/start/stop/restart xxx
 <p>管理Homebrew安装的服务，安装：<code>brew cask install launchrocket</code></p>
 <p>安装完成后，入口会显示在系统偏好设置页面左下角处，点击即可启动。</p>
 <h2 id="shellbash">默认Shell，以及升级Bash<a class="headerlink" href="#shellbash" title="Permanent link">&para;</a></h2>
+<blockquote>
 <p>从macOS Catalina版开始，Mac将使用zsh作为默认登录Shell和交互式Shell，但依然可以使用bash作为默认Shell，不过由于GPLv3的原因，Mac自带的bash还是十几年前的3.2版本，所以如果你想用bash作为默认Shell，很有必要升级一下子。</p>
+<p>参考译文：<a href="https://juejin.im/post/6844903972294262791">https://juejin.im/post/6844903972294262791</a></p>
+</blockquote>
 <p>建议使用Homebrew安装最新版本：<code>brew install bash</code>，成功后会在<code>/usr/local/bin</code>路径下生成新bash的link。</p>
 <p>此时使用<code>which -a bash</code>显示系统上存在两个版本的bash，查看系统环境变量<code>/etc/paths</code>可知：<code>/usr/local/bin/bash</code>会优先于<code>/bin/bash</code>加载，所以此时在Shell下输入<code>bash --version</code>返回的是新bash的版本。</p>
 <p>但此时<code>echo $BASH_VERSION</code>发现默认交互式Shell依然还是旧版本，需要<code>chsh -s /usr/local/bin/bash</code>设置为新bash。</p>
 <p>理论上将新bash设置为默认交互Shell后，默认登录Shell也应自动变为新bash，但<code>cat /etc/shells</code>发现受信任Shell列表中没有新bash，意味着它不允许被用作默认登录Shell，所以需要<code>sudo vim /etc/shells</code>以root身份将新bash加入到白名单列表中。</p>
 <p>需要注意的是，编写shell脚本如果想用新bash解释，记得要把<code>#!/bin/bash</code>要改为<code>#!/usr/local/bin/bash</code></p>
 <p>一点说明：所谓的升级新bash，其实是下载了一个新版本的bash作为默认bash，而旧版本的bash依然存在于<code>bin/bash</code>下，但为了保证系统的完整性，即使是以root身份也无法删除某些程序，比如<code>/bin</code>下的，尽管你可以禁用SIP(系统完整性保护)安全机制后删除，但也不建议这样去做。</p>
-<p>参考译文：<a href="https://juejin.im/post/6844903972294262791">https://juejin.im/post/6844903972294262791</a></p>
                 
                   
                     
@@ -1371,7 +1385,7 @@ brew services run/start/stop/restart xxx
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../Charles/" title="Charles" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../Git/" title="Git" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1380,7 +1394,7 @@ brew services run/start/stop/restart xxx
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                Charles
+                Git
               </div>
             </div>
           </a>
