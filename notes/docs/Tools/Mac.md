@@ -2,7 +2,7 @@
 
 ## 常用快捷键
 
-显示隐藏文件：Cmd + Shift + .
+显示隐藏文件：`Cmd + Shift + .`
 
 ## Mac环境变量
 
@@ -32,7 +32,11 @@ source ~/.bash_profile
 
 ## [Homebrew](https://brew.sh)
 
-Mac下包和服务的管理器
+> Mac下包和服务的管理器
+> 
+> 参考文章
+> - <https://www.cnblogs.com/joyce33/p/13376752.html>
+> - <https://www.xiebruce.top/720.html>
 
 ### 安装方法
 
@@ -128,11 +132,6 @@ brew services list
 brew services run/start/stop/restart xxx
 ```
 
-参考文章：
-
-- <https://www.cnblogs.com/joyce33/p/13376752.html>
-- <https://www.xiebruce.top/720.html>
-
 ### 图形管理工具
 
 - [Cakebrew](https://www.cakebrew.com/)
@@ -147,7 +146,9 @@ brew services run/start/stop/restart xxx
 
 ## 默认Shell，以及升级Bash
 
-从macOS Catalina版开始，Mac将使用zsh作为默认登录Shell和交互式Shell，但依然可以使用bash作为默认Shell，不过由于GPLv3的原因，Mac自带的bash还是十几年前的3.2版本，所以如果你想用bash作为默认Shell，很有必要升级一下子。
+> 从macOS Catalina版开始，Mac将使用zsh作为默认登录Shell和交互式Shell，但依然可以使用bash作为默认Shell，不过由于GPLv3的原因，Mac自带的bash还是十几年前的3.2版本，所以如果你想用bash作为默认Shell，很有必要升级一下子。
+> 
+> 参考译文：<https://juejin.im/post/6844903972294262791>
 
 建议使用Homebrew安装最新版本：`brew install bash`，成功后会在`/usr/local/bin`路径下生成新bash的link。
 
@@ -160,5 +161,3 @@ brew services run/start/stop/restart xxx
 需要注意的是，编写shell脚本如果想用新bash解释，记得要把`#!/bin/bash`要改为`#!/usr/local/bin/bash`
 
 一点说明：所谓的升级新bash，其实是下载了一个新版本的bash作为默认bash，而旧版本的bash依然存在于`bin/bash`下，但为了保证系统的完整性，即使是以root身份也无法删除某些程序，比如`/bin`下的，尽管你可以禁用SIP(系统完整性保护)安全机制后删除，但也不建议这样去做。
-
-参考译文：<https://juejin.im/post/6844903972294262791>
