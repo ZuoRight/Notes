@@ -263,18 +263,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Basics/Charles/" title="Charles" class="md-nav__link">
-      Charles
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../Basics/C%E8%AF%AD%E8%A8%80/" title="C" class="md-nav__link">
       C
     </a>
@@ -1046,13 +1034,67 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
+      Tools
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Tools" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Tools/Charles/" title="Charles" class="md-nav__link">
+      Charles
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Tools/Mac/" title="Mac" class="md-nav__link">
+      Mac
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
       大前端
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="大前端" data-md-level="1">
-      <label class="md-nav__title" for="nav-6">
+      <label class="md-nav__title" for="nav-7">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -1555,14 +1597,14 @@
 
 <span class="c1"># 返回所有选项</span>
 <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">select</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
 <span class="c1"># 返回所有被选中的选项</span>
 <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">select</span><span class="o">.</span><span class="n">all_selected_options</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
 <span class="c1"># 返回被选中的第一个选项</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">select</span><span class="o">.</span><span class="n">first_selected_option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">select</span><span class="o">.</span><span class="n">first_selected_option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre></div>
 
 <h2 id="_11">等待的处理<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
@@ -1654,12 +1696,12 @@
 <span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>  <span class="c1"># 保持n秒</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># 单击左键</span>
-<span class="o">.</span><span class="n">context_click</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># 单击右键</span>
-<span class="o">.</span><span class="n">double_click</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># 双击左键</span>
+<div class="highlight"><pre><span></span><code><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># 单击左键</span>
+<span class="o">.</span><span class="n">context_click</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># 单击右键</span>
+<span class="o">.</span><span class="n">double_click</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># 双击左键</span>
 
-<span class="o">.</span><span class="n">click_and_hold</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># 单击左键，不松开</span>
-<span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># 在某个元素上松开按键</span>
+<span class="o">.</span><span class="n">click_and_hold</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># 单击左键，不松开</span>
+<span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># 在某个元素上松开按键</span>
 <span class="o">.</span><span class="n">drag_and_drop</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>  <span class="c1"># 拖拽到某个元素后松开</span>
 <span class="o">.</span><span class="n">drag_and_drop_by_offset</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">xoffset</span><span class="p">,</span> <span class="n">yoffset</span><span class="p">)</span>  <span class="c1"># 拖拽到某个坐标后松开</span>
 
@@ -1705,7 +1747,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-08-03</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-08-07</span>
     
   </small>
 </div>

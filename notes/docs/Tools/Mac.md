@@ -143,6 +143,8 @@ brew services run/start/stop/restart xxx
 
 管理Homebrew安装的服务，安装：`brew cask install launchrocket`
 
+安装完成后，入口会显示在系统偏好设置页面左下角处，点击即可启动。
+
 ## 默认Shell，以及升级Bash
 
 从macOS Catalina版开始，Mac将使用zsh作为默认登录Shell和交互式Shell，但依然可以使用bash作为默认Shell，不过由于GPLv3的原因，Mac自带的bash还是十几年前的3.2版本，所以如果你想用bash作为默认Shell，很有必要升级一下子。
