@@ -12,9 +12,9 @@ theme:
   name: material
   language: zh
   palette:
-    scheme: slate
-    primary: deep orange
-    accent: indigo
+    scheme: default  # 暗模式：slate
+    primary: black
+    accent: deep orange
   font:
     text: Roboto
     code: Roboto Mono

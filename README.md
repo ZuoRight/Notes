@@ -34,4 +34,4 @@ mkdocs build
 mkdocs build --clean
 ```
 
-## [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/getting-started/)
+## [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
