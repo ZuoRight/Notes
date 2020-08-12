@@ -29,11 +29,11 @@ os.remove()  # 移除文件
 ## os.path.xxx
 
 ```python
-os.path.abspath('.')  # 查看当前目录的绝对路径
-os.path.abspath('xxx')    # 获取xxx的绝对路径
+os.path.dirname(__file__)  # 获取文件的目录
+os.path.dirname(os.path.dirname(__file__))  # 获取上级目录
+os.path.abspath(__file__)  # 获取文件的绝对路径/完整路径，带文件名
 
 os.path.splitext('/path/to/file.txt')  # ('/path/to/file', '.txt')
-
 ```
 
 ## os.system()

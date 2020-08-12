@@ -151,7 +151,7 @@ e.find_element_by_xx()
 ```python
 # 先定位到弹框
 # 然后切换到alert
-a = driver.switch_to.alert()
+a = driver.switch_to.alert
 
 a.accept()  # 确认
 a.dismiss()  # 取消
