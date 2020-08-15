@@ -19,7 +19,7 @@ theme:
     text: Roboto
     code: Roboto Mono
   icon:
-    logo: material/home
+    logo: material/read  # material/home
     # repo: material/source-branch
   favicon: images/favicon.png
 
