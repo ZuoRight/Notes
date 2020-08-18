@@ -54,12 +54,12 @@ driver = webdriver.Chrome(executable_path='Xxx/chromedriver')
 ### 属性
 
 ```python
-driver.name  #浏览器名称
-driver.curent_url  # 当前url
-driver.title  # 当前页面标题
-driver.page_source  # 当前页面源码
-driver.window_handles  # 当前窗口所有句柄
-driver.current_window_handle  # 当前窗口句柄
+print(driver.name)  #浏览器名称
+print(driver.curent_url)  # 当前url
+print(driver.title)  # 当前页面标题
+print(driver.page_source)  # 当前页面源码
+print(driver.window_handles)  # 当前窗口所有句柄
+print(driver.current_window_handle)  # 当前窗口句柄
 ```
 
 ### 方法
