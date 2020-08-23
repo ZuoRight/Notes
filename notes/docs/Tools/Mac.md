@@ -2,7 +2,8 @@
 
 ## 常用快捷键
 
-显示隐藏文件：`Cmd + Shift + .`
+- 显示隐藏文件：`Cmd + Shift + .`
+- 切换半角和圆角：`Shift + Space`
 
 ## Mac环境变量
 
