@@ -517,18 +517,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../4%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%BB%93%E6%9E%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" title="数据类型与结构常用操作" class="md-nav__link">
-      数据类型与结构常用操作
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../5%E8%AF%AD%E5%8F%A5/" title="语句" class="md-nav__link">
       语句
     </a>
@@ -543,18 +531,6 @@
   <li class="md-nav__item">
     <a href="../IO%E6%A8%A1%E5%9D%97%E6%93%8D%E4%BD%9C/" title="IO模块" class="md-nav__link">
       IO模块
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../OS%E6%A8%A1%E5%9D%97%E6%93%8D%E4%BD%9C/" title="OS模块" class="md-nav__link">
-      OS模块
     </a>
   </li>
 
@@ -589,8 +565,32 @@
 
 
   <li class="md-nav__item">
+    <a href="../%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/" title="常用模块" class="md-nav__link">
+      常用模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../%E5%B8%B8%E7%94%A8%E7%A4%BA%E4%BE%8B/" title="常用示例" class="md-nav__link">
       常用示例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E6%93%8D%E4%BD%9C/" title="数据类型与结构常用操作" class="md-nav__link">
+      数据类型与结构常用操作
     </a>
   </li>
 
@@ -651,21 +651,8 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    主体
+    类
   </a>
-  
-    <nav class="md-nav" aria-label="主体">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    第三方包
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1106,21 +1093,8 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    主体
+    类
   </a>
-  
-    <nav class="md-nav" aria-label="主体">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    第三方包
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1144,6 +1118,11 @@
 <p><strong>模块</strong>(Module)，即一个<code>.py</code>文件（类似其他语言中的库或者组件），一个模块中可以包含多个类（其它语言中一般只能包含一个类）。</p>
 <p><strong>包</strong>(Package)，模块的集合，即带有<code>__ini__.py</code>文件的文件夹。</p>
 <p>不需要<code>main</code>函数，参考：<a href="https://mp.weixin.qq.com/s/1ehySR5NH2v1U8WIlXflEQ">Python为什么没有main函数？</a></p>
+<p>第三方包</p>
+<p>来源：pypi.python.org</p>
+<p>下载</p>
+<p>安装</p>
+<p>管理</p>
 <h2 id="_2">标准格式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
@@ -1180,24 +1159,178 @@
 <li>内置模块：Python的安装目录</li>
 <li>第三方模块：Python安装目录里的site-packages目录</li>
 </ol>
-<h2 id="_4">主体<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Test</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+<h2 id="_4">类<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 默认继承object父类，可以省略不写</span>
+<span class="c1"># 可以同时继承多个父类，子类调用父类时，按广度优先算法查找</span>
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;关于该类的描述信息&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">test</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
+    <span class="n">class_x</span> <span class="o">=</span> <span class="s2">&quot;类变量，类属性&quot;</span>
+    <span class="n">__x</span> <span class="o">=</span> <span class="s2">&quot;私有类变量&quot;</span>
 </code></pre></div>
 
-<h3 id="_5">第三方包<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>来源：pypi.python.org</p>
-<p>下载</p>
-<p>安装</p>
-<p>管理</p>
+<ul>
+<li>自动执行的方法</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="c1"># 实例初始化方法，有些语言也叫构造函数，obj = Foo()时自动执行</span>
+    <span class="c1"># 至少要有一个self参数，self代表的就是实例化后的实例（类似其它语言中的this）</span>
+    <span class="c1"># 只能默认返回None，而不能return其它值</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>  <span class="c1"># 实例变量</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__b</span> <span class="o">=</span> <span class="n">b</span>  <span class="c1"># 私有实例变量</span>
+
+        <span class="c1"># 调用父类方法</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+
+    <span class="c1"># 析构方法，内存中被释放（垃圾回收）时自动执行</span>
+    <span class="c1"># 无须自定义，但也可以在这里定义一些释放时要做的事</span>
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Python自带内存分配和释放机制&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>特殊方式执行的方法</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="c1"># obj()带括号时执行</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;可以用callable(Foo)函数判断是否可执行&#39;</span><span class="p">)</span>
+
+
+    <span class="c1"># print(obj)时执行</span>
+    <span class="c1"># 如果没定义则返回：&lt;__main__.Foo object at 0x00E90DB0&gt;</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;打印实例时返回的信息&#39;</span>
+
+
+    <span class="c1"># 通常__repr__与__str__返回值一样，为了调试用的</span>
+    <span class="fm">__repr__</span> <span class="o">=</span> <span class="fm">__str__</span>
+</code></pre></div>
+
+<ul>
+<li>可定义的方法</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="c1"># 取值函数</span>
+    <span class="c1"># 触发方式：x = 标识符[]</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="c1"># 赋值函数</span>
+    <span class="c1"># 触发方式：标识符[] = x</span>
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;__setitem__&#39;</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="c1"># 删除函数</span>
+    <span class="c1"># 触发方式：del 标识符[]</span>
+    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="c1"># 使类变为可迭代对象</span>
+    <span class="c1"># 触发方式：</span>
+    <span class="c1"># for i in obj:</span>
+    <span class="c1">#     print(i)</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="mi">1</span>
+        <span class="k">yield</span> <span class="mi">2</span>
+        <span class="k">yield</span> <span class="mi">3</span>
+</code></pre></div>
+
+<ul>
+<li>自定义方法</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="c1"># 实例方法，使用obj.func()方式调用</span>
+    <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># 类方法，用类名直接调用</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">class_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># 静态方法，无需self或cls参数，可用类名直接调用</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_method</span><span class="p">():</span>
+        <span class="k">pass</span>
+</code></pre></div>
+
+<ul>
+<li>实例化</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 如果当前模块名(__name__)为xxx则执行</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>  <span class="c1"># 自动执行 __init__函数</span>
+
+    <span class="n">obj</span><span class="p">()</span>  <span class="c1"># 自动执行 __call__函数</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>  <span class="c1"># 自动执行__str__函数</span>
+</code></pre></div>
+
+<ul>
+<li>获取成员（即属性和方法）</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="c1"># 列出类中的所有成员</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    {</span>
+<span class="sd">    &#39;__module__&#39;: &#39;__main__&#39;,</span>
+
+<span class="sd">    &#39;class_x&#39;: &#39;类变量，类属性&#39;,</span>
+<span class="sd">    &#39;_Foo__x&#39;: &#39;私有类变量&#39;</span>
+<span class="sd">    &#39;__doc__&#39;: &#39;注释&#39;,</span>
+
+<span class="sd">    &#39;__init__&#39;: &lt;function Foo.__init__ at 0x009394F8&gt;,</span>
+<span class="sd">    &#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;Foo&#39; objects&gt;,</span>
+<span class="sd">    &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;Foo&#39; objects&gt;,</span>
+
+<span class="sd">    &#39;func&#39;: &lt;function Foo.func at 0x00939588&gt;,</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 列出对象中的所有成员</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    {&#39;a&#39;: &#39;a&#39;, &#39;_Foo__b&#39;: &#39;b&#39;}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 返回当前操作的对象在属于哪个模块</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>  <span class="c1"># __main__</span>
+
+    <span class="c1"># 返回当前操作的对象属于哪个类</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;__main__.Foo&#39;&gt;</span>
+
+    <span class="c1"># 返回类/模块的描述类信息</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>使用属性</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="c1"># 访问类变量</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">class_x</span><span class="p">)</span>
+
+    <span class="c1"># 访问实例变量</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+
+    <span class="c1"># 访问私有类变量</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">_Foo__x</span><span class="p">)</span>
+    <span class="c1"># 或者</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">_Foo__x</span><span class="p">)</span>
+
+    <span class="c1"># 访问私有实例变量</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">_Foo__b</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>使用方法</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="n">Foo</span><span class="o">.</span><span class="n">class_method</span><span class="p">()</span>  <span class="c1"># 调用类方法</span>
+
+    <span class="n">Foo</span><span class="o">.</span><span class="n">static_method</span><span class="p">()</span>  <span class="c1"># 调用静态方法</span>
+
+    <span class="n">obj</span><span class="o">.</span><span class="n">func</span><span class="p">()</span>  <span class="c1"># 调用实例方法</span>
+</code></pre></div>
                 
                   
                     
@@ -1206,7 +1339,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-08-18</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-08-23</span>
     
   </small>
 </div>
@@ -1229,7 +1362,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../%E5%B8%B8%E7%94%A8%E7%A4%BA%E4%BE%8B/" title="常用示例" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../%E6%93%8D%E4%BD%9C/" title="数据类型与结构常用操作" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1238,7 +1371,7 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                常用示例
+                数据类型与结构常用操作
               </div>
             </div>
           </a>
