@@ -311,12 +311,13 @@ ActionChains(self.driver).func1().func2().perform()  # 按顺序执行func1和fu
 ```
 
 ```python
-.click(element=None)  # 单击左键
-.context_click(element=None)  # 单击右键
-.double_click(element=None)  # 双击左键
+.click()  # 单击左键
+.context_click()  # 单击右键
+.double_click()  # 双击左键
 
-.click_and_hold(element=None)  # 单击左键，不松开
-.release(element=None)  # 在某个元素上松开按键
+.click_and_hold()  # 单击左键，不松开
+.release()  # 在某个元素上松开按键
+
 .drag_and_drop(source, target)  # 拖拽到某个元素后松开
 .drag_and_drop_by_offset(source, xoffset, yoffset)  # 拖拽到某个坐标后松开
 
