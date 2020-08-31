@@ -226,7 +226,7 @@ driver.implicitly_wait(5)
 ```python
 from selenium.webdriver.support.ui import WebDriverWait
 
-wait = WebDriverWait(self.driver, timeout)
+wait = WebDriverWait(self.driver, timeout, poll_frequency, ignored_exceptions=None)
 ```
 
 参数：
