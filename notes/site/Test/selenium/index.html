@@ -515,8 +515,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Python/iterable/" title="iterable" class="md-nav__link">
-      iterable
+    <a href="../../Python/%E6%93%8D%E4%BD%9C/" title="操作" class="md-nav__link">
+      操作
     </a>
   </li>
 
@@ -1682,7 +1682,7 @@
 <h3 id="_14">显性等待<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
 
-<span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">poll_frequency</span><span class="p">,</span> <span class="n">ignored_exceptions</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </code></pre></div>
 
 <p>参数：</p>
@@ -1698,6 +1698,7 @@
 <li>不满足预期条件时停止：<code>wait.until_not(EC.method, message='')</code></li>
 </ul>
 <h2 id="ec">预期条件·EC<a class="headerlink" href="#ec" title="Permanent link">&para;</a></h2>
+<p>貌似必须得配合显性等待使用</p>
 <p><code>from selenium.webdriver.support import expected_conditions as EC</code></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 判断页面上是否存在弹框</span>
 <span class="n">EC</span><span class="o">.</span><span class="n">alert_is_present</span><span class="p">()</span>
@@ -1756,12 +1757,13 @@
 <span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span>  <span class="c1"># 保持n秒</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># 单击左键</span>
-<span class="o">.</span><span class="n">context_click</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># 单击右键</span>
-<span class="o">.</span><span class="n">double_click</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># 双击左键</span>
+<div class="highlight"><pre><span></span><code><span class="o">.</span><span class="n">click</span><span class="p">()</span>  <span class="c1"># 单击左键</span>
+<span class="o">.</span><span class="n">context_click</span><span class="p">()</span>  <span class="c1"># 单击右键</span>
+<span class="o">.</span><span class="n">double_click</span><span class="p">()</span>  <span class="c1"># 双击左键</span>
 
-<span class="o">.</span><span class="n">click_and_hold</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># 单击左键，不松开</span>
-<span class="o">.</span><span class="n">release</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># 在某个元素上松开按键</span>
+<span class="o">.</span><span class="n">click_and_hold</span><span class="p">()</span>  <span class="c1"># 单击左键，不松开</span>
+<span class="o">.</span><span class="n">release</span><span class="p">()</span>  <span class="c1"># 在某个元素上松开按键</span>
+
 <span class="o">.</span><span class="n">drag_and_drop</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>  <span class="c1"># 拖拽到某个元素后松开</span>
 <span class="o">.</span><span class="n">drag_and_drop_by_offset</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">xoffset</span><span class="p">,</span> <span class="n">yoffset</span><span class="p">)</span>  <span class="c1"># 拖拽到某个坐标后松开</span>
 
@@ -1807,7 +1809,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-08-18</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-08-31</span>
     
   </small>
 </div>

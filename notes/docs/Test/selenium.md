@@ -243,6 +243,8 @@ wait = WebDriverWait(self.driver, timeout, poll_frequency, ignored_exceptions=No
 
 ## 预期条件·EC
 
+貌似必须得配合显性等待使用
+
 `from selenium.webdriver.support import expected_conditions as EC`
 
 ```python
