@@ -1221,7 +1221,7 @@
 Output：输出到磁盘/网络等外设，写操作</p>
 <h2 id="file">File 对象的读写操作<a class="headerlink" href="#file" title="Permanent link">&para;</a></h2>
 <h3 id="1"><strong>1. 请求操作系统，打开一个文件对象（通常称为文件描述符）</strong><a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;文件路径&#39;</span><span class="p">,</span> <span class="s1">&#39;打开模式&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="err">（</span><span class="n">默认</span><span class="err">，</span><span class="n">指定编码</span><span class="err">）</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="err">（</span><span class="n">默认</span><span class="err">，</span><span class="n">忽略编码错误</span><span class="err">）</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;文件路径&#39;</span><span class="p">,</span> <span class="s1">&#39;打开模式&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="err">（默认，指定编码）</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="err">（默认，忽略编码错误）</span><span class="p">)</span>
 </code></pre></div>
 
 <p>读模式打开</p>
@@ -1265,14 +1265,14 @@ Output：输出到磁盘/网络等外设，写操作</p>
 </code></pre></div>
 
 <p>获取缓存中的数据</p>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+<div class="highlight"><pre><span></span><code><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
 </code></pre></div>
 
 <hr />
 <h2 id="_1">错误处理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>操作不存在的文件时会报IOError错误，可使用<code>try...finally</code>预处理，但每次这样很麻烦，可使用with语句自动处理。</p>
 <div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;路径&quot;</span><span class="p">,</span> <span class="s2">&quot;打开模式&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span> <span class="c1"># 读</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span> <span class="c1"># 读</span>
     <span class="c1"># 或</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">()</span> <span class="c1"># 写</span>
 </code></pre></div>
