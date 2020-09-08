@@ -238,8 +238,11 @@ wait = WebDriverWait(self.driver, timeout, poll_frequency, ignored_exceptions=No
 
 停止等待：
 
+
 - 满足预期条件时停止：`wait.until(EC.method, message='')`
 - 不满足预期条件时停止：`wait.until_not(EC.method, message='')`
+
+停止等待的方法必须为可调用的，即这个对象一定有`__call__()`方法，可以用selenium提供的ES模块，也可以用WebElement的`is_displayed()`、`is_enabled()`、`is_selected()`等方法。
 
 ## 预期条件·EC
 
