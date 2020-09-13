@@ -686,7 +686,7 @@
       
         <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
-    字符串的处理
+    字符串相关的函数
   </a>
   
 </li>
@@ -728,8 +728,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../5%E6%A8%A1%E5%9D%97/" title="模块" class="md-nav__link">
-      模块
+    <a href="../5%E5%87%BD%E6%95%B0/" title="函数" class="md-nav__link">
+      函数
     </a>
   </li>
 
@@ -740,8 +740,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../%E5%BC%82%E5%B8%B8/" title="异常" class="md-nav__link">
-      异常
+    <a href="../6%E6%A8%A1%E5%9D%97/" title="模块" class="md-nav__link">
+      模块
     </a>
   </li>
 
@@ -1409,7 +1409,7 @@
       
         <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
-    字符串的处理
+    字符串相关的函数
   </a>
   
 </li>
@@ -1766,20 +1766,50 @@
 <span class="n">_list</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 
-<h2 id="_14">字符串的处理<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h2 id="_14">字符串相关的函数<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li>校验</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># 判断字符串是否以xxx开头/结尾，可以加索引范围，默认从0~-1</span>
 <span class="n">_str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">xxx</span><span class="p">,</span> <span class="n">beg</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
 <span class="n">_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">xxx</span><span class="p">,</span> <span class="n">beg</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
 
-<span class="n">_str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>  <span class="c1"># 变为全大写</span>
+<span class="c1"># 判断字符串是否全由数字组成</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span>
+</code></pre></div>
+
+<ul>
+<li>处理</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">_str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>  <span class="c1"># 变为全大写</span>
 <span class="n">_str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>  <span class="c1"># 变为全小写</span>
 <span class="n">_str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>  <span class="c1"># 将首字母大写</span>
 <span class="n">_str</span><span class="o">.</span><span class="n">swapcase</span><span class="p">()</span>  <span class="c1"># 反转大小写，即将大小变小写，小写变大写</span>
 
-<span class="n">_str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># 去除两端的指定符号</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>  <span class="c1"># 去除两端的空白，也可以去除指定字符，下同</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>  <span class="c1"># 去除左边的空白</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>  <span class="c1"># 去除右边的空白</span>
+
 <span class="n">_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># 以指定符号x分割字符串</span>
 
 <span class="n">_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>  <span class="c1"># 把字符串中的“a”替换为“b”</span>
+</code></pre></div>
+
+<ul>
+<li>格式化</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span>
+
+<span class="c1"># 方式1：%s、%d</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">%s</span><span class="s2">de&quot;</span> <span class="o">%</span><span class="n">x</span>
+
+<span class="c1"># 方式2：{}.format()</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{}</span><span class="s2">de&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{0}</span><span class="s2">de</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 索引指定</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{c}</span><span class="s2">de</span><span class="si">{f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 关键字指定</span>
+
+<span class="c1"># 方式3：f&#39;{}&#39;</span>
+<span class="sa">f</span><span class="s1">&#39;ab</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">de&#39;</span>
 </code></pre></div>
                 
                   
@@ -1789,7 +1819,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-09-06</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-09-09</span>
     
   </small>
 </div>

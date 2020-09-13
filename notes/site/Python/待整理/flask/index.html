@@ -541,8 +541,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../5%E6%A8%A1%E5%9D%97/" title="模块" class="md-nav__link">
-      模块
+    <a href="../../5%E5%87%BD%E6%95%B0/" title="函数" class="md-nav__link">
+      函数
     </a>
   </li>
 
@@ -553,8 +553,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%BC%82%E5%B8%B8/" title="异常" class="md-nav__link">
-      异常
+    <a href="../../6%E6%A8%A1%E5%9D%97/" title="模块" class="md-nav__link">
+      模块
     </a>
   </li>
 
@@ -767,27 +767,13 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    一些实用的函数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
     规范
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    注释
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     参数校验
   </a>
   
@@ -1264,27 +1250,13 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    一些实用的函数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
     规范
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    注释
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     参数校验
   </a>
   
@@ -1343,22 +1315,10 @@ response.headers = headers
 关键字搜索：http://t.yushu.im/v2/book/search?q={}&amp;start={}&amp;count={}
 isbn搜索：http://t.yushu.im/v2/book/isbn/{isbn}
 豆瓣api(有访问频率限制，150次/h)：https://api.douban.com/v2/book</p>
-<h2 id="_4">一些实用的函数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>判断长度：len(x)
-判断是否全为数字：x.isdigit()
-包含：x in X
-替换：x.replace(被替换的, 替换成)</p>
-<h2 id="_5">规范<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_4">规范<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>入口模块中最好不要直接写一堆具体细节的逻辑判断等，而是抽象成函数在其他模块中引用进来，方便阅读
 我们在阅读开源代码时也一样，不要执着于细节，第一遍读整体时候没必要去看函数具体的实现细节，知道干嘛的就可以了</p>
-<p>变量名/函数名：全小写，多单词用下划线
-常量：全大写，多单词用下划线
-类名：首字母大写，多单词用驼峰命名法
-私有变量/函数/类：前面加一个下划线</p>
-<h2 id="_6">注释<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>块注释：井号，如果有重要提示，首行和末行用n个等号包裹
-类/模块/文档注释：三引号，首行不换行</p>
-<h2 id="_7">参数校验<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_5">参数校验<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">wtforms</span> <span class="kn">import</span> <span class="n">Form</span><span class="p">,</span> <span class="n">IntegerField</span><span class="p">,</span> <span class="n">StringField</span>
 <span class="kn">from</span> <span class="nn">wtforms.validators</span> <span class="kn">import</span> <span class="n">NumberRange</span><span class="p">,</span> <span class="n">Length</span><span class="p">,</span> <span class="n">URL</span><span class="p">,</span> <span class="n">DataRequired</span>
 
