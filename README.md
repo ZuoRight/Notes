@@ -4,8 +4,10 @@
 
 ### Settings Sync
 
-- 上传：`Shift + Alt/Opt + U`
-- 下载：`Shift + Alt/Opt + D`
+- `Shift` + `Alt/Opt` + `U`(上传) 或 `D`(下载)
+
+首次上传/下载，会弹出配置，按提示填入token和gist
+
 
 ### PicGo
 
