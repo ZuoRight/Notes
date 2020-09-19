@@ -34,7 +34,10 @@ if __name__ == "__main__":
 ### 方式1，run方法中配置debug参数
 
 ```python
-app.run(debug=True)
+# 在开发环境下，flask自带服务器启动时，作为入口文件会执行
+if __name__ == "__main__":
+    app.run(debug=True)
+# 在生产环境，ngnix作为前置服务器接收浏览器发来的请求，然后转发给uwsgi，然后uwsgi把main.py当作模块加载，所以此时main.py不再是入口文件，即不会执行
 ```
 
 ### 方式2，给config配置类直接赋值
@@ -151,48 +154,174 @@ app.config.from_envvar("variable_name")
 
 ## 视图函数
 
-两种注册方式
+### 路由注册方式
 
-1. 装饰器@app.route("hello")
-2. app.add_url_rule()函数（其实装饰器它调用的也是这个）：`app.add_url_rule("/hello", view_func=hello)`
+1. `app.add_url_rule(/hello)`
+2. `@app.route("/hello")`，装饰器方式调用的也是方式一的函数
 
-### 唯一url
+### 唯一路由
 
-视图函数末尾加/，可以兼容url带/的情况（自动重定向），但不建议这样做（因为没有遵循唯一url，会索引两次，影响SEO）
+视图函数末尾不建议加/，它会自动重定向到不带/的路由，没有遵循唯一路由原则，相当于索引两次，不利于Seo
 
-### 视图函数的return和普通函数的return不一样
+### 路由转换器
 
-它是被封装过的一个Response对象，可以用postman请求[](http://127.0.0.1)查看返回的信息
-content-type，默认为text/html，此外还有普通字符串（text/plain） 和 json（application/json）等
-status code：200/404/301
-http headers
+```python
+# 还可以设置类型<int:id>
+@app.route('/login/<id>')
+def login(id):
+    pass
+```
 
-可以通过引入make_response然后创建一个response对象
+### 获取请求数据
+
+```python
+from flask import request
+
+# 根据不同类型数据采用不同获取方式
+request.args.get("name")
+
+request.form['name']
+request.form.get('name')
+request.form.getlist('name')
+
+# 获取raw格式
+request.data
+
+# 获取上传文件
+request.files['the_file']
+```
+
+### 设置响应信息
+
+- 通过元组直接返回（推荐）
+
+```python
+return (response, status, headers)
+```
+
+- 通过`make_response()`构造
+
+```python
 from falsk import make_response
-response = make_response("返回内容", 状态码)
-response.headers = headers
-但是这样很麻烦，可以直接 return "返回内容", 状态码, headers
 
-## 理解 if __name__== "__main__"
+res = make_response(response)
+res.status = 404
+res.headers[""key] = "value"
 
-只有，main.py作为启动文件才会执行这里的代码，被导入时不会执行，把app.run()放在这里，在开发环境下，启动flask自带服务器时会执行到，但部署到生产环境，ngnix作为前置服务器接收浏览器发来的请求，然后转发给uwsgi，然后uwsgi把main.py当作模块加载，所以此时main.py不再是入口文件，即不会执行
+return res
+```
 
-## 开始
+- 重定向
 
-当我们要开始一个项目时候，最难的就是不知道如何要开始它
+```python
+@app.route('/hello1')
+def hello_1():
+    pass
 
-## api
+@app.route("/hello2")
+def hello_2()
+# 方式1：直接用url
+url = "/hello1"
+# 方式2：反推到一个视图函数，推荐
+url = url_for('hello_1')
 
-基地址：http://t.yushu.im
-关键字搜索：http://t.yushu.im/v2/book/search?q={}&start={}&count={}
-isbn搜索：http://t.yushu.im/v2/book/isbn/{isbn}
-豆瓣api(有访问频率限制，150次/h)：https://api.douban.com/v2/book
+return redirect(url)
+```
 
-## 规范
+- 返回错误
 
-入口模块中最好不要直接写一堆具体细节的逻辑判断等，而是抽象成函数在其他模块中引用进来，方便阅读
-我们在阅读开源代码时也一样，不要执着于细节，第一遍读整体时候没必要去看函数具体的实现细节，知道干嘛的就可以了
+```python
+from flask import abort, Response
 
+# 方式1，返回状态码
+abort(404)
+
+# 方式2，返回响应体
+res = Response('error')
+abort(res)
+```
+
+## cookies
+
+- 获取cookies
+
+```python
+from flask import request
+
+request.cookies.get('key')
+```
+
+- 设置cookies
+
+```python
+from falsk import make_response
+
+res = make_response(response)
+
+# max_age设置有效时间，默认关闭浏览器就失效
+res.set_cookie('key', 'value', max_age=3600)
+
+# 删除cookiesn
+res.delete_cookie("key")
+```
+
+## session
+
+> 如果将数据保存至Cookies的话，任何人操作浏览器都可以更改Cookies，这样就会导致数据安全性很低。
+> 
+> 反之Flask中的session机制本质也是将数据保存在Cookies中，但是他对这些Cookies进行密钥签名，这就意味着用户可以查看你的Cookies内容，但却不能更改它，唯一能更改的前提就是你知道签名的密钥。
+
+```python
+from flask import session
+
+# 配置签名密钥
+"""
+import os
+# 随机生成密钥
+print(os.urandom(24))
+"""
+app.config["SECRET_KEY"] = 'xxx'  # 方式1
+app.secret_key = b'xxx'  # 方式2
+
+# 设置session
+session['key'] = 'value'
+
+# 获取session
+session.get('key')
+```
+
+## 上下文对象
+
+用g修饰的变量可以在视图函数之间中相互调用
+
+```python
+@app.route('/set')
+def set():
+    g.username = 'x'
+
+@app.route('/get')
+def get():
+    name = g.username
+    pass
+```
+
+## 请求钩子
+
+需要通过装饰器实现
+
+```python
+# 在处理第一个请求前执行
+@app.before_first_request
+
+# 在每次请求前执行
+@app.before_request
+
+# 在每次请求后执行，前提是没有未处理的异常抛出
+@app.after_request(response)
+
+# 在每次请求后执行，即使有未处理的异常，但debug模式需要为False
+@app.teardown_request(response)
+```
 
 ## 参数校验
 
