@@ -986,8 +986,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Test/Pytest/" title="pytest里固定的一些文件" class="md-nav__link">
-      pytest里固定的一些文件
+    <a href="../../Test/Pytest/" title="Pytest" class="md-nav__link">
+      Pytest
     </a>
   </li>
 
@@ -1451,7 +1451,7 @@
 <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 默认十进制，10</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="mb">0b10</span>  <span class="c1"># 二进制，2</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mo">0o10</span>  <span class="c1"># 八进制，8</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="n">o10</span>  <span class="c1"># 八进制，8</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mh">0x10</span> <span class="c1"># 十六进制，16</span>
 </code></pre></div>
 
@@ -1460,7 +1460,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># 精度默认与其他语言的双精度一样</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mf">0.000012</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 会以科学计数法打印：1.2e-05</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 会以科学计数法打印：1.2e-05</span>
 </code></pre></div>
 
 <ul>
@@ -1468,14 +1468,14 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># 复数由实部和虚部组成，实部和虚部都是浮点型</span>
 <span class="c1"># 在数学规范中虚部常用i表示，但Python遵循的电气学规范常用j表示</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2j</span>
 <span class="c1"># 或者complex(real, imag)函数表示</span>
 <span class="n">x</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># (1+2j)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>  <span class="c1"># 打印实部，1.0</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>  <span class="c1"># 打印虚部，2.0</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span> <span class="c1"># 打印共轭复数（实部相等，虚部相反），(1-2j)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># (1+2j)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>  <span class="c1"># 打印实部，1.0</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>  <span class="c1"># 打印虚部，2.0</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span> <span class="c1"># 打印共轭复数（实部相等，虚部相反），(1-2j)</span>
 </code></pre></div>
 
 <ul>
@@ -1484,18 +1484,18 @@
 <div class="highlight"><pre><span></span><code><span class="nb">bool</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># True</span>
 
 <span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># False</span>
-<span class="nb">bool</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># False</span>
+<span class="nb">bool</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># False</span>
 <span class="nb">bool</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1"># 空值均为False</span>
 </code></pre></div>
 
 <h2 id="none">None<a class="headerlink" href="#none" title="Permanent link">&para;</a></h2>
 <p><code>NoneType</code>是单例对象，只有<code>None</code>这一个值</p>
-<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="bp">None</span>
 
 <span class="c1"># 不能用==做比较，而是用is</span>
-<span class="kc">None</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># True</span>
-<span class="mi">0</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># False</span>
-<span class="s1">&#39;&#39;</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># False</span>
+<span class="bp">None</span> <span class="ow">is</span> <span class="bp">None</span>  <span class="c1"># True</span>
+<span class="mi">0</span> <span class="ow">is</span> <span class="bp">None</span>  <span class="c1"># False</span>
+<span class="s1">&#39;&#39;</span> <span class="ow">is</span> <span class="bp">None</span>  <span class="c1"># False</span>
 </code></pre></div>
 
 <h2 id="bytes">Bytes<a class="headerlink" href="#bytes" title="Permanent link">&para;</a></h2>
@@ -1538,7 +1538,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># Py3.6新特性，可以用于格式化字符串</span>
 <span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span>
-<span class="n">abc</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;a</span><span class="si">{</span><span class="n">_str</span><span class="si">}</span><span class="s1">c&#39;</span>  <span class="c1"># &quot;abc&quot;</span>
+<span class="n">abc</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;a{_str}c&#39;</span>  <span class="c1"># &quot;abc&quot;</span>
 </code></pre></div>
 
 <h2 id="_4">序列<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
@@ -1615,8 +1615,8 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># 常用于判断某个未知对象的类型是什么</span>
 <span class="nb">type</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;int&#39;&gt;</span>
 <span class="nb">type</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;float&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;complex&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;NoneType&#39;&gt;</span>
+<span class="nb">type</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2j</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;complex&#39;&gt;</span>
+<span class="nb">type</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;NoneType&#39;&gt;</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">_str</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;str&#39;&gt;</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">_tuple</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;tuple&#39;&gt;</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;list&#39;&gt;</span>
@@ -1646,10 +1646,10 @@
 <p>强类型语言可以使用函数做类型转换</p>
 <h3 id="_7">数值型之间互转<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># 1</span>
-<span class="nb">int</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 0</span>
+<span class="nb">int</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>  <span class="c1"># 0</span>
 
 <span class="nb">float</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1.0</span>
-<span class="nb">float</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 1.0</span>
+<span class="nb">float</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 1.0</span>
 
 <span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># False</span>
 <span class="nb">bool</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># True</span>
@@ -1669,7 +1669,7 @@
 
 <span class="nb">str</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># &quot;123&quot;</span>
 <span class="nb">str</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># &quot;1.2&quot;</span>
-<span class="nb">str</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># &quot;True&quot;</span>
+<span class="nb">str</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># &quot;True&quot;</span>
 </code></pre></div>
 
 <h3 id="strascii"><code>Str</code>与<code>ASCII码</code>互转<a class="headerlink" href="#strascii" title="Permanent link">&para;</a></h3>
@@ -1816,12 +1816,12 @@
 <span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">%s</span><span class="s2">de&quot;</span> <span class="o">%</span><span class="n">x</span>
 
 <span class="c1"># 方式2：{}.format()</span>
-<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{}</span><span class="s2">de&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{0}</span><span class="s2">de</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 索引指定</span>
-<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{c}</span><span class="s2">de</span><span class="si">{f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 关键字指定</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab{}de&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab{0}de{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 索引指定</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab{c}de{f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 关键字指定</span>
 
 <span class="c1"># 方式3：f&#39;{}&#39;</span>
-<span class="sa">f</span><span class="s1">&#39;ab</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">de&#39;</span>
+<span class="n">f</span><span class="s1">&#39;ab{x}de&#39;</span>
 </code></pre></div>
                 
                   

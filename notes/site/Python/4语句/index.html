@@ -930,8 +930,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Test/Pytest/" title="pytest里固定的一些文件" class="md-nav__link">
-      pytest里固定的一些文件
+    <a href="../../Test/Pytest/" title="Pytest" class="md-nav__link">
+      Pytest
     </a>
   </li>
 
@@ -1357,7 +1357,7 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># 注意：</span>
 <span class="c1"># 1. 同时输出多个值，默认空格分隔，可以自定义seq变量控制</span>
 <span class="c1"># 2. 输出结束会末尾会自动加一个换行，可以自定义end变量控制</span>
-<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="err">，</span><span class="mi">2</span><span class="err">，</span><span class="mi">3</span><span class="err">，</span> <span class="n">seq</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="mi">1</span><span class="err">，</span><span class="mi">2</span><span class="err">，</span><span class="mi">3</span><span class="err">，</span> <span class="n">seq</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <h2 id="_8">判断语句<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
@@ -1384,7 +1384,7 @@
     <span class="k">return</span> <span class="n">v</span>
 
 <span class="n">case</span> <span class="o">=</span> <span class="n">switch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">case</span><span class="p">)</span>
 </code></pre></div>
 
 <h2 id="_9">循环语句<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
@@ -1426,7 +1426,7 @@
 <p>结束当前整个循环，但只能结束当前层循环</p>
 <p>如果想结束所有循环（类似c语言中的goto语句），可以在最外层设置一个flag，让内部控制</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 设置一个flag，默认为False</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">flag</span> <span class="o">=</span> <span class="bp">False</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
     <span class="c1"># 跳出外部循环</span>
     <span class="k">if</span> <span class="n">flag</span><span class="p">:</span>
@@ -1434,10 +1434,10 @@
 
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">j</span><span class="o">==</span><span class="mi">7</span><span class="p">:</span>
-            <span class="n">flag</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">flag</span> <span class="o">=</span> <span class="bp">True</span>
             <span class="c1"># 跳出内部循环</span>
             <span class="k">break</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
 </code></pre></div>
 
 <ul>
@@ -1451,20 +1451,20 @@
 <div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
     <span class="k">pass</span>  <span class="c1"># 可能会出错的地方</span>
 <span class="k">except</span> <span class="n">Xxx1Error</span> <span class="k">as</span> <span class="n">e1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">Xxx2Error</span> <span class="k">as</span> <span class="n">e2</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">e2</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">e2</span><span class="p">)</span>
 <span class="k">except</span> <span class="p">(</span><span class="n">Xxx3Error</span><span class="p">,</span><span class="n">Xxx4Error</span><span class="p">)</span> <span class="k">as</span> <span class="n">es</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;可以同时捕获多个异常&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;可以同时捕获多个异常&quot;</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;通用异常，可匹配任意异常&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;通用异常，可匹配任意异常&#39;</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;如果不写异常名称，将匹配所有异常&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;如果不写异常名称，将匹配所有异常&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;如果没有异常则执行&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;如果没有异常则执行&quot;</span><span class="p">)</span>
 
 <span class="k">finally</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;不管有没有异常最后都会执行&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;不管有没有异常最后都会执行&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <h3 id="_12">列表/字典推导式(使代码更优雅)<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
