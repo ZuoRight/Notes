@@ -119,8 +119,10 @@ if __name__ == '__main__':
 
 ### 生成报告文档
 
-不加--self-contained-html时css样式是独立的
+```python
+# 不加--self-contained-html时css样式是独立的
 pytest --html=report.html --self-contained-html
+```
 
 ## 配置文件
 
