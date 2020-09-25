@@ -117,13 +117,6 @@ if __name__ == '__main__':
 - fixture中的断言如果失败，结果会显示error
 - case中的断言如果失败，结果会显示failed
 
-### 生成报告文档
-
-```python
-# 不加--self-contained-html时css样式是独立的
-pytest --html=report.html --self-contained-html
-```
-
 ## 配置文件
 
 - `conftest.py` 一些fixture配置
@@ -161,4 +154,19 @@ _list = [1, 2, 3]
 @pytest.mark.parametrize("x", _list)
 def test_01(x):
   print(x)
+```
+
+### 生成测试报告
+
+#### pytest-html
+
+```python
+# 不加--self-contained-html时css样式是独立的
+pytest --html=report.html --self-contained-html
+```
+
+#### allure
+
+```python
+pip3 install allure-pytest
 ```
