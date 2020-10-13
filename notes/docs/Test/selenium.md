@@ -18,13 +18,16 @@
     - [Chrome: chromedriver](https://chromedriver.storage.googleapis.com/index.html)
     - [FireFox: geckodriver](https://github.com/mozilla/geckodriver/releases)
     - Safari: safaridriver(`usr/bin/`中已存在，无需再下载)
+
+注意：需要下载与本机浏览器相对应版本的驱动，否则运行时会报错。
+
 3. 配置环境变量
 
 ### Mac
 
 1. 打开Finder，使用快捷键`Command+Shift+G`，前往文件夹`usr/local/bin`，将下载的驱动文件拖入。
 2. 打开终端，执行`vim ~/.bash_profile`，添加环境变量`export PATH=$PATH:/usr/local/bin/驱动名`，保存后执行`source ~/.bash_profile`生效。
-3. 执行`驱动名 --version`，如果返回版本号则说明配置正确
+3. 执行`驱动名 --version`，如果返回版本号则说明配置正确，如果提示无法验证开发者，需要到`系统偏好设置/安全与隐私/通用`界面准许。
 
 ### Windows
 
@@ -204,6 +207,8 @@ print(select.first_selected_option.text)
 
 ## 等待的处理
 
+隐性等待和显性等待同时存在时，取两者中最长的等待时间为有效等待时间。
+
 ### 强制等待
 
 一般只在调试过程中使用
@@ -233,16 +238,17 @@ wait = WebDriverWait(self.driver, timeout, poll_frequency, ignored_exceptions=No
 
 - `driver`
 - `timeout` 超时时间
-- `poll_frequency` 检测的间隔时间，默认为0.5s
-- `ignored_exceptions` 超时后抛出异常，默认为`nosuchelementexception`
+- `poll_frequency` 检测频率，默认为0.5s
+- `ignored_exceptions` 超时后抛出异常，默认为`NoSuchElementException`
 
 停止等待：
-
 
 - 满足预期条件时停止：`wait.until(EC.method, message='')`
 - 不满足预期条件时停止：`wait.until_not(EC.method, message='')`
 
 停止等待的方法必须为可调用的，即这个对象一定有`__call__()`方法，可以用selenium提供的ES模块，也可以用WebElement的`is_displayed()`、`is_enabled()`、`is_selected()`等方法。
+
+如果超时，抛出`TimeoutException`异常
 
 ## 预期条件·EC
 
@@ -366,3 +372,8 @@ driver.get_screenshot_as_file(file_path)  # 获取当前截图的完整路径
 driver.get_screenshot_as_base64()  # 获取当前截图的base64字符串
 driver.get_screenshot_as_png()  # 获取当前截图的二进制数据
 ```
+
+
+## 异常
+
+`from selenium.common.exceptions import TimeoutException`
