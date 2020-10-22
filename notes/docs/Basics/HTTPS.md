@@ -1,7 +1,6 @@
 # HTTPS
 
 https://github.com/youngwind/blog/issues/108
-https://mp.weixin.qq.com/s/MfvUuitrF8MN16nxyZNB8A
 
 ## 基础知识
 
