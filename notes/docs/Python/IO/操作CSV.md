@@ -11,7 +11,7 @@ import csv
 
 with open("test.csv", "r") as csv_file:
     csv_reader = csv.reader(csv_file)
-    # 获取表头，如果不加这一行，则下面会和数据一起输出
+    # 使用next()函数将迭代器先迭代一次，下面再循环将不会输出表头
     headers = next(csv_reader)
     # 输出表头
     """
