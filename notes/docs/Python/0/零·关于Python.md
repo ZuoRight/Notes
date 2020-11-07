@@ -1,11 +1,4 @@
----
-title: 零·关于Python
-date: 2016-04-02 07:07:07
-categories:
-- 人生苦短，我用Python
-tags: Python
-top: 6
----
+
 ![Python](/reference/python/python.png)
 
 *Python* 虽然是近几年随着人工智能和大数据的流行开始火起来的，但它并不是一门新兴的编程语言，而是 *1989* 年由一个叫作 *Guido van Rossum （吉多·范罗苏姆）* 的荷兰人，在圣诞节期间为了打发无聊的假期而设计出来的，由于他是一个叫做 *Monty Python* 喜剧团（*蒙提·派森*，被誉为喜剧届的披头士）的狂热爱好者，于是就将这门语言的名字命名为了 *Python*，而 *Guido* 则被中国网友亲切的称为 *龟叔*，作为 *Python* 的最初设计者及主要架构师，在 *Python* 社区，*龟叔* 也常被人们称作 *“仁慈的独裁者” (Benevolent Dictator for Life)*，简称 *BDFL*，意思是他仍然关注 *Python* 的开发进程，并在必要的时刻做出决定
@@ -72,4 +65,3 @@ Namespaces are one honking great idea -- let's do more of those!
 # 命名空间是一种绝妙的理念，我们应当多加利用
 ```
 
-编程语言分为编译型和解释型两种，前者需要编译器，后者需要解释器，*Python* 就是一门不需要编译器的脚本语言，解释型语言的优点就是跨平台，而缺点就是运行速度较慢，且代码无法加密，然而这都不重要，因为我们并不需要那么快的速度……
