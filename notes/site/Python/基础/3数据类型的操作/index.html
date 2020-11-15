@@ -755,27 +755,13 @@
         
           <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
-    类型判断
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    类型转换
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
     拼接
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     复制
   </a>
   
@@ -783,21 +769,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     引用
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     浅拷贝
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
+  <a href="#_18" class="md-nav__link">
     深拷贝
   </a>
   
@@ -809,7 +795,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
+  <a href="#_19" class="md-nav__link">
     统计
   </a>
   
@@ -1555,27 +1541,13 @@
         
           <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
-    类型判断
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    类型转换
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
     拼接
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     复制
   </a>
   
@@ -1583,21 +1555,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     引用
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     浅拷贝
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
+  <a href="#_18" class="md-nav__link">
     深拷贝
   </a>
   
@@ -1609,7 +1581,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
+  <a href="#_19" class="md-nav__link">
     统计
   </a>
   
@@ -1892,112 +1864,7 @@
 </code></pre></div>
 
 <h2 id="_13">通用操作<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
-<h3 id="_14">类型判断<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>type(x)</code></li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># 常用于判断某个未知对象的类型是什么</span>
-<span class="nb">type</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;int&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;float&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;complex&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;NoneType&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">_str</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;str&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">_tuple</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;tuple&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;list&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">_set</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;set&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">_dict</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;dict&#39;&gt;</span>
-</code></pre></div>
-
-<ul>
-<li><code>isinstance(object, object_type)</code></li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># 常用于判断某个对象是否为已知类型</span>
-<span class="c1"># 比如判断对象x是否为可迭代的</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
-<span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="_15">类型转换<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
-<p>根据不同类型间做运算时会不会自动改变类型，可以分为：</p>
-<ul>
-<li>
-<p><strong>弱类型</strong>：会，比如：JS</p>
-</li>
-<li>
-<p><strong>强类型</strong>：不会（报错），比如：Java、Python</p>
-</li>
-</ul>
-<p>强类型语言可以使用函数做类型转换</p>
-<ul>
-<li>数值型之间互转</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># 1</span>
-<span class="nb">int</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 0</span>
-
-<span class="nb">float</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1.0</span>
-<span class="nb">float</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 1.0</span>
-
-<span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># False</span>
-<span class="nb">bool</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># True</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 转成十进制</span>
-
-<span class="nb">bin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 转成二进制</span>
-<span class="nb">oct</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 转成八进制</span>
-<span class="nb">hex</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 转成十六进制</span>
-</code></pre></div>
-
-<ul>
-<li><code>数值型</code>与<code>Str</code>互转</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>  <span class="c1"># 123</span>
-<span class="nb">float</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>  <span class="c1"># 123.0</span>
-<span class="nb">bool</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>  <span class="c1"># True</span>
-
-<span class="nb">str</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># &quot;123&quot;</span>
-<span class="nb">str</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># &quot;1.2&quot;</span>
-<span class="nb">str</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># &quot;True&quot;</span>
-</code></pre></div>
-
-<ul>
-<li><code>Str</code>与<code>ASCII码</code>互转</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># max()和min()就是据此返回可迭代对象中元素谁大谁小的</span>
-<span class="nb">chr</span><span class="p">(</span><span class="mi">77</span><span class="p">)</span>  <span class="c1"># M</span>
-<span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="c1"># 97</span>
-</code></pre></div>
-
-<ul>
-<li><code>Str</code>与<code>Bytes</code>互转</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;中文&quot;</span>
-<span class="n">_bytes</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xe4\xb8\xad\xe6\x96\x87</span><span class="s1">&#39;</span>
-
-<span class="c1"># 编码，str =&gt; bytes</span>
-<span class="n">_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>  <span class="c1"># b&#39;\xe4\xb8\xad\xe6\x96\x87&#39;</span>
-<span class="c1"># 或者</span>
-<span class="nb">bytes</span><span class="p">(</span><span class="n">_str</span><span class="p">)</span>  <span class="c1"># 默认encoding=&#39;utf-8&#39;，可以指定其它</span>
-
-<span class="c1"># 解码，bytes =&gt; str</span>
-<span class="n">_bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>  <span class="c1"># 默认解码格式：&#39;utf-8&#39;，可以指定其它</span>
-</code></pre></div>
-
-<ul>
-<li>iterable 互转</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># iterable如果是字典只取key</span>
-<span class="n">_tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">_iter</span><span class="p">)</span>  <span class="c1"># (&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)</span>
-
-<span class="n">_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_iter</span><span class="p">)</span>  <span class="c1"># [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span>
-
-<span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_iter</span><span class="p">)</span>  <span class="c1"># {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;} 会自动去重</span>
-
-<span class="n">_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">_iter</span><span class="p">)</span>  <span class="c1"># {&#39;a&#39;: None, &#39;b&#39;: None, &#39;c&#39;: None}</span>
-<span class="n">_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">_iter</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># {&#39;a&#39;: 10, &#39;b&#39;: 10, &#39;c&#39;: 10}</span>
-</code></pre></div>
-
-<h3 id="_16">拼接<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<h3 id="_14">拼接<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 拼接两个字符串</span>
 <span class="s1">&#39;a&#39;</span> <span class="o">+</span> <span class="s1">&#39;b&#39;</span>  <span class="c1"># &#39;ab&#39;</span>
 <span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>  <span class="c1"># &quot;a+b+c&quot;</span>
@@ -2016,21 +1883,23 @@
 <span class="c1"># 拼接两个字典</span>
 <span class="c1"># 参数只能是字典</span>
 <span class="n">_dic</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_dict2</span><span class="p">)</span>
+
+<span class="n">_dict</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">dict1</span><span class="p">,</span> <span class="o">**</span><span class="n">dict2</span><span class="p">}</span>
 </code></pre></div>
 
-<h3 id="_17">复制<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<h3 id="_15">复制<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
 <ul>
 <li>对于字符串都是引用</li>
 <li>对于元组，只有深拷贝才不是引用，否则都是引用</li>
 </ul>
 <p>以下x为可变数据类型</p>
-<h4 id="_18">引用<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<h4 id="_16">引用<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># id(y) == id(x)</span>
 <span class="c1"># x赋值给y，y只是x的一个引用，会跟着x的改变而改变</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
 </code></pre></div>
 
-<h4 id="_19">浅拷贝<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<h4 id="_17">浅拷贝<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
 <ul>
 <li>工厂函数<code>.copy()</code></li>
 </ul>
@@ -2050,14 +1919,14 @@
 <ul>
 <li>列表的切片操作也是浅拷贝：<code>_list[:]</code></li>
 </ul>
-<h4 id="_20">深拷贝<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<h4 id="_18">深拷贝<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># id(y) != id(x)</span>
 <span class="c1"># 父级与子级元素都会被拷贝，即改变x任意元素，都不会影响y的元素改变</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="_21">统计<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<h3 id="_19">统计<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 统计iterable元素的个数</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">_iter</span><span class="p">)</span>
 
@@ -2079,7 +1948,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-09</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-13</span>
     
   </small>
 </div>

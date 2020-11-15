@@ -1332,6 +1332,11 @@
 <li>*kwargs</li>
 <li>关键字参数：a, b, *，x</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 可以给函数加一些元信息作为注释，方便阅读程序</span>
+<span class="c1"># 以下示例冒号表示建议传输int类型的变量，箭头表示正常情况应该返回int值</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</code></pre></div>
                 
                   
                     
@@ -1340,7 +1345,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-04</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-13</span>
     
   </small>
 </div>
