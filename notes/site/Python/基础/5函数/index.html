@@ -287,18 +287,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Basics/draft/" title="Draft" class="md-nav__link">
-      Draft
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../../Basics/mysql/" title="Mysql" class="md-nav__link">
       Mysql
     </a>
@@ -682,8 +670,55 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    参数
+    参数类型
   </a>
+  
+    <nav class="md-nav" aria-label="参数类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    固定参数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    动态参数
+  </a>
+  
+    <nav class="md-nav" aria-label="动态参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#args" class="md-nav__link">
+    *args
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kwargs" class="md-nav__link">
+    *kwargs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    参数混合使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -873,7 +908,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Test/pytest/" title="Pytest" class="md-nav__link">
+    <a href="../../../Test/Pytest/" title="Pytest" class="md-nav__link">
       Pytest
     </a>
   </li>
@@ -1125,6 +1160,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JS/" title="JS" class="md-nav__link">
+      JS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JavaScript/" title="JavaScript" class="md-nav__link">
       JavaScript
     </a>
@@ -1163,18 +1210,6 @@
   <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/js/" title="JS" class="md-nav__link">
-      JS
     </a>
   </li>
 
@@ -1301,8 +1336,55 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    参数
+    参数类型
   </a>
+  
+    <nav class="md-nav" aria-label="参数类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    固定参数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    动态参数
+  </a>
+  
+    <nav class="md-nav" aria-label="动态参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#args" class="md-nav__link">
+    *args
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kwargs" class="md-nav__link">
+    *kwargs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    参数混合使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1323,19 +1405,106 @@
                 
                 
                 <h1 id="_1">函数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="_2">参数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li>位置参数</li>
-<li>默认参数，尽量用不可变对象作默认值</li>
-<li>动态参数</li>
-<li>*args</li>
-<li>*kwargs</li>
-<li>关键字参数：a, b, *，x</li>
-</ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># 可以给函数加一些元信息作为注释，方便阅读程序</span>
 <span class="c1"># 以下示例冒号表示建议传输int类型的变量，箭头表示正常情况应该返回int值</span>
-<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</code></pre></div>
+
+<h2 id="_2">参数类型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>首先要区分形参和实参，形参就是定义函数时候的参数，实参是调用函数时传入的参数。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># x,y,z是形参</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># 1,2,3是实参</span>
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+<p>形参可分为固定的和动态的两种。</p>
+<h3 id="_3">固定参数<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>固定形参的位置/顺序和个数都是确定的，必须要一对一的传入实参，所以也被叫做位置/顺序/必传参数。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># x,y,z都是固定的</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># 实参与形参的位置和个数都要一一对应</span>
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># 如果以关键字方式传入，位置可以随意</span>
+<span class="n">func</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># 可以给固定参数设置默认值</span>
+<span class="c1"># 必须要位于没有默认值参数的后面</span>
+<span class="c1"># 如果有多个时，建议将不易变的置后</span>
+<span class="c1"># 且建议不要设置可变的默认值</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># 设了默认值的形参，可不传入实参</span>
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># 设了默认值的形参，可传入其它实参覆盖默认值</span>
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># 可以让固定参数强制以关键字的方式传入，前面加一个*,</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># 必须以关键字的方式给参数z传值</span>
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="_4">动态参数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>动态参数的个数是不固定的，位置也随个数的变化而不确定。</p>
+<p>有两种接受实参的形式：</p>
+<h4 id="args"><code>*args</code><a class="headerlink" href="#args" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># 以tuple的形式接受实参</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># 可以传入任意个数的实参，会被以元组的形式传入</span>
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># args=(1,2,3)</span>
+
+<span class="c1"># 还可以通过解包的方式传入任意可迭代对象</span>
+<span class="n">_str</span><span class="o">=</span><span class="s2">&quot;123&quot;</span>  <span class="c1"># args=(&#39;1&#39;, &#39;2&#39;, &#39;3&#39;)</span>
+<span class="n">_tuple</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># args=(1, 2, 3)</span>
+<span class="n">_list</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># args=(1, 2, 3)</span>
+<span class="n">_set</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>  <span class="c1"># args=(1, 2, 3)</span>
+<span class="n">_dict</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>  <span class="c1"># args=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)</span>
+
+<span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">X</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="kwargs"><code>*kwargs</code><a class="headerlink" href="#kwargs" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># 以dict的形式接受实参</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># 可以用关键字的方式传入</span>
+<span class="n">func</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># kwargs={&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3}</span>
+
+<span class="c1"># 还可以通过解包字典的方式传入</span>
+<span class="n">_dict</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="n">func</span><span class="p">(</span><span class="o">**</span><span class="n">_dict</span><span class="p">)</span>  <span class="c1"># kwargs={&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3}</span>
+</code></pre></div>
+
+<h3 id="_5">参数混合使用<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>动态参数必须要在固定参数后面</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># *args后的固定参数，都被视作关键字参数，且可以省略*号</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># **kwargs必须在*args后面</span>
+<span class="c1"># **kwargs之后不允许再设置任何参数</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># (1, (2, 3), {})</span>
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># (1, (2, 3), {&#39;a&#39;: 4, &#39;b&#39;: 5})</span>
 </code></pre></div>
                 
                   
@@ -1345,7 +1514,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-13</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-18</span>
     
   </small>
 </div>

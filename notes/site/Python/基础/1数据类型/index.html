@@ -287,18 +287,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Basics/draft/" title="Draft" class="md-nav__link">
-      Draft
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../../Basics/mysql/" title="Mysql" class="md-nav__link">
       Mysql
     </a>
@@ -969,7 +957,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Test/pytest/" title="Pytest" class="md-nav__link">
+    <a href="../../../Test/Pytest/" title="Pytest" class="md-nav__link">
       Pytest
     </a>
   </li>
@@ -1221,6 +1209,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JS/" title="JS" class="md-nav__link">
+      JS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JavaScript/" title="JavaScript" class="md-nav__link">
       JavaScript
     </a>
@@ -1259,18 +1259,6 @@
   <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/js/" title="JS" class="md-nav__link">
-      JS
     </a>
   </li>
 
@@ -1517,14 +1505,10 @@
                 <h1 id="_1">数据类型<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>数据类型本质上就是自然界中的对象在程序当中的映射，不同的类型有着不同的特性，用于表示不同的对象。</p>
 <p>在Python语言中，主要有以下数据类型：</p>
-<p><img alt="20201109151342" src="http://image.zuoright.com/20201109151342.png" /></p>
-<p>原始类型由单类元素构成，容器类型可由多种元素组成。</p>
+<p><img alt="20201116225700" src="http://image.zuoright.com/20201116225700.png" /></p>
 <ul>
 <li>
-<p>不可变，表示容器内的元素不可增减不可替换。</p>
-</li>
-<li>
-<p>无序，表示容器内元素自然情况下无规则排列，Python v3.7+ 开始dict类型是有序的。</p>
+<p>可迭代，表示可以用<code>for</code>循环语句迭代其中的每个元素，还可以通过<code>iter()</code>方法转变为迭代器。</p>
 </li>
 <li>
 <p>可下标，表示可以通过下标的方式索引，还可以使用切片功能。</p>
@@ -1533,7 +1517,10 @@
 <p>可哈希，表示本质上是一个哈希表，键唯一，且不可变。</p>
 </li>
 <li>
-<p>可迭代，表示可以用<code>for</code>循环语句迭代其中的每个元素，还可以通过<code>iter()</code>方法转变为迭代器。</p>
+<p>不可变，表示容器内的元素不可增减不可替换。</p>
+</li>
+<li>
+<p>无序，表示容器内元素自然情况下无规则排列，Python v3.7+ 开始dict类型是有序的。</p>
 </li>
 </ul>
 <h2 id="_2">基础类型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -1545,7 +1532,7 @@
 <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 默认十进制，10</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="mb">0b10</span>  <span class="c1"># 二进制，2</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mo">0o10</span>  <span class="c1"># 八进制，8</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="n">o10</span>  <span class="c1"># 八进制，8</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mh">0x10</span> <span class="c1"># 十六进制，16</span>
 </code></pre></div>
 
@@ -1554,7 +1541,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># 精度默认与其他语言的双精度一样</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mf">0.000012</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 会以科学计数法打印：1.2e-05</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 会以科学计数法打印：1.2e-05</span>
 </code></pre></div>
 
 <ul>
@@ -1562,32 +1549,32 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># 复数由实部和虚部组成，实部和虚部都是浮点型</span>
 <span class="c1"># 在数学规范中虚部常用i表示，但Python遵循的电气学规范常用j表示</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2j</span>
 <span class="c1"># 或者complex(real, imag)函数表示</span>
 <span class="n">x</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># (1+2j)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>  <span class="c1"># 打印实部，1.0</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>  <span class="c1"># 打印虚部，2.0</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span> <span class="c1"># 打印共轭复数（实部相等，虚部相反），(1-2j)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># (1+2j)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>  <span class="c1"># 打印实部，1.0</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>  <span class="c1"># 打印虚部，2.0</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span> <span class="c1"># 打印共轭复数（实部相等，虚部相反），(1-2j)</span>
 </code></pre></div>
 
 <h3 id="boolean">Boolean<a class="headerlink" href="#boolean" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="nb">bool</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># True</span>
 
 <span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># False</span>
-<span class="nb">bool</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># False</span>
+<span class="nb">bool</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># False</span>
 <span class="nb">bool</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1"># 空值均为False</span>
 </code></pre></div>
 
 <h3 id="none">None<a class="headerlink" href="#none" title="Permanent link">&para;</a></h3>
 <p><code>NoneType</code>是单例对象，只有<code>None</code>这一个值</p>
-<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="bp">None</span>
 
 <span class="c1"># 不能用==做比较，而是用is</span>
-<span class="kc">None</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># True</span>
-<span class="mi">0</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># False</span>
-<span class="s1">&#39;&#39;</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># False</span>
+<span class="bp">None</span> <span class="ow">is</span> <span class="bp">None</span>  <span class="c1"># True</span>
+<span class="mi">0</span> <span class="ow">is</span> <span class="bp">None</span>  <span class="c1"># False</span>
+<span class="s1">&#39;&#39;</span> <span class="ow">is</span> <span class="bp">None</span>  <span class="c1"># False</span>
 </code></pre></div>
 
 <h3 id="bytes">Bytes<a class="headerlink" href="#bytes" title="Permanent link">&para;</a></h3>
@@ -1630,7 +1617,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># Py3.6新特性，可以用于格式化字符串</span>
 <span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span>
-<span class="n">abc</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;a</span><span class="si">{</span><span class="n">_str</span><span class="si">}</span><span class="s1">c&#39;</span>  <span class="c1"># &quot;abc&quot;</span>
+<span class="n">abc</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;a{_str}c&#39;</span>  <span class="c1"># &quot;abc&quot;</span>
 </code></pre></div>
 
 <h2 id="_3">容器类型<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -1710,8 +1697,8 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># 常用于判断某个未知对象的类型是什么</span>
 <span class="nb">type</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;int&#39;&gt;</span>
 <span class="nb">type</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;float&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;complex&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;NoneType&#39;&gt;</span>
+<span class="nb">type</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2j</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;complex&#39;&gt;</span>
+<span class="nb">type</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;NoneType&#39;&gt;</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">_str</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;str&#39;&gt;</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">_tuple</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;tuple&#39;&gt;</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;list&#39;&gt;</span>
@@ -1743,10 +1730,10 @@
 <li>数值型之间互转</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># 1</span>
-<span class="nb">int</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 0</span>
+<span class="nb">int</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>  <span class="c1"># 0</span>
 
 <span class="nb">float</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1.0</span>
-<span class="nb">float</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 1.0</span>
+<span class="nb">float</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 1.0</span>
 
 <span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># False</span>
 <span class="nb">bool</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># True</span>
@@ -1768,7 +1755,7 @@
 
 <span class="nb">str</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># &quot;123&quot;</span>
 <span class="nb">str</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># &quot;1.2&quot;</span>
-<span class="nb">str</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># &quot;True&quot;</span>
+<span class="nb">str</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># &quot;True&quot;</span>
 </code></pre></div>
 
 <ul>
@@ -1815,7 +1802,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-13</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-16</span>
     
   </small>
 </div>
