@@ -724,8 +724,28 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    作用域
+    变量作用域
   </a>
+  
+    <nav class="md-nav" aria-label="变量作用域">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    全局变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    局部变量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1397,8 +1417,28 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    作用域
+    变量作用域
   </a>
+  
+    <nav class="md-nav" aria-label="变量作用域">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    全局变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    局部变量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1521,8 +1561,10 @@
 <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># (1, (2, 3), {&#39;a&#39;: 4, &#39;b&#39;: 5})</span>
 </code></pre></div>
 
-<h2 id="_6">作用域<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>函数内可以直接调用全局变量a</p>
+<h2 id="_6">变量作用域<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>函数内定义的变量都是局部变量，外部的则是全局变量</p>
+<h3 id="_7">全局变量<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>函数内部可以访问全局变量</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 全局变量</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 
@@ -1532,21 +1574,14 @@
     <span class="k">return</span> <span class="n">x</span>  <span class="c1"># x=1</span>
 </code></pre></div>
 
-<p>函数内可以定义与全局变量名字相同的局部变量，但不建议这样</p>
+<p>函数内无法对全局变量重新赋值</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 全局变量</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="k">def</span> <span class="nf">f1</span><span class="p">():</span>
-    <span class="c1"># 局部变量</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 并没有改变全局变量a，只是变量名相同而已</span>
-</code></pre></div>
-
-<p>函数内无法直接改变全局变量</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 全局变量</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-
-<span class="k">def</span> <span class="nf">f1</span><span class="p">():</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># 这样是有语法错误的</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># 试图对全局变量a赋新的值，但这样是有语法错误的</span>
+    <span class="n">b</span><span class="p">[</span><span class="s2">&quot;k1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;v1&quot;</span>  <span class="c1"># 这样是没有错误的，因为并不属于对全剧变量b赋新值</span>
 </code></pre></div>
 
 <p>函数内如果想改变全局变量，需要使用<code>global</code>关键字</p>
@@ -1572,6 +1607,33 @@
 
     <span class="n">r</span> <span class="o">=</span> <span class="n">f2</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">r</span>  <span class="c1"># a=3</span>
+</code></pre></div>
+
+<h3 id="_8">局部变量<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>函数外部无法访问局部变量</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 全局变量</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f1</span><span class="p">():</span>
+    <span class="c1"># 局部变量</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 可以和全局变量名字相同，但不建议这样</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># 1，全局变量没有被重新赋值</span>
+</code></pre></div>
+
+<p>通过参数传递也无法重新赋值全局变量</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 全局变量</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f2</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="c1"># 形参a被定义为局部变量a，全局变量a的值赋值给局部变量a</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># 这里没有语法错误，因为全局变量并没有被重新赋值</span>
+    <span class="c1"># 打印局变量a</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># 2</span>
+
+<span class="n">f2</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># 把全局变量a传递给形参a</span>
+<span class="c1"># 打印全局变量a</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># 1，并没有被重新赋值</span>
 </code></pre></div>
                 
                   
