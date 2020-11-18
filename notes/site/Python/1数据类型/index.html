@@ -505,10 +505,10 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    不可迭代类型
+    不可迭代的
   </a>
   
-    <nav class="md-nav" aria-label="不可迭代类型">
+    <nav class="md-nav" aria-label="不可迭代的">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -539,10 +539,10 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    可迭代类型
+    可迭代的
   </a>
   
-    <nav class="md-nav" aria-label="可迭代类型">
+    <nav class="md-nav" aria-label="可迭代的">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -561,28 +561,28 @@
         
           <li class="md-nav__item">
   <a href="#tuple" class="md-nav__link">
-    tuple
+    Tuple
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#list" class="md-nav__link">
-    list
+    List
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#set" class="md-nav__link">
-    set
+    Set
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#dict" class="md-nav__link">
-    dict
+    Dict
   </a>
   
 </li>
@@ -1353,10 +1353,10 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    不可迭代类型
+    不可迭代的
   </a>
   
-    <nav class="md-nav" aria-label="不可迭代类型">
+    <nav class="md-nav" aria-label="不可迭代的">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1387,10 +1387,10 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    可迭代类型
+    可迭代的
   </a>
   
-    <nav class="md-nav" aria-label="可迭代类型">
+    <nav class="md-nav" aria-label="可迭代的">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1409,28 +1409,28 @@
         
           <li class="md-nav__item">
   <a href="#tuple" class="md-nav__link">
-    tuple
+    Tuple
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#list" class="md-nav__link">
-    list
+    List
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#set" class="md-nav__link">
-    set
+    Set
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#dict" class="md-nav__link">
-    dict
+    Dict
   </a>
   
 </li>
@@ -1491,7 +1491,7 @@
 <p>无序，表示容器内元素自然情况下无规则排列，Python v3.7+ 开始dict类型是有序的。</p>
 </li>
 </ul>
-<h2 id="_2">不可迭代类型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">不可迭代的<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="none">None<a class="headerlink" href="#none" title="Permanent link">&para;</a></h3>
 <p><code>NoneType</code>是单例对象，只有<code>None</code>这一个值</p>
 <div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="bp">None</span>
@@ -1545,7 +1545,7 @@
 <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span> <span class="c1"># 打印共轭复数（实部相等，虚部相反），(1-2j)</span>
 </code></pre></div>
 
-<h2 id="_3">可迭代类型<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_3">可迭代的<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="bytes">Bytes<a class="headerlink" href="#bytes" title="Permanent link">&para;</a></h3>
 <p>通常用于网络数据传输、二进制图片和文件的保存等等</p>
 <ul>
@@ -1589,7 +1589,7 @@
 <span class="n">abc</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;a{_str}c&#39;</span>  <span class="c1"># &quot;abc&quot;</span>
 </code></pre></div>
 
-<h3 id="tuple">tuple<a class="headerlink" href="#tuple" title="Permanent link">&para;</a></h3>
+<h3 id="tuple">Tuple<a class="headerlink" href="#tuple" title="Permanent link">&para;</a></h3>
 <p>元组的存储空间固定，比列表更节省空间，初始化相同元素时元组要快5倍(linux系统)，所以若要存储固定的数据，优先考虑使用元组</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 创建空元组</span>
 <span class="n">_tuple</span> <span class="o">=</span> <span class="p">()</span>
@@ -1607,7 +1607,7 @@
 <span class="n">_tuple</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;v1&quot;</span><span class="p">,</span> <span class="s2">&quot;v2&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;v3&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;v4&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">}]</span>
 </code></pre></div>
 
-<h3 id="list">list<a class="headerlink" href="#list" title="Permanent link">&para;</a></h3>
+<h3 id="list">List<a class="headerlink" href="#list" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 创建空列表</span>
 <span class="n">_list</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="c1"># 或</span>
@@ -1624,7 +1624,7 @@
 <span class="n">_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;v1&quot;</span><span class="p">,</span> <span class="s2">&quot;v2&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;v3&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;v4&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">}]</span>
 </code></pre></div>
 
-<h3 id="set">set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
+<h3 id="set">Set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 空set，只能用构造器创建</span>
 <span class="n">_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  <span class="c1"># set()</span>
 
@@ -1637,7 +1637,7 @@
 </code></pre></div>
 
 <p>不可变集合：<code>frozenset( )</code></p>
-<h3 id="dict">dict<a class="headerlink" href="#dict" title="Permanent link">&para;</a></h3>
+<h3 id="dict">Dict<a class="headerlink" href="#dict" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 创建空字典</span>
 <span class="n">_dict</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="c1"># 或</span>
