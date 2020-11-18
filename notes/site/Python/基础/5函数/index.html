@@ -598,8 +598,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../2%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="表达式" class="md-nav__link">
-      表达式
+    <a href="../2%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%93%8D%E4%BD%9C/" title="数据类型的操作" class="md-nav__link">
+      数据类型的操作
     </a>
   </li>
 
@@ -610,8 +610,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../3%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%93%8D%E4%BD%9C/" title="数据类型的操作" class="md-nav__link">
-      数据类型的操作
+    <a href="../3%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="表达式" class="md-nav__link">
+      表达式
     </a>
   </li>
 
@@ -719,6 +719,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    作用域
+  </a>
   
 </li>
       
@@ -1388,6 +1395,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    作用域
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1505,6 +1519,59 @@
 
 <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># (1, (2, 3), {})</span>
 <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># (1, (2, 3), {&#39;a&#39;: 4, &#39;b&#39;: 5})</span>
+</code></pre></div>
+
+<h2 id="_6">作用域<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>函数内可以直接调用全局变量a</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 全局变量</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f1</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># a=1</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="k">return</span> <span class="n">x</span>  <span class="c1"># x=1</span>
+</code></pre></div>
+
+<p>函数内可以定义与全局变量名字相同的局部变量，但不建议这样</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 全局变量</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f1</span><span class="p">():</span>
+    <span class="c1"># 局部变量</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 并没有改变全局变量a，只是变量名相同而已</span>
+</code></pre></div>
+
+<p>函数内无法直接改变全局变量</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 全局变量</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f1</span><span class="p">():</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># 这样是有语法错误的</span>
+</code></pre></div>
+
+<p>函数内如果想改变全局变量，需要使用<code>global</code>关键字</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 全局变量</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f1</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">a</span>  <span class="c1"># 这里声明了a是全局变量a</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># 这样就没问题了</span>
+</code></pre></div>
+
+<p>嵌套的内层函数如果想改变外层函数的变量，需要使用<code>nonlocal</code>关键字</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 全局变量</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f1</span><span class="p">():</span>
+    <span class="c1"># 局部变量</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">f2</span><span class="p">():</span>
+        <span class="n">nonlocal</span> <span class="n">a</span>  <span class="c1"># 这里声明了a是外层函数a，即局部变量a</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">f2</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">r</span>  <span class="c1"># a=3</span>
 </code></pre></div>
                 
                   
