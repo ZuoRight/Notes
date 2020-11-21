@@ -791,7 +791,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Test/Pytest/" title="Pytest" class="md-nav__link">
+    <a href="../../../Test/pytest/" title="Pytest" class="md-nav__link">
       Pytest
     </a>
   </li>
@@ -1043,18 +1043,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JS/" title="JS" class="md-nav__link">
-      JS
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JavaScript/" title="JavaScript" class="md-nav__link">
       JavaScript
     </a>
@@ -1093,6 +1081,18 @@
   <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/js/" title="JS" class="md-nav__link">
+      JS
     </a>
   </li>
 
@@ -1222,6 +1222,43 @@
         <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">r</span>
+
+<span class="c1"># 闭包的方式</span>
+<span class="k">def</span> <span class="nf">nth_power</span><span class="p">(</span><span class="n">exponent</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">exponent_of</span><span class="p">(</span><span class="n">base</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">base</span> <span class="o">**</span> <span class="n">exponent</span>
+
+    <span class="k">return</span> <span class="n">exponent_of</span>
+
+<span class="c1"># 计算一个数的平方</span>
+<span class="n">square</span> <span class="o">=</span> <span class="n">nth_power</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># 相当于square = exponent_of，且已知exponent=2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># base=2</span>
+
+
+<span class="c1"># 计算一个数的立方</span>
+<span class="n">cube</span> <span class="o">=</span> <span class="n">nth_power</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># 相当于cube = exponent_of，且已知exponent=2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cube</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># base=2</span>
+</code></pre></div>
+
+<p>阶乘</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="c1"># 检查参数类型</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;input must be an integer.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">input</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;input must be greater or equal to 0&#39;</span> <span class="p">)</span>
+
+    <span class="c1"># 递归实现阶乘</span>
+    <span class="k">def</span> <span class="nf">inner_factorial</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">input</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">input</span> <span class="o">*</span> <span class="n">inner_factorial</span><span class="p">(</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">inner_factorial</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+
+
+<span class="c1"># 之所以加了一层写嵌套，是为了在递归前只检查一次参数类型即可，不然写在递归函数里，每次递归都要检查，影响程序效率</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 </code></pre></div>
                 
                   
@@ -1231,7 +1268,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-17</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-21</span>
     
   </small>
 </div>

@@ -866,7 +866,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Test/Pytest/" title="Pytest" class="md-nav__link">
+    <a href="../../../Test/pytest/" title="Pytest" class="md-nav__link">
       Pytest
     </a>
   </li>
@@ -1118,18 +1118,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JS/" title="JS" class="md-nav__link">
-      JS
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JavaScript/" title="JavaScript" class="md-nav__link">
       JavaScript
     </a>
@@ -1168,6 +1156,18 @@
   <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/js/" title="JS" class="md-nav__link">
+      JS
     </a>
   </li>
 
@@ -1357,8 +1357,8 @@
 <h2 id="_1">取值<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p><code>{{ infos.name }}</code></p>
 <h2 id="_2">过滤器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="err">操作</span> <span class="p">}}</span>
-<span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="err">操作</span><span class="mi">1</span><span class="o">|</span><span class="err">操作</span><span class="mi">2</span> <span class="p">}}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="n">操作</span> <span class="p">}}</span>
+<span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="n">操作1</span><span class="o">|</span><span class="n">操作2</span> <span class="p">}}</span>
 </code></pre></div>
 
 <h2 id="_3">字符串相关过滤器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -1379,9 +1379,9 @@ sort：列表排序</p>
 </code></pre></div>
 
 <h2 id="_6">渲染<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/index&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/index&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;模板名&#39;</span><span class="p">,</span> <span class="err">变量名</span><span class="o">=</span><span class="s1">&#39;值&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;模板名&#39;</span><span class="p">,</span> <span class="n">变量名</span><span class="o">=</span><span class="s1">&#39;值&#39;</span><span class="p">)</span>
 </code></pre></div>
                 
                   
