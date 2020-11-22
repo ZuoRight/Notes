@@ -613,6 +613,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    生成式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    迭代器
+  </a>
+  
+    <nav class="md-nav" aria-label="迭代器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    生成器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iter" class="md-nav__link">
+    iter(集合)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    调用方式：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1492,6 +1533,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    生成式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    迭代器
+  </a>
+  
+    <nav class="md-nav" aria-label="迭代器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    生成器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iter" class="md-nav__link">
+    iter(集合)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    调用方式：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1800,6 +1882,27 @@
 <span class="n">_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">_iter</span><span class="p">)</span>  <span class="c1"># {&#39;a&#39;: None, &#39;b&#39;: None, &#39;c&#39;: None}</span>
 <span class="n">_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">_iter</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># {&#39;a&#39;: 10, &#39;b&#39;: 10, &#39;c&#39;: 10}</span>
 </code></pre></div>
+
+<h2 id="_7">生成式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p><code>expression for item in iterable</code></p>
+<p>for…in…语句后面可以跟if条件筛选，注意，不能带else。</p>
+<p><code>expression for item in iterable if condition</code></p>
+<p>表达式中可以包含if...else...判断。</p>
+<p><code>expression if condition else for item in iterable if condition</code></p>
+<p>可以包含多层循环。一般就两层，内层在前面，外层在后面</p>
+<p><code>expression1 for item1 in iterable1 expression2 for item2 in iterable2</code></p>
+<h2 id="_8">迭代器<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">生成器<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ol>
+<li>生成式的[]换成()</li>
+<li>函数的return换成yield</li>
+</ol>
+<h3 id="iter">iter(集合)<a class="headerlink" href="#iter" title="Permanent link">&para;</a></h3>
+<h3 id="_10">调用方式：<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ol>
+<li>next()函数：每调用一次，则迭代一次，无可迭代最后会抛出StopIteration错误。</li>
+<li>for循环</li>
+</ol>
                 
                   
                     

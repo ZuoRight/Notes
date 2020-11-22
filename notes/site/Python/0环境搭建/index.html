@@ -680,6 +680,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    规范
+  </a>
+  
+    <nav class="md-nav" aria-label="规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    终止语句不使用分号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    代码块不使用花括号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    注释语句
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1650,6 +1684,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    规范
+  </a>
+  
+    <nav class="md-nav" aria-label="规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    终止语句不使用分号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    代码块不使用花括号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    注释语句
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1917,6 +1985,24 @@ pip uninstall -r requirements.txt
 <span class="n">Namespaces</span> <span class="n">are</span> <span class="n">one</span> <span class="n">honking</span> <span class="n">great</span> <span class="n">idea</span> <span class="o">--</span> <span class="n">let</span><span class="s1">&#39;s do more of those!</span>
 <span class="c1"># 命名空间是一种绝妙的理念，我们应当多加利用</span>
 </code></pre></div>
+
+<h2 id="_13">规范<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h3 id="_14">终止语句不使用分号<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>常见的编程语言（C、Java、JS等）基本都使用了分号，既可以作为分割符（满足一行多句），又可以作为终止符（满足一句多行）。</p>
+<p>在Python中，使用换行符来终止语句，可使用反斜杠满足一句多行（实际就是把换行符转义了），建议使用括号来换行。</p>
+<p>参考：<a href="https://mp.weixin.qq.com/s/VLJZjMp1OuMDwIiL4NH1_g">编程语言中分号的简明历史</a></p>
+<h3 id="_15">代码块不使用花括号<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>从最初的<code>BEGIN...END</code>，演变为<code>$...$</code>，然后到C语言简化为<code>{...}</code>，很多类C语言基本都沿用了花括号，而Python中使用了冒号和缩进来表示代码块，更加简洁。</p>
+<p>参考：<a href="https://mp.weixin.qq.com/s/8-DgLMBfWSnR0j8Q83UzeQ">编程语言中花括号的简明历史</a></p>
+<h3 id="_16">注释语句<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>//</code> 注释符基本上被 C 语言家族所用</p>
+</li>
+<li>
+<p><code>#</code> 注释符则基本上是被 Shell 和其它脚本语言所用，Python属于脚本语言，用的也是这个</p>
+</li>
+</ul>
                 
                   
                     
