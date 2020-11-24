@@ -100,7 +100,15 @@
      <lastmod>2020-11-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.zuoright.com/Python/IO%E7%BC%96%E7%A8%8B/%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
+     <loc>http://www.zuoright.com/Python/IO%E7%BC%96%E7%A8%8B/0%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</loc>
+     <lastmod>2020-11-24</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Python/IO%E7%BC%96%E7%A8%8B/1%E8%AF%BB%E5%86%99%E5%86%85%E5%AD%98/</loc>
+     <lastmod>2020-11-24</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Python/IO%E7%BC%96%E7%A8%8B/2%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
      <lastmod>2020-11-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -109,14 +117,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://www.zuoright.com/Python/IO%E7%BC%96%E7%A8%8B/%E8%AF%BB%E5%86%99ini%E9%85%8D%E7%BD%AE/</loc>
-     <lastmod>2020-11-24</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/Python/IO%E7%BC%96%E7%A8%8B/%E8%AF%BB%E5%86%99%E5%86%85%E5%AD%98/</loc>
-     <lastmod>2020-11-24</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/Python/IO%E7%BC%96%E7%A8%8B/%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</loc>
      <lastmod>2020-11-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -148,7 +148,7 @@
      <lastmod>2020-11-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.zuoright.com/Test/Pytest/</loc>
+     <loc>http://www.zuoright.com/Test/pytest/</loc>
      <lastmod>2020-11-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -212,10 +212,6 @@
      <lastmod>2020-11-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.zuoright.com/%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JS/</loc>
-     <lastmod>2020-11-24</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>http://www.zuoright.com/%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JavaScript/</loc>
      <lastmod>2020-11-24</lastmod>
      <changefreq>daily</changefreq>
@@ -229,6 +225,10 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://www.zuoright.com/%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/</loc>
+     <lastmod>2020-11-24</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/js/</loc>
      <lastmod>2020-11-24</lastmod>
      <changefreq>daily</changefreq>
     </url><url>

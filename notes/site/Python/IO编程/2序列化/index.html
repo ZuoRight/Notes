@@ -11,7 +11,7 @@
         <meta name="description" content="Right is right, left is also right.">
       
       
-        <link rel="canonical" href="http://www.zuoright.com/Python/IO%E7%BC%96%E7%A8%8B/%E8%AF%BB%E5%86%99%E5%86%85%E5%AD%98/">
+        <link rel="canonical" href="http://www.zuoright.com/Python/IO%E7%BC%96%E7%A8%8B/2%E5%BA%8F%E5%88%97%E5%8C%96/">
       
       
         <meta name="author" content="7c">
@@ -21,7 +21,7 @@
     
     
       
-        <title>读写内存 - ZuoRight</title>
+        <title>序列化 - ZuoRight</title>
       
     
     
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              读写内存
+              序列化
             
           </span>
         </div>
@@ -580,9 +580,102 @@
 
 
   <li class="md-nav__item">
-    <a href="../%E5%BA%8F%E5%88%97%E5%8C%96/" title="序列化" class="md-nav__link">
+    <a href="../0%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" title="读写文件" class="md-nav__link">
+      读写文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1%E8%AF%BB%E5%86%99%E5%86%85%E5%AD%98/" title="读写内存" class="md-nav__link">
+      读写内存
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        序列化
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="序列化" class="md-nav__link md-nav__link--active">
       序列化
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pickle" class="md-nav__link">
+    Pickle模块
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    Json模块
+  </a>
+  
+    <nav class="md-nav" aria-label="Json模块">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    格式化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jsonpath" class="md-nav__link">
+    JsonPAth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -606,86 +699,6 @@
   <li class="md-nav__item">
     <a href="../%E8%AF%BB%E5%86%99ini%E9%85%8D%E7%BD%AE/" title="读写ini配置" class="md-nav__link">
       读写ini配置
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        读写内存
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="读写内存" class="md-nav__link md-nav__link--active">
-      读写内存
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#stringio" class="md-nav__link">
-    StringIO
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bytesio" class="md-nav__link">
-    BytesIO
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    指针问题
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" title="文件读写" class="md-nav__link">
-      文件读写
     </a>
   </li>
 
@@ -845,7 +858,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../Test/Pytest/" title="Pytest" class="md-nav__link">
+    <a href="../../../Test/pytest/" title="Pytest" class="md-nav__link">
       Pytest
     </a>
   </li>
@@ -1097,18 +1110,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JS/" title="JS" class="md-nav__link">
-      JS
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JavaScript/" title="JavaScript" class="md-nav__link">
       JavaScript
     </a>
@@ -1147,6 +1148,18 @@
   <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/js/" title="JS" class="md-nav__link">
+      JS
     </a>
   </li>
 
@@ -1272,23 +1285,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#stringio" class="md-nav__link">
-    StringIO
+  <a href="#pickle" class="md-nav__link">
+    Pickle模块
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#bytesio" class="md-nav__link">
-    BytesIO
+  <a href="#json" class="md-nav__link">
+    Json模块
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Json模块">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    指针问题
+    格式化
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jsonpath" class="md-nav__link">
+    JsonPAth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1308,67 +1334,126 @@
                   
                 
                 
-                <h1 id="_1">读写内存<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<h2 id="stringio">StringIO<a class="headerlink" href="#stringio" title="Permanent link">&para;</a></h2>
-<ul>
-<li>向内存中写入str数据</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
-<span class="c1"># 创建一个缓存对象</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+                <h1 id="_1">序列化<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>程序运行的过程中，所有的变量都是在内存中临时存储，把内存中的变量变为可存储或者可传输的，然后才能存储到磁盘或者数据交换，这个过程称之为序列化，反之，称为反序列化。</p>
+<h2 id="pickle">Pickle模块<a class="headerlink" href="#pickle" title="Permanent link">&para;</a></h2>
+<p>序列化为bytes类型。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pickle</span>
 
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Hello!</span><span class="se">\n</span><span class="s1">Hi!</span><span class="se">\n</span><span class="s1">Goodbye!&#39;</span><span class="p">)</span>  <span class="c1"># 像操作文件一样写入</span>
+<span class="c1"># 可以把任意类型变量序列化为bytes类型数据</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># 可以把序列化后的bytes类型数据，反序列化为原类型，但与之前已经不是同一个变量了</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 
-<ul>
-<li>从内存中读取str数据</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
-<span class="c1"># 创建一个缓存对象</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="s1">&#39;Hello!</span><span class="se">\n</span><span class="s1">Hi!</span><span class="se">\n</span><span class="s1">Goodbye!&#39;</span><span class="p">)</span>  <span class="c1"># 初始化</span>
+<p>存储为Pickle格式，Python特有，无法跨语言数据交换，不可阅读。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pickle</span>
 
-<span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># 像操作文件一样读取</span>
+<span class="c1"># 序列化并存储到文件，必须是“wb”模式</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># 直接反序列化文件中的数据，必须是“rb”模式</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 </code></pre></div>
 
-<h2 id="bytesio">BytesIO<a class="headerlink" href="#bytesio" title="Permanent link">&para;</a></h2>
-<ul>
-<li>向内存中写入bytes数据</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="c1"># 创建一个缓存对象</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+<h2 id="json">Json模块<a class="headerlink" href="#json" title="Permanent link">&para;</a></h2>
+<p>Json(JavaScript Object Notation)，一种数据交换格式，其数据类型和JS几乎一致，实际就是JS的一个子集</p>
+<p>在JSON出现之前，数据交换一直使用XML，虽然它本身并不复杂，但它有一大堆规范，让人头大。</p>
+<p>但JSON出现后，很亏发展为ECMA标准的数据交换格式，所有的编程语言都有解析JSON的库。</p>
+<p>Json规定了其键以及字符串都必须用双引号括起来，字符集必须是UTF-8。</p>
+<p>序列化为str类型</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
 
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xe4\xb8\xad\xe6\x96\x87</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># 像操作文件一样写入</span>
+<span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 </code></pre></div>
 
-<ul>
-<li>从内存中读取bytes数据</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="c1"># 创建一个缓存对象</span>
-<span class="n">output_buffer</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xe4\xb8\xad\xe6\x96\x87</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># 初始化</span>
+<p>存储为Json格式，标准格式，通用，可阅读。</p>
+<p>bytes、set类型没有对应的json格式，可分别转为str或list后再序列化</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
 
-<span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># 像操作文件一样读取</span>
+<span class="c1"># 序列化并存储到json文件</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># 从json文件中反序列化</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="c1"># 或者</span>
+    <span class="c1"># result = json.loads(f.read())</span>
 </code></pre></div>
 
-<h2 id="_2">指针问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>f.tell()</code>  返回指针当前位置</li>
-<li><code>f.seek(offset, 0)</code>  移动指针位置，从初始位置开始计算（默认），移动offset个字节</li>
-<li><code>f.seek(7, 1)</code>  移动指针位置，从当前位置开始计算，往后移动7个字节</li>
-<li><code>f.seek(-7, 2)</code>  移动指针位置，从末尾位置开始计算，往前移动7个字节</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>  <span class="c1"># 操作前，指针位置是0</span>
+<h3 id="_2">格式化<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
 
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>  <span class="c1"># 进行读取/写入操作</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>  <span class="c1"># 操作后，指针位置移到了最后5</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;c1&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;a2&quot;</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;c2&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>  <span class="c1"># 此时如果读取，则会得到空值</span>
-<span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 可以将指针移回初始位置，此时再读取将可以读到</span>
+<span class="c1"># indent  设置缩进显示成几个空格</span>
+<span class="c1"># ensure_ascii  是否显示ascii码，默认为true，如果要显示中文需要设置为false</span>
+<span class="c1"># sort_keys  是否按照字母排序</span>
+<span class="c1"># separators  设置分隔符</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="err">“</span><span class="p">,</span><span class="err">”</span><span class="p">,</span> <span class="err">‘</span><span class="p">:</span> <span class="err">‘</span><span class="p">))</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="c1"># 另外也可以用以下方式获取，不受指针位置影响</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+<h3 id="jsonpath">JsonPAth<a class="headerlink" href="#jsonpath" title="Permanent link">&para;</a></h3>
+<p>反序列化后如果想更方便的获取指定字段数据，建议使用JsonPath，相当于Xpath之于XML。</p>
+<p>需要先安装Python与之对应的库：<code>pip install jsonpath</code></p>
+<p><a href="https://goessner.net/articles/JsonPath/">常用语法</a></p>
+<ul>
+<li><code>$</code> 根节点</li>
+<li><code>@</code> 当前节点</li>
+<li><code>.</code> 或者 <code>[]</code> 子节点</li>
+<li><code>..</code> 模糊匹配</li>
+<li><code>*</code> 匹配所有节点</li>
+<li><code>[]</code> 迭代器标示，可用于数组下标[0]，范围选择[a,c]</li>
+<li><code>()</code> 支持表达式计算</li>
+<li><code>?()</code> 过滤操作</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;A&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+    <span class="nt">&quot;B&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;C&quot;</span><span class="p">:</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;C1&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+        <span class="nt">&quot;C2&quot;</span><span class="p">:</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;C2_1&quot;</span><span class="p">:</span>
+            <span class="p">[</span>
+                <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;yi&quot;</span><span class="p">},</span>
+                <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;er&quot;</span><span class="p">},</span>
+                <span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;san&quot;</span><span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">jsonpath</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;file.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="c1"># 结果以list形式返回，匹配不到结果则返回False</span>
+    <span class="n">jsonpath</span><span class="o">.</span><span class="n">jsonpath</span><span class="p">(</span><span class="n">json_obj</span><span class="p">,</span><span class="s1">&#39;$..name&#39;</span><span class="p">)</span>  <span class="c1"># 获取所有“name”的值，[&#39;yi&#39;, &#39;er&#39;, &#39;san&#39;]</span>
+    <span class="n">jsonpath</span><span class="o">.</span><span class="n">jsonpath</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$..C2_1[*].id&#39;</span><span class="p">)</span>  <span class="c1"># 获取所有id的值，[1, 2, 3]</span>
+    <span class="n">jsonpath</span><span class="o">.</span><span class="n">jsonpath</span><span class="p">(</span><span class="n">json_obj</span><span class="p">,</span><span class="s1">&#39;$..C2_1[1]&#39;</span><span class="p">)</span>  <span class="c1"># 获取C2_1对应列表的第二个数据，[{&#39;id&#39;: 2, &#39;name&#39;: &#39;er&#39;}]</span>
+    <span class="n">jsonpath</span><span class="o">.</span><span class="n">jsonpath</span><span class="p">(</span><span class="n">json_obj</span><span class="p">,</span><span class="s1">&#39;$..C2_1[(@.length-1)]&#39;</span><span class="p">)</span>  <span class="c1"># 获取C2_1对应列表的倒数第一个，[{&#39;id&#39;: 3, &#39;name&#39;: &#39;san&#39;}]</span>
+    <span class="n">jsonpath</span><span class="o">.</span><span class="n">jsonpath</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="s1">&#39;$..C2_1[?(@.id&lt;2)]&#39;</span><span class="p">)</span>  <span class="c1"># 过滤出C2_1对应列表中id小于2的值，[{&#39;id&#39;: 1, &#39;name&#39;: &#39;yi&#39;}]</span>
 </code></pre></div>
                 
                   
@@ -1378,7 +1463,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-04</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-24</span>
     
   </small>
 </div>
@@ -1401,7 +1486,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../%E8%AF%BB%E5%86%99ini%E9%85%8D%E7%BD%AE/" title="读写ini配置" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../1%E8%AF%BB%E5%86%99%E5%86%85%E5%AD%98/" title="读写内存" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1410,19 +1495,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                读写ini配置
+                读写内存
               </div>
             </div>
           </a>
         
         
-          <a href="../%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" title="文件读写" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../%E8%AF%BB%E5%86%99csv/" title="读写csv" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                文件读写
+                读写csv
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
