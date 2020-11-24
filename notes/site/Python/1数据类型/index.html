@@ -602,14 +602,14 @@
         
           <li class="md-nav__item">
   <a href="#list_1" class="md-nav__link">
-    [list推导式]
+    list推导式：[]
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#dictset" class="md-nav__link">
-    {dict/set 推导式}
+    dict/set推导式：{}
   </a>
   
 </li>
@@ -624,31 +624,64 @@
     迭代器
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="迭代器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    生成器
+    构建方式
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    调用方式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
+    生成器
+  </a>
+  
+    <nav class="md-nav" aria-label="生成器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    构建方式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
     类型判断
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     类型检查
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     类型转换
   </a>
   
@@ -878,8 +911,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Web%E6%A1%86%E6%9E%B6/uWSGI/" title="python web 服务部署" class="md-nav__link">
-      python web 服务部署
+    <a href="../Web%E6%A1%86%E6%9E%B6/uWSGI/" title="uWSGI" class="md-nav__link">
+      uWSGI
     </a>
   </li>
 
@@ -1528,14 +1561,14 @@
         
           <li class="md-nav__item">
   <a href="#list_1" class="md-nav__link">
-    [list推导式]
+    list推导式：[]
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#dictset" class="md-nav__link">
-    {dict/set 推导式}
+    dict/set推导式：{}
   </a>
   
 </li>
@@ -1550,31 +1583,64 @@
     迭代器
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="迭代器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    生成器
+    构建方式
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    调用方式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
+    生成器
+  </a>
+  
+    <nav class="md-nav" aria-label="生成器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    构建方式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
     类型判断
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     类型检查
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     类型转换
   </a>
   
@@ -1784,7 +1850,7 @@
 </code></pre></div>
 
 <h2 id="_4">推导式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<h3 id="list_1">[list推导式]<a class="headerlink" href="#list_1" title="Permanent link">&para;</a></h3>
+<h3 id="list_1">list推导式：[]<a class="headerlink" href="#list_1" title="Permanent link">&para;</a></h3>
 <p><code>expression for item in iterable</code></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 生成[0x0, 1x1, 2x2, 3x3...]</span>
 <span class="n">_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>  <span class="c1"># [0, 1, 4, 9, 16]</span>
@@ -1812,7 +1878,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">_list4</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">]]</span>  <span class="c1"># [&#39;aA&#39;, &#39;aB&#39;, &#39;bA&#39;, &#39;bB&#39;]</span>
 </code></pre></div>
 
-<h3 id="dictset">{dict/set 推导式}<a class="headerlink" href="#dictset" title="Permanent link">&para;</a></h3>
+<h3 id="dictset">dict/set推导式：{}<a class="headerlink" href="#dictset" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">_dict</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
 <span class="c1"># 反转dict的键和值</span>
 <span class="n">_tcid</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>  <span class="c1"># {1: &#39;a&#39;, 2: &#39;b&#39;, 3: &#39;c&#39;}</span>
@@ -1822,9 +1888,10 @@
 </code></pre></div>
 
 <h2 id="_5">迭代器<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<ol>
+<h3 id="_6">构建方式<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
 <li>iter(Iterable)</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="nb">iter</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>  <span class="c1"># &lt;str_iterator object at 0x10de4aa10&gt;</span>
 <span class="nb">iter</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># &lt;list_iterator object at 0x10de4aa10&gt;</span>
 <span class="nb">iter</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  <span class="c1"># &lt;tuple_iterator object at 0x10de4a950&gt;</span>
@@ -1832,23 +1899,20 @@
 <span class="nb">iter</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">})</span>  <span class="c1"># &lt;dict_keyiterator object at 0x10de469b0&gt;</span>
 </code></pre></div>
 
+<ul>
+<li>生成器：见下文</li>
+</ul>
+<h3 id="_7">调用方式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <ol>
-<li>
-<p>生成器：见下文</p>
-</li>
-<li>
-<p>调用方式：</p>
-</li>
-<li>
-<p>next()函数：每调用一次，则迭代一次，无可迭代最后会抛出StopIteration错误。</p>
-</li>
+<li>next()函数：每调用一次，则迭代一次，无可迭代最后会抛出StopIteration错误。</li>
 <li>for循环</li>
 </ol>
-<h2 id="_6">生成器<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_8">生成器<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>生成器是一种特殊的迭代器，但是不需要像迭代器一样实现__iter__()和__next__()方法，方便构造迭代器。</p>
-<ol>
+<h3 id="_9">构建方式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ul>
 <li>推导式的[]换成()</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">g</span><span class="p">]</span>
@@ -1856,9 +1920,9 @@
 <span class="n">r</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 </code></pre></div>
 
-<ol>
+<ul>
 <li>函数的return换成yield</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="nb">max</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
@@ -1877,7 +1941,7 @@
 <span class="n">r</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 </code></pre></div>
 
-<h2 id="_7">类型判断<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_10">类型判断<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>type(x)</code></li>
 </ul>
@@ -1893,7 +1957,7 @@
 <span class="nb">type</span><span class="p">(</span><span class="n">_dict</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;dict&#39;&gt;</span>
 </code></pre></div>
 
-<h2 id="_8">类型检查<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_11">类型检查<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p>常用于检查某个对象是否为已知类型：<code>isinstance(object, object_type)</code></p>
 <ul>
 <li>检测是否为可迭代对象</li>
@@ -1911,7 +1975,7 @@
 <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">)</span>
 </code></pre></div>
 
-<h2 id="_9">类型转换<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h2 id="_12">类型转换<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <p>根据不同类型间做运算时会不会自动改变类型，可以分为：</p>
 <ul>
 <li>

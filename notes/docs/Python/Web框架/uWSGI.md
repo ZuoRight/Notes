@@ -1,4 +1,4 @@
-# python web 服务部署
+# uWSGI
 
 uWSGI是C语言实现的一款工具，它跟Flask/Django等主流框架都遵循了WSGI规范，自然可以与这些框架实现的应用通信，然后它可以用自带的uwsgi协议与Ngnix进行通信，最终Nginx通过http协议对外提供服务
 > WSGI规范，Web Server Gateway Interface 的缩写，规定了Python Web应用与服务器之间的通讯方式
