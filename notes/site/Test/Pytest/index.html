@@ -11,7 +11,7 @@
         <meta name="description" content="Right is right, left is also right.">
       
       
-        <link rel="canonical" href="http://www.zuoright.com/Test/pytest/">
+        <link rel="canonical" href="http://www.zuoright.com/Test/Pytest/">
       
       
         <meta name="author" content="7c">
@@ -539,32 +539,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Python/7%E6%A8%A1%E5%9D%97/" title="模块" class="md-nav__link">
+    <a href="../../Python/8%E6%A8%A1%E5%9D%97/" title="模块" class="md-nav__link">
       模块
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../Python/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" title="函数式编程" class="md-nav__link">
-      函数式编程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../Python/%E8%A3%85%E9%A5%B0%E5%99%A8/" title="装饰器" class="md-nav__link">
-      装饰器
     </a>
   </li>
 
@@ -576,16 +552,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-11" type="checkbox" id="nav-4-11">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-9" type="checkbox" id="nav-4-9">
     
-    <label class="md-nav__link" for="nav-4-11">
+    <label class="md-nav__link" for="nav-4-9">
       IO编程
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="IO编程" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-11">
+      <label class="md-nav__title" for="nav-4-9">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -666,16 +642,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-12" type="checkbox" id="nav-4-12">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-10" type="checkbox" id="nav-4-10">
     
-    <label class="md-nav__link" for="nav-4-12">
+    <label class="md-nav__link" for="nav-4-10">
       待整理
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="待整理" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-12">
+      <label class="md-nav__title" for="nav-4-10">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -1207,6 +1183,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JS/" title="JS" class="md-nav__link">
+      JS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JavaScript/" title="JavaScript" class="md-nav__link">
       JavaScript
     </a>
@@ -1245,18 +1233,6 @@
   <li class="md-nav__item">
     <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/js/" title="JS" class="md-nav__link">
-      JS
     </a>
   </li>
 
@@ -1562,7 +1538,7 @@
 
 <h2 id="fixture">Fixture 夹具<a class="headerlink" href="#fixture" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># 可同时定义多个fixture，多个之间可以互相调用</span>
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;function&quot;</span><span class="p">,</span> <span class="n">autouse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;function&quot;</span><span class="p">,</span> <span class="n">autouse</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">scope：作用范围</span>
 <span class="sd">  function 默认，每个调用的case前/后执行一次</span>
@@ -1632,11 +1608,11 @@
 <span class="s">    undo: undo</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">do</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest.mark.do</span>
 <span class="k">def</span> <span class="nf">test_01</span><span class="p">()</span>
   <span class="k">pass</span>
 
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">undo</span>
+<span class="nd">@pytest.mark.undo</span>
 <span class="k">def</span> <span class="nf">test_02</span><span class="p">()</span>
   <span class="k">pass</span>
 </code></pre></div>
@@ -1645,9 +1621,9 @@
 <div class="highlight"><pre><span></span><code><span class="n">_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
 <span class="c1"># 遍历_list中并赋值给x，有几个就会执行几次测试</span>
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">_list</span><span class="p">)</span>
+<span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">_list</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_01</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 
 <h3 id="_7">生成测试报告<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
@@ -1667,7 +1643,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-09-25</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-24</span>
     
   </small>
 </div>
