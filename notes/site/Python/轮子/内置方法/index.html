@@ -11,7 +11,7 @@
         <meta name="description" content="Right is right, left is also right.">
       
       
-        <link rel="canonical" href="http://www.zuoright.com/Python/Web%E6%A1%86%E6%9E%B6/Flask/">
+        <link rel="canonical" href="http://www.zuoright.com/Python/%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/">
       
       
         <meta name="author" content="7c">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Flask - ZuoRight</title>
+        <title>内置方法 - ZuoRight</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#flask" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Flask
+              内置方法
             
           </span>
         </div>
@@ -641,12 +641,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-10" type="checkbox" id="nav-4-10" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-10" type="checkbox" id="nav-4-10">
     
     <label class="md-nav__link" for="nav-4-10">
       Web框架
@@ -670,7 +668,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Django/" title="Django" class="md-nav__link">
+    <a href="../../Web%E6%A1%86%E6%9E%B6/Django/" title="Django" class="md-nav__link">
       Django
     </a>
   </li>
@@ -680,198 +678,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Flask
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Flask" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../Web%E6%A1%86%E6%9E%B6/Flask/" title="Flask" class="md-nav__link">
       Flask
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    基本配置
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#debug" class="md-nav__link">
-    debug参数配置
-  </a>
-  
-    <nav class="md-nav" aria-label="debug参数配置">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1rundebug" class="md-nav__link">
-    方式1，run方法中配置debug参数
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2config" class="md-nav__link">
-    方式2，给config配置类直接赋值
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3from_mapping" class="md-nav__link">
-    方式3，通过from_mapping()读取字典或元祖
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4from_object" class="md-nav__link">
-    方式4，通过from_object()读取模块
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5from_pyfile" class="md-nav__link">
-    方式5，通过from_pyfile()读取配置文件
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6from_jsonjson" class="md-nav__link">
-    方式6，通过from_json()读取json文件
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7from_envvar" class="md-nav__link">
-    方式7，通过from_envvar()读取系统环境变量
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    视图函数
-  </a>
-  
-    <nav class="md-nav" aria-label="视图函数">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    路由注册方式
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    唯一路由
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    路由转换器
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    获取请求数据
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    设置响应信息
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cookies" class="md-nav__link">
-    cookies
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#session" class="md-nav__link">
-    session
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    上下文对象
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    请求钩子
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    参数校验
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -881,7 +692,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../jinja2/" title="Jinja2" class="md-nav__link">
+    <a href="../../Web%E6%A1%86%E6%9E%B6/jinja2/" title="Jinja2" class="md-nav__link">
       Jinja2
     </a>
   </li>
@@ -893,7 +704,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../uWSGI/" title="uWSGI" class="md-nav__link">
+    <a href="../../Web%E6%A1%86%E6%9E%B6/uWSGI/" title="uWSGI" class="md-nav__link">
       uWSGI
     </a>
   </li>
@@ -908,10 +719,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-11" type="checkbox" id="nav-4-11">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-11" type="checkbox" id="nav-4-11" checked>
     
     <label class="md-nav__link" for="nav-4-11">
       轮子
@@ -935,7 +748,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="内置组件" class="md-nav__link">
+    <a href="../%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="内置组件" class="md-nav__link">
       内置组件
     </a>
   </li>
@@ -945,11 +758,87 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/" title="内置方法" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        内置方法
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="内置方法" class="md-nav__link md-nav__link--active">
       内置方法
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    字符串类型的内置方法
+  </a>
+  
+    <nav class="md-nav" aria-label="字符串类型的内置方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    清空
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    增
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    删
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    改
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -959,7 +848,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E8%BD%AE%E5%AD%90/%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/" title="常用模块" class="md-nav__link">
+    <a href="../%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/" title="常用模块" class="md-nav__link">
       常用模块
     </a>
   </li>
@@ -971,7 +860,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E8%BD%AE%E5%AD%90/%E5%B8%B8%E7%94%A8%E7%A4%BA%E4%BE%8B/" title="常用示例" class="md-nav__link">
+    <a href="../%E5%B8%B8%E7%94%A8%E7%A4%BA%E4%BE%8B/" title="常用示例" class="md-nav__link">
       常用示例
     </a>
   </li>
@@ -1457,154 +1346,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    基本配置
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#debug" class="md-nav__link">
-    debug参数配置
-  </a>
-  
-    <nav class="md-nav" aria-label="debug参数配置">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1rundebug" class="md-nav__link">
-    方式1，run方法中配置debug参数
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2config" class="md-nav__link">
-    方式2，给config配置类直接赋值
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3from_mapping" class="md-nav__link">
-    方式3，通过from_mapping()读取字典或元祖
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4from_object" class="md-nav__link">
-    方式4，通过from_object()读取模块
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5from_pyfile" class="md-nav__link">
-    方式5，通过from_pyfile()读取配置文件
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6from_jsonjson" class="md-nav__link">
-    方式6，通过from_json()读取json文件
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7from_envvar" class="md-nav__link">
-    方式7，通过from_envvar()读取系统环境变量
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    视图函数
+    字符串类型的内置方法
   </a>
   
-    <nav class="md-nav" aria-label="视图函数">
+    <nav class="md-nav" aria-label="字符串类型的内置方法">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    路由注册方式
+    清空
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    唯一路由
+    增
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    路由转换器
+    删
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    获取请求数据
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    设置响应信息
+    改
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cookies" class="md-nav__link">
-    cookies
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#session" class="md-nav__link">
-    session
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    上下文对象
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    请求钩子
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    参数校验
-  </a>
   
 </li>
       
@@ -1624,316 +1402,207 @@
                   
                 
                 
-                <h1 id="flask">Flask<a class="headerlink" href="#flask" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p>从浏览器如何访问页面讲起，通过路由</p>
-</blockquote>
-<h2 id="_1">基本配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># 导入Flask类</span>
-<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-
-<span class="c1"># 实例化</span>
-<span class="c1"># 初始参数__name__，表示以当前模块所在路径作为根目录(/)</span>
-<span class="c1"># 默认/static作为静态文件目录，/templates作为模版目录</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+                <h1 id="_1">内置方法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">字符串类型的内置方法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span>  <span class="nb">dir</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 
 
-<span class="c1"># 装饰器用于绑定路由，# 当用户访问该URL时将触发相应的视图函数</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
-<span class="c1"># 可同时绑定多个</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/hello&#39;</span><span class="p">)</span>
-<span class="c1"># 定义视图函数</span>
-<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-    <span class="c1"># 将信息或模版返回给前端显示</span>
-    <span class="k">return</span> <span class="s1">&#39;Hello NaiTangMao&#39;</span>
+<span class="p">[</span><span class="s1">&#39;__add__&#39;</span><span class="p">,</span> <span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__contains__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;__format__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getnewargs__&#39;</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__mod__&#39;</span><span class="p">,</span> <span class="s1">&#39;__mul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__rmod__&#39;</span><span class="p">,</span> <span class="s1">&#39;__rmul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span> 
 
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="c1">#启动flask程序</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="s1">&#39;capitalize&#39;</span><span class="p">,</span> <span class="s1">&#39;casefold&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;encode&#39;</span><span class="p">,</span> <span class="s1">&#39;endswith&#39;</span><span class="p">,</span> <span class="s1">&#39;expandtabs&#39;</span><span class="p">,</span> <span class="s1">&#39;find&#39;</span><span class="p">,</span> <span class="s1">&#39;format&#39;</span><span class="p">,</span> <span class="s1">&#39;format_map&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;isalnum&#39;</span><span class="p">,</span> <span class="s1">&#39;isalpha&#39;</span><span class="p">,</span> <span class="s1">&#39;isascii&#39;</span><span class="p">,</span> <span class="s1">&#39;isdecimal&#39;</span><span class="p">,</span> <span class="s1">&#39;isdigit&#39;</span><span class="p">,</span> <span class="s1">&#39;isidentifier&#39;</span><span class="p">,</span> <span class="s1">&#39;islower&#39;</span><span class="p">,</span> <span class="s1">&#39;isnumeric&#39;</span><span class="p">,</span> <span class="s1">&#39;isprintable&#39;</span><span class="p">,</span> <span class="s1">&#39;isspace&#39;</span><span class="p">,</span> <span class="s1">&#39;istitle&#39;</span><span class="p">,</span> <span class="s1">&#39;isupper&#39;</span><span class="p">,</span> <span class="s1">&#39;join&#39;</span><span class="p">,</span> <span class="s1">&#39;ljust&#39;</span><span class="p">,</span> <span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="s1">&#39;lstrip&#39;</span><span class="p">,</span> <span class="s1">&#39;maketrans&#39;</span><span class="p">,</span> <span class="s1">&#39;partition&#39;</span><span class="p">,</span> <span class="s1">&#39;replace&#39;</span><span class="p">,</span> <span class="s1">&#39;rfind&#39;</span><span class="p">,</span> <span class="s1">&#39;rindex&#39;</span><span class="p">,</span> <span class="s1">&#39;rjust&#39;</span><span class="p">,</span> <span class="s1">&#39;rpartition&#39;</span><span class="p">,</span> <span class="s1">&#39;rsplit&#39;</span><span class="p">,</span> <span class="s1">&#39;rstrip&#39;</span><span class="p">,</span> <span class="s1">&#39;split&#39;</span><span class="p">,</span> <span class="s1">&#39;splitlines&#39;</span><span class="p">,</span> <span class="s1">&#39;startswith&#39;</span><span class="p">,</span> <span class="s1">&#39;strip&#39;</span><span class="p">,</span> <span class="s1">&#39;swapcase&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;translate&#39;</span><span class="p">,</span> <span class="s1">&#39;upper&#39;</span><span class="p">,</span> <span class="s1">&#39;zfill&#39;</span><span class="p">]</span>
 </code></pre></div>
 
-<h2 id="debug">debug参数配置<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h2>
-<h3 id="1rundebug">方式1，run方法中配置debug参数<a class="headerlink" href="#1rundebug" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 在开发环境下，flask自带服务器启动时，作为入口文件会执行</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># 在生产环境，ngnix作为前置服务器接收浏览器发来的请求，然后转发给uwsgi，然后uwsgi把main.py当作模块加载，所以此时main.py不再是入口文件，即不会执行</span>
-</code></pre></div>
-
-<h3 id="2config">方式2，给config配置类直接赋值<a class="headerlink" href="#2config" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 注意，配置名需要全大写</span>
-<span class="c1"># 会覆盖掉默认值：{&quot;DEBUG&quot;:False}</span>
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># 同时设置多个值</span>
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-    <span class="s2">&quot;DEBUG&quot;</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;TESTING&quot;</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="p">)</span>
-
-<span class="c1"># 如何取值呢</span>
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="3from_mapping">方式3，通过from_mapping()读取字典或元祖<a class="headerlink" href="#3from_mapping" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建一个字典对象</span>
-<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;DEBUG&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s1">&#39;TESTING&#39;</span><span class="p">:</span> <span class="kc">False</span>
-<span class="p">}</span>
-
-<span class="c1"># 或者一个二维元组对象</span>
-<span class="n">config</span> <span class="o">=</span> <span class="p">((</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;TESTING&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
-
-
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_pyfile</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="4from_object">方式4，通过from_object()读取模块<a class="headerlink" href="#4from_object" title="Permanent link">&para;</a></h3>
-<ul>
-<li>无需导入模块</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建一个/config.py模块</span>
-<span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># 传入字符串，会自动在根目录寻找叫做config的模块</span>
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="s2">&quot;config&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查找子串</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">sub_str</span><span class="p">)</span>  <span class="c1"># 返回字符串的索引下标，如果不在返回-1</span>
 </code></pre></div>
 
 <ul>
-<li>需要导入模块</li>
+<li>校验</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建一个/config.py模块</span>
-<span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 判断字符串是否以xxx开头/结尾，可以加索引范围，默认从0~-1</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">xxx</span><span class="p">,</span> <span class="n">beg</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">xxx</span><span class="p">,</span> <span class="n">beg</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
 
-<span class="kn">import</span> <span class="nn">config</span>
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="c1"># 判断字符串是否全由数字组成</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span>
 </code></pre></div>
 
 <ul>
-<li>区分环境</li>
+<li>处理</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建一个/config.py模块</span>
-<span class="c1"># 各个环境均继承默认配置类，根据环境覆盖不同属性</span>
-<span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">TESTING</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">DATABASE_URI</span> <span class="o">=</span> <span class="s2">&quot;xxx&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">_str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>  <span class="c1"># 变为全大写</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>  <span class="c1"># 变为全小写</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>  <span class="c1"># 将首字母大写</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">swapcase</span><span class="p">()</span>  <span class="c1"># 反转大小写，即将大小变小写，小写变大写</span>
 
-<span class="c1"># 生产环境</span>
-<span class="k">class</span> <span class="nc">ProductionConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
-    <span class="n">DATABASE_URI</span> <span class="o">=</span> <span class="s1">&#39;yyy&#39;</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>  <span class="c1"># 去除两端的空白，也可以去除指定字符，下同</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>  <span class="c1"># 去除左边的空白</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>  <span class="c1"># 去除右边的空白</span>
 
-<span class="c1"># 预发环境</span>
-<span class="k">class</span> <span class="nc">TestingConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
-    <span class="n">TESTING</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>  <span class="c1"># 在指定字符处将字符串分割为两部分存入列表，指定字符不存在或者为空则返回整个字符串存入列表</span>
 
-<span class="c1"># 开发环境</span>
-<span class="k">class</span> <span class="nc">DevelopmentConfig</span><span class="p">(</span><span class="n">Config</span><span class="p">):</span>
-    <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
-
-
-<span class="kn">import</span> <span class="nn">config</span>
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">DevelopmentConfig</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="5from_pyfile">方式5，通过from_pyfile()读取配置文件<a class="headerlink" href="#5from_pyfile" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建一个/config.cfg文件，后缀名随意</span>
-<span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
-
-
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_pyfile</span><span class="p">(</span><span class="s1">&#39;config.cfg&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="6from_jsonjson">方式6，通过from_json()读取json文件<a class="headerlink" href="#6from_jsonjson" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建一个/config.json文件</span>
-<span class="p">{</span>
-  <span class="s2">&quot;DEBUG&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-  <span class="s2">&quot;TESTING&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-  <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mi">123</span>
-<span class="p">}</span>
-
-
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="s1">&#39;config.json&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<h3 id="7from_envvar">方式7，通过from_envvar()读取系统环境变量<a class="headerlink" href="#7from_envvar" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_envvar</span><span class="p">(</span><span class="s2">&quot;variable_name&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<h2 id="_2">视图函数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="_3">路由注册方式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<ol>
-<li><code>app.add_url_rule(/hello)</code></li>
-<li><code>@app.route("/hello")</code>，装饰器方式调用的也是方式一的函数</li>
-</ol>
-<h3 id="_4">唯一路由<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>视图函数末尾不建议加/，它会自动重定向到不带/的路由，没有遵循唯一路由原则，相当于索引两次，不利于Seo</p>
-<h3 id="_5">路由转换器<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 还可以设置类型&lt;int:id&gt;</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/login/&lt;id&gt;&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
-    <span class="k">pass</span>
-</code></pre></div>
-
-<h3 id="_6">获取请求数据<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span>
-
-<span class="c1"># 根据不同类型数据采用不同获取方式</span>
-<span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
-
-<span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-<span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
-<span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
-
-<span class="c1"># 获取raw格式</span>
-<span class="n">request</span><span class="o">.</span><span class="n">data</span>
-
-<span class="c1"># 获取上传文件</span>
-<span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s1">&#39;the_file&#39;</span><span class="p">]</span>
-</code></pre></div>
-
-<h3 id="_7">设置响应信息<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<ul>
-<li>通过元组直接返回（推荐）</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">return</span> <span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>  <span class="c1"># 把字符串中的“a”替换为“b”</span>
 </code></pre></div>
 
 <ul>
-<li>通过<code>make_response()</code>构造</li>
+<li>格式化</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">falsk</span> <span class="kn">import</span> <span class="n">make_response</span>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span>
 
-<span class="n">res</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-<span class="n">res</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">404</span>
-<span class="n">res</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span>
+<span class="c1"># 方式1：%s、%d</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">%s</span><span class="s2">de&quot;</span> <span class="o">%</span><span class="n">x</span>
 
-<span class="k">return</span> <span class="n">res</span>
+<span class="c1"># 方式2：{}.format()</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{}</span><span class="s2">de&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{0}</span><span class="s2">de</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 索引指定</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{c}</span><span class="s2">de</span><span class="si">{f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 关键字指定</span>
+
+<span class="c1"># 方式3：f&#39;{}&#39;</span>
+<span class="sa">f</span><span class="s1">&#39;ab</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">de&#39;</span>
 </code></pre></div>
 
 <ul>
-<li>重定向</li>
+<li><code>dir(tuple)</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/hello1&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">hello_1</span><span class="p">():</span>
-    <span class="k">pass</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;__add__&#39;</span><span class="p">,</span> <span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__contains__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;__format__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getnewargs__&#39;</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__mul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__rmul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span> 
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/hello2&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">hello_2</span><span class="p">()</span>
-<span class="c1"># 方式1：直接用url</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/hello1&quot;</span>
-<span class="c1"># 方式2：反推到一个视图函数，推荐</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;hello_1&#39;</span><span class="p">)</span>
-
-<span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">]</span>
 </code></pre></div>
 
 <ul>
-<li>返回错误</li>
+<li><code>dir(list)</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">abort</span><span class="p">,</span> <span class="n">Response</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;__add__&#39;</span><span class="p">,</span> <span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__contains__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;__format__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iadd__&#39;</span><span class="p">,</span> <span class="s1">&#39;__imul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__mul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reversed__&#39;</span><span class="p">,</span> <span class="s1">&#39;__rmul__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span> 
 
-<span class="c1"># 方式1，返回状态码</span>
-<span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+<span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span><span class="p">,</span> <span class="s1">&#39;reverse&#39;</span><span class="p">,</span> 
 
-<span class="c1"># 方式2，返回响应体</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">Response</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
-<span class="n">abort</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-</code></pre></div>
+<span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="s1">&#39;extend&#39;</span><span class="p">,</span> <span class="s1">&#39;insert&#39;</span><span class="p">,</span> 
 
-<h2 id="cookies">cookies<a class="headerlink" href="#cookies" title="Permanent link">&para;</a></h2>
-<ul>
-<li>获取cookies</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span>
+<span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;remove&#39;</span><span class="p">,</span> 
 
-<span class="n">request</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">)</span>
+<span class="s1">&#39;clear&#39;</span><span class="p">,</span> <span class="s1">&#39;copy&#39;</span><span class="p">]</span>
 </code></pre></div>
 
 <ul>
-<li>设置cookies</li>
+<li><code>dir(set)</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">falsk</span> <span class="kn">import</span> <span class="n">make_response</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;__and__&#39;</span><span class="p">,</span> <span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__contains__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;__format__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iand__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ior__&#39;</span><span class="p">,</span> <span class="s1">&#39;__isub__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ixor__&#39;</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">,</span> <span class="s1">&#39;__or__&#39;</span><span class="p">,</span> <span class="s1">&#39;__rand__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ror__&#39;</span><span class="p">,</span> <span class="s1">&#39;__rsub__&#39;</span><span class="p">,</span> <span class="s1">&#39;__rxor__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sub__&#39;</span><span class="p">,</span> <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span> <span class="s1">&#39;__xor__&#39;</span><span class="p">,</span> 
 
-<span class="n">res</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="s1">&#39;difference&#39;</span><span class="p">,</span> <span class="s1">&#39;difference_update&#39;</span><span class="p">,</span> <span class="s1">&#39;discard&#39;</span><span class="p">,</span> <span class="s1">&#39;intersection&#39;</span><span class="p">,</span> <span class="s1">&#39;intersection_update&#39;</span><span class="p">,</span> <span class="s1">&#39;isdisjoint&#39;</span><span class="p">,</span> <span class="s1">&#39;issubset&#39;</span><span class="p">,</span> <span class="s1">&#39;issuperset&#39;</span><span class="p">,</span> <span class="s1">&#39;symmetric_difference&#39;</span><span class="p">,</span> <span class="s1">&#39;symmetric_difference_update&#39;</span><span class="p">,</span> <span class="s1">&#39;union&#39;</span><span class="p">,</span> 
 
-<span class="c1"># max_age设置有效时间，默认关闭浏览器就失效</span>
-<span class="n">res</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">max_age</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+<span class="s1">&#39;update&#39;</span><span class="p">,</span> 
 
-<span class="c1"># 删除cookiesn</span>
-<span class="n">res</span><span class="o">.</span><span class="n">delete_cookie</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">)</span>
+<span class="s1">&#39;add&#39;</span><span class="p">,</span> 
+
+<span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;remove&#39;</span><span class="p">,</span> 
+
+<span class="s1">&#39;clear&#39;</span><span class="p">,</span> <span class="s1">&#39;copy&#39;</span><span class="p">]</span>
 </code></pre></div>
 
-<h2 id="session">session<a class="headerlink" href="#session" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>如果将数据保存至Cookies的话，任何人操作浏览器都可以更改Cookies，这样就会导致数据安全性很低。</p>
-<p>反之Flask中的session机制本质也是将数据保存在Cookies中，但是他对这些Cookies进行密钥签名，这就意味着用户可以查看你的Cookies内容，但却不能更改它，唯一能更改的前提就是你知道签名的密钥。</p>
-</blockquote>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">session</span>
+<ul>
+<li><code>dir(dict)</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__contains__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;__format__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init_subclass__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;__len__&#39;</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setitem__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="s1">&#39;__subclasshook__&#39;</span><span class="p">,</span> 
 
-<span class="c1"># 配置签名密钥</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">import os</span>
-<span class="sd"># 随机生成密钥</span>
-<span class="sd">print(os.urandom(24))</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SECRET_KEY&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;xxx&#39;</span>  <span class="c1"># 方式1</span>
-<span class="n">app</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;xxx&#39;</span>  <span class="c1"># 方式2</span>
+<span class="s1">&#39;fromkeys&#39;</span><span class="p">,</span> 
 
-<span class="c1"># 设置session</span>
-<span class="n">session</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span>
+<span class="s1">&#39;update&#39;</span><span class="p">,</span> 
 
-<span class="c1"># 获取session</span>
-<span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">)</span>
+<span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;setdefault&#39;</span><span class="p">,</span> <span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span>  <span class="s1">&#39;values&#39;</span><span class="p">,</span> 
+
+<span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="s1">&#39;popitem&#39;</span><span class="p">,</span> 
+
+<span class="s1">&#39;clear&#39;</span><span class="p">,</span> <span class="s1">&#39;copy&#39;</span><span class="p">]</span>
 </code></pre></div>
 
-<h2 id="_8">上下文对象<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>用g修饰的变量可以在视图函数之间中相互调用</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/set&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">set</span><span class="p">():</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/get&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">get</span><span class="p">():</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">username</span>
-    <span class="k">pass</span>
+<h3 id="_3">清空<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">_list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">_set</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">_dict</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </code></pre></div>
 
-<h2 id="_9">请求钩子<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<p>需要通过装饰器实现</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 在处理第一个请求前执行</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">before_first_request</span>
+<h3 id="_4">增<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>list</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># x被当作一个整体，添加到末尾</span>
 
-<span class="c1"># 在每次请求前执行</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">before_request</span>
+<span class="n">_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># x（必须为可迭代的），会被当作一组，组中元素按序添加到末尾</span>
 
-<span class="c1"># 在每次请求后执行，前提是没有未处理的异常抛出</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">after_request</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-
-<span class="c1"># 在每次请求后执行，即使有未处理的异常，但debug模式需要为False</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">teardown_request</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="n">_list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># x被当作一个整体，插入到指定位置</span>
 </code></pre></div>
 
-<h2 id="_10">参数校验<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">wtforms</span> <span class="kn">import</span> <span class="n">Form</span><span class="p">,</span> <span class="n">IntegerField</span><span class="p">,</span> <span class="n">StringField</span>
-<span class="kn">from</span> <span class="nn">wtforms.validators</span> <span class="kn">import</span> <span class="n">NumberRange</span><span class="p">,</span> <span class="n">Length</span><span class="p">,</span> <span class="n">URL</span><span class="p">,</span> <span class="n">DataRequired</span>
-
-<span class="k">class</span> <span class="nc">ToolsForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
-    <span class="c1"># message=&quot;错误提示&quot;</span>
-    <span class="n">word_number</span> <span class="o">=</span> <span class="n">IntegerField</span><span class="p">(</span><span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">NumberRange</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10000</span><span class="p">)],</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">activity_url</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">URL</span><span class="p">(</span><span class="n">require_tld</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span>
+<ul>
+<li>set</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="n">form</span> <span class="o">=</span> <span class="n">ToolsForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
-<span class="c1"># 如果参数校验成功执行</span>
-<span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate</span><span class="p">():</span>
-    <span class="c1"># 这里从Form取值而不是从reqFuest.args取值，是因为那样取不到默认值</span>
-    <span class="n">word_number</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">word_number</span><span class="o">.</span><span class="n">date</span>
-<span class="c1"># 参数校验失败则执行</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">xxx</span>
+<ul>
+<li>dict</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">_dict</span><span class="p">[</span><span class="s2">&quot;new_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
+</code></pre></div>
+
+<h3 id="_5">删<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>list</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">_list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># 删除末位</span>
+<span class="n">_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>  <span class="c1"># 删除指定位置</span>
+
+<span class="n">_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>  <span class="c1"># 删除指定元素（如有重复，删除第一个）</span>
+</code></pre></div>
+
+<ul>
+<li>set</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">_set</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># 随机删除</span>
+
+<span class="n">_set</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>  <span class="c1"># 删除指定元素</span>
+</code></pre></div>
+
+<ul>
+<li>dict</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">_dict</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>  <span class="c1"># 删除末位，并返回被删除的键值对</span>
+<span class="n">_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>  <span class="c1"># 删除指定key，并返回被删除key对应的值</span>
+</code></pre></div>
+
+<ul>
+<li>del方式删除，释放内存</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">del</span> <span class="n">_tuple</span>
+<span class="k">del</span> <span class="n">_list</span>
+<span class="k">del</span> <span class="n">_set</span>
+<span class="k">del</span> <span class="n">_dict</span>
+
+<span class="k">del</span> <span class="n">_list</span><span class="p">[</span><span class="n">m</span><span class="p">:</span><span class="n">n</span><span class="p">]</span>  <span class="c1"># 删除list切片</span>
+<span class="k">del</span> <span class="n">dic</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>  <span class="c1"># 删除dict指定key</span>
+</code></pre></div>
+
+<h3 id="_6">改<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>list</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 修改指定位置元素</span>
+<span class="n">_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+</code></pre></div>
+
+<ul>
+<li>set</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 先删除，再增加？</span>
+<span class="n">_set</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key1</span><span class="p">)</span>
+<span class="n">_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key2</span><span class="p">)</span>
+<span class="c1"># 或者转换为list替换后再转换为set</span>
+</code></pre></div>
+
+<ul>
+<li>dict</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 同增加</span>
+<span class="n">_dict</span><span class="p">[</span><span class="s2">&quot;old_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
 </code></pre></div>
                 
                   
@@ -1943,7 +1612,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-29</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-25</span>
     
   </small>
 </div>
@@ -1966,7 +1635,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../Django/" title="Django" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="内置组件" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1975,19 +1644,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                Django
+                内置组件
               </div>
             </div>
           </a>
         
         
-          <a href="../jinja2/" title="Jinja2" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/" title="常用模块" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                Jinja2
+                常用模块
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

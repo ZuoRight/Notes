@@ -668,7 +668,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Web%E6%A1%86%E6%9E%B6/flask/" title="Flask" class="md-nav__link">
+    <a href="../../Web%E6%A1%86%E6%9E%B6/Django/" title="Django" class="md-nav__link">
+      Django
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Web%E6%A1%86%E6%9E%B6/Flask/" title="Flask" class="md-nav__link">
       Flask
     </a>
   </li>
@@ -736,8 +748,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="常用内置函数" class="md-nav__link">
-      常用内置函数
+    <a href="../%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="内置组件" class="md-nav__link">
+      内置组件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/" title="内置方法" class="md-nav__link">
+      内置方法
     </a>
   </li>
 
@@ -795,6 +819,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    循环并带上索引
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fibonacci" class="md-nav__link">
     斐波那契(Fibonacci)数列
   </a>
@@ -809,14 +840,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     阶乘
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     单词排序
   </a>
   
@@ -1309,6 +1340,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    循环并带上索引
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fibonacci" class="md-nav__link">
     斐波那契(Fibonacci)数列
   </a>
@@ -1323,14 +1361,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     阶乘
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     单词排序
   </a>
   
@@ -1357,6 +1395,25 @@
 <p>生肖</p>
 <p>判断某年是什么生肖：year % 12</p>
 <p>星座</p>
+<h2 id="_2">循环并带上索引<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 输入</span>
+<span class="n">_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">]</span>
+<span class="c1"># 输出</span>
+<span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">)]</span>
+
+<span class="c1"># 一般写法</span>
+<span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_list</span><span class="p">))]</span>
+
+<span class="c1"># 使用内置枚举函数</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">_list</span><span class="p">))</span>
+</code></pre></div>
+
+<ul>
+<li>使用枚举函数</li>
+</ul>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
 <h2 id="fibonacci">斐波那契(Fibonacci)数列<a class="headerlink" href="#fibonacci" title="Permanent link">&para;</a></h2>
 <p>释义：除第一个和第二个数外，任意一个数都可由前两个数相加得到</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -1369,7 +1426,14 @@
 </code></pre></div>
 
 <h2 id="xn">计算x的n次方<a class="headerlink" href="#xn" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 运算符</span>
+<span class="n">x</span><span class="o">**</span><span class="n">n</span>
+
+<span class="c1"># 内置函数</span>
+<span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># 自定义函数</span>
+<span class="k">def</span> <span class="nf">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">x</span>
@@ -1394,7 +1458,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">cube</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># base=2</span>
 </code></pre></div>
 
-<h2 id="_2">阶乘<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_3">阶乘<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
     <span class="c1"># 检查参数类型</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
@@ -1415,7 +1479,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 </code></pre></div>
 
-<h2 id="_3">单词排序<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_4">单词排序<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span>
 
 <span class="c1"># 忽略字母大小写（需要先把字母都变为大写或小写），倒序排列</span>
@@ -1429,7 +1493,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-24</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-28</span>
     
   </small>
 </div>

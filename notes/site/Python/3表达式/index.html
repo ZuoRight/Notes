@@ -585,7 +585,7 @@
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    逻辑运算符
+    布尔运算符
   </a>
   
 </li>
@@ -806,7 +806,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../Web%E6%A1%86%E6%9E%B6/flask/" title="Flask" class="md-nav__link">
+    <a href="../Web%E6%A1%86%E6%9E%B6/Django/" title="Django" class="md-nav__link">
+      Django
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Web%E6%A1%86%E6%9E%B6/Flask/" title="Flask" class="md-nav__link">
       Flask
     </a>
   </li>
@@ -872,8 +884,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="常用内置函数" class="md-nav__link">
-      常用内置函数
+    <a href="../%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="内置组件" class="md-nav__link">
+      内置组件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/" title="内置方法" class="md-nav__link">
+      内置方法
     </a>
   </li>
 
@@ -1439,7 +1463,7 @@
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    逻辑运算符
+    布尔运算符
   </a>
   
 </li>
@@ -1577,7 +1601,9 @@
 <div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">123</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">123</span>
 <span class="n">a</span> <span class="ow">is</span> <span class="n">b</span>  <span class="c1"># True</span>
-<span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>  <span class="c1"># False</span>
+
+<span class="kc">None</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># True</span>
 </code></pre></div>
 
 <h3 id="bool_2">成员运算符，返回bool值<a class="headerlink" href="#bool_2" title="Permanent link">&para;</a></h3>
@@ -1585,14 +1611,14 @@
 <li><code>in</code></li>
 <li><code>not in</code></li>
 </ul>
-<p>判断两个变量的包含关系（dict用key值判断）</p>
-<h3 id="_6">逻辑运算符<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>判断两个Iterabled对象的包含关系（dict用key值判断）</p>
+<h3 id="_6">布尔运算符<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>and</code></li>
 <li><code>or</code></li>
 <li><code>not</code></li>
 </ul>
-<p>not 返回的是bool值</p>
+<p>not 返回的是bool值，not的优先级比非布尔运算符都要低。</p>
 <p>and和or，返回的不是bool值，而是其中的一个变量，从左到右运算，如果如果通过前一个变量就能判断出结果在，则直接返回前一个变量，否则返回后一个变量。即：</p>
 <p>如果前一个变量是真</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># and，需要知道后一个变量才能知道结果，所以返回后一个</span>
@@ -1695,7 +1721,7 @@
 </code></pre></div>
 
 <hr />
-<p>更高级的运算可以用<code>math</code>函数。</p>
+<p>更高级的运算可以用<code>math</code>和<code>cmath</code>函数。</p>
 <h3 id="_9">位运算符<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <ul>
 <li>按位与 &amp;</li>
