@@ -557,20 +557,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#list" class="md-nav__link">
-    list
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dict" class="md-nav__link">
-    dict
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     可迭代类型的操作
   </a>
@@ -1474,20 +1460,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#list" class="md-nav__link">
-    list
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dict" class="md-nav__link">
-    dict
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     可迭代类型的操作
   </a>
@@ -1667,34 +1639,6 @@
 
 <span class="c1"># 切片方式反转(原对象不变)</span>
 <span class="n">x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</code></pre></div>
-
-<h2 id="list">list<a class="headerlink" href="#list" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># 列表自带排序方法(原对象会被改变)</span>
-<span class="n">_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="n">_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># 内置函数sorted()排序，元素类型要一致可排，否则报错(原对象不变)</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span>  <span class="c1"># 正序</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 倒序</span>
-</code></pre></div>
-
-<h2 id="dict">dict<a class="headerlink" href="#dict" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="n">_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>  <span class="c1"># key不存在会报错</span>
-
-<span class="n">_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s2">&quot;unkown&quot;</span><span class="p">)</span>  <span class="c1"># key不存在，返回None（可以设置其它默认值）</span>
-
-<span class="n">_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="c1"># key不存在，则将key添加到字典中，值默认为default（也可以设置为其它value），{key:default}</span>
-
-<span class="c1"># 以下都不接受参数</span>
-<span class="n">_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>  <span class="c1"># dict_keys([&#39;k1&#39;, &#39;k2&#39;, &#39;k3&#39;])</span>
-<span class="n">_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>  <span class="c1"># dict_values([&#39;v1&#39;, &#39;v2&#39;, &#39;v3&#39;])</span>
-<span class="n">_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>  <span class="c1"># dict_items([(&#39;k1&#39;, &#39;v1&#39;), (&#39;k2&#39;, &#39;v2&#39;), (&#39;k3&#39;, &#39;v3&#39;)])</span>
-</code></pre></div>
-
-<p>python3.7开始dict是有序的</p>
-<div class="highlight"><pre><span></span><code><span class="nb">sorted</span><span class="p">(</span><span class="n">_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># dict按key排：[(&#39;a&#39;, 3), (&#39;b&#39;, 1), (&#39;c&#39;, 2)]</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># dcit按value排：[(&#39;b&#39;, 1), (&#39;c&#39;, 2), (&#39;a&#39;, 3)]</span>
 </code></pre></div>
 
 <h2 id="_7">可迭代类型的操作<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
@@ -1887,7 +1831,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-25</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-29</span>
     
   </small>
 </div>
