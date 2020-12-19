@@ -8,12 +8,11 @@
 
 首次上传/下载，会弹出配置，按提示填入token和gist
 
-
 ### PicGo
 
 - 从剪切板上传：`Ctrl/Cmd + Alt/Opt + U`
 - 从文件夹上传：`Ctrl/Cmd + Alt/Opt + E`
-- 输入文件路径上传：`Ctrl/Cmd + Alt/Opt + O`
+- 输入路径上传：`Ctrl/Cmd + Alt/Opt + O`
 
 ## [MKDocs](https://www.mkdocs.org/)
 
