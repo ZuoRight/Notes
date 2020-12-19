@@ -1,10 +1,5 @@
----
-title: jQuery
-date: 2017-02-18 13:52:05
-categories:
-- 全栈，无栈
-tags: jQuery
----
+# jQuery
+
 ## Reference
 * 《锋利的jQuery》（第二版）       
 > _单东林，张晓菲，魏然_    

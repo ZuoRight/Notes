@@ -11,11 +11,7 @@
         <meta name="description" content="Right is right, left is also right.">
       
       
-<<<<<<< HEAD:notes/site/Test(待清理)/Pytest/index.html
         <link rel="canonical" href="http://www.zuoright.com/Test%28%E5%BE%85%E6%B8%85%E7%90%86%29/Pytest/">
-=======
-        <link rel="canonical" href="http://www.zuoright.com/Test/Pytest/">
->>>>>>> 89867ad3aaf187e71b795ee1156a255a89588366:notes/site/Test/Pytest/index.html
       
       
         <meta name="author" content="7c">
@@ -682,7 +678,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Python/Web%E6%A1%86%E6%9E%B6/flask/" title="Flask" class="md-nav__link">
+    <a href="../../Python/Web%E6%A1%86%E6%9E%B6/Flask/" title="Flask" class="md-nav__link">
       Flask
     </a>
   </li>
@@ -694,7 +690,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Python/Web%E6%A1%86%E6%9E%B6/jinja2/" title="Jinja2" class="md-nav__link">
+    <a href="../../Python/Web%E6%A1%86%E6%9E%B6/Jinja2/" title="Jinja2" class="md-nav__link">
       Jinja2
     </a>
   </li>
@@ -1241,18 +1237,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JS/" title="JS" class="md-nav__link">
-      JS
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JavaScript/" title="JavaScript" class="md-nav__link">
       JavaScript
     </a>
@@ -1265,8 +1249,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/Layout/" title="布局" class="md-nav__link">
-      布局
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/Vue/" title="Vue" class="md-nav__link">
+      Vue
     </a>
   </li>
 
@@ -1277,8 +1261,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iview/" title="View UI" class="md-nav__link">
-      View UI
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iView/" title="iView" class="md-nav__link">
+      iView
     </a>
   </li>
 
@@ -1301,8 +1285,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/vue/" title="Vue" class="md-nav__link">
-      Vue
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/%E5%B8%83%E5%B1%80/" title="布局" class="md-nav__link">
+      布局
     </a>
   </li>
 
@@ -1596,7 +1580,7 @@
 
 <h2 id="fixture">Fixture 夹具<a class="headerlink" href="#fixture" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># 可同时定义多个fixture，多个之间可以互相调用</span>
-<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;function&quot;</span><span class="p">,</span> <span class="n">autouse</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;function&quot;</span><span class="p">,</span> <span class="n">autouse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">scope：作用范围</span>
 <span class="sd">  function 默认，每个调用的case前/后执行一次</span>
@@ -1666,11 +1650,11 @@
 <span class="s">    undo: undo</span>
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="nd">@pytest.mark.do</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">do</span>
 <span class="k">def</span> <span class="nf">test_01</span><span class="p">()</span>
   <span class="k">pass</span>
 
-<span class="nd">@pytest.mark.undo</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">undo</span>
 <span class="k">def</span> <span class="nf">test_02</span><span class="p">()</span>
   <span class="k">pass</span>
 </code></pre></div>
@@ -1679,9 +1663,9 @@
 <div class="highlight"><pre><span></span><code><span class="n">_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
 <span class="c1"># 遍历_list中并赋值给x，有几个就会执行几次测试</span>
-<span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">_list</span><span class="p">)</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">_list</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_01</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-  <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div>
 
 <h3 id="_7">生成测试报告<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
@@ -1701,11 +1685,7 @@
 <div class="md-source-date">
   <small>
     
-<<<<<<< HEAD:notes/site/Test(待清理)/Pytest/index.html
       最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-12-19</span>
-=======
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-12-09</span>
->>>>>>> 89867ad3aaf187e71b795ee1156a255a89588366:notes/site/Test/Pytest/index.html
     
   </small>
 </div>
