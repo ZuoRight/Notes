@@ -654,13 +654,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    格式化
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#jsonpath" class="md-nav__link">
     JsonPAth
   </a>
@@ -751,7 +744,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Web%E6%A1%86%E6%9E%B6/Flask/" title="Flask" class="md-nav__link">
+    <a href="../../Web%E6%A1%86%E6%9E%B6/flask/" title="Flask" class="md-nav__link">
       Flask
     </a>
   </li>
@@ -912,7 +905,11 @@
 
 
   <li class="md-nav__item">
+<<<<<<< HEAD
     <a href="../../../Test%28%E5%BE%85%E6%B8%85%E7%90%86%29/Pytest/" title="Pytest" class="md-nav__link">
+=======
+    <a href="../../../Test/Pytest/" title="Pytest" class="md-nav__link">
+>>>>>>> 89867ad3aaf187e71b795ee1156a255a89588366
       Pytest
     </a>
   </li>
@@ -1164,6 +1161,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JS/" title="JS" class="md-nav__link">
+      JS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/JavaScript/" title="JavaScript" class="md-nav__link">
       JavaScript
     </a>
@@ -1202,18 +1211,6 @@
   <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/js/" title="JS" class="md-nav__link">
-      JS
     </a>
   </li>
 
@@ -1354,13 +1351,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    格式化
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#jsonpath" class="md-nav__link">
     JsonPAth
   </a>
@@ -1432,36 +1422,20 @@
 
 <span class="c1"># 序列化并存储到json文件</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="c1"># json.dump(x, f)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    # 格式化</span>
+<span class="sd">    # indent  设置缩进显示成几个空格</span>
+<span class="sd">    # ensure_ascii  是否显示ascii码，默认为true，如果要显示中文需要设置为false</span>
+<span class="sd">    # sort_keys  是否按照字母排序</span>
+<span class="sd">    # separators  设置分隔符</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">))</span>
+
 
 <span class="c1"># 从json文件中反序列化</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-    <span class="c1"># 或者</span>
-    <span class="c1"># result = json.loads(f.read())</span>
-</code></pre></div>
-
-<h3 id="_2">格式化<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">json</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span>
-        <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;c1&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;a2&quot;</span><span class="p">,</span>
-        <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span>
-        <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;c2&quot;</span><span class="p">,</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1"># indent  设置缩进显示成几个空格</span>
-<span class="c1"># ensure_ascii  是否显示ascii码，默认为true，如果要显示中文需要设置为false</span>
-<span class="c1"># sort_keys  是否按照字母排序</span>
-<span class="c1"># separators  设置分隔符</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="err">“</span><span class="p">,</span><span class="err">”</span><span class="p">,</span> <span class="err">‘</span><span class="p">:</span> <span class="err">‘</span><span class="p">))</span>
 </code></pre></div>
 
 <h3 id="jsonpath">JsonPAth<a class="headerlink" href="#jsonpath" title="Permanent link">&para;</a></h3>
@@ -1517,7 +1491,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-24</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-12-09</span>
     
   </small>
 </div>
