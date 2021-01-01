@@ -11,7 +11,7 @@
         <meta name="description" content="Right is right, left is also right.">
       
       
-        <link rel="canonical" href="http://www.zuoright.com/Linux%28%E5%BE%85%E6%B8%85%E7%90%86%29/Shell/">
+        <link rel="canonical" href="http://www.zuoright.com/Linux%28%E5%BE%85%E6%B8%85%E7%90%86%29/shell/">
       
       
         <meta name="author" content="7c">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Shell - ZuoRight</title>
+        <title>shell - ZuoRight</title>
       
     
     
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Shell
+              shell
             
           </span>
         </div>
@@ -419,6 +419,30 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../awk/" title="AWK" class="md-nav__link">
+      AWK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sed/" title="文本编辑器" class="md-nav__link">
+      文本编辑器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -430,14 +454,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Shell
+        shell
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Shell" class="md-nav__link md-nav__link--active">
-      Shell
+    <a href="./" title="shell" class="md-nav__link md-nav__link--active">
+      shell
     </a>
     
       
@@ -457,49 +481,75 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    创建脚本
+    编辑脚本
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    注释
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
     指定解释器
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    运行脚本
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     变量
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    数组
+    <nav class="md-nav" aria-label="变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    常用预定义变量
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    常用位置变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    常用环境变量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    运算符
+    环境变量配置文件
+  </a>
+  
+    <nav class="md-nav" aria-label="环境变量配置文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    修改$PATH
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    运行脚本
   </a>
   
 </li>
@@ -508,30 +558,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../awk/" title="AWK" class="md-nav__link">
-      AWK
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../sed/" title="文本编辑器" class="md-nav__link">
-      文本编辑器
-    </a>
   </li>
 
         
@@ -1395,49 +1421,75 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    创建脚本
+    编辑脚本
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    注释
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
     指定解释器
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    运行脚本
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     变量
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    数组
+    <nav class="md-nav" aria-label="变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    常用预定义变量
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    常用位置变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    常用环境变量
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    运算符
+    环境变量配置文件
+  </a>
+  
+    <nav class="md-nav" aria-label="环境变量配置文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    修改$PATH
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    运行脚本
   </a>
   
 </li>
@@ -1458,83 +1510,134 @@
                   
                 
                 
-                <h1 id="shell">Shell<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h1>
-<p>whereis，获取所执行命令的具体路径</p>
-<h2 id="_1">创建脚本<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>vim</p>
-<h2 id="_2">注释<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># 单行注释</span>
-
-:<span class="s">&lt;&lt;EOF</span>
-<span class="s">多行注释</span>
-<span class="s">多行注释</span>
-<span class="s">EOF</span>
+                <h1 id="shell">shell<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h1>
+<p>shell脚本为了组合多个命令和多次执行（UNIX哲学：一条命令只做一件事）</p>
+<ul>
+<li>查看默认shell：<code>echo $SHELL</code></li>
+<li>查看当前系统受信任shell：<code>cat /etc/shells</code></li>
+</ul>
+<h2 id="_1">编辑脚本<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>vi</li>
+<li>vim</li>
+</ul>
+<h2 id="_2">指定解释器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>#!/bin/bash</code></li>
+<li><code>#!/usr/bin/env bash</code>（推荐）</li>
+</ul>
+<h2 id="_3">变量<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>变量赋值</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 无需声明，等号左右不能有空格</span>
+<span class="nv">x</span><span class="o">=</span><span class="m">1</span>
+<span class="c1"># 右边有空格时使用引号</span>
+<span class="nv">x</span><span class="o">=</span><span class="s2">&quot;a b&quot;</span>
+<span class="c1"># 将命令结果赋值给变量</span>
+<span class="nv">x</span><span class="o">=</span><span class="k">$(</span>ls -l /etc<span class="k">)</span>
+<span class="nv">x</span><span class="o">=</span><span class="sb">`</span>ls -l /etc<span class="sb">`</span>
 </code></pre></div>
 
-<h2 id="_3">指定解释器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<hr />
 <ul>
-<li>方式1: <code>#!/bin/bash</code></li>
-<li>方式2: <code>#!/usr/bin/env bash</code>（推荐）</li>
+<li>变量引用：<code>${变量名}</code>（花括号可省略：<code>$变量名</code>）</li>
+<li>变量输出：<code>echo $x</code></li>
+<li>变量导出：<code>export x</code>（子进程可以获取到父进程的变量）</li>
+<li>变量删除：<code>unset x</code></li>
 </ul>
-<h2 id="_4">运行脚本<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>脚本中未指定解释器时</p>
+<hr />
 <ul>
-<li><code>bash /path/to/script.sh</code></li>
-<li><code>source /path/to/script.sh</code></li>
+<li>其它操作</li>
 </ul>
-<p>脚本指定了解释器可以直接运行</p>
-<ul>
-<li><code>./path/to/script.sh</code></li>
-</ul>
-<h2 id="_5">变量<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>shell没有数据类型，所以无需声明，直接赋值即可</p>
-<div class="highlight"><pre><span></span><code><span class="nv">x</span> <span class="o">=</span> <span class="m">1</span>
-<span class="nv">x</span> <span class="o">=</span> a
-<span class="nv">x</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
-<span class="nv">x</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>  <span class="c1"># 建议使用双引号，单引号内不能使用转义字符</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># 只读变量，不能被改变，也不能被删除</span>
-<span class="nb">readonly</span> x
-
-<span class="c1"># 环境变量</span>
-<span class="nb">export</span> x
-<span class="c1"># 常见的环境/系统变量</span>
-<span class="nv">$HOME</span> 当前用户的用户目录
-<span class="nv">$PATH</span> 用分号分隔的目录列表，shell 会到这些目录中查找命令
-<span class="nv">$PWD</span> 当前工作目录
-<span class="nv">$RANDOM</span> <span class="m">0</span> 到 <span class="m">32767</span> 之间的整数
-<span class="nv">$UID</span> 数值类型，当前用户的用户 ID
-<span class="nv">$PS1</span> 主要系统输入提示符
-<span class="nv">$PS2</span> 次要系统输入提示符
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="c1"># 输出变量，花括号可省略，但建议使用</span>
-<span class="nb">echo</span> <span class="si">${</span><span class="nv">x</span><span class="si">}</span>
-<span class="c1"># 获取字符串长度</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 获取字符串长度</span>
 <span class="nb">echo</span> <span class="si">${#</span><span class="nv">x</span><span class="si">}</span>
+
 <span class="c1"># 切片</span>
 <span class="nb">echo</span> <span class="si">${</span><span class="nv">x</span><span class="p">:</span><span class="nv">n</span><span class="p">:</span><span class="nv">m</span><span class="si">}</span>
-<span class="c1"># 删除变量</span>
-<span class="nb">unset</span> x
+
+<span class="c1"># 查看环境变量、预定义变量、位置变量</span>
+<span class="nb">set</span> <span class="p">|</span> more
+
+<span class="c1"># 只查看环境变量</span>
+env <span class="p">|</span> more
 </code></pre></div>
 
-<h2 id="_6">数组<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nv">x</span> <span class="o">=</span> <span class="o">(</span>a, b, c<span class="o">)</span>
-<span class="c1"># 访问数组</span>
-<span class="nb">echo</span> <span class="si">${</span><span class="nv">x</span><span class="p">[0]</span><span class="si">}</span>
-<span class="c1"># 访问数组的所有元素</span>
-<span class="nb">echo</span> <span class="si">${</span><span class="nv">x</span><span class="p">[*]</span><span class="si">}</span>
-<span class="nb">echo</span> <span class="si">${</span><span class="nv">x</span><span class="p">[@]</span><span class="si">}</span>
-<span class="c1"># 获取数组长度</span>
-<span class="nb">echo</span> <span class="si">${#</span><span class="nv">x</span><span class="p">[*]</span><span class="si">}</span>
-<span class="c1"># 删除数组中元素</span>
-<span class="nb">unset</span> x<span class="o">[</span><span class="m">0</span><span class="o">]</span>
+<h3 id="_4">常用预定义变量<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 显示上一条命令结果是否正确，正确返回0，否则返回1</span>
+<span class="nb">echo</span> <span class="nv">$?</span>
+
+<span class="c1"># 显示当前进程pid，脚本检测时会用到</span>
+<span class="nb">echo</span> <span class="nv">$$</span>
+
+<span class="c1"># 显示当前进程的名称</span>
+<span class="nb">echo</span> <span class="nv">$0</span>
 </code></pre></div>
 
-<h2 id="_7">运算符<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>AND: <code>&amp;&amp;</code></p>
-<p>OR: <code>｜｜</code></p>
+<h3 id="_5">常用位置变量<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="nv">$1</span>
+
+<span class="c1"># 如果没有传入位置参数，默认赋值下划线</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">2</span><span class="p">-_</span><span class="si">}</span>
+</code></pre></div>
+
+<h3 id="_6">常用环境变量<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 当前用户</span>
+<span class="nb">echo</span> <span class="nv">$USER</span>
+
+<span class="c1"># 当前用户uid</span>
+<span class="nb">echo</span> <span class="nv">$UID</span>
+
+<span class="c1"># 命令搜索路径：`/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin`</span>
+<span class="nb">echo</span> <span class="nv">$PATH</span>
+
+<span class="c1"># 可以修改提示符`[root@localhost ~]`的内容</span>
+<span class="nb">echo</span> <span class="nv">$PS1</span>
+</code></pre></div>
+
+<h2 id="_7">环境变量配置文件<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>/etc/路径的配置文件是所有用户通用的，~/下是特有用户的</p>
+<p>配置文件是在用户登录时加载的：<code>su - 用户名</code></p>
+<p>如果登陆时不加-则不会加载bashrc文件，所以不推荐这样登录</p>
+<ul>
+<li>Linux</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 按加载顺序依次为</span>
+/etc/profile
+/etc/profile.d/
+~/.bash_profile
+~/.bashrc
+/etc/bashrc
+</code></pre></div>
+
+<ul>
+<li>Mac</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 按加载顺序依次为</span>
+/etc/profile
+/etc/paths
+~/.bash_profile  <span class="c1"># 有这个文件后面的就不读了</span>
+~/.bash_login
+~/.profile
+~/.bashrc
+</code></pre></div>
+
+<h3 id="path">修改$PATH<a class="headerlink" href="#path" title="Permanent link">&para;</a></h3>
+<p>在Linux系统中，一切都是文件，包括命令，也就是说所有的命令都是以文件的形式存在的</p>
+<p>如果想能被shell直接解释，需要把路径添加到环境变量$PATH中</p>
+<ul>
+<li>查看：<code>echo $PATH</code></li>
+<li>新增：<code>echo 'export PATH=$PATH:xxx' &gt;&gt; ~/.bash_profile</code></li>
+<li>手动加载环境变量配置文件：<code>source ~/.bash_profile</code></li>
+</ul>
+<p>环境变量配置文件是在系统和终端启动时加载，所以新增后需要重启环境重新被加载一次，或者手动加载一次</p>
+<h2 id="_8">运行脚本<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>运行时会产生新的子进程：
+- <code>bash ./filename.sh</code>（推荐，不用赋予执行权限）
+- <code>./filename.sh</code>（必须声明，且要赋予执行权限）</p>
+<p>运行时不会开启新进程，会影响当前shell，不用赋予执行权限：
+- <code>source ./filename.sh</code>
+- <code>. ./filename.sh</code>（.是source的简写）</p>
                 
                   
                     
@@ -1543,7 +1646,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-12-27</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-01-01</span>
     
   </small>
 </div>
@@ -1566,7 +1669,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../Linux/" title="Linux" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../sed/" title="文本编辑器" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1575,19 +1678,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                Linux
+                文本编辑器
               </div>
             </div>
           </a>
         
         
-          <a href="../awk/" title="AWK" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../ssh/" title="Ssh" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                AWK
+                Ssh
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

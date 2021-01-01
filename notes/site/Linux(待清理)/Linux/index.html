@@ -462,12 +462,25 @@
     启动过程
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shell" class="md-nav__link">
-    Shell
+    <nav class="md-nav" aria-label="启动过程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    赋予执行权限
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    命令
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -475,18 +488,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Shell/" title="Shell" class="md-nav__link">
-      Shell
-    </a>
   </li>
 
         
@@ -510,6 +511,18 @@
   <li class="md-nav__item">
     <a href="../sed/" title="文本编辑器" class="md-nav__link">
       文本编辑器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../shell/" title="shell" class="md-nav__link">
+      shell
     </a>
   </li>
 
@@ -1391,12 +1404,25 @@
     启动过程
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shell" class="md-nav__link">
-    Shell
+    <nav class="md-nav" aria-label="启动过程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    赋予执行权限
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    命令
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1419,7 +1445,7 @@
                 <h1 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
 <p>Linux是Unix-like系统，从Unix的timeline可以了解到它和其它Unix系统的发展历史以及大概关系，点击图片可以查看原图，更详细的可以查看：<a href="https://zh.wikipedia.org/wiki/File:Unix_history-simple.svg">https://zh.wikipedia.org/wiki/File:Unix_history-simple.svg</a>，此处不过多赘述。</p>
 <p><a href="https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg#/media/File:Unix_timeline.en.svg" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Unix_timeline.en.svg/1200px-Unix_timeline.en.svg.png" alt="Unix timeline.en.svg"></a></p>
-<p>linux本身只是一个内核(<a href="https://www.kernel.org/">Kernel</a>)，而我们平时使用的linux发行版在内核的基础上添加了Shell和GNU工具集等</p>
+<p>linux本身只是一个内核(<a href="https://www.kernel.org/">Kernel</a>)，而我们平时使用的linux发行版在内核的基础上添加了GNU工具集和Shell（以终端或者图形界面的形式存在）等</p>
 <h2 id="_1">发行版<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>操作系统千千万，都是红帽和大便，意思就是Linux的发行版有很多，但主要分两个派系：Redhat和Debian</p>
 <p><img alt="20201222223417" src="http://image.zuoright.com/20201222223417.png" /></p>
@@ -1437,37 +1463,15 @@
 <li>kernel 内核</li>
 <li>systemd/init 1号进程</li>
 <li>系统初始化</li>
-<li>shell</li>
+<li>shell 用于解释用户对操作系统的操作</li>
 </ul>
-<h2 id="shell">Shell<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h2>
-<p>Shell是用户与内核之间的翻译官，即解释器，以终端或者界面的形式存在，用于解释用户对操作系统的操作。</p>
-<p>shell有很多种</p>
-<div class="highlight"><pre><span></span><code>cat etc/shells
-</code></pre></div>
-
-<p>UNIX哲学：一条命令只做一件事。所以linux的shell脚本就是为了组合多个命令和多次执行</p>
-<p>一般Linux系统默认的Shell都是bash。</p>
-<p>提示符：<code>[root@localhost ~]</code></p>
-<p>在Linux系统中，一切都是文件，包括命令，也就是说所有的命令都是以文件的形式存在的，如果想要shell能直接解释，需要添加到PATH路径下</p>
-<p>PATH路径有以下这些</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># echo $PATH</span>
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
-</code></pre></div>
-
-<p>如果想知道某个命令具体在哪个路径下，可以用<code>whereis xxx</code>来定位。</p>
-<p>声明
-命令
-注释
-赋予权限</p>
-<p>二进制可执行文件，给x权限即可
-脚本文件：要给可读可执行权限，创建文件时默认带了可读权限，所以只需要加可执行权限：<code>chmod u+x filename</code></p>
-<p>执行命令</p>
-<p>运行时会产生新的子进程：
-- bash ./filename.sh（推荐，可以不用赋予执行权限）
-- ./filename.sh（必须声明，且要有权限）</p>
-<p>运行时不会开启新进程，会影响当前shell，不用赋予执行权限：
-source ./filename.sh
-. ./filename.sh（.是source的简写）</p>
+<h3 id="_3">赋予执行权限<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>创建文件时默认带了读写权限，查看权限：<code>ls -l</code></li>
+<li>加执行权限：<code>chmod u+x filename</code></li>
+</ul>
+<h3 id="_4">命令<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>执行多条命令，用分号隔开</p>
                 
                   
                     
@@ -1476,7 +1480,7 @@ source ./filename.sh
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-12-23</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-01-01</span>
     
   </small>
 </div>
@@ -1514,13 +1518,13 @@ source ./filename.sh
           </a>
         
         
-          <a href="../Shell/" title="Shell" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../awk/" title="AWK" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                Shell
+                AWK
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

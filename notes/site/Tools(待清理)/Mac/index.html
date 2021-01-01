@@ -419,18 +419,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Linux%28%E5%BE%85%E6%B8%85%E7%90%86%29/Shell/" title="Shell" class="md-nav__link">
-      Shell
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../Linux%28%E5%BE%85%E6%B8%85%E7%90%86%29/awk/" title="AWK" class="md-nav__link">
       AWK
     </a>
@@ -445,6 +433,18 @@
   <li class="md-nav__item">
     <a href="../../Linux%28%E5%BE%85%E6%B8%85%E7%90%86%29/sed/" title="文本编辑器" class="md-nav__link">
       文本编辑器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux%28%E5%BE%85%E6%B8%85%E7%90%86%29/shell/" title="shell" class="md-nav__link">
+      shell
     </a>
   </li>
 
@@ -1026,36 +1026,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    常用快捷键
+  <a href="#macosshellbash" class="md-nav__link">
+    将MacOS默认shell更改为最新版bash
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mac_1" class="md-nav__link">
-    Mac环境变量
+  <a href="#_1" class="md-nav__link">
+    常用快捷键
   </a>
-  
-    <nav class="md-nav" aria-label="Mac环境变量">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    加载顺序
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#path" class="md-nav__link">
-    设置PATH
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1068,28 +1048,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     安装方法
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     替换下载源
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     常用命令
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     图形管理工具
   </a>
   
@@ -1097,13 +1077,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shellbash" class="md-nav__link">
-    默认Shell，以及升级Bash
-  </a>
   
 </li>
       
@@ -1427,36 +1400,16 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    常用快捷键
+  <a href="#macosshellbash" class="md-nav__link">
+    将MacOS默认shell更改为最新版bash
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mac_1" class="md-nav__link">
-    Mac环境变量
+  <a href="#_1" class="md-nav__link">
+    常用快捷键
   </a>
-  
-    <nav class="md-nav" aria-label="Mac环境变量">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    加载顺序
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#path" class="md-nav__link">
-    设置PATH
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1469,28 +1422,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     安装方法
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     替换下载源
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     常用命令
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     图形管理工具
   </a>
   
@@ -1498,13 +1451,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#shellbash" class="md-nav__link">
-    默认Shell，以及升级Bash
-  </a>
   
 </li>
       
@@ -1525,33 +1471,41 @@
                 
                 
                 <h1 id="mac">Mac<a class="headerlink" href="#mac" title="Permanent link">&para;</a></h1>
+<p>SIP(系统完整性保护)安全机制：即使是以root身份也无法删除某些程序，比如<code>/bin</code>下的，尽管你可以SIP禁用后删除，但也不建议这样去做。</p>
+<h2 id="macosshellbash">将MacOS默认shell更改为最新版bash<a class="headerlink" href="#macosshellbash" title="Permanent link">&para;</a></h2>
+<p>查看默认shell：<code>echo $SHELL</code></p>
+<p>Mac系统从macOS Catalina版开始默认shell为zsh，可以切换为bash，但由于GPLv3的原因，Mac自带的bash还是十几年前的3.2版本，所以需要先升级一下，即下载新版bash并设为默认</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 安装新版</span>
+brew install bash
+
+<span class="c1"># 设置交互shell为新版</span>
+chsh -s /usr/local/bin/bash
+  <span class="c1"># 改回旧版：chsh -s / bin / bash</span>
+  <span class="c1"># 改回zsh：chsh -s / bin / zsh</span>
+
+<span class="c1"># 设置登录shell为新版</span>
+<span class="c1"># 即把/usr/local/bin/bash填加到/etc/shells，需要管理者权限</span>
+sudo vim /etc/shells
+</code></pre></div>
+
+<ul>
+<li>查看bash路径：<code>which -a bash</code></li>
+<li>新版：<code>/usr/local/bin/bash</code></li>
+<li>旧版：<code>/bin/bash</code></li>
+<li>查看当前交互shell版本：<code>bash --version</code></li>
+<li>查看默认交互shell版本：<code>echo $BASH_VERSION</code></li>
+</ul>
+<blockquote>
+<p>tips：</p>
+<p>低旧版本的bash依然存在于<code>bin/bash</code>下，为了保证系统的完整性，不建议删除。</p>
+<p>编写shell脚本如果想用新bash解释，记得要把<code>#!/bin/bash</code>要改为<code>#!/usr/local/bin/bash</code></p>
+<p>参考译文：<a href="https://juejin.im/post/6844903972294262791">https://juejin.im/post/6844903972294262791</a></p>
+</blockquote>
 <h2 id="_1">常用快捷键<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>显示隐藏文件：<code>Cmd + Shift + .</code></li>
 <li>切换半角和圆角：<code>Shift + Space</code></li>
 </ul>
-<h2 id="mac_1">Mac环境变量<a class="headerlink" href="#mac_1" title="Permanent link">&para;</a></h2>
-<h3 id="_2">加载顺序<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>系统变量：</p>
-<ol>
-<li><code>/etc/profile</code></li>
-<li><code>/etc/paths</code></li>
-</ol>
-<p>用户变量：</p>
-<ol>
-<li><code>~/.bash_profile</code>  (Linux下是<code>~/.bashrc</code>)</li>
-<li><code>~/.bash_login</code></li>
-<li><code>~/.profile</code></li>
-</ol>
-<h3 id="path">设置PATH<a class="headerlink" href="#path" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 查看</span>
-<span class="nb">echo</span> <span class="nv">$PATH</span>
-<span class="c1"># 添加</span>
-<span class="nb">echo</span> <span class="s1">&#39;export PATH=$PATH:xxx&#39;</span> &gt;&gt; ~/.bash_profile
-<span class="c1"># 应用</span>
-<span class="nb">source</span> ~/.bash_profile
-</code></pre></div>
-
 <h2 id="homebrew"><a href="https://brew.sh">Homebrew</a><a class="headerlink" href="#homebrew" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>Mac下包和服务的管理器</p>
@@ -1559,14 +1513,14 @@
 - <a href="https://www.cnblogs.com/joyce33/p/13376752.html">https://www.cnblogs.com/joyce33/p/13376752.html</a>
 - <a href="https://www.xiebruce.top/720.html">https://www.xiebruce.top/720.html</a></p>
 </blockquote>
-<h3 id="_3">安装方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_2">安装方法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>官网安装方法：<code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"</code></li>
 <li>镜像安装方法：<code>/usr/bin/ruby -e "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install)"</code></li>
 </ul>
 <p>不出意外，官网安装方法需要科学上网全局代理才有可能安装成功，所以直接建议用中科大镜像安装方法</p>
 <p>Homebrew会被安装到<code>/usr/local/Homebrew/</code>路径下</p>
-<h3 id="_4">替换下载源<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_3">替换下载源<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>可以用<code>brew config</code>查看当前配置</p>
 <p>安装完Homebrew后，如果想用brew去下载安装其它软件，还需要把下载源替换成国内源，比如<a href="http://mirrors.ustc.edu.cn/help/index.html">中科大的</a>。</p>
 <p>Homebre安装的软件的都在<code>/usr/local/Cellar/</code>下，并自动在<code>/usr/local/bin/</code>路径下创建link，其中Cellar译为酒窖，而Homebrew官方预先编译好的软件叫做Bottle(酒瓶子)，Bottles就是很多酒瓶子(即软件)，Homebrew把安装一个软件叫做把一个酒瓶子pour(倒入)到酒窖里。</p>
@@ -1592,7 +1546,7 @@ git -C <span class="s2">&quot;</span><span class="k">$(</span>brew --repo homebr
 /usr/bin/ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/uninstall<span class="k">)</span><span class="s2">&quot;</span>
 </code></pre></div>
 
-<h3 id="_5">常用命令<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="_4">常用命令<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># 查看帮助</span>
 brew <span class="nb">help</span>
 
@@ -1642,7 +1596,7 @@ brew services list
 brew services run/start/stop/restart xxx
 </code></pre></div>
 
-<h3 id="_6">图形管理工具<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h3 id="_5">图形管理工具<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://www.cakebrew.com/">Cakebrew</a></li>
 </ul>
@@ -1652,17 +1606,6 @@ brew services run/start/stop/restart xxx
 </ul>
 <p>管理Homebrew安装的服务，安装：<code>brew cask install launchrocket</code></p>
 <p>安装完成后，入口会显示在系统偏好设置页面左下角处，点击即可启动。</p>
-<h2 id="shellbash">默认Shell，以及升级Bash<a class="headerlink" href="#shellbash" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>从macOS Catalina版开始，Mac将使用zsh作为默认登录Shell和交互式Shell，但依然可以使用bash作为默认Shell，不过由于GPLv3的原因，Mac自带的bash还是十几年前的3.2版本，所以如果你想用bash作为默认Shell，很有必要升级一下子。</p>
-<p>参考译文：<a href="https://juejin.im/post/6844903972294262791">https://juejin.im/post/6844903972294262791</a></p>
-</blockquote>
-<p>建议使用Homebrew安装最新版本：<code>brew install bash</code>，成功后会在<code>/usr/local/bin</code>路径下生成新bash的link。</p>
-<p>此时使用<code>which -a bash</code>显示系统上存在两个版本的bash，查看系统环境变量<code>/etc/paths</code>可知：<code>/usr/local/bin/bash</code>会优先于<code>/bin/bash</code>加载，所以此时在Shell下输入<code>bash --version</code>返回的是新bash的版本。</p>
-<p>但此时<code>echo $BASH_VERSION</code>发现默认交互式Shell依然还是旧版本，需要<code>chsh -s /usr/local/bin/bash</code>设置为新bash。</p>
-<p>理论上将新bash设置为默认交互Shell后，默认登录Shell也应自动变为新bash，但<code>cat /etc/shells</code>发现受信任Shell列表中没有新bash，意味着它不允许被用作默认登录Shell，所以需要<code>sudo vim /etc/shells</code>以root身份将新bash加入到白名单列表中。</p>
-<p>需要注意的是，编写shell脚本如果想用新bash解释，记得要把<code>#!/bin/bash</code>要改为<code>#!/usr/local/bin/bash</code></p>
-<p>一点说明：所谓的升级新bash，其实是下载了一个新版本的bash作为默认bash，而旧版本的bash依然存在于<code>bin/bash</code>下，但为了保证系统的完整性，即使是以root身份也无法删除某些程序，比如<code>/bin</code>下的，尽管你可以禁用SIP(系统完整性保护)安全机制后删除，但也不建议这样去做。</p>
                 
                   
                     
@@ -1671,7 +1614,7 @@ brew services run/start/stop/restart xxx
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-12-19</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-01-01</span>
     
   </small>
 </div>
