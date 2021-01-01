@@ -1,35 +1,45 @@
 # Mac
 
+SIP(系统完整性保护)安全机制：即使是以root身份也无法删除某些程序，比如`/bin`下的，尽管你可以SIP禁用后删除，但也不建议这样去做。
+
+## 将MacOS默认shell更改为最新版bash
+
+查看默认shell：`echo $SHELL`
+
+Mac系统从macOS Catalina版开始默认shell为zsh，可以切换为bash，但由于GPLv3的原因，Mac自带的bash还是十几年前的3.2版本，所以需要先升级一下，即下载新版bash并设为默认
+
+```bash
+# 安装新版
+brew install bash
+
+# 设置交互shell为新版
+chsh -s /usr/local/bin/bash
+  # 改回旧版：chsh -s / bin / bash
+  # 改回zsh：chsh -s / bin / zsh
+
+# 设置登录shell为新版
+# 即把/usr/local/bin/bash填加到/etc/shells，需要管理者权限
+sudo vim /etc/shells
+```
+
+- 查看bash路径：`which -a bash`
+  - 新版：`/usr/local/bin/bash`
+  - 旧版：`/bin/bash`
+- 查看当前交互shell版本：`bash --version`
+- 查看默认交互shell版本：`echo $BASH_VERSION`
+
+> tips：
+> 
+> 低旧版本的bash依然存在于`bin/bash`下，为了保证系统的完整性，不建议删除。
+> 
+> 编写shell脚本如果想用新bash解释，记得要把`#!/bin/bash`要改为`#!/usr/local/bin/bash`
+> 
+> 参考译文：<https://juejin.im/post/6844903972294262791>
+
 ## 常用快捷键
 
 - 显示隐藏文件：`Cmd + Shift + .`
 - 切换半角和圆角：`Shift + Space`
-
-## Mac环境变量
-
-### 加载顺序
-
-系统变量：
-
-1. `/etc/profile`
-2. `/etc/paths`
-
-用户变量：
-
-3. `~/.bash_profile`  (Linux下是`~/.bashrc`)
-4. `~/.bash_login`
-5. `~/.profile`
-
-### 设置PATH
-
-```bash
-# 查看
-echo $PATH
-# 添加
-echo 'export PATH=$PATH:xxx' >> ~/.bash_profile
-# 应用
-source ~/.bash_profile
-```
 
 ## [Homebrew](https://brew.sh)
 
@@ -145,20 +155,4 @@ brew services run/start/stop/restart xxx
 
 安装完成后，入口会显示在系统偏好设置页面左下角处，点击即可启动。
 
-## 默认Shell，以及升级Bash
 
-> 从macOS Catalina版开始，Mac将使用zsh作为默认登录Shell和交互式Shell，但依然可以使用bash作为默认Shell，不过由于GPLv3的原因，Mac自带的bash还是十几年前的3.2版本，所以如果你想用bash作为默认Shell，很有必要升级一下子。
-> 
-> 参考译文：<https://juejin.im/post/6844903972294262791>
-
-建议使用Homebrew安装最新版本：`brew install bash`，成功后会在`/usr/local/bin`路径下生成新bash的link。
-
-此时使用`which -a bash`显示系统上存在两个版本的bash，查看系统环境变量`/etc/paths`可知：`/usr/local/bin/bash`会优先于`/bin/bash`加载，所以此时在Shell下输入`bash --version`返回的是新bash的版本。
-
-但此时`echo $BASH_VERSION`发现默认交互式Shell依然还是旧版本，需要`chsh -s /usr/local/bin/bash`设置为新bash。
-
-理论上将新bash设置为默认交互Shell后，默认登录Shell也应自动变为新bash，但`cat /etc/shells`发现受信任Shell列表中没有新bash，意味着它不允许被用作默认登录Shell，所以需要`sudo vim /etc/shells`以root身份将新bash加入到白名单列表中。
-
-需要注意的是，编写shell脚本如果想用新bash解释，记得要把`#!/bin/bash`要改为`#!/usr/local/bin/bash`
-
-一点说明：所谓的升级新bash，其实是下载了一个新版本的bash作为默认bash，而旧版本的bash依然存在于`bin/bash`下，但为了保证系统的完整性，即使是以root身份也无法删除某些程序，比如`/bin`下的，尽管你可以禁用SIP(系统完整性保护)安全机制后删除，但也不建议这样去做。
