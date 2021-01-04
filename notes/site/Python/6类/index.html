@@ -1150,19 +1150,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/Vue/" title="Vue" class="md-nav__link">
-      Vue
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iView/" title="iView" class="md-nav__link">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iview/" title="iView" class="md-nav__link">
       iView
     </a>
   </li>
@@ -1176,6 +1164,18 @@
   <li class="md-nav__item">
     <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/vue/" title="Vue" class="md-nav__link">
+      Vue
     </a>
   </li>
 
@@ -1318,7 +1318,7 @@
     <span class="n">class_x</span> <span class="o">=</span> <span class="s2">&quot;类变量，类属性&quot;</span>
     <span class="n">__x</span> <span class="o">=</span> <span class="s2">&quot;私有类变量&quot;</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;类被加载时自动执行&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;类被加载时自动执行&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <ul>
@@ -1334,7 +1334,7 @@
         <span class="c1"># 调用父类方法</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;类被实例化时自动执行&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;类被实例化时自动执行&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <ul>
@@ -1343,7 +1343,7 @@
 <div class="highlight"><pre><span></span><code>    <span class="c1"># 析构方法，内存中被释放（垃圾回收）时自动执行</span>
     <span class="c1"># 无须自定义，但也可以在这里定义一些释放时要做的事</span>
     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Python自带内存分配和释放机制&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Python自带内存分配和释放机制&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <ul>
@@ -1351,7 +1351,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code>    <span class="c1"># obj()带括号时执行</span>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;可以用callable(Foo)函数判断是否可执行&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;可以用callable(Foo)函数判断是否可执行&#39;</span><span class="p">)</span>
 
     <span class="c1"># print(obj)时执行</span>
     <span class="c1"># 如果没定义则返回：&lt;__main__.Foo object at 0x00E90DB0&gt;</span>
@@ -1365,17 +1365,17 @@
 <div class="highlight"><pre><span></span><code>    <span class="c1"># 取值函数</span>
     <span class="c1"># 触发方式：x = 标识符[]</span>
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;__getitem__&#39;</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>
 
     <span class="c1"># 赋值函数</span>
     <span class="c1"># 触发方式：标识符[] = x</span>
     <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;__setitem__&#39;</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;__setitem__&#39;</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
 
     <span class="c1"># 删除函数</span>
     <span class="c1"># 触发方式：del 标识符[]</span>
     <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;__delitem__&#39;</span><span class="p">,</span><span class="n">key</span><span class="p">)</span>
 
     <span class="c1"># 使类变为可迭代对象</span>
     <span class="c1"># 触发方式：</span>
@@ -1418,14 +1418,14 @@
 
     <span class="n">obj</span><span class="p">()</span>  <span class="c1"># 自动执行 __call__函数</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>  <span class="c1"># 自动执行__str__函数</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>  <span class="c1"># 自动执行__str__函数</span>
 </code></pre></div>
 
 <ul>
 <li>获取成员（即属性和方法）</li>
 </ul>
 <div class="highlight"><pre><span></span><code>    <span class="c1"># 列出类中的所有成员</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    {</span>
@@ -1444,32 +1444,32 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># 列出对象中的所有成员</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
 
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    {&#39;a&#39;: &#39;a&#39;, &#39;_Foo__b&#39;: &#39;b&#39;}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># 返回当前操作的对象在属于哪个模块</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>  <span class="c1"># __main__</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>  <span class="c1"># __main__</span>
 
     <span class="c1"># 返回当前操作的对象属于哪个类</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;__main__.Foo&#39;&gt;</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;__main__.Foo&#39;&gt;</span>
 
     <span class="c1"># 返回类/模块的描述类信息</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
 </code></pre></div>
 
 <ul>
 <li>使用属性</li>
 </ul>
 <div class="highlight"><pre><span></span><code>    <span class="c1"># 访问类变量</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">class_x</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">_Foo__x</span><span class="p">)</span>  <span class="c1"># 私有</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">class_x</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">Foo</span><span class="o">.</span><span class="n">_Foo__x</span><span class="p">)</span>  <span class="c1"># 私有</span>
 
     <span class="c1"># 访问实例变量</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">_Foo__b</span><span class="p">)</span>  <span class="c1"># 私有</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">_Foo__b</span><span class="p">)</span>  <span class="c1"># 私有</span>
 </code></pre></div>
 
 <ul>
