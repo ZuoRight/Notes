@@ -1185,7 +1185,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iview/" title="iView" class="md-nav__link">
+    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/Vue/" title="Vue" class="md-nav__link">
+      Vue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iView/" title="iView" class="md-nav__link">
       iView
     </a>
   </li>
@@ -1199,18 +1211,6 @@
   <li class="md-nav__item">
     <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/vue/" title="Vue" class="md-nav__link">
-      Vue
     </a>
   </li>
 
@@ -1423,7 +1423,7 @@
 <span class="c1"># 注意：</span>
 <span class="c1"># 1. 同时输出多个值，默认空格分隔，可以自定义seq变量控制</span>
 <span class="c1"># 2. 输出结束会末尾会自动加一个换行，可以自定义end变量控制</span>
-<span class="k">print</span><span class="p">(</span><span class="mi">1</span><span class="err">，</span><span class="mi">2</span><span class="err">，</span><span class="mi">3</span><span class="err">，</span> <span class="n">seq</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="err">，</span><span class="mi">2</span><span class="err">，</span><span class="mi">3</span><span class="err">，</span> <span class="n">seq</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <ul>
@@ -1444,7 +1444,7 @@
 <span class="s2">    li.append(i)</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
-<span class="k">exec</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># None，exec执行但不会返回值</span>
+<span class="n">exec</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># None，exec执行但不会返回值</span>
 </code></pre></div>
 
 <p>执行交互式语句</p>
@@ -1452,23 +1452,23 @@
 <span class="n">i</span> <span class="o">=</span> <span class="s2">&quot;input(&#39;请输入&#39;)&quot;</span>
 
 <span class="nb">eval</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>  <span class="c1"># 123</span>
-<span class="k">exec</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>  <span class="c1"># 123</span>
+<span class="n">exec</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>  <span class="c1"># 123</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># 请输入</span>
-<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>  <span class="c1"># 返回输入值</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>  <span class="c1"># 返回输入值</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="k">exec</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># 请输入</span>
-<span class="k">print</span><span class="p">(</span><span class="k">exec</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>  <span class="c1"># 返回None</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">exec</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># 请输入</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">exec</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>  <span class="c1"># 返回None</span>
 </code></pre></div>
 
 <p><code>compile(string, "", mode)</code>可以将字符串编译为eval()和exec()可执行的格式</p>
 <div class="highlight"><pre><span></span><code><span class="n">code1</span> <span class="o">=</span> <span class="s2">&quot;1+2&quot;</span>
 <span class="n">com1</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">code1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;eval&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">com1</span><span class="p">))</span>  <span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">com1</span><span class="p">))</span>  <span class="c1"># 3</span>
 
 <span class="n">code2</span> <span class="o">=</span> <span class="s2">&quot;for i in range(3): print(i)&quot;</span>
 <span class="n">com2</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">code2</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;exec&quot;</span><span class="p">)</span>
-<span class="k">exec</span><span class="p">(</span><span class="n">com2</span><span class="p">)</span>   <span class="c1"># 1 2 3</span>
+<span class="n">exec</span><span class="p">(</span><span class="n">com2</span><span class="p">)</span>   <span class="c1"># 1 2 3</span>
 
 
 <span class="n">code3</span> <span class="o">=</span> <span class="s2">&quot;name = input(&#39;请输入:&#39;)&quot;</span>  <span class="c1"># 输入:hello</span>
@@ -1476,9 +1476,9 @@
 <span class="n">com3</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">code3</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">)</span>
 <span class="c1"># 执行编译对象，eval/exec执行都可以</span>
 <span class="nb">eval</span><span class="p">(</span><span class="n">com3</span><span class="p">)</span>
-<span class="k">exec</span><span class="p">(</span><span class="n">com3</span><span class="p">)</span>
+<span class="n">exec</span><span class="p">(</span><span class="n">com3</span><span class="p">)</span>
 <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># hello</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># hello</span>
 </code></pre></div>
                 
                   

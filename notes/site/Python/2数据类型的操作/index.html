@@ -1292,7 +1292,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iview/" title="iView" class="md-nav__link">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/Vue/" title="Vue" class="md-nav__link">
+      Vue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iView/" title="iView" class="md-nav__link">
       iView
     </a>
   </li>
@@ -1306,18 +1318,6 @@
   <li class="md-nav__item">
     <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/vue/" title="Vue" class="md-nav__link">
-      Vue
     </a>
   </li>
 
@@ -1591,33 +1591,33 @@
 
 
 <span class="c1"># 数值、字符串、元组等不可变的都是可哈希的</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
 
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
 
 
 <span class="c1"># 除了数值型都是可迭代的</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
 
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># False</span>
 
 
 <span class="c1"># 序列都是可反转的</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
 
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
 
 <span class="c1"># 是否为迭代器</span>
 <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">)</span>
@@ -1688,7 +1688,7 @@
 <li>list</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">_list</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 
 <ul>
@@ -1696,15 +1696,15 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># 遍历键</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>  <span class="c1"># 也可以不用加.keys()</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 
 <span class="c1"># 遍历值</span>
 <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 
 <span class="c1"># 遍历键值对</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;key: {}, value: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;key: </span><span class="si">{}</span><span class="s1">, value: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
 </code></pre></div>
 
 <h2 id="_10">数据类型的转换<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
@@ -1722,10 +1722,10 @@
 <li>数值型之间互转</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># 1</span>
-<span class="nb">int</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>  <span class="c1"># 0</span>
+<span class="nb">int</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 0</span>
 
 <span class="nb">float</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1.0</span>
-<span class="nb">float</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 1.0</span>
+<span class="nb">float</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 1.0</span>
 
 <span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># False</span>
 <span class="nb">bool</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># True</span>
@@ -1747,7 +1747,7 @@
 
 <span class="nb">str</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># &quot;123&quot;</span>
 <span class="nb">str</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># &quot;1.2&quot;</span>
-<span class="nb">str</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># &quot;True&quot;</span>
+<span class="nb">str</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># &quot;True&quot;</span>
 </code></pre></div>
 
 <ul>
@@ -1790,13 +1790,13 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># 拼接两个字符串</span>
 <span class="s1">&#39;a&#39;</span> <span class="o">+</span> <span class="s1">&#39;b&#39;</span>  <span class="c1"># &#39;ab&#39;</span>
 <span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>  <span class="c1"># &quot;a+b+c&quot;</span>
+<span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span>  <span class="c1"># 将一个列表中的每个元素拼接为一个字符串</span>
 
 <span class="c1"># 拼接两个元组</span>
 <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># (1,2,3,4)</span>
 
 <span class="c1"># 拼接两个列表</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># [1,2,3,4]</span>
-
 
 <span class="c1"># 拼接两个集合</span>
 <span class="c1"># 参数可以是任意 iterable，如果是字典只会把key拼接到集合中</span>
@@ -1855,7 +1855,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-29</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-01-05</span>
     
   </small>
 </div>
