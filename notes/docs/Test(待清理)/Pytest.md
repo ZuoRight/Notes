@@ -148,12 +148,12 @@ def test_02()
 ## 参数化
 
 ```python
-_list = [1, 2, 3]
+_list = [("admin", "111111"),  ("admin", "")]
 
-# 遍历_list中并赋值给x，有几个就会执行几次测试
+# 遍历_list中的元素，赋值给x
 @pytest.mark.parametrize("x", _list)
-def test_01(x):
-  print(x)
+def test_01(x[0], x[1]):
+    pass
 ```
 
 ### 生成测试报告
