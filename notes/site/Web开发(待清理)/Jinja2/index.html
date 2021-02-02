@@ -678,6 +678,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../Python/%E8%BD%AE%E5%AD%90/deepdiff/" title="deepdiff" class="md-nav__link">
+      deepdiff
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../Python/%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="内置组件" class="md-nav__link">
       内置组件
     </a>
@@ -1230,19 +1242,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/Vue/" title="Vue" class="md-nav__link">
-      Vue
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iView/" title="iView" class="md-nav__link">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iview/" title="iView" class="md-nav__link">
       iView
     </a>
   </li>
@@ -1256,6 +1256,18 @@
   <li class="md-nav__item">
     <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/vue/" title="Vue" class="md-nav__link">
+      Vue
     </a>
   </li>
 
@@ -1445,8 +1457,8 @@
 <h2 id="_1">取值<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p><code>{{ infos.name }}</code></p>
 <h2 id="_2">过滤器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="n">操作</span> <span class="p">}}</span>
-<span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="n">操作1</span><span class="o">|</span><span class="n">操作2</span> <span class="p">}}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="err">操作</span> <span class="p">}}</span>
+<span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="err">操作</span><span class="mi">1</span><span class="o">|</span><span class="err">操作</span><span class="mi">2</span> <span class="p">}}</span>
 </code></pre></div>
 
 <h2 id="_3">字符串相关过滤器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -1467,9 +1479,9 @@ sort：列表排序</p>
 </code></pre></div>
 
 <h2 id="_6">渲染<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/index&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/index&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;模板名&#39;</span><span class="p">,</span> <span class="n">变量名</span><span class="o">=</span><span class="s1">&#39;值&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;模板名&#39;</span><span class="p">,</span> <span class="err">变量名</span><span class="o">=</span><span class="s1">&#39;值&#39;</span><span class="p">)</span>
 </code></pre></div>
                 
                   
