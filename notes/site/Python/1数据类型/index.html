@@ -648,13 +648,6 @@
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    构建方式
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
     调用方式
   </a>
   
@@ -666,22 +659,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     生成器
   </a>
-  
-    <nav class="md-nav" aria-label="生成器">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    构建方式
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1653,13 +1633,6 @@
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    构建方式
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
     调用方式
   </a>
   
@@ -1671,22 +1644,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     生成器
   </a>
-  
-    <nav class="md-nav" aria-label="生成器">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    构建方式
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1735,6 +1695,7 @@
 <span class="nb">type</span><span class="p">(</span><span class="n">_dict</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;dict&#39;&gt;</span>
 </code></pre></div>
 
+<p><code>type(_list) == list  # True</code></p>
 <h2 id="_3">不可迭代的<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>不可迭代对象均是可哈希的，可以作为set类型的元素，以及dict类型的key。</p>
 <h3 id="nonetype">NoneType<a class="headerlink" href="#nonetype" title="Permanent link">&para;</a></h3>
@@ -1930,7 +1891,7 @@
 </code></pre></div>
 
 <h2 id="_6">迭代器<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<h3 id="_7">构建方式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>构建方式</p>
 <ul>
 <li>iter(Iterable)</li>
 </ul>
@@ -1944,14 +1905,14 @@
 <ul>
 <li>生成器：见下文</li>
 </ul>
-<h3 id="_8">调用方式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<ol>
+<h3 id="_7">调用方式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
 <li>next()函数：每调用一次，则迭代一次，无可迭代最后会抛出StopIteration错误。</li>
 <li>for循环</li>
-</ol>
-<h2 id="_9">生成器<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+</ul>
+<h2 id="_8">生成器<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>生成器是一种特殊的迭代器，但是不需要像迭代器一样实现__iter__()和__next__()方法，方便构造迭代器。</p>
-<h3 id="_10">构建方式<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>构建方式</p>
 <ul>
 <li>推导式的[]换成()</li>
 </ul>
