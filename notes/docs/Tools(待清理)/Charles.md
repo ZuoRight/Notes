@@ -1,5 +1,7 @@
 # Charles
 
+对于工具的使用，最好的学习方式就是看[官方文档](https://www.charlesproxy.com/documentation/tools/)
+
 - Structure 网络请求按访问域名分类
 - Sequence 网络请求按访问时间排序
 
@@ -57,3 +59,6 @@ Tips：
 
 ### Android
 
+## 功能
+
+- focus 聚焦显示想看的域名，其它域名归类到其它
