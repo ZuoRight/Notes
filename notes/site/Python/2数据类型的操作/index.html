@@ -848,6 +848,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../%E8%BD%AE%E5%AD%90/openpyxl/" title="OpenPyXL" class="md-nav__link">
+      OpenPyXL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="内置组件" class="md-nav__link">
       内置组件
     </a>
@@ -1660,6 +1672,23 @@
     <span class="k">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </code></pre></div>
 
+<p>在迭代字典时不能改变size大小，否则会报错：dictionary changed size during iteration</p>
+<p>避免方式1</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 删除字典中value为空的key</span>
+<span class="n">empty_key</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">empty_key</span><span class="p">:</span>
+    <span class="k">del</span> <span class="n">_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+</code></pre></div>
+
+<p>避免方式2</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="c1"># size+1</span>
+    <span class="n">_dict</span><span class="p">[</span><span class="s2">&quot;new_key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
+    <span class="c1"># size-1</span>
+    <span class="n">_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="c1"># 最后size没变，所以不会报错</span>
+</code></pre></div>
+
 <h2 id="_9">数据类型的转换<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>根据不同类型间做运算时会不会自动改变类型，可以分为：</p>
 <ul>
@@ -1808,7 +1837,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-01-05</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-02-17</span>
     
   </small>
 </div>
