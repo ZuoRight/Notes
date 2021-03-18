@@ -11,7 +11,7 @@
         <meta name="description" content="Right is right, left is also right.">
       
       
-        <link rel="canonical" href="http://www.zuoright.com/Python/%E8%BD%AE%E5%AD%90/%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/">
+        <link rel="canonical" href="http://www.zuoright.com/Python/%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/">
       
       
         <meta name="author" content="7c">
@@ -21,7 +21,7 @@
     
     
       
-        <title>常用模块 - ZuoRight</title>
+        <title>内置模块 - ZuoRight</title>
       
     
     
@@ -92,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              常用模块
+              内置模块
             
           </span>
         </div>
@@ -739,14 +739,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        常用模块
+        内置模块
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="常用模块" class="md-nav__link md-nav__link--active">
-      常用模块
+    <a href="./" title="内置模块" class="md-nav__link md-nav__link--active">
+      内置模块
     </a>
     
       
@@ -765,30 +765,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#os" class="md-nav__link">
-    os
+  <a href="#random" class="md-nav__link">
+    random
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#os" class="md-nav__link">
+    os
+  </a>
+  
+    <nav class="md-nav" aria-label="os">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#osxxx" class="md-nav__link">
     os.xxx
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#ospathxxx" class="md-nav__link">
     os.path.xxx
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#ossystem" class="md-nav__link">
     os.system()
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -826,6 +839,18 @@
   <li class="md-nav__item">
     <a href="../%E6%97%B6%E9%97%B4%E6%A8%A1%E5%9D%97/" title="时间模块" class="md-nav__link">
       时间模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/" title="第三方库" class="md-nav__link">
+      第三方库
     </a>
   </li>
 
@@ -1195,6 +1220,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../../Web%E5%BC%80%E5%8F%91%28%E5%BE%85%E6%B8%85%E7%90%86%29/redis/" title="Redis" class="md-nav__link">
+      Redis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../../Web%E5%BC%80%E5%8F%91%28%E5%BE%85%E6%B8%85%E7%90%86%29/uWSGI/" title="uWSGI" class="md-nav__link">
       uWSGI
     </a>
@@ -1400,30 +1437,43 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#os" class="md-nav__link">
-    os
+  <a href="#random" class="md-nav__link">
+    random
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#os" class="md-nav__link">
+    os
+  </a>
+  
+    <nav class="md-nav" aria-label="os">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#osxxx" class="md-nav__link">
     os.xxx
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#ospathxxx" class="md-nav__link">
     os.path.xxx
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#ossystem" class="md-nav__link">
     os.system()
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1450,13 +1500,38 @@
                   
                 
                 
-                <h1 id="_1">常用模块<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+                <h1 id="_1">内置模块<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>快速启动浏览器打开指定网站</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">webbrowser</span>
+
+<span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;http://baidu.com&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="random">random<a class="headerlink" href="#random" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># 从一个非空序列中随机选出一个元素</span>
+<span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span>
+
+<span class="c1"># 从一个非空序列中随机选出n(n要小于集合个数)个元素</span>
+<span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># 返回list</span>
+
+<span class="c1"># 在等差数列中随机选一个数</span>
+<span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># 生成两个数之间的随机数</span>
+<span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># 随机打乱列表的顺序</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</code></pre></div>
+
 <h2 id="os">os<a class="headerlink" href="#os" title="Permanent link">&para;</a></h2>
 <p>os模块封装了操作系统的目录和文件操作<br />
 注意：有些在os模块中，有些在os.path模块中<br />
 另外：<strong>shutil</strong> 模块是对os模块的一个补充</p>
 <p><code>import os</code></p>
-<h2 id="osxxx">os.xxx<a class="headerlink" href="#osxxx" title="Permanent link">&para;</a></h2>
+<h3 id="osxxx">os.xxx<a class="headerlink" href="#osxxx" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">name</span>  <span class="c1"># 操作系统类型（posix代表Linux/Unix/Mac OS X，nt代表Windows）</span>
 <span class="n">os</span><span class="o">.</span><span class="n">uname</span><span class="p">()</span>  <span class="c1"># 获取详细操作系统信息（Windows不支持）</span>
 </code></pre></div>
@@ -1472,7 +1547,7 @@
 <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>  <span class="c1"># 移除文件</span>
 </code></pre></div>
 
-<h2 id="ospathxxx">os.path.xxx<a class="headerlink" href="#ospathxxx" title="Permanent link">&para;</a></h2>
+<h3 id="ospathxxx">os.path.xxx<a class="headerlink" href="#ospathxxx" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>  <span class="c1"># 获取文件的目录</span>
 <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>  <span class="c1"># 获取上级目录</span>
 <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>  <span class="c1"># 获取文件的绝对路径/完整路径，带文件名</span>
@@ -1480,7 +1555,7 @@
 <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;/path/to/file.txt&#39;</span><span class="p">)</span>  <span class="c1"># (&#39;/path/to/file&#39;, &#39;.txt&#39;)</span>
 </code></pre></div>
 
-<h2 id="ossystem">os.system()<a class="headerlink" href="#ossystem" title="Permanent link">&para;</a></h2>
+<h3 id="ossystem">os.system()<a class="headerlink" href="#ossystem" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;bash command&quot;</span><span class="p">)</span>  <span class="c1"># 运行shell命令</span>
 </code></pre></div>
 
@@ -1489,6 +1564,9 @@
 
 <span class="c1"># 查看默认编码</span>
 <span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getdefaultencoding</span><span class="p">())</span>  <span class="c1"># ascii</span>
+
+<span class="c1"># 获取路径下所有目录</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span>
 </code></pre></div>
                 
                   
@@ -1498,7 +1576,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-24</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-03-03</span>
     
   </small>
 </div>
