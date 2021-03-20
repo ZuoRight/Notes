@@ -97,19 +97,32 @@ pip uninstall -r requirements.txt
 
 ## 虚拟环境
 
+### pyvenv
+
+v3.5版本后已移除，无需了解
+
 ### venv
 
-venv 是Py3.3+自带的一个虚拟环境，所以无需安装直接使用
+Python v3.3+ 自带，推荐
 
-- 创建：`python -m venv xxx`
-- 删除：`python --clear venv xxx`
+- 创建：`python -m venv env`
 
-- 进入：`activate.bat`
+会在当前目录创建一个名为env（可自定义）的文件，删除它即删除了虚拟环境
+
+激活虚拟环境：
+
+- Mac/Linux: `source env/bin/activate`
+- Windows: `env\Scripts\activate`
+
+激活后命令提示符前会显示：(env)
+
 - 退出：`deactivate.bat`
 
 ### virtualenv
 
-- 安装：`pip install virtualenv`
+需要额外安装：`pip install virtualenv`
+
+除非还使用Python2.x版本，否则使用自带的venv即可
 
 - 创建：`virtualenv xxx`
 - 删除：`rm -rf xxx`（手动删除 *xxx* 文件夹亦可）
@@ -201,6 +214,8 @@ python_version = "3.7"
 - 更新所有依赖：`pipenv update`
 
 安装完依赖后会自动生成一个JSON格式的`Pipfile.lock`文件，保存着所有依赖的版本和hash信息（默认使用sha256算法给每一个包进行hash，可以保证在不安全的网络环境下也能下载到正确的包），每次更新或卸载依赖包都会更新此文件，即lock，类似于当前环境的一个快照，不要手动修改其内容。也可以手动lock：`pipenv lock`。
+
+- 生成依赖列表（为了迁移回venv）：`pipenv lock -r`
 
 #### 运行项目
 
