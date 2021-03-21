@@ -1089,6 +1089,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../Web%E5%BC%80%E5%8F%91%28%E5%BE%85%E6%B8%85%E7%90%86%29/Flask%E6%89%A9%E5%B1%95%E5%BA%93/" title="Flask扩展库" class="md-nav__link">
+      Flask扩展库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../Web%E5%BC%80%E5%8F%91%28%E5%BE%85%E6%B8%85%E7%90%86%29/Jinja2/" title="Jinja2" class="md-nav__link">
       Jinja2
     </a>
@@ -1167,19 +1179,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/Vue/" title="Vue" class="md-nav__link">
-      Vue
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iView/" title="iView" class="md-nav__link">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iview/" title="iView" class="md-nav__link">
       iView
     </a>
   </li>
@@ -1193,6 +1193,18 @@
   <li class="md-nav__item">
     <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/vue/" title="Vue" class="md-nav__link">
+      Vue
     </a>
   </li>
 
@@ -1633,14 +1645,14 @@
 <span class="c1"># 在指定字符处将字符串分割，组成列表返回</span>
 <span class="c1"># 指定字符不存在则返回整个字符串</span>
 <span class="c1"># 指定为空时默认在&lt;空格&gt;\r\n\f\t\v等地方分割</span>
-<span class="n">_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">分割次数</span><span class="p">])</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">[</span><span class="err">分割次数</span><span class="p">])</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">&quot;a,b,c,d&quot;.split(&quot;,&quot;, 2)  # [&quot;a&quot;, &quot;b&quot;, &quot;c,d&quot;]</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># 把字符串中的“a”替换为“b”</span>
 <span class="c1"># 注意：不改变原字符串</span>
-<span class="n">_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">替换个数</span><span class="p">])</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="p">[</span><span class="err">替换个数</span><span class="p">])</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">tel=&quot;12345678888&quot;</span>
 <span class="sd">tel.replace(tel[3:7], &quot;*&quot;*5)  # &#39;123*****8888&#39;</span>
@@ -1648,7 +1660,7 @@
 
 <span class="c1"># 可以拼接序列的每一个元素</span>
 <span class="c1"># 序列为list或tuple时元素必须为字符串类型</span>
-<span class="n">_str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">序列</span><span class="p">)</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="err">序列</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">&quot;+&quot;.join(&quot;123&quot;)  # &quot;1+2+3&quot;</span>
 <span class="sd">&quot;&quot;.join([&quot;a&quot;,&quot;b&quot;,&quot;c&quot;])  # &quot;abc&quot;</span>
@@ -1664,12 +1676,12 @@
 <span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">%s</span><span class="s2">de&quot;</span> <span class="o">%</span><span class="n">x</span>
 
 <span class="c1"># 方式2：{}.format()</span>
-<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{}</span><span class="s2">de&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{0}</span><span class="s2">de</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 索引指定</span>
-<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{c}</span><span class="s2">de</span><span class="si">{f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 关键字指定</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab{}de&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab{0}de{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 索引指定</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab{c}de{f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 关键字指定</span>
 
 <span class="c1"># 方式3：f&#39;{}&#39;</span>
-<span class="sa">f</span><span class="s1">&#39;ab</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">de&#39;</span>
+<span class="n">f</span><span class="s1">&#39;ab{x}de&#39;</span>
 </code></pre></div>
 
 <ul>
@@ -1696,12 +1708,12 @@
 
 <div class="highlight"><pre><span></span><code><span class="c1"># 列表自带排序方法(原对象会被改变)</span>
 <span class="n">_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="n">_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 倒序</span>
+<span class="n">_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 倒序</span>
 <span class="n">_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>  <span class="c1"># 按字符长度排</span>
 
 <span class="c1"># 内置函数sorted()排序，元素类型要一致可排，否则报错(原对象不变)</span>
 <span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span>  <span class="c1"># 正序</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 倒序</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 倒序</span>
 </code></pre></div>
 
 <h2 id="set">set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h2>

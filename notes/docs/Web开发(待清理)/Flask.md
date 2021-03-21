@@ -177,12 +177,19 @@ def login(id):
 ```python
 from flask import request
 
-# 根据不同类型数据采用不同获取方式
-request.args.get("name")
+# 请求路径
+request.path
 
+# 请求方式
+request.method
+
+# 表单数据，request.form是一个特殊的字典
 request.form['name']
 request.form.get('name')
 request.form.getlist('name')
+
+# 查询字符串
+request.args.get("name")
 
 # 获取raw格式
 request.data

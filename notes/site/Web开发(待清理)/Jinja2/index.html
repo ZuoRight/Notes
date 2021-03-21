@@ -983,6 +983,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../Flask%E6%89%A9%E5%B1%95%E5%BA%93/" title="Flask扩展库" class="md-nav__link">
+      Flask扩展库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -1140,19 +1152,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/Vue/" title="Vue" class="md-nav__link">
-      Vue
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iView/" title="iView" class="md-nav__link">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/iview/" title="iView" class="md-nav__link">
       iView
     </a>
   </li>
@@ -1166,6 +1166,18 @@
   <li class="md-nav__item">
     <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/jQuery/" title="jQuery" class="md-nav__link">
       jQuery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%BE%85%E6%B8%85%E7%90%86%29/vue/" title="Vue" class="md-nav__link">
+      Vue
     </a>
   </li>
 
@@ -1535,8 +1547,8 @@
 <h2 id="_1">取值<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p><code>{{ infos.name }}</code></p>
 <h2 id="_2">过滤器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="n">操作</span> <span class="p">}}</span>
-<span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="n">操作1</span><span class="o">|</span><span class="n">操作2</span> <span class="p">}}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="err">操作</span> <span class="p">}}</span>
+<span class="p">{{</span> <span class="n">infos</span><span class="o">|</span><span class="err">操作</span><span class="mi">1</span><span class="o">|</span><span class="err">操作</span><span class="mi">2</span> <span class="p">}}</span>
 </code></pre></div>
 
 <h2 id="_3">字符串相关过滤器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -1557,9 +1569,9 @@ sort：列表排序</p>
 </code></pre></div>
 
 <h2 id="_6">渲染<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/index&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/index&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;模板名&#39;</span><span class="p">,</span> <span class="n">变量名</span><span class="o">=</span><span class="s1">&#39;值&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;模板名&#39;</span><span class="p">,</span> <span class="err">变量名</span><span class="o">=</span><span class="s1">&#39;值&#39;</span><span class="p">)</span>
 </code></pre></div>
                 
                   
@@ -1592,7 +1604,7 @@ sort：列表排序</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../Flask/" title="Flask" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../Flask%E6%89%A9%E5%B1%95%E5%BA%93/" title="Flask扩展库" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1601,7 +1613,7 @@ sort：列表排序</p>
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                Flask
+                Flask扩展库
               </div>
             </div>
           </a>
