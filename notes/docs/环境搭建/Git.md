@@ -1,4 +1,4 @@
-## Git
+# Git
 
 ```shell
 # 查看版本
@@ -46,3 +46,6 @@ git branch -M main  # 将本地主分支设置为main
 git push [-u] origin main
 ```
 
+## .gitignore规则
+
+.gitignore只能忽略那些原来没有被track(追踪)的文件，对于那些已经被纳入版本管理中的文件，则无效，所以需要删除一下要忽略文件的跟踪记录：`git rm -r --cached 要忽略的文件路径`

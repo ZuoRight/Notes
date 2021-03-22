@@ -210,6 +210,7 @@ python_version = "3.7"
 
 - 安装：`pipenv install xxx`
 - 卸载：`pipenv uninstall xxx`
+- 查看当前环境路径：`pipenv venv`
 - 查看依赖关系及信息：`pipenv graph`
 - 更新所有依赖：`pipenv update`
 
