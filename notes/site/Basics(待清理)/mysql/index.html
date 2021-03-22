@@ -21,7 +21,7 @@
     
     
       
-        <title>Mysql - ZuoRight</title>
+        <title>MySQL - ZuoRight</title>
       
     
     
@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#mysql" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -87,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Mysql
+              MySQL
             
           </span>
         </div>
@@ -277,10 +282,52 @@
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
     
-    <a href="./" title="Mysql" class="md-nav__link md-nav__link--active">
-      Mysql
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        MySQL
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="MySQL" class="md-nav__link md-nav__link--active">
+      MySQL
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    查
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -1389,6 +1436,45 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    查
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
@@ -1398,51 +1484,22 @@
                   
                 
                 
-                  <h1>Mysql</h1>
-                
-                <p>service mysql start</p>
-<p>net start mysql</p>
-<p>drop database if exists "School";</p>
-<p>create database "School";</p>
-<p>use "School";</p>
-<p>drop table if exist "tb_class";</p>
-<p>create table "tb_class"
-(
-"id" int(11) not null AUTO_INCREMENT primary key,
-"NAME" varchar(32) not null
-);</p>
-<p>drop table if exists tb_student;</p>
-<p>create table "tb_student"
-(
-"id" int(11) not null auto_increment primary key,
-"name" varchar(32) not null,
-"age" int default 0,check("age"&gt;0 or "age"&lt;1=00),
-"gender" boolean default 0,check("gender"=0 or "gender"=1),
-"date" datetime default now()
-);</p>
-<p>create table "tb_score"
-(
-"id" int(11) not mull auto_increament primary key,
-"course" varchar(32) not null,
-"score" float(3,1) not null,
-"stuid" int(11) not null,
-constraint "FK_stuid" foreign key("stuid") references "tb_student"("id")
-);</p>
-<p>show databases;
-use school;
-desc tb_student;</p>
-<p>alter table tb_student change "date" "createdate" datetime;
-alter table tb_student add "phone"  varchar(15) after "name";
-alter table tb_student add classId int(11) not null;
-alter table tb_student add constrint "FK_class_student" foreign key("classId") references tb_class("id");</p>
-<p>insert into tb_name(id,name,score)values("null","7c","140"),("null","7c","140")</p>
-<p>insert into tb_name(name,score)select name,score from tb_name2;</p>
-<p>update tb_name set score=189 where id=2;
-update tablename set columnname=newvalue[where condition]</p>
-<p>delete from tb_name where id=3;</p>
-<p>select * from tb_name where id=3;
-select * from tb_name group by score having count(*)&gt;2</p>
-<p>select * from tab_name where name regexp "^[a-d]"</p>
+                <h1 id="mysql">MySQL<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h1>
+<h2 id="_1">概念<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>主键：用来唯一定位记录的字段，通常为与业务无关的自增id</li>
+<li>外键：</li>
+</ul>
+<h2 id="_2">查<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="err">表</span><span class="n">A</span><span class="p">;</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="err">表</span><span class="n">A</span> <span class="err">别名</span><span class="n">A</span><span class="p">;</span>
+<span class="k">select</span> <span class="err">字段</span><span class="n">a</span> <span class="err">别名</span><span class="n">a</span> <span class="k">from</span> <span class="err">表</span><span class="n">A</span><span class="p">;</span>
+<span class="k">select</span> <span class="err">字段</span><span class="n">a</span><span class="p">,</span> <span class="err">字段</span><span class="n">b</span> <span class="k">from</span> <span class="err">表</span><span class="n">A</span><span class="p">;</span>
+
+<span class="k">select</span> <span class="err">表</span><span class="n">A</span><span class="p">.</span><span class="err">字段</span><span class="n">a</span><span class="p">,</span> <span class="err">表</span><span class="n">B</span><span class="p">.</span><span class="err">字段</span><span class="n">a</span> <span class="k">from</span> <span class="err">表</span><span class="n">A</span><span class="p">,</span> <span class="err">表</span><span class="n">B</span><span class="p">;</span>
+
+<span class="k">select</span> <span class="n">A</span><span class="p">.</span><span class="err">字段</span><span class="n">a</span><span class="p">,</span> <span class="n">B</span><span class="p">.</span><span class="err">字段</span><span class="n">a</span> <span class="k">from</span> <span class="err">表</span><span class="n">A</span> <span class="n">A</span> <span class="k">inner</span> <span class="k">join</span> <span class="err">表</span><span class="n">B</span> <span class="n">B</span> <span class="k">on</span> <span class="n">A</span><span class="p">.</span><span class="err">字段</span><span class="n">a</span><span class="o">=</span><span class="n">B</span><span class="p">.</span><span class="err">字段</span><span class="n">a</span><span class="p">;</span>
+</code></pre></div>
                 
                   
                     
@@ -1451,7 +1508,7 @@ select * from tb_name group by score having count(*)&gt;2</p>
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-12-19</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-03-21</span>
     
   </small>
 </div>
