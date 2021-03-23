@@ -1,6 +1,6 @@
 # Flask
 
-> 从浏览器如何访问页面讲起，通过路由
+Python诞生于圣诞节，Flask诞生自愚人节。
 
 ## 基本配置
 
@@ -21,13 +21,12 @@ app = Flask(__name__)
 # 定义视图函数
 def hello():
     # 将信息或模版返回给前端显示
-    return 'Hello NaiTangMao'
-
-
-if __name__ == "__main__":
-    #启动flask程序
-    app.run()
+    return 'Hello'
 ```
+
+文件保存为`app.py`，运行项目：`flask run`
+
+Flask 默认会假设你把程序存储在名为 app.py 或 wsgi.py 的文件中。如果你使用了其他名称，就要设置系统环境变量 FLASK_APP 来告诉 Flask 你要启动哪个程序。
 
 ## debug参数配置
 
@@ -172,6 +171,16 @@ def login(id):
     pass
 ```
 
+```python
+from flask import escape
+
+@app.route("/user/<name>")
+def index(name):
+    # 为防止输入数据包含恶意代码，所以不建议直接作为响应返回，反之代码注入
+    # 可使用escape()函数进行转义处理，比如<转为&lt;
+    return f"{escape(name)}"
+```
+
 ### 获取请求数据
 
 ```python
@@ -275,7 +284,7 @@ res.delete_cookie("key")
 ## session
 
 > 如果将数据保存至Cookies的话，任何人操作浏览器都可以更改Cookies，这样就会导致数据安全性很低。
-> 
+>  
 > 反之Flask中的session机制本质也是将数据保存在Cookies中，但是他对这些Cookies进行密钥签名，这就意味着用户可以查看你的Cookies内容，但却不能更改它，唯一能更改的前提就是你知道签名的密钥。
 
 ```python
