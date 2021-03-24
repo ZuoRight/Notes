@@ -17,28 +17,28 @@ def index():
 
 index.html
 
-```text
+```html
 {# 注释 #}
 {{ 变量 }}
-{% 语句 %}
+{百分号 语句 百分号}
 
 
 {{ info }}
 {{ info[key] }}
 
 
-{% if info == v1 %}
+{百分号 if info == v1 百分号}
     判断语句
-{% elif info = v2 %}
+{百分号 elif info = v2 百分号}
     ...
-{% else %}
+{百分号 else 百分号}
     ...
-{% endif %}
+{百分号 endif 百分号}
 
 
-{% for i in info %}
+{百分号 for i in info 百分号}
     循环语句
-{% endfor %}
+{百分号 endfor 百分号}
 ```
 
 ## 变量过滤器
