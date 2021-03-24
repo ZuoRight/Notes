@@ -17,7 +17,7 @@ def index():
 
 index.html
 
-```html
+```text
 {# 注释 #}
 {{ 变量 }}
 {% 语句 %}
