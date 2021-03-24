@@ -1,0 +1,2751 @@
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Right is right, left is also right.">
+      
+      
+        <link rel="canonical" href="http://www.zuoright.com/%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%9E%83%E5%9C%BE%29/jQuery/">
+      
+      
+        <meta name="author" content="7c">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
+    
+    
+      
+        <title>jQuery - ZuoRight</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jquery" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://www.zuoright.com" title="ZuoRight" class="md-header-nav__button md-logo" aria-label="ZuoRight">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.59 11.59L23 13l-9.5 9.5-5.08-5.09L9.83 16l3.67 3.68 8.09-8.09M4 16V3h5a4 4 0 014 4c0 1.54-.87 2.88-2.15 3.55L14 16h-2l-2.89-5H6v5H4m2-7h3a2 2 0 002-2 2 2 0 00-2-2H6v4z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            ZuoRight
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              jQuery
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://www.zuoright.com" title="ZuoRight" class="md-nav__button md-logo" aria-label="ZuoRight">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.59 11.59L23 13l-9.5 9.5-5.08-5.09L9.83 16l3.67 3.68 8.09-8.09M4 16V3h5a4 4 0 014 4c0 1.54-.87 2.88-2.15 3.55L14 16h-2l-2.89-5H6v5H4m2-7h3a2 2 0 002-2 2 2 0 00-2-2H6v4z"/></svg>
+
+    </a>
+    ZuoRight
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="关于这里" class="md-nav__link">
+      关于这里
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Basics(垃圾)
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Basics(垃圾)" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Basics(垃圾)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics%28%E5%9E%83%E5%9C%BE%29/1/" title="1" class="md-nav__link">
+      1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics%28%E5%9E%83%E5%9C%BE%29/2/" title="2" class="md-nav__link">
+      2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics%28%E5%9E%83%E5%9C%BE%29/3.0/" title="3.0" class="md-nav__link">
+      3.0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics%28%E5%9E%83%E5%9C%BE%29/3.1/" title="3.1" class="md-nav__link">
+      3.1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics%28%E5%9E%83%E5%9C%BE%29/CPU/" title="CPU" class="md-nav__link">
+      CPU
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics%28%E5%9E%83%E5%9C%BE%29/C%E8%AF%AD%E8%A8%80/" title="C" class="md-nav__link">
+      C
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics%28%E5%9E%83%E5%9C%BE%29/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式" class="md-nav__link">
+      正则表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics%28%E5%9E%83%E5%9C%BE%29/%E7%BC%96%E7%A0%81/" title="编码" class="md-nav__link">
+      编码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Basics%28%E5%9E%83%E5%9C%BE%29/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="编程语言" class="md-nav__link">
+      编程语言
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Linux(垃圾)
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Linux(垃圾)" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Linux(垃圾)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux%28%E5%9E%83%E5%9C%BE%29/Linux/" title="Linux" class="md-nav__link">
+      Linux
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux%28%E5%9E%83%E5%9C%BE%29/awk/" title="AWK" class="md-nav__link">
+      AWK
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux%28%E5%9E%83%E5%9C%BE%29/sed/" title="文本编辑器" class="md-nav__link">
+      文本编辑器
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux%28%E5%9E%83%E5%9C%BE%29/shell/" title="shell" class="md-nav__link">
+      shell
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux%28%E5%9E%83%E5%9C%BE%29/ssh/" title="Ssh" class="md-nav__link">
+      Ssh
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Linux%28%E5%9E%83%E5%9C%BE%29/%E6%9F%A5%E6%89%BE/" title="查找" class="md-nav__link">
+      查找
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Python（垃圾）
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Python（垃圾）" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Python（垃圾）
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" title="数据类型" class="md-nav__link">
+      数据类型
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/2%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95/" title="数据类型内置方法" class="md-nav__link">
+      数据类型内置方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/2%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%93%8D%E4%BD%9C/" title="数据类型的操作" class="md-nav__link">
+      数据类型的操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/3%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="表达式" class="md-nav__link">
+      表达式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/4%E8%AF%AD%E5%8F%A5/" title="语句" class="md-nav__link">
+      语句
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/5%E5%87%BD%E6%95%B0/" title="函数" class="md-nav__link">
+      函数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/6%E7%B1%BB/" title="类" class="md-nav__link">
+      类
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/8%E6%A8%A1%E5%9D%97/" title="模块" class="md-nav__link">
+      模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-9" type="checkbox" id="nav-4-9">
+    
+    <label class="md-nav__link" for="nav-4-9">
+      IO编程
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="IO编程" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-9">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        IO编程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/IO%E7%BC%96%E7%A8%8B/0%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" title="读写文件" class="md-nav__link">
+      读写文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/IO%E7%BC%96%E7%A8%8B/1%E8%AF%BB%E5%86%99%E5%86%85%E5%AD%98/" title="读写内存" class="md-nav__link">
+      读写内存
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/IO%E7%BC%96%E7%A8%8B/2%E5%BA%8F%E5%88%97%E5%8C%96/" title="序列化" class="md-nav__link">
+      序列化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/IO%E7%BC%96%E7%A8%8B/%E8%AF%BB%E5%86%99csv/" title="读写csv" class="md-nav__link">
+      读写csv
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/IO%E7%BC%96%E7%A8%8B/%E8%AF%BB%E5%86%99ini%E9%85%8D%E7%BD%AE/" title="读写ini配置" class="md-nav__link">
+      读写ini配置
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-10" type="checkbox" id="nav-4-10">
+    
+    <label class="md-nav__link" for="nav-4-10">
+      轮子
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="轮子" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-10">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        轮子
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/%E8%BD%AE%E5%AD%90/deepdiff/" title="deepdiff" class="md-nav__link">
+      deepdiff
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/%E8%BD%AE%E5%AD%90/openpyxl/" title="OpenPyXL" class="md-nav__link">
+      OpenPyXL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" title="内置组件" class="md-nav__link">
+      内置组件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/%E8%BD%AE%E5%AD%90/%E5%86%85%E7%BD%AE%E6%A8%A1%E5%9D%97/" title="内置模块" class="md-nav__link">
+      内置模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/%E8%BD%AE%E5%AD%90/%E5%B8%B8%E7%94%A8%E7%A4%BA%E4%BE%8B/" title="常用示例" class="md-nav__link">
+      常用示例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/%E8%BD%AE%E5%AD%90/%E6%97%B6%E9%97%B4%E6%A8%A1%E5%9D%97/" title="时间模块" class="md-nav__link">
+      时间模块
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Python%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/%E8%BD%AE%E5%AD%90/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/" title="第三方库" class="md-nav__link">
+      第三方库
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Test(垃圾)
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Test(垃圾)" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Test(垃圾)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/Appium/" title="Appium" class="md-nav__link">
+      Appium
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/Pytest/" title="Pytest" class="md-nav__link">
+      Pytest
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/Requests/" title="Requests" class="md-nav__link">
+      Requests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/Selenium/" title="Selenium" class="md-nav__link">
+      Selenium
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/%E5%85%B3%E4%BA%8E%E6%B5%8B%E8%AF%95/" title="关于测试" class="md-nav__link">
+      关于测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/%E5%A6%82%E4%BD%95%E6%B5%8B%E8%AF%95%E7%99%BB%E5%BD%95/" title="如何测试登录" class="md-nav__link">
+      如何测试登录
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/%E5%A6%82%E4%BD%95%E6%B5%8B%E8%AF%95%E8%BE%93%E5%85%A5%E6%A1%86/" title="如何测试一个输入框" class="md-nav__link">
+      如何测试一个输入框
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/" title="测试开发" class="md-nav__link">
+      测试开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1/" title="用例设计" class="md-nav__link">
+      用例设计
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/%E7%BC%BA%E9%99%B7%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9A%E4%BD%8D/" title="缺陷分析与定位" class="md-nav__link">
+      缺陷分析与定位
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" title="软件开发" class="md-nav__link">
+      软件开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Test%28%E5%9E%83%E5%9C%BE%29/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" title="软件测试" class="md-nav__link">
+      软件测试
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Web开发(垃圾)
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Web开发(垃圾)" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Web开发(垃圾)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Web%E5%BC%80%E5%8F%91%28%E5%9E%83%E5%9C%BE%29/Django/" title="Django" class="md-nav__link">
+      Django
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Web%E5%BC%80%E5%8F%91%28%E5%9E%83%E5%9C%BE%29/Flask/" title="Flask" class="md-nav__link">
+      Flask
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Web%E5%BC%80%E5%8F%91%28%E5%9E%83%E5%9C%BE%29/Flask%E6%89%A9%E5%B1%95%E5%BA%93/" title="Flask扩展库" class="md-nav__link">
+      Flask扩展库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Web%E5%BC%80%E5%8F%91%28%E5%9E%83%E5%9C%BE%29/Jinja2/" title="Jinja2" class="md-nav__link">
+      Jinja2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Web%E5%BC%80%E5%8F%91%28%E5%9E%83%E5%9C%BE%29/uWSGI/" title="uWSGI" class="md-nav__link">
+      uWSGI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Web%E5%BC%80%E5%8F%91%28%E5%9E%83%E5%9C%BE%29/%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E6%95%B2%E5%87%BB%E5%9B%9E%E8%BD%A6/" title="输入网址，敲击回车" class="md-nav__link">
+      输入网址，敲击回车
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      大前端(垃圾)
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="大前端(垃圾)" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        大前端(垃圾)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../JavaScript/" title="JavaScript" class="md-nav__link">
+      JavaScript
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../iview/" title="iView" class="md-nav__link">
+      iView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        jQuery
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="jQuery" class="md-nav__link md-nav__link--active">
+      jQuery
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selector" class="md-nav__link">
+    选择器·Selector
+  </a>
+  
+    <nav class="md-nav" aria-label="选择器·Selector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dom" class="md-nav__link">
+    定义DOM对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jquery_1" class="md-nav__link">
+    定义jQuery对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    移交控制权
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jquery_2" class="md-nav__link">
+    jQuery选择器
+  </a>
+  
+    <nav class="md-nav" aria-label="jQuery选择器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    检查某个元素是否存在
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    基本选择器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    层次选择器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    过滤选择器
+  </a>
+  
+    <nav class="md-nav" aria-label="过滤选择器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    基本过滤器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    内容过滤器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    可见性过滤器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    子元素过滤器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    属性过滤器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    表单对象属性过滤器（下拉框/多选框）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    表单选择器
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    节点·Node
+  </a>
+  
+    <nav class="md-nav" aria-label="节点·Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    操作节点
+  </a>
+  
+    <nav class="md-nav" aria-label="操作节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    查找节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    创建新节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    插入新节点/移动旧节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    删除节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    复制节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    替换节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    包裹节点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#property" class="md-nav__link">
+    属性·Property
+  </a>
+  
+    <nav class="md-nav" aria-label="属性·Property">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    操作属性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    操作样式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    其他
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    遍历节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#css" class="md-nav__link">
+    设置css样式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event" class="md-nav__link">
+    事件·Event
+  </a>
+  
+    <nav class="md-nav" aria-label="事件·Event">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    加载事件
+  </a>
+  
+    <nav class="md-nav" aria-label="加载事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#js" class="md-nav__link">
+    JS中加载事件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jquery_3" class="md-nav__link">
+    jQuery中加载事件：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    绑定事件
+  </a>
+  
+    <nav class="md-nav" aria-label="绑定事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event_1" class="md-nav__link">
+    event包括以下事件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    合成事件
+  </a>
+  
+    <nav class="md-nav" aria-label="合成事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    创建事件对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    事件对象的属性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    模拟事件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    内置动画
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    自定义动画
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    交互动画
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formtable" class="md-nav__link">
+    表单·FormTable
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vue/" title="Vue" class="md-nav__link">
+      Vue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../%E5%B8%83%E5%B1%80/" title="布局" class="md-nav__link">
+      布局
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      抓包（垃圾）
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="抓包（垃圾）" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        抓包（垃圾）
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%8A%93%E5%8C%85%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/Charles/" title="Charles" class="md-nav__link">
+      Charles
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%8A%93%E5%8C%85%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/WireShark/" title="WireShark" class="md-nav__link">
+      WireShark
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%8A%93%E5%8C%85%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/%E6%8A%93%E5%8C%85%E5%9F%BA%E7%A1%80/" title="抓包基础" class="md-nav__link">
+      抓包基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      数据库（垃圾）
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="数据库（垃圾）" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        数据库（垃圾）
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/MySQL/" title="MySQL" class="md-nav__link">
+      MySQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/ORM/" title="ORM" class="md-nav__link">
+      ORM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/Redis/" title="Redis" class="md-nav__link">
+      Redis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/SQLite/" title="SQLite" class="md-nav__link">
+      SQLite
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      环境搭建（垃圾）
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="环境搭建（垃圾）" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        环境搭建（垃圾）
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/Docker/" title="Docker" class="md-nav__link">
+      Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/Git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/Java%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="Java环境搭建" class="md-nav__link">
+      Java环境搭建
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/Mac/" title="Mac" class="md-nav__link">
+      Mac
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/Python%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="环境搭建" class="md-nav__link">
+      环境搭建
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B/" title="完整流程" class="md-nav__link">
+      完整流程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88%E5%9E%83%E5%9C%BE%EF%BC%89/%E7%BB%88%E7%AB%AF/" title="终端" class="md-nav__link">
+      终端
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      网络(垃圾)
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="网络(垃圾)" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        网络(垃圾)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%BB%9C%28%E5%9E%83%E5%9C%BE%29/HTTP/" title="HTTP" class="md-nav__link">
+      HTTP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%BB%9C%28%E5%9E%83%E5%9C%BE%29/HTTPS/" title="HTTPS" class="md-nav__link">
+      HTTPS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%BB%9C%28%E5%9E%83%E5%9C%BE%29/%E7%BD%91%E8%B7%AF%E5%8D%8F%E8%AE%AE/" title="网络协议" class="md-nav__link">
+      网络协议
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%BD%91%E7%BB%9C%28%E5%9E%83%E5%9C%BE%29/%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E6%95%B2%E5%87%BB%E5%9B%9E%E8%BD%A6%E4%B9%8B%E5%90%8E/" title="输入网址，敲击回车之后" class="md-nav__link">
+      输入网址，敲击回车之后
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selector" class="md-nav__link">
+    选择器·Selector
+  </a>
+  
+    <nav class="md-nav" aria-label="选择器·Selector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dom" class="md-nav__link">
+    定义DOM对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jquery_1" class="md-nav__link">
+    定义jQuery对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    移交控制权
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jquery_2" class="md-nav__link">
+    jQuery选择器
+  </a>
+  
+    <nav class="md-nav" aria-label="jQuery选择器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    检查某个元素是否存在
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    基本选择器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    层次选择器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    过滤选择器
+  </a>
+  
+    <nav class="md-nav" aria-label="过滤选择器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    基本过滤器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    内容过滤器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    可见性过滤器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    子元素过滤器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    属性过滤器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    表单对象属性过滤器（下拉框/多选框）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    表单选择器
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    节点·Node
+  </a>
+  
+    <nav class="md-nav" aria-label="节点·Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    操作节点
+  </a>
+  
+    <nav class="md-nav" aria-label="操作节点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    查找节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    创建新节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    插入新节点/移动旧节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    删除节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    复制节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    替换节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    包裹节点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#property" class="md-nav__link">
+    属性·Property
+  </a>
+  
+    <nav class="md-nav" aria-label="属性·Property">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    操作属性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    操作样式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    其他
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    遍历节点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#css" class="md-nav__link">
+    设置css样式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event" class="md-nav__link">
+    事件·Event
+  </a>
+  
+    <nav class="md-nav" aria-label="事件·Event">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    加载事件
+  </a>
+  
+    <nav class="md-nav" aria-label="加载事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#js" class="md-nav__link">
+    JS中加载事件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jquery_3" class="md-nav__link">
+    jQuery中加载事件：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    绑定事件
+  </a>
+  
+    <nav class="md-nav" aria-label="绑定事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event_1" class="md-nav__link">
+    event包括以下事件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    合成事件
+  </a>
+  
+    <nav class="md-nav" aria-label="合成事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    创建事件对象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    事件对象的属性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    模拟事件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    内置动画
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    自定义动画
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    交互动画
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formtable" class="md-nav__link">
+    表单·FormTable
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="jquery">jQuery<a class="headerlink" href="#jquery" title="Permanent link">&para;</a></h1>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>《锋利的jQuery》（第二版）       <blockquote>
+<p><em>单东林，张晓菲，魏然</em>    </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="selector">选择器·Selector<a class="headerlink" href="#selector" title="Permanent link">&para;</a></h2>
+<h3 id="dom">定义DOM对象<a class="headerlink" href="#dom" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>var  variable = DOM对象;            
+var  variable = jQuery对象[0];       
+var  variable = jQuery对象.get(0);            
+</code></pre></div>
+
+<h3 id="jquery_1">定义jQuery对象<a class="headerlink" href="#jquery_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>var $variable = jQuery对象;           
+var $variable = $(DOM对象);            
+</code></pre></div>
+
+<h3 id="_1">移交控制权<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>jQuery.noConflict();  //Conflict(冲突)       
+</code></pre></div>
+<!-- more --></p>
+<hr />
+<h3 id="jquery_2">jQuery选择器<a class="headerlink" href="#jquery_2" title="Permanent link">&para;</a></h3>
+<p>特性：隐式迭代<br />
+  $('')与$("")等价     </p>
+<h4 id="_2">检查某个元素是否存在<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>不能使用
+<div class="highlight"><pre><span></span><code>if ($(&#39;#id&#39;)) {do something}  //因为jQuery获取的是对象
+</code></pre></div>
+而应使用
+<div class="highlight"><pre><span></span><code>if ($(&#39;#id&#39;).length &gt; 0) {do something}  //应根据获取到的对象长度判断
+</code></pre></div></p>
+<h4 id="_3">基本选择器<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$(&#39;#id&#39;)  //选择id               
+$(&#39;.class&#39;)  //选择class              
+$(&#39;element&#39;)  //选择元素     
+$(&#39;a,b,c&#39;)  //选择多项          
+$(&#39;*&#39;)  //选择所有   
+</code></pre></div>
+
+<h4 id="_4">层次选择器<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$(&#39;a aa&#39;)  //选择a所【包含】内的【所有】aa            
+$(&#39;a&gt;aa&#39;)  //选择a所【包含】内的【子代】aa    
+······························         
+$(&#39;a+b&#39;)`   
+$(&#39;a&#39;).next(&#39;b&#39;)  //选择a【之后】的与其【同辈】且【紧邻】b      
+······························   
+$(&#39;a~b&#39;)`   
+$(&#39;a&#39;).nextAll(&#39;b&#39;)  //选择a【之后】的与其【同辈】的【所有】b          
+······························      
+$(&#39;a&#39;).siblings(&#39;b&#39;)  //选择a【前后】的与其【同辈】的【所有】b，siblings(兄弟姐妹)   
+</code></pre></div>
+
+<h4 id="_5">过滤选择器<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>与css伪类选择器一样，以冒号:开头    </p>
+</blockquote>
+<h5 id="_6">基本过滤器<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>$(&#39;a:first&#39;)  //选择所有a中的【第一个】a
+$(&#39;a:last&#39;)  //选择所有a中的【最后一个】a                         
+$(&#39;a:not(b)&#39;) //选择所有a中的【不包含b】的a  
+······························                 
+$(&#39;a:even&#39;)  //选择所有a中的【索引为偶数】的a       
+$(&#39;a:odd&#39;)  //选择所有a中的【索引为奇数】的a             
+$(&#39;a:eq(1)&#39;)  //选择所有a中的【索引等于1】的a             
+$(&#39;a:gt(1)&#39;)  //选择所有a中的【索引大于1】的a                 
+$(&#39;a:lt&#39;)  //选择所有a中的【索引小于1】的a     
+······························                       
+$(&#39;:header&#39;)  //选择所有等级的【标题】               
+$(&#39;a:animated&#39;)  //选择所有正在执行【动画】的a             
+$(&#39;:focus&#39;)  //选择当前获取【焦点】的          
+</code></pre></div>
+
+<h5 id="_7">内容过滤器<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>$(&#39;a:has(b)&#39;)  //选择含有b的a          
+$(&#39;a:contains(&#39;b&#39;)&#39;)  //选择含有文本为&quot;b&quot;的a         
+$(&#39;a:parent&#39;)  //选择含有子元素/文本的a          
+$(&#39;a:empty&#39;)  //选择不包含子元素/文本的空元素a  
+</code></pre></div>
+
+<h5 id="_8">可见性过滤器<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p>包括：type="hidden" 、 style="display:none" 、 style="visibility:hidden"</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>$(&#39;:hidden&#39;)  //选取所有不可见元素   
+$(&#39;a:hidden&#39;)  //只选取不可见的a                   
+······························                   
+$(&#39;:visible&#39;)  //选取所有可见元素  
+$(&#39;a:visible&#39;)  //只选取可见的所有a元素   
+
+.is(&quot;:visible&quot;)  //判断元素是否可见
+</code></pre></div>
+
+<h5 id="_9">子元素过滤器<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>$(&#39;a b:nth-child(n/2n/3n+1/even/odd)&#39;)  //选取每个a中的第n个元素，从1算起    
+$(&#39;a b:first-child&#39;)  //选取每个a中的第一个b元素      
+$(&#39;a b:last-child&#39;)  //选取每个a中的最后一个b元素  
+$(&#39;a b:only-child&#39;)  //选取每个a中的只有一个b的b元素   
+</code></pre></div>
+
+<h5 id="_10">属性过滤器<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>$(&#39;a[attribute]&#39;)  //单个属性         
+$(&#39;a[b1][b2][b3]&#39;)  //复合属性     
+······························              
+$(&#39;a[attribute=value]&#39;)  //属性等于               
+$(&#39;a[attribute!=value]&#39;)  //属性不等于        
+······························     
+$(&#39;a[attribute^=value]&#39;)  //选取以value开始的attribute的a                
+$(&#39;a[attribute$=value]&#39;)  //选取以value结束的attribute的a                
+$(&#39;a[attribute*=value]&#39;)  //选取含有value的attribute的a           
+······························           
+$(&#39;a[attribute|=value]&#39;)  //选取等于value或以value-为前缀的attribute的a          
+$(&#39;a[attribute~=value]&#39;)  //选取带空格且空格后面是value的a（attribute=&quot;xx value&quot;）               
+</code></pre></div>
+
+<h5 id="_11">表单对象属性过滤器（下拉框/多选框）<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>$(&#39;input:enabled&#39;)  //选取表单内所有可用元素          
+$(&#39;input:disabled&#39;)  //选取表单内所有不可用元素     
+$(&#39;selected:checked&#39;)  //选取表单内所有被选中的元素（单选框/复选框    
+$(&#39;selected:selected&#39;)  //选取表单内所有被选中的元素（下拉列表）     
+</code></pre></div>
+
+<h4 id="_12">表单选择器<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$(&#39;:input&#39;)  //选取所有input、textarea、select、button元素    
+$(&#39;:text&#39;)  //选取单行文本    
+$(&#39;:password&#39;)  //选取密码框       
+$(&#39;:radio&#39;)  //选取单选框        
+$(&#39;:checkbox&#39;)  //选取复选框        
+$(&#39;:submit&#39;)  //选取提交按钮         
+$(&#39;:image&#39;)  //选取图像按钮      
+$(&#39;:reset&#39;)  //选取重置按钮  
+$(&#39;:button&#39;)  //所有按钮      
+$(&#39;:file&#39;)  //选取上传域           
+</code></pre></div>
+
+<h2 id="node">节点·Node<a class="headerlink" href="#node" title="Permanent link">&para;</a></h2>
+<h3 id="_13">操作节点<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<h4 id="_14">查找节点<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<p>jQuery选择器</p>
+<h4 id="_15">创建新节点<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$(&#39;html&#39;)  //$(&#39;&lt;p tittle=&quot;text&quot;&gt;文本&lt;p/&gt;&#39;)
+</code></pre></div>
+
+<h4 id="_16">插入新节点/移动旧节点<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$(A).append(B)    
+$(B).appendTo(A)  //将B追加到A中之后：A...BB&#39;.A&#39;  
+
+$(A).prepend(B)   
+$(B).prependTo(A)  //将B追加到A中之前：A.BB&#39;...A
+
+$(A).after(B)`     
+$(B).insertAfter(A)  //将B追加到A后：AA&#39;.BB&#39;   
+
+$(A).before(B)   
+$(B).insertBefore(A)  //将B追加到A前：BB&#39;.AA&#39;  
+</code></pre></div>
+
+<h4 id="_17">删除节点<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$(A).remove(B)  //删除后元素可恢复，但其绑定的事件不能恢复，参数B可选   
+$(A).detach(B)  //删除后元素可恢复，与其绑定的事件也能恢复，参数B可选
+
+$(A).empty()  //可清除A元素中的内容`    
+</code></pre></div>
+
+<h4 id="_18">复制节点<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$(this).clone()  //只复制元素，不复制事件，所以副本元素不具备原元素的复制等功能   
+$(this).clone(true)  //元素与事件一同复制，副本元素与原元素有同样功能  
+</code></pre></div>
+
+<h4 id="_19">替换节点<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$(A).replaceWith(B)  
+$(B).replaceAll(A)  //用B替换A，A的事件将不复存在   
+</code></pre></div>
+
+<h4 id="_20">包裹节点<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$(A).wrap(B)  //用（多对）B元素包含（多对）A元素：BAA&#39;B&#39;..BAA&#39;B&#39;..BAA&#39;B&#39;     
+$(A).wrapAll(B)  //用（一对）B元素包含（多对）A元素：B.AA&#39;AA&#39;AA&#39;.B&#39;（中间的其他元素也会被包裹）
+$(A).wrapInner(B)  //用B元素包含A元素的子内容：AB...B&#39;A&#39;      
+</code></pre></div>
+
+<hr />
+<h2 id="property">属性·Property<a class="headerlink" href="#property" title="Permanent link">&para;</a></h2>
+<h3 id="_21">操作属性<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>jQuery中很多方法都是同一个函数既可实现获取（getter）又可设置（setter）              <br />
+  例如：.attr()，.html()，.text()，.height()，.width()，.val()，.css()     </p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>.attr(A)  //获取节点属性      
+.attr(A,a)  //设置单个节点属性A=a     
+.attr(A:a,B:b,C:c)  //设置多个节点属性   
+.removeAttr()  //删除属性    
+
+.pop(A)  //获取匹配到的首个节点的属性  
+.removePop()  //删除匹配到的首个节点的属性  
+</code></pre></div>
+
+<h3 id="_22">操作样式<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.attr()  //获取/设置样式同获取/设置属性一样   
+
+.addClass()  //追加样式   
+.removeClass()  //移除样式，不带参数则移除所有样式     
+.removeClass(a)  //带一个则移除单个样式    
+.removeClass(a b)  //空格分隔则移除多个样式   
+
+.toggle(A,B)  //会在A与B间切换样式    
+.toggleClass(A&#39;)  //会在A与A&#39;间切换样式    
+.hasClass(A&#39;)  //判断A是否有A&#39;样式，如果有则返回true，若没有则返回false     
+</code></pre></div>
+
+<h3 id="_23">其他<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.html()  //获取/设置html代码（需传参），类似JS的innerHtml属性    
+.text()  //获取/设置文本内容（需传参），类似JS的innerText属性    
+.val()  //获取/设置元素的值（需传参），表单元素的默认值可表示为：.defaultValue    
+</code></pre></div>
+
+<h3 id="_24">遍历节点<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.children()  //获取匹配元素的所有子元素     
+
+.next()  //获取匹配元素后面的同辈紧邻元素  
+.nextAll()  //获取匹配元素后面的所有同辈元素   
+.pre()  //获取匹配元素前面的同辈紧邻元素    
+.preAll()  //获取匹配元素前面的所有同辈紧邻元素   
+.siblings()  //获取匹配元素前和后的同辈紧邻元素    
+
+.closest()  //获取最近的匹配元素，首先检查当前元素是否匹配，不匹配则逐级向上查找，若没有则返回空对象   
+.parent()  //获取每个匹配元素的父元素     
+.parents()  //获取每个匹配元素的父元素以及父元素的父元素等祖先元素      
+</code></pre></div>
+
+<h3 id="css">设置css样式<a class="headerlink" href="#css" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.css(A)  //读取style对象属性      
+.css(A,a)  //设置单个style对象属性A=a    
+.css(A:a,B:b,C:c)  //设置多个style对象属性   
+.css(&#39;opacity&#39;,&#39;0.5&#39;)  //设置透明度为半透明  
+
+.height(100)  //获取/设置高度，默认单位为px，如需使用其他单位：.height(3em)
+.width(100)  //获取/设置宽度，默认单位为px，如需使用其他单位：.width(3em)   
+
+.offset()  //获取元素在当前视窗的相对偏移，返回对象包含两个属性       
+.offset().top     
+.offset().left     
+
+.position()  //获取元素与最近的position属性为relative/absolute祖/父节点的相对偏移   
+.position().top  
+.position().left  
+
+.scrollTop()        
+.scrollLeft()  //获取元素的滚动条距离上/左的距离，传入参数可控制滚动条到指定位置     
+</code></pre></div>
+
+<hr />
+<h2 id="event">事件·Event<a class="headerlink" href="#event" title="Permanent link">&para;</a></h2>
+<h3 id="_25">加载事件<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<h4 id="js">JS中加载事件<a class="headerlink" href="#js" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>window.onload()  //需要页面中所有元素都加载完才能被执行，一次只能用一个，多个同时使用后面的会覆盖前面的      
+</code></pre></div>
+
+<h4 id="jquery_3">jQuery中加载事件：<a class="headerlink" href="#jquery_3" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>$(document).ready()  //只要DOM加载完即可执行，可多个同时使用，依次被执行    
+$().ready()  //$()不带参数默认就是$(document)
+
+$(function(){}) //最简洁的写法    
+
+$(A).load()  //当A为window时等价于JS中的window.onload()方法     
+</code></pre></div>
+
+<h3 id="_26">绑定事件<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.bind（&quot;event1 event2&quot;,[.data],fn）  //[.data]为可选参数，可用来添加事件命名空间等      
+.event(fn(){})  //简写
+</code></pre></div>
+
+<h4 id="event_1">event包括以下事件<a class="headerlink" href="#event_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>focus(聚焦),blur(失去聚焦),load,resize,scroll,unload,click,dblclick       </li>
+<li>mousedown,mouseup,mousemove,mouseover,mouseout,mouseseebter,mouseleave       </li>
+<li>change,select,submit,keydown,keypress,keyup,error    </li>
+</ol>
+<div class="highlight"><pre><span></span><code>.unbind([event],[fn])  //移除事件，不带参数则移除所有事件   
+.one(event,fn)  //绑定一次，执行一次后自动删除  
+</code></pre></div>
+
+<h3 id="_27">合成事件<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.hover(fn(enter){},fn(leave){})  //模拟光标悬停/移出事件    
+
+.toggle(fn1,fn2,···fnN)  //1.模拟鼠标连续点击事件 2.切换元素可见状态`    
+</code></pre></div>
+
+<h4 id="_28">创建事件对象<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>.event（fn(参数){}）  //即给函数一个参数即可    
+</code></pre></div>
+
+<h4 id="_29">事件对象的属性<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>参数.type()  //获取事件类型    
+参数.target()  //获取触发事件的元素   
+参数.stopPropagation();  //停止事件冒泡（从内到外触发事件，从外到内触发事件叫做事件捕获，但jQuery不支持）  
+参数.preventDefault();  //阻止默认行为，若想同时阻止冒泡和默认行为，可以使用return false    
+</code></pre></div>
+
+<h4 id="_30">模拟事件<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>.trigger(type,[data])  //模拟用户点击鼠标等行为    
+</code></pre></div>
+
+<h4 id="_31">内置动画<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>.show()  //会改变内容的高度，宽度，不透明度
+.hide([slow/normal/fast/xx毫秒])  //slow=600,normal=400,fast=200毫秒
+</code></pre></div>
+
+<p><div class="highlight"><pre><span></span><code>.fadeIN()  //只改变不透明度，渐显
+.fadeOut()  //渐隐
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>.slideUp()  //只改变高度，延伸   
+.slideDown()  //缩短    
+</code></pre></div></p>
+<h4 id="_32">自定义动画<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>animate(params,speed,callback)
+</code></pre></div>
+
+<blockquote>
+<p>params：一个包含样式属性及值的映射{A:a,B:b}  <br />
+  speed：速度参数，可选  <br />
+  callback：在动画完成时要执行的函数    </p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>.is(&quot;:animate&quot;)  //判断元素是否处在动画状态
+</code></pre></div>
+
+<h4 id="_33">交互动画<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h4>
+<p><code>toggle</code>   <br />
+<code>slideToggle</code>    <br />
+<code>fadeTo</code>   <br />
+<code>fadeToggle</code>       </p>
+<hr />
+<h2 id="formtable">表单·FormTable<a class="headerlink" href="#formtable" title="Permanent link">&para;</a></h2>
+<p>单行文本框 <br />
+多行文本框   </p>
+<p>密码框 <br />
+隐藏域   </p>
+<p>单选框 <br />
+复选框 <br />
+下拉框   </p>
+<p>文件上传框   </p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-03-24</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../iview/" title="iView" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                iView
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../vue/" title="Vue" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                Vue
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 ~ Forever 7c
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/ZuoRight" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+      </a>
+    
+      
+      
+      <a href="mailto:zuoright@foxmail.com" target="_blank" rel="noopener" title="" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 8l-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../js/baidu-tongji.js"></script>
+      
+    
+  </body>
+</html>
