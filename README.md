@@ -10,9 +10,9 @@
 
 ### PicGo
 
-- 从剪切板上传：`Ctrl/Cmd + Alt/Opt + U`
-- 从文件夹上传：`Ctrl/Cmd + Alt/Opt + E`
-- 输入路径上传：`Ctrl/Cmd + Alt/Opt + O`
+- 从剪切板上传：`Cmd`+`Opt`+`U`（Windows：`Ctrl`+`Alt`+`U`）
+- 从文件夹上传：同上+`E`
+- 输入路径上传：同上+`O`
 
 ## [MKDocs](https://www.mkdocs.org/)
 
