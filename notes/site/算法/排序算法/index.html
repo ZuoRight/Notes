@@ -1674,7 +1674,7 @@
                 
                 <h1 id="_1">排序算法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="_2">冒泡排序<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>时间复杂度：O(n*2)</p>
+<p>时间复杂度：O(n^2)</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">bubble_sort_2</span><span class="p">(</span><span class="n">_list</span><span class="p">):</span>
     <span class="n">pass_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="n">pass_num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -1699,21 +1699,21 @@
 
 <p>逻辑优化：短冒泡</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">short_bubble_sort</span><span class="p">(</span><span class="n">_list</span><span class="p">):</span>
-    <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">exchanges</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">pass_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="n">pass_num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">exchanges</span><span class="p">:</span>
-        <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">exchanges</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="c1"># 如果在一轮遍历中没有发生元素交换，则可以确定列表已经有序，将不继续做没有意义的循环</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pass_num</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">exchanges</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
         <span class="n">pass_num</span> <span class="o">=</span> <span class="n">pass_num</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div>
 
 <h2 id="_3">选择排序<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>时间复杂度：O(n*2)</p>
+<p>时间复杂度：O(n^2)</p>
 <p>相对冒泡排序，减少了交换次数</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">_list</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">fill_slot</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
@@ -1727,13 +1727,13 @@
 </code></pre></div>
 
 <h2 id="_4">插入排序<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>时间复杂度：O(n*2)</p>
+<p>时间复杂度：O(n^2)</p>
 <p>交换操作相当于三次赋值操作，移动操作相当于一次赋值操作，所以交换操作的处理时间大约是移动操作的3倍</p>
 <p>于是用移动操作来替代交换操作，可以提高处理速度</p>
 <h2 id="_5">希尔排序<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>时间复杂度：O(n) ~ O(n*2)</p>
+<p>时间复杂度：O(n) ~ O(n^2)</p>
 <h2 id="_6">归并排序<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>时间复杂度：O(n*logn)</p>
+<p>时间复杂度：O(n^logn)</p>
 <h2 id="_7">快速排序<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
                 
                   

@@ -1459,21 +1459,28 @@
       
         <li class="md-nav__item">
   <a href="#oofn" class="md-nav__link">
-    大O复杂度表示法：O(f(n))
+    大O复杂度表示法：O(f(n))
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    时间复杂度分析
+    空间复杂度分析
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    空间复杂度分析
+    时间复杂度分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    特殊场景的时间复杂度分析
   </a>
   
 </li>
@@ -1595,21 +1602,28 @@
       
         <li class="md-nav__item">
   <a href="#oofn" class="md-nav__link">
-    大O复杂度表示法：O(f(n))
+    大O复杂度表示法：O(f(n))
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    时间复杂度分析
+    空间复杂度分析
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    空间复杂度分析
+    时间复杂度分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    特殊场景的时间复杂度分析
   </a>
   
 </li>
@@ -1636,7 +1650,7 @@
 <li>快：执行效率，即时间复杂度</li>
 <li>省：资源消耗，即空间复杂度</li>
 </ul>
-<h2 id="oofn">大O复杂度表示法：<code>O(f(n))</code><a class="headerlink" href="#oofn" title="Permanent link">&para;</a></h2>
+<h2 id="oofn">大O复杂度表示法：<code>O(f(n))</code><a class="headerlink" href="#oofn" title="Permanent link">&para;</a></h2>
 <ul>
 <li>每行代码执行时间/空间：<code>t</code></li>
 <li>数据规模：<code>n</code></li>
@@ -1651,7 +1665,9 @@
 </ul>
 <p>只取决于：循环次数最多，嵌套最多，量级最大的那一段代码（若最大有多段则相加）</p>
 <p><img alt="20210406204504" src="http://image.zuoright.com/20210406204504.png" /></p>
-<h2 id="_2">时间复杂度分析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">空间复杂度分析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>相对时间复杂度，空间复杂度比较简单，只需掌握最常见的三种即可</p>
+<h2 id="_3">时间复杂度分析<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li>常量级</li>
 </ul>
@@ -1668,8 +1684,53 @@
 <p>上面这段代码循环多少次（x），取决于i，每循环一次i的值要乘2，当循环2^x次后大于n则停止，即x为logn，最终复杂度表示为：O(logn)</p>
 <p>如果每循环一次i的值要乘3、乘10等等，忽略底阶后复杂度仍然表示为：O(logn)</p>
 <p>如果循环了n次，那就是：O(nlogn)</p>
-<h2 id="_3">空间复杂度分析<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>相对时间复杂度，空间复杂度比较简单，只需掌握最常见的三种即可</p>
+<h2 id="_4">特殊场景的时间复杂度分析<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 示例1</span>
+<span class="c1"># 在一个长度不固定的无序列表中，查找元素x所在的位置</span>
+<span class="c1"># 找到则停止查找，遍历完后没找到则返回-1</span>
+<span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+  <span class="n">pos</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">len</span><span class="p">(</span><span class="n">_list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+      <span class="n">pos</span> <span class="o">=</span> <span class="n">i</span>
+      <span class="k">break</span>
+  <span class="k">return</span> <span class="n">pos</span>
+</code></pre></div>
+
+<p>在示例1中，要查找的元素x，可能会出现在列表的任意位置，亦或者不在列表中，共有n+1种情况，于是复杂度需要根据不同情况进行分析：</p>
+<ul>
+<li>如果x位于首位则时间复杂度为O(1)，称之为<code>最好情况时间复杂度</code></li>
+<li>如果x位于末位，则时间复杂度为O(n)，称之为<code>最坏情况时间复杂度</code></li>
+<li>但大多数情况下元素都不位于首位或末位，于是我们需要引出<code>平均情况时间复杂度</code></li>
+</ul>
+<p>假设元素x在列表中和不在列表中的概率各自为1/2，如果在列表中，则每个位置的概率相等，均为1/2 * 1/n，即1/2n</p>
+<p>总遍历次数，即加权平均值为：(1+2+3+...+n)/2n + n*1/2，前n项和为：n(1+n)/2，最后结果为：(3n+1)/4</p>
+<p>忽略系数等，最终的平均情况时间复杂度为：O(n)</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 示例2</span>
+<span class="c1"># 向一个长度为n的列表中插入新数据value，如果列表有剩余空间，则直接插入</span>
+<span class="c1"># 如果列表没有剩余空间，则先计算其元素总和sum，然后清空列表后将sum插入到列表的首位，再继续插入value</span>
+<span class="n">_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">3.</span><span class="o">..</span><span class="n">n</span><span class="p">]</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">_list</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">len</span><span class="p">(</span><span class="n">_list</span><span class="p">):</span>
+      <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="n">_list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+
+  <span class="n">_list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+  <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div>
+
+<p>在示例2中，根据不同情况分析：</p>
+<ul>
+<li>理想的情况下，列表有剩余空间，直接插入即可，即最好情况时间复杂度为O(1)</li>
+<li>最坏的情况下，没有剩余空间，需要遍历一次列表求和，所以最坏情况时间复杂度为O(n)</li>
+<li>平均情况呢？此处与示例1有所不同</li>
+</ul>
+<p>对于示例2来说，列表要么有剩余，要么没有剩余，只有这两种情况，而且有剩余空间的概率远大于没有剩余空间的情况，我们没必要再计算其加权平均值，也就是说绝大多数情况都属于理想的情况，复杂度都是O(1)，我们称之为<code>均摊时间复杂度</code>，算是平均情况时间复杂度的一种特殊情况。</p>
                 
                   
                     
