@@ -39,49 +39,50 @@ cat ~/.shh/id_rsa.pub  # 查看公钥，将公钥添加到GitHub/Gitlab等仓库
 
 ## 创建项目
 
-### Fork
+- Fork
 
 先Fork别人的项目到自己的远程仓库，然后从自己的远程仓库克隆到本地
 
-### 克隆
+- 克隆
 
 ```shell
-git clone git@github.com:zuoright/xxx.git
+git clone git@github.com:zuoright/demo.git
 ```
 
-### 新建
+- 本地新建
 
 ``` shell
 # 先在本地创建一个仓库
-mkdir xxx
-
+mkdir demo
+cd demo
 # 然后初始化，会生成.git跟踪文件
 git init
+```
 
-# 再创建个远程空仓库，与本地仓库关联
-git remote add github git@github.com:zuoright/xxx.git  # github为远程库名称，可自定义
-git remote -v  # 查看关联了哪些远程库
-git remote rename 原名 新名  # 重命名远程库
-git remote rm xxx  # 删除已关联的远程库xxx
+- 远程新建
+
+```shell
+# 与本地仓库关联，origin为远程库名称，可自定义
+git remote add origin git@github.com:zuoright/demo.git
+# 查看关联了哪些远程库
+git remote -v
+# 重命名远程库
+git remote rename old_name new_name
+# 删除已关联的远程库demo
+git remote rm demo
 ```
 
 ## 完善项目
 
-### 创建 `.gitignore` 文件
+- 创建 `LICENSE` 文件：编写授权声明
+- 创建 `README.md` 文件：编写项目介绍
+- 创建 `.gitignore` 文件：编写忽略规则
 
-编写忽略规则（[各语言通用模版](https://github.com/github/gitignore)）
-
-`.gitignore`只能忽略那些原来没有被track(追踪)的文件
-
-对于那些已经被纳入版本管理中的文件，需要先删除相应的跟踪记录：`git rm -r --cached 要忽略的文件路径`
-
-### 创建 `LICENSE` 文件
-
-编写授权声明
-
-### 创建 `README.md` 文件
-
-编写项目介绍
+> 对于那些已经被track(追踪)的文件，需要先删除相应的跟踪记录：
+> 
+> `git rm -r --cached 要忽略的文件路径`
+> 
+> [各语言忽略规则通用模版](https://github.com/github/gitignore)
 
 ## 提交代码
 

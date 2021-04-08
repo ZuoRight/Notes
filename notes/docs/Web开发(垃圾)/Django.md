@@ -1,15 +1,5 @@
 # Django
 
-## 创建一个Python虚拟环境
-
-```python
-mkdir mydjango
-cd mydjango
-pipenv --python 3
-pipenv shell
-pipenv install django
-```
-
 ## 创建项目
 
 ```python
