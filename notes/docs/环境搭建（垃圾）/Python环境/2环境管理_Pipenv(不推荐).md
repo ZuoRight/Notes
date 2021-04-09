@@ -1,4 +1,4 @@
-# # 环境管理_Pipenv(不推荐)
+# 环境管理_Pipenv(不推荐)
 
 由requests库的作者Kenneth Reitz基于pip和virtualenv所编写
 P
@@ -68,4 +68,4 @@ python_version = "3.7"
 
 然后执行`pipenv run alias`即可
 
-当然还可以`pipenv shell`进入到虚拟环境中执行，退出：`exit`。
+当然还可以`pipenv shell`进入到虚拟环境中执行，退出：`exit`

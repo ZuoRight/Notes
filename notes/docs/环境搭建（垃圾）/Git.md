@@ -79,9 +79,9 @@ git remote rm demo
 - 创建 `.gitignore` 文件：编写忽略规则
 
 > 对于那些已经被track(追踪)的文件，需要先删除相应的跟踪记录：
-> 
+>  
 > `git rm -r --cached 要忽略的文件路径`
-> 
+>  
 > [各语言忽略规则通用模版](https://github.com/github/gitignore)
 
 ## 提交代码
