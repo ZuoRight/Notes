@@ -431,7 +431,7 @@ urlpatterns = [
     # 必选route：路由正则
     # 必选view：调用视图函数，传入HttpRequest对象
     # 可选kwargs：字典的形式给视图函数传递任意个关键字
-    # 可选name：给路由起名字，在项目任意位置引用，比如模版中{% url 'one_app:index' %}，这样只需要改这一处即可
+    # 可选name：给路由起名字，在项目任意位置引用
     path('', views.index, name='index'),
 ]
 ```
