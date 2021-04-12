@@ -1105,8 +1105,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Web%E5%BC%80%E5%8F%91%28%E5%9E%83%E5%9C%BE%29/Django/" title="Django" class="md-nav__link">
-      Django
+    <a href="../../Web%E5%BC%80%E5%8F%91%28%E5%9E%83%E5%9C%BE%29/Django/" title="Django开发" class="md-nav__link">
+      Django开发
     </a>
   </li>
 
@@ -1965,7 +1965,7 @@
 <li>list</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">_list</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </code></pre></div>
 
 <ul>
@@ -1973,15 +1973,15 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># 遍历键值对</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;key: </span><span class="si">{}</span><span class="s1">, value: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;key: {}, value: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
 
 <span class="c1"># 遍历键</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>  <span class="c1"># 也可以不用加.keys()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 
 <span class="c1"># 遍历值</span>
 <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </code></pre></div>
 
 <p>在迭代字典时不能改变size大小，否则会报错：dictionary changed size during iteration</p>
@@ -2016,10 +2016,10 @@
 <li>数值型之间互转</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nb">int</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># 1</span>
-<span class="nb">int</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 0</span>
+<span class="nb">int</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>  <span class="c1"># 0</span>
 
 <span class="nb">float</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1.0</span>
-<span class="nb">float</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 1.0</span>
+<span class="nb">float</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 1.0</span>
 
 <span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># False</span>
 <span class="nb">bool</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># True</span>
@@ -2041,7 +2041,7 @@
 
 <span class="nb">str</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># &quot;123&quot;</span>
 <span class="nb">str</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># &quot;1.2&quot;</span>
-<span class="nb">str</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># &quot;True&quot;</span>
+<span class="nb">str</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># &quot;True&quot;</span>
 </code></pre></div>
 
 <ul>
