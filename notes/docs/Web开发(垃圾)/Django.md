@@ -443,14 +443,14 @@ urlpatterns = [
 ```html
 <a href="/one_app/{{ question.id }}/">xxx</a>
 <!-- 去除后 -->
-<a href="{% url 'one_app:detail' question.id %}">xxx</a>
+<a href="{百分号 url 'one_app:detail' question.id 百分号}">xxx</a>
 ```
 
-所有针对内部 URL 的 POST 表单都应该使用 {% csrf_token %} 模板标签，防止跨站点请求伪造。
+所有针对内部 URL 的 POST 表单都应该使用 {百分号 csrf_token 百分号} 模板标签，防止跨站点请求伪造。
 
 ```html
-<form action="{% url 'one_app:vote' question.id %}" method="post">
-{% csrf_token %}
+<form action="{百分号 url 'one_app:vote' question.id 百分号}" method="post">
+{百分号 csrf_token 百分号}
 </form>
 ```
 
@@ -458,8 +458,8 @@ urlpatterns = [
 
 ```html
 <!-- 生成静态文件的绝对路径 -->
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'one_app/style.css' %}">
+{百分号 load static 百分号}
+<link rel="stylesheet" type="text/css" href="{百分号 static 'one_app/style.css' 百分号}">
 ```
 
 加载图片

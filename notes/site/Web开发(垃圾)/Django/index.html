@@ -2420,19 +2420,19 @@ python manage.py runserver <span class="m">0</span>:8000
 <p>去除硬编码URL</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/one_app/{{ question.id }}/&quot;</span><span class="p">&gt;</span>xxx<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 <span class="c">&lt;!-- 去除后 --&gt;</span>
-<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{% url &#39;one_app:detail&#39; question.id %}&quot;</span><span class="p">&gt;</span>xxx<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{百分号 url &#39;one_app:detail&#39; question.id 百分号}&quot;</span><span class="p">&gt;</span>xxx<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </code></pre></div>
 
-<p>所有针对内部 URL 的 POST 表单都应该使用 {% csrf_token %} 模板标签，防止跨站点请求伪造。</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;{% url &#39;one_app:vote&#39; question.id %}&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
-{% csrf_token %}
+<p>所有针对内部 URL 的 POST 表单都应该使用 {百分号 csrf_token 百分号} 模板标签，防止跨站点请求伪造。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;{百分号 url &#39;one_app:vote&#39; question.id 百分号}&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+{百分号 csrf_token 百分号}
 <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </code></pre></div>
 
 <p>加载样式</p>
 <div class="highlight"><pre><span></span><code><span class="c">&lt;!-- 生成静态文件的绝对路径 --&gt;</span>
-{% load static %}
-<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{% static &#39;one_app/style.css&#39; %}&quot;</span><span class="p">&gt;</span>
+{百分号 load static 百分号}
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{百分号 static &#39;one_app/style.css&#39; 百分号}&quot;</span><span class="p">&gt;</span>
 </code></pre></div>
 
 <p>加载图片</p>
