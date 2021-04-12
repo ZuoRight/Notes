@@ -2,6 +2,16 @@
 
 学习Django直接看官方文档就可以了，[Django的官方文档](https://docs.djangoproject.com/zh-hans/3.2/contents/)是我见过最好最全的技术文档。
 
+## 常用命令
+
+- 创建项目：`django-admin startproject mysite`
+- 创建应用：`python manage.py startapp one_app`
+- 启动服务器：`python manage.py runserver`
+- 生成迁移文件：`python manage.py makemigrations one_app`
+- 数据迁移：`python manage.py migrate`
+- 创建后台管理员：`python manage.py createsuperuser`
+- 进入交互式命令行：`python manage.py shell`
+
 ## 项目
 
 - 创建项目：`django-admin startproject mysite`
@@ -38,12 +48,6 @@ python manage.py runserver 8888
 # 可以指定IP，比如监听所有服务器公开IP，0是0.0.0.0的缩写
 python manage.py runserver 0:8000
 ```
-
-## 常用命令
-
-- 启动服务器：`python manage.py runserver`
-- 进入交互式命令行：`python manage.py shell`
-- 创建后台管理员：`python manage.py createsuperuser`
 
 ## 配置
 
@@ -117,6 +121,36 @@ one_app/
 
 ## 应用模型 models.py
 
+### 应用声明
+
+```python
+# mysite/settings.py
+INSTALLED_APPS = [
+    # Django自带应用
+    'django.contrib.admin',  # 管理后台
+    'django.contrib.auth',  # 认证授权系统
+    'django.contrib.contenttypes',  # 内容类型框架
+    'django.contrib.sessions',  # 会话框架
+    'django.contrib.messages',  # 消息框架
+    'django.contrib.staticfiles',  # 管理静态文件的框架
+    # 以下是自定义应用
+    'one_app.apps.One_appConfig',  # 完整形式
+    'one_app',  # 简写形式
+]
+```
+
+### 为声明的应用创建表（table）
+
+`python manage.py migrate`
+
+查看创建了哪些表：`.schema`(SQLite)，`SHOW TABLES;`(MySQL)
+
+### 创建管理员账号
+
+`python manage.py createsuperuser`
+
+然后启动服务器访问：127.0.0.1:8000/admin 即可访问后台
+
 ### 定义模型
 
 ```python
@@ -180,32 +214,6 @@ python manage.py createsuperuser
 # 根据提示输入用户名邮箱和密码（admin，admin@zuoright.com，123456）
 # 访问后台：127.0.0.1:8000/admin
 ```
-
-### 应用声明
-
-```python
-# mysite/settings.py
-INSTALLED_APPS = [
-    # Django自带应用
-    'django.contrib.admin',  # 管理后台
-    'django.contrib.auth',  # 认证授权系统
-    'django.contrib.contenttypes',  # 内容类型框架
-    'django.contrib.sessions',  # 会话框架
-    'django.contrib.messages',  # 消息框架
-    'django.contrib.staticfiles',  # 管理静态文件的框架
-    # 以下是自定义应用
-    'one_app.apps.One_appConfig',  # 完整形式
-    'one_app',  # 简写形式
-]
-```
-
-### 为声明的应用创建表（table）
-
-```shell
-python manage.py migrate
-```
-
-查看创建了哪些表：`.schema`(SQLite)，`SHOW TABLES;`(MySQL)
 
 ### 数据迁移（创建/修改sheet）
 

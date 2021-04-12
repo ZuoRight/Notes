@@ -997,14 +997,14 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    项目
+    常用命令
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    常用命令
+    项目
   </a>
   
 </li>
@@ -1053,13 +1053,6 @@
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    定义模型
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
     应用声明
   </a>
   
@@ -1068,6 +1061,20 @@
           <li class="md-nav__item">
   <a href="#table" class="md-nav__link">
     为声明的应用创建表（table）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    创建管理员账号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    定义模型
   </a>
   
 </li>
@@ -1121,7 +1128,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     重定向
   </a>
   
@@ -1147,14 +1154,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     模板
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     通用视图
   </a>
   
@@ -1841,14 +1848,14 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    项目
+    常用命令
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    常用命令
+    项目
   </a>
   
 </li>
@@ -1897,13 +1904,6 @@
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    定义模型
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
     应用声明
   </a>
   
@@ -1912,6 +1912,20 @@
           <li class="md-nav__item">
   <a href="#table" class="md-nav__link">
     为声明的应用创建表（table）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    创建管理员账号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    定义模型
   </a>
   
 </li>
@@ -1965,7 +1979,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     重定向
   </a>
   
@@ -1991,14 +2005,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     模板
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     通用视图
   </a>
   
@@ -2022,7 +2036,17 @@
                 
                 <h1 id="django">Django开发<a class="headerlink" href="#django" title="Permanent link">&para;</a></h1>
 <p>学习Django直接看官方文档就可以了，<a href="https://docs.djangoproject.com/zh-hans/3.2/contents/">Django的官方文档</a>是我见过最好最全的技术文档。</p>
-<h2 id="_1">项目<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1">常用命令<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>创建项目：<code>django-admin startproject mysite</code></li>
+<li>创建应用：<code>python manage.py startapp one_app</code></li>
+<li>启动服务器：<code>python manage.py runserver</code></li>
+<li>生成迁移文件：<code>python manage.py makemigrations one_app</code></li>
+<li>数据迁移：<code>python manage.py migrate</code></li>
+<li>创建后台管理员：<code>python manage.py createsuperuser</code></li>
+<li>进入交互式命令行：<code>python manage.py shell</code></li>
+</ul>
+<h2 id="_2">项目<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>创建项目：<code>django-admin startproject mysite</code></li>
 <li>项目结构：</li>
@@ -2058,12 +2082,6 @@ python manage.py runserver <span class="m">8888</span>
 python manage.py runserver <span class="m">0</span>:8000
 </code></pre></div>
 
-<h2 id="_2">常用命令<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li>启动服务器：<code>python manage.py runserver</code></li>
-<li>进入交互式命令行：<code>python manage.py shell</code></li>
-<li>创建后台管理员：<code>python manage.py createsuperuser</code></li>
-</ul>
 <h2 id="_3">配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="_4">基本配置<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># mysite/settings.py</span>
@@ -2126,7 +2144,29 @@ python manage.py runserver <span class="m">0</span>:8000
 </code></pre></div>
 
 <h2 id="modelspy">应用模型 models.py<a class="headerlink" href="#modelspy" title="Permanent link">&para;</a></h2>
-<h3 id="_7">定义模型<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h3 id="_7">应用声明<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># mysite/settings.py</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Django自带应用</span>
+    <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>  <span class="c1"># 管理后台</span>
+    <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>  <span class="c1"># 认证授权系统</span>
+    <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>  <span class="c1"># 内容类型框架</span>
+    <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>  <span class="c1"># 会话框架</span>
+    <span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>  <span class="c1"># 消息框架</span>
+    <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>  <span class="c1"># 管理静态文件的框架</span>
+    <span class="c1"># 以下是自定义应用</span>
+    <span class="s1">&#39;one_app.apps.One_appConfig&#39;</span><span class="p">,</span>  <span class="c1"># 完整形式</span>
+    <span class="s1">&#39;one_app&#39;</span><span class="p">,</span>  <span class="c1"># 简写形式</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<h3 id="table">为声明的应用创建表（table）<a class="headerlink" href="#table" title="Permanent link">&para;</a></h3>
+<p><code>python manage.py migrate</code></p>
+<p>查看创建了哪些表：<code>.schema</code>(SQLite)，<code>SHOW TABLES;</code>(MySQL)</p>
+<h3 id="_8">创建管理员账号<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><code>python manage.py createsuperuser</code></p>
+<p>然后启动服务器访问：127.0.0.1:8000/admin 即可访问后台</p>
+<h3 id="_9">定义模型<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="c1"># 每个类就是一个模型(sheet)，继承自models.Model</span>
@@ -2184,27 +2224,6 @@ python manage.py runserver <span class="m">0</span>:8000
 <span class="c1"># 访问后台：127.0.0.1:8000/admin</span>
 </code></pre></div>
 
-<h3 id="_8">应用声明<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># mysite/settings.py</span>
-<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="c1"># Django自带应用</span>
-    <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>  <span class="c1"># 管理后台</span>
-    <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>  <span class="c1"># 认证授权系统</span>
-    <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>  <span class="c1"># 内容类型框架</span>
-    <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>  <span class="c1"># 会话框架</span>
-    <span class="s1">&#39;django.contrib.messages&#39;</span><span class="p">,</span>  <span class="c1"># 消息框架</span>
-    <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>  <span class="c1"># 管理静态文件的框架</span>
-    <span class="c1"># 以下是自定义应用</span>
-    <span class="s1">&#39;one_app.apps.One_appConfig&#39;</span><span class="p">,</span>  <span class="c1"># 完整形式</span>
-    <span class="s1">&#39;one_app&#39;</span><span class="p">,</span>  <span class="c1"># 简写形式</span>
-<span class="p">]</span>
-</code></pre></div>
-
-<h3 id="table">为声明的应用创建表（table）<a class="headerlink" href="#table" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>python manage.py migrate
-</code></pre></div>
-
-<p>查看创建了哪些表：<code>.schema</code>(SQLite)，<code>SHOW TABLES;</code>(MySQL)</p>
 <h3 id="sheet">数据迁移（创建/修改sheet）<a class="headerlink" href="#sheet" title="Permanent link">&para;</a></h3>
 <ul>
 <li>step1：生成迁移数据（SQL语句）</li>
@@ -2341,7 +2360,7 @@ python manage.py runserver <span class="m">0</span>:8000
     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;one_app/index.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="_9">重定向<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<h3 id="_10">重定向<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponseRedirect</span>
 
 <span class="c1"># 构造函数：HttpResponseRedirect(重定向后的URL)</span>
@@ -2416,7 +2435,7 @@ python manage.py runserver <span class="m">0</span>:8000
 <span class="p">]</span>
 </code></pre></div>
 
-<h2 id="_10">模板<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h2 id="_11">模板<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p>去除硬编码URL</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/one_app/{{ question.id }}/&quot;</span><span class="p">&gt;</span>xxx<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 <span class="c">&lt;!-- 去除后 --&gt;</span>
@@ -2442,7 +2461,7 @@ python manage.py runserver <span class="m">0</span>:8000
 <span class="p">}</span>
 </code></pre></div>
 
-<h2 id="_11">通用视图<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h2 id="_12">通用视图<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># one_app/views.py</span>
 <span class="kn">from</span> <span class="nn">django.views</span> <span class="kn">import</span> <span class="n">generic</span>
 <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Question</span>
