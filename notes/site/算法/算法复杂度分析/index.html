@@ -1548,6 +1548,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    基准分析法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#o" class="md-nav__link">
     大O复杂度表示法
   </a>
@@ -1555,21 +1562,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     空间复杂度分析
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     时间复杂度分析（一般情况）
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     时间复杂度分析（特殊情况）
   </a>
   
@@ -1703,6 +1710,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    基准分析法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#o" class="md-nav__link">
     大O复杂度表示法
   </a>
@@ -1710,21 +1724,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     空间复杂度分析
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     时间复杂度分析（一般情况）
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     时间复杂度分析（特殊情况）
   </a>
   
@@ -1752,13 +1766,53 @@
 <li>快：执行效率，即时间复杂度</li>
 <li>省：资源消耗，即空间复杂度</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 计算N个数之和</span>
+
+<span class="c1"># 方法一</span>
+<span class="k">def</span> <span class="nf">sum_of_N</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="mi">1</span>
+
+  <span class="k">return</span> <span class="nb">sum</span>
+
+
+<span class="c1"># 方法二</span>
+<span class="k">def</span> <span class="nf">sum_of_N</span><span class="p">():</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+</code></pre></div>
+
+<h2 id="_2">基准分析法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># 开始时间</span>
+<span class="k">print</span><span class="p">(</span><span class="n">start_time</span> <span class="p">)</span>
+
+<span class="k">pass</span>  <span class="c1"># 待测算法</span>
+
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># 结束时间</span>
+<span class="k">print</span><span class="p">(</span><span class="n">end_time</span><span class="p">)</span>
+
+
+<span class="c1"># 对于算法一</span>
+<span class="c1"># 如果N等于10,000，大概是0.0019360s</span>
+<span class="c1"># 如果N等于100,000，大概是0.0194821</span>
+<span class="c1"># 如果N等于1000,000，大概是0.1948988</span>
+
+<span class="c1"># 对于算法二</span>
+<span class="c1"># 无论N等于多少，大概是0.00000095</span>
+</code></pre></div>
+
+<p>测试结果非常依赖测试环境。比如不同的处理器。</p>
+<p>测试结果受数据规模影响很大。比如排序算法，如果给一个本身就有序的数据排序，算法可能不需要做任何操作，执行时间会非常短，基本无法判断哪个好哪个坏。</p>
+<p>所以我们需要一个不受测试环境影响，且不用具体测试数据的方法来衡量算法的执行效率。</p>
 <h2 id="o">大O复杂度表示法<a class="headerlink" href="#o" title="Permanent link">&para;</a></h2>
 <p><code>O(f(n))</code></p>
 <ul>
-<li>每行代码执行时间/空间：<code>t</code></li>
+<li>每行代码执行时间：<code>t</code></li>
 <li>数据规模：<code>n</code></li>
-<li>每行代码的总执行次数：<code>f(n)</code></li>
-<li>所有代码的总执行时间/空间：<code>T(n)=f(n)*t</code></li>
+<li>代码总执行次数：<code>f(n)</code></li>
+<li>代码总执行时间：<code>T(n)=f(n)*t</code></li>
 </ul>
 <p>释义：在不运行代码的情况下，假设t相同，n不断增长，忽略常量系数和底阶等对增长趋势关系不大的部分，复杂度约等于T(n)，与f(n)成正比</p>
 <p>即：</p>
@@ -1768,9 +1822,9 @@
 </ul>
 <p>只取决于：循环次数最多，嵌套最多，量级最大的那一段代码（若最大有多段则相加）</p>
 <p><img alt="20210406204504" src="http://image.zuoright.com/20210406204504.png" /></p>
-<h2 id="_2">空间复杂度分析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_3">空间复杂度分析<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>相对时间复杂度，空间复杂度比较简单，只需掌握最常见的三种即可</p>
-<h2 id="_3">时间复杂度分析（一般情况）<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_4">时间复杂度分析（一般情况）<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
 <li>常量级</li>
 </ul>
@@ -1787,7 +1841,7 @@
 <p>上面这段代码循环多少次（x），取决于i，每循环一次i的值要乘2，当循环2^x次后大于n则停止，即x为logn，最终复杂度表示为：O(logn)</p>
 <p>如果每循环一次i的值要乘3、乘10等等，忽略底阶后复杂度仍然表示为：O(logn)</p>
 <p>如果循环了n次，那就是：O(nlogn)</p>
-<h2 id="_4">时间复杂度分析（特殊情况）<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5">时间复杂度分析（特殊情况）<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># 示例1</span>
 <span class="c1"># 在一个长度不固定的无序列表中，查找元素x所在的位置</span>
 <span class="c1"># 找到则停止查找，遍历完后没找到则返回-1</span>
@@ -1834,6 +1888,61 @@
 <li>平均情况呢？此处与示例1有所不同</li>
 </ul>
 <p>对于示例2来说，列表要么有剩余，要么没有剩余，只有这两种情况，而且有剩余空间的概率远大于没有剩余空间的情况，我们没必要再计算其加权平均值，也就是说绝大多数情况都属于理想的情况，复杂度都是O(1)，我们称之为<code>均摊时间复杂度</code>，算是平均情况时间复杂度的一种特殊情况。</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="c1"># 计算N个数之和</span>
+
+<span class="c1"># 方法一</span>
+<span class="k">def</span> <span class="nf">sum_of_N</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="mi">1</span>
+
+  <span class="k">return</span> <span class="nb">sum</span>
+
+
+<span class="c1"># 方法二</span>
+<span class="k">def</span> <span class="nf">sum_of_N</span><span class="p">():</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># 开始时间</span>
+<span class="k">print</span><span class="p">(</span><span class="n">start_time</span> <span class="p">)</span>
+
+<span class="k">pass</span>  <span class="c1"># 待测算法</span>
+
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># 结束时间</span>
+<span class="k">print</span><span class="p">(</span><span class="n">end_time</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">cal</span><span class="p">():</span>
+  <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># t</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># t</span>
+  <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>  <span class="c1"># nt</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">i</span>  <span class="c1"># nt</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># nt</span>
+
+  <span class="k">return</span> <span class="nb">sum</span>
+
+<span class="c1"># (2+3n)t</span>
+<span class="c1"># 如果n足够大，约等于nt</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">cal</span><span class="p">():</span>
+  <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># t</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># t</span>
+  <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>  <span class="c1"># nt</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># nt</span>
+    <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>  <span class="c1"># n^2t</span>
+      <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span>  <span class="c1"># n^2t</span>
+      <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># n^2t</span>
+
+  <span class="k">return</span> <span class="nb">sum</span>
+
+<span class="c1"># (2+2n+3n^2)t</span>
+<span class="c1"># 如果n足够大，约等于n^2t</span>
+</code></pre></div>
                 
                   
                     
@@ -1842,7 +1951,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-04-06</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-04-23</span>
     
   </small>
 </div>
