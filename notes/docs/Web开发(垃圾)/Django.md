@@ -446,6 +446,20 @@ urlpatterns = [
 
 ## 模板
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'xxx.css' %}"> 
+</head>
+<body>
+
+</body>
+</html>
+```
+
 去除硬编码URL
 
 ```html
