@@ -2436,6 +2436,19 @@ python manage.py runserver <span class="m">0</span>:8000
 </code></pre></div>
 
 <h2 id="_11">模板<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>index<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{百分号 static &#39;xxx.css&#39; 百分号}&quot;</span><span class="p">&gt;</span> 
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+
 <p>去除硬编码URL</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/one_app/{{ question.id }}/&quot;</span><span class="p">&gt;</span>xxx<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 <span class="c">&lt;!-- 去除后 --&gt;</span>
@@ -2505,7 +2518,7 @@ python manage.py runserver <span class="m">0</span>:8000
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-04-12</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-05-07</span>
     
   </small>
 </div>

@@ -452,7 +452,7 @@ urlpatterns = [
 <head>
     <meta charset="UTF-8">
     <title>index</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'xxx.css' %}"> 
+    <link rel="stylesheet" type="text/css" href="{百分号 static 'xxx.css' 百分号}"> 
 </head>
 <body>
 

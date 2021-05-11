@@ -767,13 +767,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fibonacci" class="md-nav__link">
-    斐波那契(Fibonacci)数列
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#xn" class="md-nav__link">
     计算x的n次方
   </a>
@@ -1733,13 +1726,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fibonacci" class="md-nav__link">
-    斐波那契(Fibonacci)数列
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#xn" class="md-nav__link">
     计算x的n次方
   </a>
@@ -1801,12 +1787,10 @@
 <ul>
 <li>使用枚举函数</li>
 </ul>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># 斐波那契(Fibonacci)数列</span>
+<span class="c1"># 释义：除第一个和第二个数外，任意一个数都可由前两个数相加得到</span>
 
-<h2 id="fibonacci">斐波那契(Fibonacci)数列<a class="headerlink" href="#fibonacci" title="Permanent link">&para;</a></h2>
-<p>释义：除第一个和第二个数外，任意一个数都可由前两个数相加得到</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">x0</span><span class="p">,</span><span class="n">x1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
     <span class="k">while</span> <span class="n">n</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
         <span class="k">yield</span> <span class="n">x1</span>
@@ -1875,6 +1859,64 @@
 <span class="c1"># 忽略字母大小写（需要先把字母都变为大写或小写），倒序排列</span>
 <span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div>
+
+<hr />
+<div class="highlight"><pre><span></span><code><span class="c1"># 斐波那契</span>
+<span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">result</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">lst</span><span class="o">=</span><span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+
+
+<span class="c1"># 操作文件</span>
+<span class="c1"># 第一种</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/path...&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="c1">#只读模式打开</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># 第二种</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../path...&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+
+<span class="c1"># 自动化脚本</span>
+<span class="kn">import</span> <span class="nn">selenium</span> <span class="nn">from</span> <span class="nn">webdriver</span>
+
+<span class="n">b</span><span class="o">=</span><span class="n">webdriver</span><span class="o">.</span><span class="n">firefox</span><span class="p">()</span>  <span class="c1">#打开浏览器</span>
+<span class="n">b</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">)</span>  <span class="c1">#输入地址</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>  <span class="c1">#0.3秒等待</span>
+
+<span class="n">b</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;kw&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;xxx&quot;</span><span class="p">)</span>  <span class="c1">#找到搜索框，输入xxx</span>
+<span class="n">b</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;su&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>  <span class="c1">#点击搜索按钮</span>
+<span class="n">b</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>  <span class="c1">#推出浏览器</span>
+
+
+<span class="c1">#爬虫</span>
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="kn">import</span> <span class="n">request</span>
+
+<span class="k">class</span> <span class="nc">Spider</span><span class="p">():</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.panda.tv/cate/lol&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__fetch_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">Spider</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">htmls</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">htmls</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">htmls</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">a</span><span class="o">=</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">go</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__fetch_content</span><span class="p">()</span>
+
+<span class="n">spider</span> <span class="o">=</span> <span class="n">Spider</span><span class="p">()</span>
+<span class="n">spider</span><span class="o">.</span><span class="n">go</span><span class="p">()</span>
+</code></pre></div>
                 
                   
                     
@@ -1883,7 +1925,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-03-24</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-05-03</span>
     
   </small>
 </div>
