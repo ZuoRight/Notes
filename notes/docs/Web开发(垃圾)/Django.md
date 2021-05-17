@@ -77,9 +77,12 @@ DATABASES = {
 
 - 其它数据库
 
-除了以下配置还需要数据库驱动（比如mysqlclient），并且先创建数据库，以及必要的权限
+除了以下配置还需要数据库驱动，并且先创建数据库，以及必要的权限
+
+安装驱动：`pip install pymysql`
 
 ```python
+# 配置
 # mysite/settings.py
 DATABASES = {
     'default': {
@@ -91,6 +94,15 @@ DATABASES = {
         'PASSWORD': '123456',  # 密码
     }
 }
+```
+
+声明
+
+```python
+# __init__.py
+import pymysql
+
+pymysql.install_as_MySQLdb()  # 告诉django用pymysql代替mysqldb连接数据库
 ```
 
 ## 应用
