@@ -25,12 +25,17 @@ pip show -f xxx
 ```
 
 ```shell
-# 下载安装，默认安装最新版本
+# 搜索包
+pip search xxx
+# 下载包
+pip download xxx
+
+# 安装，默认安装最新版本
 pip install xxx
 # 指定版本
 pip install xxx==version
 # 指定镜像源
-pip install xxx -i 镜像源
+pip install xxx -i 镜像源 --trusted-host 镜像地址对应的host
 
 # 更新包，也可以更新pip自己
 pip install -U xxx
@@ -56,8 +61,7 @@ pip uninstall -r requirements.txt
 
 ```shell
 # 在当前目录创建一个名为env(可自定义)的虚拟环境，删除它即删除了虚拟环境
-python3 -m venv env  # Mac/Linux
-python -m venv env  # Windows
+python3 -m venv env
 
 # 激活虚拟环境，激活后命令提示符前会显示：(env)
 source env/bin/activate  # Mac/Linux
