@@ -1767,6 +1767,23 @@
 <p>生肖</p>
 <p>判断某年是什么生肖：year % 12</p>
 <p>星座</p>
+<p>猜数字</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">computer_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">person_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入：&quot;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">person_number</span> <span class="o">&gt;</span> <span class="n">computer_number</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;大了&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">person_number</span> <span class="o">&lt;</span> <span class="n">computer_number</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;小了&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">person_number</span> <span class="o">==</span> <span class="n">computer_number</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;对了&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;奇了怪了&quot;</span><span class="p">)</span>
+</code></pre></div>
+
 <h2 id="1100">快速求1~100所有整数之和<a class="headerlink" href="#1100" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">))</span>
 </code></pre></div>
@@ -1925,7 +1942,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-05-03</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-06-08</span>
     
   </small>
 </div>

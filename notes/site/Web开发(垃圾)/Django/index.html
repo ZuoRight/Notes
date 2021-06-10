@@ -2106,8 +2106,10 @@ python manage.py runserver <span class="m">0</span>:8000
 <ul>
 <li>其它数据库</li>
 </ul>
-<p>除了以下配置还需要数据库驱动（比如mysqlclient），并且先创建数据库，以及必要的权限</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># mysite/settings.py</span>
+<p>除了以下配置还需要数据库驱动，并且先创建数据库，以及必要的权限</p>
+<p>安装驱动：<code>pip install pymysql</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 配置</span>
+<span class="c1"># mysite/settings.py</span>
 <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>  <span class="c1"># 数据库引擎</span>
@@ -2118,6 +2120,13 @@ python manage.py runserver <span class="m">0</span>:8000
         <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;123456&#39;</span><span class="p">,</span>  <span class="c1"># 密码</span>
     <span class="p">}</span>
 <span class="p">}</span>
+</code></pre></div>
+
+<p>声明</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># __init__.py</span>
+<span class="kn">import</span> <span class="nn">pymysql</span>
+
+<span class="n">pymysql</span><span class="o">.</span><span class="n">install_as_MySQLdb</span><span class="p">()</span>  <span class="c1"># 告诉django用pymysql代替mysqldb连接数据库</span>
 </code></pre></div>
 
 <h2 id="_6">应用<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
@@ -2518,7 +2527,7 @@ python manage.py runserver <span class="m">0</span>:8000
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-05-07</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-05-17</span>
     
   </small>
 </div>
