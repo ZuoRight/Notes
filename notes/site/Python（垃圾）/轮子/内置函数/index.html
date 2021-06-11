@@ -1777,56 +1777,20 @@
 <ul>
 <li><code>eval()</code>、<code>exec()</code>、<code>compile()</code></li>
 </ul>
-<p>执行字符串形式的表达式</p>
-<div class="highlight"><pre><span></span><code><span class="n">e1</span> <span class="o">=</span> <span class="s2">&quot;1+2&quot;</span>
-<span class="n">e2</span> <span class="o">=</span> <span class="s2">&quot;[1,2,3]&quot;</span>
-
-<span class="nb">eval</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span>  <span class="c1"># 3</span>
-<span class="nb">eval</span><span class="p">(</span><span class="n">e2</span><span class="p">)</span>  <span class="c1"># [1,2,3]</span>
+<p>慎用，可能会因为代码注入带来安全隐患</p>
+<p><a href="https://zhuanlan.zhihu.com/p/60257325">https://zhuanlan.zhihu.com/p/60257325</a></p>
+<p>eval(object, [globals])用于字符串形式的执行单个表达式，不能做赋值循环等操作，返回表达式的结果</p>
+<div class="highlight"><pre><span></span><code><span class="n">y</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;1+2&quot;</span><span class="p">)</span>  <span class="c1"># y=3</span>
 </code></pre></div>
 
-<p>执行字符串形式的语句</p>
-<div class="highlight"><pre><span></span><code><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">li = []</span>
-<span class="s2">for i in range(5):</span>
-<span class="s2">    li.append(i)</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="k">exec</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># None，exec执行但不会返回值</span>
+<p>exec(object, [globals])用于执行字符串形式的语句，返回None</p>
+<div class="highlight"><pre><span></span><code><span class="n">y</span> <span class="o">=</span> <span class="k">exec</span><span class="p">(</span><span class="s2">&quot;x=1+2&quot;</span><span class="p">)</span>  <span class="c1"># y=None, x=3</span>
 </code></pre></div>
 
-<p>执行交互式语句</p>
-<div class="highlight"><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;print(123)&quot;</span>
-<span class="n">i</span> <span class="o">=</span> <span class="s2">&quot;input(&#39;请输入&#39;)&quot;</span>
-
-<span class="nb">eval</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>  <span class="c1"># 123</span>
-<span class="k">exec</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>  <span class="c1"># 123</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># 请输入</span>
-<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>  <span class="c1"># 返回输入值</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="k">exec</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># 请输入</span>
-<span class="k">print</span><span class="p">(</span><span class="k">exec</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>  <span class="c1"># 返回None</span>
-</code></pre></div>
-
-<p><code>compile(string, "", mode)</code>可以将字符串编译为eval()和exec()可执行的格式</p>
-<div class="highlight"><pre><span></span><code><span class="n">code1</span> <span class="o">=</span> <span class="s2">&quot;1+2&quot;</span>
-<span class="n">com1</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">code1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;eval&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">com1</span><span class="p">))</span>  <span class="c1"># 3</span>
-
-<span class="n">code2</span> <span class="o">=</span> <span class="s2">&quot;for i in range(3): print(i)&quot;</span>
-<span class="n">com2</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">code2</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;exec&quot;</span><span class="p">)</span>
-<span class="k">exec</span><span class="p">(</span><span class="n">com2</span><span class="p">)</span>   <span class="c1"># 1 2 3</span>
-
-
-<span class="n">code3</span> <span class="o">=</span> <span class="s2">&quot;name = input(&#39;请输入:&#39;)&quot;</span>  <span class="c1"># 输入:hello</span>
-<span class="c1"># 编译为交互形式</span>
-<span class="n">com3</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">code3</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">)</span>
-<span class="c1"># 执行编译对象，eval/exec执行都可以</span>
-<span class="nb">eval</span><span class="p">(</span><span class="n">com3</span><span class="p">)</span>
-<span class="k">exec</span><span class="p">(</span><span class="n">com3</span><span class="p">)</span>
-<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># hello</span>
+<p>compile(string, "", mode)可以将字符串编译为eval()和exec()可执行的格式，<a href="https://segmentfault.com/q/1010000017171114">https://segmentfault.com/q/1010000017171114</a></p>
+<p>我理解通常代码很复杂或为了复用时才需要compile预先编译，不然并没有什么卵用，直接使用eval/exec即可</p>
+<div class="highlight"><pre><span></span><code><span class="n">cmd</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="s2">&quot;1+2&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;eval&quot;</span><span class="p">)</span>
+<span class="nb">eval</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>  <span class="c1"># 3</span>
 </code></pre></div>
                 
                   
