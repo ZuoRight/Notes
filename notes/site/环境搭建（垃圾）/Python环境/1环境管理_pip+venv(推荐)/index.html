@@ -1743,12 +1743,17 @@ pip show xxx
 pip show -f xxx
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code><span class="c1"># 下载安装，默认安装最新版本</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 搜索包</span>
+pip search xxx
+<span class="c1"># 下载包</span>
+pip download xxx
+
+<span class="c1"># 安装，默认安装最新版本</span>
 pip install xxx
 <span class="c1"># 指定版本</span>
 pip install <span class="nv">xxx</span><span class="o">==</span>version
 <span class="c1"># 指定镜像源</span>
-pip install xxx -i 镜像源
+pip install xxx -i 镜像源 --trusted-host 镜像地址对应的host
 
 <span class="c1"># 更新包，也可以更新pip自己</span>
 pip install -U xxx
@@ -1771,8 +1776,7 @@ pip uninstall -r requirements.txt
 
 <h2 id="venv">venv<a class="headerlink" href="#venv" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># 在当前目录创建一个名为env(可自定义)的虚拟环境，删除它即删除了虚拟环境</span>
-python3 -m venv env  <span class="c1"># Mac/Linux</span>
-python -m venv env  <span class="c1"># Windows</span>
+python3 -m venv env
 
 <span class="c1"># 激活虚拟环境，激活后命令提示符前会显示：(env)</span>
 <span class="nb">source</span> env/bin/activate  <span class="c1"># Mac/Linux</span>
@@ -1792,7 +1796,7 @@ deactivate
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-04-08</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-06-07</span>
     
   </small>
 </div>
