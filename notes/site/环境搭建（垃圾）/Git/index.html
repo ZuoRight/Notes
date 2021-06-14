@@ -1372,18 +1372,12 @@
     安装
   </a>
   
-    <nav class="md-nav" aria-label="安装">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     常用命令
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1411,6 +1405,34 @@
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     提交代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    回滚
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    撤销
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    分支
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    推送
   </a>
   
 </li>
@@ -1727,18 +1749,12 @@
     安装
   </a>
   
-    <nav class="md-nav" aria-label="安装">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     常用命令
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1770,6 +1786,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    回滚
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    撤销
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    分支
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    推送
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1793,14 +1837,16 @@
 </ul>
 <h2 id="_1">安装<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Mac：推荐<code>brew install git</code>方式安装，如果安装了Xcode会默认自带</li>
 <li>Windows：官网下载<code>Git for Windows</code>客户端安装即可</li>
+<li>Mac：推荐<code>brew install git</code>方式安装，如果安装了Xcode会默认自带</li>
+<li>Ubuntu：<code>sudo apt-get install git</code></li>
 <li>CentOS：<code>sudo yum install git</code></li>
 </ul>
-<h3 id="_2">常用命令<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h2 id="_2">常用命令<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li>查看版本：<code>git --version</code></li>
-<li>查看状态：<code>git status</code></li>
+<li>查看git版本：<code>git --version</code></li>
+<li>查看当前状态：<code>git status</code></li>
+<li>查看提交日志：<code>git log</code></li>
 </ul>
 <h2 id="_3">基础配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1814,16 +1860,18 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># --local 仅对当前用户、当前仓库有效（默认）</span>
 <span class="c1"># --global 对当前用户、所有仓库有效（一般用这个即可）</span>
 <span class="c1"># --system 对所有用户、所有仓库有效</span>
-git config --global user.name <span class="s2">&quot;chonge&quot;</span>
-git config --global user.email <span class="s2">&quot;chonge@zuoright.com&quot;</span>
+git config --global user.name <span class="s2">&quot;7c&quot;</span>
+git config --global user.email <span class="s2">&quot;7c@zuoright.com&quot;</span>
 </code></pre></div>
 
 <ul>
 <li>配置SSH密钥</li>
 </ul>
 <p>向远程仓库提交代码时需要验证身份，配置SSH密钥，这样就不用每次都输入账户密码验证了</p>
-<div class="highlight"><pre><span></span><code>ssh-keygen  <span class="c1"># 生成密钥</span>
-cat ~/.shh/id_rsa.pub  <span class="c1"># 查看公钥，将公钥添加到GitHub/Gitlab等仓库设置中</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 生成密钥</span>
+ssh-keygen
+<span class="c1"># 查看公钥，将公钥添加到GitHub/Gitlab等仓库设置中</span>
+cat ~/.shh/id_rsa.pub
 </code></pre></div>
 
 <h2 id="_4">创建项目<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
@@ -1835,6 +1883,9 @@ cat ~/.shh/id_rsa.pub  <span class="c1"># 查看公钥，将公钥添加到GitHu
 <li>克隆</li>
 </ul>
 <div class="highlight"><pre><span></span><code>git clone git@github.com:zuoright/demo.git
+<span class="c1"># 默认克隆主分支，可加-b xxx指定分支</span>
+<span class="c1"># 默认把远程仓库命名为origin，可加-o参数自定义</span>
+git clone <span class="o">[</span>-b 指定分支<span class="o">]</span> git@github.com:zuoright/demo.git <span class="o">[</span>-o xxx<span class="o">]</span>
 </code></pre></div>
 
 <ul>
@@ -1862,24 +1913,96 @@ git remote rm demo
 
 <h2 id="_5">完善项目<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li>创建 <code>LICENSE</code> 文件：编写授权声明</li>
-<li>创建 <code>README.md</code> 文件：编写项目介绍</li>
-<li>创建 <code>.gitignore</code> 文件：编写忽略规则</li>
+<li><code>touch LICENSE</code> 文件：编写授权声明</li>
+<li><code>touch README.md</code> 文件：编写项目介绍</li>
+<li><code>touch .gitignore</code> 文件：编写忽略规则</li>
 </ul>
 <blockquote>
-<p>对于那些已经被track(追踪)的文件，需要先删除相应的跟踪记录：</p>
-<p><code>git rm -r --cached 要忽略的文件路径</code></p>
 <p><a href="https://github.com/github/gitignore">各语言忽略规则通用模版</a></p>
+<p>对于那些已经被track(追踪)的文件，需要先删除相应的跟踪记录：</p>
+<p><code>git rm --cached &lt;file&gt;</code></p>
 </blockquote>
 <h2 id="_6">提交代码<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># 提交代码</span>
-git add .
-git commit -m <span class="s2">&quot;init&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看修改了哪些内容（工作区与暂存区的对比，所以文件必须是已追踪过的）</span>
+git diff
 
-<span class="c1"># 推送到远程仓库origin的main分支</span>
-<span class="c1"># 可以加-u参数设置默认推送的仓库和分支，下次直接git push即可</span>
-git branch -M main  <span class="c1"># 将本地主分支设置为main</span>
-git push <span class="o">[</span>-u<span class="o">]</span> origin main
+<span class="c1"># 提交代码到暂存区</span>
+git add xx  <span class="c1"># 提交某个</span>
+git add .  <span class="c1"># 提交全部，也可用-A或--all参数</span>
+
+<span class="c1"># 代码保存到本地仓库</span>
+git commit  <span class="c1"># 不加-m会打开默认编辑器编辑</span>
+git commit -m <span class="s2">&quot;init&quot;</span>
+git commit -am <span class="s2">&quot;xxx&quot;</span>  <span class="c1"># 跳过暂存区提交</span>
+git commit --ament -m <span class="s2">&quot;xxx&quot;</span>  <span class="c1"># 修正提交，可以覆盖上一次的提交</span>
+</code></pre></div>
+
+<h2 id="_7">回滚<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p><code>git reset [--参数]  版本 [指定文件]</code></p>
+<p>回滚【到】某个版本，回滚到后，后面的版本都将消失</p>
+<p>回滚后要用<code>git push -f</code>推向远程，否则会报错</p>
+<p>参数</p>
+<ul>
+<li>--soft 回到commit前的状态</li>
+<li>--mixed 回到add前的状态，默认</li>
+<li>--hard 回到工作区修改前状态，重置</li>
+</ul>
+<p>版本</p>
+<ul>
+<li>版本号（后七位即可）</li>
+<li>标签</li>
+<li>HEAD指针</li>
+<li>HEAD 当前版本</li>
+<li>HEAD^ 上一版本</li>
+<li>HEAD^^ 上上版本</li>
+<li>HEAD~100 上100个版本</li>
+</ul>
+<p><code>git revert -n 版本号</code></p>
+<p>回滚某个版本，生成新的版本，不影响其他版本</p>
+<h2 id="_8">撤销<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>撤销工作区未追踪文件的修改：只能是ctrl+Z</p>
+<p>撤销工作区已追踪文件的修改</p>
+<ul>
+<li><code>git restore xxx</code></li>
+<li><code>git checkout -- xxx</code></li>
+</ul>
+<p>撤销暂存区文件缓存：即git add后撤销</p>
+<ul>
+<li><code>git restore --staged xxx</code> 变为未暂存状态</li>
+<li><code>git rm --cached xxx</code> 变成未追踪状态</li>
+</ul>
+<h2 id="_9">分支<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看分支</span>
+git branch
+
+<span class="c1"># 新建分支</span>
+git branch dev
+
+<span class="c1"># 切换分支</span>
+git checkout dev  <span class="c1"># new: git switch dev</span>
+git checkout -b dev  <span class="c1"># 创建并切换分支</span>
+
+<span class="c1"># 合并分支</span>
+git merge dev
+
+<span class="c1"># 删除分支</span>
+git branch -d dev
+</code></pre></div>
+
+<p>如果两个分支同时修改了同一处，合并时会产生冲突，此时冲突的文件会变为未追踪状态，文件中会用=======上下分割标识出两个分支冲突的部分，需要手动解决后再次add到暂存区后提交。</p>
+<h2 id="_10">推送<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 将本地主分支设置为main(与GitHub默认主分支main保持一致)</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">M</span> <span class="n">main</span>
+
+<span class="c1"># 把远程仓库某分支最新代码取回本地，不会自动合并</span>
+<span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span><span class="o">/</span><span class="n">master</span>
+<span class="c1"># 合并分支</span>
+<span class="n">git</span> <span class="n">merge</span>
+<span class="c1"># 从已跟踪服务器拉取并自动合并</span>
+<span class="n">git</span> <span class="n">pull</span>  <span class="c1"># 等同于：git fetch + git merge</span>
+
+<span class="c1"># 推送到远程仓库</span>
+<span class="n">git</span> <span class="n">push</span> <span class="p">[</span><span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">main</span><span class="p">]</span>  <span class="c1"># # 首次推送加-u参数，设置默认仓库和分支</span>
 </code></pre></div>
                 
                   

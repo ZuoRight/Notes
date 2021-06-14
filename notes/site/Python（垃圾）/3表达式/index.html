@@ -1920,20 +1920,13 @@
 <p>另外变量可以被删除，但是对象无法被删除，只能被垃圾回收。</p>
 <p><strong>动态语言</strong>，在运行时才会检查，所以无需声明数据类型，同一变量可以反复赋值不同类型的数据。</p>
 <div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Python</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="c1"># 不需要关键字定义</span>
-<span class="c1"># 初始值可以赋值为：None</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 不需要关键字定义</span>
+<span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># 初始值可以赋值为：None</span>
 
-<span class="c1"># 同时给多个变量赋值</span>
-<span class="c1"># 值相同</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="c1"># 值不同，可以用序列解包</span>
-<span class="n">t</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>  <span class="c1"># t会默认为一个tuple</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">t</span>  <span class="c1"># 变量个数要与tuple元素个数一致，否则会报错</span>
-<span class="c1"># 序列解包可简写为</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
-<span class="c1"># 序列解包还可用于值交换</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 同时给多个变量赋相同值</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span>  <span class="c1"># 同时给多个变量赋不同值，要一一对应，否则会报错，比如：x,y,z=1 或 x,y=1,2,3 都是不对的</span>
+
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span><span class="n">x</span>  <span class="c1"># 值交换</span>
 </code></pre></div>
 
 </div>
@@ -1948,7 +1941,7 @@
 <p><strong>静态语言</strong>，会在编译时检查数据类型，所以需要提前声明，同一变量只能反复赋值同类型的数据。</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Java</span>
 <span class="c1">// 未赋值时初始值为：0</span>
-<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </code></pre></div>
 
 <h2 id="_5">运算符<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
@@ -1975,7 +1968,7 @@
 <span class="n">a</span> <span class="ow">is</span> <span class="n">b</span>  <span class="c1"># True</span>
 <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>  <span class="c1"># False</span>
 
-<span class="bp">None</span> <span class="ow">is</span> <span class="bp">None</span>  <span class="c1"># True</span>
+<span class="kc">None</span> <span class="ow">is</span> <span class="kc">None</span>  <span class="c1"># True</span>
 </code></pre></div>
 
 <h3 id="bool_2">成员运算符，返回bool值<a class="headerlink" href="#bool_2" title="Permanent link">&para;</a></h3>
@@ -2159,7 +2152,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-06-10</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-06-12</span>
     
   </small>
 </div>

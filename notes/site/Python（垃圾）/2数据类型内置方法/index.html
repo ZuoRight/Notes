@@ -1829,6 +1829,8 @@
                 
                 
                 <h1 id="_1">数据类型内置方法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>哪些方法是有返回值的，哪些是返回None？（可变数据结构的方法都返回None？）</p>
+<p>哪些方法不改变原对象，哪些改变，规则是什么？</p>
 <h2 id="_2">字符串<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span>  <span class="nb">dir</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 
@@ -1879,14 +1881,14 @@
 <span class="c1"># 在指定字符处将字符串分割，组成列表返回</span>
 <span class="c1"># 指定字符不存在则返回整个字符串</span>
 <span class="c1"># 指定为空时默认在&lt;空格&gt;\r\n\f\t\v等地方分割</span>
-<span class="n">_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">[</span><span class="err">分割次数</span><span class="p">])</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">分割次数</span><span class="p">])</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">&quot;a,b,c,d&quot;.split(&quot;,&quot;, 2)  # [&quot;a&quot;, &quot;b&quot;, &quot;c,d&quot;]</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># 把字符串中的“a”替换为“b”</span>
 <span class="c1"># 注意：不改变原字符串</span>
-<span class="n">_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="p">[</span><span class="err">替换个数</span><span class="p">])</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">替换个数</span><span class="p">])</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">tel=&quot;12345678888&quot;</span>
 <span class="sd">tel.replace(tel[3:7], &quot;*&quot;*5)  # &#39;123*****8888&#39;</span>
@@ -1894,7 +1896,7 @@
 
 <span class="c1"># 可以拼接序列的每一个元素</span>
 <span class="c1"># 序列为list或tuple时元素必须为字符串类型</span>
-<span class="n">_str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="err">序列</span><span class="p">)</span>
+<span class="n">_str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">序列</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">&quot;+&quot;.join(&quot;123&quot;)  # &quot;1+2+3&quot;</span>
 <span class="sd">&quot;&quot;.join([&quot;a&quot;,&quot;b&quot;,&quot;c&quot;])  # &quot;abc&quot;</span>
@@ -1910,12 +1912,12 @@
 <span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">%s</span><span class="s2">de&quot;</span> <span class="o">%</span><span class="n">x</span>
 
 <span class="c1"># 方式2：{}.format()</span>
-<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab{}de&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab{0}de{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 索引指定</span>
-<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab{c}de{f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 关键字指定</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{}</span><span class="s2">de&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{0}</span><span class="s2">de</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 索引指定</span>
+<span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;ab</span><span class="si">{c}</span><span class="s2">de</span><span class="si">{f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>  <span class="c1"># 关键字指定</span>
 
 <span class="c1"># 方式3：f&#39;{}&#39;</span>
-<span class="n">f</span><span class="s1">&#39;ab{x}de&#39;</span>
+<span class="sa">f</span><span class="s1">&#39;ab</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">de&#39;</span>
 </code></pre></div>
 
 <ul>
@@ -1942,12 +1944,12 @@
 
 <div class="highlight"><pre><span></span><code><span class="c1"># 列表自带排序方法(原对象会被改变)</span>
 <span class="n">_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="n">_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 倒序</span>
+<span class="n">_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 倒序</span>
 <span class="n">_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>  <span class="c1"># 按字符长度排</span>
 
 <span class="c1"># 内置函数sorted()排序，元素类型要一致可排，否则报错(原对象不变)</span>
 <span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span>  <span class="c1"># 正序</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># 倒序</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 倒序</span>
 </code></pre></div>
 
 <h2 id="set">set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h2>
@@ -2005,6 +2007,8 @@
 <div class="highlight"><pre><span></span><code><span class="n">_list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 <span class="n">_set</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 <span class="n">_dict</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="k">del</span> <span class="n">_list</span><span class="p">[:]</span>
 </code></pre></div>
 
 <h3 id="_5">增<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
@@ -2013,10 +2017,12 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># x被当作一个整体，添加到末尾</span>
 
-<span class="n">_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># x（必须为可迭代的），会被当作一组，组中元素按序添加到末尾</span>
+<span class="n">_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># x必须为可迭代的，会被当作一组，组中元素按序添加到末尾</span>
 
 <span class="n">_list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>  <span class="c1"># x被当作一个整体，插入到指定位置</span>
-<span class="n">_list</span><span class="p">[</span><span class="n">m</span><span class="p">:</span><span class="n">m</span><span class="p">]</span>  <span class="c1"># 还可以用切片的方式插入</span>
+
+<span class="n">_list</span><span class="p">[</span><span class="n">m</span><span class="p">:</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>  <span class="c1"># 还可以用切片的方式插入</span>
+<span class="n">_list</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">_list</span><span class="p">):]</span> <span class="o">=</span> <span class="n">x</span>  <span class="c1"># 末尾插入</span>
 </code></pre></div>
 
 <ul>
@@ -2033,6 +2039,7 @@
 
 <h3 id="_6">删<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p><code>.pop()</code>方法在三种数据类型中用法不太一致，需要参数，不需要参数，指定删除，随机删除，删除末位……擦，真特么乱。</p>
+<p>不管怎么删除都会返回被删除的元素。而remove不会。</p>
 <p>为什么呢？</p>
 <p>因为字典带有key，所以可以带参数（且必须带参数，为什么？），按key删除</p>
 <p>而list可以下标，可以带参数下标来删除，如果不带就删除末位</p>
@@ -2060,7 +2067,7 @@
 <li>dict</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>  <span class="c1"># 删除指定key，并返回被删除key对应的值</span>
-<span class="n">_dict</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>  <span class="c1"># 删除末位，并返回被删除的键值对</span>
+<span class="n">_dict</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>  <span class="c1"># 随机删除（但其实删除的是末位，字典现在是有序的），并返回被删除的键值对</span>
 </code></pre></div>
 
 <ul>
@@ -2098,7 +2105,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-03-24</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-06-12</span>
     
   </small>
 </div>

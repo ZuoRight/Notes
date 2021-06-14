@@ -1771,17 +1771,17 @@
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
 
 <span class="n">computer_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">person_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入：&quot;</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">person_number</span> <span class="o">&gt;</span> <span class="n">computer_number</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;大了&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;大了&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">person_number</span> <span class="o">&lt;</span> <span class="n">computer_number</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;小了&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;小了&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">person_number</span> <span class="o">==</span> <span class="n">computer_number</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;对了&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;对了&quot;</span><span class="p">)</span>
         <span class="k">break</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;奇了怪了&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;奇了怪了&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <h2 id="1100">快速求1~100所有整数之和<a class="headerlink" href="#1100" title="Permanent link">&para;</a></h2>
@@ -1841,12 +1841,12 @@
 
 <span class="c1"># 计算一个数的平方</span>
 <span class="n">square</span> <span class="o">=</span> <span class="n">nth_power</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># 相当于square = exponent_of，且已知exponent=2</span>
-<span class="k">print</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># base=2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># base=2</span>
 
 
 <span class="c1"># 计算一个数的立方</span>
 <span class="n">cube</span> <span class="o">=</span> <span class="n">nth_power</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># 相当于cube = exponent_of，且已知exponent=2</span>
-<span class="k">print</span><span class="p">(</span><span class="n">cube</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># base=2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cube</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># base=2</span>
 </code></pre></div>
 
 <h2 id="_3">阶乘<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -1867,14 +1867,14 @@
 
 
 <span class="c1"># 之所以加了一层写嵌套，是为了在递归前只检查一次参数类型即可，不然写在递归函数里，每次递归都要检查，影响程序效率</span>
-<span class="k">print</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 </code></pre></div>
 
 <h2 id="_4">单词排序<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span>
 
 <span class="c1"># 忽略字母大小写（需要先把字母都变为大写或小写），倒序排列</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
 <hr />
@@ -1887,25 +1887,25 @@
 
 <span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">lst</span><span class="o">=</span><span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-    <span class="k">print</span> <span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">lst</span><span class="p">)</span>
 
 
 <span class="c1"># 操作文件</span>
 <span class="c1"># 第一种</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/path...&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="c1">#只读模式打开</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="k">finally</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="c1"># 第二种</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../path...&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="k">print</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 
 
 <span class="c1"># 自动化脚本</span>
-<span class="kn">import</span> <span class="nn">selenium</span> <span class="nn">from</span> <span class="nn">webdriver</span>
+<span class="kn">import</span> <span class="nn">selenium</span> <span class="kn">from</span> <span class="nn">webdriver</span>
 
 <span class="n">b</span><span class="o">=</span><span class="n">webdriver</span><span class="o">.</span><span class="n">firefox</span><span class="p">()</span>  <span class="c1">#打开浏览器</span>
 <span class="n">b</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">)</span>  <span class="c1">#输入地址</span>

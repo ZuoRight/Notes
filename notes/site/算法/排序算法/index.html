@@ -1801,14 +1801,14 @@
 
 <p>逻辑优化：短冒泡</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">short_bubble_sort</span><span class="p">(</span><span class="n">_list</span><span class="p">):</span>
-    <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">exchanges</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">pass_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="n">pass_num</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">exchanges</span><span class="p">:</span>
-        <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">exchanges</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="c1"># 如果在一轮遍历中没有发生元素交换，则可以确定列表已经有序，将不继续做没有意义的循环</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pass_num</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">exchanges</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
         <span class="n">pass_num</span> <span class="o">=</span> <span class="n">pass_num</span> <span class="o">-</span><span class="mi">1</span>
