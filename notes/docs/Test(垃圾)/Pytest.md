@@ -94,11 +94,10 @@ def xxx():
 
 ### 命令行运行
 
-- 执行当前目录下所有测试文件：`pytest -参数`
-- 执行指定目录下所有测试文件：`pytest -参数 /test_dir`
+- 执行所有测试文件：`pytest [-参数] [/test_dir]`
 - 执行指定测试文件：`pytest test_xx.py`
-- 执行指定测试函数：`pytest test_xx.py::test_01`
-- 执行匹配测试函数：`pytest -k 模糊匹配字段 test_xx.py`
+- 执行指定测试文件指定测试函数：`pytest test_xx.py::test_01`
+- 执行匹配测试函数：`pytest test_xx.py -k 模糊匹配表达式`
 
 ### main方法中运行
 
@@ -107,7 +106,7 @@ def xxx():
 import pytest
 
 if __name__ == '__main__':
-    pytest.main(["-参数", "test_xx.py"])
+    pytest.main(["test_xx.py::指定测试方法或类", "-参数"])
 ```
 
 ## 执行结果：
@@ -148,12 +147,34 @@ def test_02()
 ## 参数化
 
 ```python
-_list = [("admin", "111111"),  ("admin", "")]
+# @pytest.mark.parametrize(argnames, argvalues)
+# argnames 要参数化的变量，可以是："k1,k2"，[k1,k2]，(k1,k2)
+# argvalues 变量一一对应的值，可以是：[(a1,a2),(b1,b2),(c1,c2)]
 
-# 遍历_list中的元素，赋值给x
-@pytest.mark.parametrize("x", _list)
-def test_01(x[0], x[1]):
-    pass
+_list = [(1, 2),  (4, 10), (7, 20)]
+# @pytest.mark.parametrize("a,b"], _list)  # str形式
+# @pytest.mark.parametrize(["a","b"], _list)  # list形式
+@pytest.mark.parametrize(("a","b"), _list)  # tuple形式
+def test_01(a, b):
+    print(a+b)
+```
+
+- yaml形式
+
+```yaml
+-
+ - 1
+ - 2
+-
+ - 4
+ - 7
+```
+
+```python
+_list = yaml.safe_load(open("./xx.yaml"))
+@pytest.mark.parametrize(("a","b"), _list)
+def test_01(a, b):
+    print(a+b)
 ```
 
 ### 生成测试报告
