@@ -155,6 +155,7 @@ _list = [(1, 2),  (4, 10), (7, 20)]
 # @pytest.mark.parametrize("a,b"], _list)  # str形式
 # @pytest.mark.parametrize(["a","b"], _list)  # list形式
 @pytest.mark.parametrize(("a","b"), _list)  # tuple形式
+# 笛卡尔积形式
 def test_01(a, b):
     print(a+b)
 ```
@@ -191,3 +192,14 @@ pytest --html=report.html --self-contained-html
 ```python
 pip3 install allure-pytest
 ```
+
+
+## 常用命令
+
+-v 打印详细信息
+
+-s 收集打印信息，即print()的信息
+
+-x 遇到失败用例则停止
+
+-maxfail==2
