@@ -1221,35 +1221,35 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    运行
+    参数化
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    测试范围
+    运行
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    测试失败，怎么处理
+    测试范围
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    调试信息
+    测试失败，怎么处理
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    参数化
+    调试信息
   </a>
   
 </li>
@@ -1818,35 +1818,35 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    运行
+    参数化
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    测试范围
+    运行
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    测试失败，怎么处理
+    测试范围
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    调试信息
+    测试失败，怎么处理
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    参数化
+    调试信息
   </a>
   
 </li>
@@ -2032,50 +2032,20 @@
   <span class="k">pass</span>
 </code></pre></div>
 
-<h2 id="_1">运行<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<ul>
-<li>文件中执行：<code>pytest.main()</code></li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s2">&quot;test_xx.py::类/函数&quot;</span><span class="p">,</span> <span class="s2">&quot;-参数&quot;</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">return</span> <span class="n">c</span>
+
+<span class="n">_list</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">]]</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;a,b&quot;</span><span class="p">,</span> <span class="n">_list</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_01</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">login</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">login</span><span class="p">)</span>
 </code></pre></div>
 
-<ul>
-<li>命令行执行：<code>pytest</code> 或 <code>py.test</code></li>
-</ul>
-<p>会收集所有符合编写规范的文件以及文件内的函数和类以及方法，然后根据参数等略过不需要执行的</p>
-<p>collected 7 items / 6 deselected / 1 selected</p>
-<p><img alt="4663921b77def085d62ac258dac1c94" src="http://image.zuoright.com/4663921b77def085d62ac258dac1c94.png" /></p>
-<h2 id="_2">测试范围<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li>测试指定文件：<code>pytest test_x.py</code></li>
-<li>测试指定类/函数：<code>pytest test_x.py::类名/函数名</code></li>
-<li>测试指定方法：<code>pytest test_x.py::类名::方法名</code></li>
-<li>模糊匹配(不区分大小写)：<code>pytest -k 表达式</code>
-  <div class="highlight"><pre><span></span><code>pytest -k a  <span class="c1"># 测试【包含】a的case</span>
-pytest -k <span class="s2">&quot;not a&quot;</span>  <span class="c1"># 测试【不包含】a的case</span>
-pytest -k <span class="s2">&quot;a or b&quot;</span>  <span class="c1"># 测试包含a【或】b的case</span>
-pytest -k <span class="s2">&quot;a and b&quot;</span>  <span class="c1"># 测试【既包含】a【又包含】b的case</span>
-pytest -k <span class="s2">&quot;a and not b&quot;</span>  <span class="c1"># 测试【包含】a【但不包含】b的case</span>
-</code></pre></div></li>
-<li>测试带<code>@pytest.mark.xxx</code>装饰器(标记)的Case：<code>pytest -m xxx</code></li>
-</ul>
-<h2 id="_3">测试失败，怎么处理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<ul>
-<li>遇到任一条用例失败立即退出：<code>pytest -x</code></li>
-<li>遇到n条失败后退出：<code>pytest --maxfail=n</code></li>
-</ul>
-<h2 id="_4">调试信息<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<ul>
-<li>verbose 罗嗦
-<img alt="1f5e32c3bbf3b6e7a345b4dfaa5f72e" src="http://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png" /></li>
-</ul>
-<p><img alt="f47d5c603ff0862910a548ead5df0ec" src="http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png" /></p>
-<ul>
-<li>quiet 安静</li>
-</ul>
-<p><img alt="0b6becba62a5c6685a92aa82a50b191" src="http://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png" /></p>
-<h2 id="_5">参数化<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_1">参数化<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p><code>@pytest.mark.parametrize(argnames, argvalues)</code></p>
 <p>argnames 被参数化的变量，形式："k1,k2"（字符串中逗号分隔变量）</p>
 <p>argvalues 与变量一一对应的一组值，可以传入一个集合</p>
@@ -2124,6 +2094,78 @@ pytest -k <span class="s2">&quot;a and not b&quot;</span>  <span class="c1"># �
     <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
 </code></pre></div>
 
+<ul>
+<li>使用fixture参数化</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>  <span class="c1"># 固定参数</span>
+  <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">param</span>  <span class="c1"># 固定数据返回方式</span>
+
+<span class="k">def</span> <span class="nf">test_01</span><span class="p">(</span><span class="n">login</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">login</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 每条用例可以获得params中的一个值</span>
+</code></pre></div>
+
+<ul>
+<li>parametrize + fixture 形式</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">param</span>
+
+<span class="n">_list</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="c1"># indirect=True时，argnames可以传入一个fixture函数</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;login&quot;</span><span class="p">,</span> <span class="n">_list</span><span class="p">,</span> <span class="n">indirect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_01</span><span class="p">(</span><span class="n">login</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">login</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="_2">运行<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>文件中执行：<code>pytest.main()</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s2">&quot;test_xx.py::类/函数&quot;</span><span class="p">,</span> <span class="s2">&quot;-参数&quot;</span><span class="p">])</span>
+</code></pre></div>
+
+<ul>
+<li>命令行执行：<code>pytest</code> 或 <code>py.test</code></li>
+</ul>
+<p>会收集所有符合编写规范的文件以及文件内的函数和类以及方法，然后根据参数等略过不需要执行的</p>
+<p>collected 7 items / 6 deselected / 1 selected</p>
+<p><img alt="4663921b77def085d62ac258dac1c94" src="http://image.zuoright.com/4663921b77def085d62ac258dac1c94.png" /></p>
+<h2 id="_3">测试范围<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>测试指定文件：<code>pytest test_x.py</code></li>
+<li>测试指定类/函数：<code>pytest test_x.py::类名/函数名</code></li>
+<li>测试指定方法：<code>pytest test_x.py::类名::方法名</code></li>
+<li>模糊匹配(不区分大小写)：<code>pytest -k 表达式</code>
+  <div class="highlight"><pre><span></span><code>pytest -k a  <span class="c1"># 测试【包含】a的case</span>
+pytest -k <span class="s2">&quot;not a&quot;</span>  <span class="c1"># 测试【不包含】a的case</span>
+pytest -k <span class="s2">&quot;a or b&quot;</span>  <span class="c1"># 测试包含a【或】b的case</span>
+pytest -k <span class="s2">&quot;a and b&quot;</span>  <span class="c1"># 测试【既包含】a【又包含】b的case</span>
+pytest -k <span class="s2">&quot;a and not b&quot;</span>  <span class="c1"># 测试【包含】a【但不包含】b的case</span>
+</code></pre></div></li>
+<li>测试带<code>@pytest.mark.xxx</code>装饰器(标记)的Case：<code>pytest -m xxx</code></li>
+</ul>
+<h2 id="_4">测试失败，怎么处理<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>遇到任一条用例失败立即退出：<code>pytest -x</code></li>
+<li>遇到n条失败后退出：<code>pytest --maxfail=n</code></li>
+</ul>
+<h2 id="_5">调试信息<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>verbose 罗嗦
+<img alt="1f5e32c3bbf3b6e7a345b4dfaa5f72e" src="http://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png" /></li>
+</ul>
+<p><img alt="f47d5c603ff0862910a548ead5df0ec" src="http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png" /></p>
+<ul>
+<li>quiet 安静</li>
+</ul>
+<p><img alt="0b6becba62a5c6685a92aa82a50b191" src="http://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png" /></p>
 <h2 id="_6">插件<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>插件列表：<a href="https://docs.pytest.org/en/latest/reference/plugin_list.html">https://docs.pytest.org/en/latest/reference/plugin_list.html</a></p>
 <h3 id="_7">指定用例执行顺序<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>

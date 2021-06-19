@@ -117,54 +117,19 @@ class TestDemo:
   pass
 ```
 
-## 运行
-
-- 文件中执行：`pytest.main()`
-
 ```python
-if __name__ == '__main__':
-    pytest.main(["test_xx.py::类/函数", "-参数"])
+import pytest
+
+@pytest.fixture()
+def login():
+    c = 3
+    return c
+
+_list=[[1,2], [10,20]]
+@pytest.mark.parametrize("a,b", _list)
+def test_01(a, b, login):
+    print(a + b + login)
 ```
-
-- 命令行执行：`pytest` 或 `py.test`
-
-会收集所有符合编写规范的文件以及文件内的函数和类以及方法，然后根据参数等略过不需要执行的
-
-collected 7 items / 6 deselected / 1 selected
-
-![4663921b77def085d62ac258dac1c94](http://image.zuoright.com/4663921b77def085d62ac258dac1c94.png)
-
-## 测试范围
-
-- 测试指定文件：`pytest test_x.py`
-- 测试指定类/函数：`pytest test_x.py::类名/函数名`
-- 测试指定方法：`pytest test_x.py::类名::方法名`
-- 模糊匹配(不区分大小写)：`pytest -k 表达式`
-  ```shell
-  pytest -k a  # 测试【包含】a的case
-  pytest -k "not a"  # 测试【不包含】a的case
-  pytest -k "a or b"  # 测试包含a【或】b的case
-  pytest -k "a and b"  # 测试【既包含】a【又包含】b的case
-  pytest -k "a and not b"  # 测试【包含】a【但不包含】b的case
-
-  ```
-- 测试带`@pytest.mark.xxx`装饰器(标记)的Case：`pytest -m xxx`
-
-## 测试失败，怎么处理
-
-- 遇到任一条用例失败立即退出：`pytest -x`
-- 遇到n条失败后退出：`pytest --maxfail=n`
-
-## 调试信息
-
-- verbose 罗嗦
-![1f5e32c3bbf3b6e7a345b4dfaa5f72e](http://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png)
-
-![f47d5c603ff0862910a548ead5df0ec](http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png)
-
-- quiet 安静
-
-![0b6becba62a5c6685a92aa82a50b191](http://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png)
 
 ## 参数化
 
@@ -219,6 +184,84 @@ _list = yaml.safe_load(open(yaml_file))  # [[1,2], [3,4]]
 def test_demo(a, b):
     print(a+b)
 ```
+
+- 使用fixture参数化
+
+```python
+import pytest
+
+@pytest.fixture(params=[1,2,3])
+def login(request):  # 固定参数
+  return request.param  # 固定数据返回方式
+
+def test_01(login):
+  print(login + 1)  # 每条用例可以获得params中的一个值
+```
+
+- parametrize + fixture 形式
+
+```python
+import pytest
+
+@pytest.fixture()
+def login(request):
+    return request.param
+
+_list=[1,2,3]
+# indirect=True时，argnames可以传入一个fixture函数
+@pytest.mark.parametrize("login", _list, indirect=True)
+def test_01(login):
+    print(login+1)
+```
+
+## 运行
+
+- 文件中执行：`pytest.main()`
+
+```python
+if __name__ == '__main__':
+    pytest.main(["test_xx.py::类/函数", "-参数"])
+```
+
+- 命令行执行：`pytest` 或 `py.test`
+
+会收集所有符合编写规范的文件以及文件内的函数和类以及方法，然后根据参数等略过不需要执行的
+
+collected 7 items / 6 deselected / 1 selected
+
+![4663921b77def085d62ac258dac1c94](http://image.zuoright.com/4663921b77def085d62ac258dac1c94.png)
+
+## 测试范围
+
+- 测试指定文件：`pytest test_x.py`
+- 测试指定类/函数：`pytest test_x.py::类名/函数名`
+- 测试指定方法：`pytest test_x.py::类名::方法名`
+- 模糊匹配(不区分大小写)：`pytest -k 表达式`
+  ```shell
+  pytest -k a  # 测试【包含】a的case
+  pytest -k "not a"  # 测试【不包含】a的case
+  pytest -k "a or b"  # 测试包含a【或】b的case
+  pytest -k "a and b"  # 测试【既包含】a【又包含】b的case
+  pytest -k "a and not b"  # 测试【包含】a【但不包含】b的case
+
+  ```
+- 测试带`@pytest.mark.xxx`装饰器(标记)的Case：`pytest -m xxx`
+
+## 测试失败，怎么处理
+
+- 遇到任一条用例失败立即退出：`pytest -x`
+- 遇到n条失败后退出：`pytest --maxfail=n`
+
+## 调试信息
+
+- verbose 罗嗦
+![1f5e32c3bbf3b6e7a345b4dfaa5f72e](http://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png)
+
+![f47d5c603ff0862910a548ead5df0ec](http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png)
+
+- quiet 安静
+
+![0b6becba62a5c6685a92aa82a50b191](http://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png)
 
 ## 插件
 
