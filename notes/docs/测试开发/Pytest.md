@@ -4,7 +4,7 @@
 
 安装：`pip install pytest`
 
-帮助：`pytest --help`
+帮助：`pytest --help | grep xxx`
 
 ## Case编写规范
 
@@ -92,7 +92,7 @@ def login():
 """
 scope  作用范围
   session 或 package  多个文件共调用一次，通常把fixture写在conftest.py文件中
-  module  模块级，类似于setup/teardown_module
+  module  模块级，类似于setup/teardown_module，会在第一个调用它的函数前开始执行，在模块最后再执行
   class  类级别，类似于setup/teardown_function + setup/teardown_class
   function  函数或者方法级（默认），类似于setup/teardown_function + setup/teardown_method
 
@@ -133,11 +133,13 @@ def test_01(a, b, login):
 
 ## 参数化
 
-`@pytest.mark.parametrize(argnames, argvalues)`
+`@pytest.mark.parametrize(argnames, argvalues, idirect=False, ids=None)`
 
-argnames 被参数化的变量，形式："k1,k2"（字符串中逗号分隔变量）
+argnames="k1,k2" 被参数化的变量，字符串中逗号分隔变量，也可以是列表或元组的形式
 
-argvalues 与变量一一对应的一组值，可以传入一个集合
+argvalues=[] 与变量一一对应的一组值，可以传入一个集合
+
+ids=[] 给每一组argvalues起个别名
 
 - 普通形式
 
@@ -169,12 +171,8 @@ def test_demo(a, b):
 - 数据驱动
 
 ```yaml
--
- - 1
- - 2
--
- - 3
- - 4
+- [1, 2]
+- [3, 4]
 ```
 
 ```python
@@ -191,7 +189,7 @@ def test_demo(a, b):
 import pytest
 
 @pytest.fixture(params=[1,2,3])
-def login(request):  # 固定参数
+def login(request):  # 固定参数，request其实是一个内置fixture
   return request.param  # 固定数据返回方式
 
 def test_01(login):
@@ -231,6 +229,8 @@ collected 7 items / 6 deselected / 1 selected
 
 ![4663921b77def085d62ac258dac1c94](http://image.zuoright.com/4663921b77def085d62ac258dac1c94.png)
 
+可以只收集不执行：`pytest --collect-only`
+
 ## 测试范围
 
 - 测试指定文件：`pytest test_x.py`
@@ -245,7 +245,7 @@ collected 7 items / 6 deselected / 1 selected
   pytest -k "a and not b"  # 测试【包含】a【但不包含】b的case
 
   ```
-- 测试带`@pytest.mark.xxx`装饰器(标记)的Case：`pytest -m xxx`
+- 测试带`@pytest.mark.xxx`标签的Case(同一case可带多个标签)：`pytest -m xxx`
 
 ## 测试失败，怎么处理
 
@@ -271,48 +271,52 @@ collected 7 items / 6 deselected / 1 selected
 
 `pip install pytest-ordering`
 
-pytest默认乱序加载，可以用`pytest.mark.run(order=n)`设置顺序(1、2、3、-1)
+pytest默认按照收集顺序执行（即从上到下），可以用`pytest.mark.run(order=n)`自定义顺序(0、1、2、3、-3、-2、-1)
 
-### 并发执行
+### 多进程并发执行
 
 ```shell
 pip install pytest-xdist
 
-pytest -n auto  # 自动检测系统cpu数量并发执行
+pytest -n auto  # 自动检测系统空闲cpu数量并发执行
 pytest -n 4  # 指定4个cpu并发执行
 ```
 
 ### 生成测试报告
 
+`.F.F..`中的`.`代表测试通过，`F`（Fail）代表测试失败
+
+- fixture中的断言如果失败，结果会显示error
+- case中的断言如果失败，结果会显示failed
+
+- 生成xml文件
+
+`pytest junitxml=./result.xml`
+
 - pytest-html
 
-```python
-# 不加--self-contained-html时css样式是独立的
+```shell
+pip install pytest-html
+
+# --self-contained-html css样式混在html中，不加则独立
 pytest --html=report.html --self-contained-html
-```
-
-- allure
-
-```python
-pip3 install allure-pytest
 ```
 
 ## 配置文件
 
-- `conftest.py` 一些fixture配置
-- `pytest.ini` pytest的主配置文件，可以改变pytest的默认行为
+- `conftest.py` 一些fixture和hook配置，如果有多个conftest，就近原则，深度查找
+- `pytest.ini` pytest的配置文件，可以改变pytest的默认行为，windows下不能使用中文
 - `tox.ini` 与pytest.ini类似，用tox工具时候才有用
 - `setup.cfg` 也是ini格式文件，影响setup.py的行为
 
 ## pytest.ini
 
-- 指定哪些执行哪些不执行
+自定义标签加到ini中，则不会警告标签unknown
 
 ```ini
 [pytest]
-markers = 
-    do: do
-    undo: undo
+markers = do
+    undo
 ```
 
 ```python
@@ -324,10 +328,3 @@ def test_01()
 def test_02()
   pass
 ```
-
-## 执行结果：
-
-`.F.F..`中的`.`代表测试通过，`F`（Fail）代表测试失败
-
-- fixture中的断言如果失败，结果会显示error
-- case中的断言如果失败，结果会显示failed
