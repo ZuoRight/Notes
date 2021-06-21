@@ -77,9 +77,9 @@ DATABASES = {
 
 - 其它数据库
 
-除了以下配置还需要数据库驱动，并且先创建数据库，以及必要的权限
-
 安装驱动：`pip install pymysql`
+
+创建库：`create database xx_name`
 
 ```python
 # 配置
@@ -504,6 +504,14 @@ body {
     background: white url("images/xxx.gif") no-repeat;
 }
 ```
+
+### 过滤器
+
+过滤器的`|`符号左右最好不要加空格，否则被for循环时会报错
+
+自定义过滤器
+
+![20210621191818](http://image.zuoright.com/20210621191818.png)
 
 ## 通用视图
 
