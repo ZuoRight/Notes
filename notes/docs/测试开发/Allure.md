@@ -26,10 +26,18 @@ allure open -h 127.0.0.1 -p 8883 tmp/path
 
 ## 常用特性
 
-- `@allure.testcase("url")`  用例标识，可以填写case管理的地址
-- `@allure.feature("功能")`
-- `@allure.story("子功能")`
-- `@allure.step("步骤，放在类/方法上面")` 或 `with allure.step("步骤，放在方法内")`
-- `@allure.attach.file("附加信息")`
+
+```python
+import allure
+
+@allure.testcase("用例标识，可以填写case管理的地址")
+@allure.feature("功能")
+@allure.story("子功能")
+@allure.title("用例标题")
+@allure.step("步骤，放在类/方法上面")
+@allure.attach.file("附加信息")
+
+with allure.step("步骤，放在方法内")
+```
 
 测试指定功能/子功能：`pytest --allure-features/stories="xxx"`

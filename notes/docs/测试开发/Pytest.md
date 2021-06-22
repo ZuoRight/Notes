@@ -231,6 +231,8 @@ collected 7 items / 6 deselected / 1 selected
 
 可以只收集不执行：`pytest --collect-only`
 
+查看fixture执行过程：`pytest --setup-show`
+
 ## 测试范围
 
 - 测试指定文件：`pytest test_x.py`
@@ -247,10 +249,17 @@ collected 7 items / 6 deselected / 1 selected
   ```
 - 测试带`@pytest.mark.xxx`标签的Case(同一case可带多个标签)：`pytest -m xxx`
 
+## 测试用例原则
+
+- case之间保持独立，不要有依赖关系
+- case可以重复运行，可以随机运行
+- case运行结果不会影响其它用例
+
 ## 测试失败，怎么处理
 
 - 遇到任一条用例失败立即退出：`pytest -x`
 - 遇到n条失败后退出：`pytest --maxfail=n`
+- 失败重跑：`pip install pytest-rerunfailures`
 
 ## 调试信息
 
@@ -272,6 +281,10 @@ collected 7 items / 6 deselected / 1 selected
 `pip install pytest-ordering`
 
 pytest默认按照收集顺序执行（即从上到下），可以用`pytest.mark.run(order=n)`自定义顺序(0、1、2、3、-3、-2、-1)
+
+### 随机执行
+
+`pip install pytest-random-order`
 
 ### 多进程并发执行
 
@@ -309,22 +322,65 @@ pytest --html=report.html --self-contained-html
 - `tox.ini` 与pytest.ini类似，用tox工具时候才有用
 - `setup.cfg` 也是ini格式文件，影响setup.py的行为
 
-## pytest.ini
-
-自定义标签加到ini中，则不会警告标签unknown
+pytest.ini
 
 ```ini
 [pytest]
-markers = do
-    undo
+;自定义标签加到ini中，则不会警告标签unknown
+markers = mark1
+    mark2
+
+;设置运行时自带参数
+;--capture=no 打印详细日志，相当于命令行加 -vs
+addopts = --capture=no
 ```
+
+## 日志
 
 ```python
-@pytest.mark.do
-def test_01()
-  pass
+import logging
 
-@pytest.mark.undo
-def test_02()
-  pass
+logging.info("日志")
 ```
+
+pytest对logging模块做了改写，需要在pytest.ini中做一些配置
+
+```ini
+[pytest]
+
+;日志开关 true false
+log_cli = true
+;日志级别
+log_cli_level = info
+;日志格式
+log_cli_format = %(asctime)s [%(levelname)s] %(message)s (%(filename)s:%(lineno)s)
+;日志时间格式
+log_cli_date_format = %Y-%m-%d %H:%M:%S
+;日志文件位置
+log_file = ./log/test.log
+;日志文件等级
+log_file_level = info
+;日志文件格式
+log_file_format = %(asctime)s [%(levelname)s] %(message)s (%(filename)s:%(lineno)s)
+;日志文件日期格式
+log_file_date_format = %Y-%m-%d %H:%M:%S
+```
+
+动态生成日志文件名方法
+
+```python
+@pytest.fixture(scope="session", autouse=True)
+def manage_logs(request):
+    """Set log file name same as test name"""
+    now = time.strftime("%Y-%m-%d %H-%M-%S")
+    log_name = 'output/log/' + now + '.logs'
+
+    request.config.pluginmanager.get_plugin("logging-plugin") \
+        .set_log_path(return_path(log_name))
+```
+
+## 断言
+
+assert
+
+pytest.raise()
