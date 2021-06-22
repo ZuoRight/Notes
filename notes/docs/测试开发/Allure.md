@@ -32,5 +32,4 @@ allure open -h 127.0.0.1 -p 8883 tmp/path
 - `@allure.step("步骤，放在类/方法上面")` 或 `with allure.step("步骤，放在方法内")`
 - `@allure.attach.file("附加信息")`
 
-
 测试指定功能/子功能：`pytest --allure-features/stories="xxx"`
