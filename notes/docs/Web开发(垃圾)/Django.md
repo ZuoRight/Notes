@@ -79,7 +79,7 @@ DATABASES = {
 
 安装驱动：`pip install pymysql`
 
-创建库：`create database xx_name`
+创建库：`create database if not exists dbname default character set utf8 collate utf8_general_ci;`
 
 ```python
 # 配置
@@ -87,11 +87,16 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'NAME': 'mydatabase',  # 数据库名称
+        'NAME': 'dbname',  # 数据库名称
         'HOST': '127.0.0.1',  # host
         'PORT': 3306,  # 端口 
         'USER': 'root',  # 用户名
         'PASSWORD': '123456',  # 密码
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # 解决迁移时的一个警告
+            'charset': 'utf8mb4',
+            "isolation_level": "repeatable read",  # 隔离级别设置为可重复读取，为了迁移数据适配数据库默认Binlog=STATEMENT时报错
+        }
     }
 }
 ```
@@ -201,7 +206,7 @@ class Choice(models.Model):
 - models.BooleanField()  布尔值
 - models.DateField(auto_now_add/auto_now=True)  日期(第一次创建时设置为现在时间/每次保存时(更新时不会)设置为现在时间)
 - models.DateTimeField(auto_now_add/auto_now=True)  日期和时间
-- models.JSONField(encoder=None, decoder=None)  v3.1版本新加Json类型
+- models.JSONField(encoder=None, decoder=None)  v3.1版本新加Json类型，如果mysql为5.7以下版本不要使用这个类型
 - models.URLField(max_length=num)  URL
 - models.UUIDField()  唯一标识符
 
