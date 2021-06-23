@@ -57,7 +57,14 @@ python manage.py runserver 0:8000
 # mysite/settings.py
 TIME_ZONE = 'UTC'  # 时区
 LANGUAGE_CODE = 'en-us'  # 语言
+
+DEBUG = False
+ALLOWED_HOSTS = ["*"]  # DEBUG等于False时必需配置
 ```
+
+配置拆分，更好的管理不同环境时的配置
+
+![20210623152338](http://image.zuoright.com/20210623152338.png)
 
 ### 数据库配置
 
@@ -247,6 +254,34 @@ python manage.py makemigrations one_app
 - step2：执行迁移（执行SQL语句）
 
 ```shell
+python manage.py migrate
+```
+
+### 重置迁移文件
+
+```shell
+# 查看当前迁移文件记录及状态
+python manage.py showmigrations
+# 将某应用的迁移文件重置为未提交状态
+python manage.py migrate --fake 应用名 zero
+# 然后手动删除应用下的migrations文件（内置应用存放在env/lib/python/site-packages/django/contrib下）
+# 重新生成migrations文件
+python manage.py makemigrations
+# 重新在django_migrations表中加入记录
+python manage.py migrate 应用名 --fake-inital
+```
+
+### 压缩迁移文件
+
+```shell
+# 假设要压缩的应用为myapp，现在有5个迁移文件，最新的为0005_xxx
+# 生成压缩后的迁移文件
+python manage.py squashmigrations 0005
+# 把新的迁移文件提交下
+python manage.py makemigrations
+# 然后删除旧的迁移文件，把依赖旧迁移文件的地方(主要是其他应用中)都替换为新的文件名
+# 删除压缩迁移的 Migration 类的 replaces 属性
+# 最后执行下迁移命令不报错则说明压缩成功
 python manage.py migrate
 ```
 
@@ -493,23 +528,6 @@ urlpatterns = [
 </form>
 ```
 
-加载样式
-
-```html
-<!-- 生成静态文件的绝对路径 -->
-{百分号 load static 百分号}
-<link rel="stylesheet" type="text/css" href="{百分号 static 'one_app/style.css' 百分号}">
-```
-
-加载图片
-
-```css
-/* 图片存放在one_app/static/one_app/images/xxx.gif */
-body {
-    background: white url("images/xxx.gif") no-repeat;
-}
-```
-
 ### 过滤器
 
 过滤器的`|`符号左右最好不要加空格，否则被for循环时会报错
@@ -517,6 +535,62 @@ body {
 自定义过滤器
 
 ![20210621191818](http://image.zuoright.com/20210621191818.png)
+
+## 静态文件
+
+### 开发环境 DEBUG=True
+
+单独应用中
+
+settings.py
+
+```python
+STATIC_URL = '/static/'
+```
+
+```html
+<!-- 文件存放在one_app/static中 -->
+{百分号 load static 百分号}
+<link rel="stylesheet" type="text/css" href="{百分号 static 'css/style.css' 百分号}">
+
+<img width="180" height="180" src="{百分号 static 'img/xxx.jpg' 百分号}"
+```
+
+公共
+
+settings.py
+
+```python
+STATICFILES_DIRS = [ 
+    os.path.join(BASE_DIR, "statics"),
+]
+```
+
+### 生产环境 DEBUG=False
+
+此时Django不会再提供静态文件服务
+
+- 方式1
+
+加--insecure参数，但只适用于命令行启动
+
+`python manage.py runserver --insecure`
+
+- 方式2 CDN
+
+先把所有注册APP分散的静态资源都收集到统一位置：`STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')`
+
+然后执行收集：`python manage.py collectstatic`，存放在`static_cdn`路径下
+
+然后用Nginx提供静态资源服务
+
+```ini
+location /static/ {
+    alias /usr/share/nginx/mysite/static_cdn/;
+}
+```
+
+重新加载：`service nginx reload`
 
 ## 通用视图
 
