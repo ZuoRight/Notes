@@ -3,6 +3,8 @@
 - [官网](https://www.selenium.dev/)
 - [API文档](https://www.selenium.dev/selenium/docs/api/py/api.html)（[中文](https://selenium-python-zh.readthedocs.io/en/latest/)）
 
+用于测试的demo网站：<https://sahitest.com/demo/>
+
 ## 原理
 
 由以下三部分组成
@@ -13,13 +15,13 @@
 
 ## 环境搭建
 
-1. 安装Selenium：`pip install selenium`
+1. 安装Selenium插件：`pip install selenium`
 2. [下载浏览器驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
     - [Chrome: chromedriver](https://chromedriver.storage.googleapis.com/index.html)
     - [FireFox: geckodriver](https://github.com/mozilla/geckodriver/releases)
     - Safari: safaridriver(`usr/bin/`中已存在，无需再下载)
 
-注意：需要下载与本机浏览器相对应版本的驱动，否则运行时会报错。
+    > 注意：需要下载与本机浏览器相对应版本的驱动，否则运行时会报错。
 
 3. 配置环境变量
 
@@ -211,7 +213,7 @@ print(select.first_selected_option.text)
 
 ### 强制等待
 
-一般只在调试过程中使用
+强制线程休眠一定时间，一般只在调试过程中使用
 
 ```python
 import time
@@ -220,35 +222,34 @@ sleep(5)
 
 ### 隐性等待
 
-需要注意的是，当定位到元素后连用`.click()`时，隐性等待会失效
+在指定时间内，自动每隔0.5s查找一次元素，找到则退出循环，没找到则继续，超时则抛出异常。
 
 ```python
 driver.implicitly_wait(5)
 ```
+
+需要注意的是，当定位到元素后连用`.click()`时，隐性等待会失效
 
 ### 显性等待
 
 ```python
 from selenium.webdriver.support.ui import WebDriverWait
 
+# driver
+# timeout 超时时间
+# poll_frequency 检测频率，默认为0.5s
+# ignored_exceptions 超时后抛出异常，默认为NoSuchElementException
 wait = WebDriverWait(self.driver, timeout, poll_frequency, ignored_exceptions=None)
+
+# 满足预期条件时停止
+wait.until(method, message='')
+# 不满足预期条件时停止
+wait.until_not(method, message='')
+# 超时则抛出TimeoutException`、异常
 ```
 
-参数：
+其中的method可以自定义也可以使用EC模块提供的函数
 
-- `driver`
-- `timeout` 超时时间
-- `poll_frequency` 检测频率，默认为0.5s
-- `ignored_exceptions` 超时后抛出异常，默认为`NoSuchElementException`
-
-停止等待：
-
-- 满足预期条件时停止：`wait.until(EC.method, message='')`
-- 不满足预期条件时停止：`wait.until_not(EC.method, message='')`
-
-停止等待的方法必须为可调用的，即这个对象一定有`__call__()`方法，可以用selenium提供的ES模块，也可以用WebElement的`is_displayed()`、`is_enabled()`、`is_selected()`等方法。
-
-如果超时，抛出`TimeoutException`异常
 
 ## 预期条件·EC
 
@@ -309,6 +310,19 @@ EC.element_located_selection_state_to_be(locator, is_selected)
 ```
 
 ## ActionChains
+
+调用ActionsChains方法时，不会立即执行，而是将所有操作按顺序存放在一个队列中，当调用perform()方法时，队列中的事件会依次执行。
+
+```python
+from selenium.webdriver import ActionChains
+
+action = ActionChains(driver)  # 生成一个动作
+action.添加方法1
+action.添加方法2
+action.perform()  # 执行
+
+
+```
 
 ### 鼠标操作
 
