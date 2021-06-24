@@ -391,3 +391,19 @@ driver.get_screenshot_as_png()  # 获取当前截图的二进制数据
 ## 异常
 
 `from selenium.common.exceptions import TimeoutException`
+
+## Chrome复用调试
+
+1. 关闭所有Chrome浏览器窗口，并保证进程已退出
+2. 命令行以调试模式启动Chrome，端口可自定义
+   - windows：`path\chrome --remote-debugging-port=9222`
+   - mac：`Google\ Chrome --remote-debugging-port=9222`
+3. 访问<http://127.0.0.1:9222/>查看是否成功
+3. 使用如下脚本即可在当前窗口直接操作
+   ```python
+    def test_debug():
+        opt = webdriver.ChromeOptions()
+        opt.debugger_address = "localhost:9222"
+        driver = webdriver.Chrome(options=opt)
+        driver.get("xxx")
+   ```
