@@ -9,6 +9,8 @@
 
 ## pip
 
+官方文档：<https://pip.pypa.io/en/stable/cli/>
+
 ```shell
 # 查看所有命令参数
 pip

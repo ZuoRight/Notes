@@ -15,27 +15,20 @@
 
 ## 环境搭建
 
-1. 安装Selenium插件：`pip install selenium`
-2. [下载浏览器驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
-    - [Chrome: chromedriver](https://chromedriver.storage.googleapis.com/index.html)
-    - [FireFox: geckodriver](https://github.com/mozilla/geckodriver/releases)
-    - Safari: safaridriver(`usr/bin/`中已存在，无需再下载)
-
-    > 注意：需要下载与本机浏览器相对应版本的驱动，否则运行时会报错。
-
-3. 配置环境变量
-
-### Mac
-
-1. 打开Finder，使用快捷键`Command+Shift+G`，前往文件夹`usr/local/bin`，将下载的驱动文件拖入。
-2. 打开终端，执行`vim ~/.bash_profile`，添加环境变量`export PATH=$PATH:/usr/local/bin/驱动名`，保存后执行`source ~/.bash_profile`生效。
-3. 执行`驱动名 --version`，如果返回版本号则说明配置正确，如果提示无法验证开发者，需要到`系统偏好设置/安全与隐私/通用`界面准许。
-
-### Windows
-
-1. 下载的驱动文件可以集中放在一个文件夹内，比如`selenium-driver`
-2. 然后将该文件路径添加到`环境变量\系统变量\Path`中
-3. 打开终端，执行`驱动名 --version`，如果返回版本号则说明配置正确
+- 安装Selenium插件：`pip install selenium`
+- [下载浏览器驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)(注意：需要下载与本机浏览器相对应版本的驱动，否则运行时会报错)
+    > [chromedriver](https://chromedriver.storage.googleapis.com/index.html)  
+    > [geckodriver](https://github.com/mozilla/geckodriver/releases)  
+    > safaridriver 无需下载（`usr/bin/`下有）
+- 配置环境变量
+    > Mac
+    1. 打开Finder，使用快捷键`Command+Shift+G`，前往文件夹`usr/local/bin`，将下载的驱动文件拖入。
+    2. 打开终端，执行`vim ~/.bash_profile`，添加环境变量`export PATH=$PATH:/usr/local/bin/驱动名`，保存后执行`source ~/.bash_profile`生效。
+    3. 执行`驱动名 --version`，如果返回版本号则说明配置正确，如果提示无法验证开发者，需要到`系统偏好设置/安全与隐私/通用`界面准许。
+    > Windows
+    1. 下载的驱动文件可以集中放在一个文件夹内，比如`selenium-driver`
+    2. 然后将该文件路径添加到`环境变量\系统变量\Path`中
+    3. 打开终端，执行`驱动名 --version`，如果返回版本号则说明配置正确
 
 ## 启动浏览器
 
@@ -44,8 +37,10 @@ from selenium import webdriver
 
 # 启动Chrome
 driver = webdriver.Chrome()
+
 # 启动Firefox
 driver = webdriver.Firefox()
+
 # 启动Safari
 # 注意：需要先在【Safari浏览器-偏好设置-高级】，勾选【“在菜单中显示开发”】，然后在【开发】，勾选【允许远程自动化】
 driver = webdriver.Safari()
@@ -54,9 +49,48 @@ driver = webdriver.Safari()
 driver = webdriver.Chrome(executable_path='Xxx/chromedriver')
 ```
 
+[启动Chrome前可以加一些浏览器配置](https://zhuanlan.zhihu.com/p/60852696)
+
+
+```python
+__options = webdriver.ChromeOptions()
+# 去除“Chrome正在受到自动软件的控制”的提示条
+__options.add_experimental_option('useAutomationExtension', False)
+__options.add_experimental_option('excludeSwitches', ['enable-automation'])
+# 关闭是否保存密码弹框
+__prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
+__options.add_experimental_option("prefs", __prefs)
+```
+
+### Chrome复用调试
+
+1. 关闭所有Chrome浏览器窗口，并保证进程已退出
+2. 命令行以调试模式启动Chrome，端口可自定义
+   - windows：`path\chrome --remote-debugging-port=9222`
+   - mac：`/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222`
+3. 访问<http://127.0.0.1:9222/>查看是否成功
+4. 使用如下脚本即可在当前窗口直接操作
+
+    ```python
+        def test_debug():
+            opt = webdriver.ChromeOptions()
+            opt.debugger_address = "localhost:9222"
+            driver = webdriver.Chrome(options=opt)
+            driver.get("xxx")
+    ```
+
+## 登录
+
+```python
+with open("cookies.pickle", "rb") as f:
+    cookies = pickle.load(f)
+    for cookie in cookies:
+        self.driver.add_cookie(cookie)
+```
+
 ## 操控浏览器·WebDriver
 
-### 属性
+- 属性
 
 ```python
 print(driver.name)  #浏览器名称
@@ -67,7 +101,7 @@ print(driver.window_handles)  # 当前窗口所有句柄
 print(driver.current_window_handle)  # 当前窗口句柄
 ```
 
-### 方法
+- 方法
 
 ```python
 driver.forward()  # 前进
@@ -114,7 +148,7 @@ e = driver.find_element(By.ID, "")
 
 ## 操控元素·WebElement
 
-### 属性
+- 属性
 
 ```python
 e.id  # 标示
@@ -124,7 +158,7 @@ e.text  # 文本内容
 e.tag_name  # 标签名
 ```
 
-### 方法
+- 方法
 
 ```python
 e.send_keys("xxx")  # 输入内容
@@ -194,7 +228,6 @@ select.deselect_by_visible_text('o1')
 # 取消所有已选选项
 select.deselect_all()
 
-
 # 返回所有选项
 for option in select.options:
     print(option.text)
@@ -239,17 +272,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 # timeout 超时时间
 # poll_frequency 检测频率，默认为0.5s
 # ignored_exceptions 超时后抛出异常，默认为NoSuchElementException
-wait = WebDriverWait(self.driver, timeout, poll_frequency, ignored_exceptions=None)
+wait = WebDriverWait(self.driver, timeout, poll_frequency=0.5, ignored_exceptions=None)
 
-# 满足预期条件时停止
-wait.until(method, message='')
-# 不满足预期条件时停止
-wait.until_not(method, message='')
-# 超时则抛出TimeoutException`、异常
+# 满足预期条件时跳出等待向下执行，超时则抛出TimeoutException`、异常
+wait.until/until_not(method, message='')
 ```
 
 其中的method可以自定义也可以使用EC模块提供的函数
-
 
 ## 预期条件·EC
 
@@ -290,8 +319,6 @@ EC.presence_of_all_elements_located(locator)
 ```
 
 ```python
-# 判断元素是否可见，可见返回这个元素
-EC.visibility_of(element)
 # 判断某个元素是否可见，宽和高等大于0
 EC.visibility_of_element_located(locator)
 # 判断是否至少有一个元素可见
@@ -320,8 +347,6 @@ action = ActionChains(driver)  # 生成一个动作
 action.添加方法1
 action.添加方法2
 action.perform()  # 执行
-
-
 ```
 
 ### 鼠标操作
@@ -387,23 +412,6 @@ driver.get_screenshot_as_base64()  # 获取当前截图的base64字符串
 driver.get_screenshot_as_png()  # 获取当前截图的二进制数据
 ```
 
-
 ## 异常
 
 `from selenium.common.exceptions import TimeoutException`
-
-## Chrome复用调试
-
-1. 关闭所有Chrome浏览器窗口，并保证进程已退出
-2. 命令行以调试模式启动Chrome，端口可自定义
-   - windows：`path\chrome --remote-debugging-port=9222`
-   - mac：`Google\ Chrome --remote-debugging-port=9222`
-3. 访问<http://127.0.0.1:9222/>查看是否成功
-3. 使用如下脚本即可在当前窗口直接操作
-   ```python
-    def test_debug():
-        opt = webdriver.ChromeOptions()
-        opt.debugger_address = "localhost:9222"
-        driver = webdriver.Chrome(options=opt)
-        driver.get("xxx")
-   ```
