@@ -2,25 +2,25 @@
 
 - [官网](https://www.selenium.dev/)
 - [API文档](https://www.selenium.dev/selenium/docs/api/py/api.html)（[中文](https://selenium-python-zh.readthedocs.io/en/latest/)）
+- 用于测试的demo网站：<https://sahitest.com/demo/>
 
-用于测试的demo网站：<https://sahitest.com/demo/>
-
-## 原理
-
-由以下三部分组成
+## 核心组成及原理
 
 - **Webdriver** 网络驱动器
+    > Webdriver是C/S架构的，客户端即编写的脚本，发送请求到Webdriver服务端，然后服务端会通过浏览器驱动（比如chromedriver，浏览器提供的一些api接口）与浏览器进行交互。
 - **IDE** 浏览器插件
 - **Grid** 可以做分布式测试
 
 ## 环境搭建
 
-- 安装Selenium插件：`pip install selenium`
-- [下载浏览器驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)(注意：需要下载与本机浏览器相对应版本的驱动，否则运行时会报错)
-    > [chromedriver](https://chromedriver.storage.googleapis.com/index.html)  
-    > [geckodriver](https://github.com/mozilla/geckodriver/releases)  
-    > safaridriver 无需下载（`usr/bin/`下有）
-- 配置环境变量
+1. 安装Selenium插件
+    > `pip install selenium`
+2. [下载浏览器驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
+    > 需下载与浏览器版本相同/近的驱动
+    - [chromedriver](https://chromedriver.storage.googleapis.com/index.html)  
+    - [geckodriver](https://github.com/mozilla/geckodriver/releases)  
+    - safaridriver 无需下载（`usr/bin/`下有）
+3. 配置环境变量
     > Mac
     1. 打开Finder，使用快捷键`Command+Shift+G`，前往文件夹`usr/local/bin`，将下载的驱动文件拖入。
     2. 打开终端，执行`vim ~/.bash_profile`，添加环境变量`export PATH=$PATH:/usr/local/bin/驱动名`，保存后执行`source ~/.bash_profile`生效。
@@ -49,35 +49,42 @@ driver = webdriver.Safari()
 driver = webdriver.Chrome(executable_path='Xxx/chromedriver')
 ```
 
+### ChromeOptions
+
 [启动Chrome前可以加一些浏览器配置](https://zhuanlan.zhihu.com/p/60852696)
 
-
 ```python
-__options = webdriver.ChromeOptions()
-# 去除“Chrome正在受到自动软件的控制”的提示条
-__options.add_experimental_option('useAutomationExtension', False)
-__options.add_experimental_option('excludeSwitches', ['enable-automation'])
-# 关闭是否保存密码弹框
-__prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
-__options.add_experimental_option("prefs", __prefs)
+opt = webdriver.ChromeOptions()
+opt.xxx
+driver = webdriver.Chrome(options=opt)
 ```
 
-### Chrome复用调试
+- 去除Chrome正在受到自动软件的控制的提示
+
+```python
+# 不去除这个可能影响扫码登陆
+opt.add_experimental_option('useAutomationExtension', False)
+opt.add_experimental_option('excludeSwitches', ['enable-automation'])
+```
+
+- 关闭是否保存密码弹框
+
+```python
+prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
+opt.add_experimental_option("prefs", prefs)
+```
+
+- 复用调试
+
+```python
+opt.debugger_address = "localhost:9222"
+```
 
 1. 关闭所有Chrome浏览器窗口，并保证进程已退出
 2. 命令行以调试模式启动Chrome，端口可自定义
-   - windows：`path\chrome --remote-debugging-port=9222`
+   - windows：`.\chrome --remote-debugging-port=9222`(先切换到chrome.exe所在目录)
    - mac：`/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222`
-3. 访问<http://127.0.0.1:9222/>查看是否成功
-4. 使用如下脚本即可在当前窗口直接操作
-
-    ```python
-        def test_debug():
-            opt = webdriver.ChromeOptions()
-            opt.debugger_address = "localhost:9222"
-            driver = webdriver.Chrome(options=opt)
-            driver.get("xxx")
-    ```
+3. 访问<http://127.0.0.1:9222/>查看是否复用成功
 
 ## 登录
 
@@ -104,6 +111,8 @@ print(driver.current_window_handle)  # 当前窗口句柄
 - 方法
 
 ```python
+driver.get_cookies()
+
 driver.forward()  # 前进
 driver.back()  # 后退
 
@@ -111,8 +120,6 @@ driver.refresh()  # 刷新页面
 
 driver.close()  # 关闭页面
 driver.quit()  # 退出浏览器
-
-driver.get_cookies()
 ```
 
 ```python
@@ -125,26 +132,86 @@ driver.switch_to.window(driver.window_handles[1])  # 切换标签页
 driver.switch_to.active_element  # 切换到活动元素
 ```
 
+- 执行js
+
 ```python
 # 执行js脚本
-driver.execute_script(js)  # 同步
-driver.execute_async_script(js)  # 异步
+driver.execute_script("js_cmd")  # 同步
+driver.execute_async_script("js_cmd")  # 异步
+```
+
+```python
+# 命令中使用return才能得到返回值
+js_cmd = "return JSON.stringify(performance.timing)"
+loc = driver.execute_script(js_cmd)
+```
+
+```python
+# 执行多条命令
+loc = driver.execute_script("return js_code1; js_code2")
+# 或者
+for code in ["return js_code1", "return js_code2"]:
+    print(driver.execute_script(code))
+```
+
+```python
+# 通常想要控制的元素带有readonly属性，可以用js移除readonly属性
+code = 'a = document.getElementById("train_date"); a.removeAttribute("readonly"); a.value="2021-06-29"'
+driver.execute_script(code)
 ```
 
 ## 定位元素
 
 ```python
-# 定位单个元素
-e = driver.find_element_by_xxx
-# 定位多个元素
-e = driver.find_elements_by_xxx
-
-# 通过By类定位
+from selenium import webdriver
 from selenium.webdriver.common.by import By
-e = driver.find_element(By.ID, "")
 ```
 
-定位到元素后会返回一个WebElement对象，用来描述一个元素
+- XPath
+
+```python
+driver.find_element_by_xpath('//*[@id="id"]')
+
+loc = (By.XPATH, '//*[@id="id"]')
+driver.find_element(loc)
+```
+
+- CSS selector
+
+```python
+# 
+driver.find_element_by_css_selector('id')
+
+loc = (By.CSS_SELECTOR, "#id")
+driver.find_element(loc)
+```
+
+- 超链接
+
+```python
+# <a href="http://zuoright.com">ZuoRight</a> 
+driver.find_element_by_link_text("ZuoRight")  # 精准匹配
+driver.find_element_by_partial_link_text("Zuo")  # 模糊匹配
+```
+
+- DOM
+
+```python
+dom = 'document.'
+driver.execute_script(js)
+```
+
+- JQuery
+
+```python
+jq_css = '$("#id")'
+jq_xpath = '$x("#id")'
+driver.execute_script(jquery)
+```
+
+tag
+
+name
 
 ## 操控元素·WebElement
 

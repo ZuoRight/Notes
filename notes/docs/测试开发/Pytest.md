@@ -92,7 +92,7 @@ def login():
 """
 scope  作用范围
   session 或 package  多个文件共调用一次，通常把fixture写在conftest.py文件中
-  module  模块级，类似于setup/teardown_module，会在第一个调用它的函数前开始执行，在模块最后再执行
+  module  模块级，类似于setup/teardown_module，会在第一个调用它的函数前开始执行，在模块最后再执行，每个函数都调用其实是为了得到返回值
   class  类级别，类似于setup/teardown_function + setup/teardown_class
   function  函数或者方法级（默认），类似于setup/teardown_function + setup/teardown_method
 
@@ -254,6 +254,7 @@ collected 7 items / 6 deselected / 1 selected
 - case之间保持独立，不要有依赖关系
 - case可以重复运行，可以随机运行
 - case运行结果不会影响其它用例
+- case结果要明确，成功或失败
 
 ## 测试失败，怎么处理
 
