@@ -1923,6 +1923,14 @@
 <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="s1">&#39;/path/to/file.txt&#39;</span><span class="p">)</span>  <span class="c1"># (&#39;/path/to/file&#39;, &#39;.txt&#39;)</span>
 </code></pre></div>
 
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;./tmp/test.log&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cookies</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</code></pre></div>
+
 <h3 id="ossystem">os.system()<a class="headerlink" href="#ossystem" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;bash command&quot;</span><span class="p">)</span>  <span class="c1"># 运行shell命令</span>
 </code></pre></div>

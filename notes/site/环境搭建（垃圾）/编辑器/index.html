@@ -1318,6 +1318,19 @@
     VSCode
   </a>
   
+    <nav class="md-nav" aria-label="VSCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vscodesettingsjson" class="md-nav__link">
+    ./vscode/settings.json
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1759,6 +1772,19 @@
     VSCode
   </a>
   
+    <nav class="md-nav" aria-label="VSCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vscodesettingsjson" class="md-nav__link">
+    ./vscode/settings.json
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1787,6 +1813,14 @@
                 <h1 id="_1">编辑器<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="vscode">VSCode<a class="headerlink" href="#vscode" title="Permanent link">&para;</a></h2>
 <p>如果出现包安装但显示未导入，一般是因为左下角解释器没选对</p>
+<h3 id="vscodesettingsjson"><code>./vscode/settings.json</code><a class="headerlink" href="#vscodesettingsjson" title="Permanent link">&para;</a></h3>
+<p>使用Vscode自带Python解析器导入包时需要配置如下（<a href="https://github.com/microsoft/python-language-server/blob/master/TROUBLESHOOTING.md#unresolved-import-warnings">官方说明</a>）</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;python.pythonPath&quot;</span><span class="p">:</span> <span class="s2">&quot;env</span><span class="se">\\</span><span class="s2">Scripts</span><span class="se">\\</span><span class="s2">python.exe&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;python.autoComplete.extraPaths&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;./项目根目录&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
 <h2 id="pycharm"><a href="https://www.jetbrains.com/pycharm/">PyCharm</a><a class="headerlink" href="#pycharm" title="Permanent link">&para;</a></h2>
 <p>专业的Python IDE，由位于捷克的<a href="https://www.jetbrains.com/">JetBrains公司</a>所生产。</p>
 <p>具体使用方法可参考：<a href="http://pycharm.iswbm.com/zh_CN/latest/">PyCharm 中文指南</a></p>
