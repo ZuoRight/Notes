@@ -845,18 +845,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%9E%83%E5%9C%BE%29/jQuery/" title="jQuery" class="md-nav__link">
-      jQuery
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%9E%83%E5%9C%BE%29/vue/" title="Vue" class="md-nav__link">
       Vue
     </a>
@@ -871,6 +859,18 @@
   <li class="md-nav__item">
     <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%9E%83%E5%9C%BE%29/%E5%B8%83%E5%B1%80/" title="布局" class="md-nav__link">
       布局
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E5%A4%A7%E5%89%8D%E7%AB%AF%28%E5%9E%83%E5%9C%BE%29/%E9%80%89%E6%8B%A9%E5%99%A8/" title="选择器" class="md-nav__link">
+      选择器
     </a>
   </li>
 
@@ -1192,18 +1192,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Selector/" title="Selector" class="md-nav__link">
-      Selector
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../Selenium/" title="Selenium" class="md-nav__link">
       Selenium
     </a>
@@ -1229,16 +1217,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-8" type="checkbox" id="nav-7-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7-7" type="checkbox" id="nav-7-7">
     
-    <label class="md-nav__link" for="nav-7-8">
+    <label class="md-nav__link" for="nav-7-7">
       理论
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="理论" data-md-level="2">
-      <label class="md-nav__title" for="nav-7-8">
+      <label class="md-nav__title" for="nav-7-7">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -2211,13 +2199,16 @@
 <li>测试指定文件：<code>pytest test_x.py</code></li>
 <li>测试指定类/函数：<code>pytest test_x.py::类名/函数名</code></li>
 <li>测试指定方法：<code>pytest test_x.py::类名::方法名</code></li>
-<li>模糊匹配(不区分大小写)：<code>pytest -k 表达式</code>
-  <div class="highlight"><pre><span></span><code>pytest -k a  <span class="c1"># 测试【包含】a的case</span>
+<li>模糊匹配(不区分大小写)：<code>pytest -k 表达式</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code>pytest -k a  <span class="c1"># 测试【包含】a的case</span>
 pytest -k <span class="s2">&quot;not a&quot;</span>  <span class="c1"># 测试【不包含】a的case</span>
 pytest -k <span class="s2">&quot;a or b&quot;</span>  <span class="c1"># 测试包含a【或】b的case</span>
 pytest -k <span class="s2">&quot;a and b&quot;</span>  <span class="c1"># 测试【既包含】a【又包含】b的case</span>
 pytest -k <span class="s2">&quot;a and not b&quot;</span>  <span class="c1"># 测试【包含】a【但不包含】b的case</span>
-</code></pre></div></li>
+</code></pre></div>
+
+<ul>
 <li>测试带<code>@pytest.mark.xxx</code>标签的Case(同一case可带多个标签)：<code>pytest -m xxx</code></li>
 </ul>
 <h2 id="_4">测试用例原则<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
@@ -2345,7 +2336,7 @@ pytest --html<span class="o">=</span>report.html --self-contained-html
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-06-26</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-06-28</span>
     
   </small>
 </div>
