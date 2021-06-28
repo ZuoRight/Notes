@@ -1870,17 +1870,14 @@
 </code></pre></div>
 
 <h2 id="jquery">JQuery<a class="headerlink" href="#jquery" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#id&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="nx">ele</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;css&#39;</span><span class="p">)</span>
+<span class="nx">ele</span> <span class="o">=</span> <span class="nx">$x</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">)</span>
 
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#id&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;new content&#39;</span><span class="p">)</span>
+<span class="nx">ele</span><span class="p">.</span><span class="nx">text</span><span class="p">()</span>  <span class="nx">取值</span>
+<span class="nx">ele</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;new content&#39;</span><span class="p">)</span>  <span class="nx">赋值</span>
 
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;xxx&quot;</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">在结果中查找符合条件的</span>
-
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;xxx&quot;</span><span class="p">)</span>  <span class="err">#</span> <span class="nx">在结果中过滤掉不符合条件的</span>
-
-<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;css&#39;</span><span class="p">)</span>
-
-<span class="nx">$x</span><span class="p">(</span><span class="s1">&#39;xpath&#39;</span><span class="p">)</span>
+<span class="nx">ele</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;xxx&quot;</span><span class="p">)</span>  <span class="nx">在结果中查找符合条件的</span>
+<span class="nx">ele</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="s2">&quot;xxx&quot;</span><span class="p">)</span>  <span class="nx">在结果中过滤掉不符合条件的</span>
 </code></pre></div>
                 
                   

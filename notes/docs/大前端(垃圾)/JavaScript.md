@@ -1,45 +1,5 @@
 # JavaScript
 
-## Reference
-* 《JavaScript+DOM编程艺术》（第2版）        
-> _Jeremy Keith（吉姆·基斯）_              
-
-* 《JavaScript高级程序设计》（第3版）        
-> _Nicholas C. Zakas（尼古拉斯·泽卡斯）_        
-
-* 《JavaScript语言精粹》（修订版）       
-> _Douglas Crockford（道格拉斯·克劳克福德）_   
-
-## DOM
-> Document Object Model，可类比“世界对象模型”，在现实世界中，大家对很多事物都有一个共同的理解，属于一种API
-
-### W3C定义
-一个与系统平台和编程语言无关的接口，程序和脚本可以通过这个接口动态地对文档的内容、结构和样式进行访问和修改   
-* D：文档，即网页文档   
-* O：对象，DOM会在网页加载时根据网页文档创建一个文档对象      
-* M：模型/Map，节点树  
-
-### 工作模式
-先加载文档的静态内容，再以动态方式对它们进行刷新，动态刷新不影响静态文档内容，即用户不需要刷新页面即可实现内容刷新     
-
-***
-
-### 节点Node     
-> 元素节点：每个元素节点都是一个对象           
-  文档节点      
-  属性节点                
-
-### 获取元素     
-```document.getElementById(id)  //返回一个值           
-document.getElementsByTagName(tag)  //返回一个数组
-document.getElementsByClassName(class1 class2)  //返回一个数组       
-```        
-### 节点方法    
-```getAttribute(attribute)  //检索属性值        
-setAttribute(attribute,value)  //修改属性值    
-```
-
-
 ## 变量·Variable
 ### 变量定义    
 > var my_mood = "happy";         
@@ -266,10 +226,6 @@ faunction factorial(num) {
   2. 方括号语法      
       `person[first name]`  
 
-
-
-# JS
-
 ## 基本语法
 
 引入js时不必显要地把type类型指定为js，因为type默认就是js
@@ -310,23 +266,9 @@ Set（类似Python的集合）：只存储key，没有value
 var x = new Set(['a', 'b','c']);
 ```
 
-
 ## 控制语句
 
 ### 判断语句
-
-Python
-
-```text
-if 表达式:
-    pass
-elif:
-    pass
-else:
-    pass
-```
-
-JS
 
 可以不加{}，但为了不必要的麻烦，建议永远都加上
 
@@ -341,15 +283,6 @@ if (表达式) {
 ```
 
 ### 循环语句
-
-Python
-
-```text
-for 表达式:
-    pass
-```
-
-JS
 
 ```text
 for (初始条件，结束条件，递增条件) {
@@ -367,8 +300,6 @@ do {
 ```
 
 ### 判断包含不包含
-
-JS
 
 ```text
 for (var key in X) {
@@ -393,17 +324,6 @@ a.forEach(function (element, index, array) {
 
 ### 动态语言（变量类型不固定）
 
-Python
-
-```text
-# 定义变/常量：不用关键字，常量建议大写
-x = "hello world"
-
-# 格式化：{}.format(x)
-```
-
-JavaScript
-
 ```text
 // 定义变量：var，js早期设计失误，并未强求用var申明，没有被var申明默认为全局变量，会带来一定的麻烦，ESMA后期推出严格模式强制用var申明（js代码第一行加上 'use strict';）
 var x = "hello world"
@@ -426,16 +346,6 @@ var [x, y, z] = ['hello', 'JavaScript', 'ES6'];
 ## 函数
 
 ### 普通函数
-
-Python
-
-```text
-def foo(x, y):
-    pass
-    return xxx
-```
-
-JavaScript
 
 ```text
 function foo(x, y) {
@@ -475,14 +385,6 @@ x => {
 
 ### 输出函数
 
-Python
-
-```text
-print("hello world")
-```
-
-JS
-
 ```text
 alert('Hello World');
 
@@ -492,16 +394,9 @@ console.log("hello world")
 
 ## 面向对象
 
-### Python：类和实例
+JS没有类的概念
 
-```text
-class Student():
-    pass
-```
-
-### JS：没有类的概念
-
-#### 方式1：基于构造函数（constructor）和原型链（prototype）
+### 方式1：基于构造函数（constructor）和原型链（prototype）
 
 构造函数就相当于类，就是对象的模板，它就是个普通函数，但有自己的特征和用法，首字母一般大写。构造函数体内部使用了this关键字，代表了所要生成的对象/实例，建议启用严格模式，使函数内部的this不能指向全局对象。
 
@@ -519,7 +414,7 @@ var v = new Vehicle();  // 也可以不带括号，但建议带上
 v.price // 1000
 ```
 
-#### 方式2：Object.create()
+### 方式2：Object.create()
 
 没有构造函数时，还可以把现有的对象作为模板生成新的对象。
 
@@ -542,7 +437,7 @@ function createStudent(name) {
 var xiaoming = createStudent('小明');
 ```
 
-#### 方式3：ES6 中新增了用class定义类
+### 方式3：ES6 中新增了用class定义类
 
 ```text
 class 类名 [extends 继承类] {
@@ -558,8 +453,6 @@ class 类名 [extends 继承类] {
 ```
 
 ## 提交表单
-
-
 
 ## JS
 
@@ -593,10 +486,6 @@ AJAX全称：Asynchronous JavaScript and XML，意思就是用JavaScript执行�
 
 Promise有各种开源实现，比如axios
 
-## JQuery
-
-jQuery的别名：$
-
 ## 错误处理
 
 JS
@@ -605,27 +494,8 @@ JS
 try ... catch ... finally
 ```
 
-## Web 框架
-
-Python
-
-- Flask
-- Djngo
-
-Node.js
-
-- Express/Koa
-
 ## 模块 Module
 
-Python
-
-```python
-import
-from X import x
-```
-
-Ruby：require
 CSS：@import
 
 JS（ES6+）
