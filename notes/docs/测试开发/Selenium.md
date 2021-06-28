@@ -19,7 +19,7 @@
     > 需下载与浏览器版本相同/近的驱动
     - [chromedriver](https://chromedriver.storage.googleapis.com/index.html)  
     - [geckodriver](https://github.com/mozilla/geckodriver/releases)  
-    - safaridriver 无需下载（`usr/bin/`下有）
+    - safaridriver 无需下载，已内置(`usr/bin/`)
 3. 配置环境变量
     > Mac
     1. 打开Finder，使用快捷键`Command+Shift+G`，前往文件夹`usr/local/bin`，将下载的驱动文件拖入。
@@ -54,24 +54,41 @@ driver = webdriver.Chrome(executable_path='Xxx/chromedriver')
 [启动Chrome前可以加一些浏览器配置](https://zhuanlan.zhihu.com/p/60852696)
 
 ```python
-opt = webdriver.ChromeOptions()
-opt.xxx
-driver = webdriver.Chrome(options=opt)
+from selenium import webdriver
+
+class BasePage:
+    def __init__(self, driver_base=None):
+        if driver_base is None:
+            browser = os.getenv("browser")
+            if browser == "headless":
+                self.driver = webdriver.PhantomJS()
+            elif browser == "firefox":
+                self.driver = webdriver.Firefox()
+            else:
+                opt = webdriver.ChromeOptions()
+                debug = os.getenv("debug")
+                if debug:
+                    # 调试模式
+                    opt.debugger_address = "localhost:9222"
+                else:
+                    # 去除Chrome正在受到自动软件的控制的提示
+                    opt.add_experimental_option('useAutomationExtension', False)
+                    opt.add_experimental_option('excludeSwitches', ['enable-automation'])
+                    # 关闭是否保存密码弹框
+                    prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
+                    opt.add_experimental_option("prefs", prefs)
+                self.driver = webdriver.Chrome(options=opt)
+                self.driver.maximize_window()
+
+            self.driver.implicitly_wait(5)
+            self.driver.get("https://work.weixin.qq.com/wework_admin/frame#index")
+        else:
+            self.driver = driver_base
 ```
 
-- 去除Chrome正在受到自动软件的控制的提示
-
-```python
-# 不去除这个可能影响扫码登陆
-opt.add_experimental_option('useAutomationExtension', False)
-opt.add_experimental_option('excludeSwitches', ['enable-automation'])
-```
-
-- 关闭是否保存密码弹框
-
-```python
-prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
-opt.add_experimental_option("prefs", prefs)
+```shell
+browser="headless" pytest test_xxx.py  # 无头模式启动
+debug="Ture" pytest test_xxx.py  # chrome debug模式启动
 ```
 
 - 复用调试

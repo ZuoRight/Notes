@@ -239,14 +239,15 @@ collected 7 items / 6 deselected / 1 selected
 - 测试指定类/函数：`pytest test_x.py::类名/函数名`
 - 测试指定方法：`pytest test_x.py::类名::方法名`
 - 模糊匹配(不区分大小写)：`pytest -k 表达式`
+
   ```shell
   pytest -k a  # 测试【包含】a的case
   pytest -k "not a"  # 测试【不包含】a的case
   pytest -k "a or b"  # 测试包含a【或】b的case
   pytest -k "a and b"  # 测试【既包含】a【又包含】b的case
   pytest -k "a and not b"  # 测试【包含】a【但不包含】b的case
-
   ```
+
 - 测试带`@pytest.mark.xxx`标签的Case(同一case可带多个标签)：`pytest -m xxx`
 
 ## 测试用例原则

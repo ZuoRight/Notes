@@ -22,6 +22,10 @@ $x('xpath')
 //select[@x='a' and @y='b']  通过多个属性定位元素
 ```
 
+`//span[text()="xxx"]`
+
+<https://blog.csdn.net/wushuai150831/article/details/79047496>
+
 ## CSS
 
 参考：<https://www.runoob.com/cssref/css-selectors.html>
