@@ -88,7 +88,10 @@ class BasePage:
 
 ```shell
 browser="headless" pytest test_xxx.py  # 无头模式启动
-debug="Ture" pytest test_xxx.py  # chrome debug模式启动
+debug=Ture pytest test_xxx.py  # chrome debug模式启动
+
+# cmd中传递变量需要先set变量，然后再执行命令
+set debug=Ture
 ```
 
 - 复用调试

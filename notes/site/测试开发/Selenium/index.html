@@ -2150,7 +2150,10 @@
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="nv">browser</span><span class="o">=</span><span class="s2">&quot;headless&quot;</span> pytest test_xxx.py  <span class="c1"># 无头模式启动</span>
-<span class="nv">debug</span><span class="o">=</span><span class="s2">&quot;Ture&quot;</span> pytest test_xxx.py  <span class="c1"># chrome debug模式启动</span>
+<span class="nv">debug</span><span class="o">=</span>Ture pytest test_xxx.py  <span class="c1"># chrome debug模式启动</span>
+
+<span class="c1"># cmd中传递变量需要先set变量，然后再执行命令</span>
+<span class="nb">set</span> <span class="nv">debug</span><span class="o">=</span>Ture
 </code></pre></div>
 
 <ul>
