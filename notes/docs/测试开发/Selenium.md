@@ -6,8 +6,8 @@
 
 ## 核心组成及原理
 
-- **Webdriver** 网络驱动器
-    > Webdriver是C/S架构的，客户端即编写的脚本，发送请求到Webdriver服务端，然后服务端会通过浏览器驱动（比如chromedriver，浏览器提供的一些api接口）与浏览器进行交互。
+- **Webdriver** C/S架构的网络驱动器
+    > 客户端即编写的脚本，发送请求到服务端，然后服务端会通过浏览器驱动（比如chromedriver，浏览器提供的一些api接口）与浏览器进行交互。
 - **IDE** 浏览器插件
 - **Grid** 可以做分布式测试
 
@@ -17,7 +17,7 @@
     > `pip install selenium`
 2. [下载浏览器驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
     > 需下载与浏览器版本相同/近的驱动
-    - [chromedriver](https://chromedriver.storage.googleapis.com/index.html)  
+    - [chromedriver](https://chromedriver.chromium.org/)  
     - [geckodriver](https://github.com/mozilla/geckodriver/releases)  
     - safaridriver 无需下载，已内置(`usr/bin/`)
 3. 配置环境变量
@@ -502,3 +502,11 @@ driver.get_screenshot_as_png()  # 获取当前截图的二进制数据
 ## 异常
 
 `from selenium.common.exceptions import TimeoutException`
+
+## PO
+
+如何封装，封装所遵循的规范：设计模式
+
+<https://www.selenium.dev/documentation/zh-cn/guidelines_and_recommendations/page_object_models/>
+
+![20210629115112](http://image.zuoright.com/20210629115112.png)
