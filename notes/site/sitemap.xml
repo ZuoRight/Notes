@@ -88,6 +88,22 @@
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
+     <loc>http://www.zuoright.com/Python/%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/0%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Python/%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/1pip%2Bvenv/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Python/%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/2Pipenv/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Python/%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/3%E5%85%B6%E5%AE%83/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
      <loc>http://www.zuoright.com/Python/%E8%BD%AE%E5%AD%90/deepdiff/</loc>
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
@@ -113,6 +129,58 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://www.zuoright.com/Python/%E8%BD%AE%E5%AD%90/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Docker/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Git/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Mac/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/NPM/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Nginx/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Windows/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/%E7%BC%96%E8%BE%91%E5%99%A8/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Linux/Bash/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Linux/Linux/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Linux/awk/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Linux/sed/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Linux/ssh/</loc>
+     <lastmod>2021-06-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>http://www.zuoright.com/Tools/Linux/%E6%9F%A5%E6%89%BE/</loc>
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -156,30 +224,6 @@
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/Linux/Bash/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/Linux/Linux/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/Linux/awk/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/Linux/sed/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/Linux/ssh/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/Linux/%E6%9F%A5%E6%89%BE/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/</loc>
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
@@ -200,23 +244,19 @@
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C/HTTP/</loc>
+     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/HTTP/</loc>
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C/HTTPS/</loc>
+     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/HTTPS/</loc>
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C/Nginx/</loc>
+     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/%E7%BD%91%E8%B7%AF%E5%8D%8F%E8%AE%AE/</loc>
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C/%E7%BD%91%E8%B7%AF%E5%8D%8F%E8%AE%AE/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C/%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E6%95%B2%E5%87%BB%E5%9B%9E%E8%BD%A6%E4%B9%8B%E5%90%8E/</loc>
+     <loc>http://www.zuoright.com/%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E6%95%B2%E5%87%BB%E5%9B%9E%E8%BD%A6%E4%B9%8B%E5%90%8E/</loc>
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -273,46 +313,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>http://www.zuoright.com/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/%E7%90%86%E8%AE%BA/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Docker/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Git/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Mac/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/NPM/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Windows/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E7%BC%96%E8%BE%91%E5%99%A8/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Python%E7%8E%AF%E5%A2%83/0%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Python%E7%8E%AF%E5%A2%83/1%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86_pip%2Bvenv%28%E6%8E%A8%E8%8D%90%29/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Python%E7%8E%AF%E5%A2%83/2%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86_Pipenv%28%E4%B8%8D%E6%8E%A8%E8%8D%90%29/</loc>
-     <lastmod>2021-06-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>http://www.zuoright.com/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Python%E7%8E%AF%E5%A2%83/3%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86_%E5%85%B6%E5%AE%83%28%E4%B8%8D%E6%8E%A8%E8%8D%90%29/</loc>
      <lastmod>2021-06-30</lastmod>
      <changefreq>daily</changefreq>
     </url>
