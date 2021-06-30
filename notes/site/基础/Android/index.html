@@ -1681,6 +1681,12 @@
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$ANDROID_HOME</span>/tools/bin
 </code></pre></div>
 
+<p><a href="http://www.cnblogs.com/nbkhic/p/3806886.html">参考</a>
+1. uiautomatorviewer.bat
+  主要用来查看控件的属性，比如resource id，class name等
+  也可查看被测app的appPackage（Desired Capabilities中使用）
+2. monitor.bat
+  该工具可以帮我们找到android控件的content-description，为以后的find_element_by_accessibility_id 定位方法做参数使用</p>
 <h2 id="_1">模拟器<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>安装模拟器建议选择x86 Images标签下x86_64带Google APIs的</p>
 <p><code>emulator @android6</code></p>
