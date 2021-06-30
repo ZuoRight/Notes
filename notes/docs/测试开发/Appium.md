@@ -2,7 +2,8 @@
 
 - appium server
   > [桌面版：Appium Desktop](https://github.com/appium/appium-desktop/releases)：包含 appium 服务，录制工具，查看页面布局及查找元素的功能  
-  > 命令行版(更稳定)：`sudo npm install -g appium --chromedriver-skip-install`
+  > 命令行版(更稳定)：`npm install -g appium --chromedriver-skip-install`  
+  > 环境检查工具：`npm install -g appium-doctor`
 
 - appium client
   > `pip install appium-python-client`

@@ -1,8 +1,40 @@
 # Mac
 
-SIP(系统完整性保护)安全机制：即使是以root身份也无法删除某些程序，比如`/bin`下的，尽管你可以SIP禁用后删除，但也不建议这样去做。
+## 常用快捷键
 
-## 将MacOS默认shell更改为最新版bash
+- 显示隐藏文件：`Cmd + Shift + .`
+- 切换半角和圆角：`Shift + Space`
+
+## 终端
+
+```shell
+ls  # 加-f可查看隐藏文件
+
+which xx  # 查找
+
+unzip xxx.zip  # 解压
+```
+
+## 设置环境变量
+
+```shell
+echo $PATH  # 查看
+export PATH=$PATH:xxx >> ~/.bash_profile  # 新增，也可以直接编辑这个文件
+source ~/.bash_profile  # 重新加载
+```
+
+环境变量文件按加载顺序依次为
+
+```bash
+/etc/profile
+/etc/paths
+~/.bash_profile  # 有这个文件后面的就不读了
+~/.bash_login
+~/.profile
+~/.bashrc
+```
+
+## 设置默认SHELL
 
 查看默认shell：`echo $SHELL`
 
@@ -29,24 +61,20 @@ sudo vim /etc/shells
 - 查看默认交互shell版本：`echo $BASH_VERSION`
 
 > tips：
-> 
+>
 > 低旧版本的bash依然存在于`bin/bash`下，为了保证系统的完整性，不建议删除。
-> 
+>
 > 编写shell脚本如果想用新bash解释，记得要把`#!/bin/bash`要改为`#!/usr/local/bin/bash`
-> 
+>
 > 参考译文：<https://juejin.im/post/6844903972294262791>
-
-## 常用快捷键
-
-- 显示隐藏文件：`Cmd + Shift + .`
-- 切换半角和圆角：`Shift + Space`
 
 ## [Homebrew](https://brew.sh)
 
 > Mac下包和服务的管理器
-> 
+>
 > 参考文章
-> - <https://www.cnblogs.com/joyce33/p/13376752.html>
+>
+> - <https://www.cnblogs.com/joyce33/p/13376752.html>  
 > - <https://www.xiebruce.top/720.html>
 
 ### 安装方法
@@ -155,4 +183,6 @@ brew services run/start/stop/restart xxx
 
 安装完成后，入口会显示在系统偏好设置页面左下角处，点击即可启动。
 
+## 其它
 
+SIP(系统完整性保护)安全机制：即使是以root身份也无法删除某些程序，比如`/bin`下的，尽管你可以SIP禁用后删除，但也不建议这样去做。

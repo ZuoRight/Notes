@@ -1,4 +1,4 @@
-# shell
+# Bash
 
 shell脚本为了组合多个命令和多次执行（UNIX哲学：一条命令只做一件事）
 
@@ -110,20 +110,6 @@ echo $PS1
 ~/.bashrc
 /etc/bashrc
 ```
-
-- Mac
-
-```bash
-# 按加载顺序依次为
-/etc/profile
-/etc/paths
-~/.bash_profile  # 有这个文件后面的就不读了
-~/.bash_login
-~/.profile
-~/.bashrc
-```
-
-### 修改$PATH
 
 在Linux系统中，一切都是文件，包括命令，也就是说所有的命令都是以文件的形式存在的
 
