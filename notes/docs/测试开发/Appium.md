@@ -9,7 +9,7 @@
 - appium client
   > `pip install appium-python-client`
 
-## demo
+## Demo
 
 ```python
 from appium import webdriver
