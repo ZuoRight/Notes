@@ -1485,7 +1485,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/Unittest/" title="unittest" class="md-nav__link">
+    <a href="../../../%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/unittest/" title="unittest" class="md-nav__link">
       unittest
     </a>
   </li>
@@ -1806,7 +1806,7 @@
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;./tmp/test.log&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cookies</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </code></pre></div>
@@ -1819,7 +1819,7 @@
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="c1"># 查看默认编码</span>
-<span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getdefaultencoding</span><span class="p">())</span>  <span class="c1"># ascii</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getdefaultencoding</span><span class="p">())</span>  <span class="c1"># ascii</span>
 
 <span class="c1"># 获取路径下所有目录</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span>

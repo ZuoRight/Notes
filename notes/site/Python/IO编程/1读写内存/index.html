@@ -1451,7 +1451,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/Unittest/" title="unittest" class="md-nav__link">
+    <a href="../../../%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/unittest/" title="unittest" class="md-nav__link">
       unittest
     </a>
   </li>
@@ -1730,17 +1730,17 @@
 <li><code>f.seek(7, 1)</code>  移动指针位置，从当前位置开始计算，往后移动7个字节</li>
 <li><code>f.seek(-7, 2)</code>  移动指针位置，从末尾位置开始计算，往前移动7个字节</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>  <span class="c1"># 操作前，指针位置是0</span>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>  <span class="c1"># 操作前，指针位置是0</span>
 
 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>  <span class="c1"># 进行读取/写入操作</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>  <span class="c1"># 操作后，指针位置移到了最后5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>  <span class="c1"># 操作后，指针位置移到了最后5</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>  <span class="c1"># 此时如果读取，则会得到空值</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>  <span class="c1"># 此时如果读取，则会得到空值</span>
 <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 可以将指针移回初始位置，此时再读取将可以读到</span>
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="c1"># 另外也可以用以下方式获取，不受指针位置影响</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
 </code></pre></div>
                 
                   

@@ -1449,7 +1449,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Unittest/" title="unittest" class="md-nav__link">
+    <a href="../unittest/" title="unittest" class="md-nav__link">
       unittest
     </a>
   </li>
@@ -1703,16 +1703,16 @@ allure open -h <span class="m">127</span>.0.0.1 -p <span class="m">8883</span> t
 <h2 id="_1">常用特性<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">allure</span>
 
-<span class="nd">@allure.testcase</span><span class="p">(</span><span class="s2">&quot;case_link_url&quot;</span><span class="p">,</span> <span class="s2">&quot;测试链接&quot;</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">testcase</span><span class="p">(</span><span class="s2">&quot;case_link_url&quot;</span><span class="p">,</span> <span class="s2">&quot;测试链接&quot;</span><span class="p">)</span>
 
-<span class="nd">@allure.feature</span><span class="p">(</span><span class="s2">&quot;功能&quot;</span><span class="p">)</span>
-<span class="nd">@allure.story</span><span class="p">(</span><span class="s2">&quot;子功能&quot;</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="s2">&quot;功能&quot;</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">story</span><span class="p">(</span><span class="s2">&quot;子功能&quot;</span><span class="p">)</span>
 
-<span class="nd">@allure.title</span><span class="p">(</span><span class="s2">&quot;用例标题&quot;</span><span class="p">)</span>
-<span class="nd">@allure.step</span><span class="p">(</span><span class="s2">&quot;步骤，放在类/方法上面&quot;</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;用例标题&quot;</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="s2">&quot;步骤，放在类/方法上面&quot;</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">allure</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="s2">&quot;步骤，放在方法内&quot;</span><span class="p">)</span>
 
-<span class="nd">@allure.severity</span><span class="p">(</span><span class="n">allure</span><span class="o">.</span><span class="n">severity_level</span><span class="o">.</span><span class="err">级别</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">severity</span><span class="p">(</span><span class="n">allure</span><span class="o">.</span><span class="n">severity_level</span><span class="o">.</span><span class="n">级别</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Blocker 中断 影响下一步</span>
 <span class="sd">Critical 临界 功能点缺失</span>
@@ -1733,7 +1733,7 @@ pytest --allure-severities critical,normal
 <ul>
 <li>附件直接显示在报告中</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@allure.attach</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@allure</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">body：附件</span>
 <span class="sd">name：附件名</span>
@@ -1745,7 +1745,7 @@ pytest --allure-severities critical,normal
 <ul>
 <li>附件以路径形式显示在报告中</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@allure.attach.file</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@allure</span><span class="o">.</span><span class="n">attach</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">source：附件路径</span>
 <span class="sd">其它同上</span>

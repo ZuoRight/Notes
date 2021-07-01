@@ -1368,6 +1368,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    环境搭建
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desired-capabilities" class="md-nav__link">
+    Desired Capabilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#demo" class="md-nav__link">
     Demo
   </a>
@@ -1382,7 +1396,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     教程
   </a>
   
@@ -1449,7 +1463,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../Unittest/" title="unittest" class="md-nav__link">
+    <a href="../unittest/" title="unittest" class="md-nav__link">
       unittest
     </a>
   </li>
@@ -1642,6 +1656,20 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    环境搭建
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desired-capabilities" class="md-nav__link">
+    Desired Capabilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#demo" class="md-nav__link">
     Demo
   </a>
@@ -1656,7 +1684,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     教程
   </a>
   
@@ -1679,6 +1707,14 @@
                 
                 
                 <h1 id="appium">Appium<a class="headerlink" href="#appium" title="Permanent link">&para;</a></h1>
+<p>API文档：<a href="https://appium.io/docs/en/about-appium/api/">https://appium.io/docs/en/about-appium/api/</a></p>
+<p>基于Webdriver做了一些扩展，调用各平台自带的测试框架，测哪个平台就安哪个平台的工具包</p>
+<ul>
+<li>测Android，依赖 <a href="https://appium.io/docs/en/drivers/android-uiautomator2/">UiAutomator2</a>，就需要 Android SDK</li>
+<li>测iOS真机，依赖<a href="https://appium.io/docs/en/drivers/ios-xcuitest-real-devices/">XCUITest</a>，需要XCode</li>
+</ul>
+<p>客户端程序库以各自的方式发起与服务器的会话：请求中包含一个被称作「预期能力（Desired Capabilities）」的 JSON 对象，这时服务器就会开启这个自动化会话，并返回一个用于发送后续命令的会话 ID。</p>
+<h2 id="_1">环境搭建<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>appium server</p>
@@ -1689,13 +1725,22 @@
 </blockquote>
 </li>
 <li>
-<p>appium client</p>
+<p><a href="https://github.com/appium/python-client">appium client</a></p>
 <blockquote>
 <p><code>pip install appium-python-client</code></p>
 </blockquote>
 </li>
 </ul>
+<h2 id="desired-capabilities"><a href="https://appium.io/docs/en/writing-running-appium/caps/index.html">Desired Capabilities</a><a class="headerlink" href="#desired-capabilities" title="Permanent link">&para;</a></h2>
+<ul>
+<li>platformName：要自动化的平台名称</li>
+<li>platformVersion：要自动化的平台版本</li>
+<li>deviceName: 自动化设备的种类</li>
+<li>app：您想要自动化的应用程序的路径（但browserName 在自动化 Web 浏览器的情况下使用该功能）</li>
+<li>automationName：您要使用的驱动程序的名称</li>
+</ul>
 <h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>
+<p><a href="https://github1s.com/appium/appium/blob/master/sample-code/python/README.md">官方示例</a></p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">appium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 
 <span class="n">caps</span><span class="o">=</span><span class="p">{</span>
@@ -1704,7 +1749,7 @@
     <span class="s2">&quot;deviceName&quot;</span> <span class="p">:</span> <span class="s2">&quot;emulator-5554&quot;</span><span class="p">,</span>
     <span class="s2">&quot;appPackage&quot;</span> <span class="p">:</span> <span class="s2">&quot;com.android.settings&quot;</span><span class="p">,</span>
     <span class="s2">&quot;appActivity&quot;</span> <span class="p">:</span> <span class="s2">&quot;com.android.settings.Settings&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ensureWebviewsHavePages&quot;</span><span class="p">:</span> <span class="bp">True</span>
+    <span class="s2">&quot;ensureWebviewsHavePages&quot;</span><span class="p">:</span> <span class="kc">True</span>
 <span class="p">}</span>
 
 <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span><span class="s2">&quot;http://localhost:4723/wd/hub&quot;</span><span class="p">,</span> <span class="n">caps</span><span class="p">)</span>
@@ -1720,7 +1765,7 @@
 
 <p>运行</p>
 <ol>
-<li>启动Appium服务</li>
+<li>启动Appium服务：<code>appium</code> [<a href="https://appium.io/docs/en/writing-running-appium/server-args/index.html">参数</a>]</li>
 <li>连接设备/模拟器</li>
 <li>运行脚本</li>
 </ol>
@@ -1730,7 +1775,7 @@
 <li>没有源码，可以<a href="http://www.cnblogs.com/nbkhic/p/3806951.html">反编译工具</a></li>
 <li>使用log查看大法</li>
 </ol>
-<h2 id="_1">教程<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_2">教程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><a href="http://www.cnblogs.com/nbkhic/p/3803830.html">appium的基本概念</a>(乙醇)</p>
 <p><a href="http://www.cnblogs.com/nbkhic/p/3805805.html">Desired Capabilities详解</a>(乙醇)</p>
 <p><a href="http://www.cnblogs.com/nbkhic/p/3807871.html">基础</a></p>
