@@ -20,27 +20,22 @@ API文档：<https://appium.io/docs/en/about-appium/api/>
 - [appium client](https://github.com/appium/python-client)
   > `pip install appium-python-client`
 
-## [Desired Capabilities](https://appium.io/docs/en/writing-running-appium/caps/index.html)
-
-- platformName：要自动化的平台名称
-- platformVersion：要自动化的平台版本
-- deviceName: 自动化设备的种类
-- app：您想要自动化的应用程序的路径（但browserName 在自动化 Web 浏览器的情况下使用该功能）
-- automationName：您要使用的驱动程序的名称
-
 ## Demo
 
 [官方示例](https://github1s.com/appium/appium/blob/master/sample-code/python/README.md)
+
+[Desired Capabilities](https://appium.io/docs/en/writing-running-appium/caps/index.html)
 
 ```python
 from appium import webdriver
 
 caps={
-    "platformName" : "Android",
-    "platformVersion" : "6.0",
-    "deviceName" : "emulator-5554",
-    "appPackage" : "com.android.settings",
-    "appActivity" : "com.android.settings.Settings",
+    # "automationName": "appium"  # 自动化引擎
+    "platformName" : "Android",  # 平台名称
+    "platformVersion" : "6.0",  # 平台版本
+    "deviceName" : "emulator-5554",  # 设备名称，可随意填写
+    "appPackage" : "com.android.settings",  # 包名
+    "appActivity" : "com.android.settings.Settings",  # Activity
     "ensureWebviewsHavePages": True
 }
 
@@ -61,12 +56,6 @@ driver.quit()
 2. 连接设备/模拟器
 3. 运行脚本
 
-## 获取Activity
-
-1. 源码
-2. 没有源码，可以[反编译工具](http://www.cnblogs.com/nbkhic/p/3806951.html)
-3. 使用log查看大法
-
 ## 教程
 
 [appium的基本概念](http://www.cnblogs.com/nbkhic/p/3803830.html)(乙醇)
@@ -79,8 +68,23 @@ driver.quit()
 
 ## 查看布局结构和组件属性
 
-[布局](https://developer.android.com/guide/topics/resources/layout-resource)
+- uiautomatorviewer
 
-- `/tools/bin/uiautomatorviewer`
-- weditor
+Android ADT 自带，但需要基于jdk1.8版本
+
 - appium desktop
+
+Appium Desktop 自带了一个 inspector，需要先配置一些信息
+
+- weditor
+
+阿里openatx团队开发的
+
+安装：`pip install -U weditor`
+运行：`weditor`
+
+有线连接：设备连接电脑，输入设备序列号
+
+无线连接：`adb tcpip 5555`，输入ip:端口
+
+## 获取包名和Activity

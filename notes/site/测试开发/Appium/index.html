@@ -1375,22 +1375,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#desired-capabilities" class="md-nav__link">
-    Desired Capabilities
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#demo" class="md-nav__link">
     Demo
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#activity" class="md-nav__link">
-    获取Activity
   </a>
   
 </li>
@@ -1405,6 +1391,13 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     查看布局结构和组件属性
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activity" class="md-nav__link">
+    获取包名和Activity
   </a>
   
 </li>
@@ -1670,22 +1663,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#desired-capabilities" class="md-nav__link">
-    Desired Capabilities
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#demo" class="md-nav__link">
     Demo
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#activity" class="md-nav__link">
-    获取Activity
   </a>
   
 </li>
@@ -1700,6 +1679,13 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     查看布局结构和组件属性
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activity" class="md-nav__link">
+    获取包名和Activity
   </a>
   
 </li>
@@ -1745,24 +1731,18 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="desired-capabilities"><a href="https://appium.io/docs/en/writing-running-appium/caps/index.html">Desired Capabilities</a><a class="headerlink" href="#desired-capabilities" title="Permanent link">&para;</a></h2>
-<ul>
-<li>platformName：要自动化的平台名称</li>
-<li>platformVersion：要自动化的平台版本</li>
-<li>deviceName: 自动化设备的种类</li>
-<li>app：您想要自动化的应用程序的路径（但browserName 在自动化 Web 浏览器的情况下使用该功能）</li>
-<li>automationName：您要使用的驱动程序的名称</li>
-</ul>
 <h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>
 <p><a href="https://github1s.com/appium/appium/blob/master/sample-code/python/README.md">官方示例</a></p>
+<p><a href="https://appium.io/docs/en/writing-running-appium/caps/index.html">Desired Capabilities</a></p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">appium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 
 <span class="n">caps</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;platformName&quot;</span> <span class="p">:</span> <span class="s2">&quot;Android&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;platformVersion&quot;</span> <span class="p">:</span> <span class="s2">&quot;6.0&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;deviceName&quot;</span> <span class="p">:</span> <span class="s2">&quot;emulator-5554&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;appPackage&quot;</span> <span class="p">:</span> <span class="s2">&quot;com.android.settings&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;appActivity&quot;</span> <span class="p">:</span> <span class="s2">&quot;com.android.settings.Settings&quot;</span><span class="p">,</span>
+    <span class="c1"># &quot;automationName&quot;: &quot;appium&quot;  # 自动化引擎</span>
+    <span class="s2">&quot;platformName&quot;</span> <span class="p">:</span> <span class="s2">&quot;Android&quot;</span><span class="p">,</span>  <span class="c1"># 平台名称</span>
+    <span class="s2">&quot;platformVersion&quot;</span> <span class="p">:</span> <span class="s2">&quot;6.0&quot;</span><span class="p">,</span>  <span class="c1"># 平台版本</span>
+    <span class="s2">&quot;deviceName&quot;</span> <span class="p">:</span> <span class="s2">&quot;emulator-5554&quot;</span><span class="p">,</span>  <span class="c1"># 设备名称，可随意填写</span>
+    <span class="s2">&quot;appPackage&quot;</span> <span class="p">:</span> <span class="s2">&quot;com.android.settings&quot;</span><span class="p">,</span>  <span class="c1"># 包名</span>
+    <span class="s2">&quot;appActivity&quot;</span> <span class="p">:</span> <span class="s2">&quot;com.android.settings.Settings&quot;</span><span class="p">,</span>  <span class="c1"># Activity</span>
     <span class="s2">&quot;ensureWebviewsHavePages&quot;</span><span class="p">:</span> <span class="bp">True</span>
 <span class="p">}</span>
 
@@ -1783,24 +1763,29 @@
 <li>连接设备/模拟器</li>
 <li>运行脚本</li>
 </ol>
-<h2 id="activity">获取Activity<a class="headerlink" href="#activity" title="Permanent link">&para;</a></h2>
-<ol>
-<li>源码</li>
-<li>没有源码，可以<a href="http://www.cnblogs.com/nbkhic/p/3806951.html">反编译工具</a></li>
-<li>使用log查看大法</li>
-</ol>
 <h2 id="_2">教程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><a href="http://www.cnblogs.com/nbkhic/p/3803830.html">appium的基本概念</a>(乙醇)</p>
 <p><a href="http://www.cnblogs.com/nbkhic/p/3805805.html">Desired Capabilities详解</a>(乙醇)</p>
 <p><a href="http://www.cnblogs.com/nbkhic/p/3807871.html">基础</a></p>
 <p><a href="http://www.cnblogs.com/nbkhic/p/3813792.html">使用resource id定位</a></p>
 <h2 id="_3">查看布局结构和组件属性<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p><a href="https://developer.android.com/guide/topics/resources/layout-resource">布局</a></p>
 <ul>
-<li><code>/tools/bin/uiautomatorviewer</code></li>
-<li>weditor</li>
+<li>uiautomatorviewer</li>
+</ul>
+<p>Android ADT 自带，但需要基于jdk1.8版本</p>
+<ul>
 <li>appium desktop</li>
 </ul>
+<p>Appium Desktop 自带了一个 inspector，需要先配置一些信息</p>
+<ul>
+<li>weditor</li>
+</ul>
+<p>阿里openatx团队开发的</p>
+<p>安装：<code>pip install -U weditor</code>
+运行：<code>weditor</code></p>
+<p>有线连接：设备连接电脑，输入设备序列号</p>
+<p>无线连接：<code>adb tcpip 5555</code>，输入ip:端口</p>
+<h2 id="activity">获取包名和Activity<a class="headerlink" href="#activity" title="Permanent link">&para;</a></h2>
                 
                   
                     
@@ -1809,7 +1794,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-01</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-02</span>
     
   </small>
 </div>
