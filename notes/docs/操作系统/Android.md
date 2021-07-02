@@ -27,7 +27,7 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 
 应用组件是 Android 应用的基本构建块。每个组件都是一个入口点，系统或用户可通过该入口点进入您的应用，共有四种应用组件类型，每种类型都有不同的用途和生命周期。
 
-- Activity `<activity>` UI界面
+- Activity `<activity>`
 - 服务 `<service>`
 - 广播接收器 `<receiver>`
 - 内容提供程序 `<provider>`

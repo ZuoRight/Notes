@@ -7,8 +7,6 @@ API文档：<https://appium.io/docs/en/about-appium/api/>
 - 测Android，依赖 [UiAutomator2](https://appium.io/docs/en/drivers/android-uiautomator2/)，就需要 Android SDK
 - 测iOS真机，依赖[XCUITest](https://appium.io/docs/en/drivers/ios-xcuitest-real-devices/)，需要XCode
 
-客户端程序库以各自的方式发起与服务器的会话：请求中包含一个被称作「预期能力（Desired Capabilities）」的 JSON 对象，这时服务器就会开启这个自动化会话，并返回一个用于发送后续命令的会话 ID。
-
 ## 环境搭建
 
 - appium server
@@ -22,21 +20,18 @@ API文档：<https://appium.io/docs/en/about-appium/api/>
 
 ## Demo
 
-[官方示例](https://github1s.com/appium/appium/blob/master/sample-code/python/README.md)
+iOS
 
-[Desired Capabilities](https://appium.io/docs/en/writing-running-appium/caps/index.html)
+Android
 
 ```python
 from appium import webdriver
 
+# Android至少要有的三个配置字段，其它视情况可选
 caps={
-    # "automationName": "appium"  # 自动化引擎
-    "platformName" : "Android",  # 平台名称
-    "platformVersion" : "6.0",  # 平台版本
-    "deviceName" : "emulator-5554",  # 设备名称，可随意填写
+    "platformName" : "Android",  # 平台名
     "appPackage" : "com.android.settings",  # 包名
-    "appActivity" : "com.android.settings.Settings",  # Activity
-    "ensureWebviewsHavePages": True
+    "appActivity" : "com.android.settings.Settings",  # 页面
 }
 
 driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
@@ -55,6 +50,21 @@ driver.quit()
 1. 启动Appium服务：`appium` [[参数](https://appium.io/docs/en/writing-running-appium/server-args/index.html)]
 2. 连接设备/模拟器
 3. 运行脚本
+
+[官方示例](https://github1s.com/appium/appium/blob/master/sample-code/python/README.md)
+
+常用[Desired Capabilities](https://appium.io/docs/en/writing-running-appium/caps/index.html)
+
+```python
+"platformName" : "Android",  # 平台名称
+"platformVersion" : "6.0",  # 平台版本
+"automationName": "appium"  # 自动化引擎
+"deviceName" : "emulator-5554",  # 设备名称
+"appPackage" : "com.android.settings",  # 包名
+"appActivity" : "com.android.settings.Settings",  # Activity
+"ensureWebviewsHavePages": True
+app  # apk路径
+```
 
 ## 教程
 

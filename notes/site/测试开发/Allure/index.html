@@ -1319,6 +1319,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../ADB/" title="ADB" class="md-nav__link">
+      ADB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -1449,7 +1461,19 @@
 
 
   <li class="md-nav__item">
-    <a href="../Unittest/" title="unittest" class="md-nav__link">
+    <a href="../Webdriver%E5%8E%9F%E7%90%86/" title="Webdriver原理" class="md-nav__link">
+      Webdriver原理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../unittest/" title="unittest" class="md-nav__link">
       unittest
     </a>
   </li>
@@ -1462,16 +1486,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-8" type="checkbox" id="nav-6-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-10" type="checkbox" id="nav-6-10">
     
-    <label class="md-nav__link" for="nav-6-8">
+    <label class="md-nav__link" for="nav-6-10">
       抓包
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="抓包" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-8">
+      <label class="md-nav__title" for="nav-6-10">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -1516,16 +1540,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-9" type="checkbox" id="nav-6-9">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-11" type="checkbox" id="nav-6-11">
     
-    <label class="md-nav__link" for="nav-6-9">
+    <label class="md-nav__link" for="nav-6-11">
       理论
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="理论" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-9">
+      <label class="md-nav__title" for="nav-6-11">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -1703,16 +1727,16 @@ allure open -h <span class="m">127</span>.0.0.1 -p <span class="m">8883</span> t
 <h2 id="_1">常用特性<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">allure</span>
 
-<span class="nd">@allure.testcase</span><span class="p">(</span><span class="s2">&quot;case_link_url&quot;</span><span class="p">,</span> <span class="s2">&quot;测试链接&quot;</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">testcase</span><span class="p">(</span><span class="s2">&quot;case_link_url&quot;</span><span class="p">,</span> <span class="s2">&quot;测试链接&quot;</span><span class="p">)</span>
 
-<span class="nd">@allure.feature</span><span class="p">(</span><span class="s2">&quot;功能&quot;</span><span class="p">)</span>
-<span class="nd">@allure.story</span><span class="p">(</span><span class="s2">&quot;子功能&quot;</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="s2">&quot;功能&quot;</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">story</span><span class="p">(</span><span class="s2">&quot;子功能&quot;</span><span class="p">)</span>
 
-<span class="nd">@allure.title</span><span class="p">(</span><span class="s2">&quot;用例标题&quot;</span><span class="p">)</span>
-<span class="nd">@allure.step</span><span class="p">(</span><span class="s2">&quot;步骤，放在类/方法上面&quot;</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;用例标题&quot;</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="s2">&quot;步骤，放在类/方法上面&quot;</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">allure</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="s2">&quot;步骤，放在方法内&quot;</span><span class="p">)</span>
 
-<span class="nd">@allure.severity</span><span class="p">(</span><span class="n">allure</span><span class="o">.</span><span class="n">severity_level</span><span class="o">.</span><span class="err">级别</span><span class="p">)</span>
+<span class="nd">@allure</span><span class="o">.</span><span class="n">severity</span><span class="p">(</span><span class="n">allure</span><span class="o">.</span><span class="n">severity_level</span><span class="o">.</span><span class="n">级别</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Blocker 中断 影响下一步</span>
 <span class="sd">Critical 临界 功能点缺失</span>
@@ -1733,7 +1757,7 @@ pytest --allure-severities critical,normal
 <ul>
 <li>附件直接显示在报告中</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@allure.attach</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@allure</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">body：附件</span>
 <span class="sd">name：附件名</span>
@@ -1745,7 +1769,7 @@ pytest --allure-severities critical,normal
 <ul>
 <li>附件以路径形式显示在报告中</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@allure.attach.file</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@allure</span><span class="o">.</span><span class="n">attach</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">source：附件路径</span>
 <span class="sd">其它同上</span>
@@ -1782,7 +1806,7 @@ pytest --allure-severities critical,normal
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux/%E6%9F%A5%E6%89%BE/" title="查找" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../ADB/" title="ADB" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1791,7 +1815,7 @@ pytest --allure-severities critical,normal
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                查找
+                ADB
               </div>
             </div>
           </a>

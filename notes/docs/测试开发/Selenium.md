@@ -6,10 +6,9 @@
 
 ## 核心组成及原理
 
-- **Webdriver** 规定了一套C/S协议，称为：JSON Wire Protocol
-    > 客户端即编写的脚本，发送请求到服务端，然后服务端会通过浏览器驱动（比如chromedriver，浏览器提供的一些api接口）与浏览器进行交互。
-- **IDE** 浏览器插件
-- **Grid** 可以做分布式测试
+- Webdriver
+- IDE 浏览器插件
+- Grid 可以做分布式测试
 
 ## 环境搭建
 
