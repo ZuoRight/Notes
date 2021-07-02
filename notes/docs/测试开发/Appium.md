@@ -76,3 +76,11 @@ driver.quit()
 [基础](http://www.cnblogs.com/nbkhic/p/3807871.html)
 
 [使用resource id定位](http://www.cnblogs.com/nbkhic/p/3813792.html)
+
+## 查看布局结构和组件属性
+
+[布局](https://developer.android.com/guide/topics/resources/layout-resource)
+
+- `/tools/bin/uiautomatorviewer`
+- weditor
+- appium desktop
