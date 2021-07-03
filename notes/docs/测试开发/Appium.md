@@ -48,7 +48,7 @@ driver.quit()
 运行
 
 1. 启动Appium服务：`appium` [[参数](https://appium.io/docs/en/writing-running-appium/server-args/index.html)]
-2. 连接设备/模拟器
+2. 连接设备/模拟器，确保开发者选项中类似USB调试(安全)等开关为开启状态，否则可能会报代号255的错
 3. 运行脚本
 
 [官方示例](https://github1s.com/appium/appium/blob/master/sample-code/python/README.md)
@@ -59,7 +59,7 @@ driver.quit()
 "platformName" : "Android",  # 平台名称
 "platformVersion" : "6.0",  # 平台版本
 "automationName": "appium"  # 自动化引擎
-"deviceName" : "emulator-5554",  # 设备名称
+"deviceName" : "emulator-5554",  # 设备名称，随意
 "appPackage" : "com.android.settings",  # 包名
 "appActivity" : "com.android.settings.Settings",  # Activity
 "ensureWebviewsHavePages": True
@@ -76,25 +76,100 @@ app  # apk路径
 
 [使用resource id定位](http://www.cnblogs.com/nbkhic/p/3813792.html)
 
-## 查看布局结构和组件属性
+## DOM分析
 
 - uiautomatorviewer
-
-Android ADT 自带，但需要基于jdk1.8版本
+  > Android ADT 自带，但需要基于jdk1.8版本
 
 - appium desktop
-
-Appium Desktop 自带了一个 inspector，需要先配置一些信息
+  > Appium Desktop 自带了一个 inspector，需要先配置一些信息
 
 - weditor
+  > 阿里openatx团队开发的
+  >
+  > - 安装：`pip install -U weditor`
+  > - 运行：`weditor`
+  > - 连接：输入设备序列号或ip:5555（需要先开启）
 
-阿里openatx团队开发的
+## 定位元素
 
-安装：`pip install -U weditor`
-运行：`weditor`
+### 常规定位
 
-有线连接：设备连接电脑，输入设备序列号
+```python
+# resource-id
+driver.find_element(By.ID, '包名:id/value')
+```
 
-无线连接：`adb tcpip 5555`，输入ip:端口
+```python
+# accessibility-id
+driver.find_element_by_accessibility_id('xxx')
+```
 
-## 获取包名和Activity
+```python
+from appium.webdriver.common.mobileby import MobileBy
+# XPATH
+loc = '//*[@resource-id="xx"]'
+loc = '//*[contains(@text, "xx")]'
+loc = '//*[@class="xx" and @content-desc="xx"]'
+
+driver.find_element(MobileBy.XPATH, loc)
+```
+
+### [UiAutomator API定位](https://developer.android.google.cn/reference/android/support/test/uiautomator/package-summary)
+
+- UiSelector
+
+```python
+code = 'new UiSelector().text("文本")'
+code = 'new UiSelector().textContains("文本")'
+code = 'new UiSelector().textStartsWith("文本")'
+code = 'new UiSelector().text("文本")'
+
+code = 'new UiSelector().resourcedId("xxxidxxx")'
+code = 'new UiSelector().resourcedId("xxxidxxx").text("文本")'  # 组合
+
+code = 'new UiSelector().className("xxx.xx.xxx")'  # 通常有多个结果，然后结果下标过滤
+
+code = 'new UiSelector().description("content-desc 文本")'
+
+driver.find_element_by_android_uiautomator(code)
+```
+
+- UiScrollable
+
+```python
+code = 'new UiScrollable(
+            new UiSelector().scrollable(true).instance(0)  # .scrollable(true) 查找匹配到的第一个可滚动组件
+        )
+        .scrollIntoView(  # .scrollIntoView 滚动并查找textview(默认滚动30次)
+            new UiSelector().text("文本").instance(0)
+        );'
+driver.find_element(MobileBy.ANDROID_UIAUTOMATOR, code)
+```
+
+### 定位toast
+
+```python
+toast_xpath = "//*[@class='android.widget.Toast']"
+driver.find_element(MoBileBy.XPATH, toast_xpath)
+```
+
+### 定位到元素后获取属性
+
+```python
+ele.get_attribute("clickable")  # 是否可点击
+ele.get_attribute("checked")  # 是否可选中
+ele.get_attribute("displayed")  # 是否可见
+ele.get_attribute("enabled")  # 是否可用
+```
+
+### 获取页面源码
+
+```python
+driver.page_source  # 获取页面代码，appium是XML，selenium是HTML
+```
+
+## H5页面
+
+driver.switch_to.context()
+

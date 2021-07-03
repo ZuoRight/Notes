@@ -1,9 +1,10 @@
 # ADB
 
 ```shell
+adb kill-server
 adb devices
 adb connect
-adb tcp:5555
+adb tcpip 5555
 
 adb logcat | grep START  # 获取包名和Activity
 

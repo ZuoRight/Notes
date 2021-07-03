@@ -1,7 +1,7 @@
 # Selenium
 
-- [官网](https://www.selenium.dev/)
-- [API文档](https://www.selenium.dev/selenium/docs/api/py/api.html)（[中文](https://selenium-python-zh.readthedocs.io/en/latest/)）
+- [官方文档](https://www.selenium.dev/documentation/zh-cn/)
+- [API文档](https://www.selenium.dev/selenium/docs/api/py/api.html)
 - 用于测试的demo网站：<https://sahitest.com/demo/>
 
 ## 核心组成及原理
@@ -372,6 +372,23 @@ wait.until/until_not(method, message='')
 
 `from selenium.webdriver.support import expected_conditions as EC`
 
+最常用的三个
+
+```python
+# 判断某个元素是否被加到了dom里，但不一定可见
+EC.presence_of_element_located(locator)
+
+# 判断某个元素是否可见，宽和高等大于0
+EC.visibility_of_element_located(locator)
+
+# 判断某个元素中是否可点击
+EC.element_to_be_clickable(locator)
+```
+
+---
+
+其它
+
 ```python
 # 判断页面上是否存在弹框
 EC.alert_is_present()
@@ -398,19 +415,13 @@ EC.invisibility_of_element_located(locator)
 # 判断等待某个元素从dom树中是否移除
 EC.staleness_of()
 
-# 判断某个元素是否被加到了dom里，但不一定可见
-EC.presence_of_element_located(locator)
 # 判断是否至少有1个元素存在于dom中
 EC.presence_of_all_elements_located(locator)
 ```
 
 ```python
-# 判断某个元素是否可见，宽和高等大于0
-EC.visibility_of_element_located(locator)
 # 判断是否至少有一个元素可见
 EC.visibility_of_any_elements_located(locator)
-# 判断某个元素中是否可见并且是可点击的
-EC.element_to_be_clickable(locator)
 ```
 
 ```python
