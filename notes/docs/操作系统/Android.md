@@ -36,12 +36,18 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 
 [布局](https://developer.android.com/guide/topics/ui/declaring-layout)定义了应用中的界面结构，布局中的所有元素均使用 View 和 ViewGroup 对象的层次结构进行构建。View 通常称为微件，用于绘制用户可看到并与之交互的内容。ViewGroup 则是不可见的容器，用于定义 View 和其他 ViewGroup 对象的布局结构。
 
-## 工具
-
-<https://developer.android.com/studio/command-line#tools-sdk>
-
-- 模拟器
+## 模拟器
 
 安装模拟器建议选择x86 Images标签下x86_64带Google APIs的
 
 启动模拟器：`emulator @android6`
+
+如果想让模拟器联网需要从命令行启动并配置DNS
+
+参考：<https://www.jianshu.com/p/cb738ad177ac>
+
+`emulator -avd 模拟器名 -dns-server 202.106.0.20`
+
+## 工具
+
+<https://developer.android.com/studio/command-line#tools-sdk>

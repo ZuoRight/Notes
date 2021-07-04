@@ -9,6 +9,8 @@ set key=value  #Windows
 ## CMD
 
 ```shell
+ipconfig /all  # 查看IP和DNS
+
 dir  # ls
 
 findstr  # grep

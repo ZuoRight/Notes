@@ -1,10 +1,44 @@
-# 选择器
+# DOM分析
 
-## Xpath
+## 分析工具
+
+### PC端
+
+浏览器DevTools
+
+### 移动原生应用
+
+- Android ADT 自带的 uiautomatorviewer
+
+需要基于jdk1.8版本
+
+- Appium Desktop自带inspector
+
+需要先配置Desired Capabilities
+
+- [weditor](https://github.com/alibaba/web-editor)
+
+阿里openatx团队开发的辅助工具
+
+`pip install -U weditor`
+
+命令行执行`weditor`，在自动打开的浏览器页面输入设备序列号，或ip:5555（需要先`adb tcpip 5555`开启无线连接端口）
+
+### WebView页面
+
+电脑连接手机或模拟器，浏览器访问：<chrome://inspect/#devices>，将会看到设备中打开的H5页面，点击inspect可以看到时时渲染的页面进行分析。
+
+注意，如果想查看原生应用中嵌套的H5，需要应用打开WebView调试开关，模拟器中默认是打开的，但真机只能求助开发。
+
+![20210704192754](http://image.zuoright.com/20210704192754.png)
+
+## 定位方式
+
+### Xpath
 
 XML Path Language，适用于XML、HTML DOM、APP DOM等结构。
 
-```xpath
+```palin
 @属性
 
 /div/p[1]  div子元素的第一个p元素
@@ -20,7 +54,7 @@ XML Path Language，适用于XML、HTML DOM、APP DOM等结构。
 //select[@x='a' and @y='b']  通过多个属性定位元素
 ```
 
-```xpath
+```palin
 //div[text()='谷歌']  找到文本是"谷歌"的div
 //div[contains(text(), '谷歌')]")  找到文本含"谷歌"的div
 //div[contains(@id,'in')]  找到所有id中包含有in的div
@@ -35,7 +69,7 @@ XML Path Language，适用于XML、HTML DOM、APP DOM等结构。
 //a[text()='直播']/following-sibling::a[2]  同上，但是找后面的
 ```
 
-## CSS
+### CSS Selector
 
 参考：<https://www.runoob.com/cssref/css-selectors.html>
 
@@ -66,7 +100,9 @@ div:read-only  匹配设置了readonly属性的元素，注意要加read和only�
 #id
 ```
 
-## DOM
+### JS
+
+- Document
 
 ```javascript
 ele = document.getElementById('id')
@@ -78,10 +114,10 @@ ele.nodeName
 ele.textContent
 ```
 
-## JQuery
+- JQuery
 
 ```javascript
-ele = $('css')
+ele = $('css selector')
 ele = $x('xpath')
 
 ele.text()  取值
