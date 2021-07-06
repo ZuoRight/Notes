@@ -59,6 +59,27 @@ Tips：
 
 ### Android
 
-## 功能
+## Rewrite
+
+跨域会先发一次OPTIONS请求，需要先改写返回头。
+
+rewrite rule
+
+```json
+{
+    "Access-Control-Allow-Origin": "https://xx.xxx.com",
+    "Access-Control-Allow-Credentials": true
+}
+```
+
+add location
+
+注意：
+> 此时如果开浏览器控制台不要勾选「Disable cache」，否则请求会出错。  
+> 另外path末尾不要带空格，否则匹配不上。
+
+## Map Local
+
+## 其它功能
 
 - focus 聚焦显示想看的域名，其它域名归类到其它
