@@ -1454,6 +1454,30 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../HTTPCanary/" title="HttpCanary" class="md-nav__link">
+      HttpCanary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Mock/" title="Mock" class="md-nav__link">
+      Mock
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -1530,6 +1554,26 @@
     工具
   </a>
   
+    <nav class="md-nav" aria-label="工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    网络监听
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1568,6 +1612,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%90%86%E8%AE%BA/POM/" title="POM" class="md-nav__link">
+      POM
+    </a>
+  </li>
+
         
           
           
@@ -1728,6 +1784,26 @@
     工具
   </a>
   
+    <nav class="md-nav" aria-label="工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    网络监听
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    请求
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1769,49 +1845,47 @@
 <p>https://zhuanlan.zhihu.com/p/60392573</p>
 <p>内置证书或者公钥的时候，需要对比验证客户端和服务端的证书或公钥，一般是通用的API，所以可以直接控制这个API的返回结果让验证通过。</p>
 <ol>
-<li>
-<p>Xposed+justTrustme：不行？</p>
-</li>
-<li>
-<p>使用逆向神器Frida：太难？
-https://blog.csdn.net/xiaohua_de/article/details/80259920</p>
-</li>
+<li>Xposed+justTrustme：不行？</li>
+<li>使用逆向神器Frida：太难？
+  <a href="https://blog.csdn.net/xiaohua_de/article/details/80259920">https://blog.csdn.net/xiaohua_de/article/details/80259920</a></li>
 </ol>
 <p>使用模拟器（首选逍遥模拟器）</p>
-<p>模拟器不行，使用真机，需要root，root工具（首选刷机精灵）</p>
-<ol>
-<li>apk反编译工具</li>
-</ol>
+<p>模拟器不行，使用真机，需要root，root工具（首选刷机精灵）
+3. apk反编译工具</p>
 <h2 id="android">Android<a class="headerlink" href="#android" title="Permanent link">&para;</a></h2>
 <p><a href="https://juejin.im/post/6844903831579394055">https://juejin.im/post/6844903831579394055</a></p>
 <p>Android7.0+，<code>targetSdkVersion&gt;=24</code>的应用不再信任用户证书，应对方式有4种</p>
 <ol>
-<li>Root，将证书安装到系统证书目录</li>
-</ol>
-<p>从抓包工具以系统证书格式（.0）导出证书，用MT管理器将证书复制或者通过adb remount然后push到/etc/security/cacerts/目录下（不要在sdcard中找这个目录直接拖拽过去）</p>
-<ol>
-<li>AndroidManifest中配置networkSecurityConfig</li>
-</ol>
-<p><a href="https://developer.android.com/training/articles/security-config">https://developer.android.com/training/articles/security-config</a></p>
-<ol>
-<li>调低targetSdkVersion&lt;24</li>
-</ol>
-<p>GooglePlay限制targetSdkVersion必须&gt;=28，国内应用市场也开始逐步响这种限制。绝大多数App的targetSdkVersion都将大于24了，也就意味着抓HTTPS的包越来越难操作了</p>
-<ol>
-<li>借助targetSdkVersion&lt;24的宿主系统</li>
+<li>Root，将证书安装到系统证书目录
+  从抓包工具以系统证书格式（.0）导出证书，用MT管理器将证书复制或者通过adb remount然后push到/etc/security/cacerts/目录下（不要在sdcard中找这个目录直接拖拽过去）</li>
+<li>AndroidManifest中配置networkSecurityConfig
+  <a href="https://developer.android.com/training/articles/security-config">https://developer.android.com/training/articles/security-config</a></li>
+<li>调低targetSdkVersion&lt;24
+  GooglePlay限制targetSdkVersion必须&gt;=28，国内应用市场也开始逐步响这种限制。绝大多数App的targetSdkVersion都将大于24了，也就意味着抓HTTPS的包越来越难操作了</li>
+<li>借助targetSdkVersion&lt;24的宿主系统<ul>
 <li>平行空间（v4.0.8625以下版本），HttpCanary设置中可以直接安装平行空间</li>
 <li>VirtualApp</li>
+</ul>
+</li>
 </ol>
 <h2 id="_4">工具<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>Wireshark（前称Ethereal），Wireshark使用WinPCAP作为接口，直接与网卡进行数据报文交换</p>
-<p>Fiddler</p>
+<p>burpsuite 渗透测试工具，黑客必备</p>
+<p>mitmproxy 集成定制，测开必备</p>
 <p>Charles</p>
-<p>Tcpdump
-<a href="http://www.trinea.cn/android/tcpdump_wireshark/">Trinea版本</a>
-<a href="http://mrpeak.cn/blog/tutorial-tcpdump/">MrPeak版本</a></p>
+<p>Fiddler</p>
 <p>安卓专用：
 HttpCanary（v2.8.0前导出的证书名称不对，尽量用v2.8.0之后的版本）
 Packet Caputure</p>
+<h3 id="_5">网络监听<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>Wireshark（前称Ethereal），Wireshark使用WinPCAP作为接口，直接与网卡进行数据报文交换</p>
+<p>Tcpdump</p>
+<ul>
+<li><a href="http://www.trinea.cn/android/tcpdump_wireshark/">Trinea版本</a></li>
+<li><a href="http://mrpeak.cn/blog/tutorial-tcpdump/">MrPeak版本</a></li>
+</ul>
+<h3 id="_6">请求<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>curl</p>
+<p>postman</p>
                 
                   
                     
@@ -1820,7 +1894,7 @@ Packet Caputure</p>
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-06-30</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-06</span>
     
   </small>
 </div>
@@ -1843,7 +1917,7 @@ Packet Caputure</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../Charles/" title="Charles" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../Mock/" title="Mock" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1852,19 +1926,19 @@ Packet Caputure</p>
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                Charles
+                Mock
               </div>
             </div>
           </a>
         
         
-          <a href="../../%E7%90%86%E8%AE%BA/%E5%85%B3%E4%BA%8E%E6%B5%8B%E8%AF%95/" title="关于测试" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../%E7%90%86%E8%AE%BA/POM/" title="POM" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                关于测试
+                POM
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

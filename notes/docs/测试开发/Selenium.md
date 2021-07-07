@@ -512,11 +512,3 @@ driver.get_screenshot_as_png()  # 获取当前截图的二进制数据
 ## 异常
 
 `from selenium.common.exceptions import TimeoutException`
-
-## PO
-
-如何封装，封装所遵循的规范：设计模式
-
-<https://www.selenium.dev/documentation/zh-cn/guidelines_and_recommendations/page_object_models/>
-
-![20210629115112](http://image.zuoright.com/20210629115112.png)

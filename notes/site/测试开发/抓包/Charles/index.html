@@ -1554,8 +1554,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rewrite" class="md-nav__link">
+    Rewrite
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map-local" class="md-nav__link">
+    Map Local
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    功能
+    其它功能
   </a>
   
 </li>
@@ -1564,6 +1578,30 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../HTTPCanary/" title="HttpCanary" class="md-nav__link">
+      HttpCanary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Mock/" title="Mock" class="md-nav__link">
+      Mock
+    </a>
   </li>
 
         
@@ -1608,6 +1646,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../%E7%90%86%E8%AE%BA/POM/" title="POM" class="md-nav__link">
+      POM
+    </a>
+  </li>
+
         
           
           
@@ -1804,8 +1854,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rewrite" class="md-nav__link">
+    Rewrite
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map-local" class="md-nav__link">
+    Map Local
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    功能
+    其它功能
   </a>
   
 </li>
@@ -1867,7 +1931,23 @@
 </ol>
 <p><img alt="lADPDgQ9vAXnSl_NBQDNAtA_720_1280" src="http://image.zuoright.com/lADPDgQ9vAXnSl_NBQDNAtA_720_1280.jpg" /></p>
 <h3 id="android">Android<a class="headerlink" href="#android" title="Permanent link">&para;</a></h3>
-<h2 id="_2">功能<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="rewrite">Rewrite<a class="headerlink" href="#rewrite" title="Permanent link">&para;</a></h2>
+<p>跨域会先发一次OPTIONS请求，需要先改写返回头。</p>
+<p>rewrite rule</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;Access-Control-Allow-Origin&quot;</span><span class="p">:</span> <span class="s2">&quot;https://xx.xxx.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;Access-Control-Allow-Credentials&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>add location</p>
+<p>注意：</p>
+<blockquote>
+<p>此时如果开浏览器控制台不要勾选「Disable cache」，否则请求会出错。<br />
+另外path末尾不要带空格，否则匹配不上。</p>
+</blockquote>
+<h2 id="map-local">Map Local<a class="headerlink" href="#map-local" title="Permanent link">&para;</a></h2>
+<h2 id="_2">其它功能<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>focus 聚焦显示想看的域名，其它域名归类到其它</li>
 </ul>
@@ -1879,7 +1959,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-06-30</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-06</span>
     
   </small>
 </div>
@@ -1917,13 +1997,13 @@
           </a>
         
         
-          <a href="../%E6%8A%93%E5%8C%85%E5%9F%BA%E7%A1%80/" title="抓包基础" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../HTTPCanary/" title="HttpCanary" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                抓包基础
+                HttpCanary
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
