@@ -19,6 +19,8 @@ Tips：每次重启Charles都需要重新勾选一下
 
 ![20200803232853](http://image.zuoright.com/20200803232853.png)
 
+也可以使用代理工具，推荐浏览器插件：SwitchyOmega
+
 ### 代理APP
 
 Tips：
@@ -79,6 +81,8 @@ add location
 > 另外path末尾不要带空格，否则匹配不上。
 
 ## Map Local
+
+## Throttling
 
 ## 其它功能
 
