@@ -17,7 +17,6 @@ socket = 127.0.0.1:3031
 ; 主进程
 master = true
 
-
 ; 以下字段非必需
 
 ; 退出、重启时清理文件
@@ -32,7 +31,9 @@ max-requests=5000
 
 ```
 
-直接用uwsgi启动django，成功后访问：<http://127.0.0.1:3031>
+## 直接用uwsgi启动
+
+成功后访问：<http://127.0.0.1:3031>
 
 ```shell
 # 启动，ctrl+c退出
@@ -42,33 +43,7 @@ uwsgi --http :3031 --file onestep/wsgi.py
 ps -ax | grep uwsgi
 ```
 
-## Nginx
-
-```shell
-# 安装
-# 配置文件路径：/usr/local/etc/nginx/nginx.conf
-brew install nginx
-
-nginx -v
-
-# 测试配置是否成功
-nginx -t -c /usr/local/etc/nginx/nginx.conf
-
-# 启动
-sudo nginx
-# 重启
-sudo nginx -s reload
-# 停止
-sudo nginx -s stop
-
-# 获取nginx:master进程号
-ps -ax | grep nginx
-
-# 杀死进程
-sudo kill -s QUIT 进程号
-```
-
-nginx+uwsgi方式启动项目
+## nginx+uwsgi方式启动
 
 修改`nginx.conf`配置
 
