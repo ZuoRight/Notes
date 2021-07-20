@@ -1,32 +1,45 @@
 # Requests
 
+基于urllib3封装的Python HTTP库
+
+使用文档：<https://docs.python-requests.org/zh_CN/latest/>
+
+API：<https://docs.python-requests.org/zh_CN/latest/api.html>
+
 `pip install requests`
 
 ```python
 import requests
 
-def req(request_method, request_url, **kwwars):
-    """
-    :request_method: get/post/put/delete
-    :request_url 请求url
-    :**kwarts
-        headers = _dict  # 请求头
-        data = {k1:v1, k2:v2}  # 表单
-        files = {"f1": open("xxx.xls", "rb"), "f2": open(...)}  # 文件
-        proxies = {"http": "127.0.0.1:8888", "https": "127.0.0.1:8888"}  # 设置代理
-        verify = "/path/to/certifile"  # True（校验证书，默认），False（忽略证书），字符串（从本地传入证书）
-        timeout = 0.01  # 设置响应超时时间
-        allow_redirects = True  # 是否自动重定向，默认False
-    """
-    r = requests.request(request_method, request_url, **kwwars)
-    return r
 
-r = req()  # <Response [状态码]>
+r = requests.request(request_method, request_url, **kwwars)  # <Response [200]>
+"""
+:request_method: get/post/put/delete/patch/options/head
+:request_url 请求url
+:**kwarts
+    params = _dict  # url参数，即查询字符串
+    data = _dict  # 表单
+    json = _dict  # 表单，自动编码
+    headers = _dict  # 请求头
+    files = {"f1": open("xxx.xls", "rb"), "f2": open(...)}  # 文件
+    proxies = {"http": "127.0.0.1:8888", "https": "127.0.0.1:8888"}  # 设置代理
+    verify = "/path/to/certifile"  # True（校验证书，默认），False（忽略证书），字符串（从本地传入证书）
+    timeout = 0.01  # 设置连接超时时间
+    allow_redirects = True  # 自动重定向，默认True
+"""
+
+r.url
+r.encoding
 r.headers  # 获得响应头
-r.raw  # 获得原始内容
-r.content  # 获得二进制响应内容
-r.text  # 获得编码后的响应值
-r.json  # 获得json格式响应体
+
+r.content  # 获取响应内容，字节码形式
+r.text  # 获取响应内容，字符串形式
+r.json  # 获取响应内容，json格式
+r.raw  # 获取原始响应内容，请求时需要加stream=True，并建议保存到文件，参考文档：https://docs.python-requests.org/zh_CN/latest/user/quickstart.html#id5
+
+
+r.raise_for_status()
+r.status_code
 ```
 
 ## 获取cookies
