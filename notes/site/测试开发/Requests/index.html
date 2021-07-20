@@ -1787,6 +1787,43 @@
                 
                 
                 <h1 id="requests">Requests<a class="headerlink" href="#requests" title="Permanent link">&para;</a></h1>
+<p>基于urllib3封装的Python HTTP库</p>
+<p>使用文档：<a href="https://docs.python-requests.org/zh_CN/latest/">https://docs.python-requests.org/zh_CN/latest/</a></p>
+<p>API：<a href="https://docs.python-requests.org/zh_CN/latest/api.html">https://docs.python-requests.org/zh_CN/latest/api.html</a></p>
+<p><code>pip install requests</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">request_method</span><span class="p">,</span> <span class="n">request_url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwwars</span><span class="p">)</span>  <span class="c1"># &lt;Response [200]&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">:request_method: get/post/put/delete/patch/options/head</span>
+<span class="sd">:request_url 请求url</span>
+<span class="sd">:**kwarts</span>
+<span class="sd">    params = _dict  # url参数，即查询字符串</span>
+<span class="sd">    data = _dict  # 表单</span>
+<span class="sd">    json = _dict  # 表单，自动编码</span>
+<span class="sd">    headers = _dict  # 请求头</span>
+<span class="sd">    files = {&quot;f1&quot;: open(&quot;xxx.xls&quot;, &quot;rb&quot;), &quot;f2&quot;: open(...)}  # 文件</span>
+<span class="sd">    proxies = {&quot;http&quot;: &quot;127.0.0.1:8888&quot;, &quot;https&quot;: &quot;127.0.0.1:8888&quot;}  # 设置代理</span>
+<span class="sd">    verify = &quot;/path/to/certifile&quot;  # True（校验证书，默认），False（忽略证书），字符串（从本地传入证书）</span>
+<span class="sd">    timeout = 0.01  # 设置连接超时时间</span>
+<span class="sd">    allow_redirects = True  # 自动重定向，默认True</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">r</span><span class="o">.</span><span class="n">url</span>
+<span class="n">r</span><span class="o">.</span><span class="n">encoding</span>
+<span class="n">r</span><span class="o">.</span><span class="n">headers</span>  <span class="c1"># 获得响应头</span>
+
+<span class="n">r</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># 获取响应内容，字节码形式</span>
+<span class="n">r</span><span class="o">.</span><span class="n">text</span>  <span class="c1"># 获取响应内容，字符串形式</span>
+<span class="n">r</span><span class="o">.</span><span class="n">json</span>  <span class="c1"># 获取响应内容，json格式</span>
+<span class="n">r</span><span class="o">.</span><span class="n">raw</span>  <span class="c1"># 获取原始响应内容，请求时需要加stream=True，并建议保存到文件，参考文档：https://docs.python-requests.org/zh_CN/latest/user/quickstart.html#id5</span>
+
+
+<span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="n">r</span><span class="o">.</span><span class="n">status_code</span>
+</code></pre></div>
+
 <h2 id="cookies">获取cookies<a class="headerlink" href="#cookies" title="Permanent link">&para;</a></h2>
 <ul>
 <li>dict格式：从浏览器返回中获取</li>
@@ -1833,7 +1870,7 @@
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-06-19</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-20</span>
     
   </small>
 </div>
