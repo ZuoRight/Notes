@@ -3,6 +3,14 @@
 - 官网：<https://git-scm.com/>
 - 官方文档：<https://git-scm.com/book/zh/v2>
 
+## VCS
+
+Version Control System 版本控制系统，主要分为集中式和分布式两种。
+
+集中式最常用的是[SVN](https://www.visualsvn.com/)，它修复了CVS(一款更老的集中式VCS)的一些稳定性问题，分为客户端和服务端。
+
+但如今最流行的VCS无疑是分布式的Git，也就是我们今天的主角。
+
 ## 安装
 
 - Windows：官网下载`Git for Windows`客户端安装即可
@@ -36,9 +44,13 @@ git config --global user.email "7c@zuoright.com"
 
 ```shell
 # 生成密钥
+# 回车，会提示保存位置
+# 再回车，如果已存在则会提示是否重新生成
+# 如果提示输入密钥类型，推荐选择ed25519，没提示一般默认会是rsa类型
 ssh-keygen
-# 查看公钥，将公钥添加到GitHub/Gitlab等仓库设置中
+# 查看公钥
 cat ~/.shh/id_rsa.pub
+# 将公钥添加到项目托管平台相应设置中
 ```
 
 ## 创建项目
@@ -154,21 +166,12 @@ git commit --ament -m "xxx"  # 修正提交，可以覆盖上一次的提交
 ## 分支
 
 ```shell
-# 查看分支
-git branch
-
-# 新建分支
-git branch dev
-
-# 切换分支
-git checkout dev  # new: git switch dev
-git checkout -b dev  # 创建并切换分支
-
-# 合并分支
-git merge dev
-
-# 删除分支
-git branch -d dev
+git branch [-a] # 查看，加-a会显示远程分支(红色标示)
+git branch dev  # 新建
+git checkout dev  # 切换，git switch dev
+git checkout -b dev  # 新建并切换
+git merge dev  # 合并
+git branch -d dev  # 删除
 ```
 
 如果两个分支同时修改了同一处，合并时会产生冲突，此时冲突的文件会变为未追踪状态，文件中会用=======上下分割标识出两个分支冲突的部分，需要手动解决后再次add到暂存区后提交。
@@ -179,10 +182,9 @@ git branch -d dev
 # 将本地主分支设置为main(与GitHub默认主分支main保持一致)
 git branch -M main
 
-# 把远程仓库某分支最新代码取回本地，不会自动合并
+# 把远程仓库某分支最新代码取回本地，但不会自动合并
+# 此时可以git status查看下，然后执行git merge合并
 git fetch origin/master
-# 合并分支
-git merge
 # 从已跟踪服务器拉取并自动合并
 git pull  # 等同于：git fetch + git merge
 
