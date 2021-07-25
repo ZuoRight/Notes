@@ -1550,18 +1550,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../DNS/" class="md-nav__link">
-        DNS
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../HTTP/" class="md-nav__link">
         HTTP
       </a>
@@ -1656,18 +1644,6 @@
             
   
   
-  
-    <li class="md-nav__item">
-      <a href="../%E7%BD%91%E8%B7%AF%E5%8D%8F%E8%AE%AE/" class="md-nav__link">
-        网络协议
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
     
   
   
@@ -1753,14 +1729,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_12" type="checkbox" id="__nav_8_12" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_10" type="checkbox" id="__nav_8_10" >
       
-      <label class="md-nav__link" for="__nav_8_12">
+      <label class="md-nav__link" for="__nav_8_10">
         抓包
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="抓包" data-md-level="2">
-        <label class="md-nav__title" for="__nav_8_12">
+        <label class="md-nav__title" for="__nav_8_10">
           <span class="md-nav__icon md-icon"></span>
           抓包
         </label>
@@ -1912,32 +1888,35 @@
                 
                 
                 <h1 id="_1">输入网址，敲击回车之后<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>示例URL：<a href="https://example.com/">https://example.com/</a></p>
+<blockquote>
 <p>URL 统一资源定位符</p>
-<p>URL的各种形式：图</p>
-<p>浏览器解析URL，然后使用HTTP协议向服务器发起请求，请求内容包括请求方式和URI（统一资源标识符，它可以是一个文件名、CGI程序、或者就是URL等任何访问目标，这些目标统称为URI）</p>
+<p>URI（统一资源标识符，它可以是一个文件名、CGI程序、或者就是URL等任何访问目标，这些目标统称为URI）</p>
+</blockquote>
+<p>浏览器解析URL可知域名和协议</p>
 <h2 id="_2">应用层<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>DNS、HTTPDNS
-HTTP、HTTPS</p>
+<p>使用DNS/HTTPDNS协议查找到IP地址为：93.184.216.34</p>
+<p>然后使用HTTP/HTTPS协议封装后将数据包从应用层交给传输层</p>
 <h2 id="socket">传输层（socket 编程）<a class="headerlink" href="#socket" title="Permanent link">&para;</a></h2>
-<p>TCP（浏览器监听端口、服务器监听端口）、UDP</p>
+<p>UDP</p>
+<p>TCP（浏览器监听端口、服务器监听端口）</p>
+<p>传输层封装完毕后，浏览器会将包交给操作系统的网络层</p>
 <h2 id="_3">网络层<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>IP协议，得到目标/服务器IP：xxx</p>
-<p>DHCP协议：操作系统启动的时候，DHCP协议会配置本机IP和默认网关的IP
-本机IP：192.168.1.7
-网关IP：192.168.1.1</p>
+<p>判断目标地址是本地IP还是公网IP</p>
+<p>如果是公网，则通过ARP协议（也就是已知IP地址，求MAC地址）获取网关MAC地址交给网关</p>
+<blockquote>
+<p>操作系统启动的时候，DHCP协议会配置本机IP和默认网关的IP(192.168.1.1)</p>
+</blockquote>
 <h2 id="_4">链路层<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>ARP协议
-去外网需要先经过网关，通过ARP协议和MAC地址通信即可
-同一网段，发送 ARP 请求，获取 MAC 地址
-ARP 协议，也就是已知 IP 地址，求 MAC 地址的协议
-跨网段，则发送到网关
-路由协议（常用的有 OSPF 和 BGP）
-到达网关（一般是路由器）后，使用路由表通过路由协议通信</p>
+<p>网关（一般是路由器）通过路由协议（常用的有 OSPF 和 BGP）按路由表将数据包发出</p>
 <h2 id="_5">物理层<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>LAN局域网
-Hub集线器
-Switch交换机
-交换机越来越多，会造成环路和安全问题，STP协议用来解决环路问题，VLAN（虚拟局域网）用来解决广播和安全问题</p>
+<p>交换机越来越多，会造成环路和安全问题，STP协议用来解决环路问题，VLAN（虚拟局域网）用来解决广播和安全问题</p>
+<hr />
+<p>当网络包平安到达 TCP 层之后，TCP 头中有目标端口号，通过这个端口号，可以找到网站的某个进程正在监听这个端口号，然后分析请求和请求体，通过RPC框架调用给不同的进程</p>
+<blockquote>
+<p>RPC 框架有很多种，有基于 HTTP 协议放在 HTTP 的报文里面的，有直接封装在 TCP 报文里面的</p>
+</blockquote>
                 
                   
                     
@@ -1976,7 +1955,7 @@ Switch交换机
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../%E7%BD%91%E8%B7%AF%E5%8D%8F%E8%AE%AE/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 网络协议" rel="prev">
+        <a href="../%E4%BC%A0%E8%BE%93/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 传输" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1985,7 +1964,7 @@ Switch交换机
               <span class="md-footer__direction">
                 上一页
               </span>
-              网络协议
+              传输
             </div>
           </div>
         </a>
