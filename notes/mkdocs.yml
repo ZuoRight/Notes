@@ -12,9 +12,16 @@ theme:
   name: material
   language: zh
   palette:
-    scheme: default  # 暗模式：slate
-    primary: black
-    accent: deep orange
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
   font:
     text: Roboto
     code: Roboto Mono
@@ -22,10 +29,14 @@ theme:
     logo: material/read
     # repo: material/source-branch
   favicon: images/favicon.png
+  features:
+    - header.autohide  # 下滑自动隐藏导航栏
+    - navigation.top  # 回到顶部
+    - navigation.instant  # 内部锚链接即时加载
 
 extra:
-  # 右下角社交图标和链接
-  social:
+  generator: false  # 移除MkDocs链接
+  social:  # 右下角社交图标和链接
     - icon: material/github
       link: https://github.com/ZuoRight
     - icon: material/email
