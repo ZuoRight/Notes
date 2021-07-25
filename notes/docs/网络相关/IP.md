@@ -1,15 +1,28 @@
 # IP
 
-可参考视频
+IPv4由4组8位二进制数组成（通常转化为十进制数）
 
-<iframe src="//player.bilibili.com/player.html?aid=711837021&bvid=BV1DD4y127r4&cid=228232866&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+![20210725152948](http://image.zuoright.com/20210725152948.png)
 
-## 互联网
+![20210725153815](http://image.zuoright.com/20210725153815.png)
 
-![20210725142748](http://image.zuoright.com/20210725142748.png)
+![20210725150926](http://image.zuoright.com/20210725150926.png)
 
-![20210725142836](http://image.zuoright.com/20210725142836.png)
+6.6.6.6 网关或网桥连接
+
+![20210725151352](http://image.zuoright.com/20210725151352.png)
+
+随着互联网的普及以及个人联网设备数量的增多，可用的大约36.47亿个IPv4地址已经无法满足地球约75亿人口所使用了，于是升级迭代出IPv6协议
+
+IPv6由8组16位二进制数组成（通常转化为4位十六进制数），可为地球的每一粒沙子提供唯一IP，但它与IPv4是两个完全不同的协议，需要转换和映射才能数据互通，完全取代IPv4可能还需要很长一段时间。
+
+![20210725152103](http://image.zuoright.com/20210725152103.png)
 
 ## 域名
 
 根域名，也叫Root/Apex/naked/bare Domains
+
+## 参考
+
+- 视频：[硬件茶谈](https://www.bilibili.com/video/BV1DD4y127r4)
+- 文章：极客时间专栏
