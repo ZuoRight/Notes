@@ -1917,7 +1917,9 @@
 </ul>
 <h2 id="_3">常用命令<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>执行多条命令，用分号隔开</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;输出内容&quot;</span>  <span class="c1"># 单引号，双引号区别</span>
+<div class="highlight"><pre><span></span><code><span class="nv">x</span><span class="o">=</span><span class="s2">&quot;hello&quot;</span>  <span class="c1"># 变量赋值，=左右不能加空格</span>
+<span class="nb">echo</span> <span class="s1">&#39;单引号内容原样输出&#39;</span>
+<span class="nb">echo</span> <span class="s2">&quot;双引号内容可以有变量，加转义字符等&quot;</span>
 
 ls <span class="o">[</span>-al<span class="o">]</span> <span class="c1"># 查看文件，加-a可查看隐藏文件，-l可查看文件权限等详情</span>
 </code></pre></div>
@@ -1963,7 +1965,7 @@ cat &gt; file &lt;&lt; <span class="s2">&quot;eof&quot;</span>
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-21</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-26</span>
       
     
   </small>

@@ -1852,6 +1852,7 @@
 <p>虚拟机技术</p>
 <p>docker compose
 docker swarm（相当于简化版k8s）</p>
+<p>简单地说，容器只是你机器上的另一个进程，它与主机上的所有其他进程隔离开来。这种隔离利用了内核命名空间和 cgroups，这些特性已经在 Linux 中存在了很长时间。Docker 一直致力于使这些功能易于使用。</p>
 <h2 id="_1">概念<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>镜像(Images)：包含运行软件所需的一切要素（代码和运行时）</li>
@@ -1859,8 +1860,9 @@ docker swarm（相当于简化版k8s）</p>
 <li>镜像仓库：比如Docker Hub，每个仓库可以有不同的标签(版本)，可通过<code>&lt;仓库名&gt;:&lt;标签&gt;</code>的格式指定</li>
 </ul>
 <h2 id="_2">镜像加速<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>从Docker Hub拉取镜像比较慢，可以配置镜像加速器：获取<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云镜像加速器</a>地址，根据说明进行配置即可。</p>
-<p>检查加速器是否生效：执行<code>docker info</code>命令，查看Registry Mirrors字段信息。</p>
+<p>从Docker Hub拉取镜像比较慢，可以配置<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云镜像加速器</a>，获取到自己的加速地址后如图配置即可。</p>
+<p><img alt="20210726135953" src="http://image.zuoright.com/20210726135953.png" /></p>
+<p>检查加速器是否生效：<code>docker info</code>（查看Registry Mirrors字段信息）</p>
                 
                   
                     
@@ -1869,7 +1871,7 @@ docker swarm（相当于简化版k8s）</p>
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-25</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-26</span>
       
     
   </small>
