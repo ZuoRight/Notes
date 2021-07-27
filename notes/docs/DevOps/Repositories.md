@@ -11,9 +11,7 @@
 - GitHub：Gist
 - GitLab：Snippets
 
-## 静态页面
-
-### [GitHub Pages](https://docs.github.com/cn/pages)
+## [GitHub Pages](https://docs.github.com/cn/pages)
 
 - 解析域名
 
