@@ -8,7 +8,7 @@
 
 首次上传/下载，会弹出配置，按提示填入token和gist
 
-### PicGo
+### [PicGo](https://picgo.github.io/PicGo-Core-Doc/zh/guide/)
 
 - 从剪切板上传：`Cmd`+`Opt`+`U`（Windows：`Ctrl`+`Alt`+`U`）
 - 从文件夹上传：同上+`E`

@@ -1708,17 +1708,37 @@
     数据链路层
   </a>
   
+    <nav class="md-nav" aria-label="数据链路层">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    网络地址相同
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    网络地址不同
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     域名
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     参考
   </a>
   
@@ -1761,8 +1781,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../cURL/" class="md-nav__link">
-        cURL
+      <a href="../SSH/" class="md-nav__link">
+        SSH
       </a>
     </li>
   
@@ -1773,8 +1793,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../ssh/" class="md-nav__link">
-        Ssh
+      <a href="../cURL/" class="md-nav__link">
+        cURL
       </a>
     </li>
   
@@ -1955,17 +1975,37 @@
     数据链路层
   </a>
   
+    <nav class="md-nav" aria-label="数据链路层">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    网络地址相同
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    网络地址不同
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     域名
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     参考
   </a>
   
@@ -1994,27 +2034,20 @@
 <p>D类为组播地址，向这个IP发送消息，组下的主机都可以收到</p>
 <p><img alt="20210725153815" src="http://image.zuoright.com/20210725153815.png" /></p>
 <p>但通常使用更灵活的CIDR(无类型域间选路)来表示，类似 <code>x.x.x.x/n</code> 这种形式，<code>/n</code>表示，前n位为固定的网络号，后(32-n)位为主机号</p>
-<p>最常用的为<code>/24</code>和<code>/16</code>，比如最常见也最好理解的私有网络IP段：<code>192.168.0.x/24</code>，二进制为：<code>11000000.10101000.00000000.x</code></p>
+<p>最常用的为<code>/24</code>和<code>/16</code>，比如最常见也最好理解的私有网络IP段：<code>192.168.1.x/24</code>，二进制为：<code>11000000.10101000.00000001.x</code></p>
 <p>前24位为网络号，后8位为主机号，网络号部分用1表示，主机号部分用0表示，即子网掩码：<code>11111111.11111111.11111111.00000000</code>，转换为10进制为：<code>255.255.255.0</code></p>
-<p>然后将二进制的IP和子网掩码按位逻辑与运算，即可得到网络地址：<code>11000000.10101000.00000000.00000000</code>，即：<code>192.168.0.0</code></p>
-<p>网络地址的主机号部分都置为1，则得到广播地址：<code>11000000.10101000.00000000.11111111</code>，即：<code>192.168.0.255</code></p>
+<p>然后将二进制的IP和子网掩码按位逻辑与运算，即可得到网络地址：<code>11000000.10101000.00000001.00000000</code>，即：<code>192.168.1.0</code></p>
+<p>网络地址的主机号部分都置为1，则得到广播地址：<code>11000000.10101000.00000001.11111111</code>，即：<code>192.168.1.255</code></p>
 <ul>
-<li>192.168.0.x/24 IP</li>
+<li>192.168.1.x/24 IP</li>
 <li>255.255.255.0 子网掩码</li>
-<li>192.168.0.0 网络地址</li>
-<li>192.168.0.255 广播地址（向这个地址发送消息所有主机都可以收到</li>
+<li>192.168.1.0 网络地址</li>
+<li>192.168.1.255 广播地址（向这个地址发送消息所有主机都可以收到</li>
+<li>192.168.1.1 第一个地址，通常为默认网关（路由器的一个网口）</li>
 </ul>
 <p>除去网络地址和广播地址后，8位主机号可分配2^8=256-2=254个主机IP，还要预留一个给默认网关，知道了这个规则之后，便可以通过主机数倒推子网掩码来规划网络</p>
 <p>比如有10台主机，则至少需要10+2+1=13个IP，因为2^4=16 &gt; 13，所以主机号至少要4位，即子网掩码为：11111111.11111111.11111111.11110000，十进制为：255.255.255.240</p>
-<ul>
-<li>192.168.0.1 第一个地址</li>
-</ul>
-<p><img alt="20210725150926" src="http://image.zuoright.com/20210725150926.png" /></p>
-<ul>
-<li>192.168.1.1 通常为默认网关</li>
-</ul>
-<p><img alt="20210725151352" src="http://image.zuoright.com/20210725151352.png" /></p>
-<p>随着互联网的普及以及个人联网设备数量的增多，可用的大约36.47亿个IPv4地址已经无法满足地球约75亿人口所使用了，于是升级迭代出IPv6协议</p>
+<p>随着互联网用户数以及联网应用/设备数的爆炸式增长，可用的大约36.47亿个IPv4地址已经无法满足地球约75亿人口所使用了，于是升级迭代出IPv6协议</p>
 <h2 id="ipv6">IPv6<a class="headerlink" href="#ipv6" title="Permanent link">&para;</a></h2>
 <p>IPv6由128位二进制数组成，通常分割成8组，每组16位（以十六进制数表示）</p>
 <p>可为地球的每一粒沙子提供唯一IP，但它与IPv4是两个完全不同的协议，需要转换和映射才能数据互通，完全取代IPv4可能还需要很长一段时间。</p>
@@ -2066,30 +2099,40 @@ xxx.xx.xxx.x scope global eth0  <span class="c1"># ethernet 以太网卡，范�
 <p>分配地址的时候会设定租期，当租期过去50%时会向DHCP服务器发送续约请求，如果没有发则IP将被收回</p>
 <p>此外，像打印机、服务器、路由器等这些IP不应该经常变化的设备，还可以在DHCP配置中根据MAC地址预留固定IP</p>
 <h2 id="_1">数据链路层<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>也叫MAC层，Medium Access Control 媒体访问控制，主要解决多路访问时谁先发谁后发，以及发给谁等问题</p>
-<p>当设备A想要与设备B通信，已知目标IP地址，还需要知道目标MAC地址才能通信</p>
+<p>当两台设备通信时，需要知道彼此的IP和MAC地址，根据IP段的网络地址是否相同，通信过程会有所不同</p>
 <blockquote>
-<p>MAC地址（因为属于MAC层，所以叫MAC地址），是网卡出厂自带的物理地址，类似于身份证号具有全球唯一标识性，仅用于子网内定位，互联网定位还得靠IP</p>
+<p>MAC地址（属于MAC层所以叫MAC地址），是网卡出厂自带的物理地址，类似于身份证号具有全球唯一标识性，仅用于同网段局域网内定位，出了网关还得靠IP路由</p>
+<p>MAC(Medium Access Control) 媒体访问控制，主要解决多路访问时谁先发谁后发，以及发给谁等问题</p>
 </blockquote>
-<p>首先设备A会查找交换机中的ARP cache(高速缓存表)，看是否缓存过设备B的MAC地址</p>
+<h3 id="_2">网络地址相同<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><img alt="20210729232611" src="http://image.zuoright.com/20210729232611.png" /></p>
+<p>设备A如果想要与同网段的设备B通信，首先，设备A先查找本机或交换机的ARP Cache中是否缓存过设备B的MAC地址</p>
 <blockquote>
 <p>ARP(Address Resolution Protocol) 地址解析协议，用于将IP地址解析为MAC地址</p>
 </blockquote>
-<p>如果缓存表为空，通过ARP向整个网络发送一个广播信息，询问每个设备谁有这个IP，以及MAC地址是啥，当目标IP收到消息后会返回自己的MAC地址，设备A收到MAC地址后缓存，下次就不需要再发送广播</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 查看缓存的MAC地址</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看ARP Cache</span>
 arp -a  <span class="c1"># windows</span>
+
+<span class="c1"># 动态类型是通过广播获取然后缓存的</span>
+<span class="c1"># 否则就是静态的，比如手动添加</span>
+arp -s IP MAC
 </code></pre></div>
 
-<p><img alt="20210728233712" src="https://i.loli.net/2021/07/28/LHSfZKazPWt7NmU.png" /></p>
-<p>动态的是通过广播获取然后缓存的，否则就是静态的，比如手动添加：<code>arp -s IP MAC</code></p>
-<p>局域网内通信时，只需要知道</p>
-<h2 id="_2">域名<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><img alt="20210729233402" src="http://image.zuoright.com/20210729233402.png" /></p>
+<p>如果ARP Cache中没有，将向广播地址发起ARP请求，询问每个设备谁有这个IP，以及MAC地址是啥，当目标IP收到消息后会返回自己的MAC地址，设备A收到MAC地址后缓存到cache，下次可以直接发送不需要再广播</p>
+<h3 id="_3">网络地址不同<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><img alt="20210729232759" src="http://image.zuoright.com/20210729232759.png" /></p>
+<p>设备A如果想与跨网段的设备D通信，由于设备A和D的IP都是私有IP，彼此需要借助各自NAT网关的公有IP来通信</p>
+<blockquote>
+<p>NAT网关，主要工作就是将私有IP转换为公有IP</p>
+<p>这只是因为IPv4提供的公有IP数不足，为了节约IP才创造出的一种协议，IPv6中是没必要存在的</p>
+</blockquote>
+<p><img alt="20210725151352" src="http://image.zuoright.com/20210725151352.png" /></p>
+<p>出了网关，就涉及到动态路由表了，距离矢量算法和链路状态算法，BGP 协议和 OSPF 协议</p>
+<h2 id="_4">域名<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>根域名，也叫Root/Apex/naked/bare Domains</p>
-<h2 id="_3">参考<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<ul>
-<li>视频：<a href="https://www.bilibili.com/video/BV1DD4y127r4">硬件茶谈</a></li>
-<li>文章：极客时间·<a href="https://time.geekbang.org/column/intro/100007101">《趣谈网络协议》</a></li>
-</ul>
+<h2 id="_5">参考<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p><a href="https://time.geekbang.org/column/intro/100007101">极客时间专栏：《趣谈网络协议》</a></p>
                 
                   
                     
@@ -2098,7 +2141,7 @@ arp -a  <span class="c1"># windows</span>
 <div class="md-source-date">
   <small>
     
-      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-27</span>
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2021-07-29</span>
       
     
   </small>
