@@ -52,7 +52,7 @@ IPv6由128位二进制数组成，通常分割成8组，每组16位（以十六�
 
 ```shell
 # windows
-ipconfig
+ipconfig /all
 
 # linux/mac
 ifconfig  # 需要安装net-tools，已停止维护
@@ -82,9 +82,52 @@ xxx.xx.xxx.x scope global eth0  # ethernet 以太网卡，范围global，对外�
 127.0.0.1/8 scope host lo  # loopback 环回接口，范围host，供本机相互通信
 ```
 
-## MAC
+## 分配IP
 
-MAC地址，是网卡出厂自带的物理地址，类似于身份证号具有唯一标识性，仅用于子网内定位，互联网定位还得靠IP。
+设置项：IP、子网掩码、默认网关、DNS
+
+方式
+
+- Static(静态) IP
+
+手工给设备设置IP地址
+
+- Dynamic(动态) IP
+
+设备向DHCP服务器（主机或路由器）发送一个请求，获取IP地址
+
+> DHCP(Dynamic Host Configuration Protocol) 动态主机配置协议
+
+分配地址的时候会设定租期，当租期过去50%时会向DHCP服务器发送续约请求，如果没有发则IP将被收回
+
+此外，像打印机、服务器、路由器等这些IP不应该经常变化的设备，还可以在DHCP配置中根据MAC地址预留固定IP
+
+## 数据链路层
+
+也叫MAC层，Medium Access Control 媒体访问控制，主要解决多路访问时谁先发谁后发，以及发给谁等问题
+
+当设备A想要与设备B通信，已知目标IP地址，还需要知道目标MAC地址才能通信
+
+> MAC地址（因为属于MAC层，所以叫MAC地址），是网卡出厂自带的物理地址，类似于身份证号具有全球唯一标识性，仅用于子网内定位，互联网定位还得靠IP
+
+首先设备A会查找交换机中的ARP cache(高速缓存表)，看是否缓存过设备B的MAC地址
+
+> ARP(Address Resolution Protocol) 地址解析协议，用于将IP地址解析为MAC地址
+
+如果缓存表为空，通过ARP向整个网络发送一个广播信息，询问每个设备谁有这个IP，以及MAC地址是啥，当目标IP收到消息后会返回自己的MAC地址，设备A收到MAC地址后缓存，下次就不需要再发送广播
+
+```shell
+# 查看缓存的MAC地址
+arp -a  # windows
+```
+
+![20210728233712](https://i.loli.net/2021/07/28/LHSfZKazPWt7NmU.png)
+
+动态的是通过广播获取然后缓存的，否则就是静态的，比如手动添加：`arp -s IP MAC`
+
+
+
+局域网内通信时，只需要知道
 
 ## 域名
 
