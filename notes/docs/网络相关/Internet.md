@@ -63,7 +63,7 @@ OSI中的前两层主要由以太网定义
 ## 参考
 
 > 主要参考自B站某UP主，翻译自Youtube UP主 [PowerCert Animated Videos](https://www.youtube.com/c/PowerCertAnimatedVideos/featured)的动画视频
-> 
+>
 > 有条件的可以直接Youtube看（自带翻译）
 
 - [CSMA/CD和CSMA/CA](https://www.bilibili.com/video/BV1gb411C7HX)
