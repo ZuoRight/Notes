@@ -191,3 +191,11 @@ git pull  # 等同于：git fetch + git merge
 # 推送到远程仓库
 git push [-u origin main]  # # 首次推送加-u参数，设置默认仓库和分支
 ```
+
+## 项目托管平台
+
+- GitHub
+- GitLab(极狐)
+- Bitbucket：Jira母公司Atlassian旗下产品
+- Gitee(码云)：开源中国和工信部联合推出
+- Coding：并购了Gitcafe，后又被腾讯云全资收购

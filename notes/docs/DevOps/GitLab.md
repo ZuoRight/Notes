@@ -1,10 +1,19 @@
-# GitLab Pipline
+# GitLab
 
-jobs(作业)：定义了想要在Pipeline中完成的任务，由runner(运行器)执行
+## Snippets
 
-stages(阶段)：定义了何时以及如何运行jobs，将jobs进行逻辑划分，每个stage可以包含多个job，同一stage并行执行，并且通常全都成功后才能执行下一阶段
+存放代码片段
 
-## [.gitlab-ci.yml](https://docs.gitlab.com/ee/ci/yaml/)
+## CI/CD
+
+> [与Github Actions的对比](https://docs.github.com/cn/actions/learn-github-actions/migrating-from-gitlab-cicd-to-github-actions)
+
+- pipline
+- jobs(作业)：定义了想要在Pipeline中完成的任务，由runner(运行器)执行
+- stages(阶段)：定义了何时以及如何运行jobs，将jobs进行逻辑划分，每个stage可以包含多个job，同一stage并行执行，并且通常全都成功后才能执行下一阶段
+- script
+
+配置文件：[.gitlab-ci.yml](https://docs.gitlab.com/ee/ci/yaml/)
 
 ```yaml
 # 镜像
