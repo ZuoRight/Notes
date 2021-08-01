@@ -33,9 +33,8 @@ CI配置文件：以`.yml`格式存放在`.github/workflows/`中，可包含多�
 name: xxx  # workflow的名称，省略则默认为文件名
 
 on:  # 触发条件
-  push  # 多个可写为列表：[]
-    branches:  # 可限定触发分支
-      - master
+  push
+    branches: [main]  # 可限定触发分支
 
 jobs:
   job1:  # id
@@ -54,3 +53,12 @@ jobs:
           key: value
         run: action
 ```
+
+## Actions部署Pages
+
+zuoright.github.io
+
+- master/main分支：存放.md源文件
+- blog分支：存放转换后用于pages的静态文件
+
+上面两个分支也可以反过来，也可以分成两个仓库，把源码仓库私有化，看心情

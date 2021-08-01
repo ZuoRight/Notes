@@ -322,6 +322,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#actionspages" class="md-nav__link">
+    Actions部署Pages
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1873,6 +1880,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#actionspages" class="md-nav__link">
+    Actions部署Pages
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1914,9 +1928,8 @@
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">xxx</span>  <span class="c1"># workflow的名称，省略则默认为文件名</span>
 
 <span class="nt">on</span><span class="p">:</span>  <span class="c1"># 触发条件</span>
-  <span class="l l-Scalar l-Scalar-Plain">push</span>  <span class="c1"># 多个可写为列表：[]</span>
-    <span class="nt">branches</span><span class="p">:</span>  <span class="c1"># 可限定触发分支</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+  <span class="l l-Scalar l-Scalar-Plain">push</span>
+    <span class="l l-Scalar l-Scalar-Plain">branches</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>  <span class="c1"># 可限定触发分支</span>
 
 <span class="nt">jobs</span><span class="p">:</span>
   <span class="nt">job1</span><span class="p">:</span>  <span class="c1"># id</span>
@@ -1935,6 +1948,14 @@
           <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">value</span>
         <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">action</span>
 </code></pre></div>
+
+<h2 id="actionspages">Actions部署Pages<a class="headerlink" href="#actionspages" title="Permanent link">&para;</a></h2>
+<p>zuoright.github.io</p>
+<ul>
+<li>master/main分支：存放.md源文件</li>
+<li>blog分支：存放转换后用于pages的静态文件</li>
+</ul>
+<p>上面两个分支也可以反过来，也可以分成两个仓库，把源码仓库私有化，看心情</p>
                 
                   
                     
