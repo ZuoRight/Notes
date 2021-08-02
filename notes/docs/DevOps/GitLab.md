@@ -143,3 +143,13 @@ staging:
 - anchors(锚点)
 
 ![20210727235245](https://i.loli.net/2021/07/27/jnvDgcEYkG8KZqx.png)
+
+### 预定义变量
+
+- CI_COMMIT_BRANCH 提交分支名称。 在分支流水线中可用，包括默认分支的流水线。 在合并请求(MR)或标签(tag)流水线中不可用。
+- CI_COMMIT_REF_NAME 提交分支或标签(tag)的名称。
+- CI_COMMIT_TAG 提交标签名称。 仅在标签流水线中可用
+- CI_REGISTRY_IMAGE 当前项目的容器镜像仓库的地址。
+- CI_REGISTRY 极狐GitLab镜像仓库的地址。 如果在镜像仓库配置中指定了端口值，则此变量包括一个 :port 值
+- CI_REGISTRY_USER 将容器镜像推送到项目的GitLab容器镜像仓库的用户名。
+- CI_REGISTRY_PASSWORD 将容器镜像推送到项目的GitLab容器镜像仓库的密码。
