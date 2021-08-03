@@ -9,9 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
@@ -20,10 +17,17 @@ jobs:
           pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
 
       - run: |
-          cd notes
-          mkdocs build
-
-      - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git branch -a
+          git checkout -b dev
+          
+      - run: |
+          cd notes
+          mkdocs build
+          
+      - run: |
+          git add .
+          git commit -m "ci commit"
+          git push origin dev
+          
