@@ -6,12 +6,19 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Checkout main
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
         with:
           python-version: 3.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONFIG_FILE: notes/mkdocs.yml
       - run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
-      - run: cd notes; ls -a; mkdocs build
+      - run: ls -a
+      - run: mkdocs gh-deploy --force
