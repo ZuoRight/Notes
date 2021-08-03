@@ -14,5 +14,6 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs-material
-      - run: cd notes
-      - run: mkdocs build
+      - run: ls -a
+      # - run: cd /notes
+      # - run: mkdocs build
