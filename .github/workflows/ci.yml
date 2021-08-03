@@ -1,21 +1,32 @@
-name: ci
+name: ci bolg
 on:
   push:
     branches:
       - master
-      - main
-
-env:
-  PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
-      - run: cd notes; mkdocs build
-      - run: git push origin gh-pages
+
+      - run: |
+          pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
+
+      - run: |
+          cd notes
+          mkdocs build
+
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git remote -v
+          git push origin gh-pages
