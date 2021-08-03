@@ -32,4 +32,3 @@ jobs:
           git add .
           git commit -m "ci commit"
           git push origin dev
-          

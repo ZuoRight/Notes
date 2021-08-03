@@ -54,11 +54,10 @@ jobs:
         run: action
 ```
 
-## Actions部署Pages
+引用GitHub Actions市场中的Actions：<https://github.com/marketplace?type=actions>
 
-zuoright.github.io
+可在仓库根目录下的`action.yml`中查到actions自定的输入或输出字段
 
-- master/main分支：存放.md源文件
-- blog分支：存放转换后用于pages的静态文件
+当前仓库及分支：{owner}/{repo}@{ref}
 
-上面两个分支也可以反过来，也可以分成两个仓库，把源码仓库私有化，看心情
+还可以引用docker hub中的actions
