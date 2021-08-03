@@ -16,7 +16,7 @@
         <link rel="canonical" href="http://www.zuoright.com/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/Allure/">
       
       <link rel="icon" href="../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.0">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.fe914879.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1118c9be.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
@@ -1911,16 +1911,16 @@ allure open -h <span class="m">127</span>.0.0.1 -p <span class="m">8883</span> t
 <h2 id="_1">常用特性<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">allure</span>
 
-<span class="nd">@allure</span><span class="o">.</span><span class="n">testcase</span><span class="p">(</span><span class="s2">&quot;case_link_url&quot;</span><span class="p">,</span> <span class="s2">&quot;测试链接&quot;</span><span class="p">)</span>
+<span class="nd">@allure.testcase</span><span class="p">(</span><span class="s2">&quot;case_link_url&quot;</span><span class="p">,</span> <span class="s2">&quot;测试链接&quot;</span><span class="p">)</span>
 
-<span class="nd">@allure</span><span class="o">.</span><span class="n">feature</span><span class="p">(</span><span class="s2">&quot;功能&quot;</span><span class="p">)</span>
-<span class="nd">@allure</span><span class="o">.</span><span class="n">story</span><span class="p">(</span><span class="s2">&quot;子功能&quot;</span><span class="p">)</span>
+<span class="nd">@allure.feature</span><span class="p">(</span><span class="s2">&quot;功能&quot;</span><span class="p">)</span>
+<span class="nd">@allure.story</span><span class="p">(</span><span class="s2">&quot;子功能&quot;</span><span class="p">)</span>
 
-<span class="nd">@allure</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;用例标题&quot;</span><span class="p">)</span>
-<span class="nd">@allure</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="s2">&quot;步骤，放在类/方法上面&quot;</span><span class="p">)</span>
+<span class="nd">@allure.title</span><span class="p">(</span><span class="s2">&quot;用例标题&quot;</span><span class="p">)</span>
+<span class="nd">@allure.step</span><span class="p">(</span><span class="s2">&quot;步骤，放在类/方法上面&quot;</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">allure</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="s2">&quot;步骤，放在方法内&quot;</span><span class="p">)</span>
 
-<span class="nd">@allure</span><span class="o">.</span><span class="n">severity</span><span class="p">(</span><span class="n">allure</span><span class="o">.</span><span class="n">severity_level</span><span class="o">.</span><span class="n">级别</span><span class="p">)</span>
+<span class="nd">@allure.severity</span><span class="p">(</span><span class="n">allure</span><span class="o">.</span><span class="n">severity_level</span><span class="o">.</span><span class="err">级别</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Blocker 中断 影响下一步</span>
 <span class="sd">Critical 临界 功能点缺失</span>
@@ -1941,7 +1941,7 @@ pytest --allure-severities critical,normal
 <ul>
 <li>附件直接显示在报告中</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@allure</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@allure.attach</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">body：附件</span>
 <span class="sd">name：附件名</span>
@@ -1953,7 +1953,7 @@ pytest --allure-severities critical,normal
 <ul>
 <li>附件以路径形式显示在报告中</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@allure</span><span class="o">.</span><span class="n">attach</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@allure.attach.file</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attachment_type</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">source：附件路径</span>
 <span class="sd">其它同上</span>
@@ -2071,10 +2071,10 @@ pytest --allure-severities critical,normal
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.top", "navigation.instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.top", "navigation.instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.716f8af4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.2b46852b.min.js"></script>
       
         <script src="../../js/baidu-tongji.js"></script>
       

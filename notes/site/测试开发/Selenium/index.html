@@ -16,7 +16,7 @@
         <link rel="canonical" href="http://www.zuoright.com/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/Selenium/">
       
       <link rel="icon" href="../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.0">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.fe914879.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1118c9be.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
@@ -2219,8 +2219,8 @@
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 
 <span class="k">class</span> <span class="nc">BasePage</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver_base</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">driver_base</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver_base</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">driver_base</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
             <span class="n">browser</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;browser&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">browser</span> <span class="o">==</span> <span class="s2">&quot;headless&quot;</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">()</span>
@@ -2234,10 +2234,10 @@
                     <span class="n">opt</span><span class="o">.</span><span class="n">debugger_address</span> <span class="o">=</span> <span class="s2">&quot;localhost:9222&quot;</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># 去除Chrome正在受到自动软件的控制的提示</span>
-                    <span class="n">opt</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s1">&#39;useAutomationExtension&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                    <span class="n">opt</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s1">&#39;useAutomationExtension&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
                     <span class="n">opt</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s1">&#39;excludeSwitches&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;enable-automation&#39;</span><span class="p">])</span>
                     <span class="c1"># 关闭是否保存密码弹框</span>
-                    <span class="n">prefs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;credentials_enable_service&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;profile.password_manager_enabled&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+                    <span class="n">prefs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;credentials_enable_service&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span> <span class="s2">&quot;profile.password_manager_enabled&quot;</span><span class="p">:</span> <span class="bp">False</span><span class="p">}</span>
                     <span class="n">opt</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s2">&quot;prefs&quot;</span><span class="p">,</span> <span class="n">prefs</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">opt</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">maximize_window</span><span class="p">()</span>
@@ -2279,12 +2279,12 @@
 <ul>
 <li>属性</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1">#浏览器名称</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">curent_url</span><span class="p">)</span>  <span class="c1"># 当前url</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>  <span class="c1"># 当前页面标题</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>  <span class="c1"># 当前页面源码</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span><span class="p">)</span>  <span class="c1"># 当前窗口所有句柄</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">current_window_handle</span><span class="p">)</span>  <span class="c1"># 当前窗口句柄</span>
+<div class="highlight"><pre><span></span><code><span class="k">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1">#浏览器名称</span>
+<span class="k">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">curent_url</span><span class="p">)</span>  <span class="c1"># 当前url</span>
+<span class="k">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>  <span class="c1"># 当前页面标题</span>
+<span class="k">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>  <span class="c1"># 当前页面源码</span>
+<span class="k">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span><span class="p">)</span>  <span class="c1"># 当前窗口所有句柄</span>
+<span class="k">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">current_window_handle</span><span class="p">)</span>  <span class="c1"># 当前窗口句柄</span>
 </code></pre></div>
 
 <ul>
@@ -2327,7 +2327,7 @@
 <span class="n">loc</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s2">&quot;return js_code1; js_code2&quot;</span><span class="p">)</span>
 <span class="c1"># 或者</span>
 <span class="k">for</span> <span class="n">code</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;return js_code1&quot;</span><span class="p">,</span> <span class="s2">&quot;return js_code2&quot;</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">code</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">code</span><span class="p">))</span>
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="c1"># 通常想要控制的元素带有readonly属性，可以用js移除readonly属性</span>
@@ -2462,14 +2462,14 @@
 
 <span class="c1"># 返回所有选项</span>
 <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">select</span><span class="o">.</span><span class="n">options</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
 <span class="c1"># 返回所有被选中的选项</span>
 <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">select</span><span class="o">.</span><span class="n">all_selected_options</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
 <span class="c1"># 返回被选中的第一个选项</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">select</span><span class="o">.</span><span class="n">first_selected_option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">select</span><span class="o">.</span><span class="n">first_selected_option</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre></div>
 
 <h2 id="_8">等待的处理<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
@@ -2493,7 +2493,7 @@
 <span class="c1"># timeout 超时时间</span>
 <span class="c1"># poll_frequency 检测频率，默认为0.5s</span>
 <span class="c1"># ignored_exceptions 超时后抛出异常，默认为NoSuchElementException</span>
-<span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">poll_frequency</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ignored_exceptions</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">wait</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">poll_frequency</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ignored_exceptions</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 
 <span class="c1"># 满足预期条件时跳出等待向下执行，超时则抛出TimeoutException`、异常</span>
 <span class="n">wait</span><span class="o">.</span><span class="n">until</span><span class="o">/</span><span class="n">until_not</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -2560,8 +2560,8 @@
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">ActionChains</span>
 
 <span class="n">action</span> <span class="o">=</span> <span class="n">ActionChains</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>  <span class="c1"># 生成一个动作</span>
-<span class="n">action</span><span class="o">.</span><span class="n">添加方法1</span>
-<span class="n">action</span><span class="o">.</span><span class="n">添加方法2</span>
+<span class="n">action</span><span class="o">.</span><span class="err">添加方法</span><span class="mi">1</span>
+<span class="n">action</span><span class="o">.</span><span class="err">添加方法</span><span class="mi">2</span>
 <span class="n">action</span><span class="o">.</span><span class="n">perform</span><span class="p">()</span>  <span class="c1"># 执行</span>
 </code></pre></div>
 
@@ -2733,10 +2733,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.top", "navigation.instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.top", "navigation.instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.716f8af4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.2b46852b.min.js"></script>
       
         <script src="../../js/baidu-tongji.js"></script>
       

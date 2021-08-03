@@ -16,7 +16,7 @@
         <link rel="canonical" href="http://www.zuoright.com/Python/1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
       
       <link rel="icon" href="../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.0">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.fe914879.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1118c9be.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
@@ -2158,12 +2158,12 @@
 <ul>
 <li><code>type()</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;NoneType&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;bool&#39;&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">type</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;NoneType&#39;&gt;</span>
+<span class="nb">type</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;bool&#39;&gt;</span>
 
 <span class="nb">type</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;int&#39;&gt;</span>
 <span class="nb">type</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;float&#39;&gt;</span>
-<span class="nb">type</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;complex&#39;&gt;</span>
+<span class="nb">type</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2j</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;complex&#39;&gt;</span>
 
 <span class="nb">type</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;_str&#39;</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;bytes&#39;&gt;</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">_str</span><span class="p">)</span>  <span class="c1"># &lt;class &#39;str&#39;&gt;</span>
@@ -2203,33 +2203,33 @@
 
 
 <span class="c1"># 数值、字符串、元组等不可变的都是可哈希的</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># True</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">))</span>  <span class="c1"># False</span>
 
 
 <span class="c1"># 除了数值型都是可迭代的</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># True</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>  <span class="c1"># False</span>
 
 
 <span class="c1"># 序列都是可反转的</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_str</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_tuple</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_list</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># True</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_num</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_set</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_dict</span><span class="p">,</span> <span class="n">Reversible</span><span class="p">))</span>  <span class="c1"># False</span>
 
 <span class="c1"># 是否为迭代器</span>
 <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">)</span>
@@ -2247,7 +2247,7 @@
 <div class="highlight"><pre><span></span><code><span class="nb">bool</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># True</span>
 
 <span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># False</span>
-<span class="nb">bool</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># False</span>
+<span class="nb">bool</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># False</span>
 <span class="nb">bool</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1"># False</span>
 </code></pre></div>
 
@@ -2259,7 +2259,7 @@
 <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 默认十进制，10</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="mb">0b10</span>  <span class="c1"># 二进制，2</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mo">0o10</span>  <span class="c1"># 八进制，8</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="n">o10</span>  <span class="c1"># 八进制，8</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mh">0x10</span> <span class="c1"># 十六进制，16</span>
 </code></pre></div>
 
@@ -2268,7 +2268,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># 精度默认与其他语言的双精度一样</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mf">0.000012</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 会以科学计数法打印：1.2e-05</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 会以科学计数法打印：1.2e-05</span>
 </code></pre></div>
 
 <ul>
@@ -2276,14 +2276,14 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># 复数由实部和虚部组成，实部和虚部都是浮点型</span>
 <span class="c1"># 在数学规范中虚部常用i表示，但Python遵循的电气学规范常用j表示</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2j</span>
 <span class="c1"># 或者complex(real, imag)函数表示</span>
 <span class="n">x</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># (1+2j)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>  <span class="c1"># 打印实部，1.0</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>  <span class="c1"># 打印虚部，2.0</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span> <span class="c1"># 打印共轭复数（实部相等，虚部相反），(1-2j)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># (1+2j)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>  <span class="c1"># 打印实部，1.0</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>  <span class="c1"># 打印虚部，2.0</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span> <span class="c1"># 打印共轭复数（实部相等，虚部相反），(1-2j)</span>
 </code></pre></div>
 
 <h2 id="_4">可迭代的<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
@@ -2327,7 +2327,7 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># Py3.6新特性，可以用于格式化字符串</span>
 <span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span>
-<span class="n">abc</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;a</span><span class="si">{</span><span class="n">_str</span><span class="si">}</span><span class="s1">c&#39;</span>  <span class="c1"># &quot;abc&quot;</span>
+<span class="n">abc</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;a{_str}c&#39;</span>  <span class="c1"># &quot;abc&quot;</span>
 </code></pre></div>
 
 <h3 id="tuple">tuple<a class="headerlink" href="#tuple" title="Permanent link">&para;</a></h3>
@@ -2599,10 +2599,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.top", "navigation.instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.top", "navigation.instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.716f8af4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.2b46852b.min.js"></script>
       
         <script src="../../js/baidu-tongji.js"></script>
       

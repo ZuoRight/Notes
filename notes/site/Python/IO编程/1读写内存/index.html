@@ -16,7 +16,7 @@
         <link rel="canonical" href="http://www.zuoright.com/Python/IO%E7%BC%96%E7%A8%8B/1%E8%AF%BB%E5%86%99%E5%86%85%E5%AD%98/">
       
       <link rel="icon" href="../../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.0">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.fe914879.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.1118c9be.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ba0d045b.min.css">
@@ -1938,17 +1938,17 @@
 <li><code>f.seek(7, 1)</code>  移动指针位置，从当前位置开始计算，往后移动7个字节</li>
 <li><code>f.seek(-7, 2)</code>  移动指针位置，从末尾位置开始计算，往前移动7个字节</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>  <span class="c1"># 操作前，指针位置是0</span>
+<div class="highlight"><pre><span></span><code><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>  <span class="c1"># 操作前，指针位置是0</span>
 
 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">)</span>  <span class="c1"># 进行读取/写入操作</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>  <span class="c1"># 操作后，指针位置移到了最后5</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">())</span>  <span class="c1"># 操作后，指针位置移到了最后5</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>  <span class="c1"># 此时如果读取，则会得到空值</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>  <span class="c1"># 此时如果读取，则会得到空值</span>
 <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 可以将指针移回初始位置，此时再读取将可以读到</span>
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code><span class="c1"># 另外也可以用以下方式获取，不受指针位置影响</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
 </code></pre></div>
                 
                   
@@ -2062,10 +2062,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.top", "navigation.instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.top", "navigation.instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.716f8af4.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.2b46852b.min.js"></script>
       
         <script src="../../../js/baidu-tongji.js"></script>
       

@@ -3,8 +3,9 @@ site_description: Right is right, left is also right.
 site_author: 7c
 site_url: http://www.zuoright.com
 
-# repo_name: squidfunk/mkdocs-material
-# repo_url: https://github.com/squidfunk/mkdocs-material
+# repo_name: ZuoRight/zuoright.github.io
+# repo_url: https://github.com/ZuoRight/zuoright.github.io
+
 
 copyright: Copyright &copy; 2016 ~ Forever 7c
 

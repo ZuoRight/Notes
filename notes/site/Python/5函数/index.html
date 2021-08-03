@@ -16,7 +16,7 @@
         <link rel="canonical" href="http://www.zuoright.com/Python/5%E5%87%BD%E6%95%B0/">
       
       <link rel="icon" href="../../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.0">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.fe914879.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1118c9be.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
@@ -2383,7 +2383,7 @@
     <span class="c1"># 局部变量</span>
     <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 可以和全局变量名字相同，但不建议这样</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># 1，全局变量没有被重新赋值</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># 1，全局变量没有被重新赋值</span>
 </code></pre></div>
 
 <h3 id="_9">全局变量<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
@@ -2391,7 +2391,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="k">def</span> <span class="nf">f1</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># a=1</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># a=1</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">a</span>
     <span class="k">return</span> <span class="n">x</span>  <span class="c1"># x=1</span>
 </code></pre></div>
@@ -2430,7 +2430,7 @@
     <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">def</span> <span class="nf">f2</span><span class="p">():</span>
-        <span class="k">nonlocal</span> <span class="n">a</span>  <span class="c1"># 这里声明了a是外层函数a，即局部变量a</span>
+        <span class="n">nonlocal</span> <span class="n">a</span>  <span class="c1"># 这里声明了a是外层函数a，即局部变量a</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
 
     <span class="n">r</span> <span class="o">=</span> <span class="n">f2</span><span class="p">()</span>
@@ -2468,7 +2468,7 @@
 </blockquote>
 <h3 id="_12">函数可以赋值给变量<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c1"># 引用，而没有直接调用，有点像类的实例化</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">f1</span>
@@ -2483,7 +2483,7 @@
 
     <span class="c1"># 嵌套函数</span>
     <span class="k">def</span> <span class="nf">printer</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
     <span class="n">printer</span><span class="p">()</span>  <span class="c1"># 调用内部函数</span>
 
@@ -2505,7 +2505,7 @@
     <span class="c1"># 内层函数</span>
     <span class="k">def</span> <span class="nf">func_nei</span><span class="p">():</span>
         <span class="c1"># 使用了外部函数的变量，形成闭包</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
     <span class="c1"># 返回内部函数，不要加()</span>
     <span class="k">return</span> <span class="n">func_nei</span>
@@ -2521,7 +2521,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">_list</span><span class="p">)</span>  <span class="c1"># 返回一个可迭代对象：&lt;map object at 0x032A0DD0&gt;</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>  <span class="c1"># [1, 4, 9]</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>  <span class="c1"># [1, 4, 9]</span>
 </code></pre></div>
 
 <h4 id="filter">filter()<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h4>
@@ -2533,14 +2533,14 @@
     <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">_list</span><span class="p">)</span>  <span class="c1"># 返回一个可迭代对象：&lt;filter object at 0x02FE0DD0&gt;</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>  <span class="c1"># [2, 4]</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>  <span class="c1"># [2, 4]</span>
 </code></pre></div>
 
 <h4 id="reduce">reduce()<a class="headerlink" href="#reduce" title="Permanent link">&para;</a></h4>
 <p><code>reduce(f, Iterable)</code></p>
 <p>用法：将一个集合传入函数做一些累积操作。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 需要先引入</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
 
 <span class="c1"># 集合的元素个数没有要求，可以是1个</span>
 <span class="n">_str</span> <span class="o">=</span> <span class="s2">&quot;123&quot;</span>  <span class="c1"># &quot;1234&quot;</span>
@@ -2549,7 +2549,7 @@
 <span class="n">_set</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>  <span class="c1"># 6</span>
 <span class="n">_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>  <span class="c1"># &quot;ab&quot;</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span> <span class="n">_list</span><span class="p">)</span>  <span class="c1"># 直接返回结果</span>
+<span class="n">r</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span> <span class="n">_list</span><span class="p">)</span>  <span class="c1"># 直接返回结果</span>
 </code></pre></div>
 
 <h2 id="decorator">装饰器 decorator<a class="headerlink" href="#decorator" title="Permanent link">&para;</a></h2>
@@ -2559,13 +2559,13 @@
     <span class="c1"># 闭包</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># 前置扩展内容</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;调用装饰器，实现一些权限校验、用户认证等功能&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;调用装饰器，实现一些权限校验、用户认证等功能&quot;</span><span class="p">)</span>
 
         <span class="c1"># 使用装饰器的函数被传入到这里，在它前后可以加一些扩展功能</span>
         <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># 使用可变参数让其更加灵活</span>
 
         <span class="c1"># 后置扩展内容</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;调用装饰器，实现一些日志记录、性能测试、事务处理、缓存等&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;调用装饰器，实现一些日志记录、性能测试、事务处理、缓存等&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">wrapper</span>
 
@@ -2691,10 +2691,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.top", "navigation.instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.top", "navigation.instant"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.716f8af4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.2b46852b.min.js"></script>
       
         <script src="../../js/baidu-tongji.js"></script>
       

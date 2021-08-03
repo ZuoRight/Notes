@@ -16,32 +16,20 @@
 
 ## [MKDocs](https://www.mkdocs.org/)
 
-```shell
-pip install mkdocs
-pip install -U mkdocs
+`pip install mkdocs`
 
-mkdocs --help
+> 配置文件：mkdocs.yml
 
-mkdocs new xxx
-cd xxx
+- [主题：Material for MkDocs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
 
-mkdocs serve  # 启动本地服务
-mkdocs build [--clean]  # 更新构建
+`pip install mkdocs-material`
+
+```yaml
+theme:
+  name: material
 ```
 
-配置文件：`mkdocs.yml`
-
-- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
-
-```shell
-pip install mkdocs-material
-# 查看版本
-pip show mkdocs-material
-# 升级
-pip install --upgrade mkdocs-material
-```
-
-- 文章底部显示更新时间的插件
+- 插件：文章底部显示更新时间
 
 `pip install mkdocs-git-revision-date-localized-plugin`
 
@@ -49,4 +37,13 @@ pip install --upgrade mkdocs-material
 plugins:
   - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
       type: iso_date
+```
+
+```shell
+mkdocs --help
+mkdocs new xxx
+cd xxx
+
+mkdocs serve  # 启动本地服务
+mkdocs build  # 更新构建
 ```
