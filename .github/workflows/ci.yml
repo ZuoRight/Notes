@@ -9,16 +9,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
-        uses: actions/checkout@v2
-
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#           CONFIG_FILE: notes/mkdocs.yml
       - run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
       - run: cd notes; mkdocs build
       - run: git push -u origin gh-pages
+        env:
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
