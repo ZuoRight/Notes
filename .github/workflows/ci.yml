@@ -21,4 +21,4 @@ jobs:
           CONFIG_FILE: notes/mkdocs.yml
       - run: pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
       - run: ls -a
-      - run: mkdocs gh-deploy --force
+      - run: cd notes; ls -a; mkdocs gh-deploy --force
