@@ -22,7 +22,8 @@ jobs:
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git checkout -b dev
+          git branch -a
+          git checkout dev
           
       - run: |
           cd notes
@@ -31,4 +32,4 @@ jobs:
       - run: |
           git add .
           git commit -m "ci commit"
-          git push origin dev
+          git push origin dev --force
