@@ -30,6 +30,8 @@ jobs:
           mkdocs build
           
       - run: |
+          echo "docs" >> .gitignore
+          echo ".github/" >> .gitignore
           git add .
           git commit -m "ci commit"
           git push origin dev --force
