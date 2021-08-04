@@ -1,4 +1,4 @@
-name: ci bolg
+name: ci bolg test
 on:
   push:
     branches:
