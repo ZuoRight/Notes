@@ -24,6 +24,7 @@ jobs:
           git config user.email github-actions@github.com
           git branch -a
           git checkout dev
+          git merge master
           echo 'docs' >> .gitignore
           echo '.github/' >> .gitignore
           git branch -a
