@@ -23,20 +23,14 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git branch -a
-          git checkout dev
-          git merge master
           echo 'docs' >> .gitignore
           echo '.github/' >> .gitignore
-          git branch -a
-          ls -a
           
       - run: |
           cd notes
           mkdocs build
           
       - run: |
-          git branch -a
-          ls -a
           git add .
           git commit -m "ci commit"
-          git push origin dev --force
+          git push origin master:dev --force
