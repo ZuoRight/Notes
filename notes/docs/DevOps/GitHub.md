@@ -1,33 +1,10 @@
-# GitHub
+# GitHub Actions
 
-## Gist
+> <https://docs.github.com/cn/actions>
+>
+> 配置文件：`.github/workflows/xxx.yml` (YAML语法)
 
-存放代码片段
-
-## [Pages](https://docs.github.com/cn/pages)
-
-- 解析域名
-
-访问 <http://www.zuoright.com> 会被重定向到 <http://zuoright.github.io>，然后会被重
-
-![20210725115345](http://image.zuoright.com/20210725115345.png)
-
-- 设置自定义域名
-
-![20210725120036](http://image.zuoright.com/20210725120036.png)
-
-- 访问测试
-
-![20210725122020](http://image.zuoright.com/20210725122020.png)
-
-## [Actions](https://docs.github.com/cn/actions)
-
-- workfolw
-- jobs
-- step
-- action
-
-CI配置文件：以`.yml`格式存放在`.github/workflows/`中，可包含多个
+## 流水线 Workfolws
 
 ```yaml
 name: xxx  # workflow的名称，省略则默认为文件名
@@ -53,6 +30,8 @@ jobs:
           key: value
         run: action
 ```
+
+## Actions
 
 引用GitHub Actions市场中的Actions：<https://github.com/marketplace?type=actions>
 
