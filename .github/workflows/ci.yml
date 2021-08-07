@@ -1,4 +1,4 @@
-name: ci bolg test
+name: Change is Good
 on:
   push:
     branches:
