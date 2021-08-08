@@ -2,8 +2,6 @@
 
 [教程](https://www.liaoxuefeng.com/wiki/1252599548343744/1255883772263712)
 
-[Maven](https://www.liaoxuefeng.com/wiki/1252599548343744/1255945359327200)
-
 JDK(Java Development Kit)：[Java开发工具包](https://www.oracle.com/java/technologies/javase-downloads.html)
 
 ![20210630131230](http://image.zuoright.com/20210630131230.png)
@@ -63,3 +61,15 @@ public class Hello {
 javac Hello.java  # # 先编译，生成demo.class
 java Hello  # 参数Hello为类名，JVM会自动查找对应的.class并运行
 ```
+
+## 构建工具
+
+Java程序的构建过程一般是：编译、测试、打包。
+
+如果文件比较少，我们可以手动使用javac、java、jar这些命令手动构建
+
+但当工程越来越大，文件越来越多，这些机械重复的工作就需要交给工具来帮我们完成了：
+
+- ant 与makefile比较像，定义任务，规定依赖，执行任务，缺点是没办法管理依赖
+- [Maven](https://www.liaoxuefeng.com/wiki/1252599548343744/1255945359327200) 提出仓库的概念，缺点是使用xml语法不简洁，无法自定义任务
+- gradle 继承maven和ant的优点，可以用仓库管理依赖也能自定义任务，`build.gradle`基于脚本语言Groovy

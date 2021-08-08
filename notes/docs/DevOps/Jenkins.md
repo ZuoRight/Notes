@@ -1,12 +1,17 @@
 # Jenkins
 
-> 用户指南：<https://www.jenkins.io/zh/doc/pipeline/tour/getting-started/>
->
-> Docker部署Jenkins：<https://github.com/jenkinsci/docker>
->
-> 配置文件：[`Jenkinsfile`](https://www.jenkins.io/zh/doc/book/pipeline/jenkinsfile/) ([Groov语法](http://groovy-lang.org/))
+## 安装
+
+> <https://www.jenkins.io/doc/book/installing/>
+
+- 使用WAR包运行，由于下载的`jenkins.war`内置了Jetty，所以可以直接运行：`[nohub] java -jar jenkins.war [--httpPort=8080]`，然后访问：<http://localhost:8080/>，也可以使用Tomcat等其他Java Servlet容器运行
+- 使用Docker镜像运行
+
+Jenkins相关的配置等会存放在`~/.jenkins`路径下
 
 ## 流水线 Pipeline
+
+> [`Jenkinsfile`](https://www.jenkins.io/zh/doc/book/pipeline/jenkinsfile/) ([Groov语法](http://groovy-lang.org/))
 
 - 声明式流水线：Declarative Pipeline
 

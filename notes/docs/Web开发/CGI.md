@@ -1,7 +1,10 @@
-# uWSGI
+# Web Server Gateway Interface
+
+Web开发的接口规范，从最早的CGI(Common Gateway Interface)到各个语言独立的规范，比如Python的WSGI(Web Server Gateway Interface)和Java的Servlet(Server Applet)，WSGI接近CGI，比较简单，但Servlet由于提出的较早，要复杂得多。
+
+## uWSGI
 
 uWSGI是C语言实现的一款工具，它跟Flask/Django等主流框架都遵循了WSGI规范，自然可以与这些框架实现的应用通信，然后它可以用自带的uwsgi协议与Ngnix进行通信，最终Nginx通过http协议对外提供服务
-> WSGI规范，Web Server Gateway Interface 的缩写，规定了Python Web应用与服务器之间的通讯方式
 
 ```text
 pip install uwsgi
@@ -46,3 +49,19 @@ command=uwsgi命令
 ```uwsgi.ini
 [uwsgi] /home/...
 ```
+
+## Servlet
+
+Servlet API是一个jar包，通过构建工具引入它，与其他一些文件按固定结构组织并打包为.war文件
+
+> war(Java Web Application Archive) 构建后的Web应用程序
+>
+> Java Web 相关的标准都是在 EE 中定义的
+
+普通的Java程序是通过启动JVM，然后执行main()方法开始运行。
+
+但是Web应用程序，需要启动Web服务器（也称为Servlet容器）加载war包来运行Servlet，常用的Servlet容器有：
+
+- Jetty：由Eclipse开发的开源免费服务器
+- Tomcat：由Apache开发的开源免费服务器
+- GlassFish：一个开源的全功能JavaEE服务器

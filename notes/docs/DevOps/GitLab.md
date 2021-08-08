@@ -1,5 +1,7 @@
 # GitLab CI/CD
 
+![20210808174712](http://image.zuoright.com/20210808174712.png)
+
 > 配置文件：[`.gitlab-ci.yml`](https://docs.gitlab.com/ee/ci/yaml) (YAML语法)
 
 ## 流水线 Pipline
