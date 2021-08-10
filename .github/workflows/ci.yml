@@ -2,7 +2,7 @@ name: Change is Good
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
