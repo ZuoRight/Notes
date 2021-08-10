@@ -67,7 +67,7 @@ python3 -m venv env
 
 # 激活虚拟环境，激活后命令提示符前会显示：(env)
 source env/bin/activate  # Mac/Linux
-"env\Scripts\activate"  # Windows
+env\Scripts\activate  # Windows
 
 # 安装项目依赖
 pip install -r requirements.txt
