@@ -32,4 +32,4 @@ jobs:
           git rm -r --cached notes/docs
           git rm -r --cached .github/workflows
           git commit -m "ci commit"
-          git push origin master:dev --force
+          git push origin main:dev --force
