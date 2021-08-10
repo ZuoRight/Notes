@@ -70,7 +70,7 @@ source env/bin/activate  # Mac/Linux
 "env\Scripts\activate"  # Windows
 
 # 安装项目依赖
-pip install flask
+pip install -r requirements.txt
 
 # 退出虚拟环境
 deactivate
