@@ -6,6 +6,11 @@
 
 帮助：`pytest --help | grep xxx`
 
+## 常用参数
+
+- -v, --verbose  增加详细程度
+- -s  --capture=no 的简写，显示print()信息
+
 ## Case编写规范
 
 `test_xxx.py` 或 `xxx_test.py`
