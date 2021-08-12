@@ -26,9 +26,8 @@ max-requests=5000
 ; 日志
 ; daemonize=/tmp/uwsgi.log
 
-; pid文件，用于下脚本启动、停止该进程
+; pid文件，用于脚本启动、停止该进程
 ; pidfile=/tmp/uwsgi.pid
-
 ```
 
 ## 直接用uwsgi启动

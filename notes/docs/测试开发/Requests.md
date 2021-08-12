@@ -12,7 +12,7 @@ API：<https://docs.python-requests.org/zh_CN/latest/api.html>
 import requests
 
 
-r = requests.request(request_method, request_url, **kwwars)  # <Response [200]>
+r = requests.request(request_method, request_url, **kwars)  # <Response [200]>
 """
 :request_method: get/post/put/delete/patch/options/head
 :request_url 请求url

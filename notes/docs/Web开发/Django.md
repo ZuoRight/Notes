@@ -64,11 +64,11 @@ ALLOWED_HOSTS = ["*"]  # DEBUG等于False时必需配置
 
 配置拆分，更好的管理不同环境时的配置
 
-manage.py中路径可改为set_dev，即命令行默认启动开发环境
+`manage.py`文件中路径可改为set_dev，即命令行默认启动开发环境
 
-命令行启动生产环境：python manage.py runserver --settings=onestep.settings.set_pro
+命令行启动生产环境：python manage.py runserver --settings=onestep.settings.set_prod
 
-uwsgi中路径可设置为set_pro，即uwsgi默认启动生产环境
+`.wsgi`文件中路径可设置为set_prod，即uwsgi调用wsgi时默认启动生产环境
 
 ![20210623152338](http://image.zuoright.com/20210623152338.png)
 
