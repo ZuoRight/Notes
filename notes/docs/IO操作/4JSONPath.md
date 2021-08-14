@@ -1,4 +1,4 @@
-# JsonPAth
+# JSONPath
 
 各种格式的数据反序列化(load)为Python字典(dict)后，如果想更方便的获取指定字段数据，建议使用JsonPath，相当于Xpath之于XML。
 
