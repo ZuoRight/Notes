@@ -2,9 +2,11 @@
 
 各种格式的数据反序列化(load)为Python字典(dict)后，如果想更方便的获取指定字段数据，建议使用JsonPath，相当于Xpath之于XML。
 
-`pip install jsonpath`
+HttpRunner使用的另一个解析JSON的库：[jmespath](https://jmespath.org/tutorial.html)，待研究...
 
-[常用语法](https://goessner.net/articles/JsonPath/)
+> 项目地址：<https://github.com/json-path/JsonPath>
+
+`pip install jsonpath`
 
 - `$` 根节点
 - `@` 当前节点

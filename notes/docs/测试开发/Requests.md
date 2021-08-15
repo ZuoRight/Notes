@@ -38,7 +38,6 @@ r.text  # 获取响应内容，字符串形式
 r.json  # 获取响应内容，json格式
 r.raw  # 获取原始响应内容，请求时需要加stream=True，并建议保存到文件，参考文档：https://docs.python-requests.org/zh_CN/latest/user/quickstart.html#id5
 
-
 r.raise_for_status()
 r.status_code
 ```
