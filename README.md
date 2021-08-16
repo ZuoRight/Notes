@@ -1,5 +1,7 @@
 # [ZuoRight](http://zuoright.com)
 
+> VS Code + MD + 七牛云图床 + Git + Github Pages + Github Actions
+
 ## MKDocs
 
 > [官方文档](https://www.mkdocs.org/)

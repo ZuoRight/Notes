@@ -144,7 +144,6 @@ git commit --ament -m "xxx"  # 修正提交，可以覆盖上一次的提交
   - HEAD^^ 上上版本
   - HEAD~100 上100个版本
 
-
 `git revert -n 版本号`
 
 回滚某个版本，生成新的版本，不影响其他版本
@@ -178,7 +177,7 @@ git branch -d dev  # 删除
 
 ## 推送
 
-```python
+```shell
 # 将本地主分支设置为main(与GitHub默认主分支main保持一致)
 git branch -M main
 
@@ -189,7 +188,18 @@ git fetch origin/master
 git pull  # 等同于：git fetch + git merge
 
 # 推送到远程仓库
-git push [-u origin main]  # # 首次推送加-u参数，设置默认仓库和分支
+git push [-u origin main]  # 首次推送加-u参数，设置默认仓库和分支
+```
+
+## 标签
+
+```shell
+git tag  # 查看标签
+git tag -a v1.0 -m "version one"  # 新建标签
+git push origin v1.0  # 推送到远程（推送分支时不会带上标签，所以标签需要单独推送）
+
+git tag -d v0.5  # 删除本地标签
+git push origin --delete v0.5  # 删除远程标签
 ```
 
 ## 项目托管平台

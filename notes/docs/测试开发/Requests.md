@@ -42,6 +42,13 @@ r.raise_for_status()
 r.status_code
 ```
 
+## 证书
+
+```python
+verify = False  # 忽略证书验证，但会输出警告提示
+requests.packages.urllib3.disable_warnings()  # 发送请求前加上这行代码，可关闭警告提示
+```
+
 ## 获取cookies
 
 - RequestsCookieJar格式
