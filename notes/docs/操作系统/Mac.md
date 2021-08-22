@@ -50,8 +50,8 @@ chsh -s /usr/local/bin/bash
   # 改回zsh：chsh -s / bin / zsh
 
 # 设置登录shell为新版
-# 即把/usr/local/bin/bash填加到/etc/shells，需要管理者权限
-sudo vim /etc/shells
+# 即把/usr/local/bin/bash填加到当前系统受信任shells配置文件中，
+sudo vim /etc/shells  # 需要管理者权限
 ```
 
 - 查看bash路径：`which -a bash`
