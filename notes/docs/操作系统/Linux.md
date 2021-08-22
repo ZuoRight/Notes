@@ -26,14 +26,9 @@ linux本身只是一个内核([Kernel](https://www.kernel.org/))，而我们平�
 - kernel 内核
 - systemd/init 1号进程
 - 系统初始化
-- shell 用于解释用户对操作系统的操作
+- Shell 用于解释用户对操作系统的操作
 
-### 赋予执行权限
-
-- 创建文件时默认带了读写权限，查看权限：`ls -l`
-- 加执行权限：`chmod u+x filename`
-
-## 常用命令
+## 命令行
 
 `[root@localhost ~]$ command [--options] parameter1 parameter2`
 
@@ -42,54 +37,20 @@ linux本身只是一个内核([Kernel](https://www.kernel.org/))，而我们平�
 > 系统管理员和普通用户的提示字符分别为：`#` 和 `$`  
 > 选项名前通常用`-` 和 `--`表示简写和全写，也会有带+的情况  
 > 指令间用至少一个空格来分隔，大小写敏感  
-> 回车执行命令，`\`可将回车转义为换行输入
+> 回车执行命令，`\`可将回车转义为换行输入  
+> 执行多条命令，用分号隔开
 
-执行多条命令，用分号隔开
+## 升级
 
-```shell
-x="hello"  # 变量赋值，=左右不能加空格
-echo '单引号内容原样输出'
-echo "双引号内容可以有变量，加转义字符等"
+- Ubuntu
 
-ls [-al] # 查看文件，加-a可查看隐藏文件，-l可查看文件权限等详情
-```
+```bash
+apt-get update  # 查看可更新软件列表
+apt-get upgrade  # 软件版本升级
 
-文件描述符，通常用1~9的数字表示一个文件
-
-- 0 标准输入stdin，输入自键盘
-- 1 标准输出stdout，输出到屏幕
-- 2 标准错误输出stderr
-
-输入/输出重定向
-
-```shell
-# 输出重定向，是1>的简写
-cmd > file  # 将命令的输出从屏幕重定向到file文件，file若非空，则默认覆盖
-cmd >> file  # file若非空，则追加写入
-
-# 将错误信息保存到file
-cmd 2> file
-cmd 2> /dev/nul  # 将错误信息丢弃
-
-# 同时将错误信息保存到file
-cmd &> file  # 最简写法
-cmd > file 2>&1  # 另一种写法
-cmd 2>&1 > file  # 错误写法，如果先把2指向1，即屏幕，再指向file，只是1指向了file，2其实没变，还是指向屏幕
-cmd > file 2> file  # 错误写法，这样虽然可以都保存但会交叉的混在一起
-```
-
-用cat创建文件
-
-```shell
-cat  # 执行cat什么都不加则会让在命令行输入内容，ctrl+d退出
-cat > file  # 回车后在命令行输入内容，退出则内容自动保存到file中
-
-# 输入重定向，是0<的简写
-# 原本由键盘输入的数据，改由文件内容来代替
-cat > file1 < file2  # 从file2读取内容写入到file1中，类似于复制
-
-# 设置输入结束符
-cat > file << "eof"
+# 系统版本升级
+apt-get dist-upgrade  # 方式之一
+do-release-upgrade  # 官方推荐的方式（加参数-d可升级到最新开发版本）
 ```
 
 ## 快捷键
