@@ -2,6 +2,8 @@
 
 [参考手册](https://docs.docker.com/reference/)
 
+[安装](https://docs.docker.com/engine/install/)
+
 [以Python语言快速开始](https://docs.docker.com/language/python/)
 
 Docker必须部署在Linux内核的系统上，Docker Desktop 是 Docker 在 Windows 10 和 macOS 操作系统上的官方安装方式，这个方法依然属于先在虚拟机中安装 Linux 然后再安装 Docker 的方法。

@@ -2,6 +2,8 @@
 
 > <https://wangdoc.com/ssh/>
 
+OpenSSH 的客户端是二进制程序 ssh。它在 Linux/Unix 系统的位置是：`/usr/local/bin/ssh`，Windows 系统的位置是：`\Program Files\OpenSSH\bin\ssh.exe`
+
 - `/etc/ssh/ssh_config`  客户端的全局配置文件
 - `~/.ssh/config`  用户个人配置文件，优先级高于全局配置文件
 - `~/.ssh/id_rsa`  用于SSH协议版本2的RSA私钥
