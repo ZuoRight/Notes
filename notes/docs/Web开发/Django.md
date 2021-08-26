@@ -4,8 +4,6 @@
 
 ## 常用命令
 
-- 创建项目：`django-admin startproject mysite`
-- 创建应用：`python manage.py startapp one_app`
 - 启动服务器：`python manage.py runserver`
 - 生成迁移文件：`python manage.py makemigrations one_app`
 - 数据迁移：`python manage.py migrate`
@@ -15,6 +13,7 @@
 ## 项目
 
 - 创建项目：`django-admin startproject mysite`
+- 创建应用：`python manage.py startapp one_app`
 - 项目结构：
 
 ```shell
@@ -33,94 +32,6 @@ mysite/
         asgi.py
         # 兼容wsgi的服务器入口
         wsgi.py
-```
-
-- 启动项目
-
-```shell
-# 先切换到项目容器内
-cd mysite
-# 运行命令行工具manage.py启动项目，默认8000端口
-# 首页地址：127.0.0.1:8000
-python manage.py runserver
-# 可以更改端口
-python manage.py runserver 8888
-# 可以指定IP，比如监听所有服务器公开IP，0是0.0.0.0的缩写
-python manage.py runserver 0:8000
-```
-
-## 配置
-
-### 基本配置
-
-```python
-# mysite/settings.py
-TIME_ZONE = 'UTC'  # 时区
-LANGUAGE_CODE = 'en-us'  # 语言
-
-DEBUG = False
-ALLOWED_HOSTS = ["*"]  # DEBUG等于False时必需配置
-```
-
-配置拆分，更好的管理不同环境时的配置
-
-`manage.py`文件中路径可改为set_dev，即命令行默认启动开发环境
-
-命令行启动生产环境：python manage.py runserver --settings=onestep.settings.set_prod
-
-`.wsgi`文件中路径可设置为set_prod，即uwsgi调用wsgi时默认启动生产环境
-
-![20210623152338](http://image.zuoright.com/20210623152338.png)
-
-### 数据库配置
-
-- SQLite（默认，Python内置）
-
-数据库会在需要的时候自动创建
-
-```python
-# mysite/settings.py
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # 数据库引擎
-        'NAME': BASE_DIR / 'db.sqlite3',  # sqlite的绝对路径
-    }
-}
-```
-
-- 其它数据库
-
-安装驱动：`pip install pymysql`
-
-创建库：`create database if not exists dbname default character set utf8 collate utf8_general_ci;`
-
-```python
-# 配置
-# mysite/settings.py
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'NAME': 'dbname',  # 数据库名称
-        'HOST': '127.0.0.1',  # host
-        'PORT': 3306,  # 端口 
-        'USER': 'root',  # 用户名
-        'PASSWORD': '123456',  # 密码
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # 解决迁移时的一个警告
-            'charset': 'utf8mb4',
-            "isolation_level": "repeatable read",  # 隔离级别设置为可重复读取，为了迁移数据适配数据库默认Binlog=STATEMENT时报错
-        }
-    }
-}
-```
-
-声明
-
-```python
-# __init__.py
-import pymysql
-
-pymysql.install_as_MySQLdb()  # 告诉django用pymysql代替mysqldb连接数据库
 ```
 
 ## 应用
@@ -502,102 +413,6 @@ urlpatterns = [
 ]
 ```
 
-## 模板
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>index</title>
-    <link rel="stylesheet" type="text/css" href="{百分号 static 'xxx.css' 百分号}"> 
-</head>
-<body>
-
-</body>
-</html>
-```
-
-去除硬编码URL
-
-```html
-<a href="/one_app/{{ question.id }}/">xxx</a>
-<!-- 去除后 -->
-<a href="{百分号 url 'one_app:detail' question.id 百分号}">xxx</a>
-```
-
-所有针对内部 URL 的 POST 表单都应该使用 {百分号 csrf_token 百分号} 模板标签，防止跨站点请求伪造。
-
-```html
-<form action="{百分号 url 'one_app:vote' question.id 百分号}" method="post">
-{百分号 csrf_token 百分号}
-</form>
-```
-
-### 过滤器
-
-过滤器的`|`符号左右最好不要加空格，否则被for循环时会报错
-
-自定义过滤器
-
-![20210621191818](http://image.zuoright.com/20210621191818.png)
-
-## 静态文件
-
-### 开发环境 DEBUG=True
-
-单独应用中
-
-settings.py
-
-```python
-STATIC_URL = '/static/'
-```
-
-```html
-<!-- 文件存放在one_app/static中 -->
-{百分号 load static 百分号}
-<link rel="stylesheet" type="text/css" href="{百分号 static 'css/style.css' 百分号}">
-
-<img width="180" height="180" src="{百分号 static 'img/xxx.jpg' 百分号}"
-```
-
-公共
-
-settings.py
-
-```python
-STATICFILES_DIRS = [ 
-    os.path.join(BASE_DIR, "statics"),
-]
-```
-
-### 生产环境 DEBUG=False
-
-此时Django不会再提供静态文件服务
-
-- 方式1
-
-加--insecure参数，但只适用于命令行启动
-
-`python manage.py runserver --insecure`
-
-- 方式2 CDN
-
-先把所有注册APP分散的静态资源都收集到统一位置：`STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')`
-
-然后执行收集：`python manage.py collectstatic`，存放在`static_cdn`路径下
-
-然后用Nginx提供静态资源服务
-
-```ini
-location /static/ {
-    alias /usr/share/nginx/mysite/static_cdn/;
-}
-```
-
-重新加载：`service nginx reload`
-
 ## 通用视图
 
 ```python
@@ -636,4 +451,255 @@ urlpatterns = [
     # 视图参数也要改一下
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
 ]
+```
+
+## 模板
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="{百分号 static 'xxx.css' 百分号}"> 
+</head>
+<body>
+
+</body>
+</html>
+```
+
+### 防止跨站点请求伪造
+
+所有针对内部 URL 的 POST 表单都应该使用 {百分号 csrf_token 百分号} 模板标签，防止跨站点请求伪造。
+
+```html
+<form action="{百分号 url 'one_app:vote' question.id 百分号}" method="post">
+{百分号 csrf_token 百分号}
+</form>
+```
+
+### 去除硬编码URL
+
+```html
+<a href="/one_app/{{ question.id }}/">xxx</a>
+<!-- 去除后 -->
+<a href="{百分号 url 'one_app:detail' question.id 百分号}">xxx</a>
+```
+
+### 过滤器
+
+过滤器的`|`符号左右最好不要加空格，否则被for循环时会报错
+
+自定义过滤器
+
+![20210621191818](http://image.zuoright.com/20210621191818.png)
+
+### 静态文件
+
+```html
+<!-- 文件存放在one_app/static中 -->
+{百分号 load static 百分号}
+<link rel="stylesheet" type="text/css" href="{百分号 static 'css/style.css' 百分号}">
+
+<img width="180" height="180" src="{百分号 static 'img/xxx.jpg' 百分号}"
+```
+
+## 数据库配置
+
+- SQLite（默认，Python内置）
+
+自带，数据库会在需要的时候自动创建
+
+```python
+# mysite/settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # 数据库引擎
+        'NAME': BASE_DIR / 'db.sqlite3',  # sqlite的绝对路径
+    }
+}
+```
+
+- MySQL
+
+安装驱动：`pip install pymysql`
+
+声明：`onestep/__init__.py`
+
+```python
+import pymysql
+
+pymysql.install_as_MySQLdb()  # 告诉django用pymysql代替mysqldb连接数据库
+```
+
+配置
+
+```python
+# mysite/settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+        'NAME': 'dbname',  # 数据库名称
+        'HOST': '127.0.0.1',  # host
+        'PORT': 3306,  # 端口 
+        'USER': 'root',  # 用户名
+        'PASSWORD': '123456',  # 密码
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # 解决迁移时的一个警告
+            'charset': 'utf8mb4',
+            "isolation_level": "repeatable read",  # 隔离级别设置为可重复读取，为了迁移数据适配数据库默认Binlog=STATEMENT时报错
+        }
+    }
+}
+```
+
+创建数据库：`create database if not exists dbname default character set utf8 collate utf8_general_ci;`
+
+## 配置拆分
+
+![20210826183930](http://image.zuoright.com/20210826183930.png)
+
+### set_base
+
+```python
+import os
+from pathlib import Path
+
+
+# 基础配置
+TIME_ZONE = 'UTC'  # 时区
+LANGUAGE_CODE = 'en-us'  # 语言
+
+
+# 静态文件路径配置
+STATIC_URL = '/static/'  # 单独应用
+STATICFILES_DIRS = [  # 公共
+    os.path.join(BASE_DIR, "statics"),
+]
+```
+
+### set_dev
+
+```python
+from .set_base import *
+
+
+DEBUG=True
+```
+
+### set_prod
+
+```python
+from .set_base import *
+
+
+DEBUG=False
+ALLOWED_HOSTS = ["*"]  # DEBUG等于False时必需配置
+```
+
+此时Django不会再提供静态文件服务
+
+- 方式1(适用于命令行启动)：`python manage.py runserver --insecure`
+- 方式2 CDN
+
+1. 配置文件中先把所有注册APP分散的静态资源都收集到统一位置：`STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')`
+2. 命令行执行收集命令：`python manage.py collectstatic`，将项目用到的所有静态文件集中存放在`static_cdn`路径下
+3. 然后用Nginx提供静态资源服务
+
+    ```ini
+    location /static/ {
+        alias /usr/share/nginx/mysite/static_cdn/;
+    }
+    ```
+
+4. 重新加载：`service nginx reload`
+
+## 启动
+
+### 自带服务器命令行启动
+
+主要是读取`manage.py`文件（项目自带，在项目根目录）
+
+> 可设置为命令行默认启动开发环境：`os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onestep.settings.set_dev')`
+
+```bash
+# 先切换到项目容器内
+cd mysite
+# 运行命令行工具manage.py启动项目，默认8000端口
+# 首页地址：127.0.0.1:8000
+# 根据默认配置启动
+python manage.py runserver
+# 可以更改端口
+python manage.py runserver 8888
+# 可以指定IP，比如监听所有服务器公开IP，0是0.0.0.0的缩写
+python manage.py runserver 0:8000
+
+# 指定配置文件启动
+python manage.py runserver --settings=onestep.settings.set_prod
+```
+
+### uWSGI 启动
+
+主要读取`wsgi.py`文件（项目自带，与`setting.py`同目录）
+
+> 可设置为uWSGI默认启动生产环境：`os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onestep.settings.set_prod')`
+
+```bash
+pip install uwsgi
+
+# 启动，成功后访问：<http://127.0.0.1:3031>，ctrl+c停止
+uwsgi --http :3031 --file onestep/wsgi.py
+```
+
+### Nginx + uWSGI 启动
+
+- 自建`uwsgi.ini`文件（路径自定）
+
+```ini
+[uwsgi]
+; 项目根目录
+chdir = /Users/7c/zuoright/onestep_django
+; 指定wsgi模块下的application对象
+module = onestep.wsgi:application
+; 对本机3031端口提供服务
+socket = 127.0.0.1:3031
+; 主进程
+master = true
+
+; 以下字段非必需
+
+; 退出、重启时清理文件
+vacuum = true
+max-requests=5000
+
+; pid文件，用于脚本启动、停止该进程
+; pidfile=/tmp/uwsgi.pid
+
+; 日志
+; daemonize=/tmp/uwsgi.log
+```
+
+- 修改`nginx.conf`配置
+
+```conf
+server {
+    listen       8080;
+    server_name  localhost;
+
+    location / {
+        include   uwsgi_params;
+        uwsgi_pass  127.0.0.1:3031;  和上面uwsgi配置的端口一致
+    }
+
+    location /static {
+        alias  /Users/7c/zuoright/onestep_django/static_cdn;  配置静态文件路径
+    }
+```
+
+```bash
+# 启动nginx
+nginx
+# 启动uwsgi，成功后访问：<http://127.0.0.1:8000>
+uwsgi --ini path/uwsgi.ini
 ```
