@@ -123,6 +123,9 @@ source ~/.bash_profile
 # 查看帮助
 brew help
 
+# 检查问题
+brew doctor
+
 # 查看配置
 brew config
 
@@ -139,6 +142,7 @@ brew search xxx
 brew info xxx
 
 # 安装
+# 安装时默认会先升级homebrew，可以ctrl+c跳过
 brew install xxx
 ```
 

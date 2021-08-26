@@ -16,10 +16,10 @@ Version Control System 版本控制系统，主要分为集中式和分布式两
 
 ## 安装
 
-- Windows：官网下载`Git for Windows`客户端安装即可
-- Mac：推荐`brew install git`方式安装，如果安装了Xcode会默认自带
 - Ubuntu：`sudo apt-get install git`
 - CentOS：`sudo yum install git`
+- Mac：推荐`brew install git`方式安装，如果安装了Xcode会默认自带，此时用brew安装会提示已经存在，根据提示执行`brew link --overwrite git`覆盖
+- Windows：官网下载`Git for Windows`客户端安装即可
 
 ## 常用命令
 
@@ -101,7 +101,7 @@ git remote rm demo
 - `touch .gitignore` 文件：编写忽略规则
 
 > [各语言忽略规则通用模版](https://github.com/github/gitignore)
-> 
+>  
 > 对于那些已经被track(追踪)的文件，需要先删除相应的跟踪记录：
 >  
 > `git rm --cached <file>`
