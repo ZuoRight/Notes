@@ -40,7 +40,7 @@ HyperText Transfer Protocol
 - Status Code
 - Reason
 
-### *Headers
+### Headers
 
 #### 伪头部
 
@@ -105,12 +105,10 @@ HyperText Transfer Protocol
   - Strict-Transport-Security 告诉浏览器必须使用HTTPS访问资源，但为了兼容HTTP协议，所以规定日期内浏览器需要自动把请求中的http转换为https协议发起请求，免去中间人攻击可能，少一次服务端重定向，加快连接速度
   - Retry-After 返回503错误时提示多久后重试
 
-#3## 内容相关
+### 内容相关
 
 - Date: 报文创建时间
-
 - Vary：记录服务器在内容协商过程中参考的字段
-
 - 内容类型(MIME type)
   - Accept
   - Content-Type
@@ -118,7 +116,9 @@ HyperText Transfer Protocol
     - image/gif/jpeg/png
     - audio/mpeg
     - video/mp4
-    - application/json/javascript/pdf/xml(数据格式不固定)
+    - application/javascript/pdf/xml(数据格式不固定)
+    - application/json;charset=UTF-8(Chrome请求体标识为：Request Payload)
+    - application/x-www-form-urlencoded;charset=UTF-8(表单，Chrome请求体标识为：Form Data)
     - application/octet-stream(不透明的二进制数据)
 - 压缩方式
   - Accept-Encoding：为空表示客户端不支持压缩数据
@@ -135,7 +135,7 @@ HyperText Transfer Protocol
     - zh-CN(简体中文)
 - 字符集(现在的浏览器均支持多种字符集，通常无需标识)
   - Accept-Charset
-  - “charset=xxx”(服务端字符集定义在Content-Type字段中)
+  - "charset=xxx"(服务端字符集定义在Content-Type字段中)
     - utf-8
     - gbk
 - 长度

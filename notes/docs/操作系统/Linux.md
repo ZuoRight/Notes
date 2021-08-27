@@ -18,6 +18,19 @@ linux本身只是一个内核([Kernel](https://www.kernel.org/))，而我们平�
 - glibc：C库
 - coreutils：核心工具组
 
+## 升级
+
+- Ubuntu
+
+```bash
+apt-get update  # 查看可更新软件列表
+apt-get upgrade  # 软件版本升级
+
+# 系统版本升级
+apt-get dist-upgrade  # 方式之一
+do-release-upgrade  # 官方推荐的方式（加参数-d可升级到最新开发版本）
+```
+
 ## 启动过程
 
 - BIOS 基本的输入输出系统，在主板上，在启动时按F2进入界面，选择引导介质
@@ -40,18 +53,55 @@ linux本身只是一个内核([Kernel](https://www.kernel.org/))，而我们平�
 > 回车执行命令，`\`可将回车转义为换行输入  
 > 执行多条命令，用分号隔开
 
-## 升级
+## 账户相关
 
-- Ubuntu
+每个登录的用户都会获得两个ID：`UID`(User ID) 和 `GID`(Group ID)
+
+![20210827231927](http://image.zuoright.com/20210827231927.png)
+
+账号信息存储在`/etc/passwd`文件中，其中很多都是系统账号（系统运行所必须的），不可随意删除，早期密码也存储在这里，但后来因为安全原因单独存储到了`/etc/shadow`中
+
+![20210827233831](http://image.zuoright.com/20210827233831.png)
+
+如上图，密码为空则不需要密码即可登录，最近修改日期是从1(1970.1.1)开始累计的，多少天内不可修改或需要修改，为0则表示可任意修改，99999为273年，即不限制，如果想暂停某个用户登录，可以将失效日期改为0
 
 ```bash
-apt-get update  # 查看可更新软件列表
-apt-get upgrade  # 软件版本升级
-
-# 系统版本升级
-apt-get dist-upgrade  # 方式之一
-do-release-upgrade  # 官方推荐的方式（加参数-d可升级到最新开发版本）
+# 创建用户
+useradd chong [-m] -s /bin/bash  # -m强制建立家目录(一般默认)，-s指定Shell
+# 修改账户信息
+usermod -s /bin/bash  # 比如-s修改默认Shell
+# 删除账户
+userdel [-r] chong  # -r连同家目录一起删除
+# 修改密码
+passwd [username]  # 普通用户需要先输入旧密码，root用户不需要，root用户可以修改任意用户的密码且不需要输入旧密码，不加username则默认修改自己的
 ```
+
+切换账户
+
+```bash
+# 方式1
+# 需要输入对方密码（从root切换到其它用户不需要），使用exit可以退回原来的用户
+su - [username]  # 不加username即切换到root用户，-建议一直带着
+
+# 方式2
+# 需要用权限才可以使用sudo，用visudo命令（使用vi仅有只读权限），在/etc/sudoers文件中给用户添加一行与root相同的权限即可
+# 每次都需要输入自己的密码（root不需要），加-s可以保持session
+sudo [-u username] command  # 不加-u即使用root用户，注意后面必须加命令一起使用
+```
+
+```bash
+id [username]  # 查看某个用户的账号信息，不带用户名默认查看自己
+groups  # 查看所属用户组
+who 或者 w # 查看当前在线用户
+write username  # 给某个在线用户发送消息
+wall  # 给所有在线用户发送消息
+mesg n/y  # 拒绝或允许接收消息，root用户默认拒绝，普通用户无法拒绝root用户发来的消息
+mail -s "test content" [chonge@localhost]  # 发送邮件，也可以给离线用户发，给本机用户可以省略[chonge@localhost]，对方可以使用mail命令来接收查看邮件内容
+```
+
+![20210828001620](http://image.zuoright.com/20210828001620.png)
+
+![20210828001628](http://image.zuoright.com/20210828001628.png)
 
 ## 快捷键
 
