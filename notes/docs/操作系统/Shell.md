@@ -70,6 +70,13 @@ echo $(export PATH)` >> ~/.bash_profile
 source ~/.bash_profile  # 重新加载环境变量配置文件使其生效
 ```
 
+## 运算
+
+```bash
+expr 1 + 1  # 2，运算符两边必须加空格
+expr 5 / 2  # 2
+```
+
 ## Shell Script
 
 指定解释器
