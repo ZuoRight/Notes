@@ -35,11 +35,10 @@ r.headers  # 获得响应头
 
 r.content  # 获取响应内容，字节码形式
 r.text  # 获取响应内容，字符串形式
-r.json  # 获取响应内容，json格式
 r.raw  # 获取原始响应内容，请求时需要加stream=True，并建议保存到文件，参考文档：https://docs.python-requests.org/zh_CN/latest/user/quickstart.html#id5
-
-r.raise_for_status()
-r.status_code
+r.json()  # 获取响应内容，json格式
+r.raise_for_status()  # 检查请求是否成功，成功返回None，不成功则抛出异常：requests.exceptions.HTTPError
+r.status_code  # 状态码
 ```
 
 ## 证书

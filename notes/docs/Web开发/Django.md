@@ -138,7 +138,7 @@ class Choice(models.Model):
 
 - `blank=True` 字段为空时就是空
 - `null=True` 字段为空时设置为NUL
-- `choices=[("S", "Small"), (“B”, “Big”)]` 枚举值（二元组的第一个值存在数据库中，第二个值用于显示）
+- `choices=[("S", "Small"), (“B”, “Big”)]` 枚举值（二元组的第一个值是真实存在数据库中的值，第二个值仅用于显示）
 - `default=xxx` 默认值，一般为None
 - `help_text=xxx` 注释文本
 - `primary_key=True` 设置为主键，一般不需要手动设置主键，默认会添加一列id字段为主键
@@ -557,6 +557,8 @@ DATABASES = {
 创建数据库：`create database if not exists dbname default character set utf8 collate utf8_general_ci;`
 
 ## 配置拆分
+
+拆分后，如果要在非默认环境下启动和数据迁移时记得加`--settings=config_path`
 
 ![20210826183930](http://image.zuoright.com/20210826183930.png)
 
