@@ -49,9 +49,15 @@ docker pull ubuntu  # 拉取镜像
 docker images  # 查看镜像
 docker rmi <镜像>  # 删除镜像
 
-docker run ubuntu:15.10 /bin/echo "hello world"  # 运行容器
-docker run -it ubuntu:15.10 /bin/bash  # 运行并进入容器
-docker run -d ubuntu:15.10 /bin/sh -c "echo hello world"  # 后台运行
+# 运行容器
+"""
+-d 后台运行并返回容器ID
+--name="name"，指定容器名称
+--net="bridge/host/none/container" 指定容器的网络连接类型
+--rm 容器退出时自动清理容器内部文件，与-d同用无意义，只适用于前台运行时
+"""
+docker run [-d] ubuntu  # 不加tag默认执行latest版本的
+docker run -it ubuntu:15.10 /bin/bash  # 运行并进入容器，-i交互，-t指定伪终端
 ```
 
 - 容器
@@ -83,8 +89,9 @@ docker import http://example.com/exampleimage.tgz example/imagerepo  # 导入容
 - 网络
 
 ```bash
-docker run -d -p <IP>:5000:5000 <镜像> <命令>  # 运行web容器，-p指定端口映射到容器内服务的默认端口
-docker run -d -P <镜像> <命令>  # -P随机指定端口映射
+# 运行web容器，-p指定端口映射到容器内服务的默认端口，或-P随机指定端口映射
+docker run -d [-p <IP>:5000:5000]/[-P] <镜像> <命令>
+
 docker port <容器 ID> <端口>  # 查看容器端口映射
 
 docker network create -d bridge test-net  # 网桥
@@ -94,7 +101,11 @@ docker network create -d bridge test-net  # 网桥
 
 ```bash
 docker commit -m="提交信息" -a="作者" <容器 ID> <目标镜像名:tag>  # 从现有镜像（可以做一些定制）fork出一个镜像
-docker build -t/--tag <目标镜像名:tag> .  # 从Dockerfile构建一个镜像，最后的「.」为上下文路径，该路径下所有内容都会被打包，默认为Dockerfile所在目录
+
+# 从Dockerfile构建一个镜像
+# -t必须加，但tag可以缺省，默认为latest
+# 一定不要忘了最后的上下文路径「.」，该路径下所有内容都会被打包，默认为Dockerfile所在目录
+docker build -t/--tag <目标镜像名>[:<tag>] .
 docker tag <镜像ID> <镜像名>:tag  # 打标签
 ```
 
@@ -134,10 +145,6 @@ ENV <key1>=<value1> <key2>=<value2>...
 # 作用域仅在docker build的过程中有效
 ARG
 
-# 数据卷
-VOLUME <路径>
-VOLUME ["<路径1>", "<路径2>"...]
-
 # 创建一个工作目录，作为所有后续命令相对的根路径
 WORKDIR /app
 
@@ -149,4 +156,39 @@ EXPOSE
 
 # 添加一些元数据，比如作者
 LABEL image.authors="7c"
+```
+
+## 挂载数据卷
+
+- `Dockerfile`中`VOLUME`指定
+
+```Dockerfile
+# 为了保证Dockerfile的可一致性，VOLUME指令挂载时不能指定宿主机目录，默认与容器路径一致
+VOLUME <路径>
+VOLUME ["<路径1>", "<路径2>"...]
+```
+
+- `--volume/-v`命令指定
+
+```bash
+# 将宿主机路径（绝对路径）挂载到容器，不存在会自建，存在如果有数据则会覆盖
+docker run -v $(pwd)/tmp:/app/data <image>
+```
+
+- `--mount`命令指定
+
+```Dockerfile
+# 创建数据卷
+# 数据卷的挂载点，默认是本机（Linux） /var/lib/docker/volumes目录
+# Mac/Windows系统由于docker都是安装在虚拟机中的，需要进入虚拟机中查找这个目录
+docker volume create hello
+# 查看数据卷
+docker volume inspect hello
+# 删除数据卷
+docker volume rm hello
+# 列出所有数据卷
+docker volume ls
+
+# 宿主机路径如果不存在则报错
+docker run -it --mount type=volume,source=hello,target=/path <image> /bin/bash
 ```

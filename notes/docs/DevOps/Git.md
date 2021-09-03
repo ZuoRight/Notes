@@ -186,9 +186,9 @@ git branch -M main
 
 # 把远程仓库某分支最新代码取回本地，但不会自动合并
 # 此时可以git status查看下，然后执行git merge合并
-git fetch origin/master
+git fetch [origin main]
 # 从已跟踪服务器拉取并自动合并
-git pull  # 等同于：git fetch + git merge
+git pull [origin main] # 等同于：git fetch + git merge
 
 # 推送到远程仓库
 git push [-u origin main]  # 首次推送加-u参数，设置默认仓库和分支
