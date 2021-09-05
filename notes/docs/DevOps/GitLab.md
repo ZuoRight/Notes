@@ -147,6 +147,8 @@ staging:
 
 ## 流水线触发器(trigger)
 
+触发器传递的环境变量优先级最高
+
 ```bash
 curl -X POST \
   -F token=<TOKEN> \
