@@ -12,9 +12,9 @@ image: registry.example.com/k8-deploy:latest
 # 告诉运行器需要额外的镜像
 services:
   - postgres
-# 变量，在项目>设置>CI/CD>变量中定义
+# 变量，也可以在项目>设置>CI/CD>变量中定义
 variables:
-  - POSTGRES_DB: rails-sample-1_test
+  POSTGRES_DB: rails-sample-1_test
 
 # 通过存储项目依赖项在job与stage之间传递信息
 cache:
@@ -40,7 +40,7 @@ deploy-code:
     - apt-get install node-js -y
     - bundle install
     - npm install
-  after_script:  # 脚本后执行，失败也会执行
+  after_script:  # job后执行（但会在上传产物前执行），失败也会执行
     - rm temp/*.tmp
 
   # 指定专有runner
@@ -144,3 +144,28 @@ staging:
 - CI_REGISTRY 极狐GitLab镜像仓库的地址。 如果在镜像仓库配置中指定了端口值，则此变量包括一个 :port 值
 - CI_REGISTRY_USER 将容器镜像推送到项目的GitLab容器镜像仓库的用户名。
 - CI_REGISTRY_PASSWORD 将容器镜像推送到项目的GitLab容器镜像仓库的密码。
+
+## 流水线触发器(trigger)
+
+```bash
+curl -X POST \
+  -F token=<TOKEN> \
+  -F ref=<REF_NAME> \
+  -F "variables[key]=value"  # 传递变量，gitlab-ci.yml中可以通过${key}来引用
+  https://gitlab.example.com/api/v4/projects/344/trigger/pipeline
+```
+
+```yaml
+trigger_pipeline:
+  stage: deploy
+  script:
+    - "curl -X POST -F token=<TOKEN> -F ref=<REF_NAME> https://gitlab.example.com/api/v4/projects/344/trigger/pipeline"
+```
+
+```python
+import requests
+
+url = "https://gitlab.example.com/api/v4/projects/344/ref/<REF_NAME>/trigger/pipeline?token=<TOKEN>"
+url_with_variables = url + "&variables[key]=value"
+requests.post(url)
+```

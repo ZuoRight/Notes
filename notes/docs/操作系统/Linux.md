@@ -6,7 +6,16 @@ Linux是Unix-like系统，从Unix的timeline可以了解到它和其它Unix系�
 
 linux本身只是一个内核([Kernel](https://www.kernel.org/))，而我们平时使用的linux发行版在内核的基础上添加了GNU工具集和Shell（以终端或者图形界面的形式存在）等
 
-- 发行版
+```bash
+uname [-a]
+# Linux localhost.localdomain 5.4.0-26-generic #30-Ubuntu SMP Mon Apr 20 16:58:30 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+"""
+-a 列出所有系统相关的信息
+-s 只显示系统内核(默认) Linux
+-r 系统内核版本 5.4.0-26-generic
+-m 系统硬件架构 x86_64
+"""
+```
 
 操作系统千千万，都是红帽和大便，意思就是Linux的发行版有很多，但主要分两个派系：Redhat和Debian
 
