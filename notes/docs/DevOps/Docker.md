@@ -90,7 +90,9 @@ docker import http://example.com/exampleimage.tgz example/imagerepo  # 导入容
 
 ```bash
 # 运行web容器，-p指定端口映射到容器内服务的默认端口，或-P随机指定端口映射
-docker run -d [-p <IP>:5000:5000]/[-P] <镜像> <命令>
+# 映射后可以使用宿主机IP+4000访问
+# 如果不映射则需要使用容器ip+80访问
+docker run -d [-p <IP>:4000:80]/[-P] <镜像> <命令>
 
 docker port <容器 ID> <端口>  # 查看容器端口映射
 
@@ -111,48 +113,57 @@ docker tag <镜像ID> <镜像名>:tag  # 打标签
 
 - Dockerfile
 
-指令每执行一次都会在 docker 上新建一层
+Dockerfile 中的每个原语执行后，都会生成一个对应的镜像层。即使原语本身并没有明显地修改文件的操作（比如，ENV 原语），它对应的层也会存在。只不过在外界看来，这个层是空的。
 
 ```Dockerfile
-FROM 基础镜像
+# 指定基础镜像，免去安装各种环境的操作
+FROM python:3-slim
+# 否则就需要这样写了
+# FROM ubuntu:latest
+# RUN apt-get update -yRUN apt-get install -y python-pip python-dev build-essential
 
-# 运行程序（在 docker build）
-RUN <命令行命令>
-RUN ["可执行文件", "参数1", "参数2"]
-RUN command a \
-    && command b \
-    && command c \
-
-# 运行程序（在docker run 时运行）
-# 如果有多个仅会运行最后一条，可被 docker run 命令行参数中指定要运行的程序所覆盖
-CMD ["可执行文件", "参数1", "参数2"]
-# 运行程序
-# 不会被 docker run 的命令行参数指定的指令所覆盖
-ENTRYPOINT ["可执行文件", "参数1", "参数2"]
-# ENTRYPOINT搭配CMD命令使用，这里的CMD等于是在给ENTRYPOINT传参
-# docker run的时候会默认执行：nginx -c /etc/nginx/nginx.conf
-ENTRYPOINT ["nginx", "-c"] # 定参
-CMD ["/etc/nginx/nginx.conf"] # 变参 
+# 创建一个工作目录，作为所有后续命令相对的根路径
+WORKDIR /app
 
 # 从上下文目录中复制文件或者目录到容器里指定路径
 COPY 源路径 目标路径
 # 与COPY功能相同，会自动解压压缩包文件然后复制到目标路径
 ADD 源路径 目标路径
 
-# 环境变量
+# 允许外界访问容器的80端口
+EXPOSE 80
+
+# 设置环境变量
 ENV <key> <value>
 ENV <key1>=<value1> <key2>=<value2>...
 # 作用域仅在docker build的过程中有效
 ARG
 
-# 创建一个工作目录，作为所有后续命令相对的根路径
-WORKDIR /app
+# 在docker build时运行的命令
+RUN <命令行命令>
+RUN ["可执行文件", "参数1", "参数2"]
+RUN command a \
+    && command b \
+    && command c \
+
+# 在docker run时运行的命令
+# 如果有多个仅会运行最后一条，可被 docker run 命令行参数中指定要运行的程序所覆盖
+# CMD ["可执行文件", "参数1", "参数2"]
+CMD ["python", "app.py"]
+# 等价于docker run <image> python app.py
+
+# 运行程序
+# 不会被 docker run 的命令行参数指定的指令所覆盖
+ENTRYPOINT ["可执行文件", "参数1", "参数2"]
+
+# ENTRYPOINT搭配CMD命令使用构成指令：ENTRYPOINT CMD，即 CMD 的内容就是 ENTRYPOINT 的参数
+# 在不指定 ENTRYPOINT 时，默认：/bin/sh -c "python app.py"
+# 比如：nginx -c /etc/nginx/nginx.conf
+ENTRYPOINT ["nginx", "-c"]
+CMD ["/etc/nginx/nginx.conf"]
 
 # 指定执行后续命令的用户和用户组（必须是已存在的）
 USER <用户名>[:<用户组>]
-
-# 声明端口，帮助使用者理解
-EXPOSE
 
 # 添加一些元数据，比如作者
 LABEL image.authors="7c"
@@ -191,4 +202,17 @@ docker volume ls
 
 # 宿主机路径如果不存在则报错
 docker run -it --mount type=volume,source=hello,target=/path <image> /bin/bash
+```
+
+## 发布镜像
+
+先注册一个dockerhub账号，比如zuoright，也可以自己搭建一个统一存放镜像的系统（Docker Registry）
+
+```bash
+# 给镜像起一个完整的名字：镜像仓库名/镜像名:标签
+docker tag demo zuoright/demo:v1
+# 把镜像推送到dockerhub
+docker push zuoright/demo:v1
+# 把正在运行的容器直接提交为一个镜像
+docker commit <容器ID> zuoright/demo:v2
 ```
