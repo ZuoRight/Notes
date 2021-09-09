@@ -68,103 +68,93 @@ sudo vim /etc/shells  # 需要管理者权限
 >
 > 参考译文：<https://juejin.im/post/6844903972294262791>
 
-## [Homebrew](https://brew.sh)
+## Homebrew
 
-> Mac下包和服务的管理器
->
-> 参考文章
->
-> - <https://www.cnblogs.com/joyce33/p/13376752.html>  
-> - <https://www.xiebruce.top/720.html>
+Mac系统下的一款开源包管理器，[项目地址](https://github.com/Homebrew)，[官网](https://brew.sh)
 
-### 安装方法
+> 使用参考：<https://www.xiebruce.top/720.html>
 
-- 官网安装方法：`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
-- 镜像安装方法：`/usr/bin/ruby -e "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install)"`
+由四部分组成
 
-不出意外，官网安装方法需要科学上网全局代理才有可能安装成功，所以直接建议用中科大镜像安装方法
+- Homebrew 源代码仓库
+- Homebrew-core Homebrew 核心源
+- Homebrew-cask 提供macos应用和大型二进制文件的安装
+- Homebrew-bottles 预编译二进制软件包
 
-Homebrew会被安装到`/usr/local/Homebrew/`路径下
+安装
 
-### 替换下载源
+- 官方(需要代理)：`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
+- 使用镜像安装：`/usr/bin/ruby -e "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install)"`
 
-可以用`brew config`查看当前配置
+### 更换下载源
 
-安装完Homebrew后，如果想用brew去下载安装其它软件，还需要把下载源替换成国内源，比如[中科大的](http://mirrors.ustc.edu.cn/help/index.html)。
-
-Homebre安装的软件的都在`/usr/local/Cellar/`下，并自动在`/usr/local/bin/`路径下创建link，其中Cellar译为酒窖，而Homebrew官方预先编译好的软件叫做Bottle(酒瓶子)，Bottles就是很多酒瓶子(即软件)，Homebrew把安装一个软件叫做把一个酒瓶子pour(倒入)到酒窖里。
+查看有哪些软件下载源：`brew tap`
 
 ```bash
-# brew.git源，用于更新brew本身
-`git -C "$(brew --repo)" remote set-url origin https://mirrors.ustc.edu.cn/brew.git`
-# 如果想换回官方源，可以
-`git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew.git`
+# 更换brew.git源，主要用于更新brew本身
+# 切换到Homebrewan路径：/usr/local/Homebrew/
+cd $(brew --repo)  # 等同于：git -C "$(brew --repo)"
+git remote -v  # 查看远程库信息
+git remote set-url origin https://mirrors.ustc.edu.cn/brew.git  # 换成镜像源
+git remote set-url origin https://github.com/Homebrew/brew.git  # 换回官方源
 
 
 # Formula源，用于brew下载安装软件的库，以前是和brew库在一起，但后来分开了
-# 其中homebrew-core，主要安装一些开发者用的无界面程序，由官方维护，此外还有一些第三方维护的库
-git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
-# homebrew-cask，主要安装一些AppStore中没有的GUI程序，安装命令为：brew cask install
-git -C "$(brew --repo homebrew/cask)" remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
+# 更换homebrew-core，主要安装一些开发者用的无界面程序，由官方维护，此外还有一些第三方维护的库
+# 切换到 /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core
+cd $(brew --repo homebrew/core)
+git remote -v  # 查看远程库信息
+git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git  # 换成镜像源
+git remote set-url origin https://github.com/Homebrew/homebrew-core.git  # 换回官方源
 
 
-# homebrew-bottles，Formula源存储的只是软件的名称和下载地址等，真正要去下载预编译二进制软件包是在homebrew-bottles源
+# 设置 homebrew-bottles 环境变量
+# Formula源存储的只是软件的名称和下载地址等，真正要去下载预编译二进制软件包是在homebrew-bottles源
+# 如果要恢复官方源，只需要删除或注释掉这个环境变量即可
 echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.bash_profile
 source ~/.bash_profile
 
 
-# 如果要卸载软件，可能还需要替换掉uninstall脚本
-/usr/bin/ruby -e "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/uninstall)"
+# 更换homebrew-cask源(可选)，主要安装一些AppStore中没有的GUI程序
+# 切换到：/usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask
+cd $(brew --repo homebrew/cask)
+git remote -v  # 查看远程库信息
+git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git  # 换成镜像源
+git remote set-url origin https://github.com/Homebrew/homebrew-cask.git  # 换回官方源
+# homebrew-cask扩展homebrew-cask-versions(可选)
+cd $(brew --repo)/Library/Taps/homebrew/homebrew-cask-versions
+git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask-versions.git  # 换成镜像源
+git remote set-url origin https://github.com/Homebrew/homebrew-cask-versions.git  # 换回官方源
 ```
+
+- Homebrew安装路径：`/usr/local/Homebrew/`
+- Homebrew安装的软件路径：`/usr/local/Cellar/`路径，并自动在`/usr/local/bin/`路径下创建link
+
+> 其中Cellar译为酒窖，而Homebrew官方预先编译好的软件叫做Bottle(酒瓶子)，Bottles就是很多酒瓶子(即软件)，Homebrew把安装一个软件叫做把一个酒瓶子pour(倒入)到酒窖里。
 
 ### 常用命令
 
 ```bash
-# 查看帮助
-brew help
-
-# 检查问题
-brew doctor
-
-# 查看配置
-brew config
-
-# 更新brew本身
-brew update
-
-# 查看有哪些软件下载源
-brew tap
-
-# 搜索想要安装的软件
-brew search xxx
-
-# 查看想安装或已安装软件的信息
-brew info xxx
-
-# 安装
-# 安装时默认会先升级homebrew，可以ctrl+c跳过
-brew install xxx
+brew help  # 查看帮助
+brew config  # 查看配置
+brew update  # 更新brew本身
+brew doctor  # 检查问题
 ```
 
 ```bash
-# 查看已安装软件列表
-brew list
+brew search xxx  # 搜索想要安装的软件
+brew info xxx  # 查看想安装或已安装软件的信息
 
-# 查看已安装软件列表，显示为依赖树的形式
-brew deps --installed --tree
+brew install xxx  # 安装，默认会先检查升级brew本身，可以Ctrl+c跳过
+brew uninstall xxx  # 卸载
+brew cleanup  # 清理旧版本和缓存
 
-# 查看哪些软件可更新，先更新brew
-brew outdated
-# 更新全部可更新软件
-brew upgrade
-#  更新xxx
-brew upgrade xxx
+brew list [--casks] # 查看已安装软件列表
+brew deps --installed --tree  # 查看已安装软件列表，显示为依赖树的形式
+brew outdated  # 查看哪些软件可更新，先更新brew
 
-# 清理旧版本和缓存
-brew cleanup
-
-# 卸载
-brew uninstall xxx
+brew upgrade  # 更新全部可更新软件
+brew upgrade xxx  # 更新xxx
 ```
 
 ```bash
@@ -174,18 +164,6 @@ brew services list
 # 大部分需要在后台运行的软件服务，都可以使用以下方式启动/启动并加到开机启动/停止/重启
 brew services run/start/stop/restart xxx
 ```
-
-### 图形管理工具
-
-- [Cakebrew](https://www.cakebrew.com/)
-
-管理Homebrew安装的软件，安装：`brew cask install cakebrew`
-
-- LaunchRocket
-
-管理Homebrew安装的服务，安装：`brew cask install launchrocket`
-
-安装完成后，入口会显示在系统偏好设置页面左下角处，点击即可启动。
 
 ## 其它
 
