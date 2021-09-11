@@ -2,9 +2,9 @@
 
 基于urllib3封装的Python HTTP库
 
-使用文档：<https://docs.python-requests.org/zh_CN/latest/>
+[使用文档](https://docs.python-requests.org/zh_CN/latest/){ .md-button .md-button--primary }
 
-API：<https://docs.python-requests.org/zh_CN/latest/api.html>
+[API](https://docs.python-requests.org/zh_CN/latest/api.html){ .md-button .md-button--primary }
 
 `pip install requests`
 
