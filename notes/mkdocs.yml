@@ -53,7 +53,7 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.tabbed  # 分组式代码块
-  - attr_list
+  - attr_list  # 支持大按钮
   - toc:
       permalink: true  # 固定链接
 
@@ -63,10 +63,6 @@ plugins:
         - ja
   - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
       type: iso_date
-  - social:
-      cards_color:
-        fill: "#0FF1CE"
-        text: "#FFFFFF"
 
 extra_javascript:
   - 'js/baidu-tongji.js'
