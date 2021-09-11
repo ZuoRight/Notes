@@ -44,13 +44,15 @@ extra:
       link: mailto:zuoright@foxmail.com
 
 markdown_extensions:
+  - footnotes  # 支持脚注
   - meta  # 可以添加元信息
   - admonition  # 可以添加提示条
-  - codehilite:  # 代码高亮
-      linenums: true  # 显示行号
-      guess_lang: false
-  - pymdownx.tabbed  # 分组式代码块
+  - pymdownx.highlight  # 高亮
+  - pymdownx.inlinehilite
+  - pymdownx.keys  # 支持++按键A+按键B++这种语法
+  - pymdownx.snippets
   - pymdownx.superfences
+  - pymdownx.tabbed  # 分组式代码块
   - toc:
       permalink: true  # 固定链接
 
@@ -60,6 +62,7 @@ plugins:
         - ja
   - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
       type: iso_date
+  - social
 
 extra_javascript:
   - 'js/baidu-tongji.js'
