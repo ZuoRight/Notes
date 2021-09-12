@@ -1,5 +1,7 @@
 # C
 
+[C语言免费教程](https://wangdoc.com/clang/intro.html){ .md-button .md-button--primary }
+
 `hello.c`
 
 ```c

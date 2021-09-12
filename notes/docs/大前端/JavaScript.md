@@ -1,5 +1,7 @@
 # JavaScript
 
+[现代JavaScript教程](https://zh.javascript.info/){ .md-button .md-button--primary }
+
 ## 变量·Variable
 ### 变量定义    
 > var my_mood = "happy";         

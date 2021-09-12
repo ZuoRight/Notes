@@ -1,5 +1,7 @@
 # Shell
 
+[Bash免费教程](https://wangdoc.com/bash/intro.html){ .md-button .md-button--primary }
+
 ## 变量
 
 - 查看所有变量：`set`
