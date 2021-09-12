@@ -1,6 +1,6 @@
 # Django开发
 
-学习Django直接看官方文档就可以了，[Django的官方文档](https://docs.djangoproject.com/zh-hans/3.2/contents/)是我见过最好最全的技术文档。
+[Django的官方文档](https://docs.djangoproject.com/zh-hans/3.2/contents/){ .md-button .md-button--primary }
 
 ## 常用命令
 
