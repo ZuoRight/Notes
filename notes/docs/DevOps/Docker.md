@@ -10,13 +10,6 @@ Docker必须部署在Linux内核的系统上，Docker Desktop 是 Docker 在 Win
 
 Docker Desktop for Windows 所使用的虚拟机是微软开发的虚拟机：Hyper-V（仅适用于 Win10），类似于 VMWare 或 VirtualBox。
 
-安卓模拟器使用的什么虚拟机？
-
-虚拟机技术
-
-- docker compose
-- docker swarm（相当于简化版k8s）
-
 简单地说，容器只是你机器上的另一个进程，它与主机上的所有其他进程隔离开来。这种隔离利用了内核命名空间和 cgroups，这些特性已经在 Linux 中存在了很长时间。Docker 一直致力于使这些功能易于使用。
 
 ## 概念
