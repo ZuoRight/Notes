@@ -42,57 +42,41 @@ events {
 
 ```conf
 http {
-
-	##
-	# Basic Settings
-	##
-
-	sendfile on;
-	tcp_nopush on;
-	tcp_nodelay on;
-	keepalive_timeout 65;
-	types_hash_max_size 2048;
-	# server_tokens off;
-
-	# server_names_hash_bucket_size 64;
-	# server_name_in_redirect off;
-
-	include /etc/nginx/mime.types;
-	default_type application/octet-stream;
-
-	##
-	# SSL Settings
-	##
-
-	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
-	ssl_prefer_server_ciphers on;
-
-	##
-	# Logging Settings
-	##
-
-	access_log /var/log/nginx/access.log;
-	error_log /var/log/nginx/error.log;
-
-	##
-	# Gzip Settings
-	##
-
-	gzip on;
-
-	# gzip_vary on;
-	# gzip_proxied any;
-	# gzip_comp_level 6;
-	# gzip_buffers 16 8k;
-	# gzip_http_version 1.1;
-	# gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
-
-	##
-	# Virtual Host Configs
-	##
-
-	include /etc/nginx/conf.d/*.conf;
-	include /etc/nginx/sites-enabled/*;
+	server {
+		# 监听来自指定IP，指定端口的请求
+		listen 127.0.0.1:8000;
+		"""
+		# 不指定IP就默认监听所有IP
+		listen 8000;  # 等价于：*:8000;
+		# 不指定端口就默认监听80端口
+		listen 127.0.0.1;  # 等价于：localhost:80;
+		# IPv6地址需使用中括号括起来
+		[fe80::1]
+		"""
+		# 虚拟主机名，即域名，多个由空格分隔
+		server_name myserver.com www.myserver.com
+	}
 }
 ```
+
+- server块
+
+每个server块就相当于一台虚拟主机
+
+```conf
+
+
+# 
+"""
+匹配符
+=   严格匹配
+~   正则表达式，区分大小写
+~*  正则表达式，忽略大小写
+^~   找到匹配度最高之后立刻处理，不再继续解析正则
+"""
+location 匹配符 uri {
+    root path  # 设置根目录
+    }
+```
+
 
