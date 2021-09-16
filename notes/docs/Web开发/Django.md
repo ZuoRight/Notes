@@ -10,6 +10,14 @@
 - 创建后台管理员：`python manage.py createsuperuser`
 - 进入交互式命令行：`python manage.py shell`
 
+```python
+from django.contrib.auth.models import User
+# 重置用户密码
+user = User.objects.get(username='admin')
+user.set_password('xxxx')
+user.save()
+```
+
 ## 项目
 
 - 创建项目：`django-admin startproject mysite`
@@ -185,7 +193,7 @@ python manage.py migrate --fake 应用名 zero
 # 重新生成migrations文件
 python manage.py makemigrations
 # 重新在django_migrations表中加入记录
-python manage.py migrate 应用名 --fake-inital
+python manage.py migrate 应用名 --fake-initial
 ```
 
 ### 压缩迁移文件

@@ -8,10 +8,8 @@
 ## 终端
 
 ```shell
-ls  # 加-f可查看隐藏文件
-
+launchctl  # 类似Linux的systemctl
 which xx  # 查找
-
 unzip xxx.zip  # 解压
 ```
 
