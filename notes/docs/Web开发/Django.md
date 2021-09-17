@@ -5,8 +5,9 @@
 ## 常用命令
 
 - 启动服务器：`python manage.py runserver`
+- 查看迁移状态：`python manage.py showmigrations`
 - 生成迁移文件：`python manage.py makemigrations one_app`
-- 数据迁移：`python manage.py migrate`
+- 数据迁移：`python manage.py migrate`(谨慎执行)
 - 创建后台管理员：`python manage.py createsuperuser`
 - 进入交互式命令行：`python manage.py shell`
 
@@ -212,7 +213,9 @@ python manage.py migrate
 
 !!! 吐个槽
     我曾经闲的蛋疼为了解决另一个坑压缩过`contenttypes`应用的迁移文件，使得`django_migrations`表中第一行记录不是`contenttypes.0001_initial`，导致在更换Python运行环境后执行`python manage.py xxx`相关的命令时，出现下面这样一个报错
-    > `django.db.migrations.exceptions.InconsistentMigrationHistory: Migration admin.0001_initial is applied before its dependency contenttypes.0001_initial on database 'default'.`
+
+    `django.db.migrations.exceptions.InconsistentMigrationHistory: Migration admin.0001_initial is applied before its dependency contenttypes.0001_initial on database 'default'.`
+
     当时我查遍全网（中、英、日）也没有得到一个满意的答案，大多数解决方式是建议必须重置数据库，但我觉得并不至于要这样做，睡了一觉之后第二天下班之后，决定静下心来自己解决掉它，最终只需要在`django_migrations`表中第一行补上`contenttypes.0001_initial`这条记录就可以了，就是这么简单。
     这个故事告诉我们，不要随便压缩并且重命名Django自带应用的数据迁移文件（内心OS：但我记得之前确实是为了改一个Django本身的问题，而那个问题是因为迁移文件的命名是数字开头，导致依赖引用的时候报了语法错误，这是不符合Python文件命名规范的，Shit）
 
