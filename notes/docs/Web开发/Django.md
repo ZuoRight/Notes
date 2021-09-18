@@ -4,12 +4,24 @@
 
 ## 常用命令
 
-- 启动服务器：`python manage.py runserver`
-- 查看迁移状态：`python manage.py showmigrations`
-- 生成迁移文件：`python manage.py makemigrations one_app`
-- 数据迁移：`python manage.py migrate`(谨慎执行)
-- 创建后台管理员：`python manage.py createsuperuser`
-- 进入交互式命令行：`python manage.py shell`
+```bash
+# 启动服务器
+python manage.py runserver
+# 查看迁移状态
+python manage.py showmigrations
+# 生成迁移文件
+python manage.py makemigrations one_app
+# 数据迁移(谨慎执行)
+python manage.py migrate
+# 创建后台管理员
+python manage.py createsuperuser
+# 进入交互式命令行
+python manage.py shell
+# 导出数据，不指定app_name默认导出所有表
+python manage.py dumpdata [app_name] > path/data.json
+# 导入数据，不需要指定app_name
+python manage.py loaddata path/data.json
+```
 
 ```python
 from django.contrib.auth.models import User
@@ -576,7 +588,7 @@ DATABASES = {
 
 ## 配置拆分
 
-拆分后，如果要在非默认环境下启动和数据迁移时记得加`--settings=config_path`
+拆分后，如果要在非默认环境下启动和数据迁移时（总之所有会牵扯到数据库相关的命令）记得加`--settings=config_path`
 
 ![20210826183930](http://image.zuoright.com/20210826183930.png)
 

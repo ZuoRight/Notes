@@ -25,7 +25,7 @@ Host test
     User demo
 ```
 
-`ssh test` 将等同于 `ssh -p 7777 demo@remote.example.com`
+以上配置完后使用`ssh test`登陆将等同于`ssh -p 7777 demo@remote.example.com`
 
 - 免密
 
@@ -37,3 +37,7 @@ mkdir .ssh
 cd .ssh/
 touch authorized_keys
 ```
+
+- 密钥登陆
+
+`ssh -i 密钥.pem root@ip`
