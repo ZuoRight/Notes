@@ -31,7 +31,7 @@ netstat -a | grep 80  # 查看端口
 
 每条指令以分号结尾
 
-```conf
+```ini
 """
 全局块
 """
@@ -129,7 +129,7 @@ http {
 - 匿名代理，客户端知道但服务端不知道代理服务器的存在，比如肉鸡(黑客发起DDos攻击使用的傀儡机)
 - Cache作用
 
-```conf
+```ini
 server {
     resolver 8.8.8.8;  # 配置DNS解析IP地址
     resolver_timeout 30s;  # 超时时间
@@ -151,7 +151,7 @@ server {
 - 负载均衡
 - Cache作用
 
-```conf
+```ini
 server {
     listen 8888;  # 监听端口
     server_name  xxx.xxx.xxx.xxx;  # 代理服务器IP或域名
@@ -186,7 +186,7 @@ server {
 - 权重：权重默认为1，越大则被分配的客户端越多，即处理的请求越多
 - ip_hash：每个请求按访问 ip 的 hash 结果分配，这样每个访客固定访问一个后端服务器，可以解决 session 的问题。
 
-```conf
+```ini
 upstream mysite {
     sever 127.0.0.1:8080;  # 轮询
     sever 127.0.0.1:8081 weight=2;  # 权重
@@ -211,7 +211,7 @@ server {
 
 通常使用 Nginx 处理静态页面，Tomcat 处理动态页面。
 
-```conf
+```ini
 server {
     listen       8888 ;  # 监听端口
     server_name  xxx.xxx.xxx.xxx;  # 代理服务器IP或域名

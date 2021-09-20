@@ -706,7 +706,7 @@ pidfile=/tmp/uwsgi.pid
 
 ### Nginx + uWSGI 启动
 
-```conf
+```ini
 # nginx.conf
 server {
     listen       8080;
@@ -723,5 +723,5 @@ server {
     }
 
 # 启动nginx
-; 访问：<http://127.0.0.1:8000>
+# 访问：<http://127.0.0.1:8000>
 ```
