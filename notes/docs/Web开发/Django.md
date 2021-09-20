@@ -678,60 +678,50 @@ python manage.py runserver --settings=onestep.settings.set_prod
 > 可设置为uWSGI默认启动生产环境：`os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onestep.settings.set_prod')`
 
 ```bash
-pip install uwsgi
+pip install uwsgi  # 安装
 
-# 启动，成功后访问：<http://127.0.0.1:3031>，ctrl+c停止
-uwsgi --http :3031 --file onestep/wsgi.py
+uwsgi --http 127.0.0.1:3031 --file onestep/wsgi.py  # 命令行指定参数启动
+uwsgi --ini path/uwsgi.ini  # 从配置文件启动，返回[uWSGI] getting INI configuration from uwsgi.ini
+uwsgi --reload path/uwsgi.pid  # 重启
+uwsgi --stop path/uwsgi.pid  # 停止
 ```
-
-### Nginx + uWSGI 启动
-
-- 自建`uwsgi.ini`文件（路径自定）
 
 ```ini
 [uwsgi]
 ; 项目根目录
-chdir = /Users/7c/zuoright/onestep_django
-; 指定wsgi模块下的application对象
-module = onestep.wsgi:application
-; 对本机3031端口提供服务
-socket = 127.0.0.1:3031
+chdir=/app
+; wsgi对象
+module=onestep.wsgi:application
+; 使用http协议提供服务，测试时使用
+; http=127.0.0.1:3030
+; 使用socket协议，配合nginx使用，与http端口不能重复
+socket=127.0.0.1:3031
 ; 主进程
-master = true
-
-; 以下字段非必需
-
-; 退出、重启时清理文件
-vacuum = true
-max-requests=5000
-
-; pid文件，用于脚本启动、停止该进程
-; pidfile=/tmp/uwsgi.pid
-
-; 日志
-; daemonize=/tmp/uwsgi.log
+master=true
+; 保存日志
+daemonize=/tmp/uwsgi.log
+; 保存进程号
+pidfile=/tmp/uwsgi.pid
 ```
 
-- 修改`nginx.conf`配置
+### Nginx + uWSGI 启动
 
 ```conf
+# nginx.conf
 server {
     listen       8080;
     server_name  localhost;
 
     location / {
         include   uwsgi_params;
-        uwsgi_pass  127.0.0.1:3031;  和上面uwsgi配置的端口一致
+        # 使用uwsgi协议要用uwsgi_pass指令，proxy_pass指令使用的是http协议
+        uwsgi_pass  127.0.0.1:3031;  # 与uwsgi.ini中socket字段配置一致
     }
 
     location /static {
-        alias  /Users/7c/zuoright/onestep_django/static_cdn;  配置静态文件路径
+        alias  /Users/7c/zuoright/onestep_django/static_cdn;  # 配置静态文件路径
     }
-```
 
-```bash
 # 启动nginx
-nginx
-# 启动uwsgi，成功后访问：<http://127.0.0.1:8000>
-uwsgi --ini path/uwsgi.ini
+; 访问：<http://127.0.0.1:8000>
 ```
