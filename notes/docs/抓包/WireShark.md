@@ -1,5 +1,7 @@
 # WireShark
 
+Wireshark（最早叫做：Ethereal），Wireshark使用WinPCAP作为接口，直接与网卡进行数据报文交换
+
 Mac安装如下图，同时包含了卸载程序，可以阅读文档查看具体安装卸载方法
 
 ![20210809131330](http://image.zuoright.com/20210809131330.png)
