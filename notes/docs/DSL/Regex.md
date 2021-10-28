@@ -32,7 +32,7 @@
 
 > 除了用花括号表示，还可以简写为特定的符号
 
-- `*` >=0，即任意多个，等同于`{0,}`，通配符`.*`表示任意多个任意字符
+- `*` >=0，即任意多个，等同于`{0,}`
 - `+` >=1，即至少1个，正数，等同于`{1,}`
 - `?` 0或1个，即至多1个，有或没有，等同于`{0,1}`
 
@@ -42,6 +42,7 @@
 - `[abcde]` 单字符多选一，取反：`[^abcde]`
 - `[a-z]` 连续字母多选一
 - `[1-10]` 连续数字多选一
+- `[0-9a-fA-F]` 可以匹配任意一个16进制的数字
 
 ---
 
@@ -72,8 +73,6 @@
 - `\f` 换页
 - `\t` 制表(水平)
 - `\v` 制表(垂直)
-
-反斜杠(`\`)在Python字符串中也表示转义，比如表示斜杠`\/`和反斜杠`\\`，也就是说如果要在Python中表示正则的`\d`则需要这样：`\\d`，很乱，所以在Python中建议使用r前缀`r"\d"`来取消字符串本身的转义
 
 ## 匹配机制
 
@@ -115,65 +114,101 @@ re.findall(r'a{1,3}+', 'aaab')  # 独占模式，内置的re库不支持会报�
 
 ## Python中的正则表达式
 
+由于Python跟大多数语言一样，反斜杠(`\`)在字符串中也表示转义，比如表示斜杠`\/`和反斜杠`\\`，也就是说如果要在Python中表示正则的`\d`则需要这样：`\\d`，而要表示正则的`\\`，则需要四个反斜杠`\\\\`，为了避免混乱，所以在Python中建议使用r前缀来取消字符串本身的转义：`r"\d"`
+
 ```python
 import re
 
-# 匹配字符串
-# 匹配则返回列表
-r = re.findall(r"pattern", "string", flags=0)
-# 匹配则返回Match对象，不匹配返回None
-r = re.match(r"pattern", "string", flags=0)
-# 搜索字符串，以对象形式返回第一个匹配成功的结果
-r = re.search(r"pattern", "string",flags=0)
 
 """
-flags 匹配模式
-匹配多个模式可用竖线分割：模式1 | 模式2
-
-【最常用】
-re.I：IgnoreCase，忽略大小写
-re.S：Dotall， 点号通配模式 "."可以匹配任意字符，包括换行符
-
-【不常用】
-re.M：Multiline，多行模式
-re.L：Locale，使预定字符类 \w \W \b \B \s \S 取决于当前区域设定
-re.U：Unicode，使预定字符类 \w \W \b \B \s \S \d \D 取决于unicode定义的字符属性
-re.X：Verbose，详细模式。这个模式下正则表达式可以是多行，忽略空白字符，并可以加入注释
+参数解析
+1. pattern 正则表达式
+2. string 要匹配的字符串
+3. flags 匹配模式，多个可用竖线分割：re.I | re.S
+------
+re.I Case-Insensitive 忽略大小写
+re.S Single Line 单行模式，点号可以匹配包括换行符在内的任意字符，在提取爬虫内容时常用
+re.M Multiline 多行模式，影响^和$
+---
+re.L Locale 本地化识别
+re.A ASCII字符模式
+re.U Unicode 根据Unicode字符集解析字符，影响 \w\W \b\B
+re.X Verbose 忽略字符串中的空白、tab、换行符
 """
 
-text = '''we found “the little cat” is in the hat, we like “the little cat”'''
+
+# 查找文本，仅返回开头符合规则的对象，匹配则返回re.Match对象，否则返回None
+# match(pattern, string, flags=0)
+obj = re.match(r"123", "abc123")  # None
+obj = re.match(r"abc", "abc123")  # <re.Match object; span=(0, 3), match='abc'>
+obj.group()  # "abc"
+obj.span()  # (0,3)
+obj.start()  # 0
+obj.end()  # 3
+
+
+# 查找文本，仅返回第一处符合规则的对象，其它与match方法相同
+# search(pattern, string,flags=0)
+obj = re.search(r"789", "abc123def456")  # None
+obj = re.search(r"\d{3}", "abc123def456")  # <re.Match object; span=(3, 6), match='123'>
+obj.group()  # "123"
+obj.span()  # (3,6)
+
+
+# 查找文本，list形式返回所有符合规则的字符
+# findall(pattern, string, flags=0)
+re.findall(r"\d{3}", "abc123def456")  # ['123', '456']
+
+
+# 分割文本，list形式返回，类似字符串的.split()方法
+# re.split(pattern, string, maxsplit=0, flags=0)
+# 参数maxsplit用于指定分割次数
+re.split(r"[\+\-\*\/]", "5+4*3-2/1")  # 从四则运算符处将文本分割：['5', '4', '3', '2', '1']
+re.split(r"[\+\-\*\/]", "5+4*3-2/1", maxsplit=2)  # 从四则运算符处将文本分割2次：['5', '4', '3-2/1']
+re.split(r"([\+\-\*\/])", "5+4*3-2/1")  # 从四则运算符处将文本分割，并保留运算符(使用正则分组功能实现)：['5', '+', '4', '*', '3', '-', '2', '/', '1']
+
+
+# 替换文本，返回替换后的新文本，类似字符串的.replace()方法
+# sub(pattern, repl, string, count=0, flags=0)
+# 参数count用于指定替换次数，默认=0替换全部
+# 参数repl可引用pattern，还可以是自定义函数
+re.sub(r"l", "L", "Hello, World!")  # 'HeLLo, WorLd!'
+re.sub(r"l", "L", "Hello, World!", count=2)  # 'HeLLo, World!'
+re.sub(r"(World)", r"<em>\1<em>", "Hello, World!")  # 'Hello, <em>World<em>!'
+
+
+# 将正则编译为对象，然后调用以上方法，实现复用提高效率
+# compile(pattern, flags=0)
+obj = re.compile(r"abc")
+obj.match("abc123").group()  # "abc" 
+# 还可以返回迭代器对象，使用group()方法调用
+iters = obj.finditer(string)
+for i in iters:
+    print(i.group())
+```
+
+## 常用示例
+
+- `.*` 任意多个任意字符，通配
+- `.+` 至少一个任意字符，匹配核心文本内容
+- `\w+` 单词
+
+```python
 # 提取所有单词，所有单词都是用引号隔开，且中文引号内视作一个单词
+text = '''we found “the little cat” is in the hat, we like “the little cat”'''
 regex = r'''\w+|“[^”]+“'''
-re.findall(regex, text)
-# ['we', 'found', '“the little cat”', 'is', 'in', 'the', 'hat', 'we', 'like', '“the little cat”']
+re.findall(regex, text)  # ['we', 'found', '“the little cat”', 'is', 'in', 'the', 'hat', 'we', 'like', '“the little cat”']
 
-# 匹配并替换
-r = re.sub(regex, replace_regex, str, count=0, flags=0)
-"""
-replace_regex还可以是函数
-count默认为0，表示替换全部
-"""
 
-test_str = "the little cat cat is in the hat hat hat, we like it."
 # 去掉连续出现多次的重复单词
+test_str = "the little cat cat is in the hat hat hat, we like it."
 regex = r"(\w+)(\s\1)+"
 subst = r"\1"
 re.sub(regex, subst, test_str)  # "the little cat is in the hat, we like it."
-
-# 正则表达式中可以用()分组，然后用group()提取分组
-r.group(0)  # 返回原始字符串
-r.group(n)  # 第n个分组
-r.group(1,3,5)  # 返回多个分组
-r.groups()  # 元组形式返回所有分组
-r.span()  # 返回匹配的index
-
-# 切分
-re.split(r"pattern", "string")  # 返回一个字典
 ```
 
-## 参考
+## 其它参考
 
-> 在线正则验证网站：<https://regex101.com/>
-
-1. [极客时间专栏《正则表达式入门课》](https://time.geekbang.org/column/article/259437)
-2. <https://iswbm.com/58.html#11>
+- 在线正则验证网站：<https://regex101.com/>
+- [极客时间专栏《正则表达式入门课》](https://time.geekbang.org/column/article/259437)
+- <https://www.liujiangblog.com/course/python/74>
