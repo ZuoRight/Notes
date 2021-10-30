@@ -1,8 +1,8 @@
 # 正则表达式
 
-正则表达式，Regular Expression，简称RE。
+> 在线验证：<https://regex101.com/>
 
-是一种描述文本内容组成规律的表示方式，常用于：
+正则表达式RE(Regular Expression)是一种描述文本内容组成规律的表示方式，常用于：
 
 - 校验数据的有效性，比如校验手机号或邮箱格式是否正确
 - 查找符合要求的文本内容，比如查找文本中所有的数字
@@ -90,29 +90,29 @@ re.findall(r'a{1,3}+', 'aaab')  # 独占模式，内置的re库不支持会报�
 
 ## 匹配模式
 
-> 模式修饰符：
-
 - `(?i)` 不区分大小写模式 Case-Insensitive
 - `(?s)` 点号通配，改变的是`.`号的匹配行为，可以匹配换行，也叫单行模式 Single Line
 - `(?m)` 多行匹配模式，改变的是`^`和`$`的匹配行为，可以匹配上每行的开头或结尾 Multiline
 - `(?#comment)` 注释模式，可以在正则中添加注释
 
-## 流派
+## 规范
 
-### PCRE流派
+> 参考：<https://time.geekbang.org/column/article/254156>
 
-支持以下字符组，比如各种编程语言
+现代编程语言绝大多数使用的正则表达式引擎都起源于Perl语言，为此形成了一套标准，PCRE(Perl Compatible Regular Expressions)，即Perl语言兼容正则表达式。
 
-### POSIX流派
+但在Linux系统中使用的正则，遵循的是更早的POSIX标准，不支持`\d`、`\w`、`\s`这类字符组简记方式，另外根据使用`()`、`{}`、`+`,、`?`、`|`等符号是否需要转义又分为基础正则和扩展正则：
 
-> 规范说明：<https://pubs.opengroup.org/onlinepubs/7990989775/xbd/re.html>
+- 基础正则(GNU BRE)，需要转义，比如：`grep`、`sed`
+- 扩展正则(GNU ERE)，无需转义，比如：`awk`
 
-- GNU BRE(基础正则)，需要转义（`(), {}, +, ?, |`），比如：`grep`、`sed`
-- GNU ERE(扩展正则)，无需转义，比如：`awk`，`egrep`
-
-> `sed -r` 和 `grep -E`（其实就是`egrep`）也可以使用扩展正则
+> `egrep`，或者`grep -E`可以使用扩展正则，`grep -P`可以使用PCRE正则
+>
+> `sed -r`可以使用扩展正则
 
 ## Python中的正则表达式
+
+> 参考：<https://www.liujiangblog.com/course/python/74>
 
 由于Python跟大多数语言一样，反斜杠(`\`)在字符串中也表示转义，比如表示斜杠`\/`和反斜杠`\\`，也就是说如果要在Python中表示正则的`\d`则需要这样：`\\d`，而要表示正则的`\\`，则需要四个反斜杠`\\\\`，为了避免混乱，所以在Python中建议使用r前缀来取消字符串本身的转义：`r"\d"`
 
@@ -206,9 +206,3 @@ regex = r"(\w+)(\s\1)+"
 subst = r"\1"
 re.sub(regex, subst, test_str)  # "the little cat is in the hat, we like it."
 ```
-
-## 其它参考
-
-- 在线正则验证网站：<https://regex101.com/>
-- [极客时间专栏《正则表达式入门课》](https://time.geekbang.org/column/article/259437)
-- <https://www.liujiangblog.com/course/python/74>

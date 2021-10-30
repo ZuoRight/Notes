@@ -1,8 +1,4 @@
-# 编辑器
-
-## Vi/Vim
-
-## VSCode
+# VSCode
 
 使用Vscode自带Python解析器导入包时`.vscode/settings.json`需要配置如下（[官方说明](https://github.com/microsoft/python-language-server/blob/master/TROUBLESHOOTING.md#unresolved-import-warnings)）
 
@@ -42,9 +38,3 @@
 - 从剪切板上传：++cmd+opt+u++（Windows用++alt++替代++opt++）
 - 从文件夹上传：++cmd+opt+e++
 - 输入路径上传：++cmd+opt+o++
-
-## [PyCharm](https://www.jetbrains.com/pycharm/)
-
-专业的Python IDE，由位于捷克的[JetBrains公司](https://www.jetbrains.com/)所生产。
-
-具体使用方法可参考：[PyCharm 中文指南](http://pycharm.iswbm.com/zh_CN/latest/)
