@@ -94,7 +94,7 @@ HyperText Transfer Protocol
   - Connection: keep-alive(长链接，默认)/close(本次通信后关闭连接)
   - Keep-Alive: timeout=value(限定长链接超时时间，约束力较弱)
 - 有用
-  - *Host：因为同一服务器上可能有多台虚拟主机(IP相同，域名不同)，需要告诉服务器由哪个主机处理请求(v1.1要求必须带)
+  - Host：因为同一服务器上可能有多台虚拟主机(IP相同，域名不同)，需要告诉服务器由哪个主机处理请求(v1.1要求必须带)
   - Referer: 跳转来源，可用于统计分析和防盗链
   - Referrer Policy: no-referrer-when-downgrade
   - Origin: 发起一个针对跨来源资源共享的请求
