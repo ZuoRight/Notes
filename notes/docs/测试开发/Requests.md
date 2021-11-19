@@ -25,7 +25,7 @@ r = requests.request(request_method, request_url, **kwars)  # <Response [200]>
     files={"f1": open("xxx.xls", "rb"), "f2": open(...)}  # 文件
     proxies={"http": "127.0.0.1:8888", "https": "127.0.0.1:8888"}  # 设置代理
     verify="/path/to/certifile"  # True（校验证书，默认），False（忽略证书），字符串（从本地传入证书）
-    timeout=0.01  # 设置连接超时时间
+    timeout=0.01  # 设置连接超时时间，建议设为比3的倍数略大的一个数值，因为TCP数据包重传窗口的默认大小是3
     allow_redirects=True  # 自动重定向，默认True
 """
 

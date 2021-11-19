@@ -81,6 +81,20 @@ one_app/
             index.html  # 模版
 ```
 
+### 修改应用名涉及要改动的地方
+
+> 项目层
+
+- settings，注册应用名
+- urls.py
+
+> 应用层
+
+- apps.py
+- urls.py
+- 模版命名空间，form表单action
+- 所有的迁移文件，alert表名
+
 ## 应用模型 models.py
 
 ### 应用声明

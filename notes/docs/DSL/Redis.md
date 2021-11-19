@@ -1,5 +1,7 @@
 # Redis
 
+[官方命令参考手册](https://redis.io/commands/#string){ .md-button .md-button--primary }（[中文版](http://redisdoc.com/index.html)）
+
 Redis(Remote Dictionary Server)是一个字典结构的存储服务器，每个字典相当于一个库，从0开始递增数字命名，默认支持16个（可以通过配置文件支持更多，无上限）。
 
 ```shell
