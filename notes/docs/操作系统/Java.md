@@ -2,7 +2,7 @@
 
 [教程](https://www.liaoxuefeng.com/wiki/1252599548343744/1255883772263712)
 
-JDK(Java Development Kit)：[Java开发工具包](https://www.oracle.com/java/technologies/javase-downloads.html)
+JDK(Java Development Kit)：[Java开发工具包](https://www.oracle.com/java/technologies/javase-downloads.html)
 
 ![20210630131230](http://image.zuoright.com/20210630131230.png)
 
@@ -29,8 +29,10 @@ export PATH=$PATH:$JAVA_HOME/bin
 - Windows
 
 ```shell
-# 先添加一个JAVA_HOME的环境变量，指向jdk根目录
-# 再添加Path
+# JAVA_HOME
+C:\Program Files\Java\jdk-11.0.12
+
+# Path
 %JAVA_HOME%\bin;
 %JAVA_HOME%\jre\bin;
 ```

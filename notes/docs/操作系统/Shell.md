@@ -7,6 +7,23 @@
 - 查看所有变量：`set`
 - 查看所有环境变量：`env`
 
+常用预定义变量(一般都大写)
+
+```bash
+echo $USER  # 当前用户
+echo $UID  # 当前用户UID
+echo $SHELL  # 查看默认Shell
+echo $PATH  # 命令搜索路径
+
+# 以下并不是环境变量，只是Shell的操作环境
+echo $PS1  # 查看提示字符设置，即[root@localhost ~]内容的设置
+echo $?  # 显示上一条命令结果是否正确，正确返回0，否则返回1
+echo $$  # 显示当前shell的PID，脚本检测时会用到
+echo $0  # 显示当前进程的名称
+echo $1
+echo ${2-_}  # 如果没有传入位置参数，默认赋值下划线
+```
+
 ```bash
 # 变量赋值，无需声明
 # 赋值符=左右不能有空格
@@ -36,23 +53,6 @@ PATH=${PATH}:/home/bin  # 推荐
 echo $y
 echo ${#x}  # 获取变量长度
 echo ${x:n:m}  # 切片
-```
-
-常用预定义变量(一般都大写)
-
-```bash
-echo $USER  # 当前用户
-echo $UID  # 当前用户UID
-echo $SHELL  # 查看默认Shell
-echo $PATH  # 命令搜索路径
-
-# 以下并不是环境变量，只是Shell的操作环境
-echo $PS1  # 查看提示字符设置，即[root@localhost ~]内容的设置
-echo $?  # 显示上一条命令结果是否正确，正确返回0，否则返回1
-echo $$  # 显示当前shell的PID，脚本检测时会用到
-echo $0  # 显示当前进程的名称
-echo $1
-echo ${2-_}  # 如果没有传入位置参数，默认赋值下划线
 ```
 
 ## `export`
