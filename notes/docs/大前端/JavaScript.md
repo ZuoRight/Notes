@@ -2,331 +2,11 @@
 
 [现代JavaScript教程](https://zh.javascript.info/){ .md-button .md-button--primary }
 
-## 变量·Variable
-### 变量定义    
-> var my_mood = "happy";         
-  关键字 变量名 赋值 字面量 分号    
-  **字面量（literal）**，可以在JS代码中直接写出来的数据内容，字面量除了它本身所给出的内容外无任何附加含义    
-  **命名规则**：变量使用下划线分割单词`my_mood`，函数使用驼峰记号`myMood`          
-  **作用域（scope）**：全局和局部                                                 
-
-***
-
-## 数据类型   
-### 基本类型：
-> 基本类型值，指简单的数据段,按值访问    
-> **标量**：如果某个变量是标量的，它在任意时刻就只有一个值，字符串，数值和布尔值都是标量           
-
-* Number:可用于表示所有数值，包括整数和浮点数  
-* String
-* Boolean  
-* Undefined   
-* Null  
-
-### 引用类型:  
-> 引用类型值，指那些可由多个值构成的对象，按引用访问，非离散
-  引用类型的值是引用类型的一个实例，即对象（具有属性和方法）
-  常被称为类，但不是类，因为它不具备传统语言所支持的类和接口等基本结构
-
-***
-
-## 语句·Statement
-### 条件语句
-`if(控制表达式1){...}else if(控制表达式2){...}else{...}`
-
-`switch(任何数据类型的变量){case 1:...;break;case 2:...;break;case 3:...;break;default:...}`
-
-***
-
-## 函数Function
-### 循环语句
-#### 后测试语句
->代码至少被执行一次  
-
-`do{...}while(控制表达式)`
-
-#### 前测试语句
-> 代码可能永不被执行，while循环做不到的for循环同样做不到，for循环只是把循环代码集中在了一个位置，较灵活
-
-`while(控制表达式){...}`
-
-`for(定义&初始化表达式;控制表达式;循环表达式){...}`
-
-#### 迭代语句
-> 可用来枚举对象的属性  
-
-`for(xx in xx){...}`
-
-### 跳出循环语句
-#### break语句
-退出循环  
-#### continue语句
-跳出本次循环，继续下次循环  
-#### lable语句
-常被引用于循环嵌套中的break或continue语句中
-```自定义标签:for等循环语句等
-break + lable` 退出指定循环（内部或外部循环）
-continue + lable` 跳出内部循环，继续执行指定外部循环  
-```
-
-### 创建函数
-> 因不存在函数签名的特性，所以没有重载，如果定义了两个同名函数，后定义的会覆盖先定义的           
-
-#### 函数声明
-> 函数声明的重要特征是函数声明提升，代码在之前会先读取函数声明，所以将函数放在其调用语句之后也正常运行    
-
-```
-faction 函数名(参数1,参数2,...){   
-...;  函数体   
-}
-```
-
-#### 函数表达式
-> 此时的函数叫做匿名函数，也叫拉姆达函数
-  与其他表达式一样，必须先赋值，而且结尾要加分号   
-
-```
-var faunctionName = faunction(arg0,arg1,arg2){   
-...;  函数体   
-};
-```
-
-### 函数的属性
-```
-.length  //参数个数           
-.prototype
-```
-
-### 函数的方法
-* .call()        
-* .apply()       
-* .bind()        
-
-### 内部特殊对象   
-#### arguments
-```
-arguments[0/1/2...]  //返回具体参数      
-arguments.length  //返回参数个数      
-arguments.callee  //指向正在执行的函数的指针      
-```
-#### this     
-在网页全局作用域中，this对象引用的是window
-
-### return语句
-* 任何函数在任何时候都可以通过return语句返回值
-* 函数在定义时不必指定是否返回值
-* 函数会在执行完return语句后停止并立即跳出
-* return语句可以不必带返回值，函数将在停止后返回undefined值
-
-### 递归
-即调用自身的函数，一个经典的递归阶乘函数：   
-```
-faunction factorial(num) {
-  if (num <= 1 ){  
-  return 1;    
-  } else {    
-  return num * arguments.calles(num-1);    
-  } }
-```    
-
-### 闭包
-* 在函数内部定义了其它函数，就创建了闭包     
-* 闭包有权访问包含函数内部的所有变量        
-* 通常函数的作用域及其所有变量都会被立即销毁            
-* 但当函数返回了一个闭包时，这个函数的作用域将会一直在内存中保存到闭包不存在为止
-
-***
-
-## 对象
-> 对象是自我包含的数据集合，包含在对象里的数据可以通过属性和方法访问               
-  对象是由一些彼此相关的属性和方法集合在一起而构成的一个数据实体        
-  **属性**：是隶属于某个特定对象的变量，`person.age`           
-  **方法**：是只有某个特定对象才能调用的函数，`person.sleep`
-
-> **实例**：          
-  * 对象是统称（比如人），实例是个体，是对象的具体表现 （某某某）         
-  * 创建新实例需要`new`关键字，当我们使用`new`去初始化一个数组时，其实就是在创建一个Array对象的新实例             
-
-### 内置对象（native Object）
-#### Array
-> 数组是由名字相同的多个值构成的一个集合，即用一个变量存储一组值，集合中的每个值都是这个数组的元素（element）      
-> **创建**    
-  1. 构造函数（new可以省略）  
-    * `var colors = new Array();`
-    * `var colors = Array(3);`
-    * `var colors = Array("red","blue","green");`
-  2. 对象字面量  
-    `var colors =["red","blue","green"];`
-
-> **访问**  
-  1. 数组长度  
-    `colors.length`
-  2. 索引  
-    `colors[0/1/2]`
-
-#### Date    
-> **创建**
-  1. 当前时间         
-    `var now = new Date();`  
-  2. 特定时间          
-    `var date = new Date(Date.parse(February 7,2017))`  
-    `var date = new Date(Date.UTC(2017,2,7,17,21))`  
-
-#### RegExp
-> **创建**
-  1. 构造函数  
-    `var expression = new RegExp{"正则表达式","标志（g/i/m）"};`  
-  2. 对象字面量    
-    `var expression = /正则表达式/标志（全局/不分大小写/多行）;`
-
-#### Function   
-> 函数实际上也是对象，每个函数都是Function类型的实例，而且与其他引用类型一样，也具有属性和方法
-
-> **创建**    
-    `var sum = Function(num1，num2)｛`    
-    `return num1+num2;`     
-    `};`  （末尾要有分号）         
-
-***
-
-### 单体内置对象
-#### Global对象         
->    所有在全局作用域中定义的属性和函数，不属于任何其它对象的属性和方法，都是Global对象的属性和方法  
-     window   
-
-#### Math对象          
->    math.min()    
-     math.max()  
-
-
-### 宿主对象（host Object）    
-> 预定义对象：预先定义好的、但不是JS本身的、而是由它的运行环境提供的对象     
-  由web浏览器提供的预定义对象叫做宿主对象，例如`Form、Image、Element`等
-
-> 最基础的是`window`对象
-  window对应浏览器窗口本身，其属性和方法通常被称为BOM（浏览器对象模型），如window.open()，window.blur()          
-
-> 但我们一般使用`document`对象来获得某给定网页上的任何一个元素信息，即浏览器内容，而不使用宿主对象       
-
-
-### 用户定义对象（user-defined object）
-#### Object
-> **创建**  
-  1. 构造函数    
-      `var person = new Object();`  
-      `person.name = "jc";`  
-      `person.age = 25;`  
-  2. 对象字面量  
-      `var person = {`  
-      `    name : "jc";`    
-      `    age : 25`    
-      `};`
-
-> **访问**   
-  1. 点表示法    
-      `person.age`  
-  2. 方括号语法      
-      `person[first name]`  
-
-## 基本语法
-
-引入js时不必显要地把type类型指定为js，因为type默认就是js
-
-```html
-<script type="text/javascript"></script>
-```
-
-js语法与Java类似，语句结尾以分号结束，虽然不是必须，但浏览器执行js代码的引擎会自动给加上，所以为了不必要的问题，最好我们自己都给加上。
-
-## 编程语言对比
-
-js的this类似python的self
-js/vue的$类似Python的__，表示内置
-
-## 数据类型
-
-JavaScript
-
-```text
-Number：不区分整数和浮点数
-布尔值：true 和 false
-null
-undefined
-
-字符串："string"
-数组（类似Python的列表）：[a, b, c]
-对象Object（类似Python的字典，键值对）：{a:1, b:2, c:3}
-
-> 全局对象：window
-> 对象的键必须用是字符串类型，但实际上其他数据类型作为键也没有没什么不合理的，所以ES6引入了新的数据类型Map
-> 对象的值可以是任意数据类型，比如函数，即对象的方法
-
-Map（更加类似Python的字典，二维数组）
-var x = new Map([['a', 1], ['b', 2], ['c', 3]]);
-
-Set（类似Python的集合）：只存储key，没有value
-var x = new Set(['a', 'b','c']);
-```
-
-## 控制语句
-
-### 判断语句
-
-可以不加{}，但为了不必要的麻烦，建议永远都加上
-
-```text
-if (表达式) {
-    pass
-} else if {
-    pass
-} else {
-    pass
-}
-```
-
-### 循环语句
-
-```text
-for (初始条件，结束条件，递增条件) {
-    pass
-}
-
-while (表达式) {
-    pass
-}
-
-// 开始时至少执行一次
-do {
-    pass
-} while (表达式)
-```
-
-### 判断包含不包含
-
-```text
-for (var key in X) {
-    pass
-}
-
-// ES6引入的，用来统一循环iterable类型（Array，Map，Set）
-for (var key of X) {
-    pass
-}
-//也可以用iterable内置的forEach方法
-a.forEach(function (element, index, array) {
-    // element: 指向当前元素的值
-    // index: 指向当前索引
-    // array: 指向Array对象本身
-    console.log(element + ', index = ' + index);
-});
-
-```
-
 ## 变量
 
 ### 动态语言（变量类型不固定）
 
-```text
+```javascript
 // 定义变量：var，js早期设计失误，并未强求用var申明，没有被var申明默认为全局变量，会带来一定的麻烦，ESMA后期推出严格模式强制用var申明（js代码第一行加上 'use strict';）
 var x = "hello world"
 
@@ -349,7 +29,7 @@ var [x, y, z] = ['hello', 'JavaScript', 'ES6'];
 
 ### 普通函数
 
-```text
+```javascript
 function foo(x, y) {
     pass;
     return {
@@ -365,9 +45,7 @@ function foo(x, y) {
 
 ### 匿名函数
 
-JavaScript
-
-```text
+```javascript
 // 匿名函数（注意末尾要带分号，表示赋值语句结束）
 var foo = function (x) {
     pass;
@@ -387,7 +65,7 @@ x => {
 
 ### 输出函数
 
-```text
+```javascript
 alert('Hello World');
 
 // 控制台输出log
@@ -402,7 +80,7 @@ JS没有类的概念
 
 构造函数就相当于类，就是对象的模板，它就是个普通函数，但有自己的特征和用法，首字母一般大写。构造函数体内部使用了this关键字，代表了所要生成的对象/实例，建议启用严格模式，使函数内部的this不能指向全局对象。
 
-```text
+```javascript
 var Vehicle = function () {
     'use strict';
     this.price = 1000;
@@ -411,7 +89,7 @@ var Vehicle = function () {
 
 实例化时要用new命令，即执行构造函数，返回一个实例对象。
 
-```text
+```javascript
 var v = new Vehicle();  // 也可以不带括号，但建议带上
 v.price // 1000
 ```
@@ -422,7 +100,7 @@ v.price // 1000
 
 可以用obj.__proto__的方式将一个对象的原型指向任何对象，但一般不这样做，而是通过创建一个函数，然后使用Object.create()方法指定原型
 
-```text
+```javascript
 // 原型对象
 var Student = {
     pass
@@ -441,7 +119,7 @@ var xiaoming = createStudent('小明');
 
 ### 方式3：ES6 中新增了用class定义类
 
-```text
+```javascript
 class 类名 [extends 继承类] {
     constructor(name, grade) {
         super(name); // 记得用super调用父类的构造方法!
@@ -456,11 +134,9 @@ class 类名 [extends 继承类] {
 
 ## 提交表单
 
-## JS
-
 ### 方式1
 
-```text
+```html
 <form id="test">
     <input type="text" name="test">
     <button type="button" onclick="doSubmitForm()">Submit</button>
@@ -489,8 +165,6 @@ AJAX全称：Asynchronous JavaScript and XML，意思就是用JavaScript执行�
 Promise有各种开源实现，比如axios
 
 ## 错误处理
-
-JS
 
 ```text
 try ... catch ... finally
