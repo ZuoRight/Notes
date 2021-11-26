@@ -75,3 +75,10 @@ Java程序的构建过程一般是：编译、测试、打包。
 - ant 与makefile比较像，定义任务，规定依赖，执行任务，缺点是没办法管理依赖
 - [Maven](https://www.liaoxuefeng.com/wiki/1252599548343744/1255945359327200) 提出仓库的概念，缺点是使用xml语法不简洁，无法自定义任务
 - gradle 继承maven和ant的优点，可以用仓库管理依赖也能自定义任务，`build.gradle`基于脚本语言Groovy
+
+## JavaEE
+
+- Servlet+JSP+JavaBean，容器：Tomcat
+- Spring MVC，容器：IoC
+- Spring Boot：开箱即用
+- Spring Cloud

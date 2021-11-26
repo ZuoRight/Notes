@@ -6,6 +6,8 @@ Web开发的接口规范，从最早的CGI(Common Gateway Interface)到各个语
 
 uWSGI是C语言实现的一款工具，它跟Flask/Django等主流框架都遵循了WSGI规范，自然可以与这些框架实现的应用通信，然后它可以用自带的uwsgi协议与Ngnix进行通信，最终Nginx通过http协议对外提供服务
 
+> Gunicorn与uWSGI都是用于同步，Uvicorn用于异步
+
 ```text
 pip install uwsgi
 
@@ -19,7 +21,7 @@ pip install uwsgi
 --workers 指开启的worker进程数，用于处理请求
 ```
 
-supervisor是python实现的一个进程管理工具，可以用pip安装，常用于自启动python web服务
+> supervisor是python实现的一个进程管理工具，常用于自启动python web服务
 
 ```text
 pip install supervisor
