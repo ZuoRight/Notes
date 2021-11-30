@@ -1,3 +1,3 @@
 # BootStrap
 
-[Bootstrap4中文参考文档](http://bs4.vx.link/index.html?tmpui_page=/pages/components){ .md-button .md-button--primary }
+[菜鸟教程](https://www.runoob.com/bootstrap4/bootstrap4-tutorial.html){ .md-button .md-button--primary }
