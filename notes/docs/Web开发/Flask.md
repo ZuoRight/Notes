@@ -16,14 +16,14 @@ from flask import Flask
 app = Flask(__name__)
 
 
-# 装饰器用于绑定路由，# 当用户访问该URL时将触发相应的视图函数
-@app.route('/')
+# 装饰器用于绑定路由，当用户访问该URL时将触发相应的视图函数
 # 可同时绑定多个
+@app.route('/')
 @app.route('/hello')
 # 定义视图函数
 def hello():
     # 将信息或模版返回给前端显示
-    return 'Hello'
+    return 'Hello, World!'
 ```
 
 ## 基本命令

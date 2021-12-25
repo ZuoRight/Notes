@@ -1,6 +1,8 @@
 # VSCode
 
-使用Vscode自带Python解析器导入包时`.vscode/settings.json`需要配置如下（[官方说明](https://github.com/microsoft/python-language-server/blob/master/TROUBLESHOOTING.md#unresolved-import-warnings)）
+> VSCode的一些设置等多端同步，现在已经不需要再使用`Settings Sync`扩展来管理，只需要登陆账号即可自动同步。
+
+使用VSCode自带Python解析器导入包时`.vscode/settings.json`需要配置如下（[官方说明](https://github.com/microsoft/python-language-server/blob/master/TROUBLESHOOTING.md#unresolved-import-warnings)）
 
 - Mac
 
@@ -21,13 +23,6 @@
 ```
 
 如果还显示未导入，检查左下角解释器是否选对了。
-
-### Settings Sync
-
-- 上传：++shift+opt+u++（Windows用++alt++替代++opt++）
-- 下载：++shift+opt+d++
-
-首次上传/下载，会弹出配置，按提示填入token和gist
 
 ### PicGo
 
