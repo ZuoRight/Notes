@@ -2,14 +2,87 @@
 
 [官方手册](https://dev.mysql.com/doc/refman/8.0/en/installing.html){ .md-button .md-button--primary }
 
+## 安装
+
+[官网下载](https://dev.mysql.com/downloads/mysql/)
+
+### Windows
+
+下载后是个压缩包，无需安装，解压后做一些相关配置即可使用
+
+首先在解压后文件的目录下，新建一个配置文件：`my.ini`，然后设置以下内容
+
+```ini
+[client]
+# 设置mysql客户端默认字符集
+default-character-set=utf8
+ 
+[mysqld]
+# 设置3306端口
+port=3306
+# 设置mysql的安装目录，注意，这里要用两个反斜线\\
+basedir=C:\\path\\mysql-8.0.27-winx64
+# 设置 mysql数据库的数据的存放目录，MySQL 8+ 不需要以下配置，系统自己生成即可，否则有可能报错
+# datadir=C:\\path\\sqldata
+# 允许最大连接数
+max_connections=20
+# 服务端使用的字符集默认为8比特编码的latin1字符集
+character-set-server=utf8
+# 创建新表时将使用的默认存储引擎
+default-storage-engine=INNODB
+```
+
+然后设置环境变量
+
+- `MYSQL_HOME`: `安装路径`
+- `Path`: `%MYSQL_HOME%\bin`
+
+然后以管理员身份打开命令行，输入：`mysqld --initialize --console`，初始化完毕后会生成一个初始密码（记得保存）
+
+然后输入：`mysqld install`，注册服务，成功后即可启动服务登录使用
+
+### Mac
+
+下载后安装一直下一步即可，最后会默认创建root账户，让你设置一个密码，加密方式建议选：`Use Legacy Password Encryption`（不然某些第三方客户端连接数据库时会报错）
+
+然后配置环境变量
+
+```bash
+cd ~
+vim ./.bash_profile
+export PATH=$PATH:/usr/local/mysql/bin
+export PATH=$PATH:/usr/local/mysql/support-files
+source ~/.bash_profile
+```
+
+## 连接
+
 ```bash
 net start mysql  # 启动服务
 net stop mysql  # 停止服务
 
 # 连接服务
-# 默认host：-h 127.0.0.1
-# 默认端口号：-p 3306
-mysql -u root -p  # exit或quit断开连接
+mysql [-h 127.0.0.1] -u root -p
+# -h 默认主机名为本机127.0.0.1
+# -P 默认端口号3306
+# -u 指定用户名
+# -p 带此参数表明需要密码，反之不需要，回车后密文输入
+
+# 断开连接
+exit
+# 或者
+quit
+```
+
+## 修改密码
+
+> 注意：旧版本修改密码的方式在8.0版本不再适用
+
+```sql
+use mysql
+alter user 'root'@'localhost' identified with mysql_native_password by '111111'
+-- 刷新系统权限相关的表
+flush privileges;
 ```
 
 ## 基础操作
@@ -211,11 +284,40 @@ FROM 流水表
 
 ![20211031224626](http://image.zuoright.com/20211031224626.png)
 
-## 事务
+## 索引 key
+
+把表中某列的值存储到某种数据结构中，就叫索引
+
+> 最常用的数据结构为：B-Tree
+
+优点
+
+- 提高数据检索效率，降低数据库IO成本
+- 通过索引对数据进行排序，降低CPU消耗
+
+缺点
+
+- 占用空间
+- 降低了表更新的速度
+- 建立最优索引需要花时间研究
+
+适合建立索引的字段：主键，外键，频繁作为查找或排序的字段
+
+> 索引的效率取决于索引列的值是否散列，即该列的值如果越互不相同，那么索引效率越高，像性别这种列有索引反而会降低效率，这种情况下大数据中会使用分组的概念
+
+## 性能优化
+
+对索引字段做函数操作，或有隐式类型转换涉及函数操作，或有隐式字符编码转换，可能会破坏索引值的有序性，因此优化器就决定放弃走树搜索功能，导致全索引扫描。
+
+因此用`explain`+`SQL语句`分析一下，是一个很好的习惯，它可以模拟优化器执行SQL查询语句。
+
+## 事务 transaction
 
 > <https://www.liaoxuefeng.com/wiki/1177760294764384/1179611198786848>
 
-数据库事务具有ACID这4个特性：
+数据库事务是对数据库进行一系列操作的序列，这些操作要么全部执行，要么全不执行，是一个不可分割的集合。
+
+具有ACID这4个特性：
 
 - A：Atomic，原子性，将所有SQL作为原子工作单元执行，要么全部执行，要么全部不执行；
 - C：Consistent，一致性，事务完成后，所有数据的状态都是一致的，即A账户只要减去了100，B账户则必定加上了100；
@@ -241,9 +343,3 @@ ROLLBACK;  -- 回滚事务
 ```
 
 ![20211103162720](http://image.zuoright.com/20211103162720.png)
-
-## 性能优化
-
-对索引字段做函数操作，或有隐式类型转换涉及函数操作，或有隐式字符编码转换，可能会破坏索引值的有序性，因此优化器就决定放弃走树搜索功能，导致全索引扫描。
-
-因此 `explain SQL语句` 一下，是一个很好的习惯。
