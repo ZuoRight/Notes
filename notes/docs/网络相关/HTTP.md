@@ -13,13 +13,13 @@ HyperText Transfer Protocol
     - TLS 1.1(2006)  
     - TLS 1.2(2008)  
     - **TLS 1.3(2018)**
-- SPDY/HTTP/2
+- HTTP2/SPDY
   - Port：协议沿用HTTP/HTTPS
   - 效率：多路复用，头部使用了HPACK压缩算法
   - 安全：强制使用TLSv1.2
-- QUIC/HTTP3
+- HTTP3/QUIC
   - Port：没有指定默认端口号
-  - 效率：基于UDP传输
+  - 效率：传输基于QUIC(Quick UDP Internet Connections)
   - 安全：强制使用TLSv1.3
 
 ## 组成
