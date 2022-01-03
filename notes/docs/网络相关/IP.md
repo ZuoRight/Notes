@@ -110,6 +110,8 @@ xxx.xx.xxx.x scope global eth0  # ethernet 以太网卡，范围global，对外�
 >
 > MAC(Medium Access Control) 媒体访问控制，主要解决多路访问时谁先发谁后发，以及发给谁等问题
 
+网关（一般是路由器）通过路由协议（常用的有 OSPF 和 BGP）按路由表将数据包发出
+
 ### 网络地址相同
 
 ![20210729232611](http://image.zuoright.com/20210729232611.png)

@@ -24,7 +24,7 @@
 
 如果还显示未导入，检查左下角解释器是否选对了。
 
-### PicGo
+## PicGo
 
 > <https://picgo.github.io/PicGo-Core-Doc/zh/guide/>
 
