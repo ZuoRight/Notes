@@ -32,6 +32,16 @@ ISP(互联网服务提供商)通过路由器把局域网连接起来就形成城
 
 ![20210725173808](http://image.zuoright.com/20210725173808.png)
 
+## 网络设备
+
+> [集线器，交换机，路由器](https://www.bilibili.com/video/BV1yt411d7Rd)
+
+- 网卡
+- 集线器：仅检测设备与其物理设备，用于本地交换数据  
+- 交换机：可读取MAC地址，可检测特定设备，用于本地交换数据  
+- 路由器：可读取IP地址，用于外网交换数据，集成多张网卡，本质上是一个网关
+- 网关 = 路由器（基础职能） + 过滤器（可选职能）
+
 ## 参考
 
 > 主要参考自Youtube UP主 [PowerCert Animated Videos](https://www.youtube.com/c/PowerCertAnimatedVideos/featured)的动画视频
@@ -41,9 +51,3 @@ ISP(互联网服务提供商)通过路由器把局域网连接起来就形成城
   > CAN(校园局域网)  
   > SAN(数据存储专用网络)
 - [CSMA/CD和CSMA/CA](https://www.bilibili.com/video/BV1gb411C7HX)
-- [集线器，交换机，路由器](https://www.bilibili.com/video/BV1yt411d7Rd)
-  > 集线器：仅检测设备与其物理设备，用于本地交换数据  
-  > 交换机：可读取MAC地址，可检测特定设备，用于本地交换数据  
-  > 路由器：可读取IP地址，用于外网交换数据，集成多张网卡，本质上是一个网关
-
-网关 = 路由器（基础职能） + 过滤器（可选职能）
