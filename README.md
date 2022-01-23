@@ -1,6 +1,6 @@
 # [ZuoRight](http://zuoright.com)
 
-> VS Code + MD + 七牛云图床 + Git + Github Pages + Github Actions
+> VSCode + MD + 七牛云图床 + Git + Github Pages + Github Actions
 
 ## MKDocs
 
@@ -98,5 +98,4 @@ jobs:
           git rm -r --cached .github/workflows
           git commit -m "ci commit"
           git push origin master:dev --force
-
 ```
