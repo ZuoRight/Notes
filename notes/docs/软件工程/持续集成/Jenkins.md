@@ -4,7 +4,7 @@
 
 > <https://www.jenkins.io/doc/book/installing/>
 
-- 使用WAR包运行，由于下载的`jenkins.war`内置了Jetty，所以可以直接运行：`[nohub] java -jar jenkins.war [--httpPort=8080]`，然后访问：<http://localhost:8080/>，也可以使用Tomcat等其他Java Servlet容器运行
+- 可以使用Jetty、Tomcat等Java Servlet容器运行WAR包，由于下载的`jenkins.war`内置了Jetty，可以直接运行：`[nohub] java -jar jenkins.war [--httpPort=8080]`，然后访问：<http://localhost:8080/>
 - 使用Docker镜像运行
 
 Jenkins相关的配置等存放在`~/.jenkins`路径下

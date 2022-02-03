@@ -4,7 +4,7 @@ API文档：<https://appium.io/docs/en/about-appium/api/>
 
 基于Webdriver做了一些扩展，调用各平台自带的测试框架，测哪个平台就安哪个平台的工具包
 
-- 测Android，依赖 [UiAutomator2](https://appium.io/docs/en/drivers/android-uiautomator2/)，就需要 Android SDK
+- 测Android，依赖 [UiAutomator2](https://appium.io/docs/en/drivers/android-uiautomator2/)，需要 Android SDK
 - 测iOS真机，依赖[XCUITest](https://appium.io/docs/en/drivers/ios-xcuitest-real-devices/)，需要XCode
 
 ## 环境搭建
