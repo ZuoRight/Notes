@@ -306,8 +306,7 @@ pytest -n 4  # 指定4个cpu并发执行
 
 `.F.F..`中的`.`代表测试通过，`F`（Fail）代表测试失败
 
-- fixture中的断言如果失败，结果会显示error
-- case中的断言如果失败，结果会显示failed
+fixture中的断言如果失败，结果会显示error，case中的断言如果失败，结果会显示failed
 
 - 生成xml文件
 
@@ -321,6 +320,10 @@ pip install pytest-html
 # --self-contained-html css样式混在html中，不加则独立
 pytest --html=report.html --self-contained-html
 ```
+
+> 修改与汉化：<https://www.cnblogs.com/linuxchao/p/linuxchao-pytest-html.html>
+
+- Allure
 
 ## 配置文件
 
