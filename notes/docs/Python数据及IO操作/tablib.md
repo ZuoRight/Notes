@@ -2,6 +2,8 @@
 
 [官方文档](https://tablib.readthedocs.io/en/stable){ .md-button .md-button--primary }
 
+Tablib用于处理表格类数据（tabular dataset），为不同格式的数据集提供一个统一的格式
+
 ```shell
 pip install tablib  # 安装，更新加参数：--upgrade
 pip install "tablib[xlsx]"  # 安装某个依赖
@@ -11,29 +13,79 @@ pip install "tablib[all]"  # 安装所有依赖
 
 ```python
 import tablib
+"""
+tablib.Databook() 相当于Excel中的WorkBook，即Sheet的集合
+tablib.Dataset() 相当于Excel中的Sheet
+"""
 
-headers = ('first_name', 'last_name', 'age')
-data = [
+# 构建Dataset对象
+headers = ('first_name', 'last_name', 'age')  # tuple或list都可以
+body = [
     ('John', 'Adams', '90'),
     ('Henry', 'Ford', '83')
 ]
 
-data = tablib.Dataset(*data, headers=headers)
+"""方式1"""
+data = tablib.Dataset(*body, headers=headers)
+"""方式2"""
+data = tablib.Dataset()
+data.headers = headers
+data.append(['Chonge', 'Jiang', '30'])  # 添加行
+data.append_col([66, 77, 88], header='score')  # 添加列
 
->>> data.dict  # 查看目前表中的所有数据
+# 从文件读取
+with open('tmp/demo_case.xlsx', 'rb') as f:
+    """方式1"""
+    # data = tablib.import_set(f.read(), 'xls', headers=False)  # 如果没有表头需要加上headers=False
+    """方式2"""
+    data = tablib.Dataset().load(f.read(), 'xlsx')
+
+# 返回子Dataset
+subset(rows=None, cols=None)
+```
+
+```python
+data.dict  # 查看目前表中的所有数据
+"""
 [OrderedDict([('First Name', 'John'), ('Last Name', 'Adams')]), OrderedDict([('First Name', 'George'), ('Last Name', 'Washington')]), OrderedDict([('First Name', 'Henry'), ('Last Name', 'Ford')])]
+"""
 
->>> print(data)  # 会打印格式化的数据，非常nice
+data.height  # 输出当前记录(行)总数，2
+data.width  # 输出当前属性(列)总数，3
+```
+
+```python
+print(data)  # 会打印格式化的数据，非常nice
+"""
 First Name|Last Name|age
 ----------|---------|---
 John      |Adams    |90
 Henry     |Ford     |83
+"""
 
->>> data.height  # 输出当前记录(行)总数
-2
->>> data.width  # 输出当前属性(列)总数
-3
+# 获取行
+print(data.headers)  # 表头
+print(data[0])  # 第1行
+print(data[:2])
+
+# 遍历除表头外的行
+for i in data:
+    print(i)
+
+# 获取列
+print(data["first_name"])  # 根据表头名称
+print(data.get_col(0))  # 根据表头索引
 ```
+
+```python
+# 导出数据
+with open('demo.xls', 'wb') as f:
+    f.write(data.xls)
+```
+
+## 动态列
+
+<https://xin053.github.io/2016/07/10/tablib%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/>
 
 ## json转换为xlsx
 

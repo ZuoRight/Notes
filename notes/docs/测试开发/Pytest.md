@@ -6,11 +6,6 @@
 
 帮助：`pytest --help | grep xxx`
 
-## 常用参数
-
-- -v, --verbose  增加详细程度
-- -s  --capture=no 的简写，显示print()信息
-
 ## Case编写规范
 
 `test_xxx.py` 或 `xxx_test.py`
@@ -270,8 +265,11 @@ collected 7 items / 6 deselected / 1 selected
 
 ## 调试信息
 
-- verbose 罗嗦
+- -v, --verbose  增加详细程度
+
 ![1f5e32c3bbf3b6e7a345b4dfaa5f72e](http://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png)
+
+- -s  --capture=no 的简写，显示print()信息
 
 ![f47d5c603ff0862910a548ead5df0ec](http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png)
 
