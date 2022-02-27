@@ -210,3 +210,28 @@ git push origin --delete v0.5  # 删除远程标签
 - Bitbucket：Jira母公司Atlassian旗下产品
 - Gitee(码云)：开源中国和工信部联合推出
 - Coding：并购了Gitcafe，后又被腾讯云全资收购
+
+## 项目协作
+
+```bash
+# 先fork
+
+git clone me.git  # 克隆自己的远程库
+git remote add release common.git  # 关联公用的远程库，命名为release
+
+git checkout -b dev  # 创建dev分支
+
+git add .  # 最好每个修改点一次add
+git commit -m "xxx"  # 最好每个修改点一次commit
+git checkout master  # 切回主分支
+git merge dev  # 合并分支
+git branch -d dev  # 删除dev分支
+
+git fetch release  # 拉取release最新的改动
+git rebase release/master  # 如果拉取到新的改动则合并到本地
+git add 有冲突修改的文件
+git rebase --continue  # 继续合并冲突
+git push origin master  # 推送到自己的远程分支
+
+# 提交合并
+```

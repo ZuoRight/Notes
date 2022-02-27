@@ -1,6 +1,16 @@
-# 虚拟环境及包管理
+# Python环境搭建
 
-有以下几种选择
+```bash
+python3 -m venv env
+source env/bin/activate
+
+pip install -r requirements.txt
+
+mkdir .vscode
+touch settings.json
+```
+
+包管理工具有以下几种选择
 
 - pip + venv (用来用去还是喜欢自带的，推荐)
 - pip + virtualenv + virtualenvwrapper
