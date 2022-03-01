@@ -2,9 +2,9 @@
 
 各种格式的数据反序列化(load)为Python字典(dict)后，如果想更方便的获取指定字段数据，建议使用JsonPath，相当于Xpath之于XML。
 
-另一个解析JSON的库：[jmespath](https://jmespath.org/tutorial.html)，待研究...
-
 > 项目地址：<https://github.com/json-path/JsonPath>
+>
+> 在线解析：<https://jsonpath.com/>
 
 `pip install jsonpath`
 
@@ -47,3 +47,5 @@ jsonpath.jsonpath(json_obj,'$..C2_1[1]')  # 获取C2_1对应列表的第二个�
 jsonpath.jsonpath(json_obj,'$..C2_1[(@.length-1)]')  # 获取C2_1对应列表的倒数第一个，[{'id': 3, 'name': 'san'}]
 jsonpath.jsonpath(json_obj,'$..C2_1[?(@.id<2)]')  # 过滤出C2_1对应列表中id小于2的值，[{'id': 1, 'name': 'yi'}]
 ```
+
+另一个解析JSON的库：[jmespath](https://jmespath.org/tutorial.html)，待研究...
