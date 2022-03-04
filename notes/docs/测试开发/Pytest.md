@@ -133,11 +133,11 @@ def test_01(a, b, login):
 
 ## 参数化
 
-`@pytest.mark.parametrize(argnames, argvalues, idirect=False, ids=None)`
+`@pytest.mark.parametrize(argnames, argvalues, indirect=False, ids=None)`
 
 argnames="k1,k2" 被参数化的变量，字符串中逗号分隔变量，也可以是列表或元组的形式
 
-argvalues=[] 与变量一一对应的一组值，可以传入一个集合
+argvalues=[] 与变量一一对应的一组值，可以传入一个元组list`[(),(),()]`
 
 ids=[] 给每一组argvalues起个别名
 

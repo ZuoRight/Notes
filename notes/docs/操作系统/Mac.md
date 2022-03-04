@@ -1,10 +1,5 @@
 # Mac
 
-## 常用快捷键
-
-- 显示隐藏文件：`Cmd + Shift + .`
-- 切换半角和圆角：`Shift + Space`
-
 ## 终端
 
 ```shell
@@ -13,7 +8,15 @@ kill [-9] 3031  # 杀死进程，-9强制杀死
 launchctl  # 类似Linux的systemctl
 which xx  # 查找
 unzip xxx.zip  # 解压
-```
+``` 
+
+## CLT
+
+[介绍文档](https://developer.apple.com/library/archive/technotes/tn2339/_index.html)
+
+安装Homebrew等工具会提示先安装CLT
+
+Command Line Tools，是可独立Xcode下载安装的小型工具包，包含了macOS SDK和一些常用的命令行工具，比如git、clang等
 
 ## 设置环境变量
 
@@ -72,8 +75,6 @@ sudo vim /etc/shells  # 需要管理者权限
 
 Mac系统下的一款开源包管理器，[项目地址](https://github.com/Homebrew)，[官网](https://brew.sh)
 
-> 使用参考：<https://www.xiebruce.top/720.html>
-
 由四部分组成
 
 - Homebrew 源代码仓库
@@ -81,12 +82,28 @@ Mac系统下的一款开源包管理器，[项目地址](https://github.com/Home
 - Homebrew-cask 提供macos应用和大型二进制文件的安装
 - Homebrew-bottles 预编译二进制软件包
 
-安装
+```bash
+# 官方下载（很慢，建议开全局代理）
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# 镜像下载
+/usr/bin/ruby -e "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install)"
 
-- 官方(需要代理)：`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
-- 使用镜像安装：`/usr/bin/ruby -e "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install)"`
+"""
+M1安装完后会提示配置环境变量
+==> Next steps:
+- Run these two commands in your terminal to add Homebrew to your PATH:
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/chonge/.bash_profile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+"""
+
+# 卸载，卸载不干净再装会报错
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+```
+
 
 ### 更换下载源
+
+> 参考：<https://www.xiebruce.top/720.html>
 
 查看有哪些软件下载源：`brew tap`
 
@@ -166,5 +183,17 @@ brew services run/start/stop/restart xxx
 ```
 
 ## 其它
+
+### 快捷键
+
+- 显示隐藏文件：`Cmd + Shift + .`
+- 切换半角和圆角：`Shift + Space`
+- 清空命令行：`Cmd + k`
+
+### 开启三指拖移
+
+![20220305004724](http://image.zuoright.com/20220305004724.png)
+
+### SIP
 
 SIP(系统完整性保护)安全机制：即使是以root身份也无法删除某些程序，比如`/bin`下的，尽管你可以SIP禁用后删除，但也不建议这样去做。

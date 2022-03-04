@@ -2,9 +2,69 @@
 
 ![20210808174712](http://image.zuoright.com/20210808174712.png)
 
-> 配置文件：[`.gitlab-ci.yml`](https://docs.gitlab.com/ee/ci/yaml) (YAML语法)
+## 注册runner
+
+![20220305002455](http://image.zuoright.com/20220305002455.png)
+
+- 命令行自动注册
+
+> 先安装：[官方文档](https://docs.gitlab.com/runner/install/linux-repository.html)
+
+```bash
+# 注册
+gitlab-runner register
+"""
+根据提示
+输入url https:/code.xxx.net/
+输入认证token：registration token
+输入描述（可默认）
+输入标签（可默认）
+输入执行器：docker
+输入默认镜像：alpine:latest
+"""
+# 验证
+gitlab-runner status
+gitlab-runner verify
+```
+
+- 手动配置文件注册
+
+> 配置说明：[官方文档](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
+
+```toml
+concurrent = 4
+log_level = "warning"
+
+[[runners]]
+  name = "qa-docker"
+  url = "https:/code.xxx.net/"
+  token = "Authentication token"
+  executor = "docker"
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+    [runners.cache.azure]
+  [runners.docker]
+    host = ""
+    tls_verify = false
+    image = "alpine:latest"
+    privileged = false
+    disable_cache = false
+    pull_policy = ["if-not-present"]
+    volumes = ["/var/run/docker.sock:/var/run/docker.sock","/cache"]
+```
+
+注意，配置文件中的token是`Authentication token`，不走命令行的话需要使用[API](https://docs.gitlab.com/ee/api/runners.html#register-a-new-runner)生成
+
+```bash
+curl --request POST "https://gitlab.example.com/api/v4/runners" \
+     --form "token=<registration_token>" --form "description=test-1-20150125-test" \
+     --form "tag_list=ruby,mysql,tag1,tag2"
+```
 
 ## 流水线 Pipline
+
+> 配置文件：[`.gitlab-ci.yml`](https://docs.gitlab.com/ee/ci/yaml) (YAML语法)
 
 ```yaml
 # 镜像
