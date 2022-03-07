@@ -82,7 +82,9 @@ cache:
     - binary/
     - .config
 
-# stages(阶段)：定义了何时以及如何运行jobs，将jobs进行逻辑划分，每个stage可以包含多个job，同阶段并行执行，并且通常全都成功后才能执行下一阶段
+# stages(阶段)：定义了何时以及如何运行jobs，将jobs进行逻辑划分
+# 不同阶段属于不同的容器
+# 每个stage可以包含多个job，同阶段并行执行，并且通常全都成功后才能执行下一阶段
 stages:
   - build
   - test
