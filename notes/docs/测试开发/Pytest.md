@@ -238,7 +238,10 @@ collected 7 items / 6 deselected / 1 selected
 - 测试指定文件：`pytest test_x.py`
 - 测试指定类/函数：`pytest test_x.py::类名/函数名`
 - 测试指定方法：`pytest test_x.py::类名::方法名`
-- 模糊匹配(不区分大小写)：`pytest -k 表达式`
+
+### 模糊匹配（不区分大小写）
+
+`pytest -k 表达式`
 
   ```shell
   pytest -k a  # 测试【包含】a的case
@@ -248,7 +251,22 @@ collected 7 items / 6 deselected / 1 selected
   pytest -k "a and not b"  # 测试【包含】a【但不包含】b的case
   ```
 
-- 测试带`@pytest.mark.xxx`标签的Case(同一case可带多个标签)：`pytest -m xxx`
+### 指定标签
+
+先在`pytest.ini`中添加自定义标签
+
+```ini
+[pytest]
+
+markers = 
+  default
+  base
+  xxx
+```
+
+然后就可以在用例上使用（可带多个）：`@pytest.mark.xxx`
+
+执行：`pytest -m xxx`
 
 ## 测试用例原则
 

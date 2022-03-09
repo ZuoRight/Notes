@@ -213,11 +213,17 @@ git push origin --delete v0.5  # 删除远程标签
 
 ## 项目协作
 
+常见的有三种形式
+
+- Git Flow
+- Github Flow
+- Gitlab Flow
+
 ```bash
 # 先fork
 
 git clone me.git  # 克隆自己的远程库
-git remote add release common.git  # 关联公用的远程库，命名为release
+git remote add upstream common.git  # 关联公用的远程库，命名为upstream
 
 git checkout -b dev  # 创建dev分支
 
@@ -227,8 +233,8 @@ git checkout master  # 切回主分支
 git merge dev  # 合并分支
 git branch -d dev  # 删除dev分支
 
-git fetch release  # 拉取release最新的改动
-git rebase release/master  # 如果拉取到新的改动则合并到本地
+git fetch upstream  # 拉取upstream最新的改动
+git rebase upstream/master  # 如果拉取到新的改动则合并到本地
 git add 有冲突修改的文件
 git rebase --continue  # 继续合并冲突
 git push origin master  # 推送到自己的远程分支
