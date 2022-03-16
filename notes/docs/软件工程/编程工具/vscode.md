@@ -1,28 +1,46 @@
 # VSCode
 
-> VSCode的一些设置等多端同步，现在已经不需要再使用`Settings Sync`扩展来管理，只需要登陆账号即可自动同步。
+## 配置同步
 
-使用VSCode自带Python解析器导入包时`.vscode/settings.json`需要配置如下（[官方说明](https://github.com/microsoft/python-language-server/blob/master/TROUBLESHOOTING.md#unresolved-import-warnings)）
+VSCode的一些配置等多端同步，现在已经不需要再使用`Settings Sync`扩展来管理，只需要登陆账号即可自动同步。
 
-- Mac
+## Python
+
+使用VSCode自带的Python解析器，如果非根目录下引用了自定义包，在debug时会出现找不到包的情况，这貌似是一个已知但一直未解决的问题
+
+一种解决方式是可以在文件开头加上如下代码，但这样比较麻烦
+
+```python
+import sys
+import os
+curPath = os.path.abspath(os.path.dirname(__file__))
+rootPath = os.path.split(curPath)[0]
+sys.path.append(rootPath)
+```
+
+另一种是根据提示在根目录下的`.vscode/launch.json`配置中指定`"env:{}"`，具体如下
 
 ```json
 {
-    "python.pythonPath": "env/bin/python",
-    "python.autoComplete.extraPaths": ["./项目根目录"]
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: 当前文件",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        }
+    ]
 }
 ```
-
-- Windows
-
-```json
-{
-    "python.pythonPath": "env\\Scripts\\python.exe",
-    "python.autoComplete.extraPaths": ["./项目根目录"]
-}
-```
-
-如果还显示未导入，检查左下角解释器是否选对了。
 
 ## PicGo
 

@@ -36,6 +36,9 @@ class TestMethod(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    """
+    用例的执行顺序根据用例名的ASCII码排序执行
+    """
 ```
 
 ## HTMLTestRunner
