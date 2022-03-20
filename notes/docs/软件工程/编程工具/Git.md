@@ -205,8 +205,8 @@ git push origin --delete v0.5  # 删除远程标签
 
 ## 项目托管平台
 
-- GitHub
-- GitLab(极狐)
+- GitHub：现已被微软收购
+- GitLab：乌克兰企业，在中国创建了合资品牌（极狐）
 - Bitbucket：Jira母公司Atlassian旗下产品
 - Gitee(码云)：开源中国和工信部联合推出
 - Coding：并购了Gitcafe，后又被腾讯云全资收购
@@ -215,9 +215,43 @@ git push origin --delete v0.5  # 删除远程标签
 
 常见的有三种形式
 
-- Git Flow
-- Github Flow
-- Gitlab Flow
+### Git Flow
+
+```bash
+# 克隆仓库master分支到本地
+git clone git@code.xxx.net:demo/test.git
+# 新建并切换到新分支开发
+git checkout -b dev
+
+git add .
+git commit -m "改动说明"
+
+# 切回本地master
+git checkout master
+# 拉取远程master分支最新代码
+git fetch origin master
+# 如果远程有最新提交则需要rebase
+git rebase origin/master
+
+# 切回自己的分支
+git checkout dev
+# 合并本地master分支
+git merge master
+# 如果有冲突
+"""
+可以选择终止合并：git merge --abort
+也可以解决冲突后继续合并
+"""
+git add 解决了冲突的文件
+git commit -m "冲突修改后说明"
+
+
+# 合并并且解决完冲突后push自己的分支到远程
+git push origin dev
+# 然后在创建MR（Merge Requests）请求合并到origin的master分支
+```
+
+### Gitlab Flow
 
 ```bash
 # 先fork
@@ -241,3 +275,7 @@ git push origin master  # 推送到自己的远程分支
 
 # 提交合并
 ```
+
+### Github Flow
+
+待更新
