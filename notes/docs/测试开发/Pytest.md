@@ -178,7 +178,7 @@ def test_01(login):
 
 ### 将Case的参数传递给fixture进行参数化
 
-这种形式，fixture必须要被调用，不然就会报错：`function uses no fixture 'xxx'`
+给fixture传了参数，可以不使用返回值，但fixture必须要被调用，不然就会报错：`function uses no fixture 'xxx'`
 
 - 用例直接调用
 - 用例调用其它fixture，其它fixture调用这个fixture
@@ -269,10 +269,10 @@ collected 7 items / 6 deselected / 1 selected
 # 测试指定文件
 pytest test_x.py
 
-# 测试指定类
-pytest test_x.py::类名
 # 测试指定方法
 pytest test_x.py::方法名
+# 测试指定类
+pytest test_x.py::类名
 # 测试指定类下的指定方法
 pytest test_x.py::类名::方法名
 
@@ -311,8 +311,6 @@ markers =
   base
   xxx
 ```
-
-- 跳过
 
 ## 插件
 
@@ -407,11 +405,17 @@ log_file_format = %(asctime)s [%(levelname)s] %(message)s (%(filename)s:%(lineno
 log_file_date_format = %Y-%m-%d_%H:%M:%S
 ```
 
-## 断言
+## 常用断言
 
-assert
+```python
+assert xx  # 判断xx为真
+assert not xx  # 判断xx不为真
+assert a in b  # 判断b包含a
+assert a == b  # 判断a等于b
+assert a != b  # 判断a不等于b
 
 pytest.raise()
+```
 
 ## 测试报告
 

@@ -175,6 +175,8 @@ git checkout -b dev  # 新建并切换
 git merge dev  # 合并
 git branch -d dev  # 删除
 git branch -M main  # 将本地主分支改为main（与GitHub远程主分支保持一致）
+
+git push origin --delete dev  # 删除远程分支
 ```
 
 如果两个分支同时修改了同一处，合并时会产生冲突，此时冲突的文件会变为未追踪状态，文件中会用=======上下分割标识出两个分支冲突的部分，需要手动解决后再次add到暂存区后提交。
