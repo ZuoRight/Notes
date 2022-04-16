@@ -277,12 +277,12 @@ pytest test_x.py::类名
 pytest test_x.py::类名::方法名
 
 # 模糊匹配（不区分大小写）
-pytest -k xxx  # 测试包含xxx的Case
-"""
-# 可以加判断
-not a
-a or b
-a and b
+pytest -k "xxx"  # 测试包含xxx关键字的Case，不区分大小写
+"""表达式
+a
+not a  
+a or b  如果想执行a.py和b.py要用or而不是and
+a and b  如果想执行a_b.py可以用and
 a and not b
 """
 ```
@@ -361,16 +361,20 @@ pytest.ini
 ; 但这个方法可能会有问题，建议使用conftest.py
 disable_test_id_escaping_and_forfeit_all_rights_to_community_support = True
 
-# 指定Case路径
+; 指定Case路径
+; 指定后就无法再指定具体文件具体方法等
 testpaths = test_case
 
-;自定义标签加到ini中，则不会警告标签unknown
+; 自定义标签加到ini中，则不会警告标签unknown
 markers = 
   mark1
   mark2: 可以加一些说明
 
-;设置运行时自带参数，执行时会自动带-v -s参数
-addopts = -vs
+; 设置运行时自带参数
+addopts = 
+  -vs  ; 详细信息，打印print
+  --setup-show  ; 显示setup和teardown
+  --collect-only  ; 执行预览，并不真的运行
 ```
 
 ## 日志
@@ -480,4 +484,19 @@ def pytest_html_results_table_row(report, cells):
 #     report.nodeid = report.nodeid.encode("utf-8").decode("unicode_escape")
 ```
 
-### Allure
+### allure
+
+```bash
+pip install allure-pytest
+
+# 指定报告相关文件存储路径
+pytest --alluredir=./result/
+
+# 直接运行生成的json报告文件
+allure serve ./result/
+
+# 转换成html格式，--clean覆盖
+allure generate ./result/ -o ./report/ --clean
+# 指定IP运行
+allure open -h 127.0.0.1 -p 7788 ./report/
+```
