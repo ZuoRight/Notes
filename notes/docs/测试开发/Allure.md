@@ -1,16 +1,22 @@
 # Allure
 
-一款支持多语言的测试报告生成框架：[官方文档](https://docs.qameta.io/allure/) 和 [报告demo](https://demo.qameta.io/allure/#)
+[官方网站](https://qameta.io/allure-report/){ .md-button .md-button--primary }
 
-手动安装驱动（运行依赖JRE）：[下载allure-commandline新版zip包](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/)
+一款支持多语言的测试报告生成框架，官方文档：<https://docs.qameta.io/allure-report/>
 
+
+## 本地安装
+
+> 运行依赖JRE
+
+[下载allure-commandline新版zip包](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/)
+
+- Mac：解压到usr/local/下，把bin路径添加到环境变量中。还可以直接用`brew install allure`快速安装
 - Windows：解压到非中文路径下，把bin目录添加到系统环境变量PATH中。
-- Mac：解压到usr/local/下，把bin路径添加到环境变量中。另外还可以用`brew install allure`快速安装
 
 ## Pytest插件
 
 `pip install allure-pytest`
-
 
 ```shell
 # 生成报告到指定路径
@@ -29,6 +35,7 @@ allure open -h 127.0.0.1 -p 8883 tmp/path
 
 ## 常用特性
 
+<https://docs.qameta.io/allure-report/#_pytest>
 
 ```python
 import allure
@@ -83,3 +90,40 @@ source：附件路径
 其它同上
 """
 ```
+
+## Docker 服务
+
+### allure-server
+
+<https://github.com/kochetkov-ma/allure-server>
+
+### allure-docker-service
+
+<https://github.com/fescobar/allure-docker-service>
+
+```shell
+sudo docker run -d -p 5050:5050 -e CHECK_RESULTS_EVERY_SECONDS=3 -e KEEP_HISTORY=1 \
+    -v ${PWD}/allure-results:/app/allure-results \
+    -v ${PWD}/allure-reports:/app/default-reports \
+    frankescobar/allure-docker-service
+
+# 挂载目录${PWD}可以是任何位置，比如我这里是：/home/ubuntu/work/test_result
+#   但${PWD}后面的路径以及对应容器中的路径，是不能改的
+#   需要注意文件的权限，最好先手动创建好相应路径，并赋予一定的权限
+#   /app/default-reports用于挂载存放历史报告
+
+# 查看最新报告: http://localhost:5050/allure-docker-service/latest-report
+# 一些常用API: http://localhost:5050/
+```
+
+- CHECK_RESULTS_EVERY_SECONDS=3 为每3秒自动检查allure-results是否有文件更新
+- CHECK_RESULTS_EVERY_SECONDS=None 则不检查，可以使用GET /generate-report主动生成，可指定Executors
+
+```text
+GET /generate-report?execution_name=自定义名字
+GET /generate-report?execution_from=自定义链接
+GET /generate-report?execution_type=图标（jenkins/gitlab/github/bamboo/teamcity）
+```
+
+- KEEP_HISTORY=1 保留历史和趋势（默认保留最新的20个），可使用API清除历史记录，可点击logo查看历史
+- OPTIMIZE_STORAGE: 1 优化default-reports存储，不会再每次存储app.js和styles.css这两个不会变的文件，而是放在容器中公共位置存储

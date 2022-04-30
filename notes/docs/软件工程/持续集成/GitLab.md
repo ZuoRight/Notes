@@ -2,13 +2,24 @@
 
 ![20210808174712](http://image.zuoright.com/20210808174712.png)
 
+## 安装Runner
+
+> [官方文档](https://docs.gitlab.com/runner/install/linux-repository.html)
+
+Docker中安装
+
+```bash
+sudo docker run -d --name gitlab-runner --restart always \
+     -v /srv/gitlab-runner/config:/etc/gitlab-runner \
+     -v /var/run/docker.sock:/var/run/docker.sock \
+     gitlab/gitlab-runner:latest
+```
+
 ## 注册runner
 
 ![20220305002455](http://image.zuoright.com/20220305002455.png)
 
 - 命令行自动注册
-
-> 先安装：[官方文档](https://docs.gitlab.com/runner/install/linux-repository.html)
 
 ```bash
 # 注册
@@ -20,7 +31,7 @@ gitlab-runner register
 输入描述（可默认）
 输入标签（可默认）
 输入执行器：docker
-输入默认镜像：alpine:latest
+如果执行器是docker需要输入默认镜像：alpine:latest
 """
 # 验证
 gitlab-runner status
@@ -30,28 +41,43 @@ gitlab-runner verify
 - 手动配置文件注册
 
 > 配置说明：[官方文档](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
+>
+> You can find the `config.toml` file in:
+> - `/etc/gitlab-runner/` on *nix systems when GitLab Runner is executed as root (this is also the path for service configuration)
+> - `~/.gitlab-runner/` on *nix systems when GitLab Runner is executed as non-root
+> - `./` on other systems
+>
+> 修改配置后不需要重启，Gitlab Runner每3s会自动检查配置并自动加载更新
+> Runner如果是在Docker中，配置文件挂载在：`srv/gitlab-runner/config/config.toml`
+
 
 ```toml
-concurrent = 4
-log_level = "warning"
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
 
 [[runners]]
-  name = "qa-docker"
+  name = "ee_rpc_test ci"
   url = "https:/code.xxx.net/"
   token = "Authentication token"
   executor = "docker"
+  [runners.custom_build_dir]
   [runners.cache]
     [runners.cache.s3]
     [runners.cache.gcs]
     [runners.cache.azure]
   [runners.docker]
-    host = ""
     tls_verify = false
     image = "alpine:latest"
     privileged = false
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
     disable_cache = false
-    pull_policy = ["if-not-present"]
-    volumes = ["/var/run/docker.sock:/var/run/docker.sock","/cache"]
+    # 与docker -v语法相同
+    volumes = ["/cache","/var/run/docker.sock:/var/run/docker.sock"]
+    shm_size = 0
 ```
 
 注意，配置文件中的token是`Authentication token`，不走命令行的话需要使用[API](https://docs.gitlab.com/ee/api/runners.html#register-a-new-runner)生成
@@ -72,11 +98,10 @@ image: registry.example.com/k8-deploy:latest
 # 告诉运行器需要额外的镜像
 services:
   - postgres
-# 变量，也可以在项目>设置>CI/CD>变量中定义
 variables:
   POSTGRES_DB: rails-sample-1_test
 
-# 通过存储项目依赖项在job与stage之间传递信息
+# 通过存储项目依赖项在job与stage之间传递信息，也可以用artifacts
 cache:
   paths:
     - binary/
@@ -125,12 +150,12 @@ deploy-code:
 
   # 更强大的规则限制
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "main"'
+    - if: $CI_COMMIT_REF_NAME == "main"
       when: never
     - when: always
 ```
 
-- artifacts、dependencies
+- artifacts / dependencies
 
 ```yaml
 build:osx:
@@ -150,6 +175,8 @@ test:osx:
 - needs
 
 允许无序执行作业，在DAG中使用
+
+> 注意：needs需要的是job名，不是阶段名
 
 ```yaml
 linux:build:
@@ -196,6 +223,22 @@ staging:
 - anchors(锚点)
 
 ![20210727235245](https://i.loli.net/2021/07/27/jnvDgcEYkG8KZqx.png)
+
+## 变量
+
+设置变量的方式
+
+- `.gitlab-ci.yml`
+- 可以在项目`Settings > CI/CD`的`Variables`部分定义
+
+```text
+Key: Must be one line, with no spaces, using only letters, numbers, or _.
+Value: No limitations.
+Type: File or Variable.
+Environment scope: All, or specific environments.
+Protect variable (Optional): If selected, the variable is only available in pipelines that run on protected branches or tags.
+Mask variable (Optional): If selected, the variable's Value is masked in job logs. The variable fails to save if the value does not meet the masking requirements.
+```
 
 ### 预定义变量
 

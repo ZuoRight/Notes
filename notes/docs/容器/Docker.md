@@ -94,7 +94,8 @@ docker ps -a -q
 docker ps -aq -f ancestor=<镜像id/name>
 docker ps -aqf exited=0
 
-docker inspect <容器ID> # 查看容器元信息
+# 查看容器元信息
+docker inspect <容器ID>
 docker inspect -f='{{ .NetworkSettings.IPAddress }}'  <容器ID>  # -f 过滤信息，获取容器IP
 
 docker stats <容器ID>  # 查看容器实时资源占用

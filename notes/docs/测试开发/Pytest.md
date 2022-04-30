@@ -300,6 +300,8 @@ a and not b
 @pytest.mark.skip("原因, 可选参数")
 # 满足条件则跳过
 @pytest.mark.skip(a == 1, reaseon="原因")
+# 满足条件跳过并标记为失败
+@pytest.mark.xfail(a == 1, reaseon="原因")
 ```
 
 ```ini

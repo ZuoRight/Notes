@@ -156,3 +156,25 @@ mail -s "test content" [chonge@localhost]  # 发送邮件，也可以给离线�
 ### `usr/share/doc/...`
 
 一些程序的安装须知等说明文件可能会放在这里
+
+## 查找
+
+- `which [-a] xx`  只能查找$PATH路径中的可执行文件
+- `whereis xx`  可以查找$PATH及系统路径中的各种文件
+- `locate xx`  快速查找
+- `find xx`  全局查找，默认直接从根目录开始搜索
+
+### grep
+
+`grep 参数 文件`
+
+curl --help|grep '\-x'
+
+### find
+
+`find 路径 参数`
+
+-type 要查找的文件类型
+-regex 使用正则匹配
+
+### man xxx 之后可以用/xxx来搜索
