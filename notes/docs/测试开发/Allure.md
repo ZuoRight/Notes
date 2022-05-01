@@ -91,6 +91,51 @@ source：附件路径
 """
 ```
 
+## 页面优化
+
+### 添加环境
+
+如果要在测试报告概览-环境模块展示信息，可以在`allure-results`路径下新建一个`environment.properties`文件
+
+> `.properties` 是java环境的一种配置文件格式
+
+```properties
+Browser=Chrome
+Browser.Version=63.0
+Stand=Production
+```
+
+### 添加分类
+
+默认只显示了`failed`和`broken`两类，可以增加`skipped`等分类
+
+```json
+[
+  {
+    "name": "Ignored tests", 
+    "matchedStatuses": ["skipped"] 
+  },
+  {
+    "name": "Infrastructure problems",
+    "matchedStatuses": ["broken", "failed"],
+    "messageRegex": ".*bye-bye.*" 
+  },
+  {
+    "name": "Outdated tests",
+    "matchedStatuses": ["broken"],
+    "traceRegex": ".*FileNotFoundException.*" 
+  },
+  {
+    "name": "Product defects",
+    "matchedStatuses": ["failed"]
+  },
+  {
+    "name": "Test defects",
+    "matchedStatuses": ["broken"]
+  }
+]
+```
+
 ## Docker 服务
 
 ### allure-server
@@ -126,4 +171,4 @@ GET /generate-report?execution_type=图标（jenkins/gitlab/github/bamboo/teamci
 ```
 
 - KEEP_HISTORY=1 保留历史和趋势（默认保留最新的20个），可使用API清除历史记录，可点击logo查看历史
-- OPTIMIZE_STORAGE: 1 优化default-reports存储，不会再每次存储app.js和styles.css这两个不会变的文件，而是放在容器中公共位置存储
+- OPTIMIZE_STORAGE=1 将app.js和styles.css这两个不会变的静态文件放在容器/app/resources/中引用，减少default-reports存储
