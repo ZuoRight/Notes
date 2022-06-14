@@ -2,7 +2,7 @@
 
 [官方手册](https://dev.mysql.com/doc/refman/8.0/en/installing.html){ .md-button .md-button--primary }
 
-## 安装
+## 下载安装
 
 [官网下载](https://dev.mysql.com/downloads/mysql/)
 
@@ -43,15 +43,14 @@ default-storage-engine=INNODB
 
 ### Mac
 
-下载后安装一直下一步即可，最后会默认创建root账户，让你设置一个密码，加密方式建议选：`Use Legacy Password Encryption`（不然某些第三方客户端连接数据库时会报错）
+M1+下载ARM版本，反之x86，`No thanks, just start my download.`，安装一直下一步即可，最后会默认创建root账户，让你设置一个密码（最少8位，比如：12345678），加密方式建议选：`Use Legacy Password Encryption`（不然某些第三方客户端连接数据库时会报错）
 
 然后配置环境变量
 
 ```bash
-cd ~
-vim ./.bash_profile
-export PATH=$PATH:/usr/local/mysql/bin
-export PATH=$PATH:/usr/local/mysql/support-files
+vim ~/.bash_profile
+    export PATH=$PATH:/usr/local/mysql/bin
+    export PATH=$PATH:/usr/local/mysql/support-files
 source ~/.bash_profile
 ```
 
@@ -62,7 +61,7 @@ net start mysql  # 启动服务
 net stop mysql  # 停止服务
 
 # 连接服务
-mysql [-h 127.0.0.1] -u root -p
+mysql -u root -p
 # -h 默认主机名为本机127.0.0.1
 # -P 默认端口号3306
 # -u 指定用户名
@@ -93,7 +92,7 @@ flush privileges;
 -- 检查编码
 show variables like '%char%';
 -- 查看有哪些库
-show database;
+show databases;
 -- 删除库
 drop database if exists <库名>;
 -- 创建库

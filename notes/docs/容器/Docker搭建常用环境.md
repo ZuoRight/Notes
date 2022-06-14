@@ -23,7 +23,7 @@ docker run -it --rm --name my-running-app my-python-app
 - Tomcat
 
 ```bash
-docker run --name tomcat2 -p 8080:8080 -v $PWD/test:/usr/local/tomcat/webapps/test -d tomcat
+docker run -d --name tomcat2 -p 8080:8080 -v $PWD/test:/usr/local/tomcat/webapps/test tomcat
 # docker镜像默认webapps是空的，把webapps.dist中的ROOT文件夹复制或者移动到webapps下即可
 # 如果需要永久生效需要docker commit重新提交一个修改后的镜像，不然下次启动又会变回空的
 ```

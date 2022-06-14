@@ -28,8 +28,9 @@ gitlab-runner register
 根据提示
 输入url https:/code.xxx.net/
 输入认证token：registration token
-输入描述（可默认）
+输入描述（可默认，runner名）
 输入标签（可默认）
+输入最大进程数（可默认）
 输入执行器：docker
 如果执行器是docker需要输入默认镜像：alpine:latest
 """
@@ -43,13 +44,13 @@ gitlab-runner verify
 > 配置说明：[官方文档](https://docs.gitlab.com/runner/configuration/advanced-configuration.html)
 >
 > You can find the `config.toml` file in:
+>
 > - `/etc/gitlab-runner/` on *nix systems when GitLab Runner is executed as root (this is also the path for service configuration)
 > - `~/.gitlab-runner/` on *nix systems when GitLab Runner is executed as non-root
 > - `./` on other systems
 >
 > 修改配置后不需要重启，Gitlab Runner每3s会自动检查配置并自动加载更新
-> Runner如果是在Docker中，配置文件挂载在：`srv/gitlab-runner/config/config.toml`
-
+> Runner如果是在Docker中，配置文件可挂载在：`srv/gitlab-runner/config/config.toml`
 
 ```toml
 concurrent = 1
@@ -75,12 +76,13 @@ check_interval = 0
     disable_entrypoint_overwrite = false
     oom_kill_disable = false
     disable_cache = false
-    # 与docker -v语法相同
     volumes = ["/cache","/var/run/docker.sock:/var/run/docker.sock"]
     shm_size = 0
 ```
 
-注意，配置文件中的token是`Authentication token`，不走命令行的话需要使用[API](https://docs.gitlab.com/ee/api/runners.html#register-a-new-runner)生成
+> `volumes`字段与`docker -v`语法相同，`:ro`(只读)或`:rw`(读写，默认)，需要保证容器有足够权限读写宿主机路径
+>
+> 注意，配置文件中的token是`Authentication token`，不走命令行的话需要使用[API](https://docs.gitlab.com/ee/api/runners.html#register-a-new-runner)生成
 
 ```bash
 curl --request POST "https://gitlab.example.com/api/v4/runners" \

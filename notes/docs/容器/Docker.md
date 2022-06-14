@@ -4,6 +4,24 @@
 
 [安装](https://docs.docker.com/engine/install/)
 
+```bash
+# Ubuntu
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# ubuntu安装完会自启动
+systemctl start docker
+# 开机自启动
+systemctl enable docker
+```
+
 [以Python语言快速开始](https://docs.docker.com/language/python/)
 
 简单地说，容器就是利用了Linux Namespace(内核命名空间)、Linux Cgroups(控制资源的)以及rootfs等早就已经存在的技术隔离出来的一个进程。

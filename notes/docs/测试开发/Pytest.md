@@ -95,7 +95,7 @@ autouse
     False  默认，只会在传入函数名的case调用
     True  无需传参，自动为scope范围内的所有case调用，但不能给case返回值
 
-params  可以用list指定哪些case使用fixture
+params fixture参数化
 ids  给每组Case起别名
 name  fixture的名称，默认就是函数名
 """

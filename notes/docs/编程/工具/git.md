@@ -170,28 +170,35 @@ git commit --ament -m "xxx"  # 修正提交，可以覆盖上一次的提交
 ```shell
 git branch [-a] # 查看，加-a会显示远程分支(红色标示)
 git branch dev  # 新建
+git branch -m oldName newName # 修改本地分支名称
 git checkout dev  # 切换，git switch dev
 git checkout -b dev  # 新建并切换
 git merge dev  # 合并
 git branch -d dev  # 删除
 git branch -M main  # 将本地主分支改为main（与GitHub远程主分支保持一致）
+```
 
-git push origin --delete dev  # 删除远程分支
+## 拉取推送
+
+```bash
+# 从已跟踪服务器拉取并自动合并
+git pull [origin main] # 等同于：git fetch + git merge
+
+# 把远程仓库某分支最新代码取回本地，但不会自动合并
+# 此时可以git status查看下，然后执行git merge合并
+git fetch origin dev  # 拉取远程dev分支
+git checkout -b dev origin/dev  # 新建本地dev分支并与远程dev分支关联
 ```
 
 如果两个分支同时修改了同一处，合并时会产生冲突，此时冲突的文件会变为未追踪状态，文件中会用=======上下分割标识出两个分支冲突的部分，需要手动解决后再次add到暂存区后提交。
 
-## 推送
-
 ```shell
-# 把远程仓库某分支最新代码取回本地，但不会自动合并
-# 此时可以git status查看下，然后执行git merge合并
-git fetch [origin main]
-# 从已跟踪服务器拉取并自动合并
-git pull [origin main] # 等同于：git fetch + git merge
-
 # 推送到远程仓库
 git push [-u origin main]  # 首次推送加-u参数，设置默认仓库和分支
+
+git push origin 本地分支:远程分支  # push到远程指定分支(可以与本地不同名)
+
+git push origin --delete dev  # 删除远程分支
 ```
 
 ## 标签

@@ -2,8 +2,7 @@
 
 [官方网站](https://qameta.io/allure-report/){ .md-button .md-button--primary }
 
-一款支持多语言的测试报告生成框架，官方文档：<https://docs.qameta.io/allure-report/>
-
+一款支持多语言的测试报告生成框架，官方文档：<https://docs.qameta.io/allure-report/#_pytest>
 
 ## 本地安装
 
@@ -14,28 +13,34 @@
 - Mac：解压到usr/local/下，把bin路径添加到环境变量中。还可以直接用`brew install allure`快速安装
 - Windows：解压到非中文路径下，把bin目录添加到系统环境变量PATH中。
 
-## Pytest插件
+## Allure to Pytest
 
 `pip install allure-pytest`
 
-```shell
-# 生成报告到指定路径
-pytest --alluredir=tmp/my_allure_results
+```bash
+# 生成报告到指定路径（--clean-alluredir 清除之前运行产生的文件）
+pytest --alluredir=tmp/allure-results [--clean-alluredir]
 
 # 运行allure查看报告
-allure serve tmp/my_allure_results
+allure serve tmp/allure-results
 ```
 
-```shell
-# 把报告转成html格式（-o指定路径，--clean如果存在先清除）
-allrue generate tmp/my_allure_results [-o tmp/path --clean]
+```bash
+# 把报告转成html格式（-o 指定路径，--clean 清除之前运行产生的文件）
+allrue generate tmp/allures [-o tmp/path] [--clean]
 # html格式的报告不能直接打开，需用此命令打开
 allure open -h 127.0.0.1 -p 8883 tmp/path
 ```
 
+经验：前后两次执行同一文件+方法+传参相同时，生成的`allure-result/xxxx-result.json`文件中的name字段一致，后一次会变为前一次的retry，也就是所谓的覆盖，如果分布式/多线程/进程运行想最后生成到同一allure-result中不变成覆盖的情况，就要想办法改变name，文件名和方法名不变，只能改变传参，可以用fixture传入一个动态参数（必须使用到params），这样就变成平行的多条用例，而不是覆盖的一条用例。
+
+吐槽：曾经遇到过`allure serve path`后页面展示缺少了某个模块的用例，但是`allure-results`中是有相关文件的，所以确定不是用例运行的问题，然后`allrue generate path`后`allure open path`是完整的，怀疑`allure serve path`有点什么bug，没有进一步研究，推荐`allure open path`。
+
 ## 常用特性
 
-<https://docs.qameta.io/allure-report/#_pytest>
+- 静态属性: 装饰器形式使用
+
+![20220607201628](http://image.zuoright.com/20220607201628.png)
 
 ```python
 import allure
@@ -46,8 +51,9 @@ import allure
 @allure.story("子功能")
 
 @allure.title("用例标题")
-@allure.step("步骤，放在类/方法上面")
-with allure.step("步骤，放在方法内")
+@allure.title("Parameterized test title: adding {param1} with {param2}")  # 可以使用变量
+
+@allure.step("步骤")
 
 @allure.severity(allure.severity_level.级别)
 """
@@ -59,7 +65,20 @@ Trival 轻微 比如文案不规范
 """
 ```
 
-```shell
+- 动态属性: 方法内使用
+
+```python
+# 大部分静态属性都可以变为动态属性，这里只列了两种举例
+allure.dynamic.title('After a successful test finish, the title was replaced with this line.')
+allure.dynamic.description('A final description.')
+
+with allure.step("步骤，放在方法内"):
+  pass
+```
+
+- 指定属性运行
+
+```bash
 # 测试指定功能的case
 pytest --allure-features="xxx"
 pytest --allure-stories="xxx"
@@ -146,8 +165,11 @@ Stand=Production
 
 <https://github.com/fescobar/allure-docker-service>
 
-```shell
-sudo docker run -d -p 5050:5050 -e CHECK_RESULTS_EVERY_SECONDS=3 -e KEEP_HISTORY=1 \
+```bash
+sudo docker run -d -p 5050:5050 \
+    -e CHECK_RESULTS_EVERY_SECONDS=3 \
+    -e KEEP_HISTORY=1 \
+    -e OPTIMIZE_STORAGE=1 \
     -v ${PWD}/allure-results:/app/allure-results \
     -v ${PWD}/allure-reports:/app/default-reports \
     frankescobar/allure-docker-service

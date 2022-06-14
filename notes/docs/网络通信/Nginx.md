@@ -6,9 +6,12 @@ apt install nginx  # ubuntu
 yum install nginx  # centos
 brew install nginx  # mac
 
-nginx-h  # 查看帮助
+nginx -h  # 查看帮助
 nginx -V  # 查看版本及配置变量
 nginx -t  # 查看配置文件是否正常，会返回配置文件的路径
+
+# 安装完后已经在运行了，查看状态
+systemctl status nginx
 
 # 启动
 # systemctl start nginx.service
@@ -28,6 +31,8 @@ netstat -a | grep 80  # 查看端口
 ![20210919194707](http://image.zuoright.com/20210919194707.png)
 
 ## 配置文件
+
+默认配置在：`/etc/nginx/sites-available/default`
 
 每条指令以分号结尾
 
@@ -55,7 +60,7 @@ http {
     """
     http 全局块
     """
-    include /usr/share/nginx/modules/*.conf;  # 其它配置文件引入，不写path则与nginx.cfg同目录
+    include /etc/nginx/conf.d/*.conf;  # 其它配置文件引入
     default_type application/octet-stream;  # 默认文件类型
     charset utf-8;  # 默认编码
     sendfile on;  # 优化静态资源
