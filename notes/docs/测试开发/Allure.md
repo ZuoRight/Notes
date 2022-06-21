@@ -178,10 +178,11 @@ sudo docker run -d -p 5050:5050 \
 #   但${PWD}后面的路径以及对应容器中的路径，是不能改的
 #   需要注意文件的权限，最好先手动创建好相应路径，并赋予一定的权限
 #   /app/default-reports用于挂载存放历史报告
-
-# 查看最新报告: http://localhost:5050/allure-docker-service/latest-report
-# 一些常用API: http://localhost:5050/
 ```
+
+> 查看最新报告: <http://localhost:5050/allure-docker-service/latest-report>
+>
+> 常用API: <http://localhost:5050/>，比如删除历史记录和测试结果等
 
 - CHECK_RESULTS_EVERY_SECONDS=3 为每3秒自动检查allure-results是否有文件更新
 - CHECK_RESULTS_EVERY_SECONDS=None 则不检查，可以使用GET /generate-report主动生成，可指定Executors

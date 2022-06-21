@@ -141,23 +141,40 @@ deploy-code:
   environment:
     name: prod
     url: http://$CI_PROJECT_NAME.$KUBE_DOMAIN
-  # 何时执行
-  when: manual  # 手动触发
 
   # 限制分支，不常用，推荐使用rules限制
   only:  # 执行
     - branches  # 所有分支
   except:  # 不执行
     - main
+```
 
-  # 更强大的规则限制
-  rules:
-    - if: $CI_COMMIT_REF_NAME == "main"
-      when: never
-    - when: always
+- when
+
+何时执行: <https://docs.gitlab.com/ee/ci/yaml/#when>
+
+```yaml
+when: on_success  # 默认，仅在早期阶段的所有作业都成功或具有allow_failure: true时执行
+when: always  # 无论早期阶段的作业状态如何，都运行作业。也可用于workflow:rules
+when: on_failure  # 仅当至少一个早期阶段的作业失败时才运行作业
+when: manual  # 仅在手动触发时运行作业
+when: delayed  # 将作业的执行延迟指定的持续时间
+when: never  # 不要运行作业，只能在rules或workflow: rules中使用
+```
+
+- rules
+
+更强大的规则限制，不能与only/except共用: <https://docs.gitlab.com/ee/ci/yaml/#rules>
+
+```yaml
+rules:
+  - if: $CI_COMMIT_REF_NAME == "main"
+    when: never
 ```
 
 - artifacts / dependencies
+
+缓存或者临时文件的存储
 
 ```yaml
 build:osx:
@@ -228,6 +245,10 @@ staging:
 
 ## 变量
 
+### 自定义变量
+
+<https://docs.gitlab.com/ee/ci/variables/index.html#custom-cicd-variables>
+
 设置变量的方式
 
 - `.gitlab-ci.yml`
@@ -243,6 +264,8 @@ Mask variable (Optional): If selected, the variable's Value is masked in job log
 ```
 
 ### 预定义变量
+
+<https://docs.gitlab.com/ee/ci/variables/predefined_variables.html>
 
 - CI_COMMIT_BRANCH 提交分支名称。 在分支流水线中可用，包括默认分支的流水线。 在合并请求(MR)或标签(tag)流水线中不可用。
 - CI_COMMIT_REF_NAME 提交分支或标签(tag)的名称。
@@ -277,4 +300,22 @@ import requests
 url = "https://gitlab.example.com/api/v4/projects/344/ref/<REF_NAME>/trigger/pipeline?token=<TOKEN>"
 url_with_variables = url + "&variables[key]=value"
 requests.post(url)
+```
+
+## 管道计划/定时任务
+
+<https://docs.gitlab.com/ee/ci/pipelines/schedules.html>
+
+```bash
+# 文件格式說明
+# ┌──分鐘（0 - 59）
+# │ ┌──小時（0 - 23）
+# │ │ ┌──日（1 - 31）
+# │ │ │ ┌─月（1 - 12）
+# │ │ │ │ ┌─星期（0 - 6，表示从周日到周六）
+# │ │ │ │ │
+# * * * * * 被執行的命令
+
+# 每天下午六点
+0 18 * * *
 ```

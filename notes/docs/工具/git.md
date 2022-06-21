@@ -169,13 +169,16 @@ git commit --ament -m "xxx"  # 修正提交，可以覆盖上一次的提交
 
 ```shell
 git branch [-a] # 查看，加-a会显示远程分支(红色标示)
+git branch --no-merged master  # 查看没有合并到master的分支
 git branch dev  # 新建
 git branch -m oldName newName # 修改本地分支名称
+git branch -d dev1 dev2  # 删除已合并的分支(可删除多个), -D强制删除未合并的分支
+git branch -M main  # 将本地主分支改为main（与GitHub远程主分支保持一致）
+
 git checkout dev  # 切换，git switch dev
 git checkout -b dev  # 新建并切换
+
 git merge dev  # 合并
-git branch -d dev  # 删除
-git branch -M main  # 将本地主分支改为main（与GitHub远程主分支保持一致）
 ```
 
 ## 拉取推送

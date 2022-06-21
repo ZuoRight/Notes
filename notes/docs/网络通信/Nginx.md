@@ -76,6 +76,11 @@ http {
         index index.html index.htm index.php;  # 首页
         # autoindex on;  # 开启目录浏览
 
+        ; 允许跨域
+        ; add_header Access-Control-Allow-Origin *;
+        ; add_header Access-Control-Allow-Credentials true;
+        ; add_header Access-Control-Allow-Methods GET,POST;
+
         """
         location块
         每个server层下面允许有多个location，用于对不同的路径进行不同模块的配置
