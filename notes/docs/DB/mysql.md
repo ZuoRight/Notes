@@ -6,6 +6,21 @@
 
 [官网下载](https://dev.mysql.com/downloads/mysql/)
 
+### Mac
+
+M1+下载ARM版本，反之x86，`No thanks, just start my download.`，安装一直下一步即可，最后会默认创建root账户，让你设置一个密码（最少8位，比如：12345678）
+
+> 加密方式建议选：`Use Legacy Password Encryption`，即使用明文mysql_native_password，8.0版本为caching_sha2_password，某些第三方客户端连接数据库时不兼容新密码验证方式可能会报错
+
+然后配置环境变量
+
+```bash
+vim ~/.bash_profile
+    export PATH=$PATH:/usr/local/mysql/bin
+    export PATH=$PATH:/usr/local/mysql/support-files
+source ~/.bash_profile
+```
+
 ### Windows
 
 下载后是个压缩包，无需安装，解压后做一些相关配置即可使用
@@ -40,21 +55,6 @@ default-storage-engine=INNODB
 然后以管理员身份打开命令行，输入：`mysqld --initialize --console`，初始化完毕后会生成一个初始密码（记得保存）
 
 然后输入：`mysqld install`，注册服务，成功后即可启动服务登录使用
-
-### Mac
-
-M1+下载ARM版本，反之x86，`No thanks, just start my download.`，安装一直下一步即可，最后会默认创建root账户，让你设置一个密码（最少8位，比如：12345678）
-
-> 加密方式建议选：`Use Legacy Password Encryption`，即使用明文mysql_native_password，8.0版本为caching_sha2_password，某些第三方客户端连接数据库时不兼容新密码验证方式可能会报错
-
-然后配置环境变量
-
-```bash
-vim ~/.bash_profile
-    export PATH=$PATH:/usr/local/mysql/bin
-    export PATH=$PATH:/usr/local/mysql/support-files
-source ~/.bash_profile
-```
 
 ### Docker
 

@@ -1,4 +1,4 @@
-# Web Server Gateway Interface
+# WSGI
 
 Web开发的接口规范，从最早的CGI(Common Gateway Interface)到各个语言独立的规范，比如Python的WSGI(Web Server Gateway Interface)和Java的Servlet(Server Applet)，WSGI接近CGI，比较简单，但Servlet由于提出的较早，要复杂得多。
 
