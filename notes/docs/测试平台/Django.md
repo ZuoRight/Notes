@@ -1,4 +1,4 @@
-# Django开发
+# Django
 
 [Django的官方文档(有中文版)](https://docs.djangoproject.com/zh-hans){ .md-button .md-button--primary }
 
