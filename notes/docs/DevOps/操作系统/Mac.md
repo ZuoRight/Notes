@@ -3,12 +3,19 @@
 ## 终端
 
 ```shell
+ls /
+"""
+AppleInternal System bin etc private usr
+Applications Users cores home sbin var
+Library Volumes dev opt tmp
+"""
+
 lsof -i:3031  # 查看端口号是否占用
 kill [-9] 3031  # 杀死进程，-9强制杀死
 launchctl  # 类似Linux的systemctl
 which xx  # 查找
 unzip xxx.zip  # 解压
-``` 
+```
 
 ## CLT
 
@@ -75,6 +82,11 @@ sudo vim /etc/shells  # 需要管理者权限
 
 Mac系统下的一款开源包管理器，[项目地址](https://github.com/Homebrew)，[官网](https://brew.sh)
 
+- Homebrew安装路径：`/usr/local/Homebrew/`（Intel版Mac），`/opt/homebrew`（M1版）
+- Homebrew安装的软件路径：`/usr/local/Cellar/`路径（M1: `/opt/homebrew/Cellar`），并自动在`/usr/local/bin/`路径下创建link
+
+> 其中Cellar译为酒窖，而Homebrew官方预先编译好的软件叫做Bottle(酒瓶子)，Bottles就是很多酒瓶子(即软件)，Homebrew把安装一个软件叫做把一个酒瓶子pour(倒入)到酒窖里。
+
 由四部分组成
 
 - Homebrew 源代码仓库
@@ -99,7 +111,6 @@ M1安装完后会提示配置环境变量
 # 卸载，卸载不干净再装会报错
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
 ```
-
 
 ### 更换下载源
 
@@ -143,11 +154,6 @@ cd $(brew --repo)/Library/Taps/homebrew/homebrew-cask-versions
 git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask-versions.git  # 换成镜像源
 git remote set-url origin https://github.com/Homebrew/homebrew-cask-versions.git  # 换回官方源
 ```
-
-- Homebrew安装路径：`/usr/local/Homebrew/`
-- Homebrew安装的软件路径：`/usr/local/Cellar/`路径，并自动在`/usr/local/bin/`路径下创建link
-
-> 其中Cellar译为酒窖，而Homebrew官方预先编译好的软件叫做Bottle(酒瓶子)，Bottles就是很多酒瓶子(即软件)，Homebrew把安装一个软件叫做把一个酒瓶子pour(倒入)到酒窖里。
 
 ### 常用命令
 

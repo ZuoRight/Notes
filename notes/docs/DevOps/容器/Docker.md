@@ -64,6 +64,10 @@ docker  # 查看所有命令选项
 docker <command> --help  # 查看命令使用帮助
 docker version  # 版本信息
 docker info  # 系统信息
+
+# 查看镜像或容器的元信息
+docker inspect <容器ID>
+docker inspect -f='{{ .NetworkSettings.IPAddress }}'  <容器ID>  # -f 过滤信息，获取容器IP
 ```
 
 ## 容器
@@ -92,12 +96,23 @@ docker run -it --name test ubuntu:15.10 /bin/bash
 
 # 与运行中的容器进行交互
 docker exec -it <容器ID> <command>
+
+# 还原启动容器时的命令
+"""
+虽然可以通过docker inspect 分析json内容，但是不是很方便
+此时可以借助第三方工具runlike
+  pip安装：sudo pip install runlike
+    如果没有pip就先安装pip：sudo apt install python3-pip
+  或者直接docker运行：alias runlike="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike"
+"""
+runlike -p <容器ID>
 ```
 
 - 查看容器
 
 ```bash
 # -a 显示所有容器(包括未运行的)
+# --no-trunc 参数可以查看更完整的信息，即不会截断显示，比如完整ID和COMMAND等
 docker ps [-a] [-f key]
 """
 CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS                     PORTS     NAMES
@@ -111,10 +126,6 @@ docker ps -a -q
 # -f 过滤
 docker ps -aq -f ancestor=<镜像id/name>
 docker ps -aqf exited=0
-
-# 查看容器元信息
-docker inspect <容器ID>
-docker inspect -f='{{ .NetworkSettings.IPAddress }}'  <容器ID>  # -f 过滤信息，获取容器IP
 
 docker stats <容器ID>  # 查看容器实时资源占用
 docker logs [-f] <容器ID>  # 查看容器日志，-f实时打印
@@ -149,7 +160,7 @@ docker import http://example.com/exampleimage.tgz example/imagerepo
 
 ```bash
 docker images  # 查看本地镜像
-docker search <镜像>  # 查找镜像
+docker search <镜像>  # 从镜像库查找镜像
 docker pull <镜像>  # 拉取镜像
 docker save <镜像> > <镜像>.tar  # 导出镜像
 docker load < <镜像>.tar  # 导入镜像
@@ -262,4 +273,49 @@ Linux下需要单独安装，访问：<https://github.com/docker/compose/release
 curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 docker-compose --version
+```
+
+## 环境搭建
+
+- Tomcat
+
+```bash
+docker run -d --name tomcat2 -p 8080:8080 -v $PWD/test:/usr/local/tomcat/webapps/test tomcat
+# docker镜像默认webapps是空的，把webapps.dist中的ROOT文件夹复制或者移动到webapps下即可
+# 如果需要永久生效需要docker commit重新提交一个修改后的镜像，不然下次启动又会变回空的
+```
+
+- Nginx
+
+```bash
+# 编辑.html文件
+vi ./html/index.html
+# 启动服务，并将html目录挂载到容器
+docker run -d --name nginx -p 8088:80 -v ${PWD}/html:/usr/share/nginx/html nginx
+```
+
+- TestLink
+
+```bash
+# 新建容器网络testlink-tier
+docker network create testlink-tier
+
+# 启动MariaDB数据库服务
+docker run -d --name mariadb \  # 后台服务方式执行，容器名：mariadb
+  -e MARIADB_DATABASE=bitnami_testlink \  # 参数，数据库名：bitnami_testlink
+  -e MARIADB_ROOT_PASSWORD=mariadb \  # 管理员密码
+  -e MARIADB_USER=bn_testlink \  # 参数，创建一个用户：bn_testlink
+  -e MARIADB_PASSWORD=bn_testlink \  # 参数，设置密码：bn_testlink
+  --net testlink-tier \  # 指定要使用的网络（上面创建的）
+  -v ${HOME}/docker/mariadb:/bitnami \  # 挂载宿主机目录到容器内/bitnami目录
+  bitnami/mariadb  # 要启动的容器
+
+# 启动testlink，默认账号：user，密码：bitnami
+docker run -d --name testlink -p 8080:8080 -p 8443:8443 \  # 分别映射http和https的端口
+  -e TESTLINK_DATABASE_NAME=bitnami_testlink \  # 数据库
+  -e TESTLINK_DATABASE_USER=bn_testlink \  # 用户名
+  -e TESTLINK_DATABASE_PASSWORD=bn_testlink \  # 密码
+  --net testlink-tier \  # 与数据库使用同一网络
+  -v ${PWD}/testlink:/bitnami \
+  bitnami/testlink
 ```

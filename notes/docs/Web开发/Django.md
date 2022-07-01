@@ -1,43 +1,18 @@
 # Django开发
 
-[Django的官方文档](https://docs.djangoproject.com/zh-hans/3.2/contents/){ .md-button .md-button--primary }
+[Django的官方文档(有中文版)](https://docs.djangoproject.com/zh-hans){ .md-button .md-button--primary }
 
-## 常用命令
+安装：`python -m pip install Django`
 
-```bash
-# 启动服务器
-python manage.py runserver
-# 查看迁移状态
-python manage.py showmigrations
-# 生成迁移文件
-python manage.py makemigrations one_app
-# 数据迁移(谨慎执行)
-python manage.py migrate
-# 创建后台管理员
-python manage.py createsuperuser
-# 进入交互式命令行
-python manage.py shell
-# 导出数据，不指定app_name默认导出所有表
-python manage.py dumpdata [app_name] > path/data.json
-# 导入数据，不需要指定app_name
-python manage.py loaddata path/data.json
-```
+Django 4.0依赖Python 3.8+
 
-```python
-from django.contrib.auth.models import User
-# 重置用户密码
-user = User.objects.get(username='admin')
-user.set_password('xxxx')
-user.save()
-```
+Django采用了MTV的框架模式，即：Model(模型)，Template(模版)，View(视图)
 
 ## 项目
 
-- 创建项目：`django-admin startproject mysite`
-- 创建应用：`python manage.py startapp one_app`
-- 项目结构：
+创建项目：`django-admin startproject mysite`
 
-```shell
+```text
 # 项目容器，可重命名
 mysite/
     # 命令行工具
@@ -55,16 +30,36 @@ mysite/
         wsgi.py
 ```
 
+- `mysite/settings.py`
+
+```python
+# 声明应用
+INSTALLED_APPS = [
+    # Django自带应用
+    'django.contrib.admin',  # 管理后台
+    'django.contrib.auth',  # 认证授权系统
+    'django.contrib.contenttypes',  # 内容类型框架
+    'django.contrib.sessions',  # 会话框架
+    'django.contrib.messages',  # 消息框架
+    'django.contrib.staticfiles',  # 管理静态文件的框架
+
+    # 以下是自定义应用
+    'one_app.apps.One_appConfig',  # 完整形式
+    'one_app',  # 简写形式
+]
+```
+
+- 启动服务：`python manage.py runserver`
+- 前端页面：<http://127.0.0.1:8000/>
+- admin后台：<http://127.0.0.1:8000/admin>
+
 ## 应用
 
-一个项目可以包含多个应用，一个应用可以被多个项目使用
+一个项目可以包含多个应用，一个应用可以被多个项目使用，应用可以存放在任意路径，不过通常与manage.py同级，这样就可以作为顶级模块导入
 
-应用可以存放在任意路径，不过通常与manage.py同级，这样就可以作为顶级模块导入
+创建应用：`python manage.py startapp one_app`
 
-- 创建应用：`python manage.py startapp one_app`
-- 应用结构：
-
-```shell
+```text
 one_app/
     __init__.py
     admin.py
@@ -81,137 +76,313 @@ one_app/
             index.html  # 模版
 ```
 
-### 修改应用名涉及要改动的地方
+- 修改应用名涉及要改动的地方
 
-> 项目层
+```text
+项目层
+    settings，注册应用名
+    urls.py
 
-- settings，注册应用名
-- urls.py
-
-> 应用层
-
-- apps.py
-- urls.py
-- 模版命名空间，form表单action
-- 所有的迁移文件，alert表名
-
-## 应用模型 models.py
-
-### 应用声明
-
-```python
-# mysite/settings.py
-INSTALLED_APPS = [
-    # Django自带应用
-    'django.contrib.admin',  # 管理后台
-    'django.contrib.auth',  # 认证授权系统
-    'django.contrib.contenttypes',  # 内容类型框架
-    'django.contrib.sessions',  # 会话框架
-    'django.contrib.messages',  # 消息框架
-    'django.contrib.staticfiles',  # 管理静态文件的框架
-    # 以下是自定义应用
-    'one_app.apps.One_appConfig',  # 完整形式
-    'one_app',  # 简写形式
-]
+应用层
+    apps.py
+    urls.py
+    模版命名空间，form表单action
+    所有的迁移文件，alert表名
 ```
 
-### 为声明的应用创建表（table）
+### 定义模型：`one_app/models.py`
 
-`python manage.py migrate`
+> 参考：<https://docs.djangoproject.com/zh-hans/4.0/topics/db/models/#>
 
-查看创建了哪些表：`.schema`(SQLite)，`SHOW TABLES;`(MySQL)
+```python
+from django.db import models
+from django.contrib.auth.models import User
 
-### 创建管理员账号
+# Create your models here.
+# 每个类就是一个模型(sheet)，继承自models.Model
+class Cases(models.Model):
+     """
+    每个属性代表一个字段(field)，主键id字段不需要定义，会被自动添加
+    格式：字段名 = models.类型(参数, "备注名")
+        字段名不能用Python保留字，不能连续用多个下划线且不能以下划线结尾
+        备注名默认为字段名，可自定义
+    """
 
-`python manage.py createsuperuser`
+    """
+    枚举值变量建议定义在类内部
+    如果是一个易变的枚举列表，建议使用外键
+    """
+    ORDER_TYPE_CHOICES = [
+        ("MARKET", "MARKET"),
+        ("LIMIT", "LIMIT"),
+        ("TWAP_ALGO", "TWAP_ALGO")
+    ]
 
-然后启动服务器访问：127.0.0.1:8000/admin 即可访问后台
+    def payload_default():
+        return {"delta": 0.01}
 
-### 定义模型
+    exchange = models.ForeignKey(Exchange, on_delete=models.CASCADE)  # 外键
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
+    order_type = models.CharField(max_length=20, choices=ORDER_TYPE_CHOICES, default="LIMIT")
+    side = models.CharField(max_length=5, default="1")
+    payload = models.JSONField("Payload", default=payload_default)
+    priority = models.CharField(
+        max_length=5,  # CharField类型必须带max_length属性
+        choices=[("p0","P0"), ("p1","P1"), ("p2","P2"), ("p3","P3")],  # 使用枚举值
+        default="p0", 
+        help_text="P0一般为主流币种正向用例, P1为小币种用例, P2/P3通常为边界值或异常场景用例"
+    )
+    is_test = models.IntegerField(choices=[(1,"Yes"), (0,"No")], default=1)
+    expect_succeed = models.IntegerField(choices=[(1,"True"), (0,"False")], default=1)
+    note = models.CharField(max_length=50, blank=True)
+
+    creator = models.ForeignKey(User, verbose_name="创建人", null=True, on_delete=models.SET_NULL)
+    created_date = models.DateTimeField(verbose_name="创建日期", auto_now_add=True)
+    modified_date = models.DateTimeField(verbose_name="修改日期", auto_now=True)
+
+    class Meta:
+        verbose_name = 'Exchange'
+
+
+class Exchange(models.Model):
+    exchange = models.CharField(max_length=20)
+
+    class Meta:
+        # 在admin后台显示的导航文案
+        verbose_name = 'Exchange'
+        verbose_name_plural = '交易所'  # 复数
+
+    def __str__(self):
+        # 默认返回值，比如作为外键时，在admin后台显示为变量值，而不是关联id
+        return self.exchange
+```
+
+- 常见字段类型
+
+```python
+models.AutoField(primary_key=True)  # 模型会自动设置id字段为自增主键
+models.IntegerField()  # 整数
+models.CharField(max_length=num)  # 字符串，必须设置max_length
+models.BooleanField()  # 布尔值
+models.DateField(auto_now_add/auto_now=True)  # 日期(第一次创建时设置为现在时间/每次保存时(更新时不会)设置为现在时间)
+models.DateTimeField(auto_now_add/auto_now=True)  # 日期和时间
+models.JSONField(encoder=None, decoder=None)  # Json类型(v3.1版本新加，另外mysql5.7.8以下版本不支持Json类型）
+models.URLField(max_length=num)  # URL
+models.UUIDField()  # 唯一标识符
+
+models.ForeignKey(想要关联的模型类名, on_delete=models.CASCADE)  # 外键（多对一关联，还可以自关联(递归）)
+```
+
+- 字段通用参数
+
+```python
+primary_key=True  # 设置为主键，一般不需要手动设置主键，默认会添加一列id字段为主键
+unique=True  # 字段的值唯一，即不能重复
+
+blank=True  # 字段为空时就是空
+null=True  # 字段为空时设置为NULL
+default=xxx  # 默认值，一般为None
+
+help_text=xxx  # 注释文本
+
+choices=[("S", "Small"), (“B”, “Big”)]  # 枚举值，[("存入数据库中的值", "仅用于显示")]
+```
+
+- Meta 属性
+
+> 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/models/options/>
+
+### 模型继承
+
+> 参考：<https://docs.djangoproject.com/zh-hans/4.0/topics/db/models/#model-inheritance>
+
+三种方式
+
+- 抽象基类
+
+基类不会创建表
+
+通过在基类中设置Meta属性`abstract = True`实现
 
 ```python
 from django.db import models
 
-# 每个类就是一个模型(sheet)，继承自models.Model
-class Question(models.Model):
-    # 每个属性代表一个字段(field)
-    # 格式：字段名 = models.类型(参数, "备注名")
-    # 主键id字段不需要定义，会被自动添加
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+class CommonInfo(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.PositiveIntegerField()
 
-    # 在执行Question.objects.all()时默认执行这个方法
-    def __str__(self):
-        return self.question_text  # 可以返回一个能标识这个模型的字段
+    class Meta:
+        abstract = True
+        """
+        CommonInfo将变为一个抽象基类，不会生成实际的数据表
+        抽象基类中的字段可以被子类继承、覆盖、也可以等于None软删除
+        子类也会继承Meta类，但会自动设置abstract=False，所以子类不会因为继承了基类而变成抽象基类
+        """
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)  # 外键
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+class Student(CommonInfo):
+    home_group = models.CharField(max_length=5)
+    age = None  # 子类中不用这个字段
 ```
 
-[字段类型及参数](https://docs.djangoproject.com/zh-hans/3.1/ref/models/fields/#)
+- 多表继承
 
-字段名：不能用Python保留字，不能连续用多个下划线且不能以下划线结尾
+子类继承自非抽象基类，子类不能覆盖基类的字段，子类与父类都会创建表
 
-字段备注名：默认使用字段的属性名作为备注名
-
-常见字段类型：
-
-- models.AutoField(primary_key=True)  模型会自动设置id字段为自增主键
-- models.ForeignKey(想要关联的模型类名, on_delete=models.CASCADE)  外键（多对一关联，还可以自关联(递归）)
-- models.IntegerField()  整数
-- models.CharField(max_length=num)  字符串
-- models.BooleanField()  布尔值
-- models.DateField(auto_now_add/auto_now=True)  日期(第一次创建时设置为现在时间/每次保存时(更新时不会)设置为现在时间)
-- models.DateTimeField(auto_now_add/auto_now=True)  日期和时间
-- models.JSONField(encoder=None, decoder=None)  v3.1版本新加Json类型，如果mysql为5.7以下版本不要使用这个类型
-- models.URLField(max_length=num)  URL
-- models.UUIDField()  唯一标识符
-
-字段通用参数：
-
-- `blank=True` 字段为空时就是空
-- `null=True` 字段为空时设置为NUL
-- `choices=[("S", "Small"), (“B”, “Big”)]` 枚举值（二元组的第一个值是真实存在数据库中的值，第二个值仅用于显示）
-- `default=xxx` 默认值，一般为None
-- `help_text=xxx` 注释文本
-- `primary_key=True` 设置为主键，一般不需要手动设置主键，默认会添加一列id字段为主键
-- `unique=True` 字段的值唯一，即不能重复
+无需额外设置
 
 ```python
-# 数据库迁移
-# 生成数据迁移文件(SQL脚本)(生成到migrations/路径下)
-python manage.py makemigrations
-# 为每个应用自动生成需要的数据库表，具体创建什么取决于数据库迁移文件
-python manage.py migrate
-# 创建后台管理员账号
-python manage.py createsuperuser
-# 根据提示输入用户名邮箱和密码（admin，admin@zuoright.com，123456）
-# 访问后台：127.0.0.1:8000/admin
+from django.db import models
+
+class Place(models.Model):
+    name = models.CharField(max_length=50)
+    address = models.CharField(max_length=80)
+
+class Restaurant(Place):
+    serves_hot_dogs = models.BooleanField(default=False)
+    serves_pizza = models.BooleanField(default=False)
 ```
 
-### 数据迁移（创建/修改sheet）
+- 代理模型
 
-- step1：生成迁移数据（SQL语句）
+子类与父类字段完全一致，仅仅改变行为，与基类共用一张表
 
-```shell
+通过在子类中设置Meta属性`proxy = True`实现
+
+```python
+from django.db import models
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+
+"""
+至少要继承一个非抽象基类，可以继承自多个抽象父类，以及多个代理模型（但必须拥有同一个非抽象基类）
+"""
+class MyPerson(Person):
+    class Meta:
+        proxy = True
+
+    def do_something(self):
+        # ...
+        pass
+```
+
+## 数据库配置
+
+### SQLite
+
+SQLite是一种嵌入式数据库，它的数据库就是一个文件，体积很小，通常被集成在各种程序中，比如Python就内置了SQLite3，所以无需额外安装相关驱动
+
+```python
+# mysite/settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # 数据库引擎
+        'NAME': BASE_DIR / 'db.sqlite3',  # sqlite的绝对路径
+    }
+}
+```
+
+### MySQL
+
+> 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/databases/#mysql-notes>
+
+- 创建数据库：`create database if not exists dbname default character set utf8 collate utf8_general_ci;`
+- 配置
+
+    ```python
+    # mysite/settings.py
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+            'NAME': 'dbname',  # 数据库名称
+            'HOST': '127.0.0.1',  # host
+            'PORT': 3306,  # 端口 
+            'USER': 'root',  # 用户名
+            'PASSWORD': '12345678',  # 密码
+
+            # 连接到数据库时要使用的额外参数
+            # 'OPTIONS': {
+            #     'read_default_file': '/path/to/my.cnf',  # 直接读取mysql的配置文件，此时会覆盖上面的配置
+            #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # 解决迁移时的一个警告
+            #     'charset': 'utf8mb4',
+            #     "isolation_level": "repeatable read",  # 隔离级别设置为可重复读取，为了迁移数据适配数据库默认Binlog=STATEMENT时报错
+            # }
+        }
+    }
+    ```
+
+- 安装MySQLdb驱动
+
+    ```bash
+    # Django推荐，使用'ENGINE': 'django.db.backends.mysql'，默认使用mysqlclient驱动库
+    brew install mysql-client
+    pip install mysqlclient
+
+    # MySQL官方提供的驱动器，使用'ENGINE': 'mysql.connector.django'，默认使用mysql-connector驱动库
+    pip install mysql-connector
+
+    # 如果想换成pymysql驱动，需要自己在mysite/__init__.py中引入并声明，貌似Django2.2以后会报错
+    pip install pymysql
+    """
+    import pymysql
+    pymysql.install_as_MySQLdb()
+    """
+    ```
+
+## 数据迁移
+
+```bash
+# 查看迁移状态，[x]表示已迁移
+# 也可以用来检查数据库配置是否正确，有问题会报错
+python manage.py showmigrations
+"""
+admin
+ [x] 0001_initial
+ [x] 0002_logentry_remove_auto_add
+ [x] 0003_logentry_add_action_flag_choices
+auth
+ [ ] 0001_initial
+ [ ] 0002_alter_permission_name_max_length
+ [ ] 0003_alter_user_email_max_length
+ [ ] 0004_alter_user_username_opts
+ [ ] 0005_alter_user_last_login_null
+ [ ] 0006_require_contenttypes_0002
+ [ ] 0007_alter_validators_add_error_messages
+ [ ] 0008_alter_user_username_max_length
+ [ ] 0009_alter_user_last_name_max_length
+ [ ] 0010_alter_group_name_max_length
+ [ ] 0011_update_proxy_permissions
+ [ ] 0012_alter_user_first_name_max_length
+contenttypes
+ [ ] 0001_initial
+ [ ] 0002_remove_content_type_name
+one_app
+ (no migrations)
+sessions
+ [ ] 0001_initial
+"""
+
+# 生成迁移数据（生成SQL脚本）
 python manage.py makemigrations one_app
-```
+"""
+迁移数据存储在：one_app/migrations/0001_initial.py 中
+查看生成了哪些SQL语句：python manage.py sqlmigrate one_app 0001
+"""
 
-迁移数据存储在：`one_app/migrations/0001_initial.py`中
-
-查看生成了哪些SQL语句：`python manage.py sqlmigrate one_app 0001`
-
-- step2：执行迁移（执行SQL语句）
-
-```shell
+# 执行迁移（执行SQL语句）
 python manage.py migrate
+"""
+查看创建了哪些表：
+    SQLite: .schema
+    MySQL: SHOW TABLES;
+"""
 ```
 
 ### 重置迁移文件
 
-```shell
+```bash
 # 查看当前迁移文件记录及状态
 python manage.py showmigrations
 # 将某应用的迁移文件重置为未提交状态
@@ -225,7 +396,7 @@ python manage.py migrate 应用名 --fake-initial
 
 ### 压缩迁移文件
 
-```shell
+```bash
 # 假设要压缩的应用为myapp，现在有5个迁移文件，最新的为0005_xxx
 # 生成压缩后的迁移文件
 python manage.py squashmigrations 0005
@@ -241,14 +412,123 @@ python manage.py migrate
 
 > `django.db.migrations.exceptions.InconsistentMigrationHistory: Migration admin.0001_initial is applied before its dependency contenttypes.0001_initial on database 'default'`
 
-当时我查遍全网（中、英、日）也没有得到一个满意的答案，大多数解决方式是建议必须重置数据库，但我觉得并不至于要这样做，睡了一觉之后第二天下班之后，决定静下心来自己解决掉它，最终只需要在`django_migrations`表中第一行补上`contenttypes.0001_initial`这条记录就可以了，就是这么简单。
+当时查了个遍也没有得到一个满意的答案，大多数解决方式是建议必须重置数据库，但我觉得并不至于要这样做，睡了一觉之后第二天下班之后，决定静下心来自己解决掉它，最终只需要在`django_migrations`表中第一行补上`contenttypes.0001_initial`这条记录就可以了，就是这么简单。
 
 !!! 总结
     不要随便压缩并且重命名Django自带应用的数据迁移文件（内心OS：但我记得之前确实是为了改一个Django本身的问题，而那个问题是因为迁移文件的命名是数字开头，导致依赖引用的时候报了语法错误，这是不符合Python文件命名规范的，Shit）
 
+### 导入导出数据
+
+```bash
+# 导出数据，不指定app_name默认导出所有表
+python manage.py dumpdata [app_name] > path/data.json
+# 导入数据，不需要指定app_name
+python manage.py loaddata path/data.json
+```
+
+## 后台管理
+
+> 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/contrib/admin/>
+
+### 注册应用 `one_app/admin.py`
+
+```python
+from django.contrib import admin
+from .models import Demo
+
+
+admin.site.site_header = "QAdmin"  # 顶部显示名称
+admin.site.site_title = 'QAdmin'  # title名称
+
+
+# Register your models here.
+@admin.register(Demo)  # 也可以这样：admin.site.register(Demo, DemoAdmin)
+class DemoAdmin(admin.ModelAdmin):
+    # 详情页
+    inlines = [StepInline]  # 改为行内布局，默认StackedInline堆叠布局
+    fields = (('is_test', 'expect_succeed'), 'note')  # 显示的字段，同一元组的字段显示在同一行
+    exclude = ('creator','created_date','modified_date')  # 不显示的字段
+
+    # 列表页
+    list_display = ("name", 'cmd', "group", 'creator', 'created_date', 'modified_date')  # 在列表中显示的字段
+    list_display_links = ('subject', 'currency')  # 可点击跳转到详情页的字段，默认为list_display第一个字段，为None将没有任何链接
+    list_editable = ("group",)  # 列表中可编辑的字段
+    list_filter = ("group", "creator")  # 列表中可筛选的字段，默认支持多个字段联合筛选，利用双下划线可以进行跨表关联
+    search_fields = ("name", 'cmd')  # 列表中可被搜索的字段
+
+    ordering = ('id',)  # 列表自动排序字段
+    sortable_by = ("subject")  # 支持手动排序的字段，不限制则所有list_display字段都可以排序，空元组则禁用所有排序
+
+    # 如果设置了创建者字段，加入此方法表示保存时自动添入当前User为创建者
+    def save_model(self, request, obj, form, change):
+        if obj.creator is None:
+            obj.creator = request.user
+        super().save_model(request, obj, form, change)
+
+    """
+    列表的action中默认只有删除数据
+    我们可以添加自定义的action
+    """
+    # 指定action
+    actions = ["demo_action"]
+    # 定义action
+    def demo_action(self):
+        pass
+    demo_action.short_description = "脚本显示名称"
+    # 将action加入到admin下拉框中显示
+    def get_action_choices(self, request):
+        choices = super(DemoAdmin, self).get_action_choices(request)
+        choices.pop(0)
+        choices.reverse()
+        return choices
+
+
+# 可将多个模型注册到同一个类上
+@admin.register(Exchange, Subject, Currency)
+class HiddenModelAdmin(admin.ModelAdmin):
+    # 隐藏模型，不在导航上显示索引，但仍然可以外键引用的时候编辑和新建
+    def has_module_permission(self, request) -> bool:
+        return False
+```
+
+### 创建账号
+
+```python
+# 创建后台管理员账号
+python manage.py createsuperuser
+# 根据提示输入用户名邮箱和密码（admin，admin@zuoright.com，123456）
+# 访问后台：127.0.0.1:8000/admin
+```
+
+```bash
+# 进入交互式命令行
+python manage.py shell
+
+# 重置用户密码
+from django.contrib.auth.models import User
+user = User.objects.get(username='admin')
+user.set_password('xxxx')
+user.save()
+```
+
+## 修改应用在后台的显示名
+
+> 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/applications/#for-application-authors>
+
+```python
+from django.apps import AppConfig
+
+
+class OnestepConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'onestep'  # 应用名
+    verbose_name = '一步'  # 显示名，不设置此字段时默认为应用名
+```
+
 ## 数据库API
 
 ```python
+# 可用于admin.py或views.py
 from one_app.models import Blog
 
 # SELECT语句
@@ -272,7 +552,7 @@ r.Field1 = "x01"  # 修改字段值
 r.save()  # 保存
 ```
 
-字段查询
+- 字段查询
 
 ```python
 # 完全匹配 =
@@ -302,19 +582,6 @@ Q.filter(id__in=[1, 3, 4])  # WHERE id IN (1, 3, 4);
 # BETWEEN...AND...
 Q.filter(date__range=(start_date, end_date))  # WHERE date BETWEEN 'start_date' and 'end_date';
 ```
-
-## 管理后台 admin.py
-
-```python
-# one_app/admin.py
-from django.contrib import admin
-from .models import Question
-
-# 把应用注册到管理后台
-admin.site.register(Question)
-```
-
-然后就可以对记录进行操作，增删改查
 
 ## 视图函数 views.py
 
@@ -549,57 +816,6 @@ urlpatterns = [
 <img width="180" height="180" src="{百分号 static 'img/xxx.jpg' 百分号}"
 ```
 
-## 数据库配置
-
-- SQLite（默认，Python内置）
-
-自带，数据库会在需要的时候自动创建
-
-```python
-# mysite/settings.py
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # 数据库引擎
-        'NAME': BASE_DIR / 'db.sqlite3',  # sqlite的绝对路径
-    }
-}
-```
-
-- MySQL
-
-安装驱动：`pip install pymysql`
-
-声明：`onestep/__init__.py`
-
-```python
-import pymysql
-
-pymysql.install_as_MySQLdb()  # 告诉django用pymysql代替mysqldb连接数据库
-```
-
-配置
-
-```python
-# mysite/settings.py
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'NAME': 'dbname',  # 数据库名称
-        'HOST': '127.0.0.1',  # host
-        'PORT': 3306,  # 端口 
-        'USER': 'root',  # 用户名
-        'PASSWORD': '123456',  # 密码
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # 解决迁移时的一个警告
-            'charset': 'utf8mb4',
-            "isolation_level": "repeatable read",  # 隔离级别设置为可重复读取，为了迁移数据适配数据库默认Binlog=STATEMENT时报错
-        }
-    }
-}
-```
-
-创建数据库：`create database if not exists dbname default character set utf8 collate utf8_general_ci;`
-
 ## 配置拆分
 
 拆分后，如果要在非默认环境下启动和数据迁移时（总之所有会牵扯到数据库相关的命令）记得加`--settings=config_path`
@@ -630,8 +846,9 @@ STATICFILES_DIRS = [  # 公共
 ```python
 from .set_base import *
 
-
 DEBUG=True
+
+DATABASES = {}  # 开发环境数据库
 ```
 
 ### set_prod
@@ -639,9 +856,10 @@ DEBUG=True
 ```python
 from .set_base import *
 
-
 DEBUG=False
 ALLOWED_HOSTS = ["*"]  # DEBUG等于False时必需配置
+
+DATABASES = {}  # 生产环境数据库
 ```
 
 此时Django不会再提供静态文件服务

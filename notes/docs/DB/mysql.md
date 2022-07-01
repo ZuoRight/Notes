@@ -43,7 +43,9 @@ default-storage-engine=INNODB
 
 ### Mac
 
-M1+下载ARM版本，反之x86，`No thanks, just start my download.`，安装一直下一步即可，最后会默认创建root账户，让你设置一个密码（最少8位，比如：12345678），加密方式建议选：`Use Legacy Password Encryption`（不然某些第三方客户端连接数据库时会报错）
+M1+下载ARM版本，反之x86，`No thanks, just start my download.`，安装一直下一步即可，最后会默认创建root账户，让你设置一个密码（最少8位，比如：12345678）
+
+> 加密方式建议选：`Use Legacy Password Encryption`，即使用明文mysql_native_password，8.0版本为caching_sha2_password，某些第三方客户端连接数据库时不兼容新密码验证方式可能会报错
 
 然后配置环境变量
 
@@ -52,6 +54,15 @@ vim ~/.bash_profile
     export PATH=$PATH:/usr/local/mysql/bin
     export PATH=$PATH:/usr/local/mysql/support-files
 source ~/.bash_profile
+```
+
+### Docker
+
+- 官网文档：<https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-getting-started.html>
+- 镜像：<https://hub.docker.com/_/mysql>
+
+```bash
+
 ```
 
 ## 连接
@@ -64,7 +75,7 @@ net stop mysql  # 停止服务
 mysql -u root -p
 # -h 默认主机名为本机127.0.0.1
 # -P 默认端口号3306
-# -u 指定用户名
+# -u 指定用户名，默认用户名为本机user名
 # -p 带此参数表明需要密码，反之不需要，回车后密文输入
 
 # 断开连接
@@ -231,7 +242,7 @@ join用于连接多个表的列，即字段合并，横向扩展，而union用�
 SELECT * FROM students WHERE (score < 80 OR score > 90) AND gender = 'M';
 ```
 
-having与where作用相同，但where后面不能接聚合函数，所以GROUP BY分组之后，通常使用having来对分组记录进行筛选
+HAVING 与 WHERE 都是过滤用的，WHERE 是过滤行，HAVING 过滤组，HAVING 支持所有 WHERE 的操作，后面可以接聚合函数
 
 ### GROUP BY 分组
 

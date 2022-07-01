@@ -1,5 +1,8 @@
 # GitLab CI/CD
 
+- CI(Continuous Integrationv) 持续集成
+- CD(Continuous Deploymen) 持续部署/交付
+
 ![20210808174712](http://image.zuoright.com/20210808174712.png)
 
 ## 安装Runner
