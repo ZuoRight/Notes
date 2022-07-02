@@ -58,11 +58,21 @@ default-storage-engine=INNODB
 
 ### Docker
 
-- 官网文档：<https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-getting-started.html>
+> Oracle 提供的 MySQL Docker 镜像是专门为 Linux 平台构建的，不推荐在其它平台使用
+
+- 官网文档：<https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html>
 - 镜像：<https://hub.docker.com/_/mysql>
 
 ```bash
+docker run --name=mysql8 --restart on-failure \
+    --character-set-server=utf8mb4 \  # 默认字符集
+    --collation-server=utf8mb4_col \  # 默认排序规则
+    -d mysql/mysql-server:8.0
 
+# 默认挂载在/var/lib/docker/volumes/...
+
+# 默认创建'root'@'localhost'帐户，只能容器内部连接，如果要允许外网访问，可以设置：MYSQL_ROOT_HOST=%
+# MYSQL_ROOT_PASSWORD=12345678 指定root用户的密码，否则会生成随机密码，出于安全考虑不建议指定
 ```
 
 ## 连接

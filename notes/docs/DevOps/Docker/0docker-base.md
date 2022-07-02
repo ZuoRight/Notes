@@ -1,4 +1,76 @@
-# 容器
+# Docker
+
+[参考手册](https://docs.docker.com/reference/){ .md-button .md-button--primary }
+
+[安装](https://docs.docker.com/engine/install/)
+
+```bash
+# Ubuntu
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# ubuntu安装完会自启动
+systemctl start docker
+# 开机自启动
+systemctl enable docker
+```
+
+[以Python语言快速开始](https://docs.docker.com/language/python/)
+
+简单地说，容器就是利用了Linux Namespace(内核命名空间)、Linux Cgroups(控制资源的)以及rootfs等早就已经存在的技术隔离出来的一个进程。
+
+容器没有虚拟化内核，而是与宿主机共用内核，Docker必须部署在Linux内核的系统上。
+
+> Docker Desktop for Windows/Mac 本质上是基于Hyper-V等虚拟机安装的，类似于在 VMWare 或 VirtualBox中安装。
+
+Docker中安装的各种操作系统镜像其实只是套了壳的软件而已，并不是真正的操作系统。
+
+> 凡是挑内核的场景都不适用于使用Docker，比如不能做系统兼容性测试，也不能在Docker环境中驱动IE浏览器。
+
+## 概念
+
+- 镜像(Images)：包含运行软件所需的一切要素（代码和运行时）
+- 容器(Container)：镜像的实例，每一个 Docker 容器都拥有自己的文件系统、网络体系（因此也拥有自己的 IP 地址）、进程空间以及面向 CPU 和内存定义的资源限制。同时，它不需要引导操作系统，可以即时启动。简而言之，Docker 的宗旨是隔离，即隔离主机操作系统的资源，虚拟化则是在主机操作系统上提供访客操作系统。
+- 镜像仓库：比如Docker Hub，镜像仓库其实也是docker启动的一个容器，然后挂载了出来。每个仓库可以有不同的标签(版本)，可通过`<仓库名>:<标签>`的格式指定
+
+## 镜像加速
+
+从Docker Hub拉取镜像比较慢，可以配置[阿里云镜像加速器](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)，获取到自己的加速地址后如图配置即可。
+
+- Linux
+
+```bash
+cd /etc/docker
+vim daemon.json  # 添加 registry-mirrors 配置
+sudo systemctl daemon-reload  # 重新加载配置文件
+sudo systemctl restart docker  # 重启docker
+```
+
+- Mac/Windows
+
+![20210726135953](http://image.zuoright.com/20210726135953.png)
+
+## 基本命令
+
+```bash
+docker  # 查看所有命令选项
+docker <command> --help  # 查看命令使用帮助
+docker version  # 版本信息
+docker info  # 系统信息
+
+# 查看镜像或容器的元信息
+docker inspect <容器ID>
+docker inspect -f='{{ .NetworkSettings.IPAddress }}'  <容器ID>  # -f 过滤信息，获取容器IP
+```
+
+## 发展及原理
 
 从过去以物理机和虚拟机为主体的开发运维环境，向以容器为核心的基础设施的转变过程，并不是一次温和的改革，而是涵盖了对网络、存储、调度、操作系统、分布式原理等各个方面的容器化理解和改造。
 
@@ -32,7 +104,7 @@ Docker 项目固然解决了应用打包的难题，但正如前面所介绍的�
 
 容器本身没有价值，有价值的是容器编排，正因为如此，容器技术生态才爆发了一场关于“容器编排”的“战争”。而这次战争，最终以 Kubernetes 项目和 CNCF 社区的胜利而告终
 
-## Namespace
+### Namespace
 
 容器技术的核心功能，就是通过约束（Cgroups 技术）和修改（Namespace 技术）进程的动态表现，从而为其创造出一个“边界”，所以说容器其实就是一种特殊的进程而已。
 
@@ -74,7 +146,7 @@ ls -l /proc/<容器pid>/ns
 docker run -it --net container:4ddf4638572d busybox ifconfig
 ```
 
-## Cgroups
+### Cgroups
 
 Linux Cgroups 的全称是 Linux Control Group。它最主要的作用，就是限制一个进程组能够使用的资源上限，包括 CPU、内存、磁盘、网络带宽等等。
 
@@ -84,7 +156,7 @@ Linux Cgroups 的全称是 Linux Control Group。它最主要的作用，就是�
 
 如果在容器里执行 top 指令，就会发现，它显示的信息居然是宿主机的 CPU 和内存数据，而不是当前容器的数据。造成这个问题的原因就是，/proc 文件系统并不知道用户通过 Cgroups 给这个容器做了什么样的资源限制，即：/proc 文件系统不了解 Cgroups 限制的存在。
 
-## 文件系统
+### 文件系统
 
 docker run的时候，Docker 就会从 Docker Hub 上拉取一个 Ubuntu 镜像到本地，这个所谓的“镜像”，实际上就是一个 Ubuntu 操作系统的 rootfs，它的内容是 Ubuntu 操作系统的所有文件和目录。不过，与之前我们讲述的 rootfs 稍微不同的是，Docker 镜像使用的 rootfs，往往由多个“层”组成，每一层都是 Ubuntu 操作系统文件与目录的一部分；而在使用镜像时，Docker 会把这些增量联合挂载在一个统一的挂载点上
 
@@ -105,20 +177,3 @@ Init 层的存在，就是为了避免你执行 docker commit 时，把 Docker �
 容器的镜像操作，比如 docker commit，都是发生在宿主机空间的。而由于 Mount Namespace 的隔离作用，宿主机并不知道这个绑定挂载的存在。所以，在宿主机看来，容器中可读写层的 /test 目录（/var/lib/docker/aufs/mnt/[可读写层 ID]/test），始终是空的。不过，由于 Docker 一开始还是要创建 /test 这个目录作为挂载点，所以执行了 docker commit 之后，你会发现新产生的镜像里，会多出来一个空的 /test 目录。
 
 可以确认，容器 Volume 里的信息，并不会被 docker commit 提交掉；但这个挂载点目录 /test 本身，则会出现在新的镜像当中
-
-## Volume
-
-Volume 机制，允许你将宿主机上指定的目录或者文件，挂载到容器里面进行读取和修改操作。
-
-```bash
-# 没有显示声明宿主机目录，那么 Docker 就会默认在宿主机上创建一个临时目录 /var/lib/docker/volumes/[VOLUME_ID]/_data，然后把它挂载到容器的 /test 目录上
-$ docker run -v /test ...
-# Docker 就直接把宿主机的 /home 目录挂载到容器的 /test 目录上
-$ docker run -v /home:/test ...
-```
-
-这里要使用到的挂载技术，就是 Linux 的绑定挂载（bind mount）机制。它的主要作用就是，允许你将一个目录或者文件，而不是整个设备，挂载到一个指定的目录上。并且，这时你在该挂载点上进行的任何操作，只是发生在被挂载的目录或者文件上，而原挂载点的内容则会被隐藏起来且不受影响。
-
-绑定挂载实际上是一个 inode 替换的过程。在 Linux 操作系统中，inode 可以理解为存放文件内容的“对象”，而 dentry，也叫目录项，就是访问这个 inode 所使用的“指针”
-
-![20210910000628](http://image.zuoright.com/20210910000628.png)
