@@ -1,10 +1,8 @@
-# deepdiff
+# DeepDiff
 
 <https://zepworks.com/deepdiff/5.2.2/diff.html>
 
 `pip install deepdiff`
-
-## DeepDiff
 
 `from deepdiff import DeepDiff`
 

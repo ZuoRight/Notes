@@ -32,6 +32,14 @@ ISP(互联网服务提供商)通过路由器把局域网连接起来就形成城
 
 ![20210725173808](http://image.zuoright.com/20210725173808.png)
 
+## 网络拓扑结构
+
+![20210725170757](http://image.zuoright.com/20210725170757.png)
+
+点对点，去中心化
+
+![20210725142748](http://image.zuoright.com/20210725142748.png)
+
 ## 网络设备
 
 > [集线器，交换机，路由器](https://www.bilibili.com/video/BV1yt411d7Rd)
