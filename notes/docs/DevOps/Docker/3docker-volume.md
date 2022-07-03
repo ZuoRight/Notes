@@ -51,9 +51,9 @@ Docker 内建支持了三种挂载(mount)类型，最常用的是volume
 ```bash
 # 虽然v是volume的简写，但-v指的是bind模式
 # 将宿主机路径（绝对路径）挂载到容器，不存在会自建，存在如果有数据则会覆盖
-docker run -v $(pwd)/tmp:/app/data <image>
+docker run -v $(pwd)/tmp:/app/data <image:tag>
 # 或者
-docker run --mount type=bind, source=path nginx:latest
+docker run --mount type=bind, source=path <image:tag>
 ```
 
 Bind Mount 是 Docker 最早提供的（发布时就支持）挂载类型，作用是把宿主机的某个目录（或文件）挂载到容器的指定目录（或文件）下
@@ -64,7 +64,7 @@ Bind Mount 的设计里，Docker 只有容器的控制权，存放容器生产�
 
 ```bash
 # 宿主机路径如果不存在则报错
-docker run -it --mount type=volume,source=hello,target=/path <image> /bin/bash
+docker run -it --mount type=volume,source=hello,target=/path <image:tag> /bin/bash
 ```
 
 Docker 把解决如何访问存储的功能模块称为存储驱动（Storage Driver）。通过`docker info`命令，你能查看到当前 Docker 所支持的存储驱动。虽然内置了主流的OverlayFS 驱动，譬如 Overlay、Overlay2、AUFS、BTRFS、ZFS等，但为了支持快速迭代的云计算厂商的存储系统，Docker 提出了与 Storage Driver 相对应的 Volume Driver（卷驱动）的概念。用户可以通过`docker plugin install`命令安装外部的卷驱动，并在创建 Volume 时指定一个与其存储系统相匹配的卷驱动，如果创建 Volume 时不指定卷驱动，那默认就是 local 类型，在 Volume 中存放的数据会存储在宿主机的`/var/lib/docker/volumes/`目录之中。

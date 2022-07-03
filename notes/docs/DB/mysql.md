@@ -58,21 +58,40 @@ default-storage-engine=INNODB
 
 ### Docker
 
-> Oracle 提供的 MySQL Docker 镜像是专门为 Linux 平台构建的，不推荐在其它平台使用
+镜像
 
-- 官网文档：<https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-more-topics.html>
-- 镜像：<https://hub.docker.com/_/mysql>
+- Docker官方提供的（推荐）：<https://hub.docker.com/_/mysql>
+- Oracle官方提供的mysql-server（只适用于linux）：<https://hub.docker.com/r/mysql/mysql-server>
 
 ```bash
-docker run --name=mysql8 --restart on-failure \
-    --character-set-server=utf8mb4 \  # 默认字符集
-    --collation-server=utf8mb4_col \  # 默认排序规则
-    -d mysql/mysql-server:8.0
+docker pull mysql:8.0
+sudo docker run -d -p 23306:3306 \  # 映射到宿主机的23306端口，避免与宿主机数据库端口冲突
+    -e MYSQL_RANDOM_ROOT_PASSWORD=yes \  # 设置密码，无论是固定密码还是随机生成或者为空，此参数必选
+    -v /my/own/datadir:/var/lib/mysql \  # 数据挂载路径（不能使用被其它容器已占用的路径）
+    --network some-network \  # 绑定自定义网络，方便其它容器使用mysql服务
+    --name=mysql8 mysql:8.0
 
-# 默认挂载在/var/lib/docker/volumes/...
+# 默认创建'root'@'localhost'帐户，
+# 设置密码，三种方式必选其一：
+    # 1. 固定密码（出于安全考虑不建议这样）：-e MYSQL_ROOT_PASSWORD=xxx
+    # 2. 密码为空：-e MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    # 3. 随机生成密码（推荐）：-e MYSQL_RANDOM_ROOT_PASSWORD=yes
+        '''
+        从容器日志中查找密码：sudo docker logs mysql8 2>&1 | grep GENERATED
+        连接服务：sudo docker exec -it mysql8 mysql -uroot -p
+        重置密码：ALTER USER root@localhost IDENTIFIED BY 'password';
 
-# 默认创建'root'@'localhost'帐户，只能容器内部连接，如果要允许外网访问，可以设置：MYSQL_ROOT_HOST=%
-# MYSQL_ROOT_PASSWORD=12345678 指定root用户的密码，否则会生成随机密码，出于安全考虑不建议指定
+        默认创建的root用户貌似只能在容器内使用，无法被外网或其它容器访问（即使设置了host=%）
+        可以新创建一个用户
+            USE mysql;
+            CREATE USER 'demo'@'%' IDENTIFIED BY 'password';
+            flush privileges;
+        '''
+# 容器内
+#   数据存放路径：/var/lib/mysql
+#       默认挂载在宿主机的：/var/lib/docker/volumes/<container_id>，如果不是root用户可能没有权限访问
+#       建议挂载到自定义的路径下：-v /my/own/datadir:/var/lib/mysql
+#   配置文件路径：/etc/mysql/my.cnf，如果想用自定义的配置文件启动可以-v挂载
 ```
 
 ## 连接
@@ -88,21 +107,52 @@ mysql -u root -p
 # -u 指定用户名，默认用户名为本机user名
 # -p 带此参数表明需要密码，反之不需要，回车后密文输入
 
+SELECT VERSION();  # 查看版本
+SELECT NOW()  # 查看当前时间
+
 # 断开连接
 exit
 # 或者
 quit
 ```
 
-## 修改密码
-
-> 注意：旧版本修改密码的方式在8.0版本不再适用
+## 用户相关操作
 
 ```sql
-use mysql
-alter user 'root'@'localhost' identified with mysql_native_password by '111111'
+use mysql;
+
+-- 查看用户
+select user,host from user;
+'''
++------------------+-----------+
+| user             | host      |
++------------------+-----------+
+| demo             | %         |
+| root             | %         |
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
++------------------+-----------+
+5 rows in set (0.00 sec)
+'''
+
+-- 创建用户（%表示所有IP都可以访问）
+CREATE USER 'qadmin'@'%' IDENTIFIED BY 'qadminpasswd';
+-- 授予所有权限
+grant all privileges on *.* to 'qadmin'@'%' with grant option;
 -- 刷新系统权限相关的表
 flush privileges;
+
+-- 查看用户授权信息
+show grants for 'qadmin'@'%';
+-- 撤销权限
+revoke all privileges on *.* from 'qadmin'@'%';
+
+-- 修改密码（旧版本修改密码的方式在8.0版本不再适用）
+alter user 'root'@'localhost' identified with mysql_native_password by '111111'
+
+-- 删除用户
+drop user 'test1'@'localhost';
 ```
 
 ## 基础操作
@@ -110,8 +160,22 @@ flush privileges;
 - 库操作
 
 ```sql
--- 检查编码
+-- 检查编码格式
 show variables like '%char%';
+'''
+存储字符集
+    utf8 支持最长三个字节的UTF-8字符
+    utf8mb4 支持四字节的UTF-8字符，默认，推荐
+排序字符集
+    utf8mb4_unicode_ci 基于标准的 Unicode 来排序和比较，能够在各种语言之间精确排序
+    utf8mb4_general_ci 8.0前默认，有实现 Unicode 排序规则，在遇到某些特殊语言或者字符集，排序结果可能不一致
+    utf8mb4_0900_ai_ci 8.0后默认
+        uft8mb4 表示用 UTF-8 编码方案，每个字符最多占 4 个字节
+        0900 指的是 Unicode 校对算法版本
+        ai 指的是口音不敏感，也就是说，排序时 e，è，é，ê 和 ë 之间没有区别。
+        ci 表示不区分大小写，也就是说，排序时 p 和 P 之间没有区别
+'''
+
 -- 查看有哪些库
 show databases;
 -- 删除库
@@ -163,9 +227,9 @@ alter table <表名> change column <旧字段> <新字段> VARCHAR(20) NOT NULL;
 alter table <表名> drop column <字段>;
 ```
 
-## 增删改查
+## 增删改
 
-- 增
+### 增
 
 ```sql
 -- 值的顺序需要和字段顺序一一对应，字段顺序不必和表头字段顺序一致
@@ -190,14 +254,14 @@ INSERT INTO statistics (class_id, average) SELECT class_id, AVG(score) FROM stud
 -- 另外添加记录的时候，如果发现不连续，可显式指定它的值而不是省略让它自增。
 ```
 
-- 删
+### 删
 
 ```sql
 -- 不带条件限制时则会删除所有行数据（安全模式下可能会报错以防止误操作）
 delete from <表名> where ... and ...;
 ```
 
-- 改
+### 改
 
 ```sql
 -- set后面可以用表达式
@@ -205,7 +269,9 @@ delete from <表名> where ... and ...;
 update <表名> set key1=value1, key2=value2 where ... and ...;
 ```
 
-- 查
+## 查
+
+- 关键字顺序
 
 ```sql
 SELECT *|字段列表
