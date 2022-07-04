@@ -496,7 +496,10 @@ class HiddenModelAdmin(admin.ModelAdmin):
 ```python
 # 创建后台管理员账号
 python manage.py createsuperuser
-# 根据提示输入用户名邮箱和密码（admin，admin@zuoright.com，123456）
+# 根据提示输入用户名邮箱和密码
+#   admin
+#   admin@zuoright.com
+#   密码不能少于8位，且不能全是数字：password
 # 访问后台：127.0.0.1:8000/admin
 ```
 
@@ -822,6 +825,10 @@ urlpatterns = [
 
 ![20210826183930](http://image.zuoright.com/20210826183930.png)
 
+> 设置`manage.py`默认使用`set_dev`配置：`os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onestep.settings.set_dev')`
+>
+> 设置`wsgi.py`默认使用`set_dev`配置：`os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onestep.settings.set_prod')`
+
 ### set_base
 
 ```python
@@ -879,13 +886,20 @@ DATABASES = {}  # 生产环境数据库
 
 4. 重新加载：`service nginx reload`
 
-## 启动
+## 部署
+
+> 参考：<https://docs.djangoproject.com/zh-hans/4.0/howto/deployment/>
+
+Django是一个需要Web服务器来运行的Web框架。然而由于大多数Web服务器不是用Python编写，我们需要一个接口来实现沟通。
+
+Django现在支持两种接口：WSGI和ASGI
+
+- WSGI 是 Python 的主要标准，用于网络服务器和应用程序之间的通信，但它只支持同步代码。
+- ASGI 是新兴的，对异步友好的让你的Django网页使用Python异步特性和已经开发的Django异步特性的标准。
 
 ### 自带服务器命令行启动
 
-主要是读取`manage.py`文件（项目自带，在项目根目录）
-
-> 可设置为命令行默认启动开发环境：`os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onestep.settings.set_dev')`
+> 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/django-admin/#runserver>
 
 ```bash
 # 先切换到项目容器内
@@ -903,37 +917,54 @@ python manage.py runserver 0:8000
 python manage.py runserver --settings=onestep.settings.set_prod
 ```
 
-### uWSGI 启动
+### Gunicorn
 
-主要读取`wsgi.py`文件（项目自带，与`setting.py`同目录）
+纯Python编写的WSGI服务器
 
-> 可设置为uWSGI默认启动生产环境：`os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onestep.settings.set_prod')`
+> 官方文档：<https://docs.gunicorn.org/en/latest/run.html#commonly-used-arguments>
 
 ```bash
-pip install uwsgi  # 安装
+python -m pip install gunicorn
 
-uwsgi --http 127.0.0.1:3031 --file onestep/wsgi.py  # 命令行指定参数启动
-uwsgi --ini path/uwsgi.ini  # 从配置文件启动，返回[uWSGI] getting INI configuration from uwsgi.ini
+gunicorn --env DJANGO_SETTINGS_MODULE=onestep.settings.set_prod onestep.wsgi
+```
+
+### uWSGI
+
+由C编写
+
+> 官方文档：<https://uwsgi.readthedocs.io/en/latest/Configuration.html>
+
+```bash
+python -m pip install uwsgi  # 安装
+
+# 命令行指定参数启动
+uwsgi --http 127.0.0.1:3031 --file onestep/wsgi.py
+
+# 从配置文件启动，返回[uWSGI] getting INI configuration from uwsgi.ini
+uwsgi --ini path/uwsgi.ini
+
 uwsgi --reload path/uwsgi.pid  # 重启
 uwsgi --stop path/uwsgi.pid  # 停止
 ```
 
 ```ini
 [uwsgi]
-; 项目根目录
+; 项目路径
 chdir=/app
 ; wsgi对象
 module=onestep.wsgi:application
+; 主进程
+master=True
+; 保存进程号
+pidfile=/tmp/uwsgi/demo-master.pid
+; 保存日志
+daemonize=/tmp/uwsgi/demo.log
+
 ; 使用http协议提供服务，测试时使用
 ; http=127.0.0.1:3030
 ; 使用socket协议，配合nginx使用，与http端口不能重复
 socket=127.0.0.1:3031
-; 主进程
-master=true
-; 保存日志
-daemonize=/tmp/uwsgi.log
-; 保存进程号
-pidfile=/tmp/uwsgi.pid
 ```
 
 ### Nginx + uWSGI 启动
@@ -957,3 +988,9 @@ server {
 # 启动nginx
 # 访问：<http://127.0.0.1:8000>
 ```
+
+### 检查部署
+
+> 参考：<https://docs.djangoproject.com/zh-hans/4.0/howto/deployment/checklist/>
+
+`python manage.py check --deploy`

@@ -22,7 +22,24 @@ systemctl start docker
 systemctl enable docker
 ```
 
-[以Python语言快速开始](https://docs.docker.com/language/python/)
+## 基本命令
+
+```bash
+docker  # 查看所有命令选项
+docker <command> --help  # 查看命令使用帮助
+docker version  # 版本信息
+docker info  # 系统信息
+```
+
+## 概念
+
+![20220704225726](http://image.zuoright.com/20220704225726.png)
+
+- 镜像仓库(Registry)：管理镜像的仓库，类似GitHub
+- 镜像(Images)：包含运行软件所需的一切要素（代码和运行时）
+- 容器(Container)：镜像的实例，每一个 Docker 容器都拥有自己的文件系统、网络体系（因此也拥有自己的 IP 地址）、进程空间以及面向 CPU 和内存定义的资源限制。同时，它不需要引导操作系统，可以即时启动。简而言之，Docker 的宗旨是隔离，即隔离主机操作系统的资源，虚拟化则是在主机操作系统上提供访客操作系统。
+
+## 发展及原理
 
 简单地说，容器就是利用了Linux Namespace(内核命名空间)、Linux Cgroups(控制资源的)以及rootfs等早就已经存在的技术隔离出来的一个进程。
 
@@ -33,44 +50,6 @@ systemctl enable docker
 Docker中安装的各种操作系统镜像其实只是套了壳的软件而已，并不是真正的操作系统。
 
 > 凡是挑内核的场景都不适用于使用Docker，比如不能做系统兼容性测试，也不能在Docker环境中驱动IE浏览器。
-
-## 概念
-
-- 镜像(Images)：包含运行软件所需的一切要素（代码和运行时）
-- 容器(Container)：镜像的实例，每一个 Docker 容器都拥有自己的文件系统、网络体系（因此也拥有自己的 IP 地址）、进程空间以及面向 CPU 和内存定义的资源限制。同时，它不需要引导操作系统，可以即时启动。简而言之，Docker 的宗旨是隔离，即隔离主机操作系统的资源，虚拟化则是在主机操作系统上提供访客操作系统。
-- 镜像仓库：比如Docker Hub，镜像仓库其实也是docker启动的一个容器，然后挂载了出来。每个仓库可以有不同的标签(版本)，可通过`<仓库名>:<标签>`的格式指定
-
-## 镜像加速
-
-从Docker Hub拉取镜像比较慢，可以配置[阿里云镜像加速器](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)，获取到自己的加速地址后如图配置即可。
-
-- Linux
-
-```bash
-cd /etc/docker
-vim daemon.json  # 添加 registry-mirrors 配置
-sudo systemctl daemon-reload  # 重新加载配置文件
-sudo systemctl restart docker  # 重启docker
-```
-
-- Mac/Windows
-
-![20210726135953](http://image.zuoright.com/20210726135953.png)
-
-## 基本命令
-
-```bash
-docker  # 查看所有命令选项
-docker <command> --help  # 查看命令使用帮助
-docker version  # 版本信息
-docker info  # 系统信息
-
-# 查看镜像或容器的元信息
-docker inspect <容器ID>
-docker inspect -f='{{ .NetworkSettings.IPAddress }}'  <容器ID>  # -f 过滤信息，获取容器IP
-```
-
-## 发展及原理
 
 从过去以物理机和虚拟机为主体的开发运维环境，向以容器为核心的基础设施的转变过程，并不是一次温和的改革，而是涵盖了对网络、存储、调度、操作系统、分布式原理等各个方面的容器化理解和改造。
 

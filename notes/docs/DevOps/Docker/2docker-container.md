@@ -3,7 +3,7 @@
 
 - 运行容器
 
-> 在ubuntu下启动的dockerhub官方提供的Python镜像容器，自然也是基于ubuntu环境的
+> 容器共享了宿主机的内核
 
 ```bash
 docker run --name test -p <ip>:4000:80 <镜像名>:tag  # 不加tag默认执行latest版本的镜像
@@ -82,6 +82,10 @@ docker port <容器ID>  # 查看容器端口映射
 80/tcp -> 0.0.0.0:8089
 80/tcp -> :::8089
 """
+
+# 查看镜像或容器的元信息
+docker inspect <容器ID>
+docker inspect -f='{{ .NetworkSettings.IPAddress }}'  <容器ID>  # -f 过滤信息，获取容器IP
 ```
 
 - 删除容器
