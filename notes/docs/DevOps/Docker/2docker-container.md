@@ -3,30 +3,42 @@
 
 - 运行容器
 
+> 在ubuntu下启动的dockerhub官方提供的Python镜像容器，自然也是基于ubuntu环境的
+
 ```bash
-docker run --name test -p <ip>:4000:80 -d <镜像名>:tag  # 不加tag默认执行latest版本的镜像
+docker run --name test -p <ip>:4000:80 <镜像名>:tag  # 不加tag默认执行latest版本的镜像
 docker create ...  # 创建容器但不运行，用法同run
 """
 --name <name>，指定容器名称
 
 容器默认不会对外发布网络，需要使用`-p`（`--publish`）参数将端口映射到宿主机，供docker外部服务或未连接到此容器的其它容器使用，也可以-P随机指定端口映射
 
--d 后台运行并返回容器ID
-
 -e var 设置单值环境变量
 --env key=value 设置k-v形式的环境变量
-
---rm 容器退出时自动清理容器内部文件，与-d同用无意义，只适用于前台运行时
 
 –restart=no  默认，不会自动重启
 –restart=always 开机启动，失败也会一直重启，web容器一般用这个
 –restart=on-failure:10 表示出错后重启，可以限制重启次数
 """
 
-docker run -dit --name test ubuntu:15.10 /bin/bash  # 运行并进入容器，-i交互，-t指定伪终端
-docker exec -it <容器ID> <command>  # 与运行中的容器进行交互
+# 运行容器并与之交互
+'''
+-i 交互
+-t 指定伪终端
 
-docker attach <command>  # 连接到运行在后台的容器
+-d 后台运行，默认返回容器ID，或者返回命令输出
+--rm 容器退出时自动清理容器内部文件，与-d同用无意义，只适用于前台运行时
+'''
+sudo docker run --name demo01 python:3.9 "/bin/bash"  # 返回空，容器状态Exited
+sudo docker run --name demo02 python:3.9 "python"  # 返回空，容器状态Exited
+sudo docker run --name demo03 python:3.9 "python --version"  # 返回Python 3.9.13，容器状态Exited
+
+sudo docker run -it --name demo11 python:3.9 "/bin/bash"  # 容器前台运行，退出后容器状态Exited
+sudo docker run -it --rm --name demo12 python:3.9 "/bin/bash"  # 容器前台运行，退出后容器自动删除
+
+sudo docker run -dit --name demo13 python:3.9 "/bin/bash"  # 容器后台运行，容器状态UP
+sudo docker exec -it demo13 "/bin/bash"  # 与运行中的容器进行交互，退出后容器还是UP状态
+sudo docker attach demo13  # 将运行中的后台放到前台，退出后容器又变为Exited状态
 ```
 
 - 操作容器
@@ -56,7 +68,7 @@ docker ps -a -q
 """
 5d3804c67526
 """
-# -f 过滤
+# ps -f 过滤
 docker ps -aq -f ancestor=<镜像id/name>
 docker ps -aqf exited=0
 
@@ -75,10 +87,12 @@ docker port <容器ID>  # 查看容器端口映射
 - 删除容器
 
 ```bash
-# -f 强制删除正在运行的容器
-docker rm -f <容器ID>
-docker rm $(docker ps -aq)  # 删除所有容器
-docker rm $(docker ps -aqf ancestor=镜像名/id)  # 删除由某个镜像创建的所有容器
+# 删除所有Exited(0)状态的容器
+sudo docker rm $(sudo docker ps -aqf exited=0)
+# 删除由某个镜像创建的所有容器
+sudo docker rm $(sudo docker ps -aqf ancestor=镜像名/id)
+# rm -f 强制删除正在运行的容器
+sudo docker rm -f <容器ID>
 ```
 
 - 其他

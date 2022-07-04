@@ -6,6 +6,44 @@
 
 [官网下载](https://dev.mysql.com/downloads/mysql/)
 
+### Docker
+
+镜像
+
+- Docker官方提供的（推荐）：<https://hub.docker.com/_/mysql>
+- Oracle官方提供的mysql-server（只适用于linux）：<https://hub.docker.com/r/mysql/mysql-server>
+
+```bash
+docker pull mysql:8.0
+sudo docker run -d -p 23306:3306 \  # 映射到宿主机的23306端口，避免与宿主机数据库端口冲突
+    -e MYSQL_RANDOM_ROOT_PASSWORD=yes \  # 设置密码，无论是固定密码还是随机生成或者为空，此参数必选
+    -v /my/own/datadir:/var/lib/mysql \  # 数据挂载路径（不能使用被其它容器已占用的路径）
+    --network some-network \  # 绑定自定义网络，方便其它容器使用mysql服务
+    --name=mysql8 mysql:8.0
+
+# 默认创建'root'@'localhost'帐户，
+# 设置密码，三种方式必选其一：
+    # 1. 固定密码（出于安全考虑不建议这样）：-e MYSQL_ROOT_PASSWORD=xxx
+    # 2. 密码为空：-e MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    # 3. 随机生成密码（推荐）：-e MYSQL_RANDOM_ROOT_PASSWORD=yes
+        '''
+        从容器日志中查找密码：sudo docker logs mysql8 2>&1 | grep GENERATED
+        连接服务：sudo docker exec -it mysql8 mysql -u root -p
+        重置密码：ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+
+        默认创建的root用户貌似只能在容器内使用，无法被外网或其它容器访问（即使设置了host=%）
+        可以新创建一个用户
+            USE mysql;
+            CREATE USER 'demo'@'%' IDENTIFIED BY 'password';
+            flush privileges;
+        '''
+# 容器内
+#   数据存放路径：/var/lib/mysql
+#       默认挂载在宿主机的：/var/lib/docker/volumes/<container_id>，如果不是root用户可能没有权限访问
+#       建议挂载到自定义的路径下：-v /my/own/datadir:/var/lib/mysql
+#   配置文件路径：/etc/mysql/my.cnf，如果想用自定义的配置文件启动可以-v挂载
+```
+
 ### Mac
 
 M1+下载ARM版本，反之x86，`No thanks, just start my download.`，安装一直下一步即可，最后会默认创建root账户，让你设置一个密码（最少8位，比如：12345678）
@@ -56,44 +94,6 @@ default-storage-engine=INNODB
 
 然后输入：`mysqld install`，注册服务，成功后即可启动服务登录使用
 
-### Docker
-
-镜像
-
-- Docker官方提供的（推荐）：<https://hub.docker.com/_/mysql>
-- Oracle官方提供的mysql-server（只适用于linux）：<https://hub.docker.com/r/mysql/mysql-server>
-
-```bash
-docker pull mysql:8.0
-sudo docker run -d -p 23306:3306 \  # 映射到宿主机的23306端口，避免与宿主机数据库端口冲突
-    -e MYSQL_RANDOM_ROOT_PASSWORD=yes \  # 设置密码，无论是固定密码还是随机生成或者为空，此参数必选
-    -v /my/own/datadir:/var/lib/mysql \  # 数据挂载路径（不能使用被其它容器已占用的路径）
-    --network some-network \  # 绑定自定义网络，方便其它容器使用mysql服务
-    --name=mysql8 mysql:8.0
-
-# 默认创建'root'@'localhost'帐户，
-# 设置密码，三种方式必选其一：
-    # 1. 固定密码（出于安全考虑不建议这样）：-e MYSQL_ROOT_PASSWORD=xxx
-    # 2. 密码为空：-e MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    # 3. 随机生成密码（推荐）：-e MYSQL_RANDOM_ROOT_PASSWORD=yes
-        '''
-        从容器日志中查找密码：sudo docker logs mysql8 2>&1 | grep GENERATED
-        连接服务：sudo docker exec -it mysql8 mysql -uroot -p
-        重置密码：ALTER USER root@localhost IDENTIFIED BY 'password';
-
-        默认创建的root用户貌似只能在容器内使用，无法被外网或其它容器访问（即使设置了host=%）
-        可以新创建一个用户
-            USE mysql;
-            CREATE USER 'demo'@'%' IDENTIFIED BY 'password';
-            flush privileges;
-        '''
-# 容器内
-#   数据存放路径：/var/lib/mysql
-#       默认挂载在宿主机的：/var/lib/docker/volumes/<container_id>，如果不是root用户可能没有权限访问
-#       建议挂载到自定义的路径下：-v /my/own/datadir:/var/lib/mysql
-#   配置文件路径：/etc/mysql/my.cnf，如果想用自定义的配置文件启动可以-v挂载
-```
-
 ## 连接
 
 ```bash
@@ -104,7 +104,7 @@ net stop mysql  # 停止服务
 mysql -u root -p
 # -h 默认主机名为本机127.0.0.1
 # -P 默认端口号3306
-# -u 指定用户名，默认用户名为本机user名
+# -u 指定用户名，默认用户名为本机user名，看到有些文档-uroot这样连着写也没有问题
 # -p 带此参数表明需要密码，反之不需要，回车后密文输入
 
 SELECT VERSION();  # 查看版本

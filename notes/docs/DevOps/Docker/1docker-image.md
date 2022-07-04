@@ -2,12 +2,17 @@
 
 ```bash
 docker images  # 查看本地镜像
+
 docker search <镜像>  # 从镜像库查找镜像
 docker pull <镜像>  # 拉取镜像
+
 docker save <镜像> > <镜像>.tar  # 导出镜像
 docker load < <镜像>.tar  # 导入镜像
+
 docker rmi <镜像>  # 删除镜像
+
 docker tag <镜像>:taga <镜像>:tagb  # 更改镜像名
+
 docker history <镜像>  # 查看镜像创建历史
 ```
 

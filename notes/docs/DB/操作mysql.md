@@ -9,7 +9,7 @@ Python操作MySQL数据库需要遵守DB-API规范，有很多封装好的驱动
 
 > 参考官方文档：<https://mysqlclient.readthedocs.io/user_guide.html#mysqldb>
 >
-> 安装比较麻烦，参考Readme：<https://github.com/PyMySQL/mysqlclient>
+> 安装比较麻烦，参考README：<https://github.com/PyMySQL/mysqlclient>
 
 ```bash
 # Mac 以下两步顺序不要颠倒，否则import MySQLdb时可能会报NameError: name ‘_mysql’ is not defined
@@ -17,7 +17,11 @@ brew install mysql-client
 pip install mysqlclient
 
 # Ubuntu
+'''
 sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
+    在docker容器（python:3.9）中实际测试发现貌似并不需要先执行此行命令
+    apt-get list --installed 发现是有 default-libmysqlclient-dev 这个依赖包的
+'''
 pip install mysqlclient
 ```
 
@@ -26,12 +30,13 @@ import MySQLdb
 
 conn = MySQLdb.connect(
     host = "localhost",
+    port = 3306,  # int类型
     user = "root",
     passwd = "12345678",
     db = "cases"
 )
 
-cur = conn.cursor()  创建游标
+cur = conn.cursor()  # 创建游标
 
 exchange = "deribit"
 subject = "SWAP_USD"
