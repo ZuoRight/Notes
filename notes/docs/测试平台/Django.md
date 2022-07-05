@@ -994,3 +994,20 @@ server {
 > 参考：<https://docs.djangoproject.com/zh-hans/4.0/howto/deployment/checklist/>
 
 `python manage.py check --deploy`
+
+### 解决非常规域名解析无效问题
+
+报错信息：`The domain name provided is not valid according to RFC 1034/1035`
+
+![20220705105539](http://image.zuoright.com/20220705105539.png)
+
+大概原因是Django主机验证的正则表达式与我们的域名不匹配，返回了空，所以需要我们覆盖这个正则
+
+> 参考: <https://notabela.hashnode.dev/how-to-solve-the-domain-name-provided-is-not-valid-according-to-rfc-10341035-in-django-during-development>
+
+```python
+from django.utils.regex_helper import _lazy_re_compile
+import django.http.request
+
+django.http.request.host_validation_re = _lazy_re_compile(r"[a-zA-z0-9.:]*")
+```

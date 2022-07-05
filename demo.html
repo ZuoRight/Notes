@@ -19,19 +19,47 @@
         <hr>
         <ul class="nav nav-pills justify-content-center" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="pill" href="#onestep">测试数据构建平台</a>
+            <a class="nav-link active" data-toggle="pill" href="#c">2022</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="pill" href="#apitest">接口测试框架</a>
+            <a class="nav-link" data-toggle="pill" href="#b">2021</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="pill" href="#a">2020</a>
           </li>
         </ul>
     </div>
   
     <div class="tab-content mt-3">
-      <div id="onestep" class="container tab-pane active">
+      <div id="c" class="container tab-pane active">
         <div class="text-center">
           <hr>
-          <h2 >OneStep</h2>
+          <h2>
+            RPC接口测试框架<br>
+            <small>(包含用例管理后台+在线报告)</small>
+          </h2>
+          <p>
+            该框架主要用于加密货币量化交易系统RPC接口的自动化测试<br>
+            第一版本用例使用 Tablib + Excel 管理，后改为MySQL数据库管理，使用 Django Admin 开发了对应的用例管理后台<br>
+            Pytest + Allure + Gitlab CI + Docker 实现每日自动化测试，并生成在线测试报告
+          </p>
+          <hr>
+        </div>
+        <p>架构图</p>
+        <img class="card-img-bottom" src="http://image.zuoright.com/20220705145157.png">
+        <p class="mt-5">代码仓库</p>
+        <img class="card-img-bottom" src="http://image.zuoright.com/20220705150347.png">
+        <p class="mt-5">用例管理后台</p>
+        <img class="card-img-bottom" src="http://image.zuoright.com/20220705150023.png">
+        <p class="mt-5">在线报告-overview</p>
+        <img class="card-img-bottom" src="http://image.zuoright.com/20220705145709.png">
+        <p class="mt-5">在线报告-behaviors</p>
+        <img class="card-img-bottom" src="http://image.zuoright.com/20220705145847.png">
+      </div>
+      <div id="b" class="container tab-pane fade">
+        <div class="text-center">
+          <hr>
+          <h2>测试数据构建平台</h2>
           产研人员通过OneStep的后台，可以将常用的Shell脚本，SQL语句、API等配置到后台，并支持自定义将多个有调用关系的API集成为一条脚本，
           <br> 最终以界面形式显示在前端，然后通过输入框和按钮等交互操作快捷的执行它们，
           <br> 免除重复登录服务器，访问数据库等操作，替代手工创建测试数据等，大大的提升产研测试以及验收效率。
@@ -60,11 +88,11 @@
         <p class="mt-5">图1.6 基于API自定义脚本</p>
         <img class="card-img-bottom" src="http://image.zuoright.com/20211201140429.png">
       </div>
-      <div id="apitest" class="container tab-pane fade">
+      <div id="a" class="container tab-pane fade">
         <div class="text-center">
           <hr>
-          <h2 >APITest</h2>
-          目前该框架主要用于HTTP(S)接口自动化回归测试，适用于公司全业务线，使用Excel、Yaml、Json分别管理用例和配置数据等。
+          <h2>HTTP接口测试框架</h2>
+          该框架主要用于HTTP(S)接口自动化回归测试，适用于公司全业务线，使用Excel、Yaml、Json分别管理用例和配置数据等。
           <br> 支持将Charles等抓包工具导出的通用HAR格式接口数据，自动转换为可执行用例，极大的提高了用例编写效率
           <br> 用例分层，独立且可复用性高，支持多接口间调用，支持多环境随意切换，支持自定义函数等。
           <br> 封装了DeepDiff库，可针对返回结果做字段是否缺失、类型是否正确、返回值是否匹配等的断言和校验、以此生成测试结果和报告。
