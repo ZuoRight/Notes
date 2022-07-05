@@ -34,14 +34,38 @@ theme:
     - header.autohide  # 下滑自动隐藏导航栏
     - navigation.top  # 回到顶部
     - navigation.instant  # 内部锚链接即时加载
+    - toc.integrate  # 导航集成到左侧
 
 extra:
   generator: false  # 移除MkDocs链接
+  analytics:
+    provider: google
+    property: G-6CVJ632G5J
+    feedback:
+      title: 此页内容是否有用？
+      ratings:
+        - icon: material/thumb-up-outline
+          name: 还是有用的
+          data: 1
+          note: >-
+            感谢反馈，欢迎随时<a href="mailto:zuoright@foxmail.com" target=_blank>发邮件</a>跟我交流
+        - icon: material/thumb-down-outline
+          name: 貌似没什么用
+          data: 0
+          note: >- 
+            感谢反馈，欢迎<a href="mailto:zuoright@foxmail.com" target=_blank>发邮件</a>给我提出改进建议
   social:  # 右下角社交图标和链接
     - icon: material/github
       link: https://github.com/ZuoRight
     - icon: material/email
       link: mailto:zuoright@foxmail.com
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
 
 markdown_extensions:
   - footnotes  # 支持脚注
@@ -54,6 +78,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed  # 分组式代码块
   - attr_list  # 支持大按钮
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - toc:
       permalink: true  # 固定链接
 
@@ -63,6 +90,3 @@ plugins:
         - ja
   - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
       type: iso_date
-
-extra_javascript:
-  - 'js/baidu-tongji.js'

@@ -116,20 +116,16 @@ Docker 在镜像的设计中，引入了层（layer）的概念，每一行指�
 >
 > 所以建议测试时可以分层多一些，但发布镜像的时候尽量精简合并指令，避免镜像过于臃肿
 
-```Dockerfile
-'''
-指令不区分大小写，但习惯大写
-'''
+```dockerfile
+# 指令不区分大小写，但习惯大写
 
 # 首先要指定基础镜像
 FROM python:3-slim
-'''
-基础镜像通常是Linux，但不同场景可以选择不同的发行版
-    比如alpine，小巧且安全，但如果程序需要调用外部依赖，比如C库等，则不建议用这个
-我们并不需要总是指定最基础的Linux，那样还需要自己安装python，我们可以直接指定python
-    FROM ubuntu:latest
-    RUN apt-get update -yRUN apt-get install -y python-pip python-dev build-essential
-'''
+# 基础镜像通常是Linux，但不同场景可以选择不同的发行版
+#     比如alpine，小巧且安全，但如果程序需要调用外部依赖，比如C库等，则不建议用这个
+# 我们并不需要总是指定最基础的Linux，那样还需要自己安装python，我们可以直接指定python
+#     FROM ubuntu:latest
+#     RUN apt-get update -yRUN apt-get install -y python-pip python-dev build-essential
 
 # 创建一个工作目录，作为所有后续命令相对的根路径
 WORKDIR /usr/src/app
@@ -142,39 +138,36 @@ ADD 源路径 目标路径
 # 最重要的指令RUN，在docker build时运行
 # 可以执行任意的 Shell 命令，比如更新系统、安装应用、下载文件、创建目录、编译程序等等
 RUN command
-'
+
 shell形式: RUN <command>
 exec形式: RUN ["executable", "param1", "param2"]
+# 如果要执行多个命令可以这样写
+# RUN command a \
+#     && command b \
+#     && command c \
 
-如果要执行多个命令可以这样写
-RUN command a \
-    && command b \
-    && command c \
-
-但不利于调试和修改，建议放到脚本文件中用COPY引入执行脚本
-COPY setup.sh /tmp
-RUN cd /tmp \
-    && chmod +x setup.sh \
-    && ./setup.sh \
-    && rm setup.sh  # 执行完后可以删除
-'
+# 但不利于调试和修改，建议放到脚本文件中用COPY引入执行脚本
+# COPY setup.sh /tmp
+# RUN cd /tmp \
+#     && chmod +x setup.sh \
+#     && ./setup.sh \
+#     && rm setup.sh  # 执行完后可以删除
 
 # 在docker run时运行的命令
 CMD echo "hello world"
-: '
-shell形式: CMD command param1 param2
-exec形式: CMD ["executable", "param1", "param2"]  # 会被解析为json，所以必须用双引号
-exec形式(与ENTRYPOINT共用): CMD ["param1","param2"]
+# shell形式: CMD command param1 param2
+# exec形式: CMD ["executable", "param1", "param2"]  # 会被解析为json，所以必须用双引号
+# exec形式(与ENTRYPOINT共用): CMD ["param1","param2"]
+# 
+# 如果有多个CMD指令仅最后一行生效
+#
+# ENTRYPOINT与CMD类似，可与CMD共用，等价于：docker run xxx ENTRYPOINT CMD
+#     比如：nginx -c /etc/nginx/nginx.conf
+#         ENTRYPOINT ["nginx", "-c"]
+#         CMD ["/etc/nginx/nginx.conf"]
+# 
+# docker run 的时候如果带了命令，会覆盖CMD，但不会覆盖ENTRYPOINT
 
-如果有多个CMD指令仅最后一行生效
-
-ENTRYPOINT与CMD类似，可与CMD共用，等价于：docker run xxx ENTRYPOINT CMD
-    比如：nginx -c /etc/nginx/nginx.conf
-        ENTRYPOINT ["nginx", "-c"]
-        CMD ["/etc/nginx/nginx.conf"]
-
-docker run 的时候如果带了命令，会覆盖CMD，但不会覆盖ENTRYPOINT
-'
 
 # 设置环境变量
 # 仅在docker build的过程中有效
@@ -207,16 +200,15 @@ FROM busybox
 CMD echo "hello world"
 
 # docker build -f Dockerfile.busybox .
-'''
-Sending build context to Docker daemon   7.68kB
-Step 1/2 : FROM busybox
- ---> d38589532d97
-Step 2/2 : CMD echo "hello world"
- ---> Running in c5a762edd1c8
-Removing intermediate container c5a762edd1c8
- ---> b61882f42db7
-Successfully built b61882f42db7
-'''
+# 
+# Sending build context to Docker daemon   7.68kB
+# Step 1/2 : FROM busybox
+#  ---> d38589532d97
+# Step 2/2 : CMD echo "hello world"
+#  ---> Running in c5a762edd1c8
+# Removing intermediate container c5a762edd1c8
+#  ---> b61882f42db7
+# Successfully built b61882f42db7
 ```
 
 等价于
