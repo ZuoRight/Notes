@@ -142,7 +142,7 @@ ADD 源路径 目标路径
 # 最重要的指令RUN，在docker build时运行
 # 可以执行任意的 Shell 命令，比如更新系统、安装应用、下载文件、创建目录、编译程序等等
 RUN command
-'''
+"""
 shell形式: RUN <command>
 exec形式: RUN ["executable", "param1", "param2"]
 
@@ -157,17 +157,7 @@ RUN cd /tmp \
     && chmod +x setup.sh \
     && ./setup.sh \
     && rm setup.sh  # 执行完后可以删除
-'''
-
-# 也是设置环境变量
-# 仅在docker build的过程中有效
-ARG key=value key2=value2
-# 在镜像构建和容器运行时都有效
-ENV key=value key2=value2
-
-# 容器对外提供的端口号，默认为tcp
-EXPOSE port1 port2
-EXPOSE 80/udp
+"""
 
 # 在docker run时运行的命令
 CMD echo "hello world"
@@ -185,6 +175,16 @@ ENTRYPOINT与CMD类似，可与CMD共用，等价于：docker run xxx ENTRYPOINT
 
 docker run 的时候如果带了命令，会覆盖CMD，但不会覆盖ENTRYPOINT
 '''
+
+# 设置环境变量
+# 仅在docker build的过程中有效
+ARG key=value key2=value2
+# 在镜像构建和容器运行时都有效
+ENV key=value key2=value2
+
+# 容器对外提供的端口号，默认为tcp
+EXPOSE port1 port2
+EXPOSE 80/udp
 
 # 指定执行后续命令的用户和用户组（必须是已存在的）
 USER <用户名>[:<用户组>]
