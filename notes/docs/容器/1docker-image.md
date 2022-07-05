@@ -1,14 +1,53 @@
 # Docker 镜像
 
-## 镜像仓库
+容器镜像，也叫作：rootfs。它只是一个操作系统的所有文件和目录，并不包含内核，最多也就几百兆。
+
+> 传统虚拟机的镜像大多是一个磁盘的“快照”，磁盘有多大，镜像就至少有多大
+
+## 获取镜像
+
+- 从镜像仓库拉取镜像
 
 ```bash
 docker search <image>  # 从镜像库查找镜像
 docker pull <image>  # 拉取镜像
 
 docker images  # 查看本地镜像
-docker rmi <image>  # 删除本地镜像
+
+# 删除本地镜像，如果同一个镜像有多个标签，则不能使用id删除
+docker rmi <image>
 ```
+
+- 从Dockerfile构建一个镜像
+
+[以Python语言快速开始](https://docs.docker.com/language/python/)
+
+> 可以创建`.dockerignore`文件（语法与`.gitignore`类似）配置build规则，忽略那些不希望被打包的文件
+>
+> Docker build出来的镜像遵循OCI标准，可以被其它容器技术使用，比如Kubernetes、Kata
+
+```bash
+'''
+-f 默认会自动查找叫Dockerfile的文件，也可以用-f指定文件名
+-t/--tag，指定镜像标签，<image_name>默认为None，<tag>默认为latest
+一定不要忘了最后的「.」（构建上下文），表示当前路径（默认为Dockerfile所在目录）下所有内容都会被`Sending build context to Docker daemon`
+'''
+docker build [-t <image_name>:<tag>] .
+
+docker tag <image_id> <image_name>:<tag>  # 添加镜像名
+docker tag <image_name>:<tag> <image_name_new>:<tag_new>  # 更改镜像名
+
+docker history <image>  # 回放完整的镜像构建过程
+docker inspect <image>  # 查看镜像信息，比如分层：RootFS.Layers
+```
+
+- 从运行中的容器fork出一个镜像，一般不推荐
+
+```bash
+docker commit -m="提交信息" -a="作者" <容器ID> <目标镜像名:tag>
+```
+
+## 镜像仓库
 
 默认的镜像仓库，即官方提供的[Docker Hub](https://hub.docker.com)，也是最大的镜像仓库
 
@@ -26,7 +65,7 @@ docker rmi <image>  # 删除本地镜像
 > 而 Ubuntu、Debian 则采用了代号的形式。比如 Ubuntu 20.04 是 focal  
 > 有的标签还会加上 slim、fat，通常 slim 镜像会比较小，运行效率高，而 fat 镜像会比较大，适合用来开发调试
 
-### 镜像加速
+### 拉取镜像加速
 
 从Docker Hub拉取镜像比较慢，可以配置[阿里云镜像加速器](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)，获取到自己的加速地址后如图配置即可。
 
@@ -67,46 +106,21 @@ docker save <image>:<tag> -o xxx.tar  # 导出成镜像压缩包
 docker load -i xxx.tar  # 导入镜像压缩包
 ```
 
-## 构建镜像
-
-- 从运行中的容器fork出一个镜像，一般不推荐
-
-```bash
-docker commit -m="提交信息" -a="作者" <容器ID> <目标镜像名:tag>
-```
-
-- 从Dockerfile构建一个镜像
-
-[以Python语言快速开始](https://docs.docker.com/language/python/)
-
-> 可以创建`.dockerignore`文件（语法与`.gitignore`类似）配置build规则，忽略那些不希望被打包的文件
->
-> Docker build出来的镜像遵循OCI标准，可以被其它容器技术使用，比如Kubernetes、Kata
-
-```bash
-'''
--f 默认会自动查找叫Dockerfile的文件，也可以用-f指定文件名
--t/--tag，指定镜像标签，<image_name>默认为None，<tag>默认为latest
-一定不要忘了最后的「.」（构建上下文），表示当前路径（默认为Dockerfile所在目录）下所有内容都会被`Sending build context to Docker daemon`
-'''
-docker build [-t <image_name>:<tag>] .
-
-docker tag <image_id> <image_name>:<tag>  # 添加镜像名
-docker tag <image_name>:<tag> <image_name_new>:<tag_new>  # 更改镜像名
-
-docker history <image>  # 回放完整的镜像构建过程
-docker inspect <image>  # 查看镜像信息，比如分层：RootFS.Layers
-```
-
 ## Dockerfile
 
-指令不区分大小写，但习惯大写
+Docker 在镜像的设计中，引入了层（layer）的概念，每一行指令都会生成一个只读的层(layer)，即使是设置环境变量的ENV等指令，也会生成一个空层
 
-每一行指令都会生成一个只读的层(layer)，即使是设置环境变量的ENV等指令，也会生成一个空层
+同一个layer可以被多个不同的镜像共享，每次构建只会涉及改动的layer，也就是一个增量 rootfs联合挂载在一个统一挂载点上。
 
-同一个layer可以被多个不同的镜像共享，每次构建只会重构改动的layer，所以建议测试时可以分层多一些，但发布镜像的时候尽量精简合并指令，避免镜像过于臃肿
+> 用到了一种叫作联合文件系统（Union File System）的能力
+>
+> 所以建议测试时可以分层多一些，但发布镜像的时候尽量精简合并指令，避免镜像过于臃肿
 
 ```Dockerfile
+'''
+指令不区分大小写，但习惯大写
+'''
+
 # 首先要指定基础镜像
 FROM python:3-slim
 '''
@@ -185,6 +199,8 @@ VOLUME ["<路径1>", "<路径2>"...]
 
 - 示例1
 
+busybox是一个瑞士军刀式的Linux工具箱
+
 ```dockerfile
 # Dockerfile.busybox
 FROM busybox
@@ -203,6 +219,13 @@ Successfully built b61882f42db7
 '''
 ```
 
+等价于
+
+```bash
+docker pull busybox      
+docker run busybox echo hello world
+```
+
 - 示例2
 
 ```dockerfile
@@ -219,18 +242,4 @@ RUN cd /usr/share/nginx/html \
 EXPOSE 8081 8082 8083
 
 # docker build -t ngx-app:1.0 .
-```
-
-## Docker Compose
-
-有些任务需要多个容器一起提供服务，这时候一个个管理就比较麻烦了，可以用Docker Compose统一管理
-
-在PC和Mac下的Docker Desktop默认会带Docker-Compose，无需额外安装
-
-Linux下需要单独安装，访问：<https://github.com/docker/compose/releases>，找到对应linux系统的安装包右键复制链接
-
-```bash
-curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-docker-compose --version
 ```
