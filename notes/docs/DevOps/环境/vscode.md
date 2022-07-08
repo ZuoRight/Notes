@@ -1,14 +1,6 @@
-# 编辑器
+# VSCode
 
-## Vi/Vim
-
-在 vi/vim 中，数字是很有意义的，一般数字加在动作之前，数字通常代表重复做几次的意思（删除50行：50dd），也有可能是代表去到第几个什么什么的意思（向下移动20行：20j，或者：20↓）
-
-![20211030140432](http://image.zuoright.com/20211030140432.png)
-
-## VSCode
-
-### Python
+## Python
 
 使用VSCode自带的Python解析器，如果非根目录下引用了自定义包，在debug时会出现找不到包的情况，这貌似是一个已知但一直未解决的问题
 
@@ -46,7 +38,7 @@ sys.path.append(rootPath)
 }
 ```
 
-### PicGo
+## PicGo
 
 > <https://picgo.github.io/PicGo-Core-Doc/zh/guide/>
 
@@ -56,7 +48,7 @@ sys.path.append(rootPath)
 - 从文件夹上传：++cmd+opt+e++
 - 输入路径上传：++cmd+opt+o++
 
-### 其它插件
+## 其它插件
 
 > VSCode的一些配置等多端同步，现在已经不需要再使用`Settings Sync`扩展来管理，只需要登陆账号即可自动同步。
 
