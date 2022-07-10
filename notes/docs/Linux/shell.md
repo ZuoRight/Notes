@@ -118,3 +118,7 @@ expr 5 / 2  # 2
 
 - `source ./filename.sh`
 - `. ./filename.sh`（.是source的简写）
+
+## grep
+
+`grep 参数 文件`
