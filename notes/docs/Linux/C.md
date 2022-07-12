@@ -2,7 +2,12 @@
 
 [C语言免费教程](https://wangdoc.com/clang/intro.html){ .md-button .md-button--primary }
 
-`hello.c`
+## C/C++开发环境：C99标准
+
+- Windows IDE：Dev C++（内嵌了gcc编译器的移植版）：安装时选择English，第一次启动后再设置为中文
+- Mac：vim + gcc
+
+## `hello.c`
 
 ```c
 #include <stdio.h>  //引入<标准输入输出>头文件
@@ -16,12 +21,14 @@ int main(void){  //main函数为程序主入口
 ```
 
 ```bash
+# 可以直接编译成可执行文件(a.out)
+gcc hello.c
+"""
+但通常源代码文件不止一个，无法直接编译
+所以需要先生成目标文件再一起编译为可执行文件
+"""
 gcc -c hello.c  # 生成目标文件hello.o
 gcc -o hello hello.o  # 生成可执行文件hello.out
-
-# 也可以直接编译成可执行文件(a.out)
-# 但通常源代码文件不止一个，无法直接编译，所以需要先生成目标文件再一起编译为可执行文件
-gcc hello.c
 ```
 
 ## 编译
@@ -43,9 +50,7 @@ gcc hello.c
 
 > 构建(build)：先编译这个还是先编译那个，即编译的安排
 
-是最常用的构建工具，主要用于C语言
-
-构建规则写在makefile中
+Make是C语言最常用的构建工具，需要将构建规则写在makefile中
 
 ```makefile
 # 定义变量，建议大写，=左右可以有空格

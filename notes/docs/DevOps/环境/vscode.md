@@ -1,5 +1,7 @@
 # VSCode
 
+VSCode只是一个编辑器，而不是IDE（Integrated Development Environment 集成开发环境=编辑器+编译器+调试器）
+
 ## Python
 
 使用VSCode自带的Python解析器，如果非根目录下引用了自定义包，在debug时会出现找不到包的情况，这貌似是一个已知但一直未解决的问题
