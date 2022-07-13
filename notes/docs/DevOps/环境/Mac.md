@@ -170,10 +170,12 @@ brew info xxx  # 查看想安装或已安装软件的信息
 
 brew install xxx  # 安装，默认会先检查升级brew本身，可以Ctrl+c跳过
 brew uninstall xxx  # 卸载
+brew autoremove  # 删除依赖项
 brew cleanup  # 清理旧版本和缓存
 
 brew list [--casks] # 查看已安装软件列表
 brew deps --installed --tree  # 查看已安装软件列表，显示为依赖树的形式
+brew leaves  # 列出未被依赖的包
 brew outdated  # 查看哪些软件可更新，先更新brew
 
 brew upgrade  # 更新全部可更新软件
