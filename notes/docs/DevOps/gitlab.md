@@ -18,6 +18,21 @@ sudo docker run -d --name gitlab-runner --restart always \
      gitlab/gitlab-runner:latest
 ```
 
+作用范围
+
+- 共享：适用于所有项目，由gitlab管理员管理
+- 专用：适用于特定项目，由runner所有者管理
+
+安全
+
+- 受保护
+- 不受保护
+
+标签
+
+- 有标签
+- 无标签
+
 ## 注册runner
 
 ![20220305002455](http://image.zuoright.com/20220305002455.png)
@@ -34,7 +49,15 @@ gitlab-runner register
 输入描述（可默认，runner名）
 输入标签（可默认）
 输入最大进程数（可默认）
-输入执行器：docker
+输入执行器：
+  docker 最常用，一般选这个
+  docker machine 云部署中较常用
+  kubernetes K8s集群中作为Pod运行
+  其它不常用的
+    shell
+    ssh
+    virtualbox
+    parallels
 如果执行器是docker需要输入默认镜像：alpine:latest
 """
 # 验证
@@ -240,11 +263,11 @@ staging:
 - include 包含local/file/remote/template的.yml文件
 - extends 加载重复配置（也可以用锚点实现，但不易读）
 
-![20210727235201](https://i.loli.net/2021/07/27/hgUXzVNYCoyKFBd.png)
+![20220715185455](http://image.zuoright.com/20220715185455.png)
 
 - anchors(锚点)
 
-![20210727235245](https://i.loli.net/2021/07/27/jnvDgcEYkG8KZqx.png)
+![20220715185639](http://image.zuoright.com/20220715185639.png)
 
 ## 变量
 
@@ -256,6 +279,10 @@ staging:
 
 - `.gitlab-ci.yml`
 - 可以在项目`Settings > CI/CD`的`Variables`部分定义
+- 在群组配置中定义
+- 在实例中定义（admin用户）
+- 在手工触发时定义
+- 在API触发时定义
 
 ```text
 Key: Must be one line, with no spaces, using only letters, numbers, or _.
