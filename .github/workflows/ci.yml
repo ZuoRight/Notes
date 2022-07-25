@@ -26,13 +26,13 @@ jobs:
       - run: |
           cd notes
           mkdocs build
-          cd ../web3
+          cd ../coinbase
           mkdocs build
           
       - run: |
           git add .
           git rm -r --cached notes/docs
-          git rm -r --cached web3/docs
+          git rm -r --cached coinbase/docs
           git rm -r --cached .github/workflows
           git commit -m "ci commit"
           git push origin main:dev --force
