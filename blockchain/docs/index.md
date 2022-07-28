@@ -3,18 +3,35 @@ hide:
   - footer
   - feedback
 ---
-
-# Web3
-
-[简介](https://ethereum.org/zh/web3/)
-
-[WEB2与WEB3对比](https://ethereum.org/zh/developers/docs/web2-vs-web3/)
-
-[架构](https://www.preethikasireddy.com/post/the-architecture-of-a-web-3-0-application)
-
-## 分层
+# 区块链
 
 - Layer0: 为公链提供底层核心协议的项目，比如Polkadot的中继链为平行链服务
 - Layer1: 各种公链，比如Bitcoin、Ethereum等
-- Layer2: 构建在公链之上的协议网络，为公链做扩容的项目，比如Celer、Matic(Polygon)、Arbitrium、Optimism等
+- Layer2: 链下扩容/展，比如Celer、Matic(Polygon)、Arbitrium、Optimism等
 - 侧链: 类似Layer2但更独立
+
+layer1和layer2 的关系，有点像个人电脑时代里的CPU硬件和操作系统。layer1（链上）是不同架构的CPU，layer2（链下）是操作系统。可以把计算、交易等业务处理拿到主链之外来执行，只在主链上反映最终的结果，中间过程不在主链做记录。
+
+链上的生态基本上就是各种各样的公链，不需要做太多的特殊功能，只要把共识做好，为链下生态打基础就好，作为一个共治的协议来存在，不过链上扩容也是非常重要的，链上扩容能做好，可以帮助链下的扩展。
+
+大部分Layer2是基于以太坊的，如果是其它异构链的Layer2可能需要先完善Layer1的工具，并且考虑开发者的学习成本，可能需要兼容EVM等各种VM
+
+Rollup
+
+## 公链
+
+比特币是最早被创造出来的一种去中心化的加密货币，其所依赖的技术被称之为区块链，涉及P2P网络协议，分布式一致性算法，加密签名算法，账户与存储模型等
+
+比特币的提案叫做BIP，以太坊的提案叫做EIP
+
+和一个国家维护自己的安全是很像的，公链必须收税来维持自己的正常运转，以太坊目前是是消费税模型，Nervos是土地税模型。
+
+## 未来
+
+多链交互：跨链桥
+
+DAPP、NFT、DAO、GameFi、DeFi、SocialFi
+
+Crypto、Web3.0
+
+今天用户之所以关心区块链、Layer1、Layer2、PoW、PoS、UTXO这些名词，是因为我们还在非常早期，往未来看，公链会是最下面的一层，用户不需要关心
