@@ -6,7 +6,7 @@ hide:
 # 区块链
 
 - Layer0: 为公链提供底层核心协议的项目，比如Polkadot的中继链为平行链服务
-- Layer1: 各种公链，比如Bitcoin、Ethereum等
+- Layer1: 各种公链，比如Bitcoin、Ethereum、Cosmos、IBC等
 - Layer2: 链下扩容/展，比如Celer、Matic(Polygon)、Arbitrium、Optimism等
 - 侧链: 类似Layer2但更独立
 
@@ -16,8 +16,6 @@ layer1和layer2 的关系，有点像个人电脑时代里的CPU硬件和操作�
 
 大部分Layer2是基于以太坊的，如果是其它异构链的Layer2可能需要先完善Layer1的工具，并且考虑开发者的学习成本，可能需要兼容EVM等各种VM
 
-Rollup
-
 ## 公链
 
 比特币是最早被创造出来的一种去中心化的加密货币，其所依赖的技术被称之为区块链，涉及P2P网络协议，分布式一致性算法，加密签名算法，账户与存储模型等
@@ -25,13 +23,3 @@ Rollup
 比特币的提案叫做BIP，以太坊的提案叫做EIP
 
 和一个国家维护自己的安全是很像的，公链必须收税来维持自己的正常运转，以太坊目前是是消费税模型，Nervos是土地税模型。
-
-## 未来
-
-多链交互：跨链桥
-
-DAPP、NFT、DAO、GameFi、DeFi、SocialFi
-
-Crypto、Web3.0
-
-今天用户之所以关心区块链、Layer1、Layer2、PoW、PoS、UTXO这些名词，是因为我们还在非常早期，往未来看，公链会是最下面的一层，用户不需要关心
