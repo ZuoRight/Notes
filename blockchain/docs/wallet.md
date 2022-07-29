@@ -1,6 +1,8 @@
 # 钱包
 
-加密货币钱包相关的技术实现规范主要来自于BIP(Bitcoin Improvement Proposal 比特币提案)，它不止适用于比特币，也适用于以太坊等区块链
+加密货币钱包相关的技术实现规范主要来自于比特币提案，它不止适用于比特币，也适用于以太坊等区块链
+
+> 比特币的提案叫做BIP(Bitcoin Improvement Proposal)，以太坊的提案叫做EIP
 
 - BIP 39 — Mnemonic code for generating deterministic keys 用于生成确定性密钥助记词
 - BIP 32 — Hierarchical Deterministic Wallets 分层确定性钱包（HD Wallets）
