@@ -2,13 +2,13 @@
 
 加密货币钱包相关的技术实现规范主要来自于比特币提案，它不止适用于比特币，也适用于以太坊等区块链
 
-> 比特币的提案叫做BIP(Bitcoin Improvement Proposal)，以太坊的提案叫做EIP
+> 比特币的改进提案叫做BIP(Bitcoin Improvement Proposal)，以太坊的改进提案叫做EIP
 
-- BIP 39 — Mnemonic code for generating deterministic keys 用于生成确定性密钥助记词
-- BIP 32 — Hierarchical Deterministic Wallets 分层确定性钱包（HD Wallets）
-- BIP 44 — Multi-Account Hierarchy for Deterministic Wallets 确定性钱包多账户层次结构
+- BIP 32 — 定义分层确定性钱包（Hierarchical Deterministic Wallets）
+- BIP 39 — 使用助记词（Mnemonic code）生成确定性密钥
+- BIP 44 — 定义HD钱包多账户层次结构
 
-Hierarchical Deterministic Wallets，指根据某种确定性算法，用一个根密钥（也叫根扩展密钥）即可衍生出N个子密钥，即可以是公钥也可以是私钥，相当于管理一个扩展私钥（xprv），即可拥有N个子私钥，继而拥有多个钱包账户，通过一个扩展公钥（xpub）即可查询账户总余额。
+HD钱包指根据某种确定性算法，用一个根密钥（也叫根扩展密钥）即可衍生出N个子密钥，即可以是公钥也可以是私钥，相当于管理一个扩展私钥（xprv），即可拥有N个子私钥，继而拥有多个钱包账户，通过一个扩展公钥（xpub）即可查询账户总余额。
 
 > 理论上扩展密钥的层数是没有限制的，每一层的数量被限制在0～232
 
