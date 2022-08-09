@@ -1,6 +1,6 @@
 # Vue
 
-[官方文档](https://v3.cn.vuejs.org/guide/introduction.html){ .md-button .md-button--primary }
+[官方文档](https://cn.vuejs.org/guide/introduction.html){ .md-button .md-button--primary }
 
 ## 指令
 

@@ -55,25 +55,3 @@ Memcached 和 Redis 采用哈希表作为 key-value 索引，而 RocksDB 则采�
 ```redis
 
 ```
-
-## Python Redis
-
-`pip install redis`
-
-```python
-import redis
-
-r = redis.Redis(host='localhost', port=6379, decode_responses=True)
-
-# 匹配key
-r.keys()
-r.keys(pattern="*abc")  # 模糊匹配
-
-# 判断key是否存在
-r.exists(key)
-
-# 获取值
-r.get('hello')
-r.type('hello')
-r.hgetall("test")
-```

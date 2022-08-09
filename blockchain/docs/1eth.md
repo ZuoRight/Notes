@@ -10,7 +10,7 @@ V神写了以太坊的[白皮书](https://ethereum.org/zh/whitepaper/)
 
 Gavin Wood 写了以太坊的[黄皮书](https://github.com/ethereum/yellowpaper)（[中文版](https://github.com/yuange1024/ethereum_yellowpaper/blob/master/ethereum_yellow_paper_cn.pdf)），是以太坊基金的第一位CTO，提出并参与开发了EVM的编程语言Solidity，2016年离开以太坊基金，后来还开发了Rust编写了以太坊的客户端Parity，后又联合创办了另一个底层公链Polkadot，并为其写了白皮书。
 
-以太坊将交易的编程语言改为了图灵完备，称之为智能合约，引发了公链生态，虽然他自己一开始也并没有想到
+以太坊将交易的编程语言从Script改为了图灵完备的Solidity，称之为智能合约，引发了公链生态，虽然他自己一开始也并没有想到
 
 ![20220729195329](http://image.zuoright.com/20220729195329.png)
 
