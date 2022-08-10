@@ -2,47 +2,34 @@
 
 [官方手册](https://dev.mysql.com/doc/refman/8.0/en/installing.html){ .md-button .md-button--primary }
 
-## 下载安装
+![20220809201603](http://image.zuoright.com/20220809201603.png)
 
-[官网下载](https://dev.mysql.com/downloads/mysql/)
+MySQL 是典型的 C/S 架构，server端mysqld分为三层
 
-### Docker
+- 连接层：客户端和服务器端建立连接，客户端发送 SQL 至服务器端
+- SQL 层：对 SQL 语句进行查询处理
+- 存储引擎层：与数据库文件打交道，负责数据的存储和读取
 
-镜像
+MySQL的存储引擎采用了插件形式，允许开发人员设置自己的存储引擎，强大的是每个表可以根据实际的数据处理需要采用不同的存储引擎
 
-- Docker官方提供的（推荐）：<https://hub.docker.com/_/mysql>
-- Oracle官方提供的mysql-server（只适用于linux）：<https://hub.docker.com/r/mysql/mysql-server>
+- InnoDB 存储引擎：MySQL 5.5 版本之后默认的存储引擎，最大的特点是支持事务、行级锁定、外键约束等。
+- MyISAM 存储引擎：MySQL 5.5 版本之前默认的存储引擎，最大的特点是速度快，占用资源少，但不支持事务，也不支持外键。
+- Memory 存储引擎：使用系统内存作为存储介质，以便得到更快的响应速度。不过如果 mysqld 进程崩溃，则会导致所有的数据丢失，因此我们只有当数据是临时的情况下才使用 Memory 存储引擎。
+- NDB 存储引擎：也叫做 NDB Cluster 存储引擎，主要用于 MySQL Cluster 分布式集群环境，类似于 Oracle 的 RAC 集群。
+- Archive 存储引擎：它有很好的压缩机制，用于文件归档，在请求写入时会进行压缩，所以也经常用来做仓库。
 
-```bash
-docker pull mysql:8.0
-sudo docker run -d -p 23306:3306 \  # 映射到宿主机的23306端口，避免与宿主机数据库端口冲突
-    -e MYSQL_RANDOM_ROOT_PASSWORD=yes \  # 设置密码，无论是固定密码还是随机生成或者为空，此参数必选
-    -v /my/own/datadir:/var/lib/mysql \  # 数据挂载路径（不能使用被其它容器已占用的路径）
-    --network some-network \  # 绑定自定义网络，方便其它容器使用mysql服务
-    --name=mysql8 mysql:8.0
+SQL层与存储方式无关，结构如下
 
-# 默认创建'root'@'localhost'帐户，
-# 设置密码，三种方式必选其一：
-    # 1. 固定密码（出于安全考虑不建议这样）：-e MYSQL_ROOT_PASSWORD=xxx
-    # 2. 密码为空：-e MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    # 3. 随机生成密码（推荐）：-e MYSQL_RANDOM_ROOT_PASSWORD=yes
-        '''
-        从容器日志中查找密码：sudo docker logs mysql8 2>&1 | grep GENERATED
-        连接服务：sudo docker exec -it mysql8 mysql -u root -p
-        重置密码：ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+![20220809202624](http://image.zuoright.com/20220809202624.png)
 
-        默认创建的root用户貌似只能在容器内使用，无法被外网或其它容器访问（即使设置了host=%）
-        可以新创建一个用户
-            USE mysql;
-            CREATE USER 'demo'@'%' IDENTIFIED BY 'password';
-            flush privileges;
-        '''
-# 容器内
-#   数据存放路径：/var/lib/mysql
-#       默认挂载在宿主机的：/var/lib/docker/volumes/<container_id>，如果不是root用户可能没有权限访问
-#       建议挂载到自定义的路径下：-v /my/own/datadir:/var/lib/mysql
-#   配置文件路径：/etc/mysql/my.cnf，如果想用自定义的配置文件启动可以-v挂载
-```
+- 查询缓存：MySQL8.0 之后已经抛弃了这个功能，因为查询缓存往往效率不高。
+- 解析器：在解析器中对 SQL 语句进行语法分析、语义分析。
+- 优化器：在优化器中会确定 SQL 语句的执行路径，比如是根据全表检索，还是根据索引来检索等。
+- 执行器：在执行之前需要判断该用户是否具备权限，如果具备权限就执行 SQL 查询并返回结果。在 MySQL8.0 以下的版本，如果设置了查询缓存，这时会将查询结果进行缓存
+
+## 安装
+
+> [官网下载](https://dev.mysql.com/downloads/mysql/)
 
 ### Mac
 
@@ -94,6 +81,51 @@ default-storage-engine=INNODB
 
 然后输入：`mysqld install`，注册服务，成功后即可启动服务登录使用
 
+### Docker
+
+镜像
+
+- Docker官方提供的（推荐）：<https://hub.docker.com/_/mysql>
+- Oracle官方提供的mysql-server（只适用于linux）：<https://hub.docker.com/r/mysql/mysql-server>
+
+```bash
+docker pull mysql:8.0
+sudo docker run -d -p 23306:3306 \  # 映射到宿主机的23306端口，避免与宿主机数据库端口冲突
+    -e MYSQL_RANDOM_ROOT_PASSWORD=yes \  # 设置密码，无论是固定密码还是随机生成或者为空，此参数必选
+    -v /my/own/datadir:/var/lib/mysql \  # 数据挂载路径（不能使用被其它容器已占用的路径）
+    --network some-network \  # 绑定自定义网络，方便其它容器使用mysql服务
+    --name=mysql8 mysql:8.0
+
+# 默认创建'root'@'localhost'帐户，
+# 设置密码，三种方式必选其一：
+    # 1. 固定密码（出于安全考虑不建议这样）：-e MYSQL_ROOT_PASSWORD=xxx
+    # 2. 密码为空：-e MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    # 3. 随机生成密码（推荐）：-e MYSQL_RANDOM_ROOT_PASSWORD=yes
+        '''
+        从容器日志中查找密码：sudo docker logs mysql8 2>&1 | grep GENERATED
+        连接服务：sudo docker exec -it mysql8 mysql -u root -p
+        重置密码：ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+
+        默认创建的root用户貌似只能在容器内使用，无法被外网或其它容器访问（即使设置了host=%）
+        可以新创建一个用户
+            USE mysql;
+            CREATE USER 'demo'@'%' IDENTIFIED BY 'password';
+            flush privileges;
+        '''
+# 容器内
+#   数据存放路径：/var/lib/mysql
+#       默认挂载在宿主机的：/var/lib/docker/volumes/<container_id>，如果不是root用户可能没有权限访问
+#       建议挂载到自定义的路径下：-v /my/own/datadir:/var/lib/mysql
+#   配置文件路径：/etc/mysql/my.cnf，如果想用自定义的配置文件启动可以-v挂载
+```
+
+## GUI管理工具
+
+- 官方：MySQL Workbench 笨重
+- 免费：DBeaver 小巧，够用
+- 付费：Navicat、DataGrip 强大
+- 在线：phpMyAdmin 需要自己搭建
+
 ## 连接
 
 ```bash
@@ -116,7 +148,7 @@ exit
 quit
 ```
 
-## 用户相关操作
+## DCL
 
 ```sql
 use mysql;
@@ -155,9 +187,9 @@ alter user 'root'@'localhost' identified with mysql_native_password by '111111'
 drop user 'test1'@'localhost';
 ```
 
-## 基础操作
+## DDL
 
-- 库操作
+### 库操作
 
 ```sql
 -- 检查编码格式
@@ -188,7 +220,19 @@ create database if not exists <库名> default character set utf8 collate utf8_g
 use <库名>;
 ```
 
-- 表操作
+### 表操作
+
+- 主键，唯一且不能为空（UNIQUE + NOT NULL），一个表只能有一个，可以是一个字段也可以是多个字段的组合（联合主键）
+
+> 是否为主键：`primary`，是否自动增加：`auto_increme`
+
+- 外键，一个表中的外键对应另一张表的主键，外键可不唯一也可以为空
+
+> 在项目后期，业务量增大的情况下，你需要更多考虑到数据库性能问题，可以取消外键的约束，转移到业务层来实现。而且在大型互联网项目中，考虑到分库分表的情况，也会降低外键的使用。
+
+- 唯一性约束，可以设置除主键外的字段唯一
+
+> 唯一性约束相当于创建了一个约束和普通索引，目的是保证字段的正确性，而普通索引只是提升数据检索的速度，并不对字段的唯一性进行约束
 
 ```sql
 -- 列出当前库下所有表
@@ -206,28 +250,30 @@ drop table if exist <表名>;
 CREATE TABLE students_of_class1 SELECT * FROM students WHERE class_id=1;
 ```
 
-![20211030160722](http://image.zuoright.com/20211030160722.png)
-
 字段类型：int、varchar、boolean、datetime
 
 字段值：not null、default x
 
-是否自动增加：auto_increme
+![20211030160722](http://image.zuoright.com/20211030160722.png)
 
-是否为主键：primary
-
-- 字段操作
+### 字段操作
 
 ```sql
 -- 新增字段
-alter table <表名> add column <字段> VARCHAR(10) NOT NULL after <某字段>;
+ALTER TABLE <表名> ADD column <字段名> VARCHAR(10) NOT NULL after <某字段>;
+
+-- 修改字段名
+ALTER TABLE <表名> RENAME COLUMN <旧字段名> to <新字段名>;
+-- 修改字段类型
+ALTER TABLE <表名> MODIFY COLUMN <字段名> float(3,1);
 -- 修改字段
-alter table <表名> change column <旧字段> <新字段> VARCHAR(20) NOT NULL;
+ALTER TABLE <表名> CHANGE COLUMN <旧字段> <新字段> VARCHAR(20) NOT NULL;
+
 -- 删除字段
-alter table <表名> drop column <字段>;
+ALTER TABLE <表名> DROP column <字段名>;
 ```
 
-## 增删改
+## DML
 
 ### 增
 
@@ -269,19 +315,40 @@ delete from <表名> where ... and ...;
 update <表名> set key1=value1, key2=value2 where ... and ...;
 ```
 
-## 查
+## DQL
 
-- 关键字顺序
+### 顺序
+
+- 语句顺序
 
 ```sql
-SELECT *|字段列表
+-- DISTINCT 去除重复行
+SELECT DISTINCT *|字段列表 ... as ...
+
 FROM 数据源
 WHERE 条件
 GROUP BY 字段
 HAVING 条件
-ORDER BY 字段
+
+ORDER BY 字段A ASC|DESC, 字段B
 LIMIT 起始点，行数
 ```
+
+- 执行顺序
+
+```sql
+FROM
+WHERE
+GROUP BY
+HAVING
+
+SELECT DISTINCT
+
+ORDER BY
+LIMIT
+```
+
+### 查
 
 ```sql
 -- 计算功能，可以使用聚合函数
@@ -391,12 +458,6 @@ FROM 流水表
 
 > 索引的效率取决于索引列的值是否散列，即该列的值如果越互不相同，那么索引效率越高，像性别这种列有索引反而会降低效率，这种情况下大数据中会使用分组的概念
 
-## 性能优化
-
-对索引字段做函数操作，或有隐式类型转换涉及函数操作，或有隐式字符编码转换，可能会破坏索引值的有序性，因此优化器就决定放弃走树搜索功能，导致全索引扫描。
-
-因此用`explain`+`SQL语句`分析一下，是一个很好的习惯，它可以模拟优化器执行SQL查询语句。
-
 ## 事务 transaction
 
 > <https://www.liaoxuefeng.com/wiki/1177760294764384/1179611198786848>
@@ -431,3 +492,14 @@ ROLLBACK;  -- 回滚事务
 ```
 
 ![20211103162720](http://image.zuoright.com/20211103162720.png)
+
+## 性能优化
+
+I/O 是 DBMS 最容易出现瓶颈的地方，可以说数据库操作中有大量的时间都花在了 I/O 上。
+
+对索引字段做函数操作，或有隐式类型转换涉及函数操作，或有隐式字符编码转换，可能会破坏索引值的有序性，因此优化器就决定放弃走树搜索功能，导致全索引扫描。
+
+因此用`explain`+`SQL语句`分析一下，是一个很好的习惯，它可以模拟优化器执行SQL查询语句。
+
+- 尽量只查询所需要的列；
+- 当你知道只有 1 条记录的时候，就可以使用LIMIT 1来进行约束

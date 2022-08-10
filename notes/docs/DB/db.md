@@ -7,7 +7,9 @@
 
 ## SQL
 
-关系型数据库（RDBMS）是建立在ER图（Entity Relationship Diagram）基础上的数据库，主流的有
+关系型数据库（RDBMS）是建立在实体-关系图（Entity Relationship Diagram）基础上的数据库，主流的有
+
+> ER图三要素：实体、属性、关系
 
 - `Oracle` 1979，第一个商用的RDBMS，流行后其公司也改名为Oracle（甲骨文）
 - `SQL Server` 1989，微软开发的商业数据库
@@ -16,10 +18,16 @@
 
 SQL是DBA与关系型数据库交互的语言，SQL语言按照功能可划分为
 
-- DDL(Data Definition Language) 数据定义语言，用于定义数据库、数据表、列等数据库对象，创建、删除、修改数据库和表结构。
-- DCL(Data Control Language)，数据控制语言，用于操作访问权限和安全级别。
-- DML(Data Manipulation Language)，数据操作语言，用于增加、删除、修改表中的记录。
-- DQL(Data Query Language)，数据查询语言，用于查询想要的记录，最重要的部分。
+- `DCL`(Data Control Language)，数据控制语言，用于操作访问权限和安全级别。
+- `DDL`(Data Definition Language) 数据定义语言，用于定义数据库、数据表、列等数据库对象，创建、删除、修改数据库和表结构。
+- `DML`(Data Manipulation Language)，数据操作语言，用于增加、删除、修改表中的记录。
+- `DQL`(Data Query Language)，数据查询语言，用于查询想要的记录，最重要的部分。
+
+不同DBMS大小写不统一，而且同一DBMS在不同系统上可能还不一样，比如MySQL在Linux的环境下，数据库名、表名、变量名是严格区分大小写的，而字段名是忽略大小写的。而MySQL在Windows的环境下全部不区分大小写。所以建议：
+
+- 表名、表别名、字段名、字段别名等都小写
+- SQL保留字、函数名、绑定变量等都大写
+- 字段名以下划线命名
 
 ## NoSQL
 

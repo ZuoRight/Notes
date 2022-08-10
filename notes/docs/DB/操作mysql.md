@@ -2,6 +2,15 @@
 
 Python操作MySQL数据库需要遵守DB-API规范，有很多封装好的驱动库供我们选择
 
+![20220809200749](http://image.zuoright.com/20220809200749.png)
+
+步骤
+
+1. 引入 API 模块
+2. 与数据库建立连接
+3. 执行 SQL 语句
+4. 关闭数据库连接
+
 ## MySQLdb
 
 - MySQLdb 1，依赖了mysql-connector-c，仅支持Py2.x，`pip install MySQL-python`
