@@ -2,6 +2,13 @@
 
 [C语言免费教程](https://wangdoc.com/clang/intro.html){ .md-button .md-button--primary }
 
+C的第一个标准是由ANSI(美国国家标准协会)1989年发布的。虽然这份文档后来被ISO(国际标准化组织)采纳并且ISO发布的修订版亦被ANSI采纳，但名称ANSI C仍被广泛使用。一些软件开发者使用名称ISO C，还有一些使用中立的名称Standard C。
+
+- C89
+- C99
+- C11
+- C18
+
 ## C/C++开发环境：C99标准
 
 - Windows IDE：Dev C++（内嵌了gcc编译器的移植版）：安装时选择English，第一次启动后再设置为中文
