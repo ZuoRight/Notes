@@ -1,27 +1,36 @@
 # Redis
 
-[官方命令参考手册](https://redis.io/commands/#string){ .md-button .md-button--primary }（[中文版](http://redisdoc.com/index.html)）
+[官方文档](https://redis.io/docs/getting-started/){ .md-button .md-button--primary }
+
+- [命令查询](https://redis.io/commands/#string)
+- [在线演练](https://try.redis.io/)
 
 Redis(Remote Dictionary Server)是一个字典结构的基于内存的数据库，可以归为缓存。
 
+Redis 使用 ANSI C语言编写，采用单进程单线程模型和非阻塞多路I/O复用机制，查询效率非常高，根据官方提供的数据，每秒最多处理的请求可以达到10万次。
+
+> 每个字典相当于一个库，从0开始递增数字命名，默认支持16个（可以通过配置文件支持更多，无上限）
+
 Redis 通常可以作为 MySQL 的缓存，它存储的数据量有限，适合存储热点数据，可以解决读写效率要求很高的请求。而 MySQL 则作为数据库，提供持久化功能，并通过主从架构提高数据库服务的高可用性。
+
+## redis-cli
 
 ```bash
 redis-server  # 启动服务端
 redis-cli [-h 127.0.0.1] [-p 6379] [-a "password"]  # 连接客户端，加--raw避免中文乱码
 ```
 
-Redis 使用 ANSI C语言编写，采用单进程单线程模型和非阻塞多路I/O复用机制，查询效率非常高，根据官方提供的数据，每秒最多处理的请求可以达到10万次。
-
-> 每个字典相当于一个库，从0开始递增数字命名，默认支持16个（可以通过配置文件支持更多，无上限）。
+连接后，命令行提示符显示为：`redis 127.0.0.1:6379>`
 
 ```bash
-redis 127.0.0.1:6379> ping  # 检测服务是否启动，成功返回PONG
-redis 127.0.0.1:6379> info  # 查看服务端信息
-redis 127.0.0.1:6379> quit  # 退出
-redis 127.0.0.1:6379> select 1  # 切换到1号数据库（连接后会自动选择0号数据库）
-redis 127.0.0.1:6379> CONFIG GET dir  # 获取安装目录，"/usr/local/redis/bin"
-redis 127.0.0.1:6379> save  # 备份当前数据库到安装目录中的dump.rdb文件
+ping  # 检测服务是否启动，成功返回PONG
+info  # 查看服务端信息
+quit  # 退出
+
+CONFIG GET dir  # 获取安装目录，"/usr/local/redis/bin"
+save  # 备份当前数据库到安装目录中的dump.rdb文件
+
+select 1  # 切换到1号数据库（连接后会自动选择0号数据库）
 ```
 
 ## 数据模型和操作

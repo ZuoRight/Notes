@@ -5,7 +5,7 @@
 - DBA(DataBase Administrator) 数据库管理人员
 - DBS(DataBase System) 数据库系统，`DBS = DB + DBMS + DBA`
 
-## SQL
+## 关系型数据库
 
 关系型数据库（RDBMS）是建立在实体-关系图（Entity Relationship Diagram）基础上的数据库，主流的有
 
@@ -16,7 +16,9 @@
 - `MySQL` 1995，开源，MySQL AB公司创造，然后被SUN收购，最后被Oracle收购，原创者担心被闭源，然后分支出了MariaDB
 - `SQLite` 2000，非C/S结构的嵌入式数据库，应该是世界上使用最多的数据库，虽然开源但不接受PR，属于并用于公共领域
 
-SQL（Structured Query Language 结构化查询语言）是DBA与关系型数据库交互的语言，SQL语言按照功能可划分为
+### SQL
+
+结构化查询语言（Structured Query Language），是DBA与关系型数据库交互的语言，SQL语言按照功能可划分为
 
 - `DCL`(Data Control Language)，数据控制语言，用于操作访问权限和安全级别。
 - `DDL`(Data Definition Language) 数据定义语言，用于定义数据库、数据表、列等数据库对象，创建、删除、修改数据库和表结构。
@@ -29,7 +31,7 @@ SQL（Structured Query Language 结构化查询语言）是DBA与关系型数据
 - SQL保留字、函数名、绑定变量等都大写
 - 字段名以下划线命名
 
-## NoSQL
+## 非关系型数据库
 
 NoSQL泛指非关系型数据库，并没有统一的架构和标准语言，每种数据库之间差异较大，各有所长
 
