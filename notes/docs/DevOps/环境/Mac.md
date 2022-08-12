@@ -185,9 +185,24 @@ brew upgrade xxx  # 更新xxx
 ```bash
 # 查看安装的服务列表
 brew services list
+"""
+Name     Status  User File
+rabbitmq none         
+redis    started      /opt/homebrew/opt/redis/homebrew.mxcl.redis.plist
+"""
 
 # 大部分需要在后台运行的软件服务，都可以使用以下方式启动/启动并加到开机启动/停止/重启
 brew services run/start/stop/restart xxx
+
+brew services info redis
+"""
+redis (homebrew.mxcl.redis)
+Running: ✔
+Loaded: ✔
+Schedulable: ✘
+User: 
+PID: 43685
+"""
 ```
 
 ## 其它

@@ -1,5 +1,14 @@
 # 操作Redis
 
+Redis官方推荐的两个Python语言的 Redis clients
+
+- redis-py
+- walrus
+
+walrus 是对 redis-py 的封装，目的是让使用更容易
+
+## redis-py
+
 `pip install redis`
 
 ```python
@@ -41,4 +50,20 @@ for i in range(1000):
 # 1千次读
 for i in range(1000):
     result = r.hmget("users"+str(i), ['username', 'age'])
+```
+
+## walrus
+
+> <https://walrus.readthedocs.io/en/latest/index.html>
+
+`pip install walrus`
+
+```python
+from walrus import *
+
+db = Database(host='localhost', port=6379, db=0)
+"""
+Database是对redis.Redis类的包装，继承了其所有方法，另外还可以写成Walrus
+db = Walrus(host='localhost', port=6379, db=0)
+"""
 ```
