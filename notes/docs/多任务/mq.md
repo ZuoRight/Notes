@@ -127,7 +127,26 @@ hello   0
 
 消息确认机制：c收到message后需要给p回复一个ack，p收到ack后则会将message从队列中删除，默认需要手动回复ack，可以设置为`ack=True`，如果因为连接中断等原因30min内（默认）没有ack，message会被重新放入队列（如果忘记设置回复ack，属于是一个低级错误，message被循环重新放入队列消耗内存）
 
-RabbitMQ默认不会持久化message，服务重启后消息将丢失，如果想持久化需要在定义队列时设置`durable=True`，并且在发送消息时添加属性`delivery_mode = pika.spec.PERSISTENT_DELIVERY_MODE`，不过这个持久化会先保存在缓存中然后才会保存到磁盘。
+RabbitMQ默认不会持久化message，服务重启后消息将丢失，如果想持久化需要在定义队列时设置`durable=True`，并且在发送消息时添加属性`delivery_mode = pika.spec.PERSISTENT_DELIVERY_MODE`将消息标记为持久化，不过这个持久化会先保存在缓存中然后才会保存到磁盘。
+
+```python
+channel.queue_declare(queue="hello_durable", durable=True)
+
+channel.basic_publish(
+    exchange='',
+    routing_key='hello_durable',
+    body=message,
+    properties=pika.BasicProperties(
+        delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE
+        """
+        delivery_mode: 将消息标记为持久化
+        content_type: 用于描述编码的MIME类型，比如JSON通常为application/json
+        reply_to: 用于命名callback queue.
+        correlation_id: 用于关联RPC的responses和requests.
+        """
+    )
+)
+```
 
 > 注意，不能对已存在的队列修改属性，最简单的解决方式是新建一个queue
 
@@ -169,7 +188,7 @@ channel.exchange_declare(
 channel.basic_publish(
     # 使用自定义的exchange
     exchange="logs",  # 如果exchange=""，则默认使用未命名exchange
-    routing_key="", 
+    routing_key="",  # fanout模式routing_key可以为空，p将会把消息发给所有绑定了exchange的queue
     body=message
 )
 ```
@@ -179,9 +198,13 @@ channel.basic_publish(
 ```python
 # 自定义一个临时queue
 channel.queue_declare(
-    queue="",  # queue=""则随机命名
+    queue="",
     exclusive=True  # 连接关闭时，自动删除queue
 )
+"""
+queue="" 则由系统随机命名：amq.gen-JzTY20BRgKO-HjmUJj0wLg
+通过result.method.queue 获取随机生成的queue名
+"""
 ```
 
 消费者需要将queue与指定exchange进行绑定来接收消息，exchange会把message发给所有与其绑定的queue
