@@ -1,20 +1,19 @@
-# 操作Excel
+# OpenPyXL
 
 ![20211126111629](http://image.zuoright.com/20211126111629.png)
 
-操作Excel 2007 xls 格式时，不同操作需要使用不同的库，操作Excel 2010 xlsx/xlsm/xltx/xltm 等格式时，`OpenPyXL`库基本可以满足常见的读写等操作。
+操作Excel2007文件时（`.xls`），不同操作需要使用不同的库
 
-## OpenPyXL
+操作Excel2010文件时（`.xlsx/xlsm/xltx/xltm`），`OpenPyXL`库可以同时满足常见的读写等操作
 
-[官方文档](https://openpyxl.readthedocs.io/en/stable/)
+> [OpenPyXL 官方文档](https://openpyxl.readthedocs.io/en/stable/)
 
 安装：`pip install openpyxl`
 
-### 工作簿 WorkBook
+## 工作簿 WorkBook
 
 ```python
 import openpyxl
-
 
 wb = openpyxl.load_workbook(filename=file_path)  # 读取
 wb_new = openpyxl.Workbook()  # 新建工作簿，默认同时会创建一张名为Sheet的表
@@ -22,7 +21,7 @@ wb_new = openpyxl.Workbook()  # 新建工作簿，默认同时会创建一张名
 wb_new.save(filename=file_path)  # 保存
 ```
 
-### 工作表 WorkSheet
+## 工作表 WorkSheet
 
 ```python
 # 新建Sheet，默认插在末尾
@@ -96,7 +95,7 @@ def real_cols_amount():
     return amount
 ```
 
-### 单元格 Cell
+## 单元格 Cell
 
 - 获取单元格
 
@@ -154,7 +153,7 @@ for i in range(1,101):
         sh.cell(row=i, column=j)
 ```
 
-### 单元格属性
+## 单元格属性
 
 ```python
 cell.row  # 行号，2
@@ -215,7 +214,7 @@ def get_field(self, row, field_name):
     return cell_value
 ```
 
-### 复制Sheet
+## 复制Sheet
 
 > 并没有一个内置方法可以直接复制Sheet，需要遍历所有单元格内容，写入新创建的一张表
 
@@ -237,7 +236,7 @@ def copy_sheet(self, ws_old):
     return ws
 ```
 
-### 单元格方法
+## 单元格方法
 
 - 行操作
 
@@ -269,7 +268,7 @@ sh.unmerge_cells(start_row=1, start_column=3, end_row=2, end_column=4)
 wb.save(filename)  # 最后一定要记得保存
 ```
 
-### 单元格样式
+## 单元格样式
 
 - 行高、列宽
 
