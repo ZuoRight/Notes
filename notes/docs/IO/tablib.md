@@ -49,7 +49,7 @@ class GetData:
         data_format = data_path.split('.')[1]
         data_format = data_path.split('.')[1]
         """
-        excel文件需要用rb模式打开（office文件其实是个压缩包，由很多.xml和其他文件构成，所以属于二进制)
+        excel文件需要用rb模式打开
         csv、json等可以用r模式打开
         """
         if data_format in ("xls", 'xlsx'):
