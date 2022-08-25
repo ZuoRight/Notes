@@ -11,83 +11,9 @@ Requests是由著名开发者Kenneth Reitz基于urllib3（Python内置的HTTP库
 
 `python -m pip install requests`
 
-## `requests.<method>`
+## requests.request
 
-```python
-import requests
-
-payload = {'key1': 'value1', 'key2': 'value2'}
-# 请求方式非常简单易懂
-r = requests.get('https://httpbin.org/get', params=payload)
-r = requests.post('https://httpbin.org/post', data=payload)
-r = requests.put('https://httpbin.org/put', data=payload)
-r = requests.delete('https://httpbin.org/delete')
-r = requests.head('https://httpbin.org/get')
-r = requests.options('https://httpbin.org/get')
-
-print(r)  # <Response [200]>
-
-r.status_code  # 200
-r.status_code == requests.codes.ok  # 使用内置状态码对象做判断，True
-r.raise_for_status()  # 检查请求是否成功，成功返回None，不成功则抛出异常：requests.exceptions.HTTPError
-
-r.url  # ''https://httpbin.org/get?key1=value1&key2=value2''
-r.encoding  # 'utf-8'
-r.request.headers  # 请求头
-r.headers  # 响应头
-"""
-{'Date': 'Wed, 24 Aug 2022 03:50:40 GMT', 'Content-Type': 'application/json', 'Content-Length': '379', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
-
-# 获取头字段值，不区分大小写
-r.headers.get('content-type')  # 'application/json'
-"""
-
-# 查看路由（重定向）记录
-r.history  # [<Response [301]>]
-```
-
-- 获取响应内容
-
-```python
-r.content
-"""
-# 字节码形式
-b'{\n  "args": {\n    "key1": "value1", \n    "key2": "value2"\n  }, \n  "headers": {\n    "Accept": "*/*", \n    "Accept-Encoding": "gzip, deflate", \n    "Host": "httpbin.org", \n    "User-Agent": "python-requests/2.28.1", \n    "X-Amzn-Trace-Id": "Root=1-6305a010-32d12aaa313962317e29ede5"\n  }, \n  "origin": "185.212.56.154", \n  "url": "https://httpbin.org/get?key1=value1&key2=value2"\n}\n'
-
-# 图片的字节码可以直接用于构建图像
-from PIL import Image
-from io import BytesIO
-i = Image.open(BytesIO(r.content))
-"""
-
-r.text
-"""
-# 字符串形式
-'{\n  "args": {\n    "key1": "value1", \n    "key2": "value2"\n  }, \n  "headers": {\n    "Accept": "*/*", \n    "Accept-Encoding": "gzip, deflate", \n    "Host": "httpbin.org", \n    "User-Agent": "python-requests/2.28.1", \n    "X-Amzn-Trace-Id": "Root=1-6305a010-32d12aaa313962317e29ede5"\n  }, \n  "origin": "185.212.56.154", \n  "url": "https://httpbin.org/get?key1=value1&key2=value2"\n}\n'
-"""
-
-r.json()
-"""
-# json格式
-{'args': {'key1': 'value1', 'key2': 'value2'}, 'headers': {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.28.1', 'X-Amzn-Trace-Id': 'Root=1-6305a010-32d12aaa313962317e29ede5'}, 'origin': '185.212.56.154', 'url': 'https://httpbin.org/get?key1=value1&key2=value2'}
-"""
-
-r.raw
-"""
-# 获取原始响应内容，请求时需要设置stream=True
-<urllib3.response.HTTPResponse object at 0x105cd6dc0>
-
-# r.raw.read(10)
-b'{\n  "args"'
-
-# 通常保存到文件
-with open(filename, 'wb') as fd:
-    for chunk in r.iter_content(chunk_size=128):
-        fd.write(chunk)
-"""
-```
-
-## `requests.request`
+<https://requests.readthedocs.io/en/latest/api/#requests.request>
 
 ```python
 import requests
@@ -95,7 +21,7 @@ import requests
 # 兼容各种请求方式
 r = requests.request(method, url, **kwars)
 """
-:method: get/post/put/delete/patch/options/head
+:method: GET/POST/PUT/DELETE/PATCH/OPTIONS/HEAD
 :url 请求url
 :**kwarts
     params=_dict  # url参数，即查询字符串
@@ -109,6 +35,99 @@ r = requests.request(method, url, **kwars)
     timeout=0.01  # 设置连接超时时间，建议设为比3的倍数略大的一个数值，因为TCP数据包重传窗口的默认大小是3
     allow_redirects=True  # 自动重定向，默认True
 """
+```
+
+## requests.method
+
+```python
+import requests
+
+payload = {'key1': 'value1', 'key2': 'value2'}
+# 请求方式非常简单易懂
+r = requests.get('https://httpbin.org/get', params=payload)  # 通常只用于获取数据，安全且幂等
+r = requests.head('https://httpbin.org/get')  # 与get相同，但是不返回响应体，安全且幂等
+r = requests.options('https://httpbin.org/get')  # 用于验证接口服务是否正常，安全且幂等
+
+r = requests.post('https://httpbin.org/post', data=payload)  # 创建，不安全不幂等
+
+r = requests.put('https://httpbin.org/put', data=payload)  # 通常用于更新，不安全但幂等
+r = requests.patch('https://httpbin.org/patch', data=payload)  # 与put类似，通常用于部分更新，不安全但幂等
+
+r = requests.delete('https://httpbin.org/delete')  # 删除，不安全但幂等
+
+print(r)  # <Response [200]>
+```
+
+## requests.Response
+
+- 头信息
+
+```python
+# 查看路由（重定向）记录
+r.history  # [<Response [301]>]
+
+r.url  # 'https://httpbin.org/get?key1=value1&key2=value2'
+
+r.encoding  # 'utf-8'
+
+r.request.headers  # 请求头
+r.headers  # 响应头
+"""
+{'Date': 'Wed, 24 Aug 2022 03:50:40 GMT', 'Content-Type': 'application/json', 'Content-Length': '379', 'Connection': 'keep-alive', 'Server': 'gunicorn/19.9.0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}
+
+# 获取头字段值，不区分大小写
+r.headers.get('content-type')  # 'application/json'
+"""
+```
+
+- 响应码
+
+<https://requests.readthedocs.io/en/latest/api/#api-cookies>
+
+```python
+r.status_code  # 200
+# 使用内置状态码对象做判断
+r.status_code == requests.codes.ok
+# 检查请求是否成功，成功返回None，不成功则抛出异常：requests.exceptions.HTTPError
+r.raise_for_status()
+```
+
+- 响应内容
+
+```python
+# 字节码形式
+r.content
+"""
+b'{\n  "args": {\n    "key1": "value1", \n    "key2": "value2"\n  }, \n  "headers": {\n    "Accept": "*/*", \n    "Accept-Encoding": "gzip, deflate", \n    "Host": "httpbin.org", \n    "User-Agent": "python-requests/2.28.1", \n    "X-Amzn-Trace-Id": "Root=1-6305a010-32d12aaa313962317e29ede5"\n  }, \n  "origin": "185.212.56.154", \n  "url": "https://httpbin.org/get?key1=value1&key2=value2"\n}\n'
+
+# 图片的字节码可以直接用于构建图像
+from PIL import Image
+from io import BytesIO
+i = Image.open(BytesIO(r.content))
+"""
+
+# 字符串形式
+r.text
+"""
+'{\n  "args": {\n    "key1": "value1", \n    "key2": "value2"\n  }, \n  "headers": {\n    "Accept": "*/*", \n    "Accept-Encoding": "gzip, deflate", \n    "Host": "httpbin.org", \n    "User-Agent": "python-requests/2.28.1", \n    "X-Amzn-Trace-Id": "Root=1-6305a010-32d12aaa313962317e29ede5"\n  }, \n  "origin": "185.212.56.154", \n  "url": "https://httpbin.org/get?key1=value1&key2=value2"\n}\n'
+"""
+
+# json格式
+r.json()
+"""
+{'args': {'key1': 'value1', 'key2': 'value2'}, 'headers': {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.28.1', 'X-Amzn-Trace-Id': 'Root=1-6305a010-32d12aaa313962317e29ede5'}, 'origin': '185.212.56.154', 'url': 'https://httpbin.org/get?key1=value1&key2=value2'}
+"""
+
+# 获取原始响应内容，请求时需要设置stream=True
+r.raw
+"""
+<urllib3.response.HTTPResponse object at 0x105cd6dc0>
+"""
+r.raw.read(10)  # b'{\n  "args"'
+# 通常保存到文件
+with open(filename, 'wb') as fd:
+    for chunk in r.iter_content(chunk_size=128):
+        fd.write(chunk)
 ```
 
 - 证书

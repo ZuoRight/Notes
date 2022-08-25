@@ -11,8 +11,9 @@ C的第一个标准是由ANSI(美国国家标准协会)1989年发布的。虽然
 
 ## C/C++开发环境：C99标准
 
-- Windows IDE：Dev C++（内嵌了gcc编译器的移植版）：安装时选择English，第一次启动后再设置为中文
-- Mac：vim + gcc
+- Windows IDE: Dev C++（内嵌了gcc编译器的移植版）：安装时选择English，第一次启动后再设置为中文
+- Mac: vim + gcc
+- VSCode: C/C++插件
 
 ## `hello.c`
 
