@@ -15,7 +15,7 @@ Tips：端口号随意，一般设为8888
 
 ### 代理Web
 
-Tips：每次重启Charles都需要重新勾选一下
+Tips：默认每次重启Charles都需要重新勾选一下（可以设置一直启用）
 
 ![20200803232853](http://image.zuoright.com/20200803232853.png)
 
@@ -60,6 +60,8 @@ Tips：
 ![lADPDgQ9vAXnSl_NBQDNAtA_720_1280](http://image.zuoright.com/lADPDgQ9vAXnSl_NBQDNAtA_720_1280.jpg)
 
 ### Android
+
+参考[《Android 抓包》](https://zuoright.com/notes/site/%E6%8A%93%E5%8C%85/Android%E5%B7%A5%E5%85%B7/)
 
 ## Rewrite
 
