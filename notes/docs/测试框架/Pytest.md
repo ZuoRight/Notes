@@ -2,9 +2,13 @@
 
 官方文档：<https://docs.pytest.org>
 
-安装：`pip install pytest`
+```bash
+pip install pytest  # install
 
-帮助：`pytest --help | grep xxx`
+pytest --version   # shows where pytest was imported from
+pytest --fixtures  # show available builtin function arguments
+pytest -h | --help # show help on command line and config file options
+```
 
 ## Case编写规范
 
@@ -227,6 +231,8 @@ def test_demo(a, b):
 
 ## 运行
 
+> 参考文档：<https://docs.pytest.org/en/7.1.x/how-to/usage.html#usage>
+
 - 文件中执行：`pytest.main()`
 
 ```python
@@ -234,38 +240,30 @@ if __name__ == '__main__':
     pytest.main(["test_xx.py::类/函数", "-参数"])
 ```
 
-- 命令行执行：`pytest` 或 `py.test`
+- 命令行执行
 
-会收集所有符合编写规范的文件以及文件内的函数和类以及方法，然后根据参数等略过不需要执行的
-
+```bash
+# 会收集所有符合编写规范的文件以及文件内的函数和类以及方法，然后根据参数等略过不需要执行的
+pytest
+"""
 collected 7 items / 6 deselected / 1 selected
+"""
+
+# 只收集不执行
+pytest --collect-only
+
+# 查看执行过程，显示fixture关系
+pytest --setup-show
+```
 
 ![4663921b77def085d62ac258dac1c94](http://image.zuoright.com/4663921b77def085d62ac258dac1c94.png)
-
-可以只收集不执行：`pytest --collect-only`
-
-查看fixture执行过程：`pytest --setup-show`
-
-### 调试信息
-
-- -v, --verbose  增加详细程度
-
-![1f5e32c3bbf3b6e7a345b4dfaa5f72e](http://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png)
-
-- -s  --capture=no 的简写，显示print()信息
-
-![f47d5c603ff0862910a548ead5df0ec](http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png)
-
-- quiet 安静
-
-![0b6becba62a5c6685a92aa82a50b191](http://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png)
-
-- 遇到任一条用例失败立即退出：`pytest -x`
-- 遇到n条失败后退出：`pytest --maxfail=n`
 
 ### 测试范围
 
 ```bash
+# 测试指定目录下所有文件
+pytest testing/
+
 # 测试指定文件
 pytest test_x.py
 
@@ -287,6 +285,22 @@ a and not b
 """
 ```
 
+### 参数
+
+- -v, --verbose 增加详细程度
+
+![1f5e32c3bbf3b6e7a345b4dfaa5f72e](http://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png)
+
+- -s, --capture=no 捕获print()信息
+
+![f47d5c603ff0862910a548ead5df0ec](http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png)
+
+- quiet 安静
+
+![0b6becba62a5c6685a92aa82a50b191](http://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png)
+
+- 遇到任一条用例失败立即退出：`pytest -x`
+- 遇到n条失败后退出：`pytest --maxfail=n`
 - 指定标记
 
 也可以跟`-k`一样加逻辑判断：`pytest -m xxx`

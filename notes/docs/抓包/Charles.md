@@ -5,21 +5,25 @@
 - Structure 网络请求按访问域名分类
 - Sequence 网络请求按访问时间排序
 
-## 抓取HTTP包
-
-### 配置代理
+## 配置代理
 
 Tips：端口号随意，一般设为8888
 
 ![20200802230557](http://image.zuoright.com/20200802230557.png)
 
+## 抓取HTTP包
+
 ### 代理Web
 
-Tips：默认每次重启Charles都需要重新勾选一下（可以设置一直启用）
+可以使用浏览器插件SwitchyOmega代理到8888端口，代理协议选HTTP
+
+![20220826173141](http://image.zuoright.com/20220826173141.png)
+
+或者勾选 Proxy 选项中的 `Windows/macOS Proxy`
+
+> 每次重启需要重新勾选，当然可以设置启动时自动代理
 
 ![20200803232853](http://image.zuoright.com/20200803232853.png)
-
-也可以使用代理工具，推荐浏览器插件：SwitchyOmega
 
 ### 代理APP
 
@@ -61,7 +65,7 @@ Tips：
 
 ### Android
 
-参考[《Android 抓包》](https://zuoright.com/notes/site/%E6%8A%93%E5%8C%85/Android%E5%B7%A5%E5%85%B7/)
+查看 Android Tools
 
 ## Rewrite
 

@@ -88,8 +88,12 @@ r.headers.get('content-type')  # 'application/json'
 r.status_code  # 200
 # 使用内置状态码对象做判断
 r.status_code == requests.codes.ok
-# 检查请求是否成功，成功返回None，不成功则抛出异常：requests.exceptions.HTTPError
+# 检查请求是否成功
 r.raise_for_status()
+"""
+成功返回：None
+不成功则抛出异常：requests.exceptions.HTTPError
+"""
 ```
 
 - 响应内容
@@ -115,7 +119,17 @@ r.text
 # json格式
 r.json()
 """
+# get
+# params=payload
 {'args': {'key1': 'value1', 'key2': 'value2'}, 'headers': {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.28.1', 'X-Amzn-Trace-Id': 'Root=1-6305a010-32d12aaa313962317e29ede5'}, 'origin': '185.212.56.154', 'url': 'https://httpbin.org/get?key1=value1&key2=value2'}
+
+# post
+# data=payload
+{'args': {}, 'data': '', 'files': {}, 'form': {'k1': 'v1', 'k2': 'v2'}, 'headers': {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Content-Length': '11', 'Content-Type': 'application/x-www-form-urlencoded', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.28.1', 'X-Amzn-Trace-Id': 'Root=1-63086975-1228aeea3fa968ba500d1c9d'}, 'json': None, 'origin': '123.118.73.22', 'url': 'https://httpbin.org/post'}
+
+# post
+# json=payload
+{'args': {}, 'data': '{"k1": "v1", "k2": "v2", "k3": null}', 'files': {}, 'form': {}, 'headers': {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Content-Length': '36', 'Content-Type': 'application/json', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.28.1', 'X-Amzn-Trace-Id': 'Root=1-630868d2-3c641ceb41c7147f5a160c5f'}, 'json': {'k1': 'v1', 'k2': 'v2', 'k3': None}, 'origin': '123.118.73.22', 'url': 'https://httpbin.org/post'}
 """
 
 # 获取原始响应内容，请求时需要设置stream=True
@@ -179,10 +193,10 @@ import requests
 
 # Session对象拥有requests的一切方法
 with requests.Session() as s:
-    s.cookies.clear()  # 清空现有cookies
-    res = s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')
+    # 请求login接口，使用账号密码登陆，之后的session请求将默认携带cookies
+    res = s.post('https://xxx.com/login', data={"username":xxx, "password":xxx})
 
-    # 保持cookies
+    # 如果不请求login接口，而是直接访问需要登录的接口，可以手动添加cookies到session中
     """方式1"""
     s.cookies.update(cookies_dict/jar) # Updates this jar with cookies from another CookieJar or dict-like
     """方式2"""
@@ -193,4 +207,7 @@ with requests.Session() as s:
     s.cookies = requests.utils.cookiejar_from_dict(cookies_dict, cookiejar=None, overwrite=True)
     requests.utils.add_dict_to_cookiejar(s.cookies, my_cookies_dict)
     """
+
+    # 清空cookies
+    s.cookies.clear()
 ```
