@@ -4,6 +4,7 @@
 - 测试驱动
 - 数据存取
 - 依赖处理
+- 结果断言
 - 测试报告
 - 持续集成
 
@@ -35,91 +36,138 @@ WebSocket协议可以使用系统内置的`webSocket`
 
 关于数据库的选型，SQLite比较小巧灵活，但原生支持数据类型较少，MySQL新版本原生支持Json格式存储
 
+---
+
+- 借助jsonpath解析json，获取指定字段的值
+
+```python
+import json
+import jsonpath
+
+def load_json(path):
+    with open(path, "r", encoding='utf_8') as f:
+        obj = json.load(f)
+    return obj
+
+def read_from_json(data, key, value_type=0):
+    if isinstance(object, dict):
+        key_rex = "$." + key
+        result = jsonpath.jsonpath(data, key_rex)
+        # result是一个list, 有可能会解析出多个列表，待优化
+        if result:
+            # 默认返回list
+            if value_type == 0:
+                return result
+            # 返回list中的值
+            elif value_type == 1:
+                return result[0]
+            else:
+                return None
+        else:
+            return None
+    else:
+        print("data类型非json")
+        return None
+```
+
+- 如果从Excel读取的payload其实是字符串格式的，需要转换并反序列化为dict
+
+```python
+import json
+import re
+
+payload_str = case[headers_index("payload")]
+def get_payload_dict(payload_init):
+    if isinstance(payload_init, str):
+        try:
+            """
+            反序列化前需要做一些json标准化格式处理
+            单引号转换为双引号
+            bool值转换为json格式的
+            """
+            payload_str_json = payload_init.replace('\'', '\"')
+            reg_true = re.compile('True', re.IGNORECASE)
+            payload_str_json = reg_true.sub('true', payload_str_json)
+            reg_false = re.compile('False', re.IGNORECASE)
+            payload_str_json = reg_false.sub('false', payload_str_json)
+            # 反序列化
+            payload_dict = json.loads(payload_str_json)
+        except json.decoder.JSONDecodeError as e:
+            logging.error(f"请检查数据格式, {e}")
+        else:
+            return payload_dict
+    return payload_init
+payload_dict = get_payload_dict(payload_str)
+```
+
+---
+
 ## 依赖处理
 
-- 从json中读取依赖
+- 使用`$`符和`case_id`处理依赖
 
-```json
-{
-    "infoq_004": {
-        "payload": {
-            "$aid": {"infoq_002": "data.aid"},
-            "$comment_id": {"infoq_002": "data.id"},
-            "content": "正常回复"
+```python
+def run_case(self, case_id):
+    # 通过case_id获取payload，并确保处理为dict(json)格式
+    payload = self.get_case(case_id, "payload")
+    """
+    payload = {
+        "$aid": {  # 带有有$符的字段表示其值依赖了其它case的返回值
+            "case_id": "007",  # 依赖的case_id
+            "key": "data.xxx",  # 依赖的字段，使用jsonpath解析
+            "value_type": 0,  # jsonpath默认返回list，0 表示返回list结果（默认），1 取list[0]
+            "function": ""  # 依赖的值可能需要进一步处理
         }
+        "content": "xxx"
     }
-}
+    """
+
+    if payload:
+        cache = {}
+        # 迭代时dict大小不能被改变，否则会报错，用list包裹可以避免此问题
+        for k,v in list(payload.items()):
+            if k[0] == "$":
+                depend_case_id = v.get("case_id")
+                depend_key = v.get("key")
+                depend_value_type = v.get("value_type", 0)
+                depend_function = v.get("function")
+                """
+                将depend_case_id存到缓存cache
+                如果多个字段都依赖了相同的case，则复用缓存，不需要重复请求
+                """
+                depend_case_response = cache.get(depend_case_id)
+                if not depend_case_response:
+                    depend_case_response = self.run_case(depend_case_id)  # 递归
+                    """
+                    如果依赖没有依赖则直接获取依赖响应，缓存
+                    如果依赖还有依赖则继续递归，直到最底层没有依赖的接口
+                    """
+                    cache[depend_case_id] = depend_case_response  
+                # 根据依赖字段从依赖响应中获取依赖值
+                depend_data = read_from_json(depend_case_response.json(), depend_key, depend_value_type)
+                # 依赖值可能需要进一步处理
+                if depend_function:
+                    depend_function = eval(depend_function)  # 此时depended_function的值还是一个str，需要先还原成函数
+                    depend_data = depend_function(depend_data)  # 处理后的返回覆盖未处理的
+                # 添加不带$的字段
+                payload[k.lstrip("$")] = depend_data
+                # 删除带$的字段
+                payload.pop(k)
+    """
+    执行case返回实际结果
+    不同请求方式的参数可能不太一样，这个可以在utils.handle_http中做处理
+    """
+    url = self.get_case(case_id, "url")
+    method = self.get_case(case_id, "method")
+    headers = self.get_case(case_id, "headers")
+    kwargs = {"headers": headers, "json": payload}
+    res = self.handle_http(method, url, **kwargs)
+    return res
 ```
 
-```python
-# 从json文件中获取case依赖数据
-case_load = get_value_from_path(self.case_load_path, f"{case_id}")
-# 从依赖数据中取出payload
-payload = case_load.get("payload")
-# 判断payload是否存在
-if payload:
-    logging.info(f"{case_id}的请求参数: {payload}")
-    # 判断payload是否有依赖
-    for k,v in payload.items():
-        # 获取依赖
-        if k[0] == "$":
-            for depended_case_id, depended_key in v.items():
-                logging.info(f"{'-'*10}")
-                logging.info(f"需要依赖{depended_case_id}的「{depended_key}」字段")
-                # 逐层递归查看依赖是否还有依赖，请求依赖接口获取数据
-                depended_case_index = self.get_row_index(depended_case_id)
-                depend_case_response = self.run_case(depended_case_index, depended_case_id)
-                logging.info(f"{depended_case_id}的返回结果: {depend_case_response.json()}")
-                logging.info(f"{depended_case_id}的返回状态码: {depend_case_response.status_code}")
-                logging.info(f"{'-'*10}")
-                # 根据被依赖的key去依赖case的返回结果中取到对应的依赖值，赋值给依赖key
-                # 这里的depend_case_response需要使用json格式
-                payload[k.lstrip("$")] = get_value_from_obj(depend_case_response.json(), depended_key)
-            # 因为前面size增加了，这里size减小相当于size没变，所以迭代时不会报错
-            payload.pop(k)
-            logging.info(f"{case_id}的请求参数(替换依赖后): {payload}")
-else:
-    payload = None
-    logging.info(f"{case_id}的请求参数: {payload}")
-```
+## 结果断言（待整理）
 
-- 从excel中读取依赖
-
-![20210817141422](http://image.zuoright.com/20210817141422.png)
-
-```python
-# 从excel获取payload
-payload_str = self.get_field(index, "payload")
-if payload_str:
-    payload = json.loads(payload_str)
-    logging.info(f"{case_id}的请求参数: {payload}")
-    # 判断payload是否有依赖
-    for k,v in payload.items():
-        # 获取依赖
-        if k[0] == "$":
-            for depended_case_id, depended_key in v.items():
-                logging.info(f"{'-'*10}")
-                logging.info(f"需要依赖{depended_case_id}的「{depended_key}」字段")
-                # 逐层递归查看依赖是否还有依赖，请求依赖接口获取数据
-                depended_case_index = self.get_row_index(depended_case_id)
-                depend_case_response = self.run_case(depended_case_index, depended_case_id)
-                logging.info(f"{depended_case_id}的返回结果: {depend_case_response.json()}")
-                logging.info(f"{depended_case_id}的返回状态码: {depend_case_response.status_code}")
-                logging.info(f"{'-'*10}")
-                # 根据被依赖的key去依赖case的返回结果中取到对应的依赖值，赋值给依赖key
-                # 这里的depend_case_response需要使用json格式
-                payload[k.lstrip("$")] = get_value_from_obj(depend_case_response.json(), depended_key)
-            # 因为前面size增加了，这里size减小相当于size没变，所以迭代时不会报错
-            payload.pop(k)
-            logging.info(f"{case_id}的请求参数(替换依赖后): {payload}")
-else:
-    payload = None
-    logging.info(f"{case_id}的请求参数: {payload}")
-```
-
-## 数据校验模块
-
-主要封装了deepdiff模块
+主要使用deepdiff模块二次封装
 
 可校验字段类型，字段值，是否缺少字段，还可以忽略校验
 
@@ -145,7 +193,6 @@ import jsonpath
 from deepdiff import DeepDiff
 
 
-
 # 从json文件读取json字段对应的值
 def get_value_from_path(json_path, key):
     key_rex = "$." + key
@@ -158,7 +205,6 @@ def get_value_from_path(json_path, key):
         else:
             return None
 
-
 # 从字典对象读取json字段对应的值
 def get_value_from_obj(json_obj, key):
     key_rex = "$." + key
@@ -168,7 +214,6 @@ def get_value_from_obj(json_obj, key):
             return i
     else:
         return None
-
 
 class HandleDiff():
     def __init__(self, expected_dict, actually_dict):
