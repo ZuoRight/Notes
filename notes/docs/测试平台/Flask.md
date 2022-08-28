@@ -2,6 +2,8 @@
 
 Python诞生于圣诞节，Flask诞生自愚人节。
 
+官方文档：<https://flask.palletsprojects.com/en/2.2.x/>
+
 ## 基本配置
 
 app.py
@@ -11,9 +13,12 @@ app.py
 from flask import Flask
 
 # 实例化
-# 初始参数__name__，表示以当前模块所在路径作为根目录(/)
-# 默认/static作为静态文件目录，/templates作为模版目录
 app = Flask(__name__)
+"""
+__name__，表示以当前模块所在路径作为根目录/
+/static 作为静态文件目录
+/templates 作为模版目录
+"""
 
 
 # 装饰器用于绑定路由，当用户访问该URL时将触发相应的视图函数
@@ -28,9 +33,19 @@ def hello():
 
 ## 基本命令
 
-- `flask run` 运行项目
-- `flask shell` 激活程序上下文
-- `flask xxx` 自定义命令
+```bash
+# 运行项目
+flask --app demo run
+"""
+或者：python demo.py
+
+if __name__ == '__main__':
+    app.run(debug=True)
+"""
+
+# 激活程序上下文
+flask shell
+```
 
 ```python
 import click

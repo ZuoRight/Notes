@@ -1,6 +1,6 @@
 # 线程 Thread
 
-> 示例代码：<https://github.com/ZuoRight/demo/tree/master/thread>
+> 示例代码：<https://github.com/ZuoRight/demo-python/tree/master/multitask>
 
 多线程中，所有变量都由所有线程共享，所以，任何一个变量都可以被任何一个线程修改，因此，线程之间共享数据最大的危险在于多个线程同时改一个变量，把内容给改乱了。
 

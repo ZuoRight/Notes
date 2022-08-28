@@ -44,16 +44,16 @@ import requests
 
 payload = {'key1': 'value1', 'key2': 'value2'}
 # 请求方式非常简单易懂
-r = requests.get('https://httpbin.org/get', params=payload)  # 通常只用于获取数据，安全且幂等
-r = requests.head('https://httpbin.org/get')  # 与get相同，但是不返回响应体，安全且幂等
-r = requests.options('https://httpbin.org/get')  # 用于验证接口服务是否正常，安全且幂等
+r = requests.get('https://httpbin.org/get', params=payload)
+r = requests.head('https://httpbin.org/get')
+r = requests.options('https://httpbin.org/get')
 
-r = requests.post('https://httpbin.org/post', data=payload)  # 创建，不安全不幂等
+r = requests.post('https://httpbin.org/post', data=payload)
 
-r = requests.put('https://httpbin.org/put', data=payload)  # 通常用于更新，不安全但幂等
-r = requests.patch('https://httpbin.org/patch', data=payload)  # 与put类似，通常用于部分更新，不安全但幂等
+r = requests.put('https://httpbin.org/put', data=payload)
+r = requests.patch('https://httpbin.org/patch', data=payload)
 
-r = requests.delete('https://httpbin.org/delete')  # 删除，不安全但幂等
+r = requests.delete('https://httpbin.org/delete')
 
 print(r)  # <Response [200]>
 ```

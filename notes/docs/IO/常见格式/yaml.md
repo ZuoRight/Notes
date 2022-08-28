@@ -4,49 +4,24 @@ YAML Ain't a Markup Language
 
 > 参考文档：<https://www.runoob.com/w3cnote/yaml-intro.html>
 
-- 数组/列表
-
-```yaml
-list1:
-  - [v1, v2, v3]  # 推荐
-list2:
-  - va
-  - vb
-  - vc
-```
-
 - 对象
 
 ```yaml
-dict1: {k1: v1, k2: v2, k3: v3}  # key不需要引号，value都可，建议用
-dict2:
-  ka: va  # 冒号后必须带空格？
-  kb: vb
-  kc: vc
-
-"""
-{
-  'dict1': {
-    'ka': 'va',
-    'kb': 'vb',
-    'kc': 'vc',
-    },
-  'dict2': {
-    'ka': 'va',
-    'kb': 'vb',
-    'kc': 'vc',
-    }
-}
-"""
+ka: {k1: v1, k2: v2, k3: v3}  # key不需要引号，value都可，建议用
+kb:
+  k1: v1  # 冒号后必须带空格？
+  k2: v2
+  k3: v3
+kc: [v1, v2, v3]
 ```
 
-- 嵌套
+- 数组
 
 ```yaml
-list_dict:
-  - {ka1: "va1", ka2: "va2", ka3: "va3"}
-  - {kb1: "vb1", kb2: "vb2", kb3: "vb3"}
-  - {kc1: "vc1", kc2: "vc2", kc3: "vc3"}
+k:
+  - va
+  - vb
+  - {k1: "v1", k2: "v2", k3: "v3"}
 ```
 
 - 纯量
@@ -84,7 +59,7 @@ date_iso: 2021-08-14T15:02:31+08:00
 import yaml
 
 def read_from_yaml(file_path):
-    with open(file_path, "r", encoding="utf-8") as f:
+    with open(file_path, "r", encoding="utf_8") as f:
         return yaml.safe_load(f.read())
 ```
 
@@ -94,7 +69,7 @@ def read_from_yaml(file_path):
 import yaml
 
 def write_to_yaml(content, file_path):
-    with open(file_path, "w", encoding="utf-8") as f:
+    with open(file_path, "w", encoding="utf_8") as f:
         # allow_unicode=True 保证中文写入正常显示
         yaml.dump(content, f, default_flow_style=False, encoding='utf-8', allow_unicode=True)
 ```
