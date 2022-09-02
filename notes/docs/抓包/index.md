@@ -26,11 +26,12 @@ HTTP协议抓包工具
 
 - Charles
 - Fiddler
-- Proxyman
+- Postman
 - Whistle
 - Packet Caputure（安卓专用）
 - Stream、Thor（iOS专用）
 - mitmproxy 集成定制，测开必备
+- Proxyman 虽然也可以抓包，但并不是其主要功能，所以比较弱
 
 TCP/IP等底层协议抓包工具
 

@@ -1,21 +1,26 @@
 # cURL
 
-```shell
-# 查看帮助
-curl -h
+> 官方文档：<https://everything.curl.dev/>
+>
+> `curl -h`：<https://curl.se/docs/manpage.html>
 
+```bash
 url_get = http://httpbin.org/get
 url_post = http://httpbin.org/post
 
 # 默认请求方式为GET
 curl $url_get
+
 # 指定请求方式
-curl -X POST $url_post
+curl -X/--request POST $url_post
+
 # 使用-d参数设置请求体，默认以POST方式发送请求，可以省略-X POST
 # -d还可以从本地文件读取数据：-d "@data.json"
 curl -d/--data "name=7c" -d "password=123" $url_post
+
 # 加上-G，则会变为GET请求：http://httpbin.org/get?name=7c&password=123
 curl -d "name=7c" -d "password=123" $url_get -G
+
 # --data-urlencode参数等同于-d，但是会将发送数据进行URL编码
 curl --data-urlencode "name=7 c" $url_get -G  # 7c之间有空格，需要url编码
 
@@ -41,7 +46,7 @@ curl -H
 curl -X POST $url_post --data '{"a":111, "b":222}'
 ```
 
-```shell
+```bash
 # 只输出响应头
 curl -I/--head
 
@@ -54,7 +59,7 @@ curl -o/--output
 
 另外输出结果可以借助jq来处理或者格式化
 
-```shell
+```bash
 sudo apt-get update
 sudo apt-get install jq
 
