@@ -34,6 +34,14 @@ HTTP请求中的multipart/form-data，既可以上传文件等二进制数据，
 
 <https://learning.postman.com/docs/sending-requests/authorization/>
 
+- Inherit auth from parent 默认继承自集合
+- No Auth
+- Bearer Token 也叫 Json web token
+- Basic Auth
+- Digest Auth
+- Oauth
+- ...
+
 ## 抓包
 
 默认使用代理方式，还可以使用拦截器方式（需要单独安装Chrome插件）
