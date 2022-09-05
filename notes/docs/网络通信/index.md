@@ -37,3 +37,21 @@ RESTful的一些设计原则
 
 - API中不应该包含如版本号等资源表示形式，可以放到请求头中
 - API中不应该包含动词，可以放到请求体中
+
+## 认证 identification
+
+根据一些信息确认用户的身份，比如用户名密码，二维码，指纹等等
+
+## 授权 authorization
+
+资源所有者授予执行者操作资源的权限
+
+授信媒介
+
+- session
+- cookies
+- token
+
+## 鉴权 authentication
+
+验证权限
