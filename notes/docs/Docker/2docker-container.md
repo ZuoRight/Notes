@@ -36,7 +36,7 @@ sudo docker run -it --rm --name demo12 python:3.9 "/bin/bash"  # 容器前台运
 
 sudo docker run -dit --name demo13 python:3.9 "/bin/bash"  # 容器后台运行，容器状态UP
 sudo docker exec -it demo13 "/bin/bash"  # 与运行中的容器进行交互，退出后容器还是UP状态
-sudo docker attach demo13  # 将运行中的后台放到前台，退出后容器又变为Exited状态
+sudo docker attach demo13  # 将运行中的后台放到前台，退出后容器变为Exited状态
 ```
 
 - 还原启动容器时的参数

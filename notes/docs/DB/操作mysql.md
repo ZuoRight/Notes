@@ -111,6 +111,65 @@ db.close()
 
 也是纯Python实现，性能最差，但最流行，如果项目里用了gevent貌似只能用pymysql
 
+```python
+import pymysql
+
+class RunSql():
+    __host="localhost"
+    __port=3306
+    __user="root"
+    __password="passwd"
+
+    def __init__(self, db, sql):
+        # 创建连接
+        self.__conn = pymysql.connect(
+            host=self.__host, 
+            port=self.__port, 
+            user=self.__user, 
+            password=self.__password, 
+            db=db, 
+            charset="utf8"
+        )
+        # 创建游标
+        self.__cursor = self.__conn.cursor()
+        # 将多条语句在分号处拆散成多个单条语句，并去除末尾分号可能产生的空语句
+        command_list = [i.strip() for i in sql.split(";") if i.strip() != '']
+        # print(command_list)
+        # 执行语句
+        for command in command_list:
+            try:
+                self.__cursor.execute(command)
+                self.__conn.commit()
+            # 发生错误时回滚
+            except Exception as e:
+                self.__conn.rollback()
+                print(e)
+        # 关闭游标
+        self.__cursor.close()
+        # 关闭连接
+        self.__conn.close()
+
+
+    # 获取第一行结果
+    def select_row_one(self):
+        row_one = self.__cursor.fetchone()
+        return row_one
+
+    # 获取所有结果
+    def select_row_all(self):
+        row_all = self.__cursor.fetchall()
+        return row_all
+
+    # 获取表头
+    def desc(self):
+        desc = self.__cursor.description
+        if desc:
+            head = [item[0] for item in desc]
+        else:
+            head = []
+        return head
+```
+
 ## ORM
 
 - SQLAIchemy

@@ -452,7 +452,7 @@ class DemoAdmin(admin.ModelAdmin):
     # 列表页
     list_display = ("name", 'cmd', "group", 'creator', 'created_date', 'modified_date')  # 在列表中显示的字段
     list_display_links = ('subject', 'currency')  # 可点击跳转到详情页的字段，默认为list_display第一个字段，为None将没有任何链接
-    list_editable = ("group",)  # 列表中可编辑的字段
+    list_editable = ("group",)  # 列表中可编辑的字段，list_display_links中的字段不允许设置为可编辑的
     list_filter = ("group", "creator")  # 列表中可筛选的字段，默认支持多个字段联合筛选，利用双下划线可以进行跨表关联
     search_fields = ("name", 'cmd')  # 列表中可被搜索的字段
 

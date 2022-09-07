@@ -1,5 +1,7 @@
 # Nginx
 
+官方文档：<https://nginx.org/en/docs/beginners_guide.html>
+
 ```bash
 # 安装
 apt install nginx  # ubuntu
