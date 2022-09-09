@@ -21,17 +21,22 @@ Python操作MySQL数据库需要遵守DB-API规范，有很多封装好的驱动
 > 安装比较麻烦，参考README：<https://github.com/PyMySQL/mysqlclient>
 
 ```bash
-# Mac 以下两步顺序不要颠倒，否则import MySQLdb时可能会报NameError: name ‘_mysql’ is not defined
+# Mac
 brew install mysql-client
 pip install mysqlclient
+"""
+如果报NameError: name ‘_mysql’ is not defined
+    可以添加环境变量：export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$PATH"
+"""
 
 # Ubuntu
-'''
-sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
-    在docker容器（python:3.9）中实际测试发现貌似并不需要先执行此行命令
-    apt-get list --installed 发现是有 default-libmysqlclient-dev 这个依赖包的
-'''
 pip install mysqlclient
+'''
+如果报NameError: name ‘_mysql’ is not defined
+    sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
+在docker容器（python:3.9）中实际测试发现貌似并不需要先执行此行命令
+另外apt-get list --installed 发现是有 default-libmysqlclient-dev 这个依赖包的
+'''
 ```
 
 ```python

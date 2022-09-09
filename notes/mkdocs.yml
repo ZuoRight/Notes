@@ -43,30 +43,16 @@ extra:
   analytics:
     provider: google
     property: G-6CVJ632G5J
-    # feedback:
-    #   title: Was this page helpful?
-    #   ratings:
-    #     - icon: material/emoticon-happy-outline
-    #       name: This page was helpful
-    #       data: 1
-    #       note: >-
-    #         Thanks for your feedback!
-    #     - icon: material/emoticon-sad-outline
-    #       name: This page could be improved
-    #       data: 0
-    #       note: >- 
-    #         Thanks for your feedback! Help us improve this page by
-    #         using our <a href="mailto:zuoright@foxmail.com" target=_blank>E-mail</a>.
     feedback:
-      title: 此页面是否有用？
+      title: 此页面内容可还行？
       ratings:
         - icon: material/thumb-up-outline
-          name: 还是有用的
+          name: 有用的
           data: 1
           note: >-
             感谢反馈，欢迎随时<a href="mailto:zuoright@foxmail.com" target=_blank>发邮件</a>跟我交流
         - icon: material/thumb-down-outline
-          name: 貌似没什么用
+          name: 没啥用
           data: 0
           note: >- 
             感谢反馈，欢迎<a href="mailto:zuoright@foxmail.com" target=_blank>发邮件</a>给我提出改进建议

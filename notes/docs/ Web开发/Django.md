@@ -888,16 +888,11 @@ DATABASES = {}  # 生产环境数据库
 
 ## 部署
 
-> 参考：<https://docs.djangoproject.com/zh-hans/4.0/howto/deployment/>
+> 使用 WSGI 或 ASGI 部署 Django 可以参考[CGI](cgi.md)，或者[官方文档](https://docs.djangoproject.com/zh-hans/4.0/howto/deployment/)
 
-Django是一个需要Web服务器来运行的Web框架。然而由于大多数Web服务器不是用Python编写，我们需要一个接口来实现沟通。
+### 内置Server启动
 
-Django现在支持两种接口：WSGI和ASGI
-
-- WSGI 是 Python 的主要标准，用于网络服务器和应用程序之间的通信，但它只支持同步代码。
-- ASGI 是新兴的，对异步友好的让你的Django网页使用Python异步特性和已经开发的Django异步特性的标准。
-
-### 自带服务器命令行启动
+Django与Flask等框架都会内置一个简易的WSGI服务器，性能不高，主要用于开发阶段调试
 
 > 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/django-admin/#runserver>
 
@@ -914,79 +909,7 @@ python manage.py runserver 8888
 python manage.py runserver 0:8000
 
 # 指定配置文件启动
-python manage.py runserver --settings=onestep.settings.set_prod
-```
-
-### Gunicorn
-
-纯Python编写的WSGI服务器
-
-> 官方文档：<https://docs.gunicorn.org/en/latest/run.html#commonly-used-arguments>
-
-```bash
-python -m pip install gunicorn
-
-gunicorn --env DJANGO_SETTINGS_MODULE=onestep.settings.set_prod onestep.wsgi
-```
-
-### uWSGI
-
-由C编写
-
-> 官方文档：<https://uwsgi.readthedocs.io/en/latest/Configuration.html>
-
-```bash
-python -m pip install uwsgi  # 安装
-
-# 命令行指定参数启动
-uwsgi --http 127.0.0.1:3031 --file onestep/wsgi.py
-
-# 从配置文件启动，返回[uWSGI] getting INI configuration from uwsgi.ini
-uwsgi --ini path/uwsgi.ini
-
-uwsgi --reload path/uwsgi.pid  # 重启
-uwsgi --stop path/uwsgi.pid  # 停止
-```
-
-```ini
-[uwsgi]
-; 项目路径
-chdir=/app
-; wsgi对象
-module=onestep.wsgi:application
-; 主进程
-master=True
-; 保存进程号
-pidfile=/tmp/uwsgi/demo-master.pid
-; 保存日志
-daemonize=/tmp/uwsgi/demo.log
-
-; 使用http协议提供服务，测试时使用
-; http=127.0.0.1:3030
-; 使用socket协议，配合nginx使用，与http端口不能重复
-socket=127.0.0.1:3031
-```
-
-### Nginx + uWSGI 启动
-
-```ini
-# nginx.conf
-server {
-    listen       8080;
-    server_name  localhost;
-
-    location / {
-        include   uwsgi_params;
-        # 使用uwsgi协议要用uwsgi_pass指令，proxy_pass指令使用的是http协议
-        uwsgi_pass  127.0.0.1:3031;  # 与uwsgi.ini中socket字段配置一致
-    }
-
-    location /static {
-        alias  /Users/7c/zuoright/onestep_django/static_cdn;  # 配置静态文件路径
-    }
-
-# 启动nginx
-# 访问：<http://127.0.0.1:8000>
+python manage.py runserver --settings=demo.settings.set_prod
 ```
 
 ### 检查部署

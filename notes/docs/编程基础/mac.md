@@ -82,8 +82,8 @@ sudo vim /etc/shells  # 需要管理者权限
 
 Mac系统下的一款开源包管理器，[项目地址](https://github.com/Homebrew)，[官网](https://brew.sh)
 
-- Homebrew安装路径：`/usr/local/Homebrew/`（Intel版），`/opt/homebrew`（M1版）
-- Homebrew安装的软件路径：`/usr/local/Cellar/`（Intel版），`/opt/homebrew/Cellar`（M1版），并自动在`/usr/local/bin/`路径下创建link
+- Homebrew安装路径：`/usr/local/Homebrew/`（Intel），`/opt/homebrew`（Apple）
+- Homebrew安装的软件路径：`/usr/local/Cellar/`（Intel），`/opt/homebrew/Cellar`（Apple），并自动在`/usr/local/bin/`路径下创建link
 
 > 其中Cellar译为酒窖，而Homebrew官方预先编译好的软件叫做Bottle(酒瓶子)，Bottles就是很多酒瓶子(即软件)，Homebrew把安装一个软件叫做把一个酒瓶子pour(倒入)到酒窖里。
 
