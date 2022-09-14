@@ -75,6 +75,8 @@ bind                              = ['127.0.0.1:8000']
     -w 4 或 --works=4 进程数
     -b 127.0.0.1:8000 或 --bind=host 绑定host
     -D 或 --daemon 后台运行
+    --bind 127.0.0.1:8000
+    --pid /tmp/gunicorn.pid 记录gunicorn进程号文件存放位置，方便进程管理
 """
 gunicorn -w 4 demo:app
 
@@ -198,35 +200,3 @@ server {
 ```
 
 配置好后，重新加载Nginx配置，访问：<http://localhost>即可自动代理到<http://localhost:8000>
-
-## Supervisor
-
-Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。
-
-它是通过fork/exec的方式把这些被管理的进程当作supervisor的子进程来启动，这样只要在supervisor的配置文件中，把要管理的进程的可执行文件的路径写进去即可。也实现当子进程挂掉的时候，父进程可以准确获取子进程挂掉的信息的，可以选择是否自己启动和报警。supervisor还提供了一个功能，可以为supervisord或者每个子进程，设置一个非root的user，这个user就可以管理它对应的进程。
-
-```bash
-pip install supervisor
-
-# 1.生成配置文件
-echo_supervisord_conf > /etc/supervisord.conf
-
-# 2.启动supervisord进程
-supervisord -c /etc/supervisord.conf
-
-# 3.重启xxx项目
-supervisorctl -c /etc/supervisord.conf restar xxx
-
-# 4.管理程序（xxx = 某个程序名，或者all，即所有程序）
-supervisorctl -c /etc/supervisord.conf start xxx
-supervisorctl -c /etc/supervisord.conf stop xxx
-supervisorctl -c /etc/supervisord.conf restart xxx
-```
-
-```supervisord.conf
-command=uwsgi命令
-```
-
-```uwsgi.ini
-[uwsgi] /home/...
-```
