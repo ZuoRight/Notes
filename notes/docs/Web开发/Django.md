@@ -924,13 +924,15 @@ python manage.py runserver --settings=demo.settings.set_prod
 
 ![20220705105539](http://image.zuoright.com/20220705105539.png)
 
-大概原因是Django主机验证的正则表达式与我们的域名不匹配，返回了空，所以需要我们覆盖这个正则
+大概原因是Django主机验证的正则表达式与我们的域名不匹配（比如域名包含了下划线），返回了空，所以需要我们覆盖这个正则
 
 > 参考: <https://notabela.hashnode.dev/how-to-solve-the-domain-name-provided-is-not-valid-according-to-rfc-10341035-in-django-during-development>
 
 ```python
+# manage.py
+
 from django.utils.regex_helper import _lazy_re_compile
 import django.http.request
 
-django.http.request.host_validation_re = _lazy_re_compile(r"[a-zA-z0-9.:]*")
+django.http.request.host_validation_re = _lazy_re_compile(r"^([a-z0-9._.-]+|\[[a-f0-9]*:[a-f0-9:]+\])(:\d+)?$")
 ```
