@@ -2,15 +2,18 @@
 
 [Django的官方文档(有中文版)](https://docs.djangoproject.com/zh-hans){ .md-button .md-button--primary }
 
-安装：`python -m pip install Django`
-
-Django 4.0依赖Python 3.8+
-
 Django采用了MTV的框架模式，即：Model(模型)，Template(模版)，View(视图)
 
 ## 项目
 
-创建项目：`django-admin startproject mysite`
+```bash
+mkdir mysite
+cd mysite
+python -m venv env  # Django 4.0依赖Python 3.8+
+pip install django
+
+django-admin startproject mysite .  # 初始化项目，注意结尾的点
+```
 
 ```text
 # 项目容器，可重命名
