@@ -1,5 +1,7 @@
 # CSV
 
+Comma-Separated Values 逗号分隔值，也称为字符分隔值
+
 - 读
 
 ```python

@@ -177,6 +177,6 @@ class RunSql():
 
 ## ORM
 
-- SQLAIchemy
+- SQLALchemy
 - peewee
 - Django admin
