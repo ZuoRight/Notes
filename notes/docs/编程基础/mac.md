@@ -25,6 +25,8 @@ unzip xxx.zip  # 解压
 
 Command Line Tools，是可独立Xcode下载安装的小型工具包，包含了macOS SDK和一些常用的命令行工具，比如git、clang等
 
+有时MacOS更新可能会遇到CLT丢失的问题：`xcrun: error: invalid active developer path ..., missing xcrun at: ...`，导致Git等不能用，根据提示重新安装CTL：`xcode-select --install`即可
+
 ## 设置环境变量
 
 ```shell
@@ -160,7 +162,6 @@ git remote set-url origin https://github.com/Homebrew/homebrew-cask-versions.git
 ```bash
 brew help  # 查看帮助
 brew config  # 查看配置
-brew update  # 更新brew本身
 brew doctor  # 检查问题
 ```
 
@@ -178,6 +179,7 @@ brew deps --installed --tree  # 查看已安装软件列表，显示为依赖树
 brew leaves  # 列出未被依赖的包
 brew outdated  # 查看哪些软件可更新，先更新brew
 
+brew update  # 更新brew本身
 brew upgrade  # 更新全部可更新软件
 brew upgrade xxx  # 更新xxx
 ```

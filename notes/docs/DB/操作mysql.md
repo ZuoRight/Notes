@@ -61,7 +61,7 @@ sql = f"""SELECT * FROM onestep_{exchange} WHERE subject='{subject}' and currenc
 r = cur.execute(sql)
 
 print(r)  # 6，返回结果数量
-print(cur.fetchone())
+print(cur.fetchone())  # <class 'tuple'>
 print(cur.fetchmany(2))
 print(cur.fetchall())  # cur是一个迭代器，这里把结果都取完，则后面再取就是空的()
 print(cur.fetchmany(2))
@@ -178,5 +178,14 @@ class RunSql():
 ## ORM
 
 - SQLALchemy
+
+<https://iswbm.com/307.html>
+
+```python
+from sqlalchemy import create_engine
+
+con = create_engine('mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset=utf8mb4'')
+```
+
 - peewee
 - Django admin

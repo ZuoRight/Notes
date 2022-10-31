@@ -889,6 +889,26 @@ DATABASES = {}  # 生产环境数据库
 
 4. 重新加载：`service nginx reload`
 
+## 测试
+
+为避免产生冗余数据，Django测试时会创建独立的临时数据库，测试完成后自动删除，因此会拖慢测试时间
+
+如果不想新建数据库有两种处理方式
+
+- 如果测试用例不涉及数据库
+
+```python
+# 使用SimpleTestCase替代TestCase
+from django.test import SimpleTestCase
+```
+
+- 使用数据库但测试时复用同一个数据库
+
+```bash
+# 运行测试时添加--keepdb参数保留临时数据库（首次运行还是会创建的）
+python manage.py test --keepdb
+```
+
 ## 部署
 
 > 使用 WSGI 或 ASGI 部署 Django 可以参考[CGI](cgi.md)，或者[官方文档](https://docs.djangoproject.com/zh-hans/4.0/howto/deployment/)

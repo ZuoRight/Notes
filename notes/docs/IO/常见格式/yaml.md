@@ -9,15 +9,15 @@ YAML Ain't a Markup Language
 ```yaml
 ka: {k1: v1, k2: v2, k3: v3}  # key不需要引号，value都可，建议用
 kb:
-  k1: v1  # 冒号后必须带空格？
+  k1: v1
   k2: v2
   k3: v3
-kc: [v1, v2, v3]
 ```
 
 - 数组
 
 ```yaml
+kc: [v1, v2, v3]
 k:
   - va
   - vb
