@@ -51,6 +51,8 @@ date_iso: 2021-08-14T15:02:31+08:00
 
 ## 读写YAML
 
+> 文档：<https://pyyaml.org/wiki/PyYAMLDocumentation>
+
 `pip install pyyaml`
 
 - 读

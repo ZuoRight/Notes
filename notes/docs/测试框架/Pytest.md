@@ -80,6 +80,35 @@ class TestDemo:
         print("method2")
 ```
 
+## 参数化
+
+```python
+import pytest
+
+# 数据驱动：把Case存入YAML、EXCEL等文件中读取
+_list = yaml.safe_load(open(yaml_file))  # [[1,2], [3,4]]
+
+# 参数化，普通形式
+"""
+@pytest.mark.parametrize(
+    argnames,  被参数化的变量，字符串中逗号分隔变量，也可以是列表或元组的形式
+    argvalues,  与变量一一对应的一组值，[(),(),()]
+    ids=None,  给每组Case起别名
+    indirect=False
+)
+"""
+
+# 参数化，笛卡尔积形式：会产生2x3=6条Case，与上面等价
+"""
+@pytest.mark.parametrize("a", [1,2])
+@pytest.mark.parametrize("b", [1,2,3])
+"""
+
+@pytest.mark.parametrize("a,b", _list)
+def test_demo(a, b):
+    print(a+b)
+```
+
 ## Fixture
 
 - 可同时定义多个fixture，作用于不同范围
@@ -87,7 +116,6 @@ class TestDemo:
 - fixture如果写在conftest.py文件中，则可以被同级目录多个文件一起调用
 
 ```python
-@pytest.fixture(scope="function", autouse=False, params=None, ids=None, name=None)
 """
 scope  作用范围
     session 或 package  多个文件共调用一次，通常把fixture写在conftest.py文件中
@@ -103,6 +131,7 @@ params fixture参数化
 ids  给每组Case起别名
 name  fixture的名称，默认就是函数名
 """
+@pytest.fixture(scope="function", autouse=False, params=None, ids=None, name=None)
 def login():  # 为区别于用例，函数命名不能以test开头
     print("登入)  # yield前面的类似于setup_xx
     yield xxx  # 相当于return，在完成yield前面的操作后返回xxx
@@ -143,28 +172,6 @@ def manage_logs(request):
     # 当前目录为pytest.ini文件所在的位置
     log_name = f'data/logs/{now}.log'
     request.config.pluginmanager.get_plugin("logging-plugin").set_log_path(log_name)
-```
-
-## 参数化
-
-```python
-import pytest
-
-@pytest.mark.parametrize("a,b", [(1, 1),(1, 2),(1, 3),(2, 1),(2, 2),(2, 3)])
-"""
-@pytest.mark.parametrize(
-    argnames,  被参数化的变量，字符串中逗号分隔变量，也可以是列表或元组的形式
-    argvalues,  与变量一一对应的一组值，[(),(),()]
-    ids=None,  给每组Case起别名
-    indirect=False
-    )
-
-# 笛卡尔积形式：会产生2x3=6条Case，与上面等价
-@pytest.mark.parametrize("a", [1,2])
-@pytest.mark.parametrize("b", [1,2,3])
-"""
-def test_demo(a, b):
-    print(a+b)
 ```
 
 ### 使用Fixture参数化
@@ -210,23 +217,6 @@ indirect=True时，argnames是一个fixture函数名，_list作为fixture的参�
 """
 def test_01(login):
     print(login[0] + login[1] + login[2])
-```
-
-### 数据驱动
-
-即把Case存入YAML、EXCEL等文件中读取
-
-```yaml
-- [1, 2]
-- [3, 4]
-```
-
-```python
-_list = yaml.safe_load(open(yaml_file))  # [[1,2], [3,4]]
-
-@pytest.mark.parametrize(("a","b"), _list)
-def test_demo(a, b):
-    print(a+b)
 ```
 
 ## 运行

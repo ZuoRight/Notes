@@ -1,4 +1,4 @@
-# 接口测试框架
+# 引言
 
 - 接口请求
 - 测试驱动
@@ -8,13 +8,15 @@
 - 测试报告
 - 持续集成
 
-## 接口请求
+## 框架选择
 
-如果是HTTP协议接口首选第三方库`requests`
+- API自动化
 
-RPC协议可以选用第三方库`zerorpc`
+如果是HTTP协议接口首选第三方库`Requests`，RPC协议可以选用第三方库`ZeroRPC`，WebSocket协议可以使用系统内置的`webSocket`
 
-WebSocket协议可以使用系统内置的`webSocket`
+- UI自动化
+
+Web端可选`Selenium`，移动端可选`Appium`，底层其实都是`Webdriver`
 
 ## 测试驱动
 
@@ -36,7 +38,58 @@ WebSocket协议可以使用系统内置的`webSocket`
 
 关于数据库的选型，SQLite比较小巧灵活，但原生支持数据类型较少，MySQL新版本原生支持Json格式存储
 
----
+- 获取单元格内容（`get_cell_value`）
+
+```python
+"""
+前提：case_id唯一
+"""
+
+# 方法1，基于openpyxl
+获取表中所有数据：sh
+获取col_index，依赖header_field，自定义方法：循环某行的值做匹配，然后用内置方法cell.column获取
+获取row_index，依赖case_id，自定义方法：循环case_id列的值做匹配，然后用内置方法cell.row获取
+根据row_index和col_index获取cell_value，内置方法：sh.cell(row_index, col_index).value
+
+# 方法2，基于tablib
+获取表中所有数据：data
+获取col_index，依赖header_field：data.headers.index("header_field")
+获取col_list， 依赖header_field或col_index：data[header_field]
+获取row_index，依赖col_list：col_list.index(case_id)
+获取row_list，依赖row_index，data[row_index]
+获取cell_value，依赖row_list和col_index，内置方法：row_list[col_index]
+```
+
+- 如果从Excel读取的payload其实是字符串格式的，需要转换并反序列化为dict
+
+```python
+import json
+import re
+
+def payload_to_dict(payload_init):
+    if isinstance(payload_init, str):
+        try:
+            """
+            反序列化前需要做一些json标准化格式处理
+            单引号转换为双引号
+            bool值转换为json格式的
+            """
+            payload_str_json = payload_init.replace('\'', '\"')
+            reg_true = re.compile('True', re.IGNORECASE)
+            payload_str_json = reg_true.sub('true', payload_str_json)
+            reg_false = re.compile('False', re.IGNORECASE)
+            payload_str_json = reg_false.sub('false', payload_str_json)
+            # 反序列化
+            payload_dict = json.loads(payload_str_json)
+        except json.decoder.JSONDecodeError as e:
+            logging.error(f"请检查数据格式, {e}")
+        else:
+            return payload_dict
+    return payload_init
+
+payload_str = case[headers_index("payload")]
+payload_dict = payload_to_dict(payload_str)
+```
 
 - 借助jsonpath解析json，获取指定字段的值
 
@@ -70,46 +123,24 @@ def read_from_json(data, key, value_type=0):
         return None
 ```
 
-- 如果从Excel读取的payload其实是字符串格式的，需要转换并反序列化为dict
-
-```python
-import json
-import re
-
-payload_str = case[headers_index("payload")]
-def get_payload_dict(payload_init):
-    if isinstance(payload_init, str):
-        try:
-            """
-            反序列化前需要做一些json标准化格式处理
-            单引号转换为双引号
-            bool值转换为json格式的
-            """
-            payload_str_json = payload_init.replace('\'', '\"')
-            reg_true = re.compile('True', re.IGNORECASE)
-            payload_str_json = reg_true.sub('true', payload_str_json)
-            reg_false = re.compile('False', re.IGNORECASE)
-            payload_str_json = reg_false.sub('false', payload_str_json)
-            # 反序列化
-            payload_dict = json.loads(payload_str_json)
-        except json.decoder.JSONDecodeError as e:
-            logging.error(f"请检查数据格式, {e}")
-        else:
-            return payload_dict
-    return payload_init
-payload_dict = get_payload_dict(payload_str)
-```
-
----
-
 ## 依赖处理
 
 - 使用`$`符和`case_id`处理依赖
 
 ```python
-def run_case(self, case_id):
-    # 通过case_id获取payload，并确保处理为dict(json)格式
-    payload = self.get_case(case_id, "payload")
+from utils.handle_data import GetData
+from utils.handle_io import read_from_json, payload_to_dict
+
+
+cases = GetData("data/demo.xlsx")
+req = HandleRequest()
+
+
+def run_case(case_id):
+    row_index = cases.get_row_index("case_id", case_id)
+    case = cases.get_row_list(row_index)
+    payload_str = case[cases.get_col_index("payload")]
+    payload = payload_to_dict(payload_str)  # 将str格式的payload处理为dict(json)格式
     """
     payload = {
         "$aid": {  # 带有有$符的字段表示其值依赖了其它case的返回值
@@ -137,7 +168,7 @@ def run_case(self, case_id):
                 """
                 depend_case_response = cache.get(depend_case_id)
                 if not depend_case_response:
-                    depend_case_response = self.run_case(depend_case_id)  # 递归
+                    depend_case_response = run_case(depend_case_id)  # 递归
                     """
                     如果依赖没有依赖则直接获取依赖响应，缓存
                     如果依赖还有依赖则继续递归，直到最底层没有依赖的接口
@@ -157,11 +188,11 @@ def run_case(self, case_id):
     执行case返回实际结果
     不同请求方式的参数可能不太一样，这个可以在utils.handle_http中做处理
     """
-    url = self.get_case(case_id, "url")
-    method = self.get_case(case_id, "method")
-    headers = self.get_case(case_id, "headers")
+    url = case[cases.get_col_index("url")]
+    method = case[cases.get_col_index("method")]
+    headers = case[cases.get_col_index("headers")]
     kwargs = {"headers": headers, "json": payload}
-    res = self.handle_http(method, url, **kwargs)
+    res = req.run_api(method, url, **kwargs)
     return res
 ```
 

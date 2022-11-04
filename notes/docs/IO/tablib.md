@@ -47,7 +47,6 @@ class GetData:
     def __init__(self, path):
         data_path = data_path.lower()
         data_format = data_path.split('.')[1]
-        data_format = data_path.split('.')[1]
         """
         excel文件需要用rb模式打开
         csv、json等可以用r模式打开
@@ -117,6 +116,9 @@ John      |Adams    |90
 Henry     |Ford     |83
 """
 
+# 转成list格式
+data_list = list(data)  # 不包含表头
+
 data.height  # 输出当前记录(行)总数，2
 data.width  # 输出当前属性(列)总数，3
 data.headers  # 获取表头
@@ -137,18 +139,11 @@ data[0]  # 第1行
 data[:n]  # 前n行
 
 # 获取列
-print(data["first_name"])  # 根据表头名称
-print(data.get_col(0))  # 根据表头索引
+data["first_name"]  # 根据表头名称
+data.get_col(0)  # 根据表头索引
 
 # 删除列
 del data["note"]
-
-# 遍历除表头外的行
-def get_data_list(self):
-    _list = []
-    for row in self.data:
-        _list.append(row)
-    return _list
 ```
 
 ## 动态列
