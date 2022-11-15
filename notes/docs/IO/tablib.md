@@ -142,8 +142,9 @@ data[:n]  # 前n行
 data["first_name"]  # 根据表头名称
 data.get_col(0)  # 根据表头索引
 
-# 删除列
-del data["note"]
+# 删除
+del data[n]  # 删除行
+del data["field"]  # 删除列
 ```
 
 ## 动态列
