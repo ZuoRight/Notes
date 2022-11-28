@@ -178,14 +178,48 @@ class RunSql():
 ## ORM
 
 - SQLALchemy
+- Django Admin
+- Peewee
 
-<https://iswbm.com/307.html>
+### SQLALchemy
+
+<https://docs.sqlalchemy.org/en/14/index.html>
 
 ```python
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
 
-con = create_engine('mysql+pymysql://{user}:{password}@{host}:{port}/{database}?charset=utf8mb4'')
+
+mysql_config = {"user": xxx, "password": xxx, "host": xxx, "port": xxx, "database": xxx}
+mysql_uri = 'mysql+pymysql://{user}:{password}@{host}:{port}/{database}'.format(**mysql_config)
+engine = create_engine(mysql_uri, encoding="utf8mb4")
+session = sessionmaker(bind=engine)()
+
+Base = declarative_base()
+class User(Base):
+    __tablename__ = 'users'  # 映射的表名
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255))
+    age = Column(Integer)
+
+
+# 返回所有数据
+session.query(User).all()
+# 查询满足条件的所有数据
+session.query(User).filter_by(name="Tony").all()
+# 查询满足条件的首条数据
+res = session.query(User).filter_by(name="Tony").first()  # <User(user='xxx', name='Tony', xxx='xxx')>
+res.name  # Tony
+
+
+# 或者
+from sqlalchemy import select
+stmt = select(User).where(User.name == "Tony")
+result = session.execute(stmt)  # <sqlalchemy.engine.result.ChunkedIteratorResult object at 0x1060f3670>
+result.scalars()  # <sqlalchemy.engine.result.ScalarResult object at 0x105f6bca0>
+result.scalars().all()  # [<User(user='xxx', name='Tony', xxx='xxx')>]
+for row in result.scalars():
+    print(f"{row.user} {row.name}")
 ```
-
-- peewee
-- Django admin

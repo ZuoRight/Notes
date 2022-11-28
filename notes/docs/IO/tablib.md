@@ -18,6 +18,8 @@ pip install "tablib[all]"  # 安装所有依赖
 - `tablib.Databook()` 相当于Excel中的WorkBook，即Sheet的集合
 - `tablib.Dataset()` 相当于Excel中的Sheet
 
+> 使用场景：由于tablib不能直接导入sql数据，但可以先读取sql之后构建成Dataset格式使用
+
 ```python
 import tablib
 

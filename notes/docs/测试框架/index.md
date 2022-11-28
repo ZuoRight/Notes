@@ -140,10 +140,10 @@ def run_case(case_id):
     row_index = cases.get_row_index("case_id", case_id)
     case = cases.get_row_list(row_index)
     payload_str = case[cases.get_col_index("payload")]
-    payload = payload_to_dict(payload_str)  # 将str格式的payload处理为dict(json)格式
+    payload = loads_json(payload_str)  # 将json_str 反序列化为python的dict或list
     """
     payload = {
-        "$aid": {  # 带有有$符的字段表示其值依赖了其它case的返回值
+        "$aid": {  # 带有$符的字段表示其值依赖了其它case的返回值
             "case_id": "007",  # 依赖的case_id
             "key": "data.xxx",  # 依赖的字段，使用jsonpath解析
             "value_type": 0,  # jsonpath默认返回list，0 表示返回list结果（默认），1 取list[0]
@@ -152,48 +152,57 @@ def run_case(case_id):
         "content": "xxx"
     }
     """
-
     if payload:
-        cache = {}
-        # 迭代时dict大小不能被改变，否则会报错，用list包裹可以避免此问题
-        for k,v in list(payload.items()):
-            if k[0] == "$":
-                depend_case_id = v.get("case_id")
-                depend_key = v.get("key")
-                depend_value_type = v.get("value_type", 0)
-                depend_function = v.get("function")
+        if isinstance(payload, dict):
+            self.build_payload(payload)
+        elif isinstance(payload, list):
+            payload_list = []
+            for payload_sub in payload:
+                payload_sub_dict = self.build_payload(payload_sub)
+                payload_list.append(payload_sub_dict)
+        else:
+            print("Payload格式错误, 请检查")
+
+    # 调用http_request方法请求api，具体传参可根据业务调整
+    method = case[self.get_col_index("method")]
+    api = case[self.get_col_index("api")]
+    resp = http_request(method, api, payload)
+    return resp
+
+
+def build_payload(self, payload: dict) -> dict:
+    cache = {}
+    # 迭代时dict大小不能被改变，否则会报错，用list包裹可以避免此问题
+    # list({"a":1,"b":2}.items()) 将dict变为list [('a', 1), ('b', 2)]
+    for k,v in list(payload.items()):
+        if k[0] == "$":
+            depend_case_id = v.get("case_id")
+            depend_key = v.get("key")
+            depend_value_type = v.get("value_type", 0)
+            depend_function = v.get("function")
+            """
+            将depend_case_id存到缓存cache
+            如果多个字段都依赖了相同的case，则复用缓存，不需要重复请求
+            """
+            depend_case_response = cache.get(depend_case_id)
+            if not depend_case_response:
+                depend_case_response = self.run_case(depend_case_id)  # 递归
                 """
-                将depend_case_id存到缓存cache
-                如果多个字段都依赖了相同的case，则复用缓存，不需要重复请求
+                如果依赖没有依赖则直接获取依赖响应，缓存
+                如果依赖还有依赖则继续递归，直到最底层没有依赖的接口
                 """
-                depend_case_response = cache.get(depend_case_id)
-                if not depend_case_response:
-                    depend_case_response = run_case(depend_case_id)  # 递归
-                    """
-                    如果依赖没有依赖则直接获取依赖响应，缓存
-                    如果依赖还有依赖则继续递归，直到最底层没有依赖的接口
-                    """
-                    cache[depend_case_id] = depend_case_response  
-                # 根据依赖字段从依赖响应中获取依赖值
-                depend_data = read_from_json(depend_case_response.json(), depend_key, depend_value_type)
-                # 依赖值可能需要进一步处理
-                if depend_function:
-                    depend_function = eval(depend_function)  # 此时depended_function的值还是一个str，需要先还原成函数
-                    depend_data = depend_function(depend_data)  # 处理后的返回覆盖未处理的
-                # 添加不带$的字段
-                payload[k.lstrip("$")] = depend_data
-                # 删除带$的字段
-                payload.pop(k)
-    """
-    执行case返回实际结果
-    不同请求方式的参数可能不太一样，这个可以在utils.handle_http中做处理
-    """
-    url = case[cases.get_col_index("url")]
-    method = case[cases.get_col_index("method")]
-    headers = case[cases.get_col_index("headers")]
-    kwargs = {"headers": headers, "json": payload}
-    res = req.run_api(method, url, **kwargs)
-    return res
+                cache[depend_case_id] = depend_case_response  
+            # 根据依赖字段从依赖响应中获取依赖值
+            depend_data = read_from_json(depend_case_response.json(), depend_key, depend_value_type)
+            # 依赖值可能需要进一步处理
+            if depend_function:
+                depend_function = eval(depend_function)  # 此时depended_function的值还是一个str，需要先还原成函数
+                depend_data = depend_function(depend_data)  # 处理后的返回覆盖未处理的
+            # 添加不带$的字段
+            payload[k.lstrip("$")] = depend_data
+            # 删除带$的字段
+            payload.pop(k)
+    return payload
 ```
 
 ## 结果断言（待整理）

@@ -1,10 +1,4 @@
-# 虚拟机搭建Ubuntu
-
-Hypervisor（KVM、Xen等）是虚拟机最主要的部分。它通过硬件虚拟化功能，模拟出了运行一个操作系统需要的各种硬件，比如 CPU、内存、I/O 设备、磁盘、网卡等等。然后，它在这些虚拟的硬件上安装了一个新的操作系统，即 Guest OS。
-
-虚拟机和K8s都很吃内存，所以建议宿主机内存8G+（可以支持开两个虚拟机组成最小集群）4核CPU，硬盘300G+
-
-## 安装 VirtualBox
+# VirtualBox
 
 > 官网下载地址：<https://www.virtualbox.org/wiki/Downloads>
 >
@@ -25,12 +19,6 @@ Hypervisor（KVM、Xen等）是虚拟机最主要的部分。它通过硬件虚�
 ![20220707002443](http://image.zuoright.com/20220707002443.png)
 
 ## 安装 Ubuntu 系统
-
-> 镜像下载：<https://ubuntu.com/download/desktop>
-
-Linux发行版建议选择`Ubuntu 22.04(Jammy Jellyfish)`桌面版，同时支持x86_64和arm64，有足够新的特性，适合运行K8s，内置的浏览器和终端工具也方便调试
-
-> Docker最初的版本就是在Ubuntu12.04上开发的，选择Ubuntu也算根正苗红
 
 - 新建虚拟机
 

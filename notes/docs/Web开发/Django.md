@@ -824,7 +824,7 @@ urlpatterns = [
 
 ## 配置拆分
 
-拆分后，如果要在非默认环境下启动和数据迁移时（总之所有会牵扯到数据库相关的命令）记得加`--settings=config_path`
+拆分后，如果要在非默认环境下启动和数据迁移等涉及数据库相关的命令记得加`--settings=config_path`
 
 ![20210826183930](http://image.zuoright.com/20210826183930.png)
 

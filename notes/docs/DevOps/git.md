@@ -151,17 +151,20 @@ git commit --ament -m "xxx"  # 修正提交，可以覆盖上一次的提交
 
 ## 撤销
 
-撤销工作区未追踪文件的修改：只能是ctrl+Z
+- 撤销工作区未追踪文件的修改：只能是`Ctrl+Z`
+- 撤销工作区已追踪文件的修改
 
-撤销工作区已追踪文件的修改
+```bash
+git restore xxx
+git checkout -- xxx
+```
 
-- `git restore xxx`
-- `git checkout -- xxx`
+- 撤销暂存区文件缓存：即git add后撤销
 
-撤销暂存区文件缓存：即git add后撤销
-
-- `git restore --staged xxx` 变为未暂存状态
-- `git rm --cached xxx` 变成未追踪状态
+```bash
+git restore --staged xxx  # 变为未暂存状态
+git rm --cached xxx  # 变成未追踪状态
+```
 
 ## 分支
 
