@@ -16,29 +16,12 @@ Gavin Wood 写了以太坊的[黄皮书](https://github.com/ethereum/yellowpaper
 
 ## 单位
 
-计算机处理浮点数通常会有误差，所以一般涉及到金钱相关的会缩小单位，比如1元，通常存储为100分
+计算机处理浮点数通常会有误差，所以一般涉及到金钱相关的会缩小单位，比如1角应该存储为10分，而不是0.1元
 
-以太坊中规定：`1 eth` = `10^18 wei` = `10^9 gwei`
+以太坊中常用单位：`1 Ether` = `10^9 Gwei` = `10^18 wei`
 
 - wei 是以太坊中的最小单位（以b-money的发明者 Wei Dai 命名），常用于开发中
-- gwei 主要用于表示Gas费
-
-## Gas
-
-Gas是以太坊交易中的手续费，可以防止恶意交易以助于保持网络的安全，价格以 gwei 表示
-
-一笔交易消耗的Gas上限为21000个，多退，但如果少了则交易失败且不会退还。
-
-每个Gas的价格是动态变化的，总的Gas费用计算方式
-
-- 伦敦升级前：`Gas units (limit) * Gas price per unit`
-- 伦敦升级后：`Gas units (limit) * (Base fee + Tip)`
-
-其中Base fee会被销毁，交易越多下一个区块的Base fee越高（最低100gwei）
-
-Tip（小费，也叫优先费）奖励给矿工，所以矿工正常会优先打包Tip较大的交易
-
-发送方可以设置maxFeePerGas，会根据真实消耗费用把差额退还给发送方：`refund = max fee - (base fee + priority fee)`
+- Gwei 主要用于表示Gas费
 
 ## 挖矿
 

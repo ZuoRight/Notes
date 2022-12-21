@@ -18,7 +18,7 @@ hide:
 - Avalanche（AVAX）
 - Polkadot(DOT)
 - Cosmos（ATOM）
-- BSC
+- BSC（BNB）
 
 区块链涉及的各种新概念：Crypto，DAPP、NFT、DAO、DeFi、GameFi、SocialFi，Web3.0，元宇宙等等等等。
 
