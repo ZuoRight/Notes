@@ -23,3 +23,7 @@ hide:
 区块链涉及的各种新概念：Crypto，DAPP、NFT、DAO、DeFi、GameFi、SocialFi，Web3.0，元宇宙等等等等。
 
 现在仍然还处于很早期的阶段，有点像集成电路被创造后刚刚有了Unix操作系统的感觉，我们都还有机会
+
+---
+
+学习中，后续笔记暂时转移到Notion更新...

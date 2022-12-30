@@ -173,7 +173,7 @@ public_key_bytes = serialize_curve_point(p)
 print(f'public key: 0x{public_key_bytes.hex()}')  # public key: 0x024c8f4044470bd42b81a...
 ```
 
-然后生成一个收款地址，a public address is the last 20 bytes of the Keccak-256 hash of the public key points
+然后生成一个收款地址，a public address is the last 20 bytes of the Keccak-256 hash of the public key points（取64bytes的后20bytes）
 
 ```python
 from eth_utils import keccak
