@@ -42,7 +42,7 @@ npm list -g  # 查看已安装包，不带-g看不到全局的包
 
 npm install  # 安装依赖包
 npm install <name> [-g] [--save-dev]
-"""
+<<'COMMENT'
 -g/--global
 全局安装，可以通过命令行在任何地方调用它
 本地安装将安装在定位目录的node_modules文件夹下，通过require()调用
@@ -53,7 +53,7 @@ npm install <name> [-g] [--save-dev]
 -dev
 保存至package.json的devDependencies节点，不指定-dev将保存至dependencies节点
 像这些express/ejs/body-parser等一般保存在dependencies
-"""
+COMMENT
 
 npm update <name> [-g] [--save-dev]  # 更新插件，不指定name则更新全部
 npm install npm -g  # 更新npm自身
