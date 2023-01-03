@@ -127,13 +127,21 @@ git commit --ament -m "xxx"  # 修正提交，可以覆盖上一次的提交
 
 回滚【到】某个版本，回滚到后，后面的版本都将消失
 
-回滚后要用`git push -f`推向远程，否则会报错
+回滚后要用`git push --force`推向远程，否则会报错
 
 参数
 
-- --soft 回到commit前的状态
-- --mixed 回到add前的状态，默认
-- --hard 回到工作区修改前状态，重置
+- `--soft` 回到commit前的状态
+- `--mixed` 回到add前的状态，默认
+- `--hard` 回到工作区修改前状态，重置
+
+```bash
+# 如果不小心提交了隐私记录，可以reset到这次提交前的版本
+# 注意，删除后通过https://github.com/ZuoRight/demo/commit/hash_id依然可以访问到
+git log  # 查看提交记录，找到包含隐私的那一次提交记录，copy它上一个版本的hash_id
+git git reset --hard hash_id
+git push --force origin HEAD
+```
 
 版本
 
