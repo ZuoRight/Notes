@@ -2,7 +2,7 @@
 
 Brownie is Python development framework for Ethereum，support for Solidity and Vyper，relies heavily upon Web3.py.
 
-Docs：<https://eth-brownie.readthedocs.io/en/stable/index.html>
+Docs: <https://eth-brownie.readthedocs.io/en/stable/index.html>
 
 ## 安装
 
