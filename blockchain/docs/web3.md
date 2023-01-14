@@ -58,12 +58,6 @@ w3 = Web3(EthereumTesterProvider())
 
 ### 公共测试网
 
-RPC Node Provider
-
-- Infura
-- Alchemy
-- QuickNode
-
 ```python
 import os
 

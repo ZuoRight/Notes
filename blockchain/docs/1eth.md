@@ -35,7 +35,7 @@ Gavin Wood 写了以太坊的[黄皮书](https://github.com/ethereum/yellowpaper
 
 比特币主要用于支付，需要更多的安全确认，所以限制平均10min出一个块，而以太坊则是执行智能合约为主，支付功能并不是以太坊的主要功能，平均13s左右。
 
-## 与链交互
+## 节点
 
 以太坊是一个由分布式节点构成的去中心化计算机网络
 
@@ -60,8 +60,16 @@ Gavin Wood 写了以太坊的[黄皮书](https://github.com/ethereum/yellowpaper
 
 ![20220727154452](http://image.zuoright.com/20220727154452.png)
 
-web3库有各种语言的实现
+## 与链交互
+
+### Web3库
 
 - JS: `Web3.js`、`Ethers.js`
-- Java: `Web3j`
 - Python：`web3.py`
+- Java: `Web3j`
+
+### 框架
+
+- Solidity: `Foundry`
+- JS: `Hardhat`、`Truffle`
+- Python: `Brownie`、`ApeWorX`
