@@ -45,7 +45,7 @@ extra:
     provider: google
     property: G-6CVJ632G5J
     feedback:
-      title: 此页面内容可还行？
+      title: 此页面内容对您是否有帮助？
       ratings:
         - icon: material/thumb-up-outline
           name: 有用的
@@ -88,11 +88,11 @@ markdown_extensions:
       permalink: true  # 固定链接
 
 plugins:
+  # - meta
+  #   meta_file: '**/.meta.yml'
   - search:
       lang:
         - ja
   - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
       type: iso_date
       # enable_creation_date: true  # 显示创建时间
-  # - meta:
-  #     meta_file: '**/.meta.yml'
