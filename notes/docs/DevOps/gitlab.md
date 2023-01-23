@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 # GitLab CI
 
 - CI(Continuous Integrationv) 持续集成

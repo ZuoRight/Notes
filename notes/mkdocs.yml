@@ -11,6 +11,7 @@ copyright: Copyright &copy; 2016 ~ Forever 7c
 
 theme:
   name: material
+  custom_dir: overrides  # 扩展主题
   language: zh
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -93,3 +94,5 @@ plugins:
   - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
       type: iso_date
       # enable_creation_date: true  # 显示创建时间
+  # - meta:
+  #     meta_file: '**/.meta.yml'

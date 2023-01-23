@@ -1,6 +1,6 @@
 # [ZuoRight](http://zuoright.com)
 
-> VSCode + MD + 七牛云图床 + Git + Github Pages + Github Actions
+> `VSCode` + `MarkDown` + `七牛云图床` + `Git` + `Github`(`Pages`, `Actions`, `Discussions`)
 
 ## MKDocs
 
@@ -24,11 +24,14 @@ pip install mkdocs-git-revision-date-localized-plugin
 ```yaml
 theme:
   name: material
+  custom_dir: overrides  # 扩展主题
 
 plugins:
   - git-revision-date-localized:  # 文章底部显示更新时间
       type: iso_date
 ```
+
+扩展：<https://squidfunk.github.io/mkdocs-material/customization/#extending-the-theme>
 
 ```shell
 mkdocs --help
