@@ -1,5 +1,7 @@
 ---
 comments: true
+hide:
+  - feedback
 ---
 
 # 安装与简介

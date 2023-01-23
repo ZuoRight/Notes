@@ -1,5 +1,7 @@
 ---
 comments: true
+hide:
+  - feedback
 ---
 
 # 引言

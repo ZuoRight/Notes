@@ -1,5 +1,7 @@
 ---
 comments: true
+hide:
+  - feedback
 ---
 
 # GitLab CI
