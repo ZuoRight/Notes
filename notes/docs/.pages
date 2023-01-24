@@ -1,0 +1,19 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - Home: https://zuoright.com/
+  - index.md
+  - 计算机基础
+  - 操作系统
+  - 网络通信
+  - 抓包
+  - 测试理论
+  - 测试框架
+  - 编程基础
+  - Python
+  - IO
+  - DB
+  - Web开发
+  - Docker
+  - DevOps
+  - Concurrency
+  - ...

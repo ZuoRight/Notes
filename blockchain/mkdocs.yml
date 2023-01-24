@@ -93,3 +93,4 @@ plugins:
   - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
       type: iso_date
       # enable_creation_date: true  # 显示创建时间
+  - glightbox  # 放大图片

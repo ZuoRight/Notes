@@ -6,7 +6,6 @@ site_url: https://www.zuoright.com
 # repo_name: ZuoRight/zuoright.github.io
 # repo_url: https://github.com/ZuoRight/zuoright.github.io
 
-
 copyright: Copyright &copy; 2016 ~ Forever 7c
 
 theme:
@@ -34,10 +33,14 @@ theme:
     # repo: material/source-branch
   favicon: images/favicon.png
   features:
-    - header.autohide  # 下滑自动隐藏导航栏
-    - navigation.top  # 回到顶部
+    # - navigation.tabs  # 导航标签
+    # - navigation.expand  # 导航全部展开
     - navigation.instant  # 内部锚链接即时加载
+    - navigation.indexes  # 导航索引
+    - navigation.top  # 回到顶部
+    - header.autohide  # 下滑自动隐藏导航栏
     - toc.integrate  # 导航集成到左侧
+    - toc.follow  # 导航跟随
 
 extra:
   generator: false  # 移除MkDocs链接
@@ -96,3 +99,5 @@ plugins:
   - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
       type: iso_date
       # enable_creation_date: true  # 显示创建时间
+  - glightbox  # 放大图片
+  - awesome-pages  # 更方便的设置目录顺序
