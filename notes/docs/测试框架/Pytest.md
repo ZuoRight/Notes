@@ -1,3 +1,9 @@
+---
+comments: true
+hide:
+  - feedback
+---
+
 # Pytest
 
 官方文档：<https://docs.pytest.org>

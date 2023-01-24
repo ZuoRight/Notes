@@ -1,3 +1,9 @@
+---
+comments: true
+hide:
+  - feedback
+---
+
 # Allure
 
 [官方网站](https://qameta.io/allure-report/){ .md-button .md-button--primary }
