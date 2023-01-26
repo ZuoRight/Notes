@@ -1,4 +1,4 @@
-# 以太坊
+# Ethereum
 
 [以太坊历史](https://ethereum.org/en/history/)
 
@@ -59,21 +59,3 @@ Gavin Wood 写了以太坊的[黄皮书](https://github.com/ethereum/yellowpaper
 升级后交互示意图
 
 ![20220727154452](http://image.zuoright.com/20220727154452.png)
-
-## 与链交互
-
-### Web3库
-
-- JS: `Web3.js`、`Ethers.js`
-- Python：`web3.py`
-- Java: `Web3j`
-
-### 框架
-
-- JS: `Hardhat`、`Truffle`
-- Python: `Brownie`、`ApeWorX`
-- Rust: `Foundry`
-
-Foundry 是 Paradigm 团队用 Rust 基于 dapptools 重构的框架，据说 `Foundry` 测试运行速度比 `Hardhat` 快 20 倍，比 `Brownie` 快 40 倍
-
-Brownie 仍然是 Curve 协议使用的主要工具之一，但我们已经看到它在今年放缓到更多的维护模式。Brownie 和 Python 社区希望 Apeworx 成为基于 Python 的智能合约框架的继任者。

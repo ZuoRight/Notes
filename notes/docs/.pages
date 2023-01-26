@@ -1,6 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - Home: https://zuoright.com/
+  - Home: https://zuoright.com
   - index.md
   - 计算机基础
   - 操作系统

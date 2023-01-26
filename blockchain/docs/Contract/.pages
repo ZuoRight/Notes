@@ -1,0 +1,7 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - index.md
+  - solidity.md
+  - web3.md
+  - brownie.md
+  - ...

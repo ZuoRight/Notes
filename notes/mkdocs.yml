@@ -36,14 +36,14 @@ theme:
     # - navigation.tabs  # 导航标签
     # - navigation.expand  # 导航全部展开
     - navigation.instant  # 内部锚链接即时加载
-    - navigation.indexes  # 导航索引
+    # - navigation.indexes  # 导航索引
     - navigation.top  # 回到顶部
     - header.autohide  # 下滑自动隐藏导航栏
     - toc.integrate  # 导航集成到左侧
     - toc.follow  # 导航跟随
 
 extra:
-  generator: false  # 移除MkDocs链接
+  # generator: false  # 移除MkDocs链接
   analytics:
     provider: google
     property: G-6CVJ632G5J

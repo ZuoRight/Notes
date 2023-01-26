@@ -57,15 +57,28 @@ Validium由`Starkware`团队在2020年6月份才提出，跟Plasma一样数据�
 
 ## Rollup
 
-- Optimistic Rollup（开心卷）
+### Optimistic Rollup（开心卷）
 
 Optimistic Rollup有用到Plasma的欺诈验证技术，提现也比较慢，应用项目主要有：`Optimism` 和 `Arbitrium`
 
 两者区别在于前者欺诈验证是单轮制，而后者是多轮制的，此外Optimism要求开发者必须用特定版本的Solidity开发，而Arbitrium更加包容，只要是EVM兼容的语言都可以。
 
-- ZK Rollup（Zero Knowledge Rollup）
+### ZK Rollup（Zero Knowledge Rollup）
 
-ZK Rollup利用零知识证明交易与取现都比较快，但是手续费相对较高一些，而且实现难度也更大，目前还处在理论阶段。目前用到用到ZK Rollup的项目有：`Loopring`（路印）在做的去中心化的交易所，以及还没有上线的`zkSync`
+ZK Rollup 利用零知识证明(ZKP)交易与取现都比较快，但是手续费相对较高一些，而且实现难度也更大，目前还处在理论阶段。
+
+ZK 证明系统
+
+- ZK-SNARK（Zero-Knowledge Succinct Non-Interactive Argument of Knowledge）简洁的非交互式零知识证明
+- ZK-STARK（Zero-Knowledge Scalable Transparent Argument of Knowledge）可扩展的透明零知识证明
+
+MatterLabs 团队基于 SNARK 开发了 zkSync。
+
+StarkWare 团队基于 STARK 开发了 StarkEx 和 StarkNet。
+
+使用 StarkEx 的有 dYdX、DiversiFi、Immutable X 和 Sorare，不过 StarkEx 上的项目彼此独立，无法组合。可能是因为这个原因，StarkWare 又推出了开放性更好的 StarkNet。
+
+StarkNet 是真正意义上的 Layer2，任何 DAPP 都可以在上面部署，应用之间可组合。
 
 ## 侧链
 

@@ -6,7 +6,6 @@ site_url: https://www.zuoright.com
 # repo_name: ZuoRight/zuoright.github.io
 # repo_url: https://github.com/ZuoRight/zuoright.github.io
 
-
 copyright: Copyright &copy; 2016 ~ Forever 7c
 
 theme:
@@ -94,3 +93,4 @@ plugins:
       type: iso_date
       # enable_creation_date: true  # 显示创建时间
   - glightbox  # 放大图片
+  - awesome-pages  # 更方便的设置目录顺序
