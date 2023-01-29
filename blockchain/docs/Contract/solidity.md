@@ -22,11 +22,10 @@ Solidity 是一种面向对象的高级语言，用于实现智能合约。
 
 > Solc 即 [Solidity Compiler](https://docs.soliditylang.org/en/v0.8.17/installing-solidity.html)
 
-Python环境用于编译Solidity的工具有：
+Python环境用于编译Solidity的工具主要有：
 
 - `py-solc` is Python wrapper around the solc Solidity compiler.
 - `py-solc-x` is Forked from py-solc
-- `py-solc-ast` Brownie依赖的编译工具
 
 ### py-solc-x
 
