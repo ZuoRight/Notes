@@ -1,27 +1,32 @@
-# GitHub Actions
+# GitHub
 
-> <https://docs.github.com/cn/actions>
->
-> 配置文件：`.github/workflows/xxx.yml` (YAML语法)
+## Actions
 
-## 流水线 Workfolws
+> Docs: <https://docs.github.com/zh/actions/using-workflows/about-workflows>
+
+### 配置文件
+
+路径固定，文件名称可自定义：`.github/workflows/xxx.yml`
 
 ```yaml
 name: xxx  # workflow的名称，省略则默认为文件名
 
 on:  # 触发条件
   push
-    branches: [main]  # 可限定触发分支
+    branches:  # 可限定触发分支
+      - main
+      - master
 
 jobs:
   job1:  # id
     container: python  # 指定docker镜像
     runs-on: ubuntu-18.04  # 运行环境，类似GitLab的tags
     steps:
+      - uses: actions/setup-python@v4  # 引用
+        with:
+          python-version: 3.x  # 会被设置为环境变量：INPUT_PYTHON-VERSION
       - name: desc  # 说明
         run: action  # 命令
-      - name: desc
-        run: action
   job2:
     needs: job1  # 依赖
     steps:
@@ -31,15 +36,11 @@ jobs:
         run: action
 ```
 
-## Actions
+### uses
 
-引用GitHub Actions市场中的Actions：<https://github.com/marketplace?type=actions>
-
-可在仓库根目录下的`action.yml`中查到actions自定的输入或输出字段
-
-当前仓库及分支：{owner}/{repo}@{ref}
-
-还可以引用docker hub中的actions
+- 引用[GitHub Marketplace](https://github.com/marketplace?type=actions)
+- 引用当前或其它仓库：`uses: actions/setup-python@v4`
+- 引用docker hub中的actions：`uses: docker://alpine:3.8`
 
 ## 下载指定文件
 
