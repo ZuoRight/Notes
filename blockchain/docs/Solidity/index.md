@@ -1,4 +1,4 @@
-# Solidity
+# 引言
 
 [官方文档](https://docs.soliditylang.org/en/latest/index.html){ .md-button .md-button--primary }
 

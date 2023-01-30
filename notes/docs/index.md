@@ -1,4 +1,5 @@
 ---
+# template: index.html
 hide:
   - footer
   - feedback

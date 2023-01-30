@@ -10,6 +10,7 @@ copyright: Copyright &copy; 2016 ~ Forever 7c
 
 theme:
   name: material
+  custom_dir: overrides  # 扩展主题
   language: zh
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -28,9 +29,9 @@ theme:
     text: Roboto
     code: Roboto Mono
   icon:
-    logo: material/read
-    # repo: material/source-branch
-  favicon: images/favicon.png
+    logo: material/library-outline
+    repo: material/source-branch
+  # favicon: images/favicon.png
   features:
     - header.autohide  # 下滑自动隐藏导航栏
     - navigation.top  # 回到顶部
@@ -38,6 +39,7 @@ theme:
     - toc.integrate  # 导航集成到左侧
 
 extra:
+  homepage: https://zuoright.com  # 点击图标跳转链接
   generator: false  # 移除MkDocs链接
   analytics:
     provider: google
