@@ -1,7 +1,8 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - docker-image.md
-  - docker-container.md
-  - docker-network.md
+  - image.md
+  - container.md
+  - mount.md
+  - network.md
   - ...

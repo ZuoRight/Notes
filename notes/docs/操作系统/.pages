@@ -1,0 +1,8 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - 虚拟机
+  - 终端.md
+  - mac.md
+  - Linux
+  - android.md
+  - ...

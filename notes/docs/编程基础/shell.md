@@ -1,4 +1,4 @@
-# Shell
+# Shell Script
 
 [Bash免费教程](https://wangdoc.com/bash/intro.html){ .md-button .md-button--primary }
 
