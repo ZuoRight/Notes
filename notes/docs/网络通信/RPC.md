@@ -53,7 +53,7 @@ CORBA 是一套由国际标准组织牵头，由多家软件提供商共同参�
 
 RPC只是定义了一个通信接口，其底层的实现可以各不相同，可以是 Socket，也可以是消息队列等。
 
-## 参考资料
+## 参考
 
 - <https://icyfenix.cn/architect-perspective/general-architecture/api-style/rpc.html>
 - <https://time.geekbang.org/column/intro/100046201?tab=intro>

@@ -4,13 +4,13 @@ hide:
   - feedback
 ---
 
-# 安装与简介
+# 引言
 
 Python，由荷兰人[吉多·范罗苏姆 (Guido van Rossum)](https://gvanrossum.github.io)所创建。于1991年发行了第一个正式版本，比Java还要早5年，在编程语言排行榜中稳居前三。
 
 ## 安装
 
-> 参考：<https://docs.python.org/zh-cn/3.9/using/index.html>
+> 参考：<https://docs.python.org/zh-cn/3/using/index.html>
 
 ### Windows
 
@@ -40,7 +40,7 @@ MacOS10.8~12.3（M1之前）预装了Python2.7版本，被一些应用所依赖�
 
 ```bash
 sudo apt-get update
-sudo apt-get install python3.8
+sudo apt-get install python3.9
 ```
 
 ### CentOS 7+

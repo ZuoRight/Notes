@@ -1,18 +1,18 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - 计算机基础
+  - 硬件
   - 操作系统
   - 网络通信
-  - 抓包
+  - 网络请求
+  - 网络抓包
   - 测试理论
   - 测试框架
-  - 编程基础
   - Python
-  - IO
-  - DB
+  - 并发
+  - 数据管理
   - Web开发
-  - Docker
   - DevOps
-  - Concurrency
+  - 编程
+  - 算法
   - ...

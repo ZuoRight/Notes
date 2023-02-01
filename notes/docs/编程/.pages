@@ -1,0 +1,8 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - C
+  - 编辑
+  - 编码.md
+  - 编译.md
+  - 进制转换.md
+  - ...
