@@ -2,8 +2,8 @@
 nav:
   - index.md
   - 硬件
-  - 操作系统
-  - 编程基础
+  - OS
+  - Base
   - DevOps
   - Python
   - 并发

@@ -1,8 +1,5 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - ssh.md
-  - java.md
-  - nodejs.md
   - git.md
   - github.md
   - gitlab.md
