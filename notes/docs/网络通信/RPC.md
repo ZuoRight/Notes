@@ -1,6 +1,6 @@
 # RPC
 
-Remote Procedure Call 远程服务调用，简称RPC。
+RPC（Remote Procedure Call）远程服务调用
 
 ![20220404180919](http://image.zuoright.com/20220404180919.png)
 
