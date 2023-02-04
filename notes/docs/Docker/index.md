@@ -10,9 +10,9 @@
 
 ## [安装](https://docs.docker.com/engine/install/)
 
-使用Docker有两种选择：Docker Engine 和 Docker Desktop
+使用Docker有两种选择：`Docker Engine` 和 `Docker Desktop`
 
-Docker Desktop for Windows/Mac 本质上是基于Hyper-V等虚拟机安装的，类似于在 VMWare 或 VirtualBox中安装。
+`Docker Desktop for Windows/Mac` 本质上是基于Hyper-V等虚拟机安装的，类似于在 VMWare 或 VirtualBox中安装。
 
 > Docker必须部署在Linux内核的系统上，因为容器没有虚拟化内核，而是与宿主机共用内核
 >
@@ -24,16 +24,29 @@ Docker Desktop for Windows/Mac 本质上是基于Hyper-V等虚拟机安装的，
 
 ```bash
 # Ubuntu
+# https://docs.docker.com/engine/install/ubuntu/
+
+# 移除各种旧版本
 sudo apt-get remove docker docker-engine docker.io containerd runc
+
+# 设置存储库
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg lsb-release
+sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# 安装
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
+# 测试
+sudo docker run hello-world
+```
+
+```bash
 # ubuntu安装完会自启动
 systemctl start docker
 # 开机自启动
@@ -42,9 +55,6 @@ systemctl enable docker
 # 操作Docker必须要有root权限
 # 推荐将当前用户加入docker组（需要exit重新登录后生效）
 sudo usermod -aG docker ${USER}
-
-# 测试
-docker run hello-world
 ```
 
 ## 基本命令
@@ -80,10 +90,28 @@ Server:
 
 ![20220704225726](http://image.zuoright.com/20220704225726.png)
 
-- 镜像仓库(Registry)：管理镜像的仓库，比如[DockerHub](https://hub.docker.com/)，类似GitHub
+- 镜像仓库(Registry)：管理镜像的仓库，类似代码库 GitHub
 - 镜像(Images)：包含运行软件所需的一切要素（代码和运行时）
 - 容器(Container)：镜像的实例，每一个 Docker 容器都拥有自己的文件系统、网络体系（因此也拥有自己的 IP 地址）、进程空间以及面向 CPU 和内存定义的资源限制。同时，它不需要引导操作系统，可以即时启动。简而言之，Docker 的宗旨是隔离，即隔离主机操作系统的资源，虚拟化则是在主机操作系统上提供访客操作系统。
 - 编排(Compose)：使用YAML文件同时编排多个容器
+
+## 镜像仓库
+
+默认的镜像仓库，即官方提供的 [DockerHub](https://hub.docker.com)，也是最大的镜像仓库
+
+> Github的镜像库：ghcr.io  
+> Google的镜像库：gcr.io
+
+由于镜像仓库的镜像鱼龙混杂，拉取时要检查来源，下载量，更新时间，标签等
+
+- Official image，Docker官方提供的，大概100多个，都经过了严格的漏洞扫描和安全检测，有专门的团队负责审核、发布和更新
+- Verified publisher，各认证厂商提供的镜像
+- 半官方，由于认证需要交钱，有些厂商没有认证，比如OpenResty
+- 非官方，大多未经过质量测试，且名字很多重复，拉取时可带上用户名
+
+> Alpine、CentOS 的命名比较简单明了，就是数字的版本号，比如 alpine3.15  
+> 而 Ubuntu、Debian 则采用了代号的形式。比如 Ubuntu 20.04 是 focal  
+> 有的标签还会加上 slim、fat，通常 slim 镜像会比较小，运行效率高，而 fat 镜像会比较大，适合用来开发调试
 
 ## 原理
 

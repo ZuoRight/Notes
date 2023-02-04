@@ -56,12 +56,3 @@ curl -v/--verbose
 # 输出保存到文件
 curl -o/--output
 ```
-
-另外输出结果可以借助jq来处理或者格式化
-
-```bash
-sudo apt-get update
-sudo apt-get install jq
-
-curl $url_get | jq
-```

@@ -20,11 +20,44 @@ Docs: <https://remix-ide.readthedocs.io/en/latest/index.html>
 蓝色按钮表示不需要支付Gas
 ```
 
-### 本地搭建
+### 本地环境
 
 比如：`VSCode + Solidity插件 + Solc`
 
-> Solc 即 [Solidity Compiler](https://docs.soliditylang.org/en/v0.8.17/installing-solidity.html)
+Solc 即 Solidity Compiler
+
+> <https://docs.soliditylang.org/en/v0.8.17/installing-solidity.html>
+
+```bash
+# npm安装
+sudo npm install -g solc
+
+# apt安装
+sudo apt update
+sudo add-apt-repository ppa:ethereum/ethereum
+"""
+# 如果提示add-apt-repository命令不存在
+sudo apt install software-properties-common
+
+# 如果要移除
+add-apt-repository --remove ppa:ethereum/ethereum
+"""
+sudo apt install solc
+solc --version
+```
+
+solc 版本切换
+
+> <https://github.com/crytic/solc-select>
+
+```bash
+pip3 install solc-select  # 安装
+
+solc-select install  # 查看可安装的solc版本
+solc-select install 0.8.7  # 安装指定版本
+solc-select use 0.8.7  # 切换版本
+solc-select versions
+```
 
 Python环境用于编译Solidity的工具主要有：
 

@@ -3,8 +3,8 @@ nav:
   - index.md
   - 硬件
   - OS
+  - Docker
   - Program
-  - DevOps
   - Python
   - 并发
   - 网络通信
@@ -15,4 +15,5 @@ nav:
   - 测试理论
   - 测试框架
   - 算法
+  - DevOps
   - ...

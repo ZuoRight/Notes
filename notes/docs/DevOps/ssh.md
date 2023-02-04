@@ -14,41 +14,76 @@
 - `~/.ssh/known_hosts`  包含SSH服务器的公钥指纹
 
 ```bash
-# ~/.ssh/config
+vim ~/.ssh/config
+<<"COMMENT"
 # 服务器1
 Host 别名
     HostName IP地址
     Port 22
     User 用户名
-    IdentityFile 私钥地址   # 缺省值为~/.ssh/id_rsa
+    IdentityFile 私钥地址   # 缺省值为：~/.ssh/id_rsa
 # 服务器2
 Host test
     HostName remote.example.com
     Port 7777
     User demo
-```
+COMMENT
 
-以上配置完后使用`ssh test`登陆，等同于：`ssh -p 7777 demo@remote.example.com`
+# 快捷登录
+ssh test
+# 等同于
+ssh -p 7777 demo@remote.example.com
+```
 
 - 免密
 
 ```bash
 # 生成公钥：id_rsa.pub
 ssh-keygen -t rsa
+# 查看公钥
+cat ~/.shh/id_rsa.pub
 # 将公钥文件传输到服务器
-scp -P 28036 -p id_rsa.pub root@ip:~/.ssh/
-<<"COMMENT"
--P 指定端口
--p 保留原文件的修改时间，访问时间和访问权限
-COMMENT
-
-# 登陆服务器
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+cat ~/.ssh/id_rsa.pub | ssh user@host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 ```
 
 - 密钥登陆
 
 `ssh -i 密钥.pem root@ip`
+
+## 配置
+
+解决连接不稳定
+
+```bash
+# 客户端：Mac
+sudo vim /etc/ssh/ssh_config
+"""
+Host *
+    SendEnv LANG LC_*
+# 添加以下两行
+ServerAliveInterval 30
+ServerAliveCountMax 2
+"""
+
+# 服务端：Ubuntu
+sudo vim /etc/ssh/sshd_config
+"""
+# 去掉以下两行注释并修改参数
+ClientAliveInterval 30  # 间隔多少30s发送一次心跳数据
+ClientAliveCountMax 1800  # 30min没反应断掉连接
+"""
+sudo systemctl restart sshd
+```
+
+## SCP
+
+```bash
+scp [-P 22] [-p] <~/.ssh/id_rsa.pub> <user@host:~/.ssh/>
+<<"COMMENT"
+-P 指定端口
+-p 保留原文件的修改时间，访问时间和访问权限
+COMMENT
+```
 
 ## Fabric
 
@@ -117,12 +152,4 @@ class RunShell():
         trans.close()
 
         return result
-```
-
-## wget 下载
-
-> Linux下一种类似与迅雷的下载软件，通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议下载
-
-```bash
-wget -c xxx  # -c 支持断点续传
 ```

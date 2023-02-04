@@ -5,5 +5,4 @@ nav:
   - gitlab.md
   - jenkins.md
   - nginx.md
-  - Docker
   - ...

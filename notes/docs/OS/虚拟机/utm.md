@@ -2,7 +2,7 @@
 
 官网：<https://mac.getutm.app/>
 
-UTM 采用 Apple 的 Hypervisor 虚拟化框架，以接近本机的速度在 Apple Silicon 上运行 ARM64 操作系统，应该是目前最适合个人在ARM64架构平台（M1/M2/iOS）上免费使用的虚拟机软件，其底层是QEMU，不支持GPU虚拟化，即不能运行游戏
+UTM 采用 Apple 的 Hypervisor 虚拟化框架，以接近本机的速度在 Apple Silicon 上运行 ARM64 操作系统，应该是目前最适合个人在 ARM64 架构平台（M1/M2/iOS）上免费使用的虚拟机软件，其底层是QEMU，不支持GPU虚拟化，即不能运行游戏
 
 UTM 是永久且完全免费和开源的。GitHub 与 App Store 下载是一样的，后者可以获得自动更新，之所以收费下载目的等同于捐款。
 

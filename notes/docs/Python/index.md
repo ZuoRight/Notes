@@ -36,7 +36,11 @@ MacOS10.8~12.3（M1之前）预装了Python2.7版本，被一些应用所依赖�
 
 系统会存在多个版本的Python，执行命令时可以带上版本来使用：`Python3.9`、`Python3.10`
 
-### Ubuntu 16.10+
+### Ubuntu
+
+- Ubuntu 18.04.6 LTS (Bionic Beaver) 内置Py3.6
+- Ubuntu 20.04.5 LTS (Focal Fossa) 内置Py3.8
+- Ubuntu 22.04.1 LTS (Jammy Jellyfish) 内置Py3.10
 
 ```bash
 sudo apt-get update
@@ -50,10 +54,10 @@ sudo apt-get install python3.9
 sudo yum install epel-release
 # 不一定包含最新版Python
 yum search python
-# 安装3.7，不包含pip
-sudo yum install python37
+# 安装3.9，不包含pip
+sudo yum install python39
 # 安装setuptools，与Python版本保持一致
-yum install python37-setuptools
+yum install python39-setuptools
 # 安装pip
 easy_install pip
 ```
@@ -63,8 +67,8 @@ easy_install pip
 > 参考：<https://hub.docker.com/_/python>
 
 ```bash
-sudo docker run -dit --name demo python:3.9 "/bin/bash"
-sudo docker exec -it demo "/bin/bash"
+docker pull python:3.9  # 默认Ubuntu环境
+docker run -d -it --name demo python:3.9 "/bin/bash"
 ```
 
 ```bash

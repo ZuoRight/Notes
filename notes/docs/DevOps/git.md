@@ -43,7 +43,7 @@ git config --global user.email "7c@zuoright.com"
 
 - 配置SSH密钥
 
-向远程仓库提交代码时需要验证身份，配置SSH密钥，这样就不用每次都输入账户密码验证了
+从GitHub clone或push 都需要验证身份，配置SSH密钥，这样就不用每次都输入账户密码验证了
 
 ```shell
 # 生成密钥

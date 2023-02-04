@@ -1,7 +1,7 @@
 
 # 容器
 
-- 查看容器
+## 查看容器
 
 ```bash
 # -a 显示所有容器(包括未运行的)
@@ -28,18 +28,29 @@ docker top <container_id>  # 查看容器进程
 docker diff <container_id>  # 查看容器文件改动
 ```
 
-- 删除容器
+## 操作容器
 
 ```bash
-# 删除所有Exited(0)状态的容器
-sudo docker rm $(sudo docker ps -aqf exited=0)
-# 删除由某个镜像创建的所有容器
-sudo docker rm $(sudo docker ps -aqf ancestor=镜像名/id)
-# rm -f 强制删除正在运行的容器
-sudo docker rm -f <container_id>
+# 完整的container_id有64个字符，可以只写前三位
+docker start <container_id>  # 启动容器
+docker restart <container_id>  # 重启
+docker stop <container_id>  # 停止
+docker pause <container_id>  # 暂停
+docker unpause <container_id>  # 继续
+
+# 删除容器
+docker rm <container_id>
+sudo docker rm -f <container_id>  # rm -f 强制删除正在运行的容器
+sudo docker rm $(sudo docker ps -aqf exited=0)  # 删除所有Exited(0)状态的容器
+sudo docker rm $(sudo docker ps -aqf ancestor=镜像名/id)  # 删除由某个镜像创建的所有容器
+
+# 导出容器
+docker export <container_id> > ubuntu.tar
+# 导入容器
+docker import http://example.com/exampleimage.tgz example/imagerepo
 ```
 
-- 运行容器
+## 运行容器
 
 > 容器共享了宿主机的内核
 
@@ -70,7 +81,7 @@ sudo docker run --name demo02 python:3.9 "python"  # 返回空，容器状态Exi
 sudo docker run --name demo03 python:3.9 "python --version"  # 返回Python 3.9.13，容器状态Exited
 
 sudo docker run -it --name demo11 python:3.9 "/bin/bash"  # 容器前台运行，退出后容器状态Exited
-sudo docker run -it --rm --name demo12 python:3.9 "/bin/bash"  # 容器前台运行，退出后容器自动删除
+sudo docker run -it --rm python:3.9 "/bin/bash"  # 容器前台运行，退出后容器自动删除，此时没必要指定--name，随机就好
 
 sudo docker run -dit --name demo13 python:3.9 "/bin/bash"  # 容器后台运行，容器状态UP
 sudo docker exec -it demo13 "/bin/bash"  # 与运行中的容器进行交互，退出后容器还是UP状态
@@ -92,26 +103,6 @@ docker inspect -f='{{ .NetworkSettings.IPAddress }}' <container_id>  # -f 过滤
   或者直接docker运行：alias runlike="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike"
 '''
 runlike -p <container_id>
-```
-
-- 操作容器
-
-```bash
-# 完整的container_id有64个字符，可以只写前三位
-docker start <container_id>  # 启动容器
-docker restart <container_id>  # 重启
-docker stop <container_id>  # 停止
-docker pause <container_id>  # 暂停
-docker unpause <container_id>  # 继续
-```
-
-- 存储容器
-
-```bash
-# 导出容器
-docker export <container_id> > ubuntu.tar
-# 导入容器
-docker import http://example.com/exampleimage.tgz example/imagerepo
 ```
 
 - 复制数据
