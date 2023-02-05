@@ -2,16 +2,25 @@
 
 > <https://wangdoc.com/ssh/>
 
-最早的远程命令行服务是telnet，但它是明文传输，于是改用了更安全的SSH(Secure Shell)
+早期远程命令行服务（Telnet）是明文传输的，于是改用了更安全的SSH(Secure Shell)
 
-> 在Linux/Unix 系统的位置是：`/usr/local/bin/ssh`  
-> 在Windows系统的位置是：`\Program Files\OpenSSH\bin\ssh.exe`
+- SSH 1 有漏洞
+- SSH 2 商业软件
+- OpenSSH(OpenBSD Secure Shell) 开源
 
-- `/etc/ssh/ssh_config`  客户端的全局配置文件
-- `~/.ssh/config`  用户个人配置文件，优先级高于全局配置文件
-- `~/.ssh/id_rsa`  用于SSH协议版本2的RSA私钥
-- `~/.ssh/id_rsa.pub`  用于SSH协议版本2的RSA公钥
-- `~/.ssh/known_hosts`  包含SSH服务器的公钥指纹
+OpenSSH 还提供一些辅助工具软件（比如 ssh-keygen 、ssh-agent）和专门的客户端工具（比如 scp 和 sftp）
+
+## OpenSSH
+
+### 配置路径
+
+- `/etc/ssh/ssh_config` 客户端的全局配置文件
+- `~/.ssh/config` 用户个人配置文件，优先级高于全局配置文件
+- `~/.ssh/id_rsa` RSA私钥
+- `~/.ssh/id_rsa.pub` RSA公钥
+- `~/.ssh/known_hosts` 包含SSH服务器的公钥指纹
+
+### 快捷登录
 
 ```bash
 vim ~/.ssh/config
@@ -35,7 +44,7 @@ ssh test
 ssh -p 7777 demo@remote.example.com
 ```
 
-- 免密
+### 免密登录
 
 ```bash
 # 生成公钥：id_rsa.pub
@@ -50,9 +59,7 @@ cat ~/.ssh/id_rsa.pub | ssh user@host "mkdir -p ~/.ssh && cat >> ~/.ssh/authoriz
 
 `ssh -i 密钥.pem root@ip`
 
-## 配置
-
-解决连接不稳定
+### 解决连接不稳定
 
 ```bash
 # 客户端：Mac

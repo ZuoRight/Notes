@@ -1,33 +1,26 @@
 # Library
 
-模块，即一个`.py`文件，一堆函数、类、变量的集合
+模块(Module)《 包(Package)《 库(Library)
 
-> 类似其他语言中的库或者组件，其它语言中一般只能包含一个类，而Python可以包含多个
->
-> 而且Python的模块不需要`main`函数，参考：[Python为什么没有main函数？](https://mp.weixin.qq.com/s/1ehySR5NH2v1U8WIlXflEQ)
+通常这三个概念可以混用
 
-- 包(Package)
+- 模块，即一个`.py`文件，一堆函数、类、变量的集合，其它语言中一般只能包含一个类，而Python可以包含多个
+- 包：模块的集合，Py3.3之前的版本必须带`__ini__.py`, 现在可有可无，可以做一些包的初始化工作
+- 库：指一定功能的代码集合，通常认为他是一个完整的项目打包，可由多个包和模块组成
 
-模块的集合，Py3.3之前的版本必须带`__ini__.py`, 现在可有可无，可以做一些包的初始化工作
-
-- 库
-
-指一定功能的代码集合，通常认为他是一个完整的项目打包，可由多个包和模块组成
-
-> 第三方库: pypi.python.org
->
-> 还可下载.whl文件，使用pip install 安装.whl文件
+Python的模块不需要`main`函数，参考：[Python为什么没有main函数？](https://mp.weixin.qq.com/s/1ehySR5NH2v1U8WIlXflEQ)
 
 ## 导入
 
 ```python
-import xx.xx  # 一般用于导入内置模块
-from xx.xx import xx  # 一般用于导入第三方及自定义模块
-from xx.xx import xx as rename  # 导入后重命名，可用于简写模块名，或者避免命名冲突
-# 导入全部，容易发生命名冲突，慎用，可以在__init__.py模块中创建__all__ = ["module_name"]变量，定义*的范围
-from xx.xx import *
-# 模块名如果是数字开头，可以动态导入
-import importlib
+import xx.xx
+import importlib  # 模块名如果是数字开头，可以动态导入
+from xx.xx import xx [as rename]  # 导入后可重命名，可用于简写模块名，或者避免命名冲突
+from xx.xx import *  # 导入全部，容易发生命名冲突，慎用
+"""
+可以在__init__.py模块中创建__all__ = ["module_name"]变量，定义*的范围
+"""
+
 two = importlib.import_module("xx.0002_remove_content_type_name")
 ```
 

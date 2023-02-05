@@ -1,4 +1,4 @@
-# RedHat/CentOS
+# CentOS
 
 > 包管理器：`yum`（Yellow dog Updater, Modified）
 >

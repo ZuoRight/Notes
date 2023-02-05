@@ -229,4 +229,5 @@ Namespaces are one honking great idea -- lets do more of those!
 
 ## 参考手册
 
-<https://docs.python.org/zh-cn/3.9/reference/index.html>
+- 官方文档：<https://docs.python.org/zh-cn/3.9/reference/index.html>
+- PEP(Python Enhancement Proposals)：<https://peps.python.org/>

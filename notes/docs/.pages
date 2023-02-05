@@ -3,10 +3,8 @@ nav:
   - index.md
   - 硬件
   - OS
-  - Docker
   - Program
   - Python
-  - 并发
   - 网络通信
   - 网络请求
   - 网络抓包
@@ -14,6 +12,8 @@ nav:
   - 数据管理
   - 测试理论
   - 测试框架
-  - 算法
   - DevOps
+  - Docker
+  - 并发
+  - 算法
   - ...
