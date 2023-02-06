@@ -1,6 +1,14 @@
 # GitHub
 
-## Actions
+## GitHub Packages
+
+是一个用于托管和管理包（包括容器和其他依赖项）的平台
+
+为常用的包管理器提供不同的包注册表，例如 npm、RubyGems、Apache Maven、Gradle、Docker 和 NuGet
+
+可以将 GitHub Packages 与 GitHub API、GitHub Actions 和 webhook 集成
+
+## GitHub Actions
 
 > Docs: <https://docs.github.com/zh/actions/using-workflows/about-workflows>
 
