@@ -56,7 +56,7 @@ sudo systemctl restart docker
 
 > 注意：在Windows和macOS平台下并没有docker0虚拟网卡，这时候可以使用host.docker.internal这个特殊的DNS名称来解析宿主机IP
 
-- 方式2
+- 方式2（推荐）
 
 1. 容器网络设置为：`--network host` 或者 `-p 1081:1081`
 2. 容器内设置全局代理：`export all_proxy="socks5://127.0.0.1:1081`
