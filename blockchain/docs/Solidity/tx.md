@@ -1,10 +1,12 @@
 # Transaction
 
+<https://solidity-by-example.org/sending-ether/>
+
 send Ether
 
 - `transfer` (2300 gas, throws error)
 - `send` (2300 gas, returns bool)
-- `call` (forward all gas or set gas, returns bool)
+- `call` (forward all gas or set gas, returns bool) <https://solidity-by-example.org/call/>
 
 receive Ether
 
@@ -30,7 +32,9 @@ contract SendEther {
 
     function sendViaCall(address payable _to) public payable {
         // Call returns a boolean value indicating success or failure.
-        // This is the current recommended method to use.
+        // call 是与其他合约交互的低级函数
+        // 当您只是通过 fallback 函数发送 Ether 时，这是推荐使用的方法
+        // 但这不是调用现有函数的推荐方法
         (bool sent, bytes memory data) = _to.call{value: msg.value}("");
         require(sent, "Failed to send Ether");
     }
@@ -40,14 +44,14 @@ contract SendEther {
 Which function is called, fallback() or receive()?
         send Ether
             |
-        msg.data is empty?
-            / \
-        yes  no
-        /     \
+      msg.data is empty?
+          /    \
+        yes     no
+        /         \
 receive() exists?  fallback()
         /   \
-    yes   no
-    /      \
+    yes      no
+    /          \
 receive()   fallback()
 */
 contract ReceiveEther {

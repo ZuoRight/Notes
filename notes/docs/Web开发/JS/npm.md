@@ -8,22 +8,18 @@ npm help
 npm list -g  # 查看已安装包，不带-g看不到全局的包
 
 npm install  # 安装依赖包
-npm install <name> [-g] [--save-dev]
-<<'COMMENT'
+npm install <name> [--save-dev]
+"
 -g/--global
-全局安装，可以通过命令行在任何地方调用它
-本地安装将安装在定位目录的node_modules文件夹下，通过require()调用
-
+    本地安装（默认），安装到 $PWD/node_modules/...，通过require()引入
+    全局安装，可以通过命令行在任何地方调用
 --save
-将保存配置信息至package.json
-
--dev
-保存至package.json的devDependencies节点，不指定-dev将保存至dependencies节点
-像这些express/ejs/body-parser等一般保存在dependencies
-
+    配置信息存储到 package.json 的 dependencies 字段
+--save-dev
+    配置信息存储到 package.json 的 devDependencies 字段
 --force
-强制 npm 获取远程资源，即使磁盘上存在本地副本也是如此
-COMMENT
+    强制 npm 获取远程资源，即使磁盘上存在本地副本也是如此
+"
 
 npm update <name> [-g] [--save-dev]  # 更新插件，不指定name则更新全部
 npm install npm -g  # 更新npm自身

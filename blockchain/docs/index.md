@@ -38,16 +38,18 @@ StarkNet 的基础设施和智能合约均使用的是 Cairo 编程语言。
 
 ## Web3库
 
-- JS: `Web3.js`、`Ethers.js`
+- JS: `web3.js`、`ethers.js`
 - Python：`web3.py`
 - Java: `Web3j`
 
 ## 框架
 
-- JS: `Hardhat`、`Truffle`
+- JS: `Truffle`、`Hardhat`
 - Python: `Brownie`、`ApeWorX`
-- Rust: `Foundry`
+- Solidity: [`Foundry`](https://getfoundry.sh/)
+
+Truffle 基于 web3.js，Hardhat 基于 ethers.js
+
+Brownie 是 Curve 协议使用的主要工具之一，但 Brownie 和 Python 社区希望 Apeworx 成为基于 Python 的智能合约框架的继任者。
 
 Foundry 是 Paradigm 团队用 Rust 基于 dapptools 重构的框架，据说 `Foundry` 测试运行速度比 `Hardhat` 快 20 倍，比 `Brownie` 快 40 倍
-
-Brownie 仍然是 Curve 协议使用的主要工具之一，但 Brownie 和 Python 社区希望 Apeworx 成为基于 Python 的智能合约框架的继任者。

@@ -10,9 +10,9 @@
 
 `development network` 可以借助一些工具来搭建，比如：
 
-- `Ganache`
-- `Hardhat Network`
-- `Anvil`
+- `Ganache` (Truffle 的组件)
+- `Hardhat Network` (Hardhat 的组件)
+- `Anvil` (Foundry 的组件)
 - `Geth Dev`
 
 ## Ganache
