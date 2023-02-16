@@ -33,7 +33,7 @@ brownie --version  # Brownie v1.19.2 - Python development framework for Ethereum
 mkdir project_name
 cd project_name
 
-brownie init
+brownie init  # 必须在空文件内init
 
 <<'COMMENT'
 Brownie v1.19.2 - Python development framework for Ethereum

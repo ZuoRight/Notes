@@ -4,8 +4,9 @@
 
 ```bash
 npm install --save-dev mocha
+npm install --save-dev chai  # chai断言库
 
-npm test --grep "aa bb"
+npm test [--grep "xxx"]
 ```
 
 ```js

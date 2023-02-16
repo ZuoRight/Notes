@@ -22,6 +22,12 @@ sudo apt install nodejs build-essential -y
 sudo apt install npm -y
 ```
 
+- 版本管理：`n`
+
+```bash
+npm install -g n
+```
+
 ## 使用
 
 ```bash
@@ -39,11 +45,8 @@ node  # 进入node环境
 包是一个目录，其中包含一个名为 `package.json` 的文件，描述了包的名称、版本、内容，依赖等
 
 ```bash
-# 初始化
-npm init -y  # 生成 package.json
-"
--y yes
-"
+# 初始化，生成 package.json
+npm init -y  # -y yes
 ```
 
 ```json
@@ -63,5 +66,69 @@ npm init -y  # 生成 package.json
 
 包分两种
 
-- 库
+- 库：可以用 `npm` 安装
 - 可执行文件：需要用 `npx`（安装node时默认已经安装）
+
+## 包管理器
+
+### NPM
+
+全球最大开源库生态系统
+
+```bash
+npm -v
+npm help
+npm list -g  # 查看已安装包，不带-g看不到全局的包
+
+npm install [--save-dev] <xxx>
+"
+-g/--global
+    本地安装（默认），安装到 $PWD/node_modules/...，通过require()引入
+    全局安装，可以通过命令行在任何地方调用
+--save
+    配置信息存储到 package.json 的 dependencies 字段
+--save-dev
+    配置信息存储到 package.json 的 devDependencies 字段
+--force
+    强制 npm 获取远程资源，即使磁盘上存在本地副本也是如此
+"
+
+# 从 package.json 安装
+# --production 只安装dependencies的包，不安装devDependencies的包
+npm install [--production]
+
+npm uninstall <name1> <name2>  # 卸载插件
+
+npm install npm -g  # 更新npm自身
+npm update <name> [-g] [--save-dev]  # 更新插件，不指定name则更新全部
+```
+
+NPM 官方源比较慢，可以使用第三方源，NRM可以用来管理NPM源
+
+```bash
+npm install nrm -g
+nrm ls  # 列出可用NPM源，带星号的为当前使用源
+nrm test [xxx] # 测试源的速度
+nrm use cnpm  # 切换源
+```
+
+### Yarn
+
+Yarn 是由Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具，弥补 NPM 的一些缺陷而出现的。
+
+NPM 是串行安装，安装慢，如果中间某个包的安装出现了错误，NPM 不会停止，而是会继续安装，这就会导致如果后面还有错误的话将难以排查。
+
+Yarn 是并行安装，安装快，但为了安全考虑有些工具的官方文档提示不建议用yarn安装
+
+```bash
+yarn
+
+yarn global add xxx
+yarn global add xxx –dev
+
+yarn global remove xxx
+
+yarn global upgrade
+
+yarn global list  # 查看安装的包，不带global看不到全局的包
+```
