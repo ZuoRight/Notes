@@ -1,6 +1,12 @@
 # VSCode
 
-VSCode只是一个编辑器，而不是IDE（Integrated Development Environment 集成开发环境=编辑器+编译器+调试器）
+VSCode只是一个编辑器，而不是IDE
+
+> IDE（Integrated Development Environment）集成开发环境=编辑器+编译器+调试器
+
+## 快捷键
+
+切换终端：`Control` + `~`
 
 ## Python
 

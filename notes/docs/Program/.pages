@@ -1,7 +1,9 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
+  - index.md
   - 编码.md
   - 编译.md
   - 进制转换.md
-  - C
+  - c.md
+  - java.md
   - ...

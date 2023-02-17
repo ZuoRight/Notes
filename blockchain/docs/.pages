@@ -5,7 +5,8 @@ nav:
   - ethereum.md
   - layer.md
   - wallet.md
-  - web3.md
   - Solidity
+  - web3.md
   - Brownie
+  - Hardhat
   - ...

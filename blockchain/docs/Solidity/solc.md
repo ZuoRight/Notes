@@ -33,24 +33,11 @@ solc --evm-version <VERSION> contract.sol
 
 solc-bin
 
+可以把不同版本的solc直接下载下来，不用一个个安装
+
 - Docs: <https://docs.soliditylang.org/en/latest/installing-solidity.html#static-binaries>
 - 镜像：<https://binaries.soliditylang.org/>
 - Github: <https://github.com/ethereum/solc-bin/>
-
-## solcJS
-
-<https://github.com/ethereum/solc-js>
-
-Uses the Emscripten compiled Solidity found in the solc-bin
-
-```bash
-# solcjs
-sudo npm install -g solc
-
-# 命令是solcjs，选项与solc也不兼容，比原生solc功能少，不适用于geth等工具
-solcjs --help
-socljs --version
-```
 
 ## 版本管理
 
@@ -71,7 +58,22 @@ solc --version
 # 如果不一致，可能是安装了非原生solc
 ```
 
-## Python wrapper
+## solcJS
+
+<https://github.com/ethereum/solc-js>
+
+Uses the Emscripten compiled Solidity found in the solc-bin
+
+```bash
+# solcjs
+sudo npm install -g solc
+
+# 命令是solcjs，选项与solc也不兼容，比原生solc功能少，不适用于geth等工具
+solcjs --help
+socljs --version
+```
+
+## solcPython
 
 Python wrapper around the solc Solidity compiler.
 

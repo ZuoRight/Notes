@@ -38,6 +38,22 @@ module.exports = {
 };
 ```
 
+`deploy.js`
+
+```js
+async function main() {
+  pass;
+}
+
+// 推荐这种模式以便能够在任何地方使用 async/await 并正确处理错误
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  })
+```
+
 ```bash
 # 编译成字节码和元数据存储到artifacts/路径
 npx hardhat compile

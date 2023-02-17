@@ -2,50 +2,51 @@
 
 [现代JavaScript教程](https://zh.javascript.info/){ .md-button .md-button--primary }
 
+JS本身是运行在前端浏览器中的语言，但Node.js为JS提供了运行时环境，使它可以运行在后端
+
+JS语句可以用`;`结尾，也可以忽略
+
 ## 变量
 
 ### 动态语言（变量类型不固定）
 
-```javascript
-// 定义变量：var，js早期设计失误，并未强求用var申明，没有被var申明默认为全局变量，会带来一定的麻烦，ESMA后期推出严格模式强制用var申明（js代码第一行加上 'use strict';）
-var x = "hello world"
+```js
+let x = "hello world"
+let [x, y, z] = ['hello', 'JavaScript', 'ES6'];  // 解构赋值：同时给多个变量赋值
+const PI=3.14;
 
-// 定义局部变量（ES6）：let
-for (let i=0; i<100; i++) {
-    sum += i;
-}
-
-// 定义常量（ES6）
-const PI
-
-// 格式化
-${x}
-
-// 解构赋值：同时给多个变量赋值
-var [x, y, z] = ['hello', 'JavaScript', 'ES6'];
+console.log(x)  // 打印
 ```
+
+运行脚本：`node demo.js`
 
 ## 函数
 
+### 输出函数
+
+```js
+alert('Hello World');
+
+// 控制台输出log
+console.log("hello world")
+```
+
 ### 普通函数
 
-```javascript
-function foo(x, y) {
+```js
+function hello(x, y) {
     pass;
     return {
         xxx
     };
 }
 
-函数作为对象的值，即叫做方法
-在一个方法内部，this是一个特殊的变量，它始终指向当前对象，可以通过this.x拿到对象的属性
-
-一个只在函数内部起作用的关键字：arguments，通常用来判断函数传入的个数：arguments.length
+hello();
 ```
 
 ### 匿名函数
 
-```javascript
+```js
 // 匿名函数（注意末尾要带分号，表示赋值语句结束）
 var foo = function (x) {
     pass;
@@ -63,18 +64,23 @@ x => {
 }
 ```
 
-### 输出函数
+### 异步函数
 
-```javascript
-alert('Hello World');
-
-// 控制台输出log
-console.log("hello world")
+```js
+async function Foo() {
+    await A();  // await关键字用于等待
+    await B();
+    C();  // 等待A和B执行完再执行C
+}
 ```
 
 ## 面向对象
 
 JS没有类的概念
+
+在一个方法内部，this是一个特殊的变量，它始终指向当前对象，可以通过this.x拿到对象的属性
+
+一个只在函数内部起作用的关键字：arguments，通常用来判断函数传入的个数：arguments.length
 
 ### 方式1：基于构造函数（constructor）和原型链（prototype）
 
@@ -172,15 +178,13 @@ try ... catch ... finally
 
 ## 模块 Module
 
-CSS：@import
+`require` 是用于在 Node.js 中导入模块的函数，属于同步操作
 
-JS（ES6+）
+`import` 是用于在 ES6 中导入模块的新关键字，属于异步操作
 
-JS本身是没有模块的概念的，ES6 引入，ES6 的模块不是对象，而是通过export命令显式指定输出的代码，再通过import命令输入。（一个模块就是一个独立的文件，该文件内部的所有变量，外部无法获取，如果希望外部能够读取模块内部的某个变量，就必须使用export关键字输出该变量。）
+一个模块就是一个独立的文件，该文件内部的所有变量，外部无法获取，如果希望外部能够读取模块内部的某个变量，就必须使用export关键字输出该变量。
 
-ES6是编译时加载，即静态加载（运行时加载：动态加载），使得静态分析成为可能（可以进一步拓宽JS的语法，比如引入宏和类型检验）
-
-正常输出：必须指定和输出一致的名字
+JS本身是没有模块的概念的，ES6 引入，ES6 的模块不是对象，而是通过export命令显式指定输出的代码，再通过import命令引入。
 
 ```javascript
 export function foo() {
@@ -188,14 +192,4 @@ export function foo() {
 };
 
 import {foo} from '模块文件的位置';
-```
-
-默认输出：一个模块只能有一个默认输出，此时导入可以指定任意名字，且可以不加大括号
-
-```javascript
-export default function foo() {
-    pass
-}
-
-import foo from '模块文件的位置';
 ```
