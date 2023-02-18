@@ -47,7 +47,7 @@ $ brownie pm install ethpm://zeppelin.snakecharmers.eth:1/math@1.0.0
 # 查看已安装包
 brownie pm list
 
-<<'COMMENT'
+<<"COMMENT"
 Brownie v1.19.2 - Python development framework for Ethereum
 
 The following packages are currently installed:
@@ -58,4 +58,25 @@ smartcontractkit
 OpenZeppelin
  └─OpenZeppelin/openzeppelin-contracts@4.8.0
 COMMENT
+```
+
+## 可升级合约
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+
+contract MyToken is Initializable, ERC20Upgradeable {
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() {
+        _disableInitializers();
+    }
+
+    function initialize() initializer public {
+        __ERC20_init("MyToken", "MTK");
+    }
+}
 ```
