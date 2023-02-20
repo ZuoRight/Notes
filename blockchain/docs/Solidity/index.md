@@ -24,18 +24,50 @@ Docs: <https://remix-ide.readthedocs.io/en/latest/index.html>
 
 ## 规范
 
-代码第一行需要注释智能合约所用的许可证，如果不写编译时会警告
-
-> SPDX-License-Identifier，即遵循SPDX(Software Package Data Exchange)国际标准规范的许可证
-
-语句以分号结尾
-
 ```js
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.4 <0.9.0;  // 声明版本，可简写为：^0.8.4，^表示向上兼容
+pragma solidity >=0.8.4 <0.9.0;  // 此处可简写为：^0.8.4，^表示向上兼容
+/**
+ * 上面第一行代码：需要注释智能合约所用的许可证，如果不写编译时会警告
+ *   遵循SPDX(Software Package Data Exchange)国际标准规范的许可证
+ * 上面第二行代码：Pragmas 是编译器关于如何处理源代码的常用指令，比如用来声明编译器版本
+ */
 
-// 创建合约
-contract HelloWeb3{
-    string public _string = "Hello Web3!";
+// 语句以分号结尾
+contract Coin {
+    // 声明一个address类型的状态变量
+    address public minter;  // 关键字public使变量可以被其他合约访问
+    mapping (address => uint) public balances;
+
+    // 事件允许客户端对您声明的特定合约变化做出反应
+    event Sent(address from, address to, uint amount);
+
+    // 构造函数代码只有在合约创建时运行
+    constructor() {
+        minter = msg.sender;
+    }
+
+    // 向一个地址发送一定数量的新创建的代币
+    // 但只能由合约创建者调用
+    function mint(address receiver, uint amount) public {
+        require(msg.sender == minter);
+        balances[receiver] += amount;
+    }
+
+    // 错误类型变量允许您提供关于操作失败原因的信息，它们会返回给函数的调用者
+    error InsufficientBalance(uint requested, uint available);
+
+    // 从任何调用者那里发送一定数量的代币到一个地址
+    function send(address receiver, uint amount) public {
+        if (amount > balances[msg.sender])
+            revert InsufficientBalance({
+                requested: amount,
+                available: balances[msg.sender]
+            });
+
+        balances[msg.sender] -= amount;
+        balances[receiver] += amount;
+        emit Sent(msg.sender, receiver, amount);
+    }
 }
 ```

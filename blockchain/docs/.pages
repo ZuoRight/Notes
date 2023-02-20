@@ -6,7 +6,6 @@ nav:
   - layer.md
   - wallet.md
   - Solidity
-  - web3.md
   - Brownie
   - Hardhat
   - ...
