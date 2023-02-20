@@ -1,0 +1,9 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - index.md
+  - nodejs.md
+  - js.md
+  - ts.md
+  - mocha.md
+  - browser.md
+  - ...

@@ -2,16 +2,12 @@
 
 [现代JavaScript教程](https://zh.javascript.info/){ .md-button .md-button--primary }
 
-JS本身是运行在前端浏览器中的语言，但Node.js为JS提供了运行时环境，使它可以运行在后端
-
-JS语句可以用`;`结尾，也可以忽略
-
 ## 变量
 
 ### 动态语言（变量类型不固定）
 
 ```js
-let x = "hello world"
+let x = "hello world"  // JS语句可以用`;`结尾，也可以忽略
 let [x, y, z] = ['hello', 'JavaScript', 'ES6'];  // 解构赋值：同时给多个变量赋值
 const PI=3.14;
 

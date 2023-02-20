@@ -36,11 +36,11 @@ x = y = z = 1  # 同时给多个变量赋相同值
 x,y,z = 1,2,3  # 同时给多个变量赋不同值，要一一对应，否则会报错，比如：x,y,z=1 或 x,y=1,2,3 都是不对的
 
 x,y = y,x  # 值交换
+
+print(1 + '1')  # TypeError
 ```
 
 JavaScript 属于解释型、动态类型、弱类型语言
-
-> ECMAScript(ES)
 
 ``` javascript
 /**
@@ -55,6 +55,8 @@ const PI = 3.14;  // const用于声明常量，作用域也是{}，声明时必�
 // JS早期设计失误，并未强求用var申明，没有被var申明默认为全局变量，会带来一定的麻烦
 // 后来推出严格模式（源码第一行加上 'use strict';），强制var申明
 // 不过ES6之后推荐使用 let 来声明
+
+console.log(1 + '1');  // "11"
 ```
 
 TypeScript 属于解释型、静态类型、弱类型语言
@@ -62,4 +64,6 @@ TypeScript 属于解释型、静态类型、弱类型语言
 ```typescript
 let num1: number = 1;
 let str: string = 'str';
+
+console.log(1 + '1');  // "11"
 ```
