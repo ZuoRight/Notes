@@ -68,12 +68,17 @@ npx hardhat run --network localhost scripts/deploy.js
 npx hardhat console --network localhost
 ```
 
-- unit test
+## unit test
 
 ```bash
 npm install --save-dev chai
 
 npx hardhat test [--grep "xxx"] [--network localhost]
+```
+
+```js
+// 如果您需要通过从默认帐户以外的帐户（或 ethers.js 术语中的 Signer）发送交易来测试您的代码，您可以在 ethers.js 合约对象上使用 connect() 方法将其连接到不同的帐户
+hardhatToken.connect(addr1).transfer()
 ```
 
 ## 参考

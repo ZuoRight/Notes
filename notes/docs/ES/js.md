@@ -4,8 +4,6 @@
 
 ## 变量
 
-### 动态语言（变量类型不固定）
-
 ```js
 let x = "hello world"  // JS语句可以用`;`结尾，也可以忽略
 let [x, y, z] = ['hello', 'JavaScript', 'ES6'];  // 解构赋值：同时给多个变量赋值
@@ -24,7 +22,7 @@ console.log(x)  // 打印
 alert('Hello World');
 
 // 控制台输出log
-console.log("hello world")
+console.log("hello %s", "7c")  // 格式化：%s 字符，%d 整数，%f 浮点数，%o 对象
 ```
 
 ### 普通函数
