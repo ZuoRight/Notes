@@ -95,6 +95,7 @@ npm install [--save-dev] <xxx>
 
 # 从 package.json 安装
 # --production 只安装dependencies的包，不安装devDependencies的包
+# --omit=dev
 npm install [--production]
 
 npm uninstall <name1> <name2>  # 卸载插件
@@ -114,21 +115,35 @@ nrm use cnpm  # 切换源
 
 ### Yarn
 
-Yarn 是由Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具，弥补 NPM 的一些缺陷而出现的。
+> <https://yarnpkg.com/getting-started/install>
+
+`yarn = npm + npx`
+
+Yarn 是由 Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具，弥补 NPM 的一些缺陷而出现的。
 
 NPM 是串行安装，安装慢，如果中间某个包的安装出现了错误，NPM 不会停止，而是会继续安装，这就会导致如果后面还有错误的话将难以排查。
 
 Yarn 是并行安装，安装快，但为了安全考虑有些工具的官方文档提示不建议用yarn安装
 
 ```bash
-yarn
+# nodejs 16.10以上版本默认自带yarn，只需要开启corepack即可使用
+# Mac可能需要：brew install corepack
+corepack enable
+yarn --version
 
-yarn global add xxx
-yarn global add xxx –dev
+# 更新yarn
+corepack prepare yarn@stable --activate
 
-yarn global remove xxx
+yarn help
+yarn init [-2]
+yarn install  # 安装所有依赖
 
-yarn global upgrade
+# 安装指定包
+yarn add [package]@[version]
+yarn add [package] --dev  # dev dependencies
 
-yarn global list  # 查看安装的包，不带global看不到全局的包
+yarn up [package]  # 更新
+yarn remove [package]  # 移除
+
+yarn list  # 查看安装的包，不带global看不到全局的包
 ```

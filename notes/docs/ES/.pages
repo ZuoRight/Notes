@@ -4,6 +4,5 @@ nav:
   - nodejs.md
   - js.md
   - ts.md
-  - mocha.md
   - browser.md
   - ...

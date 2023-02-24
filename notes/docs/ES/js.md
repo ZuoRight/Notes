@@ -28,14 +28,11 @@ console.log("hello %s", "7c")  // 格式化：%s 字符，%d 整数，%f 浮点�
 ### 普通函数
 
 ```js
-function hello(x, y) {
-    pass;
-    return {
-        xxx
-    };
+function demo() {
+    let x = 5;
+    console.log(x);
 }
-
-hello();
+demo();
 ```
 
 ### 匿名函数
@@ -61,11 +58,25 @@ x => {
 ### 异步函数
 
 ```js
-async function Foo() {
-    await A();  // await关键字用于等待
+async function demo() {
+    // await关键字告诉任何基于Promise的函数，要等待promise变成fulfilled(履行)或rejected(拒绝)
+    await A();
     await B();
     C();  // 等待A和B执行完再执行C
 }
+
+function A() {
+    return Promise(xxx)
+}
+
+
+// 等待函数执行完成并打印出其中的错误
+demo()
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
+    });
 ```
 
 ## 面向对象

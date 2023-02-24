@@ -1,15 +1,21 @@
 # 引言
 
+Hardhat 是来自 Nomic Foundation 的以太坊开发环境，可用于编译、测试和部署我们的 Solidity 智能合约。
+
+在实施测试时，Hardhat 使用 JavaScript（或 TypeScript）脚本作为测试指令。
+
 ```bash
-npm init -y  # 生成 package.json
-
-# 安装hardhat等
-npm install --production  # 从 package.json 安装
+# 安装hardhat
+npm init --yes
 npm install --save-dev hardhat
-npm install @openzeppelin/contracts
-npm install --save-dev @nomiclabs/hardhat-ethers ethers
+# 或
+yarn init --yes
+yarn add --dev hardhat
 
-npx hardhat  # 生成 hardhat.config.js
+# 生成 hardhat.config.js
+npx hardhat
+# 或
+yarn hardhat
 <<"COMMENT"
 888    888                      888 888               888
 888    888                      888 888               888
@@ -29,6 +35,10 @@ Give Hardhat a star on Github if you're enjoying it! 💞✨
 
      https://github.com/NomicFoundation/hardhat
 COMMENT
+
+npm install --production  # 从 package.json 安装
+npm install @openzeppelin/contracts
+npm install --save-dev @nomiclabs/hardhat-ethers ethers
 ```
 
 ```js
@@ -68,19 +78,6 @@ npx hardhat run --network localhost scripts/deploy.js
 npx hardhat console --network localhost
 ```
 
-## unit test
-
-```bash
-npm install --save-dev chai
-
-npx hardhat test [--grep "xxx"] [--network localhost]
-```
-
-```js
-// 如果您需要通过从默认帐户以外的帐户（或 ethers.js 术语中的 Signer）发送交易来测试您的代码，您可以在 ethers.js 合约对象上使用 connect() 方法将其连接到不同的帐户
-hardhatToken.connect(addr1).transfer()
-```
-
 ## 参考
 
-- <learn: <https://docs.openzeppelin.com/learn/>>
+- learn: <https://docs.openzeppelin.com/learn/>

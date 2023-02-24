@@ -1,6 +1,6 @@
 # Solc
 
-以太坊虚拟机 (EVM) 无法直接执行 Solidity 代码：我们首先需要将其编译成 EVM 字节码。
+EVM 无法直接执行 Solidity 代码：我们首先需要将其编译成 EVM 字节码。
 
 这就需要用到 Solc（Solidity Compiler）
 
@@ -66,7 +66,7 @@ Uses the Emscripten compiled Solidity found in the solc-bin
 
 ```bash
 # solcjs
-sudo npm install -g solc
+sudo npm install solc
 
 # 命令是solcjs，选项与solc也不兼容，比原生solc功能少，不适用于geth等工具
 solcjs --help
