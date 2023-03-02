@@ -22,10 +22,6 @@ yarn add @typechain/ethers-v5 @typechain/hardhat @types/chai @types/node @types/
 ```
 
 ```ts
-// 操纵时间
-import { time } from "@nomicfoundation/hardhat-network-helpers";
-time.increaseTo()
-
 // 操纵账户
 const [owner, otherAccount] = await ethers.getSigners();
 ```
@@ -35,6 +31,8 @@ const [owner, otherAccount] = await ethers.getSigners();
 比如测试前部署合约，它只会部署一次，然后快照，每次测试完恢复状态，而不需要重新部署，以此节省时间
 
 ## mocha
+
+<https://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html>
 
 1. `describe()` 只是为了分组，可以嵌套到最深
 2. `it()` 是一个测试用例
@@ -46,7 +44,7 @@ const [owner, otherAccount] = await ethers.getSigners();
 npm install --save-dev mocha
 npm install --save-dev chai  # chai断言库
 
-npm test [--grep "xxx"]
+npm test [--grep "xxx"]  # 正则：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Regexp
 ```
 
 ```js
@@ -86,11 +84,80 @@ describe("描述", function () {
 })
 ```
 
-## Chai
+## Hardhat Network Helpers
+
+> <https://hardhat.org/hardhat-network-helpers/docs/overview>
+
+### Time helpers
 
 ```js
-// npm install --save-dev chai
+import { time } from "@nomicfoundation/hardhat-network-helpers";
 
-assert.equal(A, B)
-expect(A).to.equal(B)
+await time.increase(amountInSeconds);  // 时间增加指定秒数
+await time.increaseTo(timestamp)  // 时间增加到指定时间戳
+```
+
+## Hardhat Chai Matchers
+
+> <https://hardhat.org/hardhat-chai-matchers/docs/overview>
+
+`npm install --save-dev @nomicfoundation/hardhat-chai-matchers`
+
+使用方式
+
+```js
+// hardhat.config.ts
+import "@nomicfoundation/hardhat-chai-matchers";
+
+// hardhat.config.js
+require("@nomicfoundation/hardhat-chai-matchers")
+```
+
+- Events
+
+```js
+await expect().to.emit(contract, "Event");
+await expect().to.emit().withArgs();
+
+const { anyValue, anyUint } = require("@nomicfoundation/hardhat-chai-matchers/withArgs");
+await expect().to.emit().withArgs(anyValue, xxx);
+```
+
+- Reverts
+
+```js
+
+await expect().to.be.reverted;
+await expect().not.to.be.reverted;
+await expect().to.be.revertedWith();
+
+const { PANIC_CODES } = require("@nomicfoundation/hardhat-chai-matchers/panic");
+await expect().to.be.revertedWithPanic(PANIC_CODES);
+
+await expect().to.be.revertedWithCustomError(contract, "SomeCustomError");
+```
+
+- Equal
+
+```js
+await expect().to.equal(7)
+```
+
+- Balance Changes
+
+```js
+await expect(() => sender.sendTransaction({ to: someAddress, value: 200 })).to.changeEtherBalance(sender, "-200")
+
+await expect(token.transfer(account, 1)).to.changeTokenBalance(token, account, 1)
+
+await expect(token.transferFrom(sender, receiver, 1)).to.changeTokenBalances(token, [sender, receiver], [-1, 1]);
+```
+
+- Miscellaneous String Checks 字符串检查
+
+```js
+expect("0x1234").to.be.properHex(4);
+expect("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266").to.be.a.properAddress;
+expect("0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80").to.be.a.properPrivateKey;
+expect("0x00012AB").to.hexEqual("0x12ab");
 ```

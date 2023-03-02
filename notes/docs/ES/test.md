@@ -1,0 +1,20 @@
+# 单元测试
+
+Mocha + Chai
+
+## Mocha
+
+## Chai
+
+- `gte` greater than or equal to（大于或等于）
+- `lte` less than or equal to（小于或等于）
+
+```js
+// npm install --save-dev chai
+
+assert.equal(A, B)
+expect(A).to.equal(B)
+
+const x = 8;
+expect(x).to.be.gte(5);  // 断言x是否大于等于5
+```

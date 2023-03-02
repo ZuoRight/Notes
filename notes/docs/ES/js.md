@@ -1,7 +1,5 @@
 # JavaScript
 
-[现代JavaScript教程](https://zh.javascript.info/){ .md-button .md-button--primary }
-
 ## 变量
 
 ```js
@@ -77,6 +75,33 @@ demo()
         console.error(error);
         process.exit(1);
     });
+```
+
+### 函数传参
+
+如果只想给其中某个参数传入值，而其他参数使用默认值
+
+- 方式1：undefined
+
+```js
+function greet(greeting = "Hello", name = "World") {
+  console.log(`${greeting}, ${name}!`);
+}
+
+greet(undefined, "John"); // 输出：Hello, John!
+greet("Hi"); // 输出：Hi, World!
+```
+
+- 方式2：对象解构的方式
+
+```js
+function greet({ greeting = "Hello", name = "World" }) {
+  console.log(`${greeting}, ${name}!`);
+}
+
+greet({ name: "John" }); // 输出：Hello, John!
+greet({ greeting: "Hi" }); // 输出：Hi, World!
+
 ```
 
 ## 面向对象
@@ -198,3 +223,8 @@ export function foo() {
 
 import {foo} from '模块文件的位置';
 ```
+
+## 参考
+
+- <https://zh.javascript.info/>
+- <https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics>
