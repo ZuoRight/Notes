@@ -1,9 +1,8 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - 关于测试.md
   - Case.md
-  - 自动化测试.md
+  - 测试自动化.md
   - UnitTest.md
   - APITest
   - UITest
