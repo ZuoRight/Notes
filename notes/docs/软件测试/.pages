@@ -6,5 +6,5 @@ nav:
   - UnitTest.md
   - APITest
   - UITest
-  - 性能测试.md
+  - PerformanceTest.md
   - ...
