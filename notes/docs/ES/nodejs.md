@@ -25,7 +25,9 @@ sudo apt install npm -y
 - 版本管理：`n`
 
 ```bash
-npm install -g n
+npm cache clean -f  # 清除缓存
+npm install -g n  # 安装n模块
+n stable  # 升级node.js到稳定版本
 ```
 
 ## 使用
@@ -36,9 +38,7 @@ node demo.js  # 运行脚本
 node  # 进入node环境
 ```
 
-依赖项
-
-`node_modules/...`
+依赖项：`node_modules/...`
 
 ## 包
 

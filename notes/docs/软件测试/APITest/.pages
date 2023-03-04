@@ -1,9 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - js.md
-  - ts.md
-  - nodejs.md
-  - browser.md
-  - DOM.md
+  - Pytest.md
+  - Allure.md
   - ...

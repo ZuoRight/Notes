@@ -1,5 +1,13 @@
 # 浏览器
 
+- BOM 浏览器对象模型
+
+提供了独立于内容而与浏览器窗口进行交互的对象。描述了与浏览器进行交互的方法和接口，可以对浏览器窗口进行访问和操作，譬如可以弹出新的窗口，改变状态栏中的文本，对Cookie的支持，IE还扩展了BOM，加入了ActiveXObject类，可以通过js脚本实例化ActiveX对象等等
+
+- DOM 文档对象模型
+
+DOM是针对HTML和XML的基于树的API，把整个页面规划成由节点层级构成的文档，描述了处理网页内容的方法和接口，DOM定义了一个HTMLDocument和HTMLElement做为这种实现的基础
+
 ## 内核
 
 浏览器内核分成两部分：渲染引擎和JS脚本引擎，由于脚本引擎越来越独立，内核就倾向于只指渲染引擎
@@ -15,6 +23,22 @@
 - WebKit（Safari内核） Fork KHTML，渲染引擎WebCore
 - Chromium（Chrome内核） Fork WebKit，渲染引擎：Blink（WebCore的分支，由Google和Opera Software开发），脚本引擎：V8，Node.JS其实就是封装了V8引擎
 - Servo Mozilla与三星合作开发的下一代浏览器渲染引擎
+
+## JS引擎
+
+JavaScript之所以可以在浏览器中执行，是因为浏览器中的JavaScript解析引擎（也叫虚拟机）
+
+JS 引擎能为程序员提供部分操作浏览器的功能（网络、DOM、外部事件、HTML5视频、canvas和存储）
+
+- Mozilla Firefox: SpiderMonkey/TraceMonkey/JaegerMonkey/OdinMonkey
+- Google Chrome: V8
+- Apple Safari: Nitro/JSCore
+- Internet Explorer: Chakra
+- Microsoft Edge: V8
+
+SpiderMonkey 是第一个 JS 引擎
+
+Google Chrome 的 V8 引擎在2008年发布，被认为是 JS 引擎的一个重要里程碑。V8 引擎采用了一种叫做“即时编译”的技术，可以将 JavaScript 代码直接编译成机器码执行，从而大幅提高了 JavaScript 的执行速度。
 
 ## Storage
 
