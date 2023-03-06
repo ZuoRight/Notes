@@ -50,8 +50,8 @@ let isDone: boolean = false;
 let decLiteral: number = 6;
 let binaryLiteral: number = 0b1010;  // 二进制数值
 let hexLiteral: number = 0xf00d;  // 十六进制数值
-let notANumber: number = NaN;  // 非数值
 let infinityNumber: number = Infinity;  // 无限
+let notANumber: number = NaN;  // 非数值
 ```
 
 - 字符串

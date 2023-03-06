@@ -2,6 +2,12 @@
 
 ## 变量
 
+JS早期设计失误，并未强求用var申明，没有被var申明默认为全局变量，会带来一定的麻烦
+
+后来推出严格模式（源码第一行加上 'use strict';），强制var申明，在 `class` 和 `module` 中的代码会默认使用严格模式
+
+不过ES6之后推荐使用 let 来声明
+
 ```js
 let x = "hello world"  // JS语句可以用`;`结尾，也可以忽略
 let [x, y, z] = ['hello', 'JavaScript', 'ES6'];  // 解构赋值：同时给多个变量赋值
@@ -12,7 +18,62 @@ console.log(x)  // 打印
 
 运行脚本：`node demo.js`
 
+## 数据类型
+
+查看数据类型：`typeof x`
+
+> 也可以写作`typeof(x)`，这里的`()`其实只是分组的作用，并不是函数
+
+- Number
+
+```js
+let decLiteral = 6;
+let binaryLiteral = 0b1010;  // 二进制数值
+let hexLiteral = 0xf00d;  // 十六进制数值
+let infinityNumber = Infinity;  // 无穷
+let notANumber = NaN;  // 非数值
+```
+
+- BigInt
+
+```js
+// 超出安全整数范围（2^53 - 1 = 9007199254740991）会出现精度问题
+console.log(9007199254740991 + 2); // 9007199254740992
+// BigInt 类型，末尾加了个n
+const bigInt = 1234567890123456789012345678901234567890n;
+```
+
+- String
+
+```js
+let str = "Hello";
+let str2 = 'Single quotes are ok too';
+let phrase = `can embed another ${str}`;
+```
+
+- Boolean
+
+```js
+let nameFieldChecked = true;
+let ageFieldChecked = false;
+```
+
+- 特殊值
+
+```js
+// 无、空、值未知
+let age = null;
+
+// 未赋值
+let age;  // age在没被赋值前默认初始值为undefined
+```
+
+- symbol
+- object
+
 ## 函数
+
+在 JavaScript 语言中没有一个特别的 “function” 类型。函数隶属于 object 类型。但是 typeof 会对函数区分对待，并返回 "function"。这也是来自于 JavaScript 语言早期的问题。
 
 ### 输出函数
 

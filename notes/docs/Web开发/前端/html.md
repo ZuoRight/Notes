@@ -63,3 +63,20 @@ HTML5不基于SGML，所以不需要引用DTD
 <!-- 收藏夹 -->
 <link rel="shortcut icon" href="ico地址" type="image/x-icon">
 ```
+
+## 嵌入JS
+
+一般比较简单的脚本可以直接嵌入到HTML中，可以插在HTML文档的任何位置，当浏览器遇到`<script>`标签，代码会自动运行
+
+但通常会存放到单独的文件中引入，浏览器会通过链接下载它，然后保存到缓存
+
+```html
+<!DOCTYPE HTML>
+<html>
+    <body>
+        <script> alert('Hello, world!'); </script>
+        <!-- 外部引入 -->
+        <script src="/path/to/script.js"> alert("当使用src属性时，此处的代码会被忽略"); </script>
+    </body>
+</html>
+```
