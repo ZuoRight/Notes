@@ -1,6 +1,6 @@
 # Node.JS
 
-## 安装 & 升级
+## 安装
 
 参考：<https://nodejs.org/en/download/package-manager>
 
@@ -12,22 +12,66 @@
 
 ```bash
 brew install node  # 安装
-sudo npm install -g npm # 升级
+sudo npm install -g npm
 ```
 
 - Ubuntu
 
 ```bash
-sudo apt install nodejs build-essential -y
+sudo apt update
+# 不推荐，因为Ubuntu 22.04软件源中包含的Node.JS版本是12.22.9
+sudo apt install nodejs -y
 sudo apt install npm -y
+# 卸载
+sudo apt purge nodejs
+sudo apt autoremove
+
+# 可以用以下方式安装
+# - NVM版本管理器安装
+# - Linux的homebrew去安装
 ```
 
-- 版本管理：`n`
+## 版本管理
+
+### n（不推荐）
+
+使用 n 管理 node 版本前，首先需要一个 node 环境
 
 ```bash
-npm cache clean -f  # 清除缓存
-npm install -g n  # 安装n模块
+npm cache clean --force  # 清除缓存
+sudo npm install n -g  # 安装n模块
 n stable  # 升级node.js到稳定版本
+hash -r  # 查看版本如果显示的还是旧版本，可以新开一个命令行，reset the location hash
+
+# 卸载
+sudo n prune
+sudo npm uninstall -g n
+sudo rm -r /usr/local/n
+sudo rm /usr/local/bin/node
+```
+
+### NVM（推荐）
+
+> <https://github.com/nvm-sh/nvm>
+
+nvm 不是一个 npm package，而是一个独立软件包
+
+```bash
+# 不要使用 sudo 运行，因为这会为 root 用户启用nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+# 安装后重新打开终端
+nvm --version
+
+# 安装
+nvm list-remote  # 列出所有可安装版本
+
+nvm install node  # 安装最新版本
+nvm install --lts  # 安装最新的LTS版本,比如v18.5.0（推荐）
+nvm install 18.5.0  # 安装指定版本
+
+nvm ls  # 列出已安装的node
+nvm use x.x.x  # 切换当前版本
+nvm alias default 12.16.3  # 修改默认版本
 ```
 
 ## 使用
@@ -66,8 +110,8 @@ npm init -y  # -y yes
 
 包分两种
 
-- 库：可以用 `npm` 安装
-- 可执行文件：需要用 `npx`（安装node时默认已经安装）
+- 库：用 `npm` 安装
+- 可执行文件：需要用 `npx` 执行（安装node时默认已经安装）
 
 ## 包管理器
 

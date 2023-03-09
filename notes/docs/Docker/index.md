@@ -48,9 +48,9 @@ sudo docker run hello-world
 
 ```bash
 # ubuntu安装完会自启动
-systemctl start docker
+sudo systemctl start docker
 # 开机自启动
-systemctl enable docker
+sudo systemctl enable docker
 
 # 操作Docker必须要有root权限
 # 推荐将当前用户加入docker组（需要exit重新登录后生效）

@@ -52,7 +52,7 @@ git config --global user.email "7c@zuoright.com"
 # 如果提示输入密钥类型，推荐选择ed25519，没提示一般默认会是rsa类型
 ssh-keygen
 # 查看公钥
-cat ~/.shh/id_rsa.pub
+cat ~/.ssh/id_rsa.pub
 # 将公钥添加到项目托管平台相应设置中
 ```
 

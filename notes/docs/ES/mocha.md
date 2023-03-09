@@ -2,6 +2,8 @@
 
 Mocha + Chai
 
+测试套件可以使用自定义名字，而不必须是 `describe()`
+
 ## Chai
 
 - `gte` greater than or equal to（大于或等于）

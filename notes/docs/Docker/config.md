@@ -1,8 +1,25 @@
 # 配置
 
-## 代理
+## 拉取镜像使用mirror加速
 
-### 拉取镜像时使用代理
+Docs: 配置[阿里云镜像加速器](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
+
+- Linux
+
+> <https://docs.docker.com/config/daemon/>
+
+```bash
+cd /etc/docker
+vim daemon.json  # 添加 registry-mirrors 配置
+sudo systemctl daemon-reload  
+sudo systemctl restart docker  
+```
+
+- Mac/Windows
+
+![20210726135953](http://image.zuoright.com/20210726135953.png)
+
+## 拉取镜像时使用代理
 
 > <https://docs.docker.com/config/daemon/systemd/>
 
@@ -28,26 +45,7 @@ sudo systemctl restart docker  # 重启docker
 sudo systemctl show --property=Environment docker  # 验证
 ```
 
-### 拉取镜像使用mirror加速
-
-Docs: 配置[阿里云镜像加速器](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
-
-- Linux
-
-> <https://docs.docker.com/config/daemon/>
-
-```bash
-cd /etc/docker
-vim daemon.json  # 添加 registry-mirrors 配置
-sudo systemctl daemon-reload  
-sudo systemctl restart docker  
-```
-
-- Mac/Windows
-
-![20210726135953](http://image.zuoright.com/20210726135953.png)
-
-### 容器中运行使用代理
+## 容器中运行使用代理
 
 - 方式1
 
@@ -59,9 +57,15 @@ sudo systemctl restart docker
 - 方式2（推荐）
 
 1. 容器网络设置为：`--network host` 或者 `-p 1081:1081`
-2. 容器内设置全局代理：`export all_proxy="socks5://127.0.0.1:1081`
+2. 容器内设置全局代理
 
-### 构建镜像使用代理
+```bash
+export all_proxy="socks5://127.0.0.1:1081"
+alias proal1='export http_proxy=http://127.0.0.1:8123 https_proxy=http://127.0.0.1:8123'
+alias proal0='unset http_proxy https_proxy'
+```
+
+## 构建镜像使用代理
 
 - 方式1
 
