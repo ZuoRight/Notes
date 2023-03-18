@@ -72,6 +72,10 @@ nvm install 18.5.0  # 安装指定版本
 nvm ls  # 列出已安装的node
 nvm use x.x.x  # 切换当前版本
 nvm alias default 12.16.3  # 修改默认版本
+
+# 如果使用 sudo npm/npx 提示没有权限时，需要link下
+sudo ln -s "$(which node)" /usr/bin/node
+sudo ln -s "$(which npm)" /usr/bin/npm
 ```
 
 ## 使用
@@ -124,7 +128,7 @@ npm -v
 npm help
 npm list -g  # 查看已安装包，不带-g看不到全局的包
 
-npm install [--save-dev] <xxx>
+npm install [--save-dev] <xxx>  # npm install 可简写为 npm i
 "
 -g/--global
     本地安装（默认），安装到 $PWD/node_modules/...，通过require()引入
@@ -141,6 +145,10 @@ npm install [--save-dev] <xxx>
 # --production 只安装dependencies的包，不安装devDependencies的包
 # --omit=dev
 npm install [--production]
+
+# 从github安装，默认主分支
+npm install "https://github.com/ZuoRight/xxx.git#branch-name"
+npm install "github:ZuoRight/xxx.git#branch-name"  # 方式2
 
 npm uninstall <name1> <name2>  # 卸载插件
 

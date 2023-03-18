@@ -1,70 +1,8 @@
-# 网络管理
-
-网络环境可分为：`live network`(公共网络提供的持久化区块链) 和 `development network`(本地开发临时搭建的个人区块链)
-
-`live network` 即指 `Ethereum` 的 `Mainnet`(主网)、`Goerli`(测试网)等，通常使用以太坊节点与公网交互，可以借助`Geth`等客户端运行自己的个人节点，也可以使用 RPC Node Provider 提供的托管节点，比如：
-
-- `Infura`
-- `Alchemy`
-- `QuickNode`
-
-`development network` 可以借助一些工具来搭建，比如：
-
-- `Ganache` (Truffle 的组件)
-- `Hardhat Network` (Hardhat 的组件)
-- `Anvil` (Foundry 的组件)
-- `Geth Dev`
-
-## Ganache
-
-Ganache 是 Truffle Suite 之一
-
-- 安装
-
-如果只使用UI版本可直接下载安装包，命令行版可使用NPM来安装
-
-> 出于安全原因官方不建议使用yarn或cnpm等包管理器安装
-
-```bash
-brew install node
-
-npm install -g ganache  # ganache-cli已被弃用，最新为ganache
-ganache-cli --version  # ganache v7.7.2 (@ganache/cli: 0.8.1, @ganache/core: 0.8.1)
-```
-
-- 运行
-
-```bash
-# 如果运行了UI需要关闭，否则可能会冲突
-# 如果每次运行想保持生成的测试账户地址和私钥不变，可以加参数：-d（daterministic 确定性的）
-ganache [-d]
-
-# 每一次调用是一个json rpc调用区块链来进行交互
-# Ganache控制台日志
-<<'COMMENT'
-eth_getTransactionCount
-eth_gasPrice
-eth_chainId
-eth_estimateGas
-eth_sendRawTransaction
-
-  Transaction: 0xb9a6121bfde71828cd8c7256406a0d8c803ac7f8c71951588b3fb60607028946
-  Contract created: 0xe78a0f7e598cc8b0bb87894b0f60dd2a88d6a8ab
-  Gas usage: 471224
-  Block number: 1
-  Block time: Sat Dec 31 2022 01:45:57 GMT+0800 (中国标准时间)
-
-eth_getTransactionReceipt
-eth_chainId
-eth_call
-COMMENT
-```
-
-## brownie networks
+# brownie networks
 
 brownie框架默认集成了一些Ganache等，可以通过`brownie networks ...`来管理
 
-### 查看网络
+## 查看网络
 
 ```bash
 brownie networks list
@@ -108,7 +46,7 @@ Development
 COMMENT
 ```
 
-### 新增网络
+## 新增网络
 
 ```bash
 brownie networks add [environment] [id] host=[host] [KEY=VALUE, ...]
@@ -205,7 +143,7 @@ Terminating local RPC client...
 COMMENT
 ```
 
-### 设置默认网络
+## 设置默认网络
 
 ```yaml
 # brownie-config.yaml
@@ -213,7 +151,7 @@ networks:
     default: goerli
 ```
 
-### 启动
+## 启动
 
 - CLI
 
@@ -233,7 +171,7 @@ network.is_connected()  # True
 network.show_active()  # 'goerli'，默认是'development'
 ```
 
-### 使用托管节点
+## 使用托管节点
 
 - 查看托管节点提供商
 

@@ -93,8 +93,11 @@ describe("描述", function () {
 ```js
 import { time } from "@nomicfoundation/hardhat-network-helpers";
 
+await time.latestBlock();  // 返回最新区块
+await time.latest();  // 返回最新区块时间戳
 await time.increase(amountInSeconds);  // 时间增加指定秒数
 await time.increaseTo(timestamp)  // 时间增加到指定时间戳
+await time.setNextBlockTimestamp(newTimestamp);  // 设置下一个区块的时间戳
 ```
 
 ## Hardhat Chai Matchers

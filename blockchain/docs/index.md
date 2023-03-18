@@ -55,3 +55,20 @@ Truffle 基于 web3.js，Hardhat 基于 ethers.js
 Brownie 是 Curve 协议使用的主要工具之一，但 Brownie 和 Python 社区希望 Apeworx 成为基于 Python 的智能合约框架的继任者。
 
 Foundry 是 Paradigm 团队用 Rust 基于 dapptools 重构的框架，据说 `Foundry` 测试运行速度比 `Hardhat` 快 20 倍，比 `Brownie` 快 40 倍
+
+## 网络
+
+网络环境可分为：`live network`(公共网络提供的持久化区块链) 和 `development network`(本地开发临时搭建的个人区块链)
+
+`live network` 即指 `Ethereum` 的 `Mainnet`(主网)、`Goerli`(测试网)等，通常使用以太坊节点与公网交互，可以借助`Geth`等客户端运行自己的个人节点，也可以使用 RPC Node Provider 提供的托管节点，比如：
+
+- `Infura`
+- `Alchemy`
+- `QuickNode`
+
+`development network` 可以借助一些工具来搭建，比如：
+
+- `Ganache` (Truffle 的组件)
+- `Hardhat Network` (Hardhat 的组件)
+- `Anvil` (Foundry 的组件)
+- `Geth Dev`
