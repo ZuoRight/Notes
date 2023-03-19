@@ -1,6 +1,6 @@
 # TypeScript
 
-> <https://ts.xcatliu.com/>
+> <https://www.typescriptlang.org/>
 
 ```bash
 npm install -g typescript
