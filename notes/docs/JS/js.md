@@ -1,5 +1,10 @@
 # JavaScript
 
+## 参考
+
+- <https://zh.javascript.info/>
+- <https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics>
+
 ## 变量
 
 JS早期设计失误，并未强求用var申明，没有被var申明默认为全局变量，会带来一定的麻烦
@@ -70,6 +75,16 @@ let age;  // age在没被赋值前默认初始值为undefined
 
 - symbol
 - object
+
+```js
+const obj = {
+  name: 'Alice',
+  age: 25,
+  sayHello: function() {
+    console.log('Hello');
+  }
+};
+```
 
 ## 函数
 
@@ -284,8 +299,3 @@ export function foo() {
 
 import {foo} from '模块文件的位置';
 ```
-
-## 参考
-
-- <https://zh.javascript.info/>
-- <https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics>

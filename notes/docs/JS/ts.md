@@ -101,6 +101,44 @@ enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};
 const enum Directions {Up, Down, Left, Right}
 ```
 
+## 对象类型
+
+- 使用类型别名定义对象
+
+```ts
+type MyObject = {
+  name: string;
+  age: number;
+  gender: string;
+}
+
+const person: MyObject = {
+  name: "John",
+  age: 30,
+  gender: "male"
+};
+```
+
+- 使用接口定义对象
+
+```ts
+// 接口一般首字母大写，有的编程语言中会建议接口的名称加上前缀：I
+interface Person {
+    readonly id: number;  // 只读属性，只需要在第一次实例化时赋值
+    name: string;  // 普通属性，实例化时必需赋值
+    age?: number;  // 可选属性，实例化时可以不赋值
+    [propName: string]: any;  // 任意字符串类型属性: 任意类型属性值
+}
+
+// 实例化
+let tom: Person = {
+    id: 7,
+    name: 'Tom',
+    // age: 25,
+    gender: 'male'
+};
+```
+
 ## 函数
 
 ```ts
@@ -122,46 +160,14 @@ function buildName(firstName: string = 'Tom', lastName?: string) {
 }
 ```
 
-## 类型别名
+## 箭头函数 =>
 
-```ts
-type Name = string;
-type NameResolver = () => string;
+箭头函数是 ES6 引入的新语法，它简化了函数定义的书写方式，特别是对于只有一个参数和单行返回语句的函数。
 
-// 类型别名常用于联合类型
-type NameOrResolver = Name | NameResolver;
-function getName(n: NameOrResolver): Name {
-    if (typeof n === 'string') {
-        return n;
-    } else {
-        return n();
-    }
-}
-```
+箭头函数的语法为：`(arguments) => expression`
 
-## 接口
-
-- 对象类型接口
-
-```ts
-// 接口一般首字母大写，有的编程语言中会建议接口的名称加上前缀：I
-interface Person {
-    readonly id: number;  // 只读属性，只需要在第一次实例化时赋值
-    name: string;  // 普通属性，实例化时必需赋值
-    age?: number;  // 可选属性，实例化时可以不赋值
-    [propName: string]: any;  // 任意字符串类型属性: 任意类型属性值
-}
-
-// 实例化
-let tom: Person = {
-    id: 7,
-    name: 'Tom',
-    // age: 25,
-    gender: 'male'
-};
-```
-
-- 函数类型接口
+- arguments 为参数列表
+- expression 为函数体，可以是单行表达式或者用花括号包裹的多行语句块
 
 ## 类
 
@@ -192,6 +198,27 @@ abstract class Animal {
 }
 ```
 
+## 类型别名
+
+```ts
+type Name = string;
+type NameResolver = () => string;
+// 类型别名常用于联合类型
+type NameOrResolver = Name | NameResolver;
+function getName(n: NameOrResolver): Name {
+    if (typeof n === 'string') {
+        return n;
+    } else {
+        return n();
+    }
+}
+
+// 在类型别名中 => 表示函数类型的定义，左边为参数，右边为返回值
+// 表示接收两个参数 x 和 y，类型均为 number，并返回一个类型为 number 的值
+type MyFuncType = (x: number, y: number) => number;
+
+```
+
 ## 泛型
 
 泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。
@@ -208,10 +235,7 @@ Array<any>  // 数组泛型
 // 使用 extends 关键字实现类型的约束
 // T 在没有明确指定时，被解析为 Animal 接口的类型（区别于默认值）
 T extends Animal
+
+// 表示 fn 可以接收任意数量和类型的参数
+fn: (...args: T)
 ```
-
-## =>
-
-在 TypeScript 的类型定义中，=> 用来表示函数的定义，左边是输入类型，需要用括号括起来，右边是输出类型。
-
-在 ES6 中，=> 叫做箭头函数，应用十分广泛，可以参考 ES6 中的箭头函数。

@@ -34,6 +34,18 @@ sudo apt-get update
 sudo apt-get install redis
 ```
 
+- Windows 官方不支持
+- Mac
+
+```bash
+brew install redis  # 安装
+
+# 前台启动服务，Ctrl-C停止服务
+redis-server
+# 后台启动服务
+brew services start/stop redis
+```
+
 - Docker
 
 > <https://hub.docker.com/_/redis>
@@ -47,18 +59,6 @@ docker run --name some-redis -d redis redis-server --save 60 1 --loglevel warnin
 """
 # 连接
 docker run -it --network some-network --rm redis redis-cli -h some-redis
-```
-
-- Windows 官方不支持
-- Mac
-
-```bash
-brew install redis  # 安装
-
-# 前台启动服务，Ctrl-C停止服务
-redis-server
-# 后台启动服务
-brew services start/stop redis
 ```
 
 ## redis-cli
