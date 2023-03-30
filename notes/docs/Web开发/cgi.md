@@ -55,7 +55,7 @@ def app(environ, start_response):
     return iter([data])
 ```
 
-```bash
+```shell
 # 查看帮助
 gunicorn -h
 
@@ -104,7 +104,7 @@ workers = multiprocessing.cpu_count() * 2 + 1
 
 - 启动Django
 
-```bash
+```shell
 gunicorn myproject.wsgi
 """
 # 可以指定设置
@@ -118,7 +118,7 @@ uWSGI是C语言实现的一款WSGI工具，它跟Flask/Django等主流框架都�
 
 > 官方文档：<https://uwsgi.readthedocs.io/en/latest/Configuration.html>
 
-```bash
+```shell
 # 安装
 python -m pip install uwsgi
 """

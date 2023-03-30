@@ -22,7 +22,7 @@ OpenSSH 还提供一些辅助工具软件（比如 ssh-keygen 、ssh-agent）和
 
 ### 快捷登录
 
-```bash
+```shell
 vim ~/.ssh/config
 <<"COMMENT"
 # 服务器1
@@ -46,7 +46,7 @@ ssh -p 7777 demo@remote.example.com
 
 ### 免密登录
 
-```bash
+```shell
 # 生成公钥：id_rsa.pub
 ssh-keygen -t rsa
 # 查看公钥
@@ -61,7 +61,7 @@ cat ~/.ssh/id_rsa.pub | ssh user@host "mkdir -p ~/.ssh && cat >> ~/.ssh/authoriz
 
 ### 解决连接不稳定
 
-```bash
+```shell
 # 客户端：Mac
 sudo vim /etc/ssh/ssh_config
 """
@@ -84,7 +84,7 @@ sudo systemctl restart sshd
 
 ## SCP
 
-```bash
+```shell
 scp [-P 22] [-p] <~/.ssh/id_rsa.pub> <user@host:~/.ssh/>
 <<"COMMENT"
 -P 指定端口

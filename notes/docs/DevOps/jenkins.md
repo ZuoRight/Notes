@@ -6,24 +6,23 @@
 
 - 使用Jetty、Tomcat等Java Servlet容器运行WAR包
 
-    > 由于下载的`jenkins.war`内置了Jetty，可以直接运行：`[nohub] java -jar jenkins.war [--httpPort=8080]`，然后访问：<http://localhost:8080/>
-    >
-    > Jenkins相关的配置等存放在`~/.jenkins`路径下
+> 由于下载的`jenkins.war`内置了Jetty，可以直接运行：`[nohub] java -jar jenkins.war [--httpPort=8080]`，然后访问：<http://localhost:8080/>  
+> Jenkins相关的配置等存放在`~/.jenkins`路径下
 
 - 使用Docker镜像运行
 
-    ```bash
-    mkdir jenkins
-    chmod 777 jenkins
-    docker run -d --name jenkins \
-    -p 8080:8080 -p 50000:50000 \  # 8080为jenkins服务web端口，50000为jenkins和其他节点通讯用的端口
-    -v ${PWD}/jenkins:var/jenkins_home \
-    jenkins/jenkins
-    # 查看初始化密码
-    docker logs -f jenkins  # 方式1，从日志中查看
-    docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword  # 方式2，从容器初始密码文件中看
-    cat jenkins/jenkins_home/secrets/initialAdminPassword  # 方式3，直接从宿主机挂载目录查看
-    ```
+```shell
+mkdir jenkins
+chmod 777 jenkins
+docker run -d --name jenkins \
+-p 8080:8080 -p 50000:50000 \  # 8080为jenkins服务web端口，50000为jenkins和其他节点通讯用的端口
+-v ${PWD}/jenkins:var/jenkins_home \
+jenkins/jenkins
+# 查看初始化密码
+docker logs -f jenkins  # 方式1，从日志中查看
+docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword  # 方式2，从容器初始密码文件中看
+cat jenkins/jenkins_home/secrets/initialAdminPassword  # 方式3，直接从宿主机挂载目录查看
+```
 
 ## Demo
 

@@ -8,7 +8,7 @@
 >
 > [推荐主题：Material for MkDocs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
 
-```bash
+```shell
 # 直接安装
 pip install mkdocs
 
@@ -19,7 +19,7 @@ pip install mkdocs-material
 pip install mkdocs-git-revision-date-localized-plugin
 ```
 
-```bash
+```shell
 # 初始化
 mkdocs new .
 <<'COMMENT'

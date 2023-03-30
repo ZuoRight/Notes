@@ -10,7 +10,7 @@
 
 ## 安装
 
-```bash
+```shell
 # 方式1，最新版会默认安装依赖Py3.10
 brew install mitmproxy
 # 方式2
@@ -29,7 +29,7 @@ Platform:  macOS-12.5-arm64-arm-64bit
 
 - 启动mitmdump
 
-```bash
+```shell
 mitmdump
 
 """

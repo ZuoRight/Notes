@@ -28,7 +28,7 @@ UTM 是永久且完全免费和开源的。GitHub 与 App Store 下载是一样�
 
 ## 安装桌面
 
-```bash
+```shell
 sudo apt update
 sudo apt install ubuntu-desktop  # 默认GNOME
 sudo reboot
@@ -36,7 +36,7 @@ sudo reboot
 
 ## 剪切板共享
 
-```bash
+```shell
 # 需要安装spice-vdagent
 sudo apt install spice-vdagent
 # 命令行粘贴使用 Shift+Control+v，桌面环境不需要加Shift键
@@ -46,14 +46,14 @@ sudo apt install spice-vdagent
 
 ![20221116203730](http://image.zuoright.com/20221116203730.png)
 
-```bash
+```shell
 sudo mkdir /media/share  # create mount point
 sudo mount -t 9p -o trans=virtio share /media/share -oversion=9p2000.L  # mount
 ```
 
 ## 安装VSCode
 
-```bash
+```shell
 # 下载.deb包并放入共享文件夹：https://code.visualstudio.com/download
 sudo apt install /meida/share/code_1.73.1-1667966450_arm64.deb
 ```

@@ -12,7 +12,7 @@ Hardhat 是来自 Nomic Foundation 的以太坊开发环境，可用于编译、
 - Hardhat Chai Matchers
 - Hardhat Network Helpers
 
-```bash
+```shell
 # 安装hardhat
 npm init --yes
 npm install --save-dev hardhat
@@ -72,7 +72,7 @@ main()
   })
 ```
 
-```bash
+```shell
 # 编译成字节码和元数据存储到artifacts/路径
 npx hardhat compile
 

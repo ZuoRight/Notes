@@ -8,7 +8,7 @@ Docs: 配置[阿里云镜像加速器](https://cr.console.aliyun.com/cn-hangzhou
 
 > <https://docs.docker.com/config/daemon/>
 
-```bash
+```shell
 cd /etc/docker
 vim daemon.json  # 添加 registry-mirrors 配置
 sudo systemctl daemon-reload  
@@ -25,7 +25,7 @@ sudo systemctl restart docker
 
 创建`proxy.conf`文件
 
-```bash
+```shell
 sudo mkdir -p /etc/systemd/system/docker.service.d
 sudo vim /etc/systemd/system/docker.service.d/proxy.conf
 ```
@@ -39,7 +39,7 @@ Environment="ALL_PROXY=socks5://127.0.0.1:1081"
 
 重启生效
 
-```bash
+```shell
 sudo systemctl daemon-reload  # 重新加载配置文件
 sudo systemctl restart docker  # 重启docker
 sudo systemctl show --property=Environment docker  # 验证
@@ -59,7 +59,7 @@ sudo systemctl show --property=Environment docker  # 验证
 1. 容器网络设置为：`--network host` 或者 `-p 1081:1081`
 2. 容器内设置全局代理
 
-```bash
+```shell
 export all_proxy="socks5://127.0.0.1:1081"
 alias proal1='export http_proxy=http://127.0.0.1:8123 https_proxy=http://127.0.0.1:8123'
 alias proal0='unset http_proxy https_proxy'

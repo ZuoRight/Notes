@@ -42,14 +42,14 @@ MacOS10.8~12.3（M1之前）预装了Python2.7版本，被一些应用所依赖�
 - Ubuntu 20.04.5 LTS (Focal Fossa) 内置Py3.8
 - Ubuntu 22.04.1 LTS (Jammy Jellyfish) 内置Py3.10
 
-```bash
+```shell
 sudo apt-get update
 sudo apt-get install python3.9
 ```
 
 ### CentOS 7+
 
-```bash
+```shell
 # 官方源没有，得用epel源
 sudo yum install epel-release
 # 不一定包含最新版Python
@@ -66,12 +66,12 @@ easy_install pip
 
 > 参考：<https://hub.docker.com/_/python>
 
-```bash
+```shell
 docker pull python:3.9  # 默认Ubuntu环境
 docker run -d -it --name demo python:3.9 "/bin/bash"
 ```
 
-```bash
+```shell
 FROM python:3.9
 
 # ENV PYTHONUNBUFFERED=1
@@ -151,7 +151,7 @@ Python中使用了冒号和缩进来表示代码块，而不是花括号，更�
 - 明确：做任何事情应有且最好只有一个方法，少即是多。
 - 优雅：准确的来说应该是实用
 
-```bash
+```shell
 >>> import this
 
 The Zen of Python, by Tim Peters

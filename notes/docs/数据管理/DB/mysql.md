@@ -14,7 +14,7 @@ M1+下载ARM版本，反之x86，`No thanks, just start my download.`，安装�
 
 然后配置环境变量
 
-```bash
+```shell
 vim ~/.bash_profile
     export PATH=$PATH:/usr/local/mysql/bin
     export PATH=$PATH:/usr/local/mysql/support-files
@@ -63,7 +63,7 @@ default-storage-engine=INNODB
 - Docker官方提供的（推荐）：<https://hub.docker.com/_/mysql>
 - Oracle官方提供的mysql-server（只适用于linux）：<https://hub.docker.com/r/mysql/mysql-server>
 
-```bash
+```shell
 docker pull mysql:8.0
 sudo docker run -d -p 23306:3306 \  # 映射到宿主机的23306端口，避免与宿主机数据库端口冲突
     -e MYSQL_RANDOM_ROOT_PASSWORD=yes \  # 设置密码，无论是固定密码还是随机生成或者为空，此参数必选
@@ -104,12 +104,21 @@ MySQL 是典型的 C/S 架构（mysql/mysqld）
 
 可以通过命令行或者GUI管理工具来与服务端交互
 
+- 启动/停止服务
+
+```shell
+# Windows
+net start/stop mysql
+
+# Mac
+sudo mysql.server start/stop
+# 也可以通过系统设置面板控制
+# 如果是homebrew安装也可以通过brew services控制
+```
+
 - 命令行
 
-```bash
-net start mysql  # 启动服务
-net stop mysql  # 停止服务
-
+```shell
 # 连接服务
 mysql -u root -p
 # -h 默认主机名为本机127.0.0.1

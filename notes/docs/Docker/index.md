@@ -22,7 +22,7 @@
 
 所以并不推荐使用Docker Desktop，另一个原因是它属于商业化产品，有一些非通用的东西，而仅适用于Linux的Docker Engine是完全免费开源的，也是Kubernetes的基石之一
 
-```bash
+```shell
 # Ubuntu
 # https://docs.docker.com/engine/install/ubuntu/
 
@@ -46,7 +46,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo docker run hello-world
 ```
 
-```bash
+```shell
 # ubuntu安装完会自启动
 sudo systemctl start docker
 # 开机自启动
@@ -59,7 +59,7 @@ sudo usermod -aG docker ${USER}
 
 ## 基本命令
 
-```bash
+```shell
 docker  # 查看所有命令选项
 docker <command> --help  # 查看命令使用帮助
 docker version  # 版本信息
@@ -115,7 +115,7 @@ Docker 创建的一个容器初始化进程 (dockerinit) 会负责完成根目�
 - Mount Namespace
 - Network Namespace
 
-```bash
+```shell
 # 容器在宿主机上是一个真实存在的进程
 docker inspect --format '{{ .State.Pid }}' <容器ID>
 # 查看容器所有 Namespace 对应的文件

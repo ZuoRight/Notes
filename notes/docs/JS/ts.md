@@ -2,7 +2,7 @@
 
 > <https://www.typescriptlang.org/>
 
-```bash
+```shell
 npm install -g typescript
 
 # typescript 的命令是：tsc

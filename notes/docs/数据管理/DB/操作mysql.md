@@ -20,7 +20,7 @@ Python操作MySQL数据库需要遵守DB-API规范，有很多封装好的驱动
 >
 > 安装比较麻烦，参考README：<https://github.com/PyMySQL/mysqlclient>
 
-```bash
+```shell
 # Mac
 brew install mysql-client
 pip install mysqlclient
@@ -95,7 +95,7 @@ db = mysql.connector.connect(
        user="root",
        passwd="12345678",
        database='demo', 
-       auth_plugin='mysql_native_password'  # 密码验证方式，采用明文，8.0版本为caching_sha2_password
+    #    auth_plugin='mysql_native_password'  # 密码验证方式，采用明文，8.0版本为caching_sha2_password
 )
 # 获取操作游标 
 cursor = db.cursor()
@@ -113,6 +113,13 @@ db.close()
 ## PyMySQL
 
 `pip install PyMySQL`
+
+```shell
+如果使用PyMySQL遇到如下问题
+RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
+是因为mysql8.0后身份认证插件由mysql_native_password变为caching_sha2_password
+需要安装cryptography来解决：pip3 install cryptography
+```
 
 也是纯Python实现，性能最差，但最流行，如果项目里用了gevent貌似只能用pymysql
 

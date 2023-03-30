@@ -8,7 +8,7 @@ EVM 无法直接执行 Solidity 代码：我们首先需要将其编译成 EVM �
 
 > Docs: <https://docs.soliditylang.org/en/latest/installing-solidity.html>
 
-```bash
+```shell
 # docker镜像
 docker run ethereum/solc:stable --help
 
@@ -45,7 +45,7 @@ solc-bin
 
 solc 版本管理，类似于 Java 的版本管理工具 jenv 或 nodejs 的版本管理工具 nvm
 
-```bash
+```shell
 pip3 install solc-select  # 安装
 
 solc-select install  # 查看可安装的solc版本
@@ -64,7 +64,7 @@ solc --version
 
 Uses the Emscripten compiled Solidity found in the solc-bin
 
-```bash
+```shell
 # solcjs
 sudo npm install solc
 

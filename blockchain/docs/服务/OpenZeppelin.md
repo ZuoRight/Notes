@@ -12,7 +12,7 @@ OpenZeppelin 是构建在 EVM 之上的开源智能合约开发工具，开发�
 
 OpenZeppelin 的另一项主要业务是代码审计，参与过行业内包括 Cosmos 和诸多 Defi 在內的大量明星项目的代码审计。
 
-```bash
+```shell
 npm install @openzeppelin/contracts
 # 安装到当前路径下的node_modules/中
 ```
@@ -37,7 +37,7 @@ Brownie 允许您将其他项目作为包安装
 
 > Docs: <https://eth-brownie.readthedocs.io/en/stable/package-manager.html>
 
-```bash
+```shell
 # 从Github安装
 brownie pm install OpenZeppelin/openzeppelin-contracts@3.0.0
 

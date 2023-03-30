@@ -47,7 +47,7 @@ app.config["KEY"] = value
 
 ## 基本命令
 
-```bash
+```shell
 # 运行项目
 flask --app demo run
 """

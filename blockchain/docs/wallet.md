@@ -12,7 +12,7 @@ HD钱包指根据某种确定性算法，用一个根密钥（也叫根扩展密
 
 > 理论上扩展密钥的层数是没有限制的，每一层的数量被限制在0～232
 
-直接记私钥很难记住，可以通过助记词来辅助记忆，根据助记词即可恢复钱包，也可以直接备份私钥。
+直接记私钥很难记住，可以通过助记词来辅助记忆，根据助记词即可恢复钱包（所以助记词也叫Secret Recovery Phrase(SRP)），也可以直接备份私钥。
 
 > 在线生成工具：<https://iancoleman.io/bip39/>
 
@@ -182,3 +182,5 @@ digest = keccak(x.to_bytes(32, 'big') + y.to_bytes(32, 'big'))
 address = '0x' + digest[-20:].hex()
 print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1fa39f997f06bfb7ca0
 ```
+
+公钥可以绑定 ENS(Ethereum Name Service)，方便记忆

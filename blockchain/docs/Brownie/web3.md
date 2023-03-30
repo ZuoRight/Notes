@@ -2,7 +2,7 @@
 
 [官方文档](https://web3py.readthedocs.io/en/stable/index.html)
 
-```bash
+```shell
 pip install web3
 
 <<'COMMENT'
@@ -37,7 +37,7 @@ w3 = Web3(Web3.WebsocketProvider('wss://127.0.0.1:8546'))
 
 ### TesterProvider
 
-```bash
+```shell
 pip install "web3[tester]"
 
 <<'COMMENT'

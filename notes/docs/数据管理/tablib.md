@@ -4,7 +4,7 @@
 
 Tablib用于处理表格类数据（tabular dataset），为不同格式的数据集提供一个统一的格式
 
-```bash
+```shell
 pip install tablib  # 安装，更新加参数：--upgrade
 pip install "tablib[xlsx]"  # 安装某个依赖
 pip install "tablib[html, pandas, ods, xls, xlsx, yaml]"  # 安装多个依赖

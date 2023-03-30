@@ -10,7 +10,7 @@ Ganache 是 Truffle Suite 之一
 
 如果只使用UI版本可直接下载安装包，命令行版可使用NPM来安装
 
-```bash
+```shell
 npm install ganache -g  # ganache-cli已被弃用，最新为ganache
 ganache --version  # ganache v7.7.2 (@ganache/cli: 0.8.1, @ganache/core: 0.8.1)
 ganache --help
@@ -18,7 +18,7 @@ ganache --help
 
 - 运行
 
-```bash
+```shell
 # 如果运行了UI需要关闭，否则可能会冲突
 # 如果每次运行想保持生成的测试账户地址和私钥不变，可以加参数：-d（daterministic 确定性的）
 ganache [-d]

@@ -2,7 +2,7 @@
 
 ## Mac
 
-```bash
+```shell
 # 方式1：brew
 brew install go
 

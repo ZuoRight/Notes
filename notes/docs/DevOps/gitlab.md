@@ -17,7 +17,7 @@ hide:
 
 Docker中安装
 
-```bash
+```shell
 sudo docker run -d --name gitlab-runner --restart always \
      -v /srv/gitlab-runner/config:/etc/gitlab-runner \
      -v /var/run/docker.sock:/var/run/docker.sock \
@@ -45,7 +45,7 @@ sudo docker run -d --name gitlab-runner --restart always \
 
 - 命令行自动注册
 
-```bash
+```shell
 # 注册
 gitlab-runner register
 """
@@ -116,7 +116,7 @@ check_interval = 0
 >
 > 注意，配置文件中的token是`Authentication token`，不走命令行的话需要使用[API](https://docs.gitlab.com/ee/api/runners.html#register-a-new-runner)生成
 
-```bash
+```shell
 curl --request POST "https://gitlab.example.com/api/v4/runners" \
      --form "token=<registration_token>" --form "description=test-1-20150125-test" \
      --form "tag_list=ruby,mysql,tag1,tag2"
@@ -315,7 +315,7 @@ Mask variable (Optional): If selected, the variable's Value is masked in job log
 
 触发器传递的环境变量优先级最高
 
-```bash
+```shell
 curl -X POST \
   -F token=<TOKEN> \
   -F ref=<REF_NAME> \
@@ -342,7 +342,7 @@ requests.post(url)
 
 <https://docs.gitlab.com/ee/ci/pipelines/schedules.html>
 
-```bash
+```shell
 # 文件格式說明
 # ┌──分鐘（0 - 59）
 # │ ┌──小時（0 - 23）

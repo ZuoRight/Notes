@@ -8,7 +8,7 @@ hide:
 
 官方文档：<https://docs.pytest.org>
 
-```bash
+```shell
 pip install pytest  # install
 
 pytest --version   # shows where pytest was imported from
@@ -238,7 +238,7 @@ if __name__ == '__main__':
 
 - 命令行执行
 
-```bash
+```shell
 # 会收集所有符合编写规范的文件以及文件内的函数和类以及方法，然后根据参数等略过不需要执行的
 pytest
 """
@@ -256,7 +256,7 @@ pytest --setup-show
 
 ### 测试范围
 
-```bash
+```shell
 # 测试指定目录下所有文件
 pytest testing/
 
@@ -332,7 +332,7 @@ markers =
 
 Pytest默认按照收集顺序执行（即从上到下）
 
-```bash
+```shell
 # 按指定顺序执行
 pip install pytest-ordering
 """
@@ -344,7 +344,7 @@ pip install pytest-ordering
 pip install pytest-random-order
 ```
 
-```bash
+```shell
 # 失败重跑
 pip install pytest-rerunfailures
 
@@ -447,7 +447,7 @@ fixture中的断言如果失败，结果会显示error，case中的断言如果�
 
 ### pytest-html
 
-```bash
+```shell
 pip install pytest-html
 
 # --self-contained-html css样式混在html中，不加则独立
@@ -498,7 +498,7 @@ def pytest_html_results_table_row(report, cells):
 
 ### allure
 
-```bash
+```shell
 pip install allure-pytest
 
 # 指定报告相关文件存储路径

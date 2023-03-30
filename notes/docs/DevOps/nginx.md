@@ -2,7 +2,7 @@
 
 官方文档：<https://nginx.org/en/docs/>
 
-```bash
+```shell
 apt install nginx  # ubuntu
 yum install nginx  # centos
 brew install nginx # mac
@@ -12,7 +12,7 @@ nginx -v  # 查看版本
 nginx -t  # 查看配置是否正常，会返回配置文件的路径
 ```
 
-```bash
+```shell
 nginx  # 启动，启动后可已通过命令来控制：nginx -s 信号
 nginx -s reload  # 重新加载配置
 nginx -s stop  # 直接退出
@@ -57,7 +57,7 @@ build-error: 1 (30 days)
 """
 ```
 
-```bash
+```shell
 netstat -a | grep 8080  # 查看端口
 ps -ax | grep nginx  # 查看进程
 kill -s QUIT pid  # 结束进程

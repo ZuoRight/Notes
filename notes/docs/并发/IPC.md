@@ -8,7 +8,7 @@ Inter-Process Communication 进程间通信，指至少两个进程或线程间�
 
 管道只能用于无格式字节流以，并且缓冲区大小受限
 
-```bash
+```shell
 ps -ef | grep xxx
 ```
 
@@ -16,7 +16,7 @@ ps -ef | grep xxx
 
 可以通知目标进程（还可以通知自己）某种事件发生
 
-```bash
+```shell
 kill -9 pid
 ```
 

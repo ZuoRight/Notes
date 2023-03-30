@@ -46,7 +46,7 @@ Vi 是终端里的文本编辑器，Vim 是 Vi iMproved，即Vi编辑器的增�
 
 普通模式下按英文冒号`:`进入命令模式，又叫末行模式
 
-```bash
+```shell
 :w [path] # 保存，可以接保存路径
 :wq  # 保存并退出
 :q  # 如果没有修改，直接退出
@@ -69,7 +69,7 @@ shift+n 切换到上一个
 
 - 设置
 
-```bash
+```shell
 :set nu  # 显示行号
 :set nonu  # 不显示行号
 :set nohlsearch  # 不显示高亮

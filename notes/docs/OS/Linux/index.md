@@ -14,7 +14,7 @@ Linux本身只是一个开源的内核(Kernel)
 
 ![20220707142531](http://image.zuoright.com/20220707142531.png)
 
-```sh
+```shell
 # 查看内核信息
 uname -a
 """
@@ -31,6 +31,21 @@ yum/apt install kernel-xxx
 
 # 更新已安装的其它软件包和补丁
 yum/apt update
+```
+
+## 启动过程
+
+1. `BIOS` 基本的输入输出系统，在主板上，在启动时按F2进入界面，选择引导介质
+2. `MBR` 主引导记录部分，在硬盘上
+3. `BootLoader` grub2.0 用于启动和引导内核的工具，即选择内核和指定版本
+4. `Kernel` 内核
+5. `systemd` 1号进程(以前是`init`)
+6. `系统初始化`
+7. `Shell` 用于解释用户对操作系统的操作
+
+```shell
+reboot  # 重启
+shutdown  # 关机
 ```
 
 ## 发行版
@@ -51,23 +66,20 @@ yum/apt update
 - CentOS
 - Alpine 容器中可能比较常用
 
+```shell
+# 查看发行版信息
+lsb_release -a
+<<"COMMENT"
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 18.04.6 LTS
+Release:        18.04
+Codename:       bionic
+COMMENT
+```
+
 ## GNU工具集
 
 - GCC/G++：编译环境
 - glibc：C库
 - coreutils：核心工具组
-
-## 启动过程
-
-1. `BIOS` 基本的输入输出系统，在主板上，在启动时按F2进入界面，选择引导介质
-2. `MBR` 主引导记录部分，在硬盘上
-3. `BootLoader` grub2.0 用于启动和引导内核的工具，即选择内核和指定版本
-4. `Kernel` 内核
-5. `systemd` 1号进程(以前是`init`)
-6. `系统初始化`
-7. `Shell` 用于解释用户对操作系统的操作
-
-```bash
-reboot  # 重启
-shutdown  # 关机
-```

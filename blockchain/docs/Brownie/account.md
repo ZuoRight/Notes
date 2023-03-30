@@ -16,7 +16,7 @@ account = accounts[0]
 
 - 添加 Local accounts
 
-```bash
+```shell
 # 生成一个新账户
 brownie accounts generate <id>  # 回车后设置密码，然后生成随机私钥
 
@@ -39,13 +39,13 @@ brownie accounts export <id> <path>
 
 - 删除 Local accounts
 
-```bash
+```shell
 brownie accounts delete <id>
 ```
 
 - 查看 Local accounts
 
-```bash
+```shell
 brownie accounts list
 
 <<'COMMENT'

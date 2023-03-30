@@ -4,7 +4,7 @@
 >
 > `curl -h`：<https://curl.se/docs/manpage.html>
 
-```bash
+```shell
 url_get = http://httpbin.org/get
 url_post = http://httpbin.org/post
 
@@ -46,7 +46,7 @@ curl -H
 curl -X POST $url_post --data '{"a":111, "b":222}'
 ```
 
-```bash
+```shell
 # 只输出响应头
 curl -I/--head
 

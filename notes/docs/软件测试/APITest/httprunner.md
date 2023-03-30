@@ -12,7 +12,7 @@
 
 ![20220804104451](http://image.zuoright.com/20220804104451.png)
 
-```bash
+```shell
 # 主要命令：httprunner
 (env) bash-5.0$ httprunner -h
 
@@ -55,7 +55,7 @@ Waiting up to 2 seconds
 Press Ctrl-C to quit
 ```
 
-```bash
+```shell
 $ tree demo -a
 demo
 ├── .env
@@ -72,7 +72,7 @@ demo
 
 > hrun = make + pytest， 是httprunner run的缩写，封装了pytest，所以支持pytest的功能参数，执行非pytest格式的用例会自动先make为pytest格式
 
-```bash
+```shell
 $ tree httprunner_demo -a  
 httprunner_demo
 ├── .env
@@ -106,7 +106,7 @@ HttpRunner v3.x 支持3种用例格式：pytest、YAML和JSON
 
 可以使用抓包工具录制请求，然后导出为har文件，再使用har2case命令转换为指定格式的case，默认转换为pytest格式
 
-```bash
+```shell
 (env) bash-5.0$ har2case -h
 
 usage: har2case har2case [-h] [-2y] [-2j] [--filter FILTER] [--exclude EXCLUDE] [har_source_file]

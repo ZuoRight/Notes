@@ -27,7 +27,7 @@ Docker 在镜像的设计中，引入了层（layer）的概念，每一行指�
 
 ## 从镜像仓库拉取镜像
 
-```bash
+```shell
 docker search <image>  # 从镜像库查找镜像
 docker pull <image>  # 默认从DockerHub拉取镜像
 
@@ -131,7 +131,7 @@ VOLUME ["<路径1>", "<路径2>"...]
 
 ### 打包
 
-```bash
+```shell
 """
 可以创建`.dockerignore`文件（语法与`.gitignore`类似）配置build规则，忽略那些不希望被打包的文件
 
@@ -153,7 +153,7 @@ docker inspect <image>  # 查看镜像信息，比如分层：RootFS.Layers
 
 - 从运行中的容器fork出一个镜像，一般不推荐
 
-```bash
+```shell
 docker commit -m="提交信息" -a="作者" <容器ID> <目标镜像名:tag>
 ```
 
@@ -182,7 +182,7 @@ CMD echo "hello world"
 
 等价于
 
-```bash
+```shell
 docker pull busybox      
 docker run busybox echo hello world
 ```
@@ -211,7 +211,7 @@ EXPOSE 8081 8082 8083
 
 > Docker 官方镜像也有用户名：library，但一般省略不写
 
-```bash
+```shell
 # 登陆
 docker login -u zuoright
 # 给镜像起一个完整的名字：仓库名/镜像名:标签
@@ -224,7 +224,7 @@ docker push zuoright/demo:1.0
 
 还可以镜像压缩传输共享
 
-```bash
+```shell
 docker save <image>:<tag> -o xxx.tar  # 导出成镜像压缩包
 docker load -i xxx.tar  # 导入镜像压缩包
 ```

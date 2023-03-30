@@ -1,10 +1,10 @@
-# BashShell
+# Script
 
-[Bash免费教程](https://wangdoc.com/bash/intro.html){ .md-button .md-button--primary }
+<https://wangdoc.com/bash/script>
 
 ## 变量
 
-```bash
+```shell
 # 变量赋值，无需声明
 x=123  # 赋值符=左右不能有空格
 # 值有空格时可使用引号括起来（还可以用反斜杠转义特殊字符：x0=ha\ ha）
@@ -32,7 +32,7 @@ PATH=${PATH}:/home/bin  # 推荐
 
 ## 数组
 
-```bash
+```shell
 x = (a, b, c)  # 可以用数组赋多个值，空格分隔
 
 # 显示数组第一个元素
@@ -51,7 +51,7 @@ unset x[0]
 
 ## 输出
 
-```bash
+```shell
 echo $y
 echo ${#x}  # 获取变量长度
 echo ${x:n:m}  # 切片
@@ -59,7 +59,7 @@ echo ${x:n:m}  # 切片
 
 常用预定义变量(一般都大写)
 
-```bash
+```shell
 echo $USER  # 当前用户
 echo $UID  # 当前用户UID
 echo $SHELL  # 查看默认Shell
@@ -76,7 +76,7 @@ echo ${2-_}  # 如果没有传入位置参数，默认赋值下划线
 
 ## 输入/输出重定向
 
-```bash
+```shell
 """
 一个进程默认会打开三个文件描述符，通常用数字表示
   0 标准输入stdin，输入自键盘
@@ -110,7 +110,7 @@ cmd > file 2>&1  # 另一种写法
 
 - 用cat创建文件
 
-```bash
+```shell
 cat  # 执行cat什么都不加则会让在命令行输入内容，ctrl+d退出
 cat > file  # 回车后在命令行输入内容，退出则内容自动保存到file中
 
@@ -128,7 +128,7 @@ cat > file << "eof"
 
 比如想让自己写的可执行程序能在全局使用，需要把程序的路径添加到环境变量$PATH中
 
-```bash
+```shell
 echo $PATH
 """
 查看当前会在哪些路径搜索，冒号分隔，从左到右按顺序加载
@@ -141,7 +141,7 @@ source ~/.bash_profile  # 重新加载环境变量配置文件使其生效
 
 ## 运算
 
-```bash
+```shell
 expr 1 + 1  # 2，运算符两边必须加空格
 expr 5 / 2  # 2
 

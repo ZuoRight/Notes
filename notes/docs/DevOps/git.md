@@ -135,7 +135,7 @@ git commit --ament -m "xxx"  # 修正提交，可以覆盖上一次的提交
 - `--mixed` 回到add前的状态，默认
 - `--hard` 回到工作区修改前状态，重置
 
-```bash
+```shell
 # 如果不小心提交了隐私记录，可以reset到这次提交前的版本
 # 注意，删除后通过https://github.com/ZuoRight/demo/commit/hash_id依然可以访问到
 git log  # 查看提交记录，找到包含隐私的那一次提交记录，copy它上一个版本的hash_id
@@ -162,14 +162,14 @@ git push --force origin HEAD
 - 撤销工作区未追踪文件的修改：只能是`Ctrl+Z`
 - 撤销工作区已追踪文件的修改
 
-```bash
+```shell
 git restore xxx
 git checkout -- xxx
 ```
 
 - 撤销暂存区文件缓存：即git add后撤销
 
-```bash
+```shell
 git restore --staged xxx  # 变为未暂存状态
 git rm --cached xxx  # 变成未追踪状态
 ```
@@ -194,7 +194,7 @@ git merge dev  # 合并
 
 ## 拉取推送
 
-```bash
+```shell
 # 从已跟踪服务器拉取并自动合并
 git pull [origin main] # 等同于：git fetch + git merge
 
@@ -240,7 +240,7 @@ git push origin --delete v0.5  # 删除远程标签
 
 ### Git Flow
 
-```bash
+```shell
 # 克隆仓库master分支到本地
 git clone git@code.xxx.net:demo/test.git
 # 新建并切换到新分支开发
@@ -276,7 +276,7 @@ git push origin dev
 
 ### Gitlab Flow
 
-```bash
+```shell
 # 先fork
 
 git clone me.git  # 克隆自己的远程库

@@ -15,7 +15,7 @@ MySQL 作为数据库，提供持久化功能，并通过主从架构提高数�
 
 - 源码安装
 
-```bash
+```shell
 wget https://download.redis.io/redis-stable.tar.gz
 tar -xzvf redis-stable.tar.gz
 cd redis-stable
@@ -25,7 +25,7 @@ make install  # 安装到：/usr/local/bin
 
 - Ubuntu
 
-```bash
+```shell
 curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
 
 echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
@@ -37,7 +37,7 @@ sudo apt-get install redis
 - Windows 官方不支持
 - Mac
 
-```bash
+```shell
 brew install redis  # 安装
 
 # 前台启动服务，Ctrl-C停止服务
@@ -50,7 +50,7 @@ brew services start/stop redis
 
 > <https://hub.docker.com/_/redis>
 
-```bash
+```shell
 # 启动服务
 docker run --name some-redis -d redis
 """
@@ -65,7 +65,7 @@ docker run -it --network some-network --rm redis redis-cli -h some-redis
 
 连接服务
 
-```bash
+```shell
 redis-cli
 """
 -h 127.0.0.1
@@ -77,7 +77,7 @@ redis-cli
 
 连接后，命令行提示符显示为：`127.0.0.1:6379>`
 
-```bash
+```shell
 ping  # 检测服务是否启动，成功返回PONG
 info  # 查看服务端信息
 quit  # 退出连接
@@ -111,7 +111,7 @@ RocksDB 采用跳表，Memcached 和 Redis 则采用哈希表作为 key-value �
 
 ![20211109191640](http://image.zuoright.com/20211109191640.png)
 
-```bash
+```shell
 type key  # 查看key的类型
 del key  # 删除key
 ```
@@ -120,7 +120,7 @@ del key  # 删除key
 
 字符串
 
-```bash
+```shell
 # set key value
 set name zhangsan
 # 获取
@@ -131,7 +131,7 @@ get name
 
 字符串类型的哈希，类似Python的Dict
 
-```bash
+```shell
 # hset key field value
 hset dict1 username zhangsan
 hset dict1 age 28
@@ -162,7 +162,7 @@ hkeys dict
 
 有序的字符串列表，按插入顺序排序
 
-```bash
+```shell
 # LPUSH/RPUSH key value [...]
 lpush list zhangfei guanyu liubei  # 向列表左侧添加元素
 rpush list dianwei lvbu  # 向列表右侧添加元素
@@ -191,7 +191,7 @@ lrange list 0 2
 
 无序的字符串集合，元素不能重复，与Python集合类似
 
-```bash
+```shell
 # SADD key member [...]
 sadd sets zhangfei guanyu liubei dianwei lvbu
 
@@ -210,7 +210,7 @@ smembers sets  # 获取集合元素
 
 ZSet与List都是有序的，区别在于底层实现不同，List操作两端的元素很快，但操作中间元素较慢，而ZSet操作中间元素也很快，而且通过score调整顺序也比List更高效，只需要改变score大小即可
 
-```bash
+```shell
 # ZADD key score member [...]
 zadd heroScore 8341 zhangfei 7107 guanyu 6900 liubei 7516 dianwei 7344 lvbu
 

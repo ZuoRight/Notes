@@ -1,6 +1,6 @@
 # 测试
 
-```bash
+```shell
 brownie test [--network xxx] [--pdb]  # 加pdb可以进入调试模式（连接Infura节点时不支持），quit()退出
 ```
 

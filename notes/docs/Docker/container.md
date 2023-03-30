@@ -3,7 +3,7 @@
 
 ## 查看容器
 
-```bash
+```shell
 docker container ls
 '''
 CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS                     PORTS     NAMES
@@ -31,7 +31,7 @@ docker rename name_old name_new
 
 ## 操作容器
 
-```bash
+```shell
 # 完整的container_id有64个字符，可以只写前三位
 docker start <container_id>  # 启动容器
 docker restart <container_id>  # 重启
@@ -55,7 +55,7 @@ docker import http://example.com/exampleimage.tgz example/imagerepo
 
 > 容器共享了宿主机的内核
 
-```bash
+```shell
 docker run --name test <镜像名>:tag  # 不加tag默认执行latest版本的镜像
 docker create ...  # 创建容器但不运行，用法同run
 """
@@ -91,7 +91,7 @@ sudo docker attach demo13  # 将运行中的后台放到前台，退出后容器
 
 - 还原启动容器时的参数
 
-```bash
+```shell
 # 查看镜像或容器的元信息
 docker inspect <container_id>
 docker inspect -f='{{ .NetworkSettings.IPAddress }}' <container_id>  # -f 过滤信息，获取容器IP
@@ -108,7 +108,7 @@ runlike -p <container_id>
 
 - 复制数据
 
-```bash
+```shell
 # 复制文件：从宿主机到容器
 docker cp path/file <container_id>:path
 # 复制文件：从容器到宿主机

@@ -8,7 +8,7 @@
 
 > 配置文件：`/etc/yum.repos.d/CentOS-Base.repo`
 
-```bash
+```shell
 yum search/list/install/remove/update xxx
 ```
 
@@ -16,7 +16,7 @@ yum search/list/install/remove/update xxx
 
 官网找`·.rpm`安装包，然后挂载到空目录
 
-```bash
+```shell
 ls -l /dev/sr0  # 查看块设备
 mount /dev/sr0 /mnt  # 建议挂载到空目录/mnt
 

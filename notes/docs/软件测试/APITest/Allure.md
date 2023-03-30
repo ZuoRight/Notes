@@ -23,7 +23,7 @@ hide:
 
 `pip install allure-pytest`
 
-```bash
+```shell
 # 生成报告到指定路径（--clean-alluredir 清除之前运行产生的文件）
 pytest --alluredir=tmp/allure-results [--clean-alluredir]
 
@@ -31,7 +31,7 @@ pytest --alluredir=tmp/allure-results [--clean-alluredir]
 allure serve tmp/allure-results
 ```
 
-```bash
+```shell
 # 把报告转成html格式（-o 指定路径，--clean 清除之前运行产生的文件）
 allrue generate tmp/allures [-o tmp/path] [--clean]
 # html格式的报告不能直接打开，需用此命令打开
@@ -84,7 +84,7 @@ with allure.step("步骤，放在方法内"):
 
 - 指定属性运行
 
-```bash
+```shell
 # 测试指定功能的case
 pytest --allure-features="xxx"
 pytest --allure-stories="xxx"
@@ -171,7 +171,7 @@ Stand=Production
 
 <https://github.com/fescobar/allure-docker-service>
 
-```bash
+```shell
 sudo docker run -d -p 5050:5050 \
     -e CHECK_RESULTS_EVERY_SECONDS=3 \
     -e KEEP_HISTORY=1 \

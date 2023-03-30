@@ -6,7 +6,7 @@ Docs: <https://eth-brownie.readthedocs.io/en/stable/index.html>
 
 ## 安装
 
-```bash
+```shell
 # 框架依赖较多，建议安装到虚拟环境中
 pip install eth-brownie
 
@@ -29,7 +29,7 @@ brownie --version  # Brownie v1.19.2 - Python development framework for Ethereum
 
 ## 项目初始化
 
-```bash
+```shell
 mkdir project_name
 cd project_name
 
@@ -69,7 +69,7 @@ reports/: JSON report files for use in the GUI
 
 也可以通过Brownie自带的控制台快速测试本地合约，或者与链上合约交互
 
-```bash
+```shell
 # brownie shell is a python shell with all of our smart contract features
 brownie console
 
@@ -95,7 +95,7 @@ COMMENT
 
 ## 编译
 
-```bash
+```shell
 brownie compile
 
 <<'COMMENT'
@@ -138,7 +138,7 @@ def main():
     # Token.deploy("Test Token", "TEST", 18, 1e23, {'from': accounts[0]})
 ```
 
-```bash
+```shell
 brownie run scripts/deploy.py [--network goerli]
 
 # 默认使用ganache-cli创建并运行本地区块链网络，也可以替换成hardhat、anvil等

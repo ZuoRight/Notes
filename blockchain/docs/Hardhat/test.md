@@ -6,7 +6,7 @@
 - Mocha
 - Chai
 
-```bash
+```shell
 npx hardhat test [test/my-tests.ts]
 '
 --grep "xxx" 指定测试块，类似it.only
@@ -40,7 +40,7 @@ const [owner, otherAccount] = await ethers.getSigners();
 
 <https://mochajs.org/>
 
-```bash
+```shell
 npm install --save-dev mocha
 npm install --save-dev chai  # chai断言库
 

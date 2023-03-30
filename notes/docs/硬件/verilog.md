@@ -61,7 +61,7 @@ endmodule
 - 付费：`VCS—verilog`、`NC-verilog`
 - 开源：`Iverilog`、`GTKWave`
 
-```bash
+```shell
 # 安装 Iverilog
 sudo apt-get install iverilog
 # 安装 GTKWave
@@ -97,7 +97,7 @@ which gtkwave
 
 它是一个轻量级开源综合工具。虽然功能上还达不到工业级的 EDA 工具，但是对于我们这门课的学习已经完全够用了。
 
-```bash
+```shell
 sudo add-apt-repository ppa:saltmakrell/ppasudo 
 apt-get updatesudo 
 apt-get install yosys

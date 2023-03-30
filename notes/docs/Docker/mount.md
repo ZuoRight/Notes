@@ -23,7 +23,7 @@ Bind Mount 是 Docker 最先支持的挂载类型，作用是把宿主机的某�
 
 Volume 是后来新增的挂载方式，是默认并且推荐的方式，因为它完全由 Docker 管理，更容易备份和迁移，性能更高
 
-```bash
+```shell
 docker volume ls  # 列出所有数据卷
 docker volume inspect hello  # 检查数据卷
 docker volume create hello  # 创建数据卷，不指定卷驱动类型，默认就是local
@@ -35,7 +35,7 @@ docker volume rm hello  # 删除数据卷
 docker volume prune  # 删除所有未使用的卷
 ```
 
-```bash
+```shell
 docker run --mount type=<挂载类型>,src=<卷名称或宿主机路径>,dst=<容器路径> <image:tag>
 """
 type=volume 默认
@@ -59,13 +59,13 @@ type=tmpfs
 
 volume 和 bind 方式还可以用简写命令来创建，但不支持与`docker services`一起使用
 
-```bash
+```shell
 docker run -v volume_name:/app/data <image:tag>  # type=volume
 docker run -v "$(pwd)"/xxx:/app/data <image:tag>  # type=bind
 ```
 
 tmpfs 还可以使用单独命令创建
 
-```bash
+```shell
 docker run -d -it --name tmptest --tmpfs /app nginx:latest
 ```

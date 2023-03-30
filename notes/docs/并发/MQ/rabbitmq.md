@@ -3,7 +3,7 @@
 
 [官方文档](https://www.rabbitmq.com/getstarted.html)
 
-```bash
+```shell
 # 安装
 brew install rabbitmq
 # 启动服务
@@ -25,7 +25,7 @@ rabbitmq-upgrade 用于与升级相关的维护任务
 
 - `rabbitmqctl`
 
-```bash
+```shell
 rabbitmqctl --help
 rabbitmqctl add_user user_test user_test  # 创建新用户
 rabbitmqctl set_user_tags user_test administrator  # 设为管理员
@@ -36,7 +36,7 @@ rabbitmqctl set_permissions -p / user_test '.*' '.*' '.*'  # 设置权限
 
 RabbitMQ的Web管理工具，文档：<https://www.rabbitmq.com/management.html>
 
-```bash
+```shell
 rabbitmq-plugins list  # 列出插件
 rabbitmq-plugins enable rabbitmq_management  # 启用管理插件
 rabbitmq-plugins enable rabbitmq_tracing  # 开启消息追踪
@@ -55,7 +55,7 @@ rabbitmq-plugins enable rabbitmq_tracing  # 开启消息追踪
 
 下载后放入`/usr/local/bin`，源码是Python3写的，所以运行需要依赖Python3
 
-```bash
+```shell
 rabbitmqadmin --help
 rabbitmqadmin -V test list exchanges
 ```
@@ -87,7 +87,7 @@ Pika比较小巧，仅支持 AMQP 0.9.1 协议，Kombu是为Celery而生的，�
 
 在发送消息前需要确保接收队列存在，否则消息将被丢弃
 
-```bash
+```shell
 # 列出queue
 rabbitmqctl list_queues
 """
@@ -137,7 +137,7 @@ channel.basic_publish(
 
 rabbitmq中message不能直接发送给queue，需要经过exchange，exchange有`direct`、`topic`、`headers`、`fanout`几种
 
-```bash
+```shell
 # 列出exchange
 rabbitmqctl list_exchanges
 """
@@ -192,7 +192,7 @@ queue="" 则由系统随机命名：amq.gen-JzTY20BRgKO-HjmUJj0wLg
 channel.queue_bind(exchange='logs', queue=result.method.queue)
 ```
 
-```bash
+```shell
 # 列出绑定
 rabbitmqctl list_bindings
 """
@@ -235,13 +235,13 @@ for severity in severities:
 
 - p
 
-```bash
+```shell
 python emit_log_topic.py "kern.critical" "A critical kernel error"
 ```
 
 - c
 
-```bash
+```shell
 # 接收所有消息
 python c.py "#"
 

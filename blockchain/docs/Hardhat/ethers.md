@@ -2,7 +2,7 @@
 
 <https://docs.ethers.org/v5/>
 
-```bash
+```shell
 npm init
 npm install --save ethers
 ```

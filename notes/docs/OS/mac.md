@@ -3,13 +3,6 @@
 ## 终端
 
 ```shell
-ls /
-"""
-AppleInternal System bin etc private usr
-Applications Users cores home sbin var
-Library Volumes dev opt tmp
-"""
-
 lsof -i:3031  # 查看端口号是否占用
 kill [-9] 3031  # 杀死进程，-9强制杀死
 launchctl  # 类似Linux的systemctl
@@ -37,7 +30,7 @@ source ~/.bash_profile  # 重新加载
 
 环境变量文件按加载顺序依次为
 
-```bash
+```shell
 /etc/profile
 /etc/paths
 ~/.bash_profile  # 有这个文件后面的就不读了
@@ -45,40 +38,6 @@ source ~/.bash_profile  # 重新加载
 ~/.profile
 ~/.bashrc
 ```
-
-## 设置默认SHELL
-
-查看默认shell：`echo $SHELL`
-
-Mac系统从macOS Catalina版开始默认shell为zsh，可以切换为bash，但由于GPLv3的原因，Mac自带的bash还是十几年前的3.2版本，所以需要先升级一下，即下载新版bash并设为默认
-
-```bash
-# 安装新版
-brew install bash
-
-# 设置交互shell为新版
-chsh -s /usr/local/bin/bash
-  # 改回旧版：chsh -s / bin / bash
-  # 改回zsh：chsh -s / bin / zsh
-
-# 设置登录shell为新版
-# 即把/usr/local/bin/bash填加到当前系统受信任shells配置文件中，
-sudo vim /etc/shells  # 需要管理者权限
-```
-
-- 查看bash路径：`which -a bash`
-  - 新版：`/usr/local/bin/bash`
-  - 旧版：`/bin/bash`
-- 查看当前交互shell版本：`bash --version`
-- 查看默认交互shell版本：`echo $BASH_VERSION`
-
-> tips：
->
-> 低旧版本的bash依然存在于`bin/bash`下，为了保证系统的完整性，不建议删除。
->
-> 编写shell脚本如果想用新bash解释，记得要把`#!/bin/bash`要改为`#!/usr/local/bin/bash`
->
-> 参考译文：<https://juejin.im/post/6844903972294262791>
 
 ## Homebrew
 
@@ -96,7 +55,7 @@ Mac系统下的一款开源包管理器，[项目地址](https://github.com/Home
 - Homebrew-cask 提供macos应用和大型二进制文件的安装
 - Homebrew-bottles 预编译二进制软件包
 
-```bash
+```shell
 # 官方下载（很慢，建议开全局代理）
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 # 镜像下载
@@ -120,7 +79,7 @@ M1安装完后会提示配置环境变量
 
 查看有哪些软件下载源：`brew tap`
 
-```bash
+```shell
 # 更换brew.git源，主要用于更新brew本身
 # 切换到Homebrewan路径：/usr/local/Homebrew/
 cd $(brew --repo)  # 等同于：git -C "$(brew --repo)"
@@ -159,13 +118,13 @@ git remote set-url origin https://github.com/Homebrew/homebrew-cask-versions.git
 
 ### 常用命令
 
-```bash
+```shell
 brew help  # 查看帮助
 brew config  # 查看配置
 brew doctor  # 检查问题
 ```
 
-```bash
+```shell
 brew search xxx  # 搜索想要安装的软件
 brew info xxx  # 查看想安装或已安装软件的信息
 
@@ -184,7 +143,7 @@ brew upgrade  # 更新全部可更新软件
 brew upgrade xxx  # 更新xxx
 ```
 
-```bash
+```shell
 # 查看安装的服务列表
 brew services list
 """

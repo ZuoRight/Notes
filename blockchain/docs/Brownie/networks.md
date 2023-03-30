@@ -4,7 +4,7 @@ brownie框架默认集成了一些Ganache等，可以通过`brownie networks ...
 
 ## 查看网络
 
-```bash
+```shell
 brownie networks list
 
 <<'COMMENT'
@@ -48,7 +48,7 @@ COMMENT
 
 ## 新增网络
 
-```bash
+```shell
 brownie networks add [environment] [id] host=[host] [KEY=VALUE, ...]
 
 <<'COMMIT'
@@ -77,7 +77,7 @@ COMMIT
 
 - add
 
-```bash
+```shell
 brownie networks add Ethereum ganache-local host=http://127.0.0.1:8545 chainid=1337
 
 <<'COMMENT'
@@ -101,7 +101,7 @@ COMMENT
 
 - add fork
 
-```bash
+```shell
 brownie networks add development mainnet-fork-dev \
     cmd=ganache-cli \
     host=http://127.0.0.1:8545 \
@@ -155,7 +155,7 @@ networks:
 
 - CLI
 
-```bash
+```shell
 brownie --network mainnet-fork
 ```
 
@@ -175,7 +175,7 @@ network.show_active()  # 'goerli'，默认是'development'
 
 - 查看托管节点提供商
 
-```bash
+```shell
 brownie networks list_providers
 
 <<'COMMENT'
@@ -198,7 +198,7 @@ COMMENT
 
 - 添加/更新提供商
 
-```bash
+```shell
 brownie networks update_provider alchemy https://eth-{}.alchemyapi.io/v2/$WEB3_ALCHEMY_PROJECT_ID
 ```
 
@@ -206,7 +206,7 @@ brownie networks update_provider alchemy https://eth-{}.alchemyapi.io/v2/$WEB3_A
 
 可以将`brownie networks list`中标识提供商的网络更换为另一个提供商
 
-```bash
+```shell
 # 单独修改
 brownie networks modify goerli provider=alchemy
 

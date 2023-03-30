@@ -10,14 +10,14 @@
 
 - Mac
 
-```bash
+```shell
 brew install node  # 安装
 sudo npm install -g npm
 ```
 
 - Ubuntu
 
-```bash
+```shell
 sudo apt update
 # 不推荐，因为Ubuntu 22.04软件源中包含的Node.JS版本是12.22.9
 sudo apt install nodejs -y
@@ -37,7 +37,7 @@ sudo apt autoremove
 
 使用 n 管理 node 版本前，首先需要一个 node 环境
 
-```bash
+```shell
 npm cache clean --force  # 清除缓存
 sudo npm install n -g  # 安装n模块
 n stable  # 升级node.js到稳定版本
@@ -56,7 +56,7 @@ sudo rm /usr/local/bin/node
 
 nvm 不是一个 npm package，而是一个独立软件包
 
-```bash
+```shell
 # 不要使用 sudo 运行，因为这会为 root 用户启用nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 # 安装后重新打开终端
@@ -80,7 +80,7 @@ sudo ln -s "$(which npm)" /usr/bin/npm
 
 ## 使用
 
-```bash
+```shell
 node --version  # 查看版本
 node demo.js  # 运行脚本
 node  # 进入node环境
@@ -92,7 +92,7 @@ node  # 进入node环境
 
 包是一个目录，其中包含一个名为 `package.json` 的文件，描述了包的名称、版本、内容，依赖等
 
-```bash
+```shell
 # 初始化，生成 package.json
 npm init -y  # -y yes
 ```
@@ -123,7 +123,7 @@ npm init -y  # -y yes
 
 全球最大开源库生态系统
 
-```bash
+```shell
 npm -v
 npm help
 npm list -g  # 查看已安装包，不带-g看不到全局的包
@@ -158,7 +158,7 @@ npm update <name> [-g] [--save-dev]  # 更新插件，不指定name则更新全�
 
 NPM 官方源比较慢，可以使用第三方源，NRM可以用来管理NPM源
 
-```bash
+```shell
 npm install nrm -g
 nrm ls  # 列出可用NPM源，带星号的为当前使用源
 nrm test [xxx] # 测试源的速度
@@ -177,7 +177,7 @@ NPM 是串行安装，安装慢，如果中间某个包的安装出现了错误�
 
 Yarn 是并行安装，安装快，但为了安全考虑有些工具的官方文档提示不建议用yarn安装
 
-```bash
+```shell
 # nodejs 16.10以上版本默认自带yarn，只需要开启corepack即可使用
 # Mac可能需要：brew install corepack
 corepack enable

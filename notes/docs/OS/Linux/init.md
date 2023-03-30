@@ -16,7 +16,7 @@ Linux init 进程最基本的功能就是创建出 Linux 系统中其他所有�
 
 对应的管理工具：`service`
 
-```bash
+```shell
 service network start/stop/restart xxx
 
 chkconfig -list network
@@ -28,7 +28,7 @@ Systemd 是最新的守护进程系统，会尽可能启动较少的进程，尽
 
 目前主流的 Linux 发行版都会把/sbin/init 作为符号链接指向 Systemd
 
-```bash
+```shell
 ls -l /sbin/init
 """
 lrwxrwxrwx 1 root root 20 Jul 21 19:00 /sbin/init -> /lib/systemd/systemd
@@ -39,7 +39,7 @@ lrwxrwxrwx 1 root root 20 Jul 21 19:00 /sbin/init -> /lib/systemd/systemd
 
 对应的管理工具：`systemctl`，负责检查和控制 systemd 系统和服务管理器
 
-```bash
+```shell
 systemctl status xxx
 systemctl start/stop/restart/reload xxx
 systemctl enable/disable xxx  # 开机自启/关闭
@@ -55,7 +55,7 @@ Supervisor是用Python开发的一套通用的服务进程管理程序，通过f
 
 只需要在Supervisor的配置文件中，把要管理的进程的可执行文件的路径写进去即可。还可以设置一个非root的user，这个user就可以管理它对应的进程
 
-```bash
+```shell
 # 安装，不支持Windows
 pip install supervisor
 

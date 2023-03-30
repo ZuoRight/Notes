@@ -60,7 +60,7 @@ print(c.hello("chonge"))
 print(c.add(1, 2))
 ```
 
-```bash
+```shell
 # 还可以命令行直接调用方法
 zerorpc tcp://127.0.0.1:4242 hello RPC
 

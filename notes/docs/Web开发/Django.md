@@ -6,7 +6,7 @@ Django采用了MTV的框架模式，即：Model(模型)，Template(模版)，Vie
 
 ## 项目
 
-```bash
+```shell
 mkdir mysite
 cd mysite
 python -m venv env  # Django 4.0依赖Python 3.8+
@@ -318,7 +318,7 @@ DATABASES = {
 
 - 安装MySQLdb驱动
 
-    ```bash
+    ```shell
     # Django推荐，使用'ENGINE': 'django.db.backends.mysql'，默认使用mysqlclient驱动库
     brew install mysql-client
     pip install mysqlclient
@@ -336,7 +336,7 @@ DATABASES = {
 
 ## 数据迁移
 
-```bash
+```shell
 # 查看迁移状态，[x]表示已迁移
 # 也可以用来检查数据库配置是否正确，有问题会报错
 python manage.py showmigrations
@@ -385,7 +385,7 @@ python manage.py migrate
 
 ### 重置迁移文件
 
-```bash
+```shell
 # 查看当前迁移文件记录及状态
 python manage.py showmigrations
 # 将某应用的迁移文件重置为未提交状态
@@ -399,7 +399,7 @@ python manage.py migrate 应用名 --fake-initial
 
 ### 压缩迁移文件
 
-```bash
+```shell
 # 假设要压缩的应用为myapp，现在有5个迁移文件，最新的为0005_xxx
 # 生成压缩后的迁移文件
 python manage.py squashmigrations 0005
@@ -422,7 +422,7 @@ python manage.py migrate
 
 ### 导入导出数据
 
-```bash
+```shell
 # 导出数据，不指定app_name默认导出所有表
 python manage.py dumpdata [app_name] > path/data.json
 # 导入数据，不需要指定app_name
@@ -506,7 +506,7 @@ python manage.py createsuperuser
 # 访问后台：127.0.0.1:8000/admin
 ```
 
-```bash
+```shell
 # 进入交互式命令行
 python manage.py shell
 
@@ -904,7 +904,7 @@ from django.test import SimpleTestCase
 
 - 使用数据库但测试时复用同一个数据库
 
-```bash
+```shell
 # 运行测试时添加--keepdb参数保留临时数据库（首次运行还是会创建的）
 python manage.py test --keepdb
 ```
@@ -919,7 +919,7 @@ Django与Flask等框架都会内置一个简易的WSGI服务器，性能不高�
 
 > 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/django-admin/#runserver>
 
-```bash
+```shell
 # 先切换到项目容器内
 cd mysite
 # 运行命令行工具manage.py启动项目，默认8000端口
