@@ -4,5 +4,4 @@ nav:
   - process.md
   - thread.md
   - coroutine.md
-  - MQ
   - ...

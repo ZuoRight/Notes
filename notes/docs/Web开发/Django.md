@@ -533,6 +533,8 @@ class OnestepConfig(AppConfig):
 
 ## 数据库API
 
+> <https://docs.djangoproject.com/zh-hans/4.0/ref/models/querysets/#queryset-api-reference>
+
 ```python
 # 可用于admin.py或views.py
 from one_app.models import Blog
@@ -543,7 +545,11 @@ Q.all()  # 等同于Q，返回一个包含所有记录的QuerySet对象集合
 Q.order_by("xxx")  # 按某字段排序
 
 # WHERE子句
-Q.get(pk=1)  # 如果查询结果只有一条记录可以用get，但如果查不到或查到多条会报错
+r = Q.get(pk=1)  # 如果查询结果只有一条记录可以用get，但如果查不到或查到多条会报错
+r.xxx  # 会重新访问数据库
+r = Q.select_related("xxx").get(pk=1)
+r.xxx  # 不需要重新访问数据库，性能更高
+
 Q.filter(**kwargs)  # 过滤满足条件的记录，WHERE xxx AND xxx
 Q.exclude(**kwargs)  # 排除满足条件的记录，WHERE NOT(xxx AND xxx)
 Q.exclude().exclude()  # WHERE NOT xxx AND NOT xxx

@@ -1,22 +1,24 @@
 # 初始化守护进程
 
-一个 Linux 操作系统，在系统打开电源，执行 BIOS/boot-loader 之后，就会由 boot-loader 负责加载 Linux 内核
+每个子进程都是由父进程启动的，1号进程便是初始化进程，它最基本的功能就是创建出 Linux 系统中其他所有的进程，并且管理这些进程
 
-> Linux 内核执行文件一般会放在 /boot 目录下，文件名类似 vmlinuz*
-
-在内核完成了操作系统的各种初始化之后，这个程序需要执行的第一个用户态程就是 init 进程，也叫1号进程，于是系统从内核态切换到用户态，然后创建其他进程。
-
-> 内核代码启动 1 号进程的时候，在没有外面参数指定程序路径的情况下，一般会从几个缺省路径尝试执行 1 号进程的代码
-
-Linux init 进程最基本的功能就是创建出 Linux 系统中其他所有的进程，并且管理这些进程
-
-## SysVinit
-
-也叫 `System V init`, 简称 `init`
-
-对应的管理工具：`service`
+初始进程在旧版本系统中是 `init`，新版本通常是 `systemd`
 
 ```shell
+# 查看进程树
+#   -u 显示所属用户
+#   -p 显示进程编号（PID）
+pstree [-up]
+```
+
+![20210830230858](http://image.zuoright.com/20210830230858.png)
+
+## init
+
+全称为 `System V init`, 也叫 `SysVinit`
+
+```shell
+# 对应的管理工具：service
 service network start/stop/restart xxx
 
 chkconfig -list network
@@ -24,24 +26,22 @@ chkconfig -list network
 
 ## Systemd
 
-Systemd 是最新的守护进程系统，会尽可能启动较少的进程，尽可能更多进程并发启动，提高了系统的启动速度
+Systemd 是最新的守护进程系统，会尽可能启动较少的进程，尽可能并发启动更多进程
 
-目前主流的 Linux 发行版都会把/sbin/init 作为符号链接指向 Systemd
+目前主流的 Linux 发行版都会把 `/sbin/init` 作为符号链接指向 `Systemd`
 
 ```shell
-ls -l /sbin/init
-"""
-lrwxrwxrwx 1 root root 20 Jul 21 19:00 /sbin/init -> /lib/systemd/systemd
-"""
+ls -l /sbin/init  # lrwxrwxrwx 1 root root 20 Jul 21 19:00 /sbin/init -> /lib/systemd/systemd
 ```
 
 ![20230204012419](http://image.zuoright.com/20230204012419.png)
 
-对应的管理工具：`systemctl`，负责检查和控制 systemd 系统和服务管理器
-
 ```shell
+# 对应的管理工具：systemctl
+# 负责检查和控制 systemd 系统和服务管理器
 systemctl status xxx
 systemctl start/stop/restart/reload xxx
+
 systemctl enable/disable xxx  # 开机自启/关闭
 
 systemctl list-unit-files xxx.service

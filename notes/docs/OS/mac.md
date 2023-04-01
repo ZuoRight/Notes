@@ -1,7 +1,5 @@
 # Mac
 
-## 终端
-
 ```shell
 lsof -i:3031  # 查看端口号是否占用
 kill [-9] 3031  # 杀死进程，-9强制杀死
@@ -19,25 +17,6 @@ unzip xxx.zip  # 解压
 Command Line Tools，是可独立Xcode下载安装的小型工具包，包含了macOS SDK和一些常用的命令行工具，比如git、clang等
 
 有时MacOS更新可能会遇到CLT丢失的问题：`xcrun: error: invalid active developer path ..., missing xcrun at: ...`，导致Git等不能用，根据提示重新安装CTL：`xcode-select --install`即可
-
-## 设置环境变量
-
-```shell
-echo $PATH  # 查看
-export PATH=$PATH:xxx >> ~/.bash_profile  # 新增，也可以直接编辑这个文件
-source ~/.bash_profile  # 重新加载
-```
-
-环境变量文件按加载顺序依次为
-
-```shell
-/etc/profile
-/etc/paths
-~/.bash_profile  # 有这个文件后面的就不读了
-~/.bash_login
-~/.profile
-~/.bashrc
-```
 
 ## Homebrew
 

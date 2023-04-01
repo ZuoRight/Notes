@@ -26,7 +26,7 @@ brew install mysql-client
 pip install mysqlclient
 """
 如果报NameError: name ‘_mysql’ is not defined
-    可以添加环境变量：export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$PATH"
+可以添加环境变量：export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$PATH"
 """
 
 # Ubuntu

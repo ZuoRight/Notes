@@ -27,7 +27,7 @@ two = importlib.import_module("xx.0002_remove_content_type_name")
 
 1. 自定义模块：当前执行脚本所在目录
 2. 内置模块：Python的安装目录
-3. 系统环境变量PYHONPATH路径
+3. 环境变量：PYHONPATH路径
 4. 第三方模块：Python安装目录里的site-packages目录
 
 ## 示例
