@@ -1,7 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - 硬件
   - 操作系统
   - 编程基础
   - 网络通信
