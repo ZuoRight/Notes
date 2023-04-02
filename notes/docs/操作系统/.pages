@@ -2,10 +2,11 @@
 nav:
   - index.md
   - init.md
+  - terminal.md
   - Shell
   - 进程
   - Linux
-  - 服务器
   - mac.md
   - android.md
+  - 虚拟机
   - ...
