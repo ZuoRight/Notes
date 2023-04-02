@@ -90,33 +90,23 @@ GPT/GUID分区表（Globally Unique Identifier Partition Table）全局唯一标
 
 属于UEFI规范下的衍生品，可管理的空间和分区数量都没有限制，PMBR部分用于兼容BIOS启动方式
 
-### Bootloader
+## 启动引导程序
 
-Bootloader(启动引导程序)用于从多操作系统的计算机中选择一个系统来启动，或从系统分区中选择特殊的内核配置
+Bootloader 用于从多操作系统的计算机中选择一个系统来启动，或从系统分区中选择特殊的内核配置
 
-Linux发行版中可使用的Bootloader有三种
+Linux发行版中可使用的 Bootloader 有三种
 
-- `GRUB`(GRand Unified Bootloader)
-- `GRUB2`
+- `GRUB` GRand Unified Bootloader
+- `GRUB2` 最新且最常用
 - `LILO`
 
-最新且最常用的是GRUB2，包含`boot.img`(启动代码)和`core.img`(内核镜像)，都包含在MBR代码中
+GRUB2，包含`boot.img`(启动代码)和`core.img`(内核镜像)，都包含在MBR代码中
 
 `core.img` 主要包括以下模块
 
 - `diskroot.img`
 - `lzma_decompress.img` 解压缩程序
 - `kernel.img`
-
-操作系统启动过程
-
-1. 主板加电，CPU进入实模式，执行ROM中的BIOS
-2. BIOS检测正常后，搜寻存储器找到启动盘，加载MBR到内存，启动GRUB2
-3. `boot.img` 加载 `core.img` 的 `diskroot.img`
-4. `diskroot.img` 加载 `lzma_compress.img`
-5. CPU切换到保护模式，启用分段（辅助进程管理），启动分页（辅助内存管理），打开其他地址线
-6. `lzma_compress.img` 解压运行 `kernel.img`，解析`/boot/grub2/grub.cfg`(GRUB2配置文件)，选择操作系统，检查通过后加载完整系统内核
-7. 启动系统内核
 
 ## 文件系统类型
 
@@ -133,3 +123,57 @@ Linux发行版中可使用的Bootloader有三种
 - reiserFS Linux环境下的日志文件系统之一
 - VFAT 可以作为Windows和Linux交换文件的分区，因为它兼容这俩系统
 - APFS 苹果设备下的系统
+
+## 内存和CPU
+
+```shell
+# 查看内存
+free [-m]  # 静态，-m 用M为单位显示数据大小
+top  # 动态
+
+# 查看磁盘使用量
+df -h
+
+# 查看CPU
+lscpu
+"""
+Architecture:            x86_64
+  CPU op-mode(s):        32-bit, 64-bit
+  Address sizes:         46 bits physical, 48 bits virtual
+  Byte Order:            Little Endian
+CPU(s):                  1
+  On-line CPU(s) list:   0
+Vendor ID:               GenuineIntel
+  Model name:            QEMU Virtual CPU version (cpu64-rhel6)
+    CPU family:          6
+    Model:               13
+    Thread(s) per core:  1
+    Core(s) per socket:  1
+    Socket(s):           1
+    Stepping:            3
+    BogoMIPS:            5199.99
+    Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm rep_good nopl xtopology cpuid tsc
+                         _known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic popcnt aes xsave avx f16c rdrand hypervisor lahf_lm pti fsgsbase smep xsaveopt
+Virtualization features: 
+  Hypervisor vendor:     KVM
+  Virtualization type:   full
+Caches (sum of all):     
+  L1d:                   32 KiB (1 instance)
+  L1i:                   32 KiB (1 instance)
+  L2:                    4 MiB (1 instance)
+  L3:                    16 MiB (1 instance)
+NUMA:                    
+  NUMA node(s):          1
+  NUMA node0 CPU(s):     0
+Vulnerabilities:         
+  Itlb multihit:         KVM: Mitigation: VMX unsupported
+  L1tf:                  Mitigation; PTE Inversion
+  Mds:                   Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+  Meltdown:              Mitigation; PTI
+  Spec store bypass:     Vulnerable
+  Spectre v1:            Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+  Spectre v2:            Mitigation; Retpolines, STIBP disabled, RSB filling
+  Srbds:                 Not affected
+  Tsx async abort:       Not affected
+"""
+```

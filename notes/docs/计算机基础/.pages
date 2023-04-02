@@ -1,11 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - init.md
-  - 进程
-  - Shell
-  - Linux
-  - 服务器
-  - mac.md
-  - android.md
+  - memory.md
+  - terminal.md
   - ...
