@@ -2,8 +2,8 @@
 nav:
   - index.md
   - init.md
-  - 进程
   - Shell
+  - 进程
   - Linux
   - 服务器
   - mac.md

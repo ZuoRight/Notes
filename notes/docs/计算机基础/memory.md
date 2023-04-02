@@ -25,11 +25,7 @@
 
 ## ROM
 
-![20221124222816](http://image.zuoright.com/20221124222816.png)
-
 启动固件(Fireware)固化在主板ROM芯片中，主要有早期的BIOS和最新的UEFI两种
-
-引导加载程序(bootloader)是硬件和操作系统之间的接口
 
 ### BIOS
 
@@ -127,24 +123,6 @@ GPT/GUID分区表（Globally Unique Identifier Partition Table）全局唯一标
 ![20221128020857](http://image.zuoright.com/20221128020857.png)
 
 属于UEFI规范下的衍生品，可管理的空间和分区数量都没有限制，PMBR部分用于兼容BIOS启动方式
-
-## 启动引导程序
-
-Bootloader 用于从多操作系统的计算机中选择一个系统来启动，或从系统分区中选择特殊的内核配置
-
-Linux发行版中可使用的 Bootloader 有三种
-
-- `GRUB` GRand Unified Bootloader
-- `GRUB2` 最新且最常用
-- `LILO`
-
-GRUB2，包含`boot.img`(启动代码)和`core.img`(内核镜像)，都包含在MBR代码中
-
-`core.img` 主要包括以下模块
-
-- `diskroot.img`
-- `lzma_decompress.img` 解压缩程序
-- `kernel.img`
 
 ## 管理
 
