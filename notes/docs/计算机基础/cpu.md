@@ -71,3 +71,12 @@ Vulnerabilities:
   Tsx async abort:       Not affected
 """
 ```
+
+```shell
+# 查看内存
+free [-m]  # 静态，-m 用M为单位显示数据大小
+top  # 动态
+
+# 查看磁盘使用量
+df -h
+```

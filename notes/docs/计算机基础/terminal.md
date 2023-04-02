@@ -2,6 +2,10 @@
 
 终端(Terminal)只是基于文本的输入输出机制，需要引入Shell来解释具体的命令及其语法
 
+当 Shell 启动了某个进程，会调用某个系统API（e.g. `tcsetpgrp`）把进程编号PID与Shell所属的终端关联起来，当终端需要发送信号时，会调用某个系统API（`tcgetpgrp`）获取进程的编号
+
+## 发展演变
+
 ![20230331133529](http://image.zuoright.com/20230331133529.png)
 
 > UART(Universal Asynchronous Receiver and Transmitter) 用来处理物理线路的字符传输（比如错误校验和流控等）  
@@ -145,7 +149,3 @@ cmd >> file 2>> file  # 这样虽然可以都保存但会交叉的混在一起
 - `Ctrl`+`d` 键盘输入结束EOF(End Of Input)
 - `Ctrl`+`s` 打开/关闭回显（即输入不显示在屏幕上，常见于输入密码时）
 - `Shift`+`Page Up/Down` 向前/后翻看输出信息，`clear`后则翻不出来
-
-## 获取PID
-
-当 Shell 启动了某个进程，会调用某个系统API（e.g. `tcsetpgrp`）把进程编号PID与Shell所属的终端关联起来，当终端需要发送信号时，会调用某个系统API（`tcgetpgrp`）获取进程的编号
