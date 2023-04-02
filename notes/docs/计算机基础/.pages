@@ -1,9 +1,9 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - cpu.md
   - rom.md
   - 磁盘.md
-  - cpu.md
   - verilog.md
   - terminal.md
   - ...

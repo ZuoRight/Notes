@@ -30,7 +30,7 @@ Intel 和 AMD 以售卖 x86 芯片为主，而 ARM Ltd 直接售卖 ARM 芯片�
 ```shell
 # 查看CPU
 lscpu
-"""
+'
 Architecture:            x86_64
   CPU op-mode(s):        32-bit, 64-bit
   Address sizes:         46 bits physical, 48 bits virtual
@@ -69,7 +69,7 @@ Vulnerabilities:
   Spectre v2:            Mitigation; Retpolines, STIBP disabled, RSB filling
   Srbds:                 Not affected
   Tsx async abort:       Not affected
-"""
+'
 ```
 
 ```shell
