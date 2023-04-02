@@ -1,4 +1,4 @@
-# 计算机组成
+# 引言
 
 根据图灵机和冯诺伊曼结构，计算机必须具备五大基本组成部件
 
@@ -33,3 +33,9 @@
 现在北桥的功能已被集成到了CPU，南桥被PCH/FCH取代（或者说换了个名称：I/O Hub），通过DMI（Direct Media Interface）与CPU连接
 
 ![20221122010527](http://image.zuoright.com/20221122010527.png)
+
+## 外设
+
+## USB
+
+![20230329221305](http://image.zuoright.com/20230329221305.png)
