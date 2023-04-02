@@ -1,10 +1,6 @@
 # 引言
 
-Shell被称之为用户与内核交互的入口
-
-## Shell
-
-Shell 有以下几种释义
+Shell 被称之为用户与内核交互的入口，有以下几种释义
 
 - CLI(Command Line Interface) 命令行交互，通常指的是这个
 - Script 命令解释器，即脚本
@@ -22,7 +18,7 @@ Shell 有以下几种释义
 
 最常用的 Shell 当属 Bash，它是 GNU 社区对 Bourne shell 的重写，使其符合自由软件协议，其它 Shell 基本都兼容 Bash
 
-### 查看默认shell
+## 查看默认Shell
 
 ```shell
 # Ubuntu 默认 Shell 是 dash，性能高，但会导致一些 bash 命令失败
@@ -39,7 +35,7 @@ cat /etc/shells
 sudo dpkg-reconfigure dash
 ```
 
-### 设置默认SHELL
+## 设置默认Shell
 
 > 参考译文：<https://juejin.im/post/6844903972294262791>
 

@@ -2,11 +2,11 @@
 nav:
   - index.md
   - 硬件
-  - OS
+  - 操作系统
+  - 编程基础
   - 网络通信
   - 接口请求
   - 抓包
-  - Programing
   - Python
   - JS
   - Web开发
