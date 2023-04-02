@@ -2,5 +2,8 @@
 nav:
   - index.md
   - memory.md
+  - cpu.md
+  - io.md
+  - verilog.md
   - terminal.md
   - ...
