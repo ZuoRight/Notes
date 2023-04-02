@@ -1,51 +1,15 @@
-# 初始化守护进程
+# daemon
 
-每个子进程都是由父进程启动的，1号进程便是初始化进程，它最基本的功能就是创建出 Linux 系统中其他所有的进程，并且管理这些进程
+当我们登陆并执行bash中执行命令时，其实就是在bash这个父进程(PPID)中运行的子进程，只不过这些命令基本都是运行完就结束了
 
-初始进程在旧版本系统中是 `init`，新版本通常是 `systemd`
+但也有些进程执行完并不会立刻结束，而是常驻在内存中，这些进程通常都是负责一些系统所提供的功能以服务用户的各项任务，称之为：守护进程(daemon)
 
-```shell
-# 查看进程树
-#   -u 显示所属用户
-#   -p 显示进程编号（PID）
-pstree [-up]
-```
+> daemon 一般会在文件名后加上d，比如：httpd
 
-![20210830230858](http://image.zuoright.com/20210830230858.png)
+daemon 主要分为
 
-## init
-
-全称为 `System V init`, 也叫 `SysVinit`
-
-```shell
-# 对应的管理工具：service
-service network start/stop/restart xxx
-
-chkconfig -list network
-```
-
-## Systemd
-
-Systemd 是最新的守护进程系统，会尽可能启动较少的进程，尽可能并发启动更多进程
-
-目前主流的 Linux 发行版都会把 `/sbin/init` 作为符号链接指向 `Systemd`
-
-```shell
-ls -l /sbin/init  # lrwxrwxrwx 1 root root 20 Jul 21 19:00 /sbin/init -> /lib/systemd/systemd
-```
-
-![20230204012419](http://image.zuoright.com/20230204012419.png)
-
-```shell
-# 对应的管理工具：systemctl
-# 负责检查和控制 systemd 系统和服务管理器
-systemctl status xxx
-systemctl start/stop/restart/reload xxx
-
-systemctl enable/disable xxx  # 开机自启/关闭
-
-systemctl list-unit-files xxx.service
-```
+- 本地服务
+- 网络服务，网络服务会提供一个端口(port)，供外部客户端请求连接
 
 ## Supervisor
 

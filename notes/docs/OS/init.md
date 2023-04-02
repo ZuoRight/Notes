@@ -1,0 +1,82 @@
+# 初始化
+
+## 初始化配置文件
+
+当操作系统启动时会加载一系列的初始化配置文件，这些文件控制着系统的各种设置和服务
+
+```shell
+# 系统级配置文件
+/etc/environment
+/etc/profile  # 用于设置全局的环境变量和默认的环境参数等
+/etc/bashrc  # bash shell 的配置文件，其它shell不受影响
+/etc/inittab
+/etc/fstab  # 定义了系统中各个文件系统的挂载点和选项
+/etc/passwd  # 用户
+/etc/group  # 用户组
+/etc/hosts  # 定义了主机名和IP地址的对应关系
+/etc/resolv.conf  # 定义了系统使用的DNS服务器地址和搜索域名
+
+# 用户级配置文件
+~/.bashrc  # 每启动shell时都会加载一次，主要用于定义环境变量、命令别名等
+
+~/.bash_profile  # 仅登录时执行一次，如果存在则后面的不再执行，主要用于定义个人偏好
+~/.bash_login  # 上面的不存在才会执行
+~/.profile  # 上面的不存在才会执行
+
+~/.bash_logout  # 每次退出时执行
+```
+
+加载顺序：实线为主流程，虚线为被调用的配置文件
+
+![e4da92fd9a72e844053abca2d931f2d](http://image.zuoright.com/e4da92fd9a72e844053abca2d931f2d.jpg)
+
+优先级（就近原则）：用户级配置文件 > 应用程序配置文件 > 系统级配置文件
+
+## 初始化守护进程
+
+每个子进程都是由父进程启动的，1号进程便是初始化进程，它最基本的功能就是创建出 Linux 系统中其他所有的进程，并且管理这些进程
+
+初始进程在旧版本系统中是 `init`，新版本通常是 `systemd`
+
+```shell
+# 查看进程树
+#   -u 显示所属用户
+#   -p 显示进程编号（PID）
+pstree [-up]
+```
+
+![20210830230858](http://image.zuoright.com/20210830230858.png)
+
+## init
+
+全称为 `System V init`, 也叫 `SysVinit`
+
+```shell
+# 对应的管理工具：service
+service network start/stop/restart xxx
+
+chkconfig -list network
+```
+
+## Systemd
+
+Systemd 是最新的守护进程系统，会尽可能启动较少的进程，尽可能并发启动更多进程
+
+目前主流的 Linux 发行版都会把 `/sbin/init` 作为符号链接指向 `Systemd`
+
+```shell
+ls -l /sbin/init  # lrwxrwxrwx 1 root root 20 Jul 21 19:00 /sbin/init -> /lib/systemd/systemd
+```
+
+![20230204012419](http://image.zuoright.com/20230204012419.png)
+
+```shell
+# 对应的管理工具：systemctl
+# 负责检查和控制 systemd 系统和服务管理器
+systemctl status xxx
+systemctl start/stop/restart/reload xxx
+
+systemctl enable/disable xxx  # 开机自启/关闭
+
+systemctl list-unit-files xxx.service
+```

@@ -1,18 +1,17 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - Programing
-  - Python
-  - JS
+  - 硬件
+  - OS
   - 网络通信
   - 接口请求
   - 抓包
-  - 并发
+  - Programing
+  - Python
+  - JS
   - Web开发
   - 数据管理
-  - OS
   - Docker
   - DevOps
-  - 硬件
   - 软件测试
   - ...
