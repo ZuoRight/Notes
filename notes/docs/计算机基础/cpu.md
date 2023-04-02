@@ -73,8 +73,8 @@ Vulnerabilities:
 ```
 
 ```shell
-# 查看内存
-free [-m]  # 静态，-m 用M为单位显示数据大小
+# 查看内存使用情况
+free -m  # 静态，数据大小单位默认KB，-m选项用M为单位
 top  # 动态
 
 # 查看磁盘使用量

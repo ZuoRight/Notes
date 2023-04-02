@@ -104,3 +104,43 @@ TPS在不同的行业不同业务中定义的粒度都是不同的，所以用TP
 推荐：JMeter
 
 ![20211125164448](http://image.zuoright.com/20211125164448.png)
+
+## Load Average
+
+> 可使用`uptime`命令查看，结果其实就是`top`命令返回的第一行信息
+
+平均负载，指单位时间内处于可运⾏状态和不可中断状态的进程数，负载过⾼可能会导致进程响应变慢进⽽影响服务的正常功能
+
+- 可运⾏状态的进程(R)：正在使⽤CPU的进程(Running)、正在等待CPU的进程(Runnable)
+- 不可中断状态的进程(D)：正在等待I/O的进程(Disk Sleep)，这些进程正在与硬件进⾏不允许中断的交互（系统保护）
+
+### 压测分析
+
+> 平均负载与CPU使用率不一定对应，最理想的就是每个CPU上都刚好运⾏着⼀个进程，这样每个CPU都得到了充分利⽤
+
+- stress
+
+```shell
+# 压测工具，可用来模拟各种异常进程
+apt install stress
+
+# CPU 密集型进程（此时CPU 使⽤率与LA是一致的）
+stress --cpu 1 --timeout 600  # 模拟⼀个 CPU 使⽤率 100% 的场景
+# I/O 密集型进程（此时 CPU 使⽤率不一定升高）
+stress -i 1 --timeout 600  # 模拟 I/O 压⼒（不停地执⾏ sync）
+# ⼤量进程的场景
+stress -c 8 --timeout 600  # 模拟8个进程
+```
+
+- sysstat
+
+```shell
+# 分析工具
+apt install sysstat
+
+# mpstat，多核 CPU 性能分析⼯具，⽤来实时查看每个 CPU 的性能指标以及平均指标
+mpstat -P ALL 5  # -P ALL 表示监控所有CPU，后面数字5表示间隔5秒后输出一组数据
+# pidstat，进程性能分析⼯具，⽤来实时查看进程的 CPU、内存、I/O 以及上下⽂切换等性能指标
+pidstat -u 5 1  # 查看每个进程的状态，看是哪个导致了 CPU 使⽤率过载
+# iostat
+```

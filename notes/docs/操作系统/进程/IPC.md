@@ -23,12 +23,30 @@ export key2="value 2"  # 有空格需要使用双引号
 
 ## 管道 Pipe
 
-普通管道只用于父子进程间的通信，具名管道(Name Pipe)有了名字，可以允许非亲缘关系进程间通信
+管道只能用于无格式字节流，并且缓冲区大小受限
 
-管道只能用于无格式字节流以，并且缓冲区大小受限
+### 匿名管道
+
+chained pipeline，主要用于有亲缘关系的进程间通信，把父进程的 stdout 传给子进程的 stdin
 
 ```shell
-ps -ef | grep xxx
+ls | grep "xxx"
+netstat -an | grep "LISTEN" | grep "8547"
+```
+
+用匿名管道串联起多个进程就构成一个进程组（jobs）
+
+### 具名管道
+
+Name Pipe，即有名字的管道，可以允许非亲缘关系进程间通信
+
+具名管道也称为FIFO（First-In-First-Out），可以在文件系统中创建一个特殊文件，用于进程间通信
+
+```shell
+mkfifo demo  # 创建具名管道
+echo "hello, test" > demo  # 向管道中写入数据
+cat demo  # 从管道中取出数据
+rm demo  # 删除管道
 ```
 
 ## 信号 Signal

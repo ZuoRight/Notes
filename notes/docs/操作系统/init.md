@@ -51,7 +51,7 @@ pstree [-up]
 
 ## init
 
-全称为 `System V init`, 也叫 `SysVinit`
+`SysV init`, SysV 是 `System V` 的缩写
 
 ```shell
 # 对应的管理工具：service
