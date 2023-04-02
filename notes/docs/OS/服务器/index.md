@@ -1,5 +1,27 @@
 # 引言
 
+- 私有服务器：全部资源和权限
+- 虚拟专用服务器（Virtual Private Server, VPS）：一台主机虚拟出多个服务器，资源共享，可自主安装各种软件
+- 虚拟主机：资源共享，权限小，只允许安装特定软件
+
+## VPS
+
+国内
+
+> 对外提供网站服务需要备案
+
+- AWS EC2（Elastic Compute Cloud）
+- 阿里云 ECS（Elastic Compute Service）
+- 腾讯云 CVM（Cloud Virtual Machine）
+
+国外
+
+- BandwagonHost
+- Vultr
+- Linode
+
+## 虚拟机
+
 Hypervisor（KVM、Xen等）是虚拟机最主要的部分。它通过硬件虚拟化功能，模拟出了运行一个操作系统需要的各种硬件，比如 CPU、内存、I/O 设备、磁盘、网卡等等。然后，它在这些虚拟的硬件上安装了一个新的操作系统，即 Guest OS。
 
 虚拟机和K8s都很吃内存，所以建议宿主机内存8G+（可以支持开两个虚拟机组成最小集群）4核CPU，硬盘300G+
