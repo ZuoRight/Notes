@@ -11,6 +11,8 @@ Linux 是一个 Unix-like 系统，最初由 Linus Torvalds 基于 Unix 所编�
 
 Linux 本身只是一个开源的内核(Kernel)
 
+内核主要负责一些最基本的工作，比如：管理硬件驱动、管理内存、管理文件系统、管理进程等等。
+
 `uname -a`
 
 ![20230401113035](http://image.zuoright.com/20230401113035.png)

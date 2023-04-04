@@ -2,8 +2,7 @@
 nav:
   - index.md
   - init.md
-  - terminal.md
-  - Shell
+  - Terminal
   - 进程
   - Linux
   - mac.md

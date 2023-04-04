@@ -1,4 +1,4 @@
-# CLI
+# Shell CLI
 
 [Bash免费教程](https://wangdoc.com/bash/intro.html)
 

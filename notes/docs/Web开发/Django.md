@@ -420,6 +420,10 @@ python manage.py migrate
 !!! 总结
     不要随便压缩并且重命名Django自带应用的数据迁移文件（内心OS：但我记得之前确实是为了改一个Django本身的问题，而那个问题是因为迁移文件的命名是数字开头，导致依赖引用的时候报了语法错误，这是不符合Python文件命名规范的，Shit）
 
+### 如何为模型提供初始数据
+
+<https://docs.djangoproject.com/zh-hans/4.1/howto/initial-data/>
+
 ### 导入导出数据
 
 ```shell

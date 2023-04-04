@@ -1,4 +1,4 @@
-# Script
+# Shell Script
 
 <https://wangdoc.com/bash/script>
 
