@@ -3,6 +3,6 @@ nav:
   - index.md
   - cpu.md
   - rom.md
-  - 磁盘.md
+  - disk.md
   - verilog.md
   - ...
