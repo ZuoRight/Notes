@@ -337,21 +337,3 @@ url = "https://gitlab.example.com/api/v4/projects/344/ref/<REF_NAME>/trigger/pip
 url_with_variables = url + "&variables[key]=value"
 requests.post(url)
 ```
-
-## 管道计划/定时任务
-
-<https://docs.gitlab.com/ee/ci/pipelines/schedules.html>
-
-```shell
-# 文件格式說明
-# ┌──分鐘（0 - 59）
-# │ ┌──小時（0 - 23）
-# │ │ ┌──日（1 - 31）
-# │ │ │ ┌─月（1 - 12）
-# │ │ │ │ ┌─星期（0 - 6，表示从周日到周六）
-# │ │ │ │ │
-# * * * * * 被執行的命令
-
-# 每天下午六点
-0 18 * * *
-```

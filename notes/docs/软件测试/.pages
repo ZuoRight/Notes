@@ -2,6 +2,7 @@
 nav:
   - index.md
   - Case.md
+  - bug.md
   - 测试自动化.md
   - UnitTest.md
   - APITest
