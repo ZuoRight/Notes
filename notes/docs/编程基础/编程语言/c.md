@@ -89,6 +89,17 @@ int main(void){  // 语句块{}，快内语句可以不缩进，为了美观可�
 }
 ```
 
+### 预处理
+
+> <https://wangdoc.com/clang/preprocessor>
+
+```c
+// 预处理指令以#开头，为了兼容旧版本编译器，后面一般不留空格
+// 最常见的预处理指令：#define，用于替换指定的词，每条替换规则称为一个宏（macro）
+#define MAX 100  // 这里的MAX就称为一个宏，用于将源码里面的MAX全部替换成100
+#undef MAX  // 取消宏
+```
+
 ## 基本类型
 
 有三种：字符（char）、整数（int）和浮点数（float）
