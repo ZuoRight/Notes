@@ -1,4 +1,4 @@
-# Makefile
+# 构建
 
 > <https://seisman.github.io/how-to-write-makefile/overview.html>
 
