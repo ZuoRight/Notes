@@ -1,10 +1,10 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - 物理层.md
-  - 链路层.md
-  - 网际层.md
-  - 传输层.md
-  - 应用层.md
+  - L1层.md
+  - L2层.md
+  - L3层.md
+  - L4层.md
+  - L567.md
   - RPC.md
   - ...
