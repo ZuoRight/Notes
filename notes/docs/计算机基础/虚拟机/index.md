@@ -10,12 +10,15 @@
 
 > 对外提供网站服务需要备案
 
-- AWS EC2（Elastic Compute Cloud）
-- 阿里云 ECS（Elastic Compute Service）
-- 腾讯云 CVM（Cloud Virtual Machine）
+- 阿里云 ECS(Elastic Compute Service)
+- 腾讯云 CVM(Cloud Virtual Machine)
 
 国外
 
+- AWS(Amazon Web Services)
+  - EC2(Elastic Compute Cloud)
+  - ECS(Elastic Container Service)
+  - EKS(Elastic Kubernetes Service)
 - BandwagonHost
 - Vultr
 - Linode
