@@ -291,7 +291,7 @@ DATABASES = {
 
 > 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/databases/#mysql-notes>
 
-- 创建数据库：`create database if not exists dbname default character set utf8 collate utf8_general_ci;`
+- 创建数据库：`CREATE DATABASE dbname;`
 - 配置
 
     ```python
@@ -303,7 +303,7 @@ DATABASES = {
             'HOST': '127.0.0.1',  # host
             'PORT': 3306,  # 端口 
             'USER': 'root',  # 用户名
-            'PASSWORD': '12345678',  # 密码
+            'PASSWORD': 'passwd',  # 密码
 
             # 连接到数据库时要使用的额外参数
             # 'OPTIONS': {
@@ -368,7 +368,7 @@ sessions
 """
 
 # 生成迁移数据（生成SQL脚本）
-python manage.py makemigrations one_app
+python manage.py makemigrations [one_app]
 """
 迁移数据存储在：one_app/migrations/0001_initial.py 中
 查看生成了哪些SQL语句：python manage.py sqlmigrate one_app 0001

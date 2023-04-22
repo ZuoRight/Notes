@@ -1,10 +1,10 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - L1层.md
-  - L2层.md
-  - L3层.md
-  - L4层.md
+  - L1.md
+  - L2.md
+  - L3.md
+  - L4.md
   - L567.md
   - RPC.md
   - ...

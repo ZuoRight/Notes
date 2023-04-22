@@ -10,7 +10,7 @@
 >
 > 虚拟路由器：Linux 内核
 
-- 网络模式
+## 网络模式
 
 ```shell
 # 查看网络模式
@@ -25,12 +25,12 @@ d58fdf42ccb2   none      null      local
 默认有三个SCOPE=local的网络，网络NAME默认与网络DRIVER一样，分别为：`bridge`、`host`、`none`
 此外还有一些其他的网络模式：`container`、`macvlan`、`overlay`，可以通过不同的方式创建添加
 
-host就是简单粗暴效率高，适合小规模集群的简单拓扑结构
-bridge适合大规模集群，有了bridge就有更多的可操作空间，比如XLAN和VXLAN这些
+host 就是简单粗暴效率高，适合小规模集群的简单拓扑结构
+bridge 适合大规模集群，有了bridge就有更多的可操作空间，比如XLAN和VXLAN这些
     它可以提供更多的可定制化服务，比如流量控制、灰度策略这些，从而像flannel和Calico这些组件才有了更多的发挥余地
 ```
 
-## 创建网络
+### 创建网络
 
 默认的网络模式为`bridge模式`，
 
@@ -43,7 +43,7 @@ docker network create [--driver bridge] my-net
 docker network rm my-net  # 删除网络
 ```
 
-## 使用网络
+### 使用网络
 
 ```shell
 # 运行或创建容器时指定网络，如果不指定则默认连接到bridge网络
@@ -58,9 +58,11 @@ docker network disconnect my-net my-nginx # 断开网络
 docker network inspect net-name
 ```
 
-## 端口映射
+### 端口映射
 
 容器默认不会对外发布网络，需要使用`-p`（`--publish`）参数将端口映射到宿主机，供docker外部服务或未连接到此容器的其它容器使用，也可以-P随机指定端口映射
+
+host 网络模式下会忽略 -p 选项
 
 ```shell
 docker run --name test -p <ip>:4000:80 <镜像名>:tag
@@ -129,7 +131,9 @@ docker exec -it myapp1 mysql --host=mysql1 --user=myuser --password
 
 `docker run --network host`
 
-主机模式下，Docker 不会为新容器创建独立的网络名称空间，这样容器一切的网络设施，如网卡、网络栈等都直接使用宿主机上的真实设施，容器也就不会拥有自己独立的 IP 地址。此模式下与外界通信无须进行 NAT 转换，没有性能损耗，但缺点也十分明显，没有隔离就无法避免网络资源的冲突，譬如端口号就不允许重复。
+主机模式下，Docker 不会为新容器创建独立的网络名称空间，这样容器一切的网络设施，如网卡、网络栈等都直接使用宿主机上的真实设施，容器也就不会拥有自己独立的 IP 地址。
+
+此模式下与外界通信无须进行 NAT 转换，没有性能损耗，但缺点也十分明显，没有隔离就无法避免网络资源的冲突，譬如端口号就不允许重复。
 
 ## null 禁用网络
 

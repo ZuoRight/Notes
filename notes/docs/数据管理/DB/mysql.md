@@ -10,7 +10,10 @@
 
 M1+下载ARM版本，反之x86，`No thanks, just start my download.`，安装一直下一步即可，最后会默认创建root账户，让你设置一个密码（最少8位，比如：12345678）
 
-> 加密方式建议选：`Use Legacy Password Encryption`，即使用明文mysql_native_password，8.0版本为caching_sha2_password，某些第三方客户端连接数据库时不兼容新密码验证方式可能会报错
+加密方式
+
+- `mysql_native_password` 即使用明文（Use Legacy Password Encryption）
+- `caching_sha2_password`，8.0版本新增，某些第三方客户端连接数据库时不兼容新密码验证方式可能会报错
 
 然后配置环境变量
 
@@ -65,15 +68,13 @@ default-storage-engine=INNODB
 
 ```shell
 docker pull mysql:8.0
-sudo docker run -d -p 23306:3306 \  # 映射到宿主机的23306端口，避免与宿主机数据库端口冲突
-    -e MYSQL_RANDOM_ROOT_PASSWORD=yes \  # 设置密码，无论是固定密码还是随机生成或者为空，此参数必选
-    -v /my/own/datadir:/var/lib/mysql \  # 数据挂载路径（不能使用被其它容器已占用的路径）
-    --network some-network \  # 绑定自定义网络，方便其它容器使用mysql服务
-    --name=mysql8 mysql:8.0
+sudo docker run --name mysql8
+    -e MYSQL_ROOT_PASSWORD=passwd \  # 设置root用户的密码，此参数必选
+    --network host \  # 绑定网络，方便其它容器使用mysql服务，这里绑定到host网络
+    -d mysql:8.0
 
-# 默认创建'root'@'localhost'帐户，
-# 设置密码，三种方式必选其一：
-    # 1. 固定密码（出于安全考虑不建议这样）：-e MYSQL_ROOT_PASSWORD=xxx
+# 默认创建'root'@'localhost'帐户，设置密码，三种方式必选其一：
+    # 1. 固定密码（出于安全考虑不建议这样）：-e MYSQL_ROOT_PASSWORD=passwd
     # 2. 密码为空：-e MYSQL_ALLOW_EMPTY_PASSWORD=yes
     # 3. 随机生成密码（推荐）：-e MYSQL_RANDOM_ROOT_PASSWORD=yes
         '''
@@ -87,11 +88,17 @@ sudo docker run -d -p 23306:3306 \  # 映射到宿主机的23306端口，避免�
             CREATE USER 'demo'@'%' IDENTIFIED BY 'password';
             flush privileges;
         '''
-# 容器内
-#   数据存放路径：/var/lib/mysql
-#       默认挂载在宿主机的：/var/lib/docker/volumes/<container_id>，如果不是root用户可能没有权限访问
-#       建议挂载到自定义的路径下：-v /my/own/datadir:/var/lib/mysql
-#   配置文件路径：/etc/mysql/my.cnf，如果想用自定义的配置文件启动可以-v挂载
+# 数据存放路径：/var/lib/mysql
+#   默认挂载在宿主机的：/var/lib/docker/volumes/<container_id>，需要root权限才能访问
+#   可以挂载到自定义的路径（不能使用被其它容器已占用的路径）：-v /my/own/datadir:/var/lib/mysql
+# 配置文件路径：/etc/mysql/my.cnf，如果想用自定义的配置文件启动可以-v挂载
+
+# 映射到宿主机的23306端口，避免与宿主机数据库端口冲突：-p 23306:3306
+# 使用host网络模式则无法也无需指定
+
+# 连接到容器
+docker exec -it mysql8 mysql -uroot -p
+mysql -h 127.0.0.1 -u root -p  # 使用 -h localhost 可能无法连接
 ```
 
 ## 架构
@@ -135,6 +142,12 @@ exit
 quit
 ```
 
+连接MySQL数据库有两种方式：TCP/IP（一般理解的端口的那种）和 Unix套接字（一般叫socket或者sock）
+
+大部分情况下，可以用localhost代表本机127.0.0.1，但是在MySQL连接时，二者不可混用。
+
+而且MySQL权限设置中localhost与127.0.0.1也是分开设置的。当设置为127.0.0.1时，系统通过TCP/IP方式连接数据库；当设置为localhost时，系统通过socket方式连接数据库。
+
 - GUI管理工具
 
 ```text
@@ -172,6 +185,7 @@ SQL层与存储方式无关，结构如下
 ## DCL
 
 ```sql
+-- 使用/切换表
 use mysql;
 
 -- 查看用户
@@ -210,10 +224,10 @@ drop user 'test1'@'localhost';
 
 ## DDL
 
-### 库操作
+### 字符集
 
 ```sql
--- 检查编码格式
+-- 显示字符集相关变量
 show variables like '%char%';
 '''
 存储字符集
@@ -228,15 +242,22 @@ show variables like '%char%';
         ai 指的是口音不敏感，也就是说，排序时 e，è，é，ê 和 ë 之间没有区别。
         ci 表示不区分大小写，也就是说，排序时 p 和 P 之间没有区别
 '''
+```
 
+### 库操作
+
+```sql
 -- 查看有哪些库
 show databases;
+
+-- 创建库，可以指定指定字符集和校对规则等
+CREATE DATABASE <库名> 
+    CHARACTER SET utf8mb4 
+    COLLATE utf8mb4_general_ci;
+
 -- 删除库
 drop database if exists <库名>;
--- 创建库
-create database <库名>;
--- 创建库，并指定编码格式和校验集
-create database if not exists <库名> default character set utf8 collate utf8_general_ci;
+
 -- 使用库
 use <库名>;
 ```
