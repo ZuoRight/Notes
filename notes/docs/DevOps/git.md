@@ -65,10 +65,9 @@ cat ~/.ssh/id_rsa.pub
 - 克隆
 
 ```shell
-git clone git@github.com:zuoright/demo.git
+git clone git@github.com:zuoright/demo.git [-b branch] [-o xxx]
 # 默认克隆主分支，可加-b xxx指定分支
 # 默认把远程仓库命名为origin，可加-o参数自定义
-git clone [-b 指定分支] git@github.com:zuoright/demo.git [-o xxx]
 ```
 
 - 本地新建
