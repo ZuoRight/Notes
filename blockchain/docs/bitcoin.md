@@ -81,6 +81,14 @@
 
 > `6x24x365x4`x`50(1+1/2+1/4+1/8+...)`=`2100W`
 
+## Reduction & Halving Countdown
+
+> <https://www.oklink.com/halving>
+
+计算公式：`(Halving/Reduction block – Next block height) × Average block time – Estimated time for the next`
+
+![BTC Halving Countdown](https://image.zuoright.com/BTC%20Halving%20Countdown.png)
+
 ## Difficulty Adjustment Period
 
 为了保证生成一个区块的时间恒定，挖矿难度每过一个固定周期（2016个区块）就会调整一次。

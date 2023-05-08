@@ -9,6 +9,12 @@ hide:
 - Web2.0 所荐即所得
 - Web3.0 所建即所得
 
+区块链可以理解为是一个全球共享的去中心化且不可篡改的事务性数据库，在分布式网络节点之间更新和共享。涉及P2P网络协议，分布式一致性算法，加密签名算法，账户与存储模型等。
+
+使用区块链发行的货币，被称之为加密货币(Crypto Token)，也可称之为通证。
+
+对于比特币，区块链是一个公开账本，而对于以太坊它是一个智能合约。
+
 ## 区块链可视化
 
 - <https://andersbrownworth.com/blockchain/>
@@ -26,23 +32,7 @@ hide:
   - [Block Detail](https://info.etherscan.com/exploring-block-details-page/)
   - [Transaction](https://info.etherscan.com/understanding-an-ethereum-transaction/)
 
-## Reduction & Halving Countdown
-
-> <https://www.oklink.com/halving>
-
-计算公式：`(Halving/Reduction block – Next block height) × Average block time – Estimated time for the next`
-
-![BTC Halving Countdown](https://image.zuoright.com/BTC%20Halving%20Countdown.png)
-
 ## 共识机制
 
 - PoW(Proof of Work) 工作量证明
 - PoS(Proof of Stake) 权益证明
-
-## Blockchain
-
-区块链可以理解为是一个全球共享的去中心化且不可篡改的事务性数据库，在分布式网络节点之间更新和共享。涉及P2P网络协议，分布式一致性算法，加密签名算法，账户与存储模型等。
-
-使用区块链发行的货币，被称之为加密货币(Crypto Token)，也可称之为通证。
-
-对于比特币，区块链是一个公开账本，而对于以太坊它是一个智能合约。
