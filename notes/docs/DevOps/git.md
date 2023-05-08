@@ -144,6 +144,7 @@ git push --force origin HEAD
 
 版本
 
+```text
 - 版本号（后七位即可）
 - 标签
 - HEAD指针
@@ -151,6 +152,7 @@ git push --force origin HEAD
   - HEAD^ 上一版本
   - HEAD^^ 上上版本
   - HEAD~100 上100个版本
+```
 
 `git revert -n 版本号`
 

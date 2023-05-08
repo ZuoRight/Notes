@@ -24,13 +24,16 @@ hide:
 
 ## 区块浏览器
 
-- [OKLink](https://www.oklink.com/all-chain) (多链)
-  - <https://www.oklink.com/btc>
-  - <https://www.oklink.com/eth>
-- [Etherscan](https://etherscan.io/) (Ethereum)
-  - [Blocks List](https://info.etherscan.com/exploring-block-page/)
-  - [Block Detail](https://info.etherscan.com/exploring-block-details-page/)
-  - [Transaction](https://info.etherscan.com/understanding-an-ethereum-transaction/)
+多链：[OKLink](https://www.oklink.com/all-chain)
+
+- <https://www.oklink.com/btc>
+- <https://www.oklink.com/eth>
+
+Ethereum：[Etherscan](https://etherscan.io/)
+
+- [Blocks List](https://info.etherscan.com/exploring-block-page/)
+- [Block Detail](https://info.etherscan.com/exploring-block-details-page/)
+- [Transaction](https://info.etherscan.com/understanding-an-ethereum-transaction/)
 
 ## 共识机制
 
