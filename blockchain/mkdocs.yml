@@ -33,10 +33,14 @@ theme:
     repo: material/source-branch
   # favicon: images/favicon.png
   features:
-    - header.autohide  # 下滑自动隐藏导航栏
-    - navigation.top  # 回到顶部
+    # - navigation.tabs  # 导航标签
+    # - navigation.expand  # 导航全部展开
     - navigation.instant  # 内部锚链接即时加载
-    - toc.integrate  # 导航集成到左侧
+    # - navigation.indexes  # 导航索引
+    - navigation.top  # 回到顶部
+    - header.autohide  # 下滑自动隐藏导航栏
+    # - toc.integrate  # 导航集成到左侧
+    - toc.follow  # 导航跟随
 
 extra:
   homepage: https://zuoright.com  # 点击图标跳转链接

@@ -5,6 +5,8 @@ nav:
   - ethereum.md
   - layer.md
   - wallet.md
+  - 加密算法.md
+  - dapp.md
   - Solidity
   - Brownie
   - Hardhat

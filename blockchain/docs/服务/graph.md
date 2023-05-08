@@ -20,4 +20,4 @@ graph init --product hosted-service github_name/graph_project_name
 '
 graph auth  # 输入 Graph Access Token
 npm run deploy
-`
+```
