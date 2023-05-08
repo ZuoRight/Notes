@@ -5,15 +5,16 @@ hide:
 ---
 # 引言
 
-- Web1.0 所见即所得
-- Web2.0 所荐即所得
-- Web3.0 所建即所得
-
 区块链可以理解为是一个全球共享的去中心化且不可篡改的事务性数据库，在分布式网络节点之间更新和共享。涉及P2P网络协议，分布式一致性算法，加密签名算法，账户与存储模型等。
 
 使用区块链发行的货币，被称之为加密货币(Crypto Token)，也可称之为通证。
 
 对于比特币，区块链是一个公开账本，而对于以太坊它是一个智能合约。
+
+## 共识机制
+
+- PoW(Proof of Work) 工作量证明
+- PoS(Proof of Stake) 权益证明
 
 ## 区块链可视化
 
@@ -35,7 +36,8 @@ Ethereum：[Etherscan](https://etherscan.io/)
 - [Block Detail](https://info.etherscan.com/exploring-block-details-page/)
 - [Transaction](https://info.etherscan.com/understanding-an-ethereum-transaction/)
 
-## 共识机制
+## Web3
 
-- PoW(Proof of Work) 工作量证明
-- PoS(Proof of Stake) 权益证明
+- Web1.0 所见即所得
+- Web2.0 所荐即所得
+- Web3.0 所建即所得
