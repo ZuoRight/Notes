@@ -3,9 +3,9 @@ nav:
   - index.md
   - bitcoin.md
   - ethereum.md
-  - layer.md
-  - wallet.md
   - 加密算法.md
+  - wallet.md
+  - 扩容.md
   - dapp.md
   - Solidity
   - Brownie

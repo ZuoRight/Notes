@@ -101,11 +101,11 @@
 > [廖雪峰区块链教程：P2P交易原理、可编程支付原理](https://www.liaoxuefeng.com/wiki/1207298049439968/1311929802948641)  
 > [bitcoindeveloper·transactions](https://developer.bitcoin.org/devguide/transactions.html)
 
-区块体中的每一笔交易并不是平时我们见到的那种付款方和收款方一对一的关系，而是由多对多的输入和输出构成，称之为UTXO模型，除了Coinbase交易外（只有一个输出），其它交易至少有一个输入和一个输出。
+BTC 采用 UTXO 模型，Unspent TX Output，TX指交易(Transaction)，就是还没有被使用的交易输出，可以理解为就是余额
 
-> Unspent TX Output，TX指交易(Transaction)，就是还没有被使用的交易输出，可以理解为就是余额
->
-> 比特币使用LevelDB存储UTXO，比特币的交易就是不断地消耗现有的UTXO，并产生新的UTXO
+与传统的账户体系一对一不同，它类似于保险箱，A 将资产锁进保险箱中，只有B可以打开，是一个多对多的输入和输出关系，除了Coinbase交易外（只有一个输出），其它交易至少有一个输入和一个输出。
+
+比特币使用LevelDB存储UTXO，比特币的交易就是不断地消耗现有的UTXO，并产生新的UTXO
 
 ![20220721233301](http://image.zuoright.com/20220721233301.png)
 
