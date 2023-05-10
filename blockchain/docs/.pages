@@ -1,11 +1,11 @@
-# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+# <https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin>
+
 nav:
   - index.md
-  - bitcoin.md
-  - ethereum.md
-  - 加密算法.md
+  - Bitcoin
+  - Ethereum
   - wallet.md
-  - 扩容.md
+  - 加密算法.md
   - dapp.md
   - Solidity
   - Brownie

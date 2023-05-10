@@ -47,3 +47,22 @@ Ethereum：[Etherscan](https://etherscan.io/)
 - Web1.0 所见即所得
 - Web2.0 所荐即所得
 - Web3.0 所建即所得
+
+## 提案
+
+加密货币钱包相关的技术实现规范主要来自于提案
+
+比特币的改进提案叫做：BIP(Bitcoin Improvement Proposal)
+
+以太坊的改进提案叫做：EIP
+
+## 可扩展性
+
+由于公链生态爆发，所有交易都在链上处理，导致拥堵处理速度越来越慢，手续费越来越高，引发了比特币扩容之争导致软分叉、硬分叉，促使以太坊升级分层，引出跨链，以及各种新公链
+
+![20220729185819](http://image.zuoright.com/20220729185819.png)
+
+跨链项目
+
+- Cosmos（ATOM）
+- Polkadot（DOT）

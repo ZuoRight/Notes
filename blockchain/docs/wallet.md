@@ -1,30 +1,29 @@
-# 钱包地址
+# HD钱包
 
-加密货币钱包相关的技术实现规范主要来自于比特币提案，它不止适用于比特币，也适用于以太坊等区块链
+> 参考：<https://wolovim.medium.com/ethereum-201-hd-wallets-11d0c93c87f7>
 
-> 比特币的改进提案叫做BIP(Bitcoin Improvement Proposal)，以太坊的改进提案叫做EIP
+HD钱包指根据某种确定性算法，用一个根密钥（也叫根扩展密钥）即可衍生出 N 个子密钥,即可以是公钥也可以是私钥，理论上扩展密钥的层数是没有限制的，每一层的数量被限制在0～232
 
-- BIP 32 — 定义分层确定性钱包（Hierarchical Deterministic Wallets）
-- BIP 39 — 使用助记词（Mnemonic code）生成确定性密钥
-- BIP 44 — 定义HD钱包多账户层次结构
-
-HD钱包指根据某种确定性算法，用一个根密钥（也叫根扩展密钥）即可衍生出N个子密钥，即可以是公钥也可以是私钥，相当于管理一个扩展私钥（xprv），即可拥有N个子私钥，继而拥有多个钱包账户，通过一个扩展公钥（xpub）即可查询账户总余额。
-
-> 理论上扩展密钥的层数是没有限制的，每一层的数量被限制在0～232
-
-直接记私钥很难记住，可以通过助记词来辅助记忆，根据助记词即可恢复钱包（所以助记词也叫Secret Recovery Phrase(SRP)），也可以直接备份私钥。
+相当于管理一个扩展私钥（xprv），即可拥有 N 个子私钥，继而拥有多个钱包账户，通过一个扩展公钥（xpub）即可查询账户总余额。
 
 > 在线生成工具：<https://iancoleman.io/bip39/>
 
-![20220728154218](http://image.zuoright.com/20220728154218.png)
-
 - 私钥：64个十六进制字符（32bytes / 256bits）
 - 公钥：128个十六进制字符（64bytes）
-- 钱包地址：42个十六进制字符（前缀0x+ 20bytes）
+- 地址：42个十六进制字符（前缀0x+ 20bytes）
+- 以太坊域名 ENS(Ethereum Name Service)，公钥可以绑定域名，方便记忆
 
-## 从助记词生成seed
+![20220728154218](http://image.zuoright.com/20220728154218.png)
+
+- BIP32 — 定义分层确定性钱包（Hierarchical Deterministic Wallets）
+- BIP44 — 定义HD钱包多账户层次结构
+- BIP39 — 使用助记词（Mnemonic code）生成确定性密钥
+
+## 助记词 => seed
 
 > 参考：<https://wolovim.medium.com/ethereum-201-mnemonics-bb01a9108c38>
+
+直接记私钥很难记住，可以通过助记词来辅助记忆，根据助记词即可恢复钱包，所以助记词也叫SRP(Secret Recovery Phrase)，也可以直接备份私钥。
 
 根据第BIP39，首先需要一个随机数（称之为熵），熵的位数需要是32的倍数，且介于128～256bits之间，即：`valid_entropy_bit_sizes = [128, 160, 192, 224, 256]`
 
@@ -104,9 +103,7 @@ print(seed)  # b'\xcd@\xd0}\xbc\x17\xd6H\x00\x1c\xdc...'
 print(seed.hex())  # cd40d07dbc17d648001cdc84473be584...
 ```
 
-## HD钱包
-
-> 参考：<https://wolovim.medium.com/ethereum-201-hd-wallets-11d0c93c87f7>
+## seed => root key
 
 BIP32规范指出
 
@@ -118,8 +115,6 @@ BIP32规范指出
 > `m` 表示根扩展密钥，`'` 表示硬化衍生，防止通过子私钥反推出父私钥
 
 ![20220728150444](http://image.zuoright.com/20220728150444.png)
-
-- 从 seed 生成 root key
 
 ```python
 import binascii
@@ -167,7 +162,11 @@ all_bytes = b''.join(all_parts)
 root_key = base58.b58encode_check(all_bytes).decode('utf8')  # xprv9s21ZrQH143K...T2emdEXVYsCzC2U
 ```
 
-然后根据root key生成子私钥，这个有些复杂，略过...
+## root key => 子私钥
+
+这个有些复杂，略过...
+
+## 私钥 => 公钥
 
 生成私钥后根据椭圆曲线密码学即可生成公钥
 
@@ -186,5 +185,3 @@ digest = keccak(x.to_bytes(32, 'big') + y.to_bytes(32, 'big'))
 address = '0x' + digest[-20:].hex()
 print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1fa39f997f06bfb7ca0
 ```
-
-公钥可以绑定 ENS(Ethereum Name Service)，方便记忆

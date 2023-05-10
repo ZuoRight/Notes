@@ -1,4 +1,5 @@
-# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+# <https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin>
+
 nav:
   - index.md
   - solc.md

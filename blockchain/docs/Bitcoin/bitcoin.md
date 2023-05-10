@@ -95,48 +95,6 @@
 
 计算一下上一个周期的平均耗时，理想时间为两周（1,209,600秒，平均10分钟一个区块），如果过快则会调高难度（调小目标值），反之调低。
 
-## 交易
+## 交易单位
 
-> 参考  
-> [廖雪峰区块链教程：P2P交易原理、可编程支付原理](https://www.liaoxuefeng.com/wiki/1207298049439968/1311929802948641)  
-> [bitcoindeveloper·transactions](https://developer.bitcoin.org/devguide/transactions.html)
-
-BTC 采用 UTXO 模型，Unspent TX Output，TX指交易(Transaction)，就是还没有被使用的交易输出，可以理解为就是余额
-
-与传统的账户体系一对一不同，它类似于保险箱，A 将资产锁进保险箱中，只有B可以打开，是一个多对多的输入和输出关系，除了Coinbase交易外（只有一个输出），其它交易至少有一个输入和一个输出。
-
-比特币使用LevelDB存储UTXO，比特币的交易就是不断地消耗现有的UTXO，并产生新的UTXO
-
-![20220721233301](http://image.zuoright.com/20220721233301.png)
-
-忽略手续费的前提下，比如小A有10BTC，全部转给小B，然后小B把10BTC又全部转给我了小C，这就是1输入1输出；如果小B只转5BTC给小C，剩下的5BTC需要转给自己（UTXO），这就是1输入2输出，如果此时再有个人给小C转5BTC，那小C的这10BTC就对应两个输入。
-
-无论输入还是输出实际上都是一个脚本，输出是一个锁定脚本，输入是一个解锁脚本，比特币的脚本语言是一种类似FORTH的基于栈结构的低级语言，为了安全特意被设计为无状态且非图灵完备。
-
-> 脚本有P2PKH(Pay to Public Key Hash)和P2SH(Pay To Script Hash)等不同类型
-
-![20220721233710](http://image.zuoright.com/20220721233710.png)
-
-```text
-FROM: UTXO Hash#index
-AMOUNT: 0.5 btc
-TO: OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG
-```
-
-![20220722103520](http://image.zuoright.com/20220722103520.png)
-
-```text
-           Sig 48 (30450221...68fa9b01)
-        PubKey 21 (03dd8763...14cf740f)
-        OP_DUP 76
-    OP_HASH160 a9
-    PubkeyHash 14 (dc5dc65c...fe9f489c)
-OP_EQUALVERIFY 88
-   OP_CHECKSIG ac
-```
-
-![20220722103438](http://image.zuoright.com/20220722103438.png)
-
-每一笔交易都有一个唯一的TXID，可以在区块链浏览器中查询交易相关的信息
-
-比特币的交易最小单位为聪(Satoshi)，`1btc=10^8聪`（1亿聪）
+比特币的交易最小单位为聪(Satoshi)，`1 BTC = 10^8 Sats`（1亿聪）
