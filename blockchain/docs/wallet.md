@@ -1,73 +1,73 @@
 # HD钱包
 
-> 参考：<https://wolovim.medium.com/ethereum-201-hd-wallets-11d0c93c87f7>
+- BIP32 — 定义分层确定性钱包（Hierarchical Deterministic Wallets）
+- BIP39 — 使用助记词（Mnemonic code）生成确定性密钥
+- BIP44 — 定义HD钱包多账户层次结构
+
+虽然HD钱包的标准是BIP定义的，但也适用于 Ethereum 等大多数钱包
 
 HD钱包指根据某种确定性算法，用一个根密钥（也叫根扩展密钥）即可衍生出 N 个子密钥,即可以是公钥也可以是私钥，理论上扩展密钥的层数是没有限制的，每一层的数量被限制在0～232
 
 相当于管理一个扩展私钥（xprv），即可拥有 N 个子私钥，继而拥有多个钱包账户，通过一个扩展公钥（xpub）即可查询账户总余额。
 
-> 在线生成工具：<https://iancoleman.io/bip39/>
-
 - 私钥：64个十六进制字符（32bytes / 256bits）
 - 公钥：128个十六进制字符（64bytes）
 - 地址：42个十六进制字符（前缀0x+ 20bytes）
-- 以太坊域名 ENS(Ethereum Name Service)，公钥可以绑定域名，方便记忆
+
+> 在线生成工具：<https://iancoleman.io/bip39/>
 
 ![20220728154218](http://image.zuoright.com/20220728154218.png)
 
-- BIP32 — 定义分层确定性钱包（Hierarchical Deterministic Wallets）
-- BIP44 — 定义HD钱包多账户层次结构
-- BIP39 — 使用助记词（Mnemonic code）生成确定性密钥
-
-## 助记词 => seed
+## 随机数 => mnemonic
 
 > 参考：<https://wolovim.medium.com/ethereum-201-mnemonics-bb01a9108c38>
 
 直接记私钥很难记住，可以通过助记词来辅助记忆，根据助记词即可恢复钱包，所以助记词也叫SRP(Secret Recovery Phrase)，也可以直接备份私钥。
 
-根据第BIP39，首先需要一个随机数（称之为熵），熵的位数需要是32的倍数，且介于128～256bits之间，即：`valid_entropy_bit_sizes = [128, 160, 192, 224, 256]`
+根据第BIP39，首先需要一个随机数，称之为熵
+
+熵的位数需要是 32 的倍数，且介于 128～256bits 之间，即：`valid_entropy_bit_sizes = [128, 160, 192, 224, 256]`
+
+熵越大，助记词个数越多，每 32bits 增加三个助记词：`[12, 15, 18, 21, 24]`
 
 ```python
 import os
 from bitarray import bitarray
 
-entropy_bit_size = 128  # 设置熵为128bits
-entropy_bytes = os.urandom(entropy_bit_size // 8)  # 生成指定字节数的随机字节串，8bits/bytes，地板除取整
-print(entropy_bytes)  # b'\xab9k\x1e\x00\xca\tdz\x1f\xb7\xd3\x8d\x06\xe7\xca'
+# 设置熵为128bits
+entropy_bit_size = 128
 
-# 将字节串转换为二进制bits形式
+# 生成随机字节串，1Bytes=8bits，地板除取整，128bits=12字节
+entropy_bytes = os.urandom(entropy_bit_size // 8)  # b'\xab9k\x1e\x00\xca\tdz\x1f\xb7\xd3\x8d\x06\xe7\xca'
+
+# 将字节串转换为二进制格式
 entropy_bits = bitarray()
-entropy_bits.frombytes(entropy_bytes)
-print(entropy_bits)  # bitarray('1011110001111...1111011111111001010') 共128bits
+entropy_bits.frombytes(entropy_bytes)  # bitarray('101111000...011111111001010')
 ```
 
-熵越大，助记词个数越多，每32bits增加三个助记词，依次递增为：`[12, 15, 18, 21, 24]`，即熵如果是128bits，需要对应12个助记词，但128并不能被12整除，此时需要在末尾增加checksum来补位，`checksum_length = entropy_bit_size // 32`，128bits就需要补4bits凑成132bits
+熵如果是128bits，需要对应12个助记词，但128并不能被12整除，此时需要在末尾增加checksum来补位
 
-取sha256(entropy_bytes)摘要二进制的前4位作为checksum补到entropy_bits后面
+需要补的位数：`checksum_length = entropy_bit_size // 32`
+
+取 sha256(entropy_bytes) 摘要的二进制的前 checksum_length 位作为 checksum 补到 entropy_bits 后面
 
 ```python
 import hashlib
 
-hash_bytes = hashlib.sha256(entropy_bytes).digest()
-print(hash_bytes)  # b'\xacK#\x93I$\x05b\x0b6\x83\xb2\x0b"\x9aE\x9a\x92\xed\x98YA\xbe\xe9%\xa0\xd7\xa3\x9aDs\xb2'
+hash_bytes = hashlib.sha256(entropy_bytes).digest()  # b'\xacK#\x93I$\x05b\x0b6\...\xbe\xe9%\xa0\xd7\xa3\x9aDs\xb2'
 
 hash_bits = bitarray()
-hash_bits.frombytes(hash_bytes) 
-print(hash_bits)  # bitarray('1010110001001011001...01000111010') 共256bits
+hash_bits.frombytes(hash_bytes)  # bitarray('1010110001001011001...01000111010') 共256bits
 
-checksum_length = entropy_bit_size // 32  # 4
-checksum = hash_bits[:checksum_length]  # 1010
+checksum_length = entropy_bit_size // 32  # 128bits 需要补 128/32=4bits 凑成 132bits
+checksum = hash_bits[:checksum_length]  # 取前4位，1010
 entropy_bits.extend(checksum)
-```
 
-然后分成12组，每组助记词11bits（`132 // 12`）
-
-```python
+# 然后分成12组，132 // 12 = 11，即每组助记词 11bits
 grouped_bits = tuple(entropy_bits[i * 11: (i + 1) * 11] for i in range(len(entropy_bits) // 11))
-print(grouped_bits)
 ```
 
-然后将二进制助记词转换为十进制整数，整数范围为0～2047（2^11），每个整数对应一个单词，共2048个，组成一个助记词列表
+然后将二进制助记词转换为十进制整数，整数范围为：`0～2047`（2^11），每个整数对应一个单词，共 2048 个，组成一个助记词列表
 
 > 不同国家语言可以对应不同的助记词列表：<https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md>
 
@@ -83,7 +83,9 @@ mnemonic_words = tuple(english_word_list[i] for i in indices)
 print(mnemonic_words)  # ('face', 'business', 'large', 'tissue', 'print', 'box', 'fix', 'maple', 'arena', 'help', 'critic', 'border')
 ```
 
-然后将助记词（mnemonic）转换为种子（seed）
+## mnemonic => seed
+
+根据助记词生成种子
 
 ```python
 import hashlib
@@ -185,3 +187,16 @@ digest = keccak(x.to_bytes(32, 'big') + y.to_bytes(32, 'big'))
 address = '0x' + digest[-20:].hex()
 print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1fa39f997f06bfb7ca0
 ```
+
+## ENS
+
+钱包地址类似于IP，可以绑定域名，方便记忆
+
+比如类似 DNS 的以太坊域名服务 ENS（Ethereum Name Service）
+
+<https://app.ens.domains/>
+
+## 参考
+
+- <https://wolovim.medium.com/ethereum-201-mnemonics-bb01a9108c38>
+- <https://wolovim.medium.com/ethereum-201-hd-wallets-11d0c93c87f7>

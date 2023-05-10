@@ -48,6 +48,8 @@ The Beacon Chain Ethereum 2.0 采用了 PoS 共识机制，向存储合约质押
 
 Validators 参与出块获得奖励或惩罚(Staking Rewards and Penalties)会影响质押的$ETH数量变化，当小于 16 $ETH 时将会被取消资格
 
+> Lido 是基于Ethereum 2.0 Beacon Chain 上建造的Dapp，用户不需要锁定ETH，也不需要达到32ETH的这一巨额门槛即可参与质押挖矿，并且用户将ETH质押到 Lido 合约中会获得等量的 `$stETH`，可用于交易、Swap、借贷等DeFi
+
 比特币主要用于支付，需要更多的安全确认，所以限制平均10min出一个块，而以太坊则是执行智能合约为主，支付功能并不是以太坊的主要功能，所以在以太坊中，平均每12秒出一个块
 
 12s 称为一个时间间隙(time slot)，32 个 slot 称作一个纪元(epoch)
@@ -133,16 +135,6 @@ body：包含一些字段的对象，定义如下
 除了基本的奖励之外，Validators 能够从他们生产的区块内重新排序交易中获得额外的收益，这部分收益称之为 MEV(Maximal Extractable Value)
 
 <https://info.etherscan.com/exploring-the-world-of-mev/>
-
-## Lido
-
-Lido 是基于Ethereum 2.0 Beacon Chain 上建造的Dapp，用户不需要锁定ETH，也不需要达到32ETH的这一巨额门槛即可参与质押挖矿
-
-并且用户将ETH质押到 Lido 合约中会获得等量的 `$stETH`，可用于交易、Swap、借贷等DeFi
-
-## 账户类型
-
-- EOA
 
 ## 单位
 

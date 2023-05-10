@@ -52,9 +52,9 @@ Ethereum：[Etherscan](https://etherscan.io/)
 
 加密货币钱包相关的技术实现规范主要来自于提案
 
-比特币的改进提案叫做：BIP(Bitcoin Improvement Proposal)
-
-以太坊的改进提案叫做：EIP
+- 比特币改进提案：BIP（Bitcoin Improvement Proposal）
+- 以太坊改进提案：EIP（Ethereum Imporvement Proposals）
+- 以太坊意见征求稿：ERC（Ethereum Request For Comment）
 
 ## 可扩展性
 

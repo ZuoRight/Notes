@@ -26,11 +26,13 @@ Docs: <https://remix-ide.readthedocs.io/en/latest/index.html>
 
 ```js
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.4 <0.9.0;  // 此处可简写为：^0.8.4，^表示向上兼容
+pragma solidity >=0.8.4 <0.9.0;
 /**
  * 上面第一行代码：需要注释智能合约所用的许可证，如果不写编译时会警告
- *   遵循SPDX(Software Package Data Exchange)国际标准规范的许可证
+ *     遵循SPDX(Software Package Data Exchange)国际标准规范的许可证
+ *     如果没想好或者没有则可以写成：UNLICENSED
  * 上面第二行代码：Pragmas 是编译器关于如何处理源代码的常用指令，比如用来声明编译器版本
+ *     可简写为：^0.8.4，^表示向上兼容
  */
 
 // 语句以分号结尾
@@ -39,7 +41,7 @@ contract Coin {
     address public minter;  // 关键字public使变量可以被其他合约访问
     mapping (address => uint) public balances;
 
-    // 事件允许客户端对您声明的特定合约变化做出反应
+    // 凡是引起状态改变的操作，都应该记一个事件，类似日志，命名通常首字母大写
     event Sent(address from, address to, uint amount);
 
     // 构造函数代码只有在合约创建时运行
