@@ -126,8 +126,8 @@ Liquid Network 上主要使用的仍然是由比特币1:1锚定发行的 L-BTC
 
 ## 无升级式扩容
 
-- RGB，用于比特币和闪电网络的可扩展和保密的智能合约系统
-- Taro
+- RGB，用于比特币和闪电网络的可扩展和保密的智能合约系统，[参考文章](https://www.techflowpost.com/article/detail_11868.html)
+- TARO
 - DLC
 - Nostr，具有闪电网络集成的去中心化数据共享协议，类似Twitter的去中心化社交平台Damus便是基于这个，[一个解读](https://mirror.xyz/0x22fFb47cb60FFbe669786AA1a8bAf6597ac935b2/kXuvmOjrFFkeBBNMWvXirhXsJT79G1ranzs8jw4Ku4Q)
 - Ordinals

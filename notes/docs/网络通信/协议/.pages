@@ -1,9 +1,9 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - 网络硬件.md
-  - 协议
-  - 抓包
-  - 请求库
-  - 网络管理
+  - L1.md
+  - L2.md
+  - L3.md
+  - L4.md
+  - L567.md
   - ...

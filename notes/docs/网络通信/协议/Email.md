@@ -8,12 +8,12 @@
 
 历程
 
-1. 发件人，比如：me@qq.com
+1. 发件人，比如：<me@qq.com>
 2. MUA
 3. 多级MTA：腾讯MTA =》其它中间MTA =》新浪MTA
 4. MDA
 5. MUA
-6. 收件人，比如：you@sina.com
+6. 收件人，比如：<you@sina.com>
 
 协议
 

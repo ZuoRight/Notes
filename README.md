@@ -42,7 +42,7 @@ mkdocs serve
 mkdocs build
 
 # 新建gh-deploy分支，自动构建并推送到origin
-mkdocs gh-deploy
+# mkdocs gh-deploy
 ```
 
 定制化修改主题：<https://squidfunk.github.io/mkdocs-material/customization/#extending-the-theme>
