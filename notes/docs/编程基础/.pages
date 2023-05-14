@@ -2,9 +2,8 @@
 nav:
   - 编程语言
   - Edit
+  - encode.md
   - compile.md
   - build.md
-  - encode.md
-  - 进制转换.md
   - 算法
   - ...
