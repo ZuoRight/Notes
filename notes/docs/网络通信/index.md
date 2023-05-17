@@ -1,5 +1,33 @@
 # 引言
 
+## 信号 Signal
+
+- 信息 message，文字图片音频视频等
+- 数据 data，使用特定符号序列表示的信息
+- 信号 signal，电气或电磁形式的数据
+  > 数字信号/离散信号：信号源产生的原始电信号，也叫基带信号  
+  > 模拟信号/连续信号：载波调制后的信号，也叫带通信号
+
+基带信号，即基本频带信号，包含很多低频，需要经过调制（modulation）才能远距离传输，有两种调制方式：基带调制、带通调制
+
+![20230516155718](http://image.zuoright.com/20230516155718.png)
+
+### 基带调制
+
+不同离散值的基本波形称之为码元，可以用两种不同的码元表示二进制数字0和1
+
+基带调制，也叫编码，仅变换基带信号的波形，使其适应信道的特性，变换后依然是基带信号
+
+![20230516163043](http://image.zuoright.com/20230516163043.png)
+
+### 带通调制
+
+带通调制，即利用载波，通过调制解调器将基带信号调制成特定带宽的高频信号，调制后为模拟信号，使其能在一段频率范围内通过信道，所以也叫带通信号，采用频分复用技术实现宽带传输，然后在接收端又将它解调回基带信号
+
+![20230516163609](http://image.zuoright.com/20230516163609.png)
+
+为了达到更高效的传输速率，通常采用更复杂的混合调制，比如正交振幅调制等
+
 ## 信道 Channel
 
 信道，即传送信息的通道
@@ -10,17 +38,20 @@
   > 存储信道：通过硬盘等存储介质从某处向某处转移数据
 - 逻辑信道：抽象的信道
 
-### 信道的工作模式
+### 信道的传输模式
 
-- 单工(simplex)：只能单向传输，比如电台广播，信号只能从电台发给收音机，而收音机不能向电台发送信号
-- 半双工(half-duplex)：可以双向，但不能同时传输，比如独木桥、单轨铁道
-- 全双工(full-duplex)：可以双向同时传输，互不干扰，比如光纤
+- 单工(simplex)：只能单向传输，一条信道，比如电台广播，信号只能从电台发给收音机，而收音机不能向电台发送信号
+- 半双工(half-duplex)：可以双向，两条信道，但不能同时传输，比如独木桥、单轨铁道
+- 全双工(full-duplex)：可以双向同时传输，两条信道，互不干扰，比如光纤
+
+有时单工也用于表示双向交替通信，注意区分
 
 ### 多路复用
 
-- 频分多路复用FDM(Frequency-Division Multiplexing)：不同线路占用不同的频率，比如电台广播
-- 时分多路复用TDM(Time-Division Multiplexing)：类似十字路口红绿灯
-- 码分多路复用CDM(Code-Division Multiplexing)：线路间采用不同的编码方式使得端点可以在同一时间同一频段发送数据，CDMA(码分多址)就是这个思路
+- 频分多路复用FDM(Frequency Division Multiplexing)：不同线路占用不同的频率，比如电台广播
+- 时分多路复用TDM(Time Division Multiplexing)：类似十字路口红绿灯
+- 波分多路复用WDM(Wavelength Division Multiplexing)：光的频分复用
+- 码分多路复用CDM(Code Division Multiplexing)：线路间采用不同的编码方式使得端点可以在同一时间同一频段发送数据，CDMA(码分多址)就是这个思路
 
 ## 通信模式
 
@@ -54,6 +85,7 @@
 
 ## 参考
 
-- [《Computer Networks》](https://book.douban.com/subject/1229951/)
+- 计算机网络·谢希仁
+- [Computer Networks](https://book.douban.com/subject/1229951/)
 - <https://en.wikipedia.org/wiki/Internet>
 - [PowerCert Animated Videos](https://www.youtube.com/c/PowerCertAnimatedVideos/featured)
