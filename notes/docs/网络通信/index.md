@@ -1,18 +1,18 @@
 # 引言
 
-## 网络
+## 网络分类
 
-### BAN
+### 体域网
 
-Body Area Network 体域网
+BAN, Body Area Network
 
 主要指无线传感器网络
 
 无线射频识别(RFID，Radio Frequency IDentification)技术则可以让日常物品也成为计算机网络的一部分
 
-### PAN
+### 个域网
 
-Persinal Area Network 个域网
+PAN, Persinal Area Network
 
 个人的电子设备间连接起来的网络，通常采用无线技术，所以也叫 WPAN（Wireless ～）
 
@@ -21,9 +21,9 @@ Persinal Area Network 个域网
 - 红外
 - NFC
 
-### LAN
+### 局域网
 
-Local Area Network 局域网
+LAN, Local Area Network
 
 - 有线局域网
   > 淘汰：令牌环、FDDI、ARCNET  
@@ -41,15 +41,15 @@ Local Area Network 局域网
 
 ![20210725150926](http://image.zuoright.com/20210725150926.png)
 
-### MAN
+### 城域网
 
-Metropolitan Area Network 城域网
+MAN, Metropolitan Area Network
 
 ![20230512231928](http://image.zuoright.com/20230512231928.png)
 
-### WAN
+### 广域网
 
-Wide Area Network 广域网
+WAN, Wide Area Network
 
 通常为跨地区或者国家通信，比如某公司分布式办公，不同地区的主机间通过路由器和通信线路通信，组成通信子网
 
@@ -102,7 +102,7 @@ Interplanetary Internet
 
 跨越太空把网络连接起来
 
-## 协议参考模型
+## 网络协议
 
 互联网早期，为了把不同的网络链接起来，1983年推出了互联网协议套件(IPS)：TCP/IP
 
