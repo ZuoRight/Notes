@@ -512,7 +512,7 @@ python manage.py createsuperuser
 
 ```shell
 # 进入交互式命令行
-python manage.py shell
+python manage.py shell  # 可以安装ipython扩展使用体验更好的shell_plus
 
 # 重置用户密码
 from django.contrib.auth.models import User

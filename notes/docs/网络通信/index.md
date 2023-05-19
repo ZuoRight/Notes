@@ -1,74 +1,143 @@
 # 引言
 
-## 信号 Signal
+## 网络
 
-- 信息 message，文字图片音频视频等
-- 数据 data，使用特定符号序列表示的信息
-- 信号 signal，电气或电磁形式的数据
-  > 数字信号/离散信号：信号源产生的原始电信号，也叫基带信号  
-  > 模拟信号/连续信号：载波调制后的信号，也叫带通信号
+### BAN
 
-基带信号，即基本频带信号，包含很多低频，需要经过调制（modulation）才能远距离传输，有两种调制方式：基带调制、带通调制
+Body Area Network 体域网
 
-![20230516155718](http://image.zuoright.com/20230516155718.png)
+主要指无线传感器网络
 
-### 基带调制
+无线射频识别(RFID，Radio Frequency IDentification)技术则可以让日常物品也成为计算机网络的一部分
 
-不同离散值的基本波形称之为码元，可以用两种不同的码元表示二进制数字0和1
+### PAN
 
-基带调制，也叫编码，仅变换基带信号的波形，使其适应信道的特性，变换后依然是基带信号
+Persinal Area Network 个域网
 
-![20230516163043](http://image.zuoright.com/20230516163043.png)
+个人的电子设备间连接起来的网络，通常采用无线技术，所以也叫 WPAN（Wireless ～）
 
-### 带通调制
+- 蓝牙
+- USB
+- 红外
+- NFC
 
-带通调制，即利用载波，通过调制解调器将基带信号调制成特定带宽的高频信号，调制后为模拟信号，使其能在一段频率范围内通过信道，所以也叫带通信号，采用频分复用技术实现宽带传输，然后在接收端又将它解调回基带信号
+### LAN
 
-![20230516163609](http://image.zuoright.com/20230516163609.png)
+Local Area Network 局域网
 
-为了达到更高效的传输速率，通常采用更复杂的混合调制，比如正交振幅调制等
+- 有线局域网
+  > 淘汰：令牌环、FDDI、ARCNET  
+  > 现在：基于 IEEE 802.3 标准的以太网(Ethernet)  
+- 虚拟局域网 VLAN(Virtual ~) 主要用于逻辑分组  
+- 无线局域网 WLAN(Wireless ~)
+  > 基于 IEEE 802.11 标准的 Wi-Fi  
+- 存储网 SAN(Storage Area Network)，通常专用于服务器访问数据存储设备
 
-## 信道 Channel
+无线设备通过无线路由器等接入点连接到有线网络
 
-信道，即传送信息的通道
+![20230512112432](http://image.zuoright.com/20230512112432.png)
 
-- 物理信道
-  > 有线信道：双绞线、同轴电缆、光纤等  
-  > 无线信道：微波通信、电台广播、卫星通信等  
-  > 存储信道：通过硬盘等存储介质从某处向某处转移数据
-- 逻辑信道：抽象的信道
+交换机以特定的网络拓扑将不同的有线设备连接在一起组成有线局域网，即以太网，可以将物理局域网分成不同的逻辑局域网，即虚拟局域网
 
-### 信道的传输模式
+![20210725150926](http://image.zuoright.com/20210725150926.png)
 
-- 单工(simplex)：只能单向传输，一条信道，比如电台广播，信号只能从电台发给收音机，而收音机不能向电台发送信号
-- 半双工(half-duplex)：可以双向，两条信道，但不能同时传输，比如独木桥、单轨铁道
-- 全双工(full-duplex)：可以双向同时传输，两条信道，互不干扰，比如光纤
+### MAN
 
-有时单工也用于表示双向交替通信，注意区分
+Metropolitan Area Network 城域网
 
-### 多路复用
+![20230512231928](http://image.zuoright.com/20230512231928.png)
 
-- 频分多路复用FDM(Frequency Division Multiplexing)：不同线路占用不同的频率，比如电台广播
-- 时分多路复用TDM(Time Division Multiplexing)：类似十字路口红绿灯
-- 波分多路复用WDM(Wavelength Division Multiplexing)：光的频分复用
-- 码分多路复用CDM(Code Division Multiplexing)：线路间采用不同的编码方式使得端点可以在同一时间同一频段发送数据，CDMA(码分多址)就是这个思路
+### WAN
 
-## 通信模式
+Wide Area Network 广域网
 
-当两个以上通信端点（可以是网卡等硬件，也可以是软件程序）可构成一个网络，端点间通信会涉及如下几种方式
+通常为跨地区或者国家通信，比如某公司分布式办公，不同地区的主机间通过路由器和通信线路通信，组成通信子网
 
-- 广播(broadcast)：发给所有端点
-- 组播(multicast)：发给指定的多个端点
-- 单播(unicast)：发给指定的单个端点
-- 选播(anycast)：发给随机的单个端点
+网络服务由互联网服务提供商（ISP, Internet Service Provider）运营
 
-## 网络架构模式
+![20210725150016](http://image.zuoright.com/20210725150016.png)
 
-主机A的某个进程和主机B上的另一个进程进行通信
+大ISP自己建造通信线路，小ISP则向电信公司租用通信线路
 
-- P2P（Peer-to-Peer）不区分客户端和服务端，两台主机是对等关系
-- C/S（Client/Server）区分为客户端和服务端，客户端是主机上的程序
-- B/S（Browser/Server）区分为客户端端和服务端，客户端是浏览器
+主机必须有IP才能上网，机构和个人向某个ISP交纳规定的费用，即可从该ISP获取所需IP地址的使用权，便可通过该ISP提供的子网接入到互联网
+
+蜂窝/移动网络（Cellular / Mobile Network）是采用了无线技术的广域网
+
+- 2G
+  > GSM 全球移动通信系统  
+  > GPRS 通用数据包无线业务  
+- 3G
+  > UMTS 通用移动通信系统：WCDMA（宽带码分多址）、CDMA（码分多址）  
+  > HSPA  
+- 4G: LTE、LTE-A  
+- 5G: NR
+
+接入点为基站，基站间通过有线的骨干网连接在一起
+
+### 互联网
+
+Internet 音译：因特网，即互联网
+
+互联网使用ISP网络连接各种各样的网络，即网络的网络。
+
+按照规模大小通常可分为三级：骨干网（Backbone Network）、地区网、校园网/企业网/小区网
+
+不同规模的ISP骨干网之间通过互联网交换点（IXP, Internet eXchange Point）连接交换数据，相互连接的ISP彼此是对等的（Peer），最顶级的ISP称之为1级ISP。
+
+![20230512153113](http://image.zuoright.com/20230512153113.png)
+
+按用途划分
+
+- 公用网，即电信公司建造的大型网络
+  > 中国电信互联网 CHINANET  
+  > 中国联通互联网 UNINET  
+  > 中国移动互联网 CMNET  
+  > 中国教育和科研计算机网 CERNET  
+  > 中国科学技术网 CSTNNET
+- 专用网，为满足某个部门或机构而建造的专用网络，比如军队、铁路、银行、电力等
+
+### 星际互联网
+
+Interplanetary Internet
+
+跨越太空把网络连接起来
+
+## 协议参考模型
+
+互联网早期，为了把不同的网络链接起来，1983年推出了互联网协议套件(IPS)：TCP/IP
+
+在TCP/IP协议的基础之上，1984年ISO又推出了开放式系统互联模型：OSI(Open System Interconnection)
+
+OSI 总共分为七层，每一层明确了编号，描述的网络更加完整
+
+无论 TCP/IP 还是 OSI 都只是参考模型，并不是标准，无论是四层、五层、还是七层，本质都是一样的
+
+- 应用层｜业务层：L7～L5
+  > DNS  
+  > HTTP  
+  > SMTP
+- 运输层｜传输层：L4
+  > TCP  
+  > UDP
+- 网络层｜网际层｜IP层：L3
+  > IP
+- 网络接口层：L2～L1
+
+![20230515220926](http://image.zuoright.com/20230515220926.png)
+
+![网络分层模型](http://image.zuoright.com/网络分层模型.png)
+
+![20210808231312](http://image.zuoright.com/20210808231312.png)
+
+![20220103224646](http://image.zuoright.com/20220103224646.png)
+
+每一种链路层协议都规定了帧能传输的最大数据长度，即最大传输单元（MTU, Maximum Transmission Unit）
+
+![20230518083859](http://image.zuoright.com/20230518083859.png)
+
+以太网MTU一般默认为1500 Bytes，如果来自传输层的报文超过MTU，IP层则需要分段传输给MAC层。所以需要设置一个合适的段长度，称之为最大段长度（MSS, Maximum Segment Size），过大会导致IP分片传输，过小则网络利用率太低。
+
+`MTU = MSS + TCP首部(20B) + IP首部(20B) + 可选部分`
 
 ## 标准化组织
 
@@ -89,3 +158,7 @@
 - [Computer Networks](https://book.douban.com/subject/1229951/)
 - <https://en.wikipedia.org/wiki/Internet>
 - [PowerCert Animated Videos](https://www.youtube.com/c/PowerCertAnimatedVideos/featured)
+
+常见的拓扑结构（network topology）
+
+![20210725170757](http://image.zuoright.com/20210725170757.png)
