@@ -1,6 +1,6 @@
 # RPC
 
-RPC（Remote Procedure Call）远程服务调用
+RPC（Remote Procedure Call）远程服务调用，工作在会话层，基于 Socket
 
 ![20220404180919](http://image.zuoright.com/20220404180919.png)
 
