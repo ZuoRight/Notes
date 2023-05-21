@@ -1,64 +1,51 @@
-# 业务层
-
-## 网络架构模式
-
-主机A的某个进程和主机B上的另一个进程进行通信
-
-- P2P（Peer-to-Peer）不区分客户端和服务端，两台主机是对等关系
-- C/S（Client/Server）区分为客户端和服务端，客户端是主机上的程序
-- B/S（Browser/Server）区分为客户端端和服务端，客户端是浏览器
-
-## todo
-
-- 文件传输 FTP
-- 电子邮件 E-mail
-- 远程登录 Telnet
-- 万维网 WWW
+# HTTP
 
 HTTP(HyperText Transfer Protocol) 超文本传输协议
 
 - HTTP/1.1
-  - Port：80
-- HTTPS(HTTP+TLS)
-  - Port：443
-  - TLS(开源密码学工具包OpenSSL是SSL/TLS的具体实现)
-    - TLS 1.0/SSLv3.1
-    - TLS 1.1(2006)  
-    - TLS 1.2(2008)  
-    - **TLS 1.3(2018)**
+  > Port：80
+- HTTPS = HTTP + TLS
+  > Port：443
 - HTTP2/SPDY
-  - Port：协议沿用HTTP/HTTPS
-  - 效率：多路复用，头部使用了HPACK压缩算法
-  - 安全：强制使用TLSv1.2
+  > Port：协议沿用 HTTP/HTTPS
+  >
+  > 效率：多路复用，头部使用了HPACK压缩算法
+  >
+  > 安全：强制使用TLSv1.2
 - HTTP3/QUIC
-  - Port：没有指定默认端口号
-  - 效率：传输基于QUIC(Quick UDP Internet Connections)
-  - 安全：强制使用TLSv1.3
+  > Port：没有指定默认端口号
+  >
+  > 效率：传输基于QUIC(Quick UDP Internet Connections)
+  >
+  > 安全：强制使用TLSv1.3
 
-## 组成
+组成
 
 1. 起始行(HTTP/2中已废除)
 2. 头部
 3. 空行(CRLF，必须有，空行后面都会被当作实体)
 4. 实体(Entity/Body)
 
-### 起始行
+## 起始行
 
-请求行(GET / HTTP/1.1)
-状态行(HTTP/1.1 200 OK)
+- 请求行(GET / HTTP/1.1)
+- 状态行(HTTP/1.1 200 OK)
 
+```text
 - Method
 - URI
 - Version
 - Status Code
 - Reason
+```
 
-### Headers
+## Headers
 
-#### 伪头部
+### 伪头部
 
 方便管理和压缩，HTTP/2中用伪头部形式(:key)替代了起始行，废除了没用的Version和Reason
 
+```text
 - :scheme 协议
 - :authority 域名
 - :path 路径
@@ -96,9 +83,11 @@ HTTP(HyperText Transfer Protocol) 超文本传输协议
     - 501 表示还不支持，类似即将开业，敬请期待
     - 502 一般为网关或者代理服务器出错
     - 503 网络服务较忙，是一个临时状态(此时会出现Retry-After头告诉多久后重试)
+```
 
-#### 未分类
+### 未分类
 
+```text
 - 没啥用
   - User-Agent：用于描述客户端，但由于历史原因已经非常混乱，基本无用
     - Mozilla/Chrome/Safari/AppleWebKit
@@ -117,9 +106,11 @@ HTTP(HyperText Transfer Protocol) 超文本传输协议
   - Upgrade-Insecure-Requests 告诉服务器可以处理HTTPS协议，以后发请求的时候不用http而用https
   - Strict-Transport-Security 告诉浏览器必须使用HTTPS访问资源，但为了兼容HTTP协议，所以规定日期内浏览器需要自动把请求中的http转换为https协议发起请求，免去中间人攻击可能，少一次服务端重定向，加快连接速度
   - Retry-After 返回503错误时提示多久后重试
+```
 
 ### 内容相关
 
+```text
 - Date: 报文创建时间
 - Vary：记录服务器在内容协商过程中参考的字段
 - 内容类型(MIME type)
@@ -162,9 +153,11 @@ HTTP(HyperText Transfer Protocol) 超文本传输协议
   - Ranges: bytes=x-y
   - Content-Range: bytes x-y/length(总长度)
   - multipart/byteranges：表示实体由多段序列组成
+```
 
-#### Cookie相关(常用来标记用户或授权会话)
+### Cookie相关(常用来标记用户或授权会话)
 
+```text
 - Set-Cookie 服务端可以设置多个身份字段
   - Expires 过期时间
   - Max-Age 有效期(优先级高)
@@ -177,9 +170,11 @@ HTTP(HyperText Transfer Protocol) 超文本传输协议
     - Strict 只允许同站，禁止跨站发送
   - Secure 表示这个Cookie仅能用HTTPS协议加密传输
 - Cookie 客户端只有一个该字段，多个身份可以用分号分割
+```
 
-#### Cache相关
+### Cache相关
 
+```text
 - Cache-Control
   - 缓存有效期
     - max-age=n1：有效期n秒，<=0立即失效
@@ -212,13 +207,16 @@ HTTP(HyperText Transfer Protocol) 超文本传输协议
 - X-Cache：标识代理服务器缓存是否命中
 - X-Hit：标识代理服务器缓存的命中率
 - Pragma:no-cache 与Cache- Control:no-cache相同
+```
 
-#### Chrome特有头
+### Chrome特有头
 
+```text
 - Sec-Fetch-Dest: 请求的目的地是哪里
 - Sec-Fetch-Mode: 请求模式
 - Sec-Fetch-Site: 请求来源与目标之间的关系
 - Sec-Fetch-User: 用于判断触发方式是否合法(目的地为document时才有)
+```
 
 ## session
 
@@ -237,69 +235,20 @@ time：当前时间的时间戳
 sign：签名，使用hash/encrypt压缩成定长的十六进制字符串，防止恶意拼接
 固定参数：可选，避免重复
 
-## HTTPS
+## 认证 identification
 
-> 计算机科学领域里的任何问题，都可以通过引入一个中间层来解决，如果一个中间层不行，那就再加一个中间层。
+根据一些信息确认用户的身份，比如用户名密码，二维码，指纹等等
 
-HTTPS就是在HTTP和TCP之间增加了SSL/TLS协议，以此来提高数据传输的安全性。
+## 授权 authorization
 
-SSL/TLS最初叫做SSL(Secure Sockets Layer)，是由网景公司发明，经历了v1~v3版本的迭代，然后改名为TLS(Transport Layer Security)继续迭代，目前最常用版本为TLSv1.2。
+资源所有者授予执行者操作资源的权限
 
-TLS 主要由记录协议、警报协议、握手协议、以及密码变更协议四个子协议组成，然后还依赖一些开源的密码学底层库(比如最常用的OpenSSL)实现各种加密算法等
+授信媒介
 
-### TLS四次握手
+- session
+- cookies
+- token
 
-客户端会和服务端共同商议出使用什么对称加密算法
+## 鉴权 authentication
 
-> TLS 收发数据的基本单位：记录（record）
-
-具体的流程可以参照这个流程图来看
-
-![x](https://static001.geekbang.org/resource/image/10/7e/10315ffa19492462cadfbdfb3113987e.jpg)
-
-以上流程只有客户端对服务端做了认证，而服务端没有对客户端的身份做认证，称之为单向认证。但通常单向认证通过后就已经建立了安全通信，用账号、密码等手段就能够确认用户的真实身份。但为了防止账号、密码被盗，有时（比如网上银行）还会使用U盾给用户颁发客户端证书，实现“双向认证”，这样会更加安全。
-
-> 参考：[七次握手，九倍往返时延（RTT，Round-Trip Time）](https://draveness.me/whys-the-design-https-latency/)
-
-## 域名解析
-
-> 域名系统 DNS(Domain Name System)，是域名与IP地址相互映射的一个分布式数据库，域名地址有不同的记录类型，比如：A、CNAME、MX等，每种类型可以包含多条记录。
-
-浏览器通过URL解析出域名后，首先会查询本地DNS缓存（`/etc/hosts`），判断是否有该域名的地址记录，如果没有就会去查询本地DNS服务器。
-
-> 本地DNS缓存超过存活时间(TTL)后才会主动更新
-
-本地DNS服务器部署在网络服务商(ISP)的某个数据中心，到达这里也会先查询本地缓存
-
-> 本地DNS服务器是配置在本机操作系统中的，可以由用户手工设置，也可以DHCP（Dynamic Host Configuration Protocol 动态主机配置协议）自动分配，或者在拨号时从PPP服务器中自动获取。
-
-本地DNS服务器如果也没有，则会进行递归查询：根域名服务器、顶级域名服务器、权威域名服务器。
-
-> 基于UDP的DNS的分级查询意味着每一级都有可能受到中间人攻击的威胁，产生被劫持的风险。新出的基于HTTPS的HTTPDNS相对更加高效与安全。
-
-权威域名服务器根据访问者所处的不同地区（如华北、华南、东北等）、不同服务商（如电信、移动、联通等）等因素智能选择出某种记录类型对应的最合适的记录，返回给客户端。
-
-## 内容分发网络
-
-> CDN(Content Distribution Network) 内容分发网络
-
-内容分发，指的就是获取源站资源的过程，主要有两种方式：
-
-- 主动分发
-
-将内容从源站或者其他资源库推送到用户边缘的各个CDN缓存节点上，特别常用的资源甚至会直接缓存到手机APP的存储空间或者浏览器的localStorage中。
-
-- 被动回源
-
-由用户访问所触发全自动、双向透明的资源缓存过程，如果不是自建CDN，而是购买阿里云、腾讯云的CDN服务的站点，多数采用的就是这种方式。
-
-> CDN最初是为了快速分发静态资源而设计的，而如今CDN所能做的事情已经远远不止于此，比如：安全防御、协议升级、状态缓存、修改资源、访问控制等等
-
-仅从网络传输的角度看，一个互联网系统的传输速度取决于以下四点因素：
-
-1. 用户客户端接入网络运营商的链路所能提供的入口带宽
-2. 网站服务器接入网络运营商的链路所能提供的出口带宽
-3. 从网站到用户之间经过的不同运营商之间互联节点的带宽（一般来说两个运营商之间只有固定的若干个点是互通的，所有跨运营商之间的交互都要经过这些点）
-4. 从网站到用户之间的物理链路传输时延（爱打游戏的同学应该都清楚，延迟（Ping 值）比带宽更重要）
-
-以上四个网络问题，除了第一个只能通过换一个更好的宽带才能解决之外，其余三个都能通过内容分发网络来显著改善。
+验证权限

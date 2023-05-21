@@ -1,11 +1,10 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - index.md
-  - http.md
   - curl.md
   - postman.md
   - requests.md
   - aiohttp.md
   - httpx.md
   - websocket.md
+  - zerorpc.md
   - ...

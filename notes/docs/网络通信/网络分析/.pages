@@ -1,0 +1,11 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - index.md
+  - charles.md
+  - mitmproxy.md
+  - tcpdump.md
+  - wireshark.md
+  - android_tools.md
+  - cmd_tools.md
+  - jmeter.md
+  - ...
