@@ -3,5 +3,6 @@ nav:
   - index.md
   - http.md
   - https.md
+  - dns.md
   - rpc.md
   - ...
