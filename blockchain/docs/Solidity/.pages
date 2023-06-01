@@ -4,7 +4,7 @@ nav:
   - index.md
   - solc.md
   - 数据类型.md
-  - 引用类型.md
+  - 语句.md
   - 函数.md
   - tx.md
   - 合约.md

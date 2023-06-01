@@ -51,7 +51,8 @@ Hardhat-Network: 31337
 
 ### Sepolia
 
-- [https://sepoliafaucet.com](https://sepoliafaucet.com/)  1/24h
+- [https://sepoliafaucet.com](https://sepoliafaucet.com/)  0.5/24h
+- [https://www.infura.io/faucet/sepolia](https://www.infura.io/faucet/sepolia)  0.5/24h
 
 ## Ganache
 
@@ -72,6 +73,8 @@ ganache --help
 ```
 
 - 运行
+
+有Tx才会产生新的区块
 
 ```shell
 # 如果运行了UI需要关闭，否则可能会冲突

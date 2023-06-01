@@ -15,9 +15,9 @@ Docs: <https://remix-ide.readthedocs.io/en/latest/index.html>
 在线IDE：<https://remix.ethereum.org>
 
 ```Plain text
-红色按钮表示可以向合约支付，即payable
-橙色按钮表示需要支付Gas
-蓝色按钮表示不需要支付Gas
+蓝色按钮表示只读方法，不需要支付Gas，可变性为view或pure的函数，或者状态变量
+橙色按钮表示写入方法，需要支付Gas
+红色按钮表示可以向合约支付，可变性为payable的函数
 ```
 
 本地开发可使用：`VSCode + Solidity插件 + Brownie等框架`
@@ -74,18 +74,55 @@ contract Coin {
 }
 ```
 
-## 初始值
+## 常量
 
-在solidity中，声明但没赋值的变量都有它的初始值或默认值
+常量在被合约调用时所消耗的Gas要比变量少
+
+```js
+uint public constant MY_NUMBER = 777;
+address public constant MY_ADDRESS = 0xabc123...;
+```
+
+## 变量
+
+### 状态变量（state variable）
+
+在合约内、函数外声明，状态变量数据默认存储在链上，即 `storage`，所有合约内函数都可以访问
+
+### 局部变量（local variable）
+
+在函数内声明，仅在函数执行过程中有效，存储在虚拟机内存里，即 `memory`，不上链
+
+### 全局变量（global variable）
+
+预留关键字，无需声明，可直接使用
+
+```js
+block.number: (uint)  // 当前区块高度
+block.timestamp: (uint)  // 当前区块的时间戳
+block.coinbase: (address payable)  // 当前区块矿工的地址
+block.gaslimit: (uint)  // 当前区块的gaslimit
+
+msg.sender: (address payable)  // 调用者地址 caller
+msg.sender.balance  // 进行交易的用户的余额，如果msg.sender是另一个合约，那么它是另一个合约的余额
+msg.sig: (bytes4)  // calldata的前四个字节 (function identifier)
+msg.value: (uint)  // 当前交易发送的wei值
+msg.data: (bytes calldata)  // 完整call data
+```
+
+## 变量默认初始值
+
+在solidity中，声明但没赋值的变量都有它的默认初始值
 
 `delete x` 方法可以让变量恢复为初始值
 
 ```js
 bool public _bool; // false
 string public _string; // ""
-int public _int; // 0
 uint public _uint; // 0
-address public _address; // 0x0000000000000000000000000000000000000000
+int public _int; // 0
+address public _address; // 20Bytes，十六进制40个0，0x0000000000000000000000000000000000000000
+bytes32 public b32;  // 32Bytes，十六进制64个0，0x000...000
 
 enum ActionSet { Buy, Hold, Sell}
 ActionSet public _enum; // 第一个元素 0
@@ -97,6 +134,7 @@ function fe() external{} // external空白方程
 uint[8] public _staticArray; // 所有成员设为其默认值的静态数组[0,0,0,0,0,0,0,0]
 uint[] public _dynamicArray; // `[]`
 mapping(uint => address) public _mapping; // 所有元素都为其默认值的mapping
+
 // 所有成员设为其默认值的结构体 0, 0
 struct Student{
     uint256 id;
