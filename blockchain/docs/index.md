@@ -44,12 +44,6 @@ Ethereum：[Etherscan](https://etherscan.io/)
 - [Block Detail](https://info.etherscan.com/exploring-block-details-page/)
 - [Transaction](https://info.etherscan.com/understanding-an-ethereum-transaction/)
 
-## Web3
-
-- Web1.0 所见即所得
-- Web2.0 所荐即所得
-- Web3.0 所建即所得
-
 ## 提案
 
 加密货币钱包相关的技术实现规范主要来自于提案
