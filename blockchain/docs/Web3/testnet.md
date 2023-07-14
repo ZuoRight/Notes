@@ -23,6 +23,10 @@
 
 ## Chain ID
 
+Chain ID 是在 EIP-155 中引入的，以防止主 ETH 和 ETC 链之间的重放攻击
+
+> 在 EIP-155 之后，ETH 的 chainID 为 1 ，而 ETC 的 chainID 为 61，但它们具有相同的网络 ID 1
+
 通过在签名信息中加入Chain ID， 避免一个交易在签名之后被重复在不同的链上提交。
 
 可以通过 Chainlist 网站查询 Chain ID：<https://chainlist.org/?search=eth&testnets=true> (old url: chainid.network)
@@ -45,14 +49,16 @@ Hardhat-Network: 31337
 以太坊2.0后有些测试网已经废弃，Goerli将会是最主要的POS测试网，像Uniswap、OpenSea等大项目都在Goerli测试网搭建了测试环境，但是Goerli测试网代币比较难搞，水龙头比较稀缺
 
 - [https://goerlifaucet.com](https://goerlifaucet.com/)  0.2eth/24h
-- [https://goerlifaucet.org](https://goerlifaucet.org/)  0.2eth/24h
+- [https://goerlifaucet.org](https://goerlifaucet.org/)  0.2eth/24h 
 - [https://goerli-faucet.pk910.de](https://goerli-faucet.pk910.de/)  挖矿获取，攒够0.01即可提取
 - [https://faucet.quicknode.com/drip](https://faucet.quicknode.com/drip)  1eth/12h
 
 ### Sepolia
 
-- [https://sepoliafaucet.com](https://sepoliafaucet.com/)  0.5/24h
-- [https://www.infura.io/faucet/sepolia](https://www.infura.io/faucet/sepolia)  0.5/24h
+- <https://sepoliafaucet.com>  0.5/24h 推荐
+- <https://access.rockx.com/faucet-sepolia>  0.5/24h 比较麻烦
+- <https://www.infura.io/faucet/sepolia>  0.5/24h，需要主网有0.001ETH
+- <https://sepolia-faucet.pk910.de>  2.5/12h，Pow 挖矿，耗费GPU
 
 ## Ganache
 

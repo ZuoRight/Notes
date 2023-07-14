@@ -4,7 +4,9 @@
 - Web2.0 所荐即所得
 - Web3.0 所建即所得
 
-[架构参考](https://www.preethikasireddy.com/post/the-architecture-of-a-web-3-0-application)
+## 架构
+
+> [参考文章](https://www.preethikasireddy.com/post/the-architecture-of-a-web-3-0-application)
 
 ![20230610215948](http://image.zuoright.com/20230610215948.png)
 

@@ -182,7 +182,7 @@ EIP-1599之后，即 2021.8 伦敦升级后的新方式，将 `Fees` 改为 `Bas
 
 ![20230508223644](http://image.zuoright.com/20230508223644.png)
 
-`Base Fee` 最终会被燃烧掉(Burnt)，在交易中需要设置 `Max Fee`，剩余的(Savings Fees)会退还回来：`Max Fee - Max Priority Fee - Base Fee`
+`Base Fee` 最终会被燃烧掉(Burnt)，在交易中需要设置 `Max Fee`，剩余的(`Savings Fees`)会退还回来：`Max Fee - Max Priority Fee - Base Fee`
 
 > 之所以叫 Savings Fees 大概是因为传统方式时的 Fees 用于合约操作剩下的都会被当作矿工小费，不会退还
 
@@ -191,7 +191,8 @@ EIP-1599之后，即 2021.8 伦敦升级后的新方式，将 `Fees` 改为 `Bas
 `Gas Limit` 用于限制 Gas 的最高消耗量，最低为 `21000`
 
 ```python
-Transaction_Fee = (Base + Max_Priority) * Usage_by_Txn = Gas_Price * Usage_by_Txn
+Transaction_Fee = Gas_Price * Usage_by_Txn
+Gas_Price ≤ Base + Max_Priority
 Burnt = Base * Usage_by_Txn
 ```
 
