@@ -50,6 +50,8 @@ sys.path.append(rootPath)
 
 > <https://picgo.github.io/PicGo-Core-Doc/zh/guide/>
 
+七牛云-密钥管理：<https://portal.qiniu.com/user/key>
+
 ![20210808174641](http://image.zuoright.com/20210808174641.png)
 
 - 从剪切板上传：++cmd+opt+u++（Windows用++alt++替代++opt++）
