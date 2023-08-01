@@ -48,17 +48,18 @@ Hardhat-Network: 31337
 
 以太坊2.0后有些测试网已经废弃，Goerli将会是最主要的POS测试网，像Uniswap、OpenSea等大项目都在Goerli测试网搭建了测试环境，但是Goerli测试网代币比较难搞，水龙头比较稀缺
 
-- [https://goerlifaucet.com](https://goerlifaucet.com/)  0.2eth/24h
-- [https://goerlifaucet.org](https://goerlifaucet.org/)  0.2eth/24h 
-- [https://goerli-faucet.pk910.de](https://goerli-faucet.pk910.de/)  挖矿获取，攒够0.01即可提取
-- [https://faucet.quicknode.com/drip](https://faucet.quicknode.com/drip)  1eth/12h
+- <https://goerli-faucet.pk910.de>  1/12h PoW挖矿获取
+- <https://chaineye.tools/faucet>  0.1/24h 需要Twitter验证
+- <https://goerlifaucet.com>  0.02/24h 需要主网有0.0001ETH
+- <https://faucet.quicknode.com/drip>  0.1/12h 需要主网有0.0001ETH，到账时间太慢
+- <https://testnetbridge.com/>  付费购买，0.11U/ETH
 
 ### Sepolia
 
 - <https://sepoliafaucet.com>  0.5/24h 推荐
 - <https://access.rockx.com/faucet-sepolia>  0.5/24h 比较麻烦
 - <https://www.infura.io/faucet/sepolia>  0.5/24h，需要主网有0.001ETH
-- <https://sepolia-faucet.pk910.de>  2.5/12h，Pow 挖矿，耗费GPU
+- <https://sepolia-faucet.pk910.de>  2.5/12h，PoW 挖矿，耗费GPU
 
 ## Ganache
 
