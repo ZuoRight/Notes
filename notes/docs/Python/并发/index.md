@@ -57,7 +57,7 @@ if cpu_heavy:
 else:
     # 如果 I/O 操作很快，任务量有限
     if io_slow:
-        print('使用多线程即可 multi-threading')
+        print('使用多线程 multi-threading')
     # 如果 I/O 操作很慢
     else:
         print('则需要协程 Asyncio')

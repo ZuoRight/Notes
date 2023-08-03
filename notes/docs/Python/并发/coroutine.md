@@ -32,9 +32,21 @@ Get the second response.
 
 Python v3.4之前需要通过第三方库`gevent`以同步逻辑来书写异步程序
 
-Python v3.4引入异步IO标准库`asyncio`：<https://docs.python.org/3/library/asyncio.html>
+Python v3.4引入异步IO标准库 `asyncio`：<https://docs.python.org/3/library/asyncio.html>
 
-## 基于生成器的协程
+asyncio 是单进程单线程的，不存在系统级上下文切换，即同时只能执行一个任务，它只是利用了等待时间来实现并发，核心是 event_loop，它决定了在众多可执行任务中选择执行哪一个，当一个任务结束时需要主动告诉 event_loop 可以让其它任务开始了，所以不存在竞争冒险的问题
+
+asyncio 适用于需要等待的任务，比如网络通信，如果没有等待的话，则协程并没有什么作用
+
+```python
+# 检查是否是协程类型
+from collections.abc import Coroutine, Generator
+
+isinstance(cor, Coroutine)  # True
+isinstance(cor, Generator)  # False
+```
+
+## 基于生成器的协程（旧）
 
 基于生成器的协程是 async/await 语法的前身，使用 `yield from` 语句创建的生成器可以等待Future和其他协程
 
@@ -58,15 +70,14 @@ loop.run_until_complete(cor)
 loop.close()
 ```
 
-## async/await
+## async/await（新）
 
-Py v3.5 版本引入了`async`和`await`关键字来分别替代`@asyncio.coroutine`和`yield from`
+Python v3.5 版本引入了 `async` 和 `await` 关键字，来分别替代 `@asyncio.coroutine` 和 `yield from`
 
-- `async` 定义协程的关键字
-- `await` 用于挂起阻塞的异步调用接口，后接coroutine/future对象
-- `coroutine` 协程对象，使用关键字`async`声明的函数，需要注册到事件循环中被调用，被调用时会返回一个协程对象
+- `coroutine` 协程函数，使用关键字 `async` 声明的函数，需要注册到事件循环中被调用，被调用时会返回一个协程对象
 - `event_loop` 事件循环，当满足事件发生时会调用被注册到事件循环的协程函数
-- `Task` 任务是对协程的进一步封装，封装为一个Future对象
+- `await` 用于挂起阻塞的异步调用接口，后可接 coroutine、task、future
+- `Task` 任务是对协程的进一步封装，封装为一个 Future 对象
 - `Future` 是Task的父类，代表将来执行或没执行的任务的结果
 
 状态
@@ -78,64 +89,70 @@ Py v3.5 版本引入了`async`和`await`关键字来分别替代`@asyncio.corout
 
 ```python
 import asyncio
+import time
 
-# 定义协程函数
-async def demo(name):
-    await asyncio.sleep(1)  # 工具函数，模拟IO阻塞，返回协程对象
-    print(f"Hello, {name}")
 
-cor = demo("7c")  # <coroutine object>，调用并不会运行函数
+# coroutine function
+async def demo(delay, text):
+    await asyncio.sleep(delay)  # 模拟IO阻塞，返回协程对象
+    print(text)
 
+
+# await coroutine object, 其实是同步的，需要等6s
+async def main1():
+    print(time.strftime("%X"))
+
+    await demo(1, "aaaa")
+    await demo(2, "bbbb")
+    await demo(3, "cccc")
+
+    print(time.strftime("%X"))
+
+
+# await task, 是异步的，只需要等3s
+async def main2():
+    # 把 coroutine object 变成 task
+    task1 = asyncio.create_task(demo(1, "aaaa"))
+    task2 = asyncio.create_task(demo(2, "bbbb"))
+    task3 = asyncio.create_task(demo(3, "cccc"))
+
+    print(time.strftime("%X"))
+
+    await task1  # 可以得到返回值
+    await task2
+    await task3
+
+    # 将多个任务注册到 event_loop 可简化为
+    # await asyncio.gather(task1, task2, task3)
+
+    print(time.strftime("%X"))
+
+
+# 简化
+async def main3():
+    tasks = [demo(1, "aaaa"), demo(2, "bbbb"), demo(3, "cccc")]
+
+    print(time.strftime("%X"))
+
+    # gather可以直接将 coroutine object 转为 task，可省略 create_task()
+    result_list = await asyncio.gather(*tasks)  # 以list形式按序返回各task的值
+
+    """
+    也可以用 await asyncio.wait(tasks) 方式，但其将在 Python 3.11 版本移除
+    """
+
+    print(time.strftime("%X"))
+
+
+# 与普通函数不同，调用协程函数并不会运行它，而是返回协程对象
+coro = main3()
+
+# 从正常的 synchronize 模式切换到 asynchronize 模式，即进入 event_loop，开始控制整个程序的状态
+asyncio.run(coro)
 """
-loop = asyncio.get_event_loop()  # 定义事件循环对象
-task = loop.create_task(cor)  # 将协程注册到事件循环任务
-loop.run_until_complete(task)  # 触发事件循环执行任务
-"""
-asyncio.run(cor)  # 运行协程函数，等同于上面三行代码
-
-# 检查是否是协程 Coroutine 类型
-from collections.abc import Coroutine, Generator
-print(isinstance(cor, Coroutine))  # True
-print(isinstance(cor, Generator))  # False
-```
-
-多任务
-
-```python
-import asyncio
-
-# 协程函数
-async def do_some_work(x):
-    print('Waiting: ', x)
-    await asyncio.sleep(x)
-    return 'Done after {}s'.format(x)
-
-# 协程对象
-coroutine1 = do_some_work(1)
-coroutine2 = do_some_work(2)
-coroutine3 = do_some_work(4)
-
-# 将协程转成任务列表
-tasks = [
-    asyncio.ensure_future(coroutine1),
-    asyncio.ensure_future(coroutine2),
-    asyncio.ensure_future(coroutine3)
-]
-
-loop = asyncio.get_event_loop()
-
-"""将多个协程注册到一个事件循环中"""
-loop.run_until_complete(asyncio.wait(tasks))  # 方式1
-loop.run_until_complete(asyncio.gather(*tasks))  # 方式2
-
-
-"""
-dones, pendings = await asyncio.wait(tasks)
-for task in tasks:
-    print('Task ret: ', task.result())
-
-results = await asyncio.gather(*tasks)
-for result in results:
-    print('Task ret: ', result)
+等同于以下三行代码
+loop = asyncio.get_event_loop()  # 定义 event_loop
+task = loop.create_task(coro)  # 将协程对象注册到 event_loop，返回 future
+loop.run_until_complete(task)  # 触发 event_loop 执行任务
 """
 ```
