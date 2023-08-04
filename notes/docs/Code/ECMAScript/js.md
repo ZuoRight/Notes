@@ -1,26 +1,5 @@
 # JavaScript
 
-## 参考
-
-- <https://zh.javascript.info/>
-- <https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics>
-
-## 变量
-
-JS早期设计失误，并未强求用var申明，没有被var申明默认为全局变量，会带来一定的麻烦
-
-后来推出严格模式（源码第一行加上 'use strict';），强制var申明，在 `class` 和 `module` 中的代码会默认使用严格模式
-
-不过ES6之后推荐使用 let 来声明
-
-```js
-let x = "hello world"  // JS语句可以用`;`结尾，也可以忽略
-let [x, y, z] = ['hello', 'JavaScript', 'ES6'];  // 解构赋值：同时给多个变量赋值
-const PI=3.14;
-
-console.log(x)  // 打印
-```
-
 运行脚本：`node demo.js`
 
 ## 数据类型
@@ -299,3 +278,8 @@ export function foo() {
 
 import {foo} from '模块文件的位置';
 ```
+
+## 参考
+
+- <https://zh.javascript.info/>
+- <https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics>

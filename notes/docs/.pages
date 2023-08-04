@@ -1,14 +1,13 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - 计算机基础
+  - Computer
   - OS
-  - 编程基础
+  - Basic
+  - Code
   - Network
-  - Python
-  - ECMAScript
-  - Web开发
-  - 数据管理
+  - Web
+  - Data
   - Docker
   - DevOps
   - Testing
