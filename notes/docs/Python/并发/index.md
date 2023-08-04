@@ -45,6 +45,28 @@ CPU和内存的处理速度远远高于磁盘/外设，比如CPU输出100M的数
 - 阻塞：是指应用程序在执行 I/O 操作后，如果没有获得响应，就会阻塞当前线程，不能执行其他任务
 - 非阻塞：是指应用程序在执行 I/O 操作后，不会阻塞当前的线程，可以继续执行其他的任务，然后被回调
 
+同步运行方式
+
+```plain text
+Make the first request.
+Wait.
+Get the first response.
+
+Make the second request.
+Wait.
+Get the second response.
+```
+
+异步运行方式
+
+```plain text
+Make the first request.
+Make the second request.
+Wait, event loop.
+Get the first response.
+Get the second response.
+```
+
 ## 选择
 
 理论上最高效的方式是：多进程 + 协程

@@ -1,27 +1,5 @@
 # 协程 Coroutine
 
-同步运行方式
-
-```plain text
-Make the first request.
-Wait.
-Get the first response.
-
-Make the second request.
-Wait.
-Get the second response.
-```
-
-异步运行方式
-
-```plain text
-Make the first request.
-Make the second request.
-Wait, event loop.
-Get the first response.
-Get the second response.
-```
-
 协程被创造出来是用来解决异步任务的，核心概念就是函数或者一段程序能够被挂起，稍后在挂起的位置恢复，挂起和恢复是可控制的。
 
 线程属于系统级别调度，而协程是程序员级别的调度。在协程中控制共享资源不需要锁机制，只需要判断状态就好了，减少了线程上下文切换的开销，由此可以提高性能。
@@ -30,13 +8,13 @@ Get the second response.
 
 用协程代替多线程和多进程是一个很好的选择，因为它吸引人的特性：主动调用/退出，状态保存，避免cpu上下文切换等。
 
-Python v3.4之前需要通过第三方库`gevent`以同步逻辑来书写异步程序
+Python v3.4 之前需要通过第三方库 `gevent` 以同步逻辑来书写异步程序
 
-Python v3.4引入异步IO标准库 `asyncio`：<https://docs.python.org/3/library/asyncio.html>
+Python v3.4 引入异步IO标准库 `asyncio`：<https://docs.python.org/3/library/asyncio.html>
 
 asyncio 是单进程单线程的，不存在系统级上下文切换，即同时只能执行一个任务，它只是利用了等待时间来实现并发，核心是 event_loop，它决定了在众多可执行任务中选择执行哪一个，当一个任务结束时需要主动告诉 event_loop 可以让其它任务开始了，所以不存在竞争冒险的问题
 
-asyncio 适用于需要等待的任务，比如网络通信，如果没有等待的话，则协程并没有什么作用
+asyncio 适用于需要等待的任务，比如网络通信（通常搭配 `aiohttp` 一起使用），如果没有等待的话，则协程并没有什么作用
 
 ```python
 # 检查是否是协程类型
@@ -94,6 +72,7 @@ import time
 
 # coroutine function
 async def demo(delay, text):
+    # 将task的控制权交给event_loop
     await asyncio.sleep(delay)  # 模拟IO阻塞，返回协程对象
     print(text)
 
@@ -112,6 +91,12 @@ async def main1():
 # await task, 是异步的，只需要等3s
 async def main2():
     # 把 coroutine object 变成 task
+    """
+    创建异步任务有三种方式
+    recommended: asyncio.create_task()
+    low-level: asyncio.ensure_future()
+    low-level: loop.create_task()
+    """
     task1 = asyncio.create_task(demo(1, "aaaa"))
     task2 = asyncio.create_task(demo(2, "bbbb"))
     task3 = asyncio.create_task(demo(3, "cccc"))
@@ -150,9 +135,10 @@ coro = main3()
 # 从正常的 synchronize 模式切换到 asynchronize 模式，即进入 event_loop，开始控制整个程序的状态
 asyncio.run(coro)
 """
-等同于以下三行代码
+等同于以下两行代码
 loop = asyncio.get_event_loop()  # 定义 event_loop
-task = loop.create_task(coro)  # 将协程对象注册到 event_loop，返回 future
-loop.run_until_complete(task)  # 触发 event_loop 执行任务
+loop.run_until_complete(coro)  # 触发 event_loop 执行任务
 """
 ```
+
+![20230804120924](https://image.zuoright.com/20230804120924.png)
