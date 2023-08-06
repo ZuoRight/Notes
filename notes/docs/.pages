@@ -2,9 +2,8 @@
 nav:
   - index.md
   - Computer
-  - Program
   - Network
-  - Web
+  - Program
   - Data
   - Docker
   - DevOps
