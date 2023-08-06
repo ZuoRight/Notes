@@ -83,14 +83,15 @@ sudo ln -s "$(which npm)" /usr/bin/npm
 ```shell
 node --version  # 查看版本
 node demo.js  # 运行脚本
-node  # 进入node环境
-```
 
-依赖项：`node_modules/...`
+node  # 进入交互式环境 REPL（Read-Eval-Print Loop），类似于浏览器的控制台
+```
 
 ## 包
 
 包是一个目录，其中包含一个名为 `package.json` 的文件，描述了包的名称、版本、内容，依赖等
+
+> 使用 node 安装的包通常存放在：`node_modules/...`
 
 ```shell
 # 初始化，生成 package.json
@@ -198,4 +199,33 @@ yarn up [package]  # 更新
 yarn remove [package]  # 移除
 
 yarn list  # 查看安装的包，不带global看不到全局的包
+```
+
+## 导入/导出
+
+JS本身是没有模块的概念，ES6 引入的模块不是对象，而是通过 export 命令显式指定输出的代码，再通过 import 命令引入。
+
+- `require`
+
+用于在 Node.js 中导入模块的函数，属于同步操作
+
+```js
+// lib.js
+module.exports = 'Hello!';  // 导出模块
+
+// app.js
+let message = require('./lib');  // 导入模块
+console.log(message);  // 输出 'Hello!'
+```
+
+- `import`
+
+用于在 ES6 中导入模块的新关键字，属于异步操作
+
+```js
+export function foo() {
+    pass
+};
+
+import {foo} from '模块文件的位置';
 ```
