@@ -1,4 +1,4 @@
-# C 语言
+# C
 
 > [C语言免费教程](https://wangdoc.com/clang/intro.html)
 >

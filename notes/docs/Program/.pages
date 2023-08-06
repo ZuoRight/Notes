@@ -1,8 +1,8 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - Basic
   - Edit
+  - Compile
   - verilog.md
   - asm.md
   - c.md
@@ -10,7 +10,7 @@ nav:
   - go.md
   - Python
   - ECMAScript
-  - 框架
-  - 模版
   - algorithm
+  - Web框架
+  - Web模版
   - ...
