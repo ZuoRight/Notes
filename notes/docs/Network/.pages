@@ -1,11 +1,9 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - L1.md
-  - L2.md
-  - L3.md
-  - L4.md
+  - 网络协议
   - 业务层
+  - 抓包
   - 网络管理.md
   - Nginx.md
   - 负载均衡.md
