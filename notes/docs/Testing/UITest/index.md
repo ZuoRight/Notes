@@ -1,4 +1,6 @@
-# POM
+# 引言
+
+## POM
 
 Page Object Model，是自动化页面测试(AUI)中流行的一种设计模式，最早由[Martin Fowler](https://martinfowler.com/bliki/PageObject.html)提出，被[Selenium](https://www.selenium.dev/documentation/zh-cn/guidelines_and_recommendations/page_object_models/)所接受并推广。
 

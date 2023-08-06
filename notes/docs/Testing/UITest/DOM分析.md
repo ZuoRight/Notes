@@ -4,7 +4,7 @@
 
 ### PC端
 
-浏览器DevTools
+浏览器 DevTools
 
 ### 移动原生应用
 
@@ -12,17 +12,17 @@
 
 需要基于jdk1.8版本
 
-- Appium Desktop自带inspector
+- Appium Desktop 自带的 inspector
 
-需要先配置Desired Capabilities
+需要先配置 Desired Capabilities
 
 - [weditor](https://github.com/alibaba/web-editor)
 
-阿里openatx团队开发的辅助工具
+阿里 openatx 团队开发的辅助工具
 
 `pip install -U weditor`
 
-命令行执行`weditor`，在自动打开的浏览器页面输入设备序列号，或ip:5555（需要先`adb tcpip 5555`开启无线连接端口）
+命令行执行 `weditor`，在自动打开的浏览器页面输入设备序列号，或 ip:5555（需要先 `adb tcpip 5555` 开启无线连接端口）
 
 ### WebView页面
 
@@ -38,7 +38,7 @@
 
 XML Path Language，适用于XML、HTML DOM、APP DOM等结构。
 
-```palin
+```xpath
 @属性
 
 /div/p[1]  div子元素的第一个p元素
@@ -104,7 +104,7 @@ div:read-only  匹配设置了readonly属性的元素，注意要加read和only�
 
 - Document
 
-```javascript
+```js
 ele = document.getElementById('id')
 ele = document.querySelector('css')
 ele = document.querySelectorAll('css')
@@ -116,7 +116,7 @@ ele.textContent
 
 - JQuery
 
-```javascript
+```js
 ele = $('css selector')
 ele = $x('xpath')
 
