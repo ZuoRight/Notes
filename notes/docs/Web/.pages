@@ -1,6 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - browser.md
   - 网络请求
   - 异步
   - 框架

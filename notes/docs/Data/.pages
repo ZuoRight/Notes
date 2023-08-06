@@ -4,5 +4,6 @@ nav:
   - DB
   - tablib.md
   - pillow.md
+  - pandas.md
   - 数据分析.md
   - ...
