@@ -2,9 +2,9 @@
 nav:
   - index.md
   - function.md
-  - object.md
-  - ts.md
-  - nodejs.md
-  - browser.md
+  - class.md
   - DOM.md
+  - nodejs.md
+  - ts.md
+  - browser.md
   - ...
