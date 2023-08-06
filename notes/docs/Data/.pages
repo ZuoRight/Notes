@@ -2,7 +2,6 @@
 nav:
   - 序列化
   - DB
-  - MQ
   - tablib.md
   - pillow.md
   - 数据分析.md
