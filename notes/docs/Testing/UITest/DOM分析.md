@@ -1,7 +1,5 @@
 # DOM分析
 
-Document Object Model
-
 ## 分析工具
 
 ### PC端

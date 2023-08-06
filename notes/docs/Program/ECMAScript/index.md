@@ -129,7 +129,7 @@ y.obj.a = 2;  // 不会影响 x.obj.a
 
 ### Array
 
-与 Python 的 list 一样，可以包含不同类型的元素，如果用 const 声明，等价于 Python 的 tuple
+与 Python 的 list 一样，可以包含不同类型的元素
 
 ```js
 // 没有元素的空数组
@@ -323,12 +323,6 @@ do {
 ```js
 if (i === 2) break;  // 终止整个循环
 if (i === 2) continue;  // 中止本次循环
-```
-
-### 错误处理
-
-```js
-try ... catch ... finally
 ```
 
 ## 参考

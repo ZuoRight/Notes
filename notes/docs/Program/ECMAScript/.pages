@@ -3,8 +3,6 @@ nav:
   - index.md
   - function.md
   - class.md
-  - DOM.md
   - nodejs.md
   - ts.md
-  - browser.md
   - ...

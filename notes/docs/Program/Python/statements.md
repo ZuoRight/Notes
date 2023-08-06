@@ -343,25 +343,35 @@ else:
     expression
 ```
 
-## try语句
+## 控制循环
+
+- pass
+
+用于占位
+
+- continue
+
+中止当前循环，继续执行下一次循环
+
+- break
+
+终止整个循环，但只能结束当前层循环
+
+如果想结束所有循环（类似c语言中的goto语句），可以在最外层设置一个flag，让内部控制
 
 ```python
-try:
-    pass  # 可能会出错的地方
-except Xxx1Error as e1:
-    print(e1)
-except Xxx2Error as e2:
-    print(e2)
-except (Xxx3Error,Xxx4Error) as es:
-    print("可以同时捕获多个异常")
-except Exception as e:
-    print('通用异常，可匹配任意异常')
-except:
-    print("如果不写异常名称，将匹配所有异常")
-else:
-    print("如果没有异常则执行")
-finally:
-    print("不管有没有异常最后都会执行")
+# 设置一个flag，默认为False
+flag = False
+
+for i in range(10):
+    if flag:
+        break  # 跳出外部循环
+
+    for j in range(10):
+        if j==7:
+            flag = True
+            break  # 跳出内部循环
+        print(i,j)
 ```
 
 ## with 语句
@@ -444,47 +454,4 @@ with A() as a, B() as b:
 with A() as a:
     with B() as b:
         SUITE
-```
-
-## 简单语句
-
-### raise 抛出异常
-
-### assert 断言
-
-```python
-assert n != 0, "n is zero"  # n如果等于0则抛出次错误提示
-
-assert A and B and C  # 会从做到有断言，只要断言失败，就不会再继续向右继续断言
-# 但是更建议分开写
-```
-
-### continue
-
-结束当前这次循环，继续执行下一次循环
-
-- break
-
-结束当前整个循环，但只能结束当前层循环
-
-如果想结束所有循环（类似c语言中的goto语句），可以在最外层设置一个flag，让内部控制
-
-### pass
-
-用于占位
-
-```python
-# 设置一个flag，默认为False
-flag = False
-for i in range(10):
-    # 跳出外部循环
-    if flag:
-        break
-
-    for j in range(10):
-        if j==7:
-            flag = True
-            # 跳出内部循环
-            break
-        print(i,j)
 ```

@@ -2,9 +2,7 @@
 nav:
   - curl.md
   - postman.md
-  - requests.md
-  - aiohttp.md
-  - httpx.md
-  - websocket.md
-  - zerorpc.md
+  - Python
+  - JS
+  - 并发
   - ...

@@ -1,13 +1,5 @@
 # 浏览器
 
-- BOM 浏览器对象模型
-
-提供了独立于内容而与浏览器窗口进行交互的对象。描述了与浏览器进行交互的方法和接口，可以对浏览器窗口进行访问和操作，譬如可以弹出新的窗口，改变状态栏中的文本，对Cookie的支持，IE还扩展了BOM，加入了ActiveXObject类，可以通过js脚本实例化ActiveX对象等等
-
-- DOM 文档对象模型
-
-DOM是针对HTML和XML的基于树的API，把整个页面规划成由节点层级构成的文档，描述了处理网页内容的方法和接口，DOM定义了一个HTMLDocument和HTMLElement做为这种实现的基础
-
 ## 内核
 
 浏览器内核分成两部分：渲染引擎和JS脚本引擎，由于脚本引擎越来越独立，内核就倾向于只指渲染引擎
@@ -136,35 +128,3 @@ WebSQL 与 IndexedDB 都是最新的 HTML5 本地缓存技术，相比于 Web St
 ```
 
 ![20220811131255](http://image.zuoright.com/20220811131255.png)
-
-## 提交表单
-
-### 方式1
-
-```html
-<form id="test">
-    <input type="text" name="test">
-    <button type="button" onclick="doSubmitForm()">Submit</button>
-</form>
-
-<script>
-function doSubmitForm() {
-    var form = document.getElementById('test-form');
-    // 可以在此修改form的input
-    form.submit();  // js提交form，但通常不建议这样
-    return true;  // 而是返回true，用form自己的onsubmit方法提交
-}
-</script>
-```
-
-### 方式2：AJAX
-
-Web的运作原理：一次HTTP请求对应一个页面。
-
-如果要让用户留在当前页面中，同时发出新的HTTP请求，就必须用JavaScript发送这个新请求，接收到数据后，再用JavaScript更新页面，这样一来，用户就感觉自己仍然停留在当前页面，但是数据却可以不断地更新。
-
-AJAX全称：Asynchronous JavaScript and XML，意思就是用JavaScript执行异步网络请求，在现代浏览器上写AJAX主要依靠XMLHttpRequest对象。
-
-## 方式3：Promise
-
-Promise有各种开源实现，比如axios

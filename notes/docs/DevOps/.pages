@@ -1,9 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - git.md
-  - github.md
-  - gitlab.md
-  - jenkins.md
-  - nginx.md
+  - Shell
+  - CICD
   - Docker
   - ...
