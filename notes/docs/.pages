@@ -2,9 +2,9 @@
 nav:
   - index.md
   - Computer
-  - Network
   - Program
   - Data
   - DevOps
+  - Network
   - Testing
   - ...
