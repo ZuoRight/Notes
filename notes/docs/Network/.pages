@@ -5,6 +5,6 @@ nav:
   - 业务层
   - 抓包
   - 网络管理.md
-  - Nginx.md
+  - nginx.md
   - 负载均衡.md
   - ...
