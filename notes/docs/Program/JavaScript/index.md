@@ -33,35 +33,6 @@ ES6（也被称为 ECMAScript 2015）是 JavaScript 语言的一个重要的更�
 - 新的数据结构：Map、Set
 - 新的数组和对象的方法
 
-## 模块
-
-JS 本身是没有模块的概念，模块化的演变经历了一个漫长的过程，从最初的 CommonJS ，到后来的 AMD 和 CMD，再到今天的 ES6 模块化方案
-
-- CommonJS
-
-用于在 Node.js 中导入模块的函数，属于同步操作
-
-```js
-// lib.js
-module.exports = 'Hello!';  // 导出模块
-
-// app.js
-let message = require('./lib');  // 导入模块
-console.log(message);  // 输出 'Hello!'
-```
-
-- ES6 模块
-
-用于在 ES6 中导入模块的新关键字，属于异步操作
-
-```js
-export function foo() {
-    pass
-};
-
-import {foo} from '模块文件的位置';
-```
-
 ## 参考
 
 - <https://github.com/WTFAcademy/WTF-JavaScript/tree/main>

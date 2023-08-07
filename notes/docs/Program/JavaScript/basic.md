@@ -67,8 +67,8 @@ const bigInt = 1234567890123456789012345678901234567890n;
 let str = "Hello";  // 双引号
 let str2 = 'Single quotes are ok too';  // 单引号
 
-let phrase = `can embed another ${str}`;  // 反引号，也可叫做模版字符串，用于解析变量
-console.log(phrase)
+console.log("hello %s", "7c")  // 格式化：%d 整数，%f 浮点数，%s 字符，%o 对象
+console.log(`can embed another ${str}`);  // 反引号，也可叫做模版字符串，用于解析变量
 ```
 
 ### Boolean

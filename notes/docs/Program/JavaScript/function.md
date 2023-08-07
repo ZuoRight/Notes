@@ -56,6 +56,7 @@ let sum = (x, y) => {
     return x + y;
 }
 
+// 只有一个 return 语句时，可不写 return，并省略掉花括号
 let y = x => x * x;
 ```
 
@@ -115,30 +116,9 @@ addCount(); // 2
 
 ## 异步函数
 
-### Promise
-
 ES6 引入了 Promise 用于替代回调函数来实现异步，类似 Python 的 Asyncio
 
-Promise 对象有三种状态：pending（进行中）、fulfilled（已成功）和 rejected（已失败）
-
-```js
-// 定义 promise 实例
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('Hello, JavaScript Promise!');
-  }, 1000)
-})
-
-// 运行 Promise 实例
-promise.then((value) => {
-  console.log(value);
-})
-
-console.log('hello Promise');
-
-// hello Promise
-// Hello, JavaScript Promise! (1 秒后输出)
-```
+Promise 对象有三种状态：pending（进行中）、fulfilled（已成功）、rejected（已失败）
 
 ### async/await
 
@@ -177,11 +157,129 @@ getBaycMetadata()
 // attributes...
 ```
 
-## 内置函数
+### Promise
+
+Promise 等价于 Python 中的 Future
 
 ```js
-alert('Hello World');
+// 使用构造函数创建一个 Promise
+const promise = new Promise((resolve, reject) => {
+    // 异步操作，比如：读取文件、网络请求等
+    // 设置定时器模拟异步操作
+    setTimeout(() => {
+        // 成功后返回 resolve() 中的内容，失败可以调用 reject()
+        resolve('Hello, JavaScript Promise!');
+    }, 1000)
+})
 
-// 控制台输出log
-console.log("hello %s", "7c")  // 格式化：%s 字符，%d 整数，%f 浮点数，%o 对象
+// 用 .then 管理异步代码
+// 接受两个回调函数作为可选参数
+promise.then(
+    value => {
+        // 处理解析值的回调函数
+    },
+    error => {
+        // 处理错误的回调函数
+    }
+)  // .then 会返回一个新的 Promise，可以链式调用
+.then(
+    newValue => console.log(newValue)
+)  // 还可以接catch来处理错误，.catch 返回的依然是 Promise
+.catch(
+    error => console.error(error)
+)  // 最后还可以接 .finally，无论 Promise 的状态如何都会执行
+.finally(
+    () => {
+        console.log('finally')
+    }
+);
+
+
+console.log('hello Promise');
+
+// hello Promise
+// Hello, JavaScript Promise! (1 秒后输出)
+```
+
+- 链式 Promise
+
+```js
+fetch('https://api.example.com/data') // 返回一个 Promise
+    .then(response => response.json()) // 返回一个新的 Promise
+    .then(data => console.log(data)) // 返回一个新的 Promise
+    .catch(error => console.error(error)); // 返回一个新的 Promise
+```
+
+- 并行 Promise
+
+```js
+Promise.all([
+    fetch('https://api.example.com/data1'),
+    fetch('https://api.example.com/data2')
+])
+    .then(([response1, response2]) => Promise.all([response1.json(), response2.json()]))
+    .then(([data1, data2]) => {
+        console.log('Data 1:', data1);
+        console.log('Data 2:', data2);
+    })
+    .catch(error => console.error(error));
+```
+
+- Promise API
+
+```text
+Promise.reject(reason)：返回一个用给定的原因拒绝的 Promise。
+Promise.resolve(value)：返回一个以给定值解析后的 Promise。如果该值是一个 Promise，返回的 Promise 将具有相同的状态和值。
+Promise.race(iterable)：返回一个新的 Promise，它在 iterable 中的任何 Promise 解析或拒绝后具有相同的解析值或拒绝原因。
+Promise.all(iterable)：返回一个新的 Promise，它在 iterable 中的所有 Promise 都解析后解析，或者在 iterable 中的任何 Promise 被拒绝后拒绝。
+Promise.any: 与 Promise.race 类似，区别在于只要有一个 Promise 实例变成 fulfilled 状态，包装实例就会变成 fulfilled 状态；所有 Promise 实例都变成 rejected 状态，包装实例才会变成 rejected 状态。
+Promise.allSettled(iterable): 有时我们希望等到一组异步操作都结束了，不管每一个操作是成功还是失败，再进行下一步操作。但是，Promise.all 方法只适合所有异步操作都成功的情况，如果有一个操作失败，就无法满足要求。这时我们需要使用 Promise.allSettled 方法。
+```
+
+### Event Loop
+
+在 JavaScript 的事件循环机制中，任务被分为两种类型：
+
+- 宏任务（Macrotask）：由 JavaScript 引擎线程直接执行的任务，包括
+  > 整个脚本（main script）  
+  > setTimeout 和 setInterval 的回调  
+  > setImmediate（Node.js环境）等
+- 微任务（Microtask）：微任务是在当前宏任务结束后立即执行的任务，包括
+  > Promise 的 then 和 catch 的回调  
+  > process.nextTick（Node.js环境）  
+  > MutationObserver的回调（浏览器环境）等
+
+执行步骤：
+
+1. 从宏任务队列中取出一个任务来执行
+2. 执行完这个任务后，执行所有的微任务
+3. 当微任务队列清空后，进入下一次事件循环，执行下一个宏任务
+
+```js
+// 宏任务
+console.log('script start');  // 微任务
+
+// 宏任务
+setTimeout(function() {
+    console.log('setTimeout');  // 微任务
+}, 0);
+
+// 宏任务
+Promise.resolve().then(function() {
+    console.log('promise1');  // 微任务
+}).then(function() {
+    console.log('promise2');  // 微任务
+});
+
+// 宏任务
+console.log('script end');  // 微任务
+
+// 输出顺序
+/*
+script start
+script end
+promise1
+promise2
+setTimeout
+*/
 ```

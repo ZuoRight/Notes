@@ -222,7 +222,6 @@ function getName(n: NameOrResolver): Name {
 // 在类型别名中 => 表示函数类型的定义，左边为参数，右边为返回值
 // 表示接收两个参数 x 和 y，类型均为 number，并返回一个类型为 number 的值
 type MyFuncType = (x: number, y: number) => number;
-
 ```
 
 ## 泛型

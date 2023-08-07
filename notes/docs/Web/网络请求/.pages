@@ -2,6 +2,6 @@
 nav:
   - curl.md
   - postman.md
+  - js_http.md
   - Python
-  - JS
   - ...

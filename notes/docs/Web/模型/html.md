@@ -80,3 +80,21 @@ HTML5不基于SGML，所以不需要引用DTD
     </body>
 </html>
 ```
+
+## 提交表单
+
+```html
+<form id="test">
+    <input type="text" name="test">
+    <button type="button" onclick="doSubmitForm()">Submit</button>
+</form>
+
+<script>
+function doSubmitForm() {
+    var form = document.getElementById('test-form');
+    // 可以在此修改form的input
+    form.submit();  // js提交form，但通常不建议这样
+    return true;  // 而是返回true，用form自己的onsubmit方法提交
+}
+</script>
+```

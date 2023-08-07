@@ -31,6 +31,15 @@ sudo apt autoremove
 # - Linux的homebrew去安装
 ```
 
+## 使用
+
+```shell
+node --version  # 查看版本
+node demo.js  # 运行脚本
+
+node  # 进入交互式环境 REPL（Read-Eval-Print Loop），类似于浏览器的控制台
+```
+
 ## 版本管理
 
 ### n（不推荐）
@@ -78,16 +87,7 @@ sudo ln -s "$(which node)" /usr/bin/node
 sudo ln -s "$(which npm)" /usr/bin/npm
 ```
 
-## 使用
-
-```shell
-node --version  # 查看版本
-node demo.js  # 运行脚本
-
-node  # 进入交互式环境 REPL（Read-Eval-Print Loop），类似于浏览器的控制台
-```
-
-## 包
+## 包管理
 
 包是一个目录，其中包含一个名为 `package.json` 的文件，描述了包的名称、版本、内容，依赖等
 
@@ -118,7 +118,10 @@ npm init -y  # -y yes
 - 库：用 `npm` 安装
 - 可执行文件：需要用 `npx` 执行（安装node时默认已经安装）
 
-## 包管理器
+包管理器
+
+- NPM
+- Yarn
 
 ### NPM
 
@@ -199,4 +202,33 @@ yarn up [package]  # 更新
 yarn remove [package]  # 移除
 
 yarn list  # 查看安装的包，不带global看不到全局的包
+```
+
+## 模块
+
+JS 本身是没有模块的概念，模块化的演变经历了一个漫长的过程，从最初的 CommonJS ，到后来的 AMD 和 CMD，再到今天的 ES6 模块化方案
+
+### CommonJS
+
+用于在 Node.js 中导入模块的函数，属于同步操作
+
+```js
+// lib.js
+module.exports = 'Hello!';  // 导出模块
+
+// app.js
+let message = require('./lib');  // 导入模块
+console.log(message);  // 输出 'Hello!'
+```
+
+### ES6 模块
+
+用于在 ES6 中导入模块的新关键字，属于异步操作
+
+```js
+export function foo() {
+    pass
+};
+
+import {foo} from '模块文件的位置';
 ```
