@@ -1,6 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - 包管理.md
   - 数据类型.md
   - 数据类型的操作.md
   - statements.md
@@ -8,7 +9,6 @@ nav:
   - 内置函数.md
   - class.md
   - library.md
-  - 包管理.md
   - 内置模块.md
   - 时间模块.md
   - ...

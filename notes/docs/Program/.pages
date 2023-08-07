@@ -8,9 +8,9 @@ nav:
   - c.md
   - java.md
   - go.md
-  - Python
   - nodejs.md
   - JavaScript
   - ts.md
+  - Python
   - algorithm
   - ...
