@@ -1,4 +1,4 @@
-# JavaScript
+# 引言
 
 JavaScript 最初由 Netscape 公司 的 Brendan Eich（布兰登·艾希）在 1995 年开发，仅用了10天，所以有很多设计上的缺陷
 
@@ -18,7 +18,20 @@ ECMAScript，简称 ES，是 JS 的语言规范
 
 ES6（也被称为 ECMAScript 2015）是 JavaScript 语言的一个重要的更新，引入了许多新的特性和语法，使得 JavaScript 更加强大和灵活。
 
-比如类（class），模块（module），生成器（generator），迭代器（iterator），Symbol 类型，新的数据结构如 Map 和 Set，以及许多新的数组和对象的方法
+比如
+
+- 变量声明关键字：let、const
+- 解构赋值
+- 扩展运算符
+- 箭头函数
+- Promises 和 异步函数
+- 类（class）
+- 模块（module）
+- 生成器（generator）
+- 迭代器（iterator）
+- Symbol 类型
+- 新的数据结构：Map、Set
+- 新的数组和对象的方法
 
 ## 模块
 

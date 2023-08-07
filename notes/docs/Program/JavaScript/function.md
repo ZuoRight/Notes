@@ -20,6 +20,21 @@ function sum({x=0, y=0}) {
 sum({x:1, y:2})  // 3
 ```
 
+- 扩展运算符
+
+```js
+function addNumbers(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+
+// 使用扩展运算符将数组中的元素展开作为函数的参数
+const result = addNumbers(...numbers);
+
+console.log(result); // 输出: 6
+```
+
 ## 匿名函数
 
 - 函数表达式
@@ -34,11 +49,14 @@ data: function () { pass } 可简写为 data () { pass }
 
 - 箭头函数
 
+> ES6 新增
+
 ```js
-// ES6 新增
 let sum = (x, y) => {
     return x + y;
 }
+
+let y = x => x * x;
 ```
 
 ## 回调函数

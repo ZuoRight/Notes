@@ -62,7 +62,6 @@ var x = 1;  // var是ES6前的关键字，在函数外声明的就是全局变�
 
 let x = 1;  // let是用来改善var的，作用域为{}，同作用域内不允许重复声明
 let x = "hello world"  // JS语句可以用`;`结尾，也可以忽略
-let [x, y, z] = ['hello', 'JavaScript', 'ES6'];  // 解构赋值：同时给多个变量赋值
 
 const PI = 3.14;  // const用于声明常量，作用域也是{}
 
@@ -70,6 +69,10 @@ const PI = 3.14;  // const用于声明常量，作用域也是{}
 声明变量可以只声明不赋值：let x; x默认为：undefined
 声明常量必须初始化赋值，且不能重新赋值
 */
+
+// ES6新增，解构赋值：同时给多个变量赋值
+let [x, y, z] = ['hello', 'JavaScript', 'ES6'];
+let {x, y} = {x: 1, y: 2}
 
 console.log(1 + '1');  // "11"
 ```

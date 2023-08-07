@@ -4,6 +4,4 @@ nav:
   - basic.md
   - function.md
   - class.md
-  - nodejs.md
-  - ts.md
   - ...
