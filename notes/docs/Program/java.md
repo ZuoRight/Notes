@@ -22,7 +22,7 @@ javac -version
 
 ```shell
 # Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.0.1.jdk/Contents/Home  # Library: 资源库
 export PATH=$PATH:$JAVA_HOME/bin
 ```
 

@@ -1,17 +1,27 @@
-# Requests
+# 用 Python 请求
 
-[官方文档](https://requests.readthedocs.io/en/latest/){ .md-button .md-button--primary }
+urllib3 是 Python 内置的 HTTP 请求库
 
-Requests是由著名开发者Kenneth Reitz基于urllib3（Python内置的HTTP库）封装的一个更加易用的HTTP库，它比ulrlib3更简易（[代码对比](https://gist.github.com/kennethreitz/973705)）
+Requests 是由著名开发者 Kenneth Reitz 基于 urllib3 封装的同步请求库，更加易用
 
-> Kenneth Reitz开发了很多人性化的工具，其个人网站：<https://kennethreitz.org/>
->
-> 调试HTTP接口可以使用作者搭建的服务：<https://httpbin.org/>  
-> 本地运行服务：`docker run -p 80:80 kennethreitz/httpbin`
+AIOHTTP 是基于 ASyncio 实现的异步请求库，适合于纯异步请求的项目，性能更优
+
+HTTPX 是一个全功能的 HTTP 请求客户端，支持同步和异步请求，并且可支持 HTTP/2
+
+除此之外，还有 http.client, urllib3, and httplib2 等请求库
+
+- [Requests vs urllib3](https://gist.github.com/kennethreitz/973705)
+- [HTTPX vs Requests vs AIOHTTP](https://oxylabs.io/blog/httpx-vs-requests-vs-aiohttp)
+
+![20230813224801](https://image.zuoright.com/20230813224801.png)
+
+## Requests
+
+> <https://requests.readthedocs.io/en/latest>
 
 `python -m pip install requests`
 
-## requests.request
+### requests.request
 
 <https://requests.readthedocs.io/en/latest/api/#requests.request>
 
@@ -37,7 +47,7 @@ r = requests.request(method, url, **kwars)
 """
 ```
 
-## requests.method
+### requests.method
 
 ```python
 import requests
@@ -58,7 +68,7 @@ r = requests.delete('https://httpbin.org/delete')
 print(r)  # <Response [200]>
 ```
 
-## requests.Response
+### requests.Response
 
 - 头信息
 
@@ -157,7 +167,7 @@ verify="/path/to/certifile"  # 传入证书
 cert=('/path/client.cert', '/path/client.key')  # 传入客户端证书
 ```
 
-## Cookies
+### Cookies
 
 - Jar格式cookie
 
@@ -186,7 +196,7 @@ cookies_dict = dict(k1="v1",k2="v2")
 cookies_dict = requests.utils.dict_from_cookiejar(cookies_jar)
 ```
 
-## `requests.Session`
+### `requests.Session`
 
 ```python
 import requests
@@ -210,4 +220,76 @@ with requests.Session() as s:
 
     # 清空cookies
     s.cookies.clear()
+```
+
+## AIOHTTP
+
+> <https://docs.aiohttp.org/en/stable/>
+
+`pip install aiohttp`
+
+```python
+import aiohttp
+import asyncio
+
+url = "https://example.com"
+
+async def main(): 
+    async with aiohttp.ClientSession() as session: 
+        async with session.get(url) as response:
+        # async with session.post(url, data={"key": "value"}) as response:
+            print(await response.text())
+
+asyncio.run(main())
+```
+
+## HTTPX
+
+> <https://www.python-httpx.org/>
+
+```shell
+pip install httpx
+pip install httpx[http2]  # 支持HTTP2的组件
+
+# 命令行客户端，类似curl
+pip install 'httpx[cli]'
+httpx --help
+```
+
+### 同步
+
+与 requests 几乎相同
+
+```python
+import httpx
+
+r1 = httpx.get("https://www.example.org")
+r2 = httpx.post("https://httpbin.org/post", data={"name": "7c", "age": 30})
+
+r  # <Response [200 OK]>
+r.status_code  # 200
+r.headers['content-type']  # 'text/html; charset=UTF-8'
+r.text  # '<!doctype html>\n<html>\n<head>\n<title>Example Domain</title>...'
+r.json()  # 自动解码
+```
+
+- HTTP2
+
+```python
+client = httpx.Client(http2=True)
+r = client.get()
+```
+
+### 异步
+
+```python
+import httpx
+import asyncio
+
+async def main():
+    async with httpx.AsyncClient() as client:
+        response = await client.get("https://example.com")
+        print(response.text)
+
+asyncio.run(main())
 ```

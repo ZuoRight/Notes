@@ -1,38 +1,5 @@
 # Node.JS
 
-## 安装
-
-参考：<https://nodejs.org/en/download/package-manager>
-
-- Windows
-
-直接安装最新安装包即可
-
-- Mac
-
-```shell
-brew install node  # 安装
-sudo npm install -g npm
-```
-
-- Ubuntu
-
-```shell
-sudo apt update
-# 不推荐，因为Ubuntu 22.04软件源中包含的Node.JS版本是12.22.9
-sudo apt install nodejs -y
-sudo apt install npm -y
-# 卸载
-sudo apt purge nodejs
-sudo apt autoremove
-
-# 可以用以下方式安装
-# - NVM版本管理器安装
-# - Linux的homebrew去安装
-```
-
-## 使用
-
 ```shell
 node --version  # 查看版本
 node demo.js  # 运行脚本
@@ -40,7 +7,38 @@ node demo.js  # 运行脚本
 node  # 进入交互式环境 REPL（Read-Eval-Print Loop），类似于浏览器的控制台
 ```
 
-## 版本管理
+## 安装
+
+参考：<https://nodejs.org/en/download/package-manager>
+
+### Windows
+
+直接安装最新安装包即可
+
+### Mac
+
+```shell
+brew install node  # 安装
+sudo npm install -g npm
+```
+
+### Ubuntu
+
+推荐使用 NVM 版本管理器安装
+
+```shell
+sudo apt update
+
+# 不推荐，因为Ubuntu 22.04软件源中包含的Node.JS版本是12.22.9
+sudo apt install nodejs -y
+sudo apt install npm -y
+
+# 卸载
+sudo apt purge nodejs
+sudo apt autoremove
+```
+
+## 版本管理器
 
 ### n（不推荐）
 
@@ -91,12 +89,28 @@ sudo ln -s "$(which npm)" /usr/bin/npm
 
 包是一个目录，其中包含一个名为 `package.json` 的文件，描述了包的名称、版本、内容，依赖等
 
-> 使用 node 安装的包通常存放在：`node_modules/...`
+包分两种
+
+- 库：用 `npm` 安装
+- 可执行文件：需要用 `npx` 执行（npx在安装node时默认已经安装）
+
+包管理器：NPM、Yarn
+
+### NPM
+
+全球最大开源库生态系统
 
 ```shell
-# 初始化，生成 package.json
-npm init -y  # -y yes
+npm -v
+npm help
+npm list -g  # 查看已安装包，不带-g看不到全局的包
+
+# 初始化生成 package.json
+npm init -y
+# -y: yes
 ```
+
+不手动初始化也会在安装第一个包时自动生成
 
 ```json
 {
@@ -113,29 +127,14 @@ npm init -y  # -y yes
 }
 ```
 
-包分两种
-
-- 库：用 `npm` 安装
-- 可执行文件：需要用 `npx` 执行（安装node时默认已经安装）
-
-包管理器
-
-- NPM
-- Yarn
-
-### NPM
-
-全球最大开源库生态系统
+默认安装到 `$PWD/node_modules/...`，代码中通过 `require()` 引入
 
 ```shell
-npm -v
-npm help
-npm list -g  # 查看已安装包，不带-g看不到全局的包
-
-npm install [--save-dev] <xxx>  # npm install 可简写为 npm i
+npm install [--save-dev] <xxx>
+# npm install 可简写为 npm i
 "
 -g/--global
-    本地安装（默认），安装到 $PWD/node_modules/...，通过require()引入
+    本地安装（默认）
     全局安装，可以通过命令行在任何地方调用
 --save
     配置信息存储到 package.json 的 dependencies 字段
@@ -231,4 +230,18 @@ export function foo() {
 };
 
 import {foo} from '模块文件的位置';
+```
+
+在 Node 环境下若要使用 import 方式导入，需要 在 package.json 中添加配置
+
+```json
+{
+  "type": "module"
+}
+```
+
+在 web 中需要加 module 属性
+
+```js
+<script type="module" src="demo.js"></script>
 ```

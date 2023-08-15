@@ -1,10 +1,28 @@
 # Ethers
 
-<https://docs.ethers.org/v5/>
+推荐使用较新的v6版本，与v5相比改动较大：<https://docs.ethers.org/v6/getting-started/>
 
 ```shell
-npm init
-npm install --save ethers
+npm install ethers --save
+```
+
+## 引入
+
+- Node.js
+
+```js
+const ethers = require('ethers');
+
+import { ethers } from 'ethers';  // ES6 or TS
+```
+
+- Web
+
+```html
+<script type="module">
+    import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.min.js";
+    // Your code here...
+</script>
 ```
 
 ## BigNumber

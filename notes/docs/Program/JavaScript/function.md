@@ -1,4 +1,4 @@
-# JS 函数
+# 函数
 
 ```js
 function sum(x=0, y=0) {
