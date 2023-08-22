@@ -92,22 +92,31 @@ save  # 备份当前数据库到安装目录中的dump.rdb文件
 select 1
 ```
 
-- GUI 客户端
+## GUI 客户端
 
-RESP（以前叫做Redis Desktop Manager）以前免费，现在已经收费，可以免费试用14天
+- RESP
 
-官网个人版¥129/年，苹果/微软应用商店¥98/永久（不能跨平台使用）
+以前叫做 Redis Desktop Manager，目前已收费，可试用14天，官网个人版¥129/年，苹果/微软应用商店¥98/永久（不能跨平台使用）
+
+- [Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager)
+
+虽然名字有点...但应该是目前最好的开源客户端
+
+Mac 上启动如果报错可以执行：`sudo xattr -rd com.apple.quarantine /Applications/Another\ Redis\ Desktop\ Manager.app`
 
 ## 数据模型和操作
 
-对于键值数据库而言，基本的数据模型是 key-value 模型，在对键值数据库进行选型时，一个重要的考虑因素是它支持的 value 类型，也就是数据的保存形式，Memcached：仅支持String类型
-而 Redis 能够在实际业务场景中得到广泛的应用，就是得益于支持多样化类型的 value。
+对于键值数据库而言，基本的数据模型是 key-value 模型，在对键值数据库进行选型时，一个重要的考虑因素是它支持的 value 类型，也就是数据的保存形式
 
-不同键值数据库采用的索引并不相同，不同的索引结构在性能、空间消耗、并发控制等方面具有不同的特征。
+- Memcached 仅支持 String 类型
+- Redis 能够在实际业务场景中得到广泛的应用，就是得益于支持多样化类型的 value。
+
+不同键值数据库采用的索引并不相同，不同的索引结构在性能、空间消耗、并发控制等方面具有不同的特征
 
 > 常见的索引的类型有：哈希表、B+ 树、字典树等。
 
-RocksDB 采用跳表，Memcached 和 Redis 则采用哈希表作为 key-value 索引。
+- RocksDB 采用跳表
+- Memcached 和 Redis 则采用哈希表作为 key-value 索引。
 
 ![20211109191640](http://image.zuoright.com/20211109191640.png)
 
@@ -116,7 +125,7 @@ type key  # 查看key的类型
 del key  # 删除key
 ```
 
-- Strings
+### String
 
 字符串
 
@@ -127,38 +136,40 @@ set name zhangsan
 get name
 ```
 
-- Hashs
+### Hash
 
 字符串类型的哈希，类似Python的Dict
 
 ```shell
-# hset key field value
+# 添加：hset key field value
 hset dict1 username zhangsan
 hset dict1 age 28
-# hmset key field value [field value...]
-hmset dict1 username zhangsan age 28
 
-# 删除字段
-hdel dict1 age
-
-# 获取
-hget user1 age
-"28"
-
-hmget user1 username age
-"""
-1) "zhangsan"
-2) "28"
-"""
-
+# 获取field
 hkeys dict
 """
 1) "username"
 2) "age"
 """
+
+# 获取value
+hget user1 age  # "28"
+
+# 删除字段
+hdel dict1 age
+
+# 设置多个field：hmset key field1 value1 field2 value2...
+hmset dict1 username zhangsan age 28
+
+# 获取多个field的value
+hmget user1 username age
+"""
+1) "zhangsan"
+2) "28"
+"""
 ```
 
-- Lists
+### List
 
 有序的字符串列表，按插入顺序排序
 
@@ -187,7 +198,7 @@ lrange list 0 2
 """
 ```
 
-- Sets
+### Set
 
 无序的字符串集合，元素不能重复，与Python集合类似
 
@@ -204,7 +215,7 @@ scard set  # 获取集合长度
 smembers sets  # 获取集合元素
 ```
 
-- SortedSet
+### SortedSet
 
 有序的字符串集合，元素不能重复，简称ZSet，按score排序（添加元素时指定score）
 
@@ -230,7 +241,7 @@ ZRANGE key start stop [WITHSCORES]  # 按score从小到大排
 """
 ```
 
-- Streams
+### Streams
 
 数据流，5.0版本新增的，主要用于消息队列
 

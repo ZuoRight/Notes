@@ -82,3 +82,11 @@ Java程序的构建过程一般是：编译、测试、打包。
 - Spring MVC，容器：IoC
 - Spring Boot：开箱即用
 - Spring Cloud
+
+## JSR
+
+Java Specification Request 是 Java 社区提出的一种标准化 Java 技术的过程。它们定义了在 Java 平台上引入新功能、API、规范和技术的标准方式。JSR 可以包括各种 Java 相关的规范，如 Servlet 规范、Java EE 规范、Java SE 规范等等。JSR 的目的是确保 Java 技术在不同的实现中保持一致性，以促进 Java 生态系统的互操作性和可移植性。
+
+JSR223 允许在 Java 应用程序中嵌入各种脚本语言，例如 Groovy、Python、Ruby 和 JavaScript 等。它提供了一种通用的接口，使开发人员可以使用多种脚本语言编写、编译和执行脚本，而无需修改应用程序的代码。
+
+JSR388 定义了 Java SE 13 平台的规范，包括新的语言功能和库改进。Java SE 13 是 Java SE 的一个重要版本
