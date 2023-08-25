@@ -3,7 +3,5 @@ nav:
   - index.md
   - browser.md
   - 模型
-  - 网络请求
-  - 异步
   - 框架
   - ...

@@ -2,6 +2,32 @@
 
 HyperText Transfer Protocol 超文本传输协议
 
+HTTP 的特点是
+
+- 建立在 TCP 之上（通过 Socket 来使用 TCP）
+- 无连接（TCP 就是它的连接）
+- 无状态（后来加了 Cookies、Session 技术，用 KeepAlive 来维持状态）
+- 请求-响应模式
+
+> Socket 做为套接层 API，本身不是协议，只规定了 API
+
+![20230823094945](https://image.zuoright.com/20230823094945.png)
+
+- HTTP/1.1
+  > Port：80  
+  > 对应协议：RFC2616，补充协议：RFC7231、RFC6265
+- HTTPS
+  > Port：443  
+  > 安全：使用 TLS
+- HTTP2/SPDY
+  > Port：沿用 HTTP/HTTPS  
+  > 安全：强制使用TLSv1.2  
+  > 效率：多路复用，头部使用了HPACK压缩算法
+- HTTP3/QUIC
+  > Port：没有指定默认端口号  
+  > 安全：强制使用TLSv1.3  
+  > 效率：传输基于QUIC(Quick UDP Internet Connections)
+
 组成
 
 1. 起始行(HTTP/2中已废除)

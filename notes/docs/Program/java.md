@@ -90,3 +90,15 @@ Java Specification Request 是 Java 社区提出的一种标准化 Java 技术�
 JSR223 允许在 Java 应用程序中嵌入各种脚本语言，例如 Groovy、Python、Ruby 和 JavaScript 等。它提供了一种通用的接口，使开发人员可以使用多种脚本语言编写、编译和执行脚本，而无需修改应用程序的代码。
 
 JSR388 定义了 Java SE 13 平台的规范，包括新的语言功能和库改进。Java SE 13 是 Java SE 的一个重要版本
+
+## JConsole
+
+命令行输入 `jconsole` 启动控制台，可以看到运行了哪些 Java 进程
+
+![20230823121213](https://image.zuoright.com/20230823121213.png)
+
+比如选择连接 Jmeter，可以看到它的使用情况
+
+![20230823121321](https://image.zuoright.com/20230823121321.png)
+
+![20230823121452](https://image.zuoright.com/20230823121452.png)

@@ -36,23 +36,50 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JMETER_HOME/l
 
 > <https://jmeter.apache.org/usermanual/component_reference.html>
 
-[Test Plan](https://jmeter.apache.org/usermanual/test_plan.html) 描述了 Jmeter 在运行时将要执行的一系列步骤。
-
-完整的测试计划将由以下部分组成
+[Test Plan](https://jmeter.apache.org/usermanual/test_plan.html) 描述了 Jmeter 在运行时将要执行的一系列步骤
 
 - Config Element 各种配置元素，比如HTTP请求默认配置、计数器、JDBC连接配置、CSV配置等
-- Threads 线程组，任何测试计划的起点
 - Samplers 采样器，添加各种请求
 - Logic Controllers 逻辑控制器，控制如何发送请求
-- Timers 定时器，比如可以让所有进程都准备好后再一起执行
+- Timers 定时器，比如同步定时器可以阻塞线程，达到一定数量后同时下发
 - Pre Processor 预处理器，发出采样请求前执行的操作
 - Post Processor 后处理器，发出采样请求后执行的操作，通常用于处理响应数据，比如正则或者解析JSON获取下一个请求的依赖值等
 - Assertions 断言
 - Listeners 侦听器，查看请求响应和断言结果等
 
-Samplers 和 Controllers 只能位于线程组下，其它组件若放在测试计划下则表示应用于所有线程组
+### Threads
 
-![20230818191812](https://image.zuoright.com/20230818191812.png)
+线程组是任何测试计划的起点，所有 Samplers 和 Controllers 必须位于线程组下，其它组件若放在测试计划下则表示应用于所有线程组
+
+- `Number of Threads (users)` 线程数，用户数，产生TPS
+- `Ramp-up period (seconds)` 斜坡上升周期，递增时间
+- `Loop Count` 循环次数
+
+需要合理的设置 Ramp-up 时间，不能太长也不能太短，比如5秒启动1000个进程，平均每秒200个，但受限于硬件资源，这200个进程可能并不会都在1s内启动，启动过多的线程还可能会导致JVM内存溢出
+
+如果希望一直压下去，可以将 Loop Count 设置为 `Infinite`（无限），然后勾选调度器 `Specify Thread lifetime` 指定线程生命周期
+
+- Duration (seconds) 持续时间
+- Startup Delay (seconds) 线程组启动延迟
+
+> 如果同时设置了 Loop Count 和 Duration，则压测时间为：`min(Loop Count * 响应时间, Duration)`，通常不建议这样做
+
+当测试开始时，JMeter 将等待 Startup Delay 秒，然后在 Ramp-up period 内启动 Number of Threads 个线程，并运行 Duration 秒
+
+`Delay Thread creation until needed` 通常不勾选，让其一开始创建所有线程，若勾选后，则需要时才会创建，通常线程数较多时需要勾选，否则一开始创建线程会很消耗 CPU
+
+## 参数化
+
+以 `CSV Data Set Config` 为例
+
+![20230823201405](https://image.zuoright.com/20230823201405.png)
+
+CSV 文件中有两列，分别指定变量名，可在其他组件中引用
+
+- `Allow quoted data?` 选项设置为 `True` 表示数据中的引号 `"` 不会被编码为 `%22`
+- `Recycle on EOF?` 循环一遍后（遇到文件结束符）是否再循环，`Edit` 表示根据自定义内容调用函数或变量
+- `Stop thread on EOF?` 循环一遍后是否停止线程，不停止且不循环的话可能会导致参数不足
+- `Sharing mode` 参数生效的范围，`Edit` 可指定线程组，比如只在1、3、5线程组中生效，可输入：`SharedWithThreadGroup1and3and5`
 
 ## 获取 SQL 数据
 

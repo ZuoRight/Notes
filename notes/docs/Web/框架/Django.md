@@ -969,3 +969,7 @@ import django.http.request
 
 django.http.request.host_validation_re = _lazy_re_compile(r"^([a-z0-9._.-]+|\[[a-f0-9]*:[a-f0-9:]+\])(:\d+)?$")
 ```
+
+## 性能监控
+
+Silk 是一个用于 Django Web 框架的性能分析工具和调试工具。它允许你监视和记录 Django 应用程序的性能数据，以帮助识别性能瓶颈、慢查询和其他性能问题。

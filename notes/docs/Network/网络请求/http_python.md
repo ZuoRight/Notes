@@ -15,6 +15,10 @@ HTTPX 是一个全功能的 HTTP 请求客户端，支持同步和异步请求�
 
 ![20230813224801](https://image.zuoright.com/20230813224801.png)
 
+## 内置
+
+快速启动一个服务：`python -m http.server 80`
+
 ## Requests
 
 > <https://requests.readthedocs.io/en/latest>
