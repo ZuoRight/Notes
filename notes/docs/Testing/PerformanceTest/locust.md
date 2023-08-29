@@ -1,3 +1,0 @@
-# Locust
-
-`pip install locustio`
