@@ -98,3 +98,7 @@ adb shell am force-stop 包名  # 关闭
 # 清空缓存数据，重置
 pm clear com.xxx.xx
 ```
+
+## 性能统计 dumpsys
+
+![20230902230707](https://image.zuoright.com/20230902230707.png)
