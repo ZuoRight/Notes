@@ -128,3 +128,19 @@ WebSQL 与 IndexedDB 都是最新的 HTML5 本地缓存技术，相比于 Web St
 ```
 
 ![20220811131255](http://image.zuoright.com/20220811131255.png)
+
+## 调试H5
+
+可以用 Mac 的 Safari 浏览器来调试 iOS 的 Chrome 或 Safari 中的 H5
+
+- 打开 iOS 中 Chrome 的网页检查器
+
+![20230905133024](https://image.zuoright.com/20230905133024.png)
+
+- 打开 Mac 中 Safari 的开发
+
+![20230905133101](https://image.zuoright.com/20230905133101.png)
+
+- 重启手机浏览器，打开要调试的页面，将 iOS 设备连接到 Mac，即可在开发中看到
+
+![20230905133450](https://image.zuoright.com/20230905133450.png)
