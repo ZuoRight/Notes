@@ -3,54 +3,68 @@
 - 官网：<https://git-scm.com/>
 - 官方文档：<https://git-scm.com/book/zh/v2>
 
-## VCS
+VCS(Version Control System) 版本控制系统
 
-Version Control System 版本控制系统，主要分为集中式和分布式两种。
-
-集中式最常用的是SVN，但如今最流行的VCS无疑是分布式的Git，也就是我们今天的主角。
-
-> 所有的版本控制系统，只能跟踪文本文件的改动，对于二进制文件只能跟踪其大小的变化
+用于跟踪文本文件的改动，对于二进制文件只能跟踪其大小的变化
 
 - 文本文件：各种源代码、纯文本等
-- 二进制文件：图片、视频、office文件(其实是个压缩包，由很多.xml和其他文件构成，所以属于二进制)
+- 二进制文件：图片、视频、office文件（其实是个压缩包，由很多.xml和其他文件构成，所以属于二进制）
 
-## 安装
+VCS 主要分为两种
 
+- 集中式，最知名的是：SVN
+- 分布式，最流行的是：Git
+
+通常搭配项目托管平台来使用
+
+- GitHub：现已被微软收购
+- GitLab：乌克兰企业，在中国创建了合资品牌（极狐）
+- Bitbucket：Jira母公司Atlassian旗下产品
+- Gitee(码云)：开源中国和工信部联合推出
+- Coding：并购了Gitcafe，后又被腾讯云全资收购
+
+## 安装与配置
+
+- Mac：推荐`brew install git`方式安装，如果安装了Xcode会默认自带，此时用brew安装会提示已经存在，根据提示执行 `brew link --overwrite git` 覆盖
+- Windows：官网下载 `Git for Windows` 客户端安装即可
 - Ubuntu：`sudo apt-get install git`
 - CentOS：`sudo yum install git`
-- Mac：推荐`brew install git`方式安装，如果安装了Xcode会默认自带，此时用brew安装会提示已经存在，根据提示执行`brew link --overwrite git`覆盖
-- Windows：官网下载`Git for Windows`客户端安装即可
 
-## 常用命令
+```shell
+# 查看git版本
+git --version
 
-- 查看git版本：`git --version`
-- 查看当前状态：`git status`
-- 查看提交日志：`git log`
+# 查看当前状态
+git status
 
-## 基础配置
+# 查看提交日志
+git log
 
-- 查看当前配置：`git config --list --global`
+# 查看当前配置
+git config --list --global
+# --local 仅对当前用户、当前仓库有效（默认）
+# --global 对当前用户、所有仓库有效
+# --system 对所有用户、所有仓库有效
+```
 
 - 配置代码提交者信息
 
 ```shell
-# --local 仅对当前用户、当前仓库有效（默认）
-# --global 对当前用户、所有仓库有效（一般用这个即可）
-# --system 对所有用户、所有仓库有效
 git config --global user.name "7c"
 git config --global user.email "7c@zuoright.com"
 ```
 
 - 配置SSH密钥
 
-从GitHub clone或push 都需要验证身份，配置SSH密钥，这样就不用每次都输入账户密码验证了
+从代码仓库 clone 或 push 等操作都需要验证身份，配置了SSH密钥后就不用每次都输入账户密码验证了
 
 ```shell
 # 生成密钥
+ssh-keygen
 # 回车，会提示保存位置
 # 再回车，如果已存在则会提示是否重新生成
 # 如果提示输入密钥类型，推荐选择ed25519，没提示一般默认会是rsa类型
-ssh-keygen
+
 # 查看公钥
 cat ~/.ssh/id_rsa.pub
 # 将公钥添加到项目托管平台相应设置中
@@ -191,6 +205,7 @@ git checkout dev  # 切换，git switch dev
 git checkout -b dev  # 新建并切换
 
 git merge dev  # 合并
+git cherry-pick xxx  # 如果只合入指定改动提交，可使用
 ```
 
 ## 拉取推送
@@ -226,14 +241,6 @@ git push origin v1.0  # 推送到远程（推送分支时不会带上标签，�
 git tag -d v0.5  # 删除本地标签
 git push origin --delete v0.5  # 删除远程标签
 ```
-
-## 项目托管平台
-
-- GitHub：现已被微软收购
-- GitLab：乌克兰企业，在中国创建了合资品牌（极狐）
-- Bitbucket：Jira母公司Atlassian旗下产品
-- Gitee(码云)：开源中国和工信部联合推出
-- Coding：并购了Gitcafe，后又被腾讯云全资收购
 
 ## 项目协作
 

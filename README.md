@@ -62,3 +62,7 @@ mkdocs build
 - 访问测试
 
 ![20210725122020](http://image.zuoright.com/20210725122020.png)
+
+## 七牛云图床
+
+更换证书，修改HTTPS配置：<https://portal.qiniu.com/cdn/domain>

@@ -9,28 +9,24 @@ Django采用了MTV的框架模式，即：Model(模型)，Template(模版)，Vie
 ```shell
 mkdir mysite
 cd mysite
-python -m venv env  # Django 4.0依赖Python 3.8+
+
+python -m venv env  # Django 4.0依赖 Python 3.8+
 pip install django
 
 django-admin startproject mysite .  # 初始化项目，注意结尾的点
 ```
 
-```text
+```shell
 # 项目容器，可重命名
 mysite/
-    # 命令行工具
-    manage.py
+    manage.py  # 命令行工具
     # 项目
     mysite/
         __init__.py
-        # 配置文件
-        settings.py
-        # 路由声明，网站目录
-        urls.py
-        # 兼容asgi的服务器入口
-        asgi.py
-        # 兼容wsgi的服务器入口
-        wsgi.py
+        settings.py  # 配置文件
+        urls.py  # 路由声明，网站目录
+        asgi.py  # 兼容asgi的服务器入口
+        wsgi.py  # 兼容wsgi的服务器入口
 ```
 
 - `mysite/settings.py`
@@ -53,47 +49,50 @@ INSTALLED_APPS = [
 ```
 
 - 启动服务：`python manage.py runserver`
-- 前端页面：<http://127.0.0.1:8000/>
-- admin后台：<http://127.0.0.1:8000/admin>
+- 前端：<http://127.0.0.1:8000/>
+- 后台：<http://127.0.0.1:8000/admin>
 
 ## 应用
 
-一个项目可以包含多个应用，一个应用可以被多个项目使用，应用可以存放在任意路径，不过通常与manage.py同级，这样就可以作为顶级模块导入
+一个项目可以包含多个应用，一个应用可以被多个项目使用
 
-创建应用：`python manage.py startapp one_app`
+应用可以存放在任意路径：`django-admin startapp <app_name>`
 
-```text
+不过通常与manage.py同级，这样就可以作为顶级模块导入：`python manage.py startapp <app_name>`
+
+```shell
 one_app/
     __init__.py
-    admin.py
-    apps.py
     migrations/
         __init__.py
+    admin.py
+    apps.py
     models.py
     tests.py
     views.py
-    # 以下文件自己创建
-    urls.py  # URLconf路由配置文件（也可以是其他任何路径）
-    templates/  # 模版容器
-        one_app/  # 命名空间，由于DjangoTemplates会在每个INSTALL_APPS路径下依次寻找templates子目录，如果多个APP之间模板名称一样，只会匹配到第一个，容易出错。
+    # URLconf路由配置文件（也可以是其他任何路径）
+    urls.py  
+    # 模版容器
+    templates/
+        # 命名空间，由于DjangoTemplates会在每个INSTALL_APPS路径下依次寻找templates子目录，如果多个APP之间模板名称一样，只会匹配到第一个，容易出错
+        one_app/
             index.html  # 模版
 ```
 
 - 修改应用名涉及要改动的地方
 
-```text
-项目层
+```shell
+# 项目层
     settings，注册应用名
     urls.py
-
-应用层
+# 应用层
     apps.py
     urls.py
     模版命名空间，form表单action
     所有的迁移文件，alert表名
 ```
 
-### 定义模型：`one_app/models.py`
+## 定义模型 models.py
 
 > 参考：<https://docs.djangoproject.com/zh-hans/4.0/topics/db/models/#>
 
@@ -101,16 +100,27 @@ one_app/
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-# 每个类就是一个模型(sheet)，继承自models.Model
-class Cases(models.Model):
-     """
+# 每个类就是一个模型(sheet)，继承自 models.Model
+class Exchange(models.Model):
+    """
     每个属性代表一个字段(field)，主键id字段不需要定义，会被自动添加
-    格式：字段名 = models.类型(参数, "备注名")
+    格式：
+        字段名 = models.类型(参数, "备注名")
         字段名不能用Python保留字，不能连续用多个下划线且不能以下划线结尾
         备注名默认为字段名，可自定义
     """
+    exchange = models.CharField(max_length=20)
 
+    class Meta:
+        verbose_name = 'Exchange'  # 在admin后台显示的导航文案
+        verbose_name_plural = '交易所'  # 复数
+
+    def __str__(self):
+        # 默认返回值，比如作为外键时，在admin后台显示为变量值，而不是关联id
+        return self.exchange
+
+
+class Cases(models.Model):
     """
     枚举值变量建议定义在类内部
     如果是一个易变的枚举列表，建议使用外键
@@ -124,17 +134,23 @@ class Cases(models.Model):
     def payload_default():
         return {"delta": 0.01}
 
-    exchange = models.ForeignKey(Exchange, on_delete=models.CASCADE)  # 外键
+    # ForeignKey 外键
+    exchange = models.ForeignKey(Exchange, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
-    order_type = models.CharField(max_length=20, choices=ORDER_TYPE_CHOICES, default="LIMIT")
+
+    order_type = models.CharField(
+        max_length=20,  # CharField必须带max_length属性
+        choices=ORDER_TYPE_CHOICES,  # 枚举值
+        default="LIMIT"  # 默认值
+    )
     side = models.CharField(max_length=5, default="1")
-    payload = models.JSONField("Payload", default=payload_default)
+    payload = models.JSONField("Payload", default=payload_default)  # 默认值可以引用一个函数
     priority = models.CharField(
-        max_length=5,  # CharField类型必须带max_length属性
-        choices=[("p0","P0"), ("p1","P1"), ("p2","P2"), ("p3","P3")],  # 使用枚举值
+        max_length=5,
+        choices=[("p0","P0"), ("p1","P1"), ("p2","P2"), ("p3","P3")],
         default="p0", 
-        help_text="P0一般为主流币种正向用例, P1为小币种用例, P2/P3通常为边界值或异常场景用例"
+        help_text="P0一般为主流币种正向用例, P1为小币种用例, P2/P3通常为边界值或异常场景用例"  # 注释
     )
     is_test = models.IntegerField(choices=[(1,"Yes"), (0,"No")], default=1)
     expect_succeed = models.IntegerField(choices=[(1,"True"), (0,"False")], default=1)
@@ -146,19 +162,6 @@ class Cases(models.Model):
 
     class Meta:
         verbose_name = 'Exchange'
-
-
-class Exchange(models.Model):
-    exchange = models.CharField(max_length=20)
-
-    class Meta:
-        # 在admin后台显示的导航文案
-        verbose_name = 'Exchange'
-        verbose_name_plural = '交易所'  # 复数
-
-    def __str__(self):
-        # 默认返回值，比如作为外键时，在admin后台显示为变量值，而不是关联id
-        return self.exchange
 ```
 
 - 常见字段类型
@@ -166,7 +169,7 @@ class Exchange(models.Model):
 ```python
 models.AutoField(primary_key=True)  # 模型会自动设置id字段为自增主键
 models.IntegerField()  # 整数
-models.CharField(max_length=num)  # 字符串，必须设置max_length
+models.CharField(max_length=num)  # 字符串，必须设置 max_length
 models.BooleanField()  # 布尔值
 models.DateField(auto_now_add/auto_now=True)  # 日期(第一次创建时设置为现在时间/每次保存时(更新时不会)设置为现在时间)
 models.DateTimeField(auto_now_add/auto_now=True)  # 日期和时间
@@ -192,21 +195,17 @@ help_text=xxx  # 注释文本
 choices=[("S", "Small"), (“B”, “Big”)]  # 枚举值，[("存入数据库中的值", "仅用于显示")]
 ```
 
-- Meta 属性
+## 模型继承
 
-> 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/models/options/>
+三种方式参考：<https://docs.djangoproject.com/zh-hans/4.0/topics/db/models/#model-inheritance>
 
-### 模型继承
+Meta 属性参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/models/options/>
 
-> 参考：<https://docs.djangoproject.com/zh-hans/4.0/topics/db/models/#model-inheritance>
+### 抽象基类
 
-三种方式
+基类不会创建表，之类会创建表
 
-- 抽象基类
-
-基类不会创建表
-
-通过在基类中设置Meta属性`abstract = True`实现
+通过在基类中设置Meta属性 `abstract = True` 实现
 
 ```python
 from django.db import models
@@ -217,40 +216,23 @@ class CommonInfo(models.Model):
 
     class Meta:
         abstract = True
-        """
-        CommonInfo将变为一个抽象基类，不会生成实际的数据表
-        抽象基类中的字段可以被子类继承、覆盖、也可以等于None软删除
-        子类也会继承Meta类，但会自动设置abstract=False，所以子类不会因为继承了基类而变成抽象基类
-        """
+
+"""
+CommonInfo将变为一个抽象基类，不会生成实际的数据表
+抽象基类中的字段可以被子类继承、覆盖、也可以等于None软删除
+子类也会继承Meta类，但会自动设置abstract=False，所以子类不会因为继承了基类而变成抽象基类
+"""
 
 class Student(CommonInfo):
     home_group = models.CharField(max_length=5)
     age = None  # 子类中不用这个字段
 ```
 
-- 多表继承
-
-子类继承自非抽象基类，子类不能覆盖基类的字段，子类与父类都会创建表
-
-无需额外设置
-
-```python
-from django.db import models
-
-class Place(models.Model):
-    name = models.CharField(max_length=50)
-    address = models.CharField(max_length=80)
-
-class Restaurant(Place):
-    serves_hot_dogs = models.BooleanField(default=False)
-    serves_pizza = models.BooleanField(default=False)
-```
-
-- 代理模型
+### 代理模型
 
 子类与父类字段完全一致，仅仅改变行为，与基类共用一张表
 
-通过在子类中设置Meta属性`proxy = True`实现
+通过在子类中设置Meta属性 `proxy = True` 实现
 
 ```python
 from django.db import models
@@ -269,6 +251,24 @@ class MyPerson(Person):
     def do_something(self):
         # ...
         pass
+```
+
+### 多表继承
+
+子类继承自非抽象基类，子类不能覆盖基类的字段，子类与父类都会创建表
+
+无需额外设置
+
+```python
+from django.db import models
+
+class Place(models.Model):
+    name = models.CharField(max_length=50)
+    address = models.CharField(max_length=80)
+
+class Restaurant(Place):
+    serves_hot_dogs = models.BooleanField(default=False)
+    serves_pizza = models.BooleanField(default=False)
 ```
 
 ## 数据库配置
@@ -291,48 +291,51 @@ DATABASES = {
 
 > 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/databases/#mysql-notes>
 
-- 创建数据库：`CREATE DATABASE dbname;`
+- 创建数据库：`CREATE DATABASE <db_name>;`
 - 配置
 
-    ```python
-    # mysite/settings.py
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-            'NAME': 'dbname',  # 数据库名称
-            'HOST': '127.0.0.1',  # host
-            'PORT': 3306,  # 端口 
-            'USER': 'root',  # 用户名
-            'PASSWORD': 'passwd',  # 密码
+```python
+# mysite/settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+        'NAME': 'dbname',  # 数据库名称
+        'HOST': '127.0.0.1',  # host
+        'PORT': 3306,  # 端口 
+        'USER': 'root',  # 用户名
+        'PASSWORD': 'passwd',  # 密码
 
-            # 连接到数据库时要使用的额外参数
-            # 'OPTIONS': {
-            #     'read_default_file': '/path/to/my.cnf',  # 直接读取mysql的配置文件，此时会覆盖上面的配置
-            #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # 解决迁移时的一个警告
-            #     'charset': 'utf8mb4',
-            #     "isolation_level": "repeatable read",  # 隔离级别设置为可重复读取，为了迁移数据适配数据库默认Binlog=STATEMENT时报错
-            # }
-        }
+        # 连接到数据库时要使用的额外参数
+        # 'OPTIONS': {
+        #     'read_default_file': '/path/to/my.cnf',  # 直接读取mysql的配置文件，此时会覆盖上面的配置
+        #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # 解决迁移时的一个警告
+        #     'charset': 'utf8mb4',
+        #     "isolation_level": "repeatable read",  # 隔离级别设置为可重复读取，为了迁移数据适配数据库默认Binlog=STATEMENT时报错
+        # }
     }
-    ```
+}
+```
 
 - 安装MySQLdb驱动
 
-    ```shell
-    # Django推荐，使用'ENGINE': 'django.db.backends.mysql'，默认使用mysqlclient驱动库
-    brew install mysql-client
-    pip install mysqlclient
+```shell
+# 如果设置为：'ENGINE': 'django.db.backends.mysql'
+# 需要安装 mysqlclient 驱动，Django推荐
+brew install mysql-client
+pip install mysqlclient
 
-    # MySQL官方提供的驱动器，使用'ENGINE': 'mysql.connector.django'，默认使用mysql-connector驱动库
-    pip install mysql-connector
+# 如果设置为：'ENGINE': 'mysql.connector.django'
+# 需要安装MySQL官方提供的驱动器：mysql-connector
+pip install mysql-connector
 
-    # 如果想换成pymysql驱动，需要自己在mysite/__init__.py中引入并声明，貌似Django2.2以后会报错
-    pip install pymysql
-    """
-    import pymysql
-    pymysql.install_as_MySQLdb()
-    """
-    ```
+# 如果想换成 pymysql 驱动
+pip install pymysql
+# 需要自己在 `mysite/__init__.py` 中引入并声明，貌似Django2.2以后会报错
+"""
+import pymysql
+pymysql.install_as_MySQLdb()
+"""
+```
 
 ## 数据迁移
 
@@ -437,7 +440,7 @@ python manage.py loaddata path/data.json
 
 > 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/contrib/admin/>
 
-### 注册应用 `one_app/admin.py`
+### 注册应用 admin.py
 
 ```python
 from django.contrib import admin
@@ -521,7 +524,7 @@ user.set_password('xxxx')
 user.save()
 ```
 
-## 修改应用在后台的显示名
+### 修改应用在后台的显示名
 
 > 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/applications/#for-application-authors>
 
@@ -703,7 +706,7 @@ def detail(request, question_id):
     return render(request, 'one_app/detail.html', {'question': question})
 ```
 
-### 路由配置 urls.py
+## 路由配置 urls.py
 
 - 配置项目的路由，根路由匹配应用
 
@@ -713,10 +716,9 @@ from django.urls import path, include
 from django.contrib import admin
 
 urlpatterns = [
-    # 必选参数view：如果要引用其它的URLconfs，应该总是使用inlcude()这种形式
-    path('one_app/', include('one_app.urls')),
-    # admin.site.urls是唯一的例外
-    path('admin/', admin.site.urls),
+    # 必选参数view
+    path('one_app/', include('one_app.urls')),  # 如果要引用其它的URLconfs，应该总是使用inlcude()这种形式
+    path('admin/', admin.site.urls),  # admin.site.urls是唯一的例外
 ]
 ```
 
@@ -732,15 +734,19 @@ app_name = "one_app"
 
 urlpatterns = [
     # 格式：path(route, view, kwargs, name)
-    # 必选route：路由正则
-    # 必选view：调用视图函数，传入HttpRequest对象
-    # 可选kwargs：字典的形式给视图函数传递任意个关键字
-    # 可选name：给路由起名字，在项目任意位置引用
+    """
+    route：必选，路由正则
+    view：必选，调用视图函数，传入HttpRequest对象
+    kwargs：可选，字典的形式给视图函数传递任意个关键字
+    name：可选，给路由起名字，在项目任意位置引用
+    """
     path('', views.index, name='index'),
 ]
 ```
 
 ## 通用视图
+
+普通视图使用函数来定义，更灵活，通用视图使用类来定义，适用于许多常见的 CRUD 操作和标准用例，实际项目中，通常可以同时使用这两种类型的视图，以满足不同的需求
 
 ```python
 # one_app/views.py

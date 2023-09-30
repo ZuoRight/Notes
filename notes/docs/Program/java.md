@@ -2,7 +2,8 @@
 
 [教程](https://www.liaoxuefeng.com/wiki/1252599548343744/1255883772263712)
 
-JDK(Java Development Kit)：[Java开发工具包](https://www.oracle.com/java/technologies/javase-downloads.html)
+- JDK(Java Development Kit)：[Java开发工具包](https://www.oracle.com/java/technologies/javase-downloads.html)
+- JRE(Java Runtime Environment)
 
 ![20210630131230](http://image.zuoright.com/20210630131230.png)
 
@@ -77,6 +78,10 @@ Java程序的构建过程一般是：编译、测试、打包。
 - gradle 继承maven和ant的优点，可以用仓库管理依赖也能自定义任务，`build.gradle`基于脚本语言Groovy
 
 ## JavaEE
+
+![20230925100617](https://image.zuoright.com/20230925100617.png)
+
+Java EE 是企业版，它只是在 Java SE 的基础上加上了大量的 API 和库，以便方便开发 Web 应用、数据库、消息服务等
 
 - Servlet+JSP+JavaBean，容器：Tomcat
 - Spring MVC，容器：IoC
