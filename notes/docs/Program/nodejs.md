@@ -220,7 +220,7 @@ let message = require('./lib');  // 导入模块
 console.log(message);  // 输出 'Hello!'
 ```
 
-### ES6 模块
+### ES6
 
 用于在 ES6 中导入模块的新关键字，属于异步操作
 
@@ -232,7 +232,7 @@ export function foo() {
 import {foo} from '模块文件的位置';
 ```
 
-在 Node 环境下若要使用 import 方式导入，需要 在 package.json 中添加配置
+在 Node 环境下若要使用 import 方式导入，需要 在 `package.json` 中添加配置
 
 ```json
 {
@@ -240,7 +240,7 @@ import {foo} from '模块文件的位置';
 }
 ```
 
-在 web 中需要加 module 属性
+在 Web 中需要加 module 属性
 
 ```js
 <script type="module" src="demo.js"></script>

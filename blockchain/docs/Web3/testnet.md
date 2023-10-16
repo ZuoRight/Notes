@@ -1,5 +1,13 @@
 # 测试网
 
+[Ethereum Testnets](https://ethereum.org/en/developers/docs/networks/#ethereum-testnets)
+
+![20231013102220](https://image.zuoright.com/20231013102220.png)
+
+以太坊2.0后大部分测试网被废弃，Goerli变为最主要的POS测试网，像Uniswap、OpenSea等大项目都在Goerli测试网搭建了测试环境，但是Goerli测试网代币比较难搞，水龙头比较稀缺
+
+目前 Goerli 也被废弃，将被 Holesky 取代
+
 ## 分类
 
 ### live network
@@ -29,7 +37,9 @@ Chain ID 是在 EIP-155 中引入的，以防止主 ETH 和 ETC 链之间的重�
 
 通过在签名信息中加入Chain ID， 避免一个交易在签名之后被重复在不同的链上提交。
 
-可以通过 Chainlist 网站查询 Chain ID：<https://chainlist.org/?search=eth&testnets=true> (old url: chainid.network)
+可以通过 Chainlist 网站查询 Chain ID
+
+<https://chainlist.org/?search=eth&testnets=true> (old url: chainid.network)
 
 Chainlist 是 EVM 网络的列表。用户可以使用这些信息将他们的钱包和 Web3 中间件提供商连接到适当的Chain ID 和网络 ID，以连接到正确的链。
 
@@ -44,15 +54,27 @@ Hardhat-Network: 31337
 
 ## 水龙头
 
-### Goerli
+- <https://faucetlink.to/>
+- <https://bwarelabs.com/faucets>
+- <https://faucet.triangleplatform.com/>
 
-以太坊2.0后有些测试网已经废弃，Goerli将会是最主要的POS测试网，像Uniswap、OpenSea等大项目都在Goerli测试网搭建了测试环境，但是Goerli测试网代币比较难搞，水龙头比较稀缺
+### Goerli
 
 - <https://goerli-faucet.pk910.de>  1/12h PoW挖矿获取
 - <https://chaineye.tools/faucet>  0.1/24h 需要Twitter验证
 - <https://goerlifaucet.com>  0.02/24h 需要主网有0.0001ETH
 - <https://faucet.quicknode.com/drip>  0.1/12h 需要主网有0.0001ETH，到账时间太慢
 - <https://testnetbridge.com/>  付费购买，0.11U/ETH
+
+Arbitrum Goerli
+
+- <https://bwarelabs.com/faucets/arbitrum-testnet>  0.025+0.075，发Twitter
+- <https://faucet.triangleplatform.com/arbitrum/goerli>  0.001/24h
+
+Base Goerli
+
+- <https://bwarelabs.com/faucets/base-testnet>  0.025+0.075，发Twitter
+- <https://faucet.triangleplatform.com/base/goerli>  0.001/24h
 
 ### Sepolia
 

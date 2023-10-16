@@ -32,7 +32,7 @@ Validium由`Starkware`团队在2020年6月份才提出，跟Plasma一样数据�
 
 ## Rollup
 
-### Optimistic Rollup（）
+### Optimistic Rollup
 
 Optimistic Rollup有用到Plasma的欺诈验证技术，提现也比较慢，应用项目主要有：`Optimism` 和 `Arbitrium`
 
