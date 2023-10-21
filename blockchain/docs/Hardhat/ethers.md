@@ -49,7 +49,7 @@ main();
 
 ## Provider
 
-Provider 是对以太坊网络连接的抽象类，提供了对区块链及其状态的只读访问
+Provider 类是对以太坊网络连接的抽象，提用于连接以及访问（只读）区块链及其状态
 
 - getDefaultProvider
 
@@ -64,9 +64,8 @@ const provider = ethers.getDefaultProvider();
 可以通过 Infura 或 Alchemy 等节点服务商获取个人的URL，更快的连接以太坊网络
 
 ```js
-const INFURA_SEPOLIA_URL = 'xxx'  // 创建个人 API Key
-const ALCHEMY_MAINNET_URL = 'https://eth-mainnet.g.alchemy.com/v2/xxx';
-const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
+const INFURA_URL = 'https://sepolia.infura.io/v3/xxx';
+const provider = new ethers.JsonRpcProvider(INFURA_URL)
 ```
 
 ### 方法
@@ -145,6 +144,285 @@ console.log(code);
 // 0x6060604052361561010f5763ffffffff7c010000......0000060003504166306fdde03811461011157806307......d59296451a3a0c1683c70029
 ```
 
+## Signer & Wallet
+
+Signer 类是对以太坊账户的抽象，可用于给消息和交易签名并发送到网络更改区块链状态
+
+Signer 类是抽象类，不能直接实例化，需要用它的子类：Wallet
+
+### 创建wallet对象
+
+- 随机私钥
+
+```js
+// 私钥由加密安全的熵源生成
+const wallet1 = ethers.Wallet.createRandom()
+const wallet1WithProvider = wallet1.connect(provider)  // 否则provider为null
+
+console.log(wallet1)
+// HDNodeWallet {
+//   provider: null,
+//   address: '0x7E86Fde7fAEF38c45e4F7f0f40B46987A0F25Da9',
+//   publicKey: '0x03d6ab9b45bbb2bbd57b4401f2c3899f4dcf76de1b5472c9d9f19761860da72367',
+//   fingerprint: '0xd946a991',
+//   parentFingerprint: '0x618c5125',
+//   mnemonic: Mnemonic {
+//     phrase: 'report edge fatigue embark chef obtain craft always address faith solar cluster',
+//     password: '',
+//     wordlist: LangEn { locale: 'en' },
+//     entropy: '0xb6e8c94f242275310c803c036a433996'
+//   },
+//   chainCode: '0x720f1b0f727938711cb8b83c44c1e66a6b7f9a50fe9f9942909580f77bb64667',
+//   path: "m/44'/60'/0'/0/0",
+//   index: 0,
+//   depth: 5
+// }
+```
+
+- 指定私钥
+
+```js
+// 指定私钥和provider
+const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const wallet2 = new ethers.Wallet(privateKey, provider)
+
+console.log(wallet2)
+// Wallet {
+//   provider: JsonRpcProvider {},
+//   address: '0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2'
+// }
+
+// 这种方式不能获取助记词
+const mnemonic = wallet2.mnemonic  // undefined
+```
+
+- 从助记词创建
+
+```js
+const wallet3 = ethers.Wallet.fromPhrase(mnemonic.phrase)
+```
+
+- 从keystore文件创建
+
+```js
+const wallet4 = ethers.Wallet.fromEncryptedJson(keystore.json)
+```
+
+### 获取钱包信息
+
+```js
+const address = await wallet.getAddress()  // 获取钱包地址
+const pk = wallet2.privateKey  // 获取私钥
+const phrase = wallet.mnemonic.phrase  // wallet2不能获取
+
+// 获取交易次数
+const txCount = await provider.getTransactionCount(wallet)  // 参数也可以是address
+```
+
+### 发送交易
+
+```js
+const tx = {
+    to: address1,  // 接收地址
+    value: ethers.parseEther("0.001")  // 发送数额
+}
+// sendTransaction包含发送地址from、请求数据data、nonce等信息
+const receipt = await wallet2.sendTransaction(tx)
+await receipt.wait()  // 等待链上确认交易
+
+// 打印交易详情
+console.log(receipt)
+// TransactionResponse {
+//   provider: JsonRpcProvider {},
+//   blockNumber: null,
+//   blockHash: null,
+//   index: undefined,
+//   hash: '0x20282a0bfcfa53adfe8bc354f14b67952bbec8c50058f600233334efc05a1c46',
+//   type: 2,
+//   to: '0x6dC688B011ca7d4BdbcdB3Cf42E7F934A44835d6',
+//   from: '0xE8187F49c358B3989Be39D34312C6fb421Cc4341',
+//   nonce: 82,
+//   gasLimit: 21000n,
+//   gasPrice: undefined,
+//   maxPriorityFeePerGas: 1000000000n,
+//   maxFeePerGas: 1000001864n,
+//   data: '0x',
+//   value: 1000000000000000n,
+//   chainId: 11155111n,
+//   signature: Signature { r: "0x4d292bf9fedabd389f3844965d5ea41450010bf40ac0669d2e0f7f58566fa3b9", s: "0x0403c675c0c44dd4b7f5ba369e6e16c04fe0827d40cbf3b7b23e83908ad8b1f7", yParity: 1, networkV: null },
+//   accessList: []
+// }
+```
+
+## Contract
+
+Contract 类是对合约（EVM字节码）的抽象，用于与合约交互
+
+- 只读
+
+只能调用合约中的 view 和 pure 函数
+
+```js
+const contract = new ethers.Contract('address', 'abi', 'provider');
+
+// 比如读取WETH合约链上信息
+const main = async () => {
+    const nameWETH = await contractWETH.name()
+    const symbolWETH = await contractWETH.symbol()
+    const totalSupplyWETH = await contractWETH.totalSupply()
+}
+main()
+```
+
+ABI(Application Binary Interface) 是与以太坊智能合约交互的标准接口，类似于API
+
+可以直接从编译后生成的`artifact`路径下的json文件中获取，如果已开源还可以从EtherScan中获取
+
+```json
+[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":
+...省略...
+"type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[],"name":"Pause","type":"event"},{"anonymous":false,"inputs":[],"name":"Unpause","type":"event"}]
+```
+
+不过这种可读性比较差，ethers 引入了 Human-Readable ABI
+
+```js
+const abiERC20 = [
+    "function name() view returns (string)",
+    "function symbol() view returns (string)",
+    "function totalSupply() view returns (uint256)",
+    "function balanceOf(address) view returns (uint)",
+];
+```
+
+- 可读写
+
+可以执行 transaction
+
+```js
+const contract = new ethers.Contract('address', 'abi', 'signer');
+
+// 也可以先声明一个只读合约，然后再将只读可约转为可写合约
+const contract2 = contract.connect(signer)
+
+
+const tx = await contract.METHOD_NAME(args [, overrides])  // 发送交易
+await tx.wait()  // 等待链上确认交易
+// METHOD_NAME 为调用的函数名
+// argsw 为参数
+// overrides 为可选参数
+//     gasPrice
+//     gasLimit
+//     value：调用时传入的ether（单位是wei）
+//     nonce
+```
+
+## ContractFactory
+
+```js
+// 部署合约
+const factoryERC20 = new ethers.ContractFactory(abiERC20, bytecodeERC20, wallet);  // 实例化
+const contractERC20 = await factoryERC20.deploy("Test Token", "TTC")  // 部署，并传入constructor参数
+console.log(contractERC20.target)  // 合约地址
+console.log(contractERC20.deploymentTransaction())  // 合约部署的交易详情
+await contractERC20.waitForDeployment()  // 等待合约部署上链
+
+// 与部署成功后的合约交互
+console.log(`合约名称: ${await contractERC20.name()}`)
+console.log(`合约代号: ${await contractERC20.symbol()}`)
+let tx = await contractERC20.mint("10000")
+await tx.wait()
+```
+
+## 事件相关
+
+```js
+// Solidity 定义 Event
+event Transfer(address indexed from, address indexed to, uint256 amount);
+// 有索引的（indexed）变量存储在 Topics，反之存在 Data
+// 最多可以包含4个索引
+```
+
+![20231021110758](https://image.zuoright.com/20231021110758.png)
+
+如图，Address 是合约地址，Topics[0] 是事件哈希：`keccak256("Transfer(address,address,uint256)")`，Topics[1] 和 Topics[2] 分别是 from 和 to 地址，Data 是转账数量。
+
+### 检索事件
+
+- queryFilter
+
+`contract.queryFilter('事件名', 起始区块, 结束区块)`
+
+```js
+const block = await provider.getBlockNumber()  // 获取当前区块高度
+const transferEvents = await contract.queryFilter('Transfer', block - 10, block)
+console.log(transferEvents[0])  // 打印第一个Transfer事件
+```
+
+### 监听事件
+
+- 持续监听：`contract.on("事件名", 事件发生时要调用的函数)`
+- 监听一次：`contract.once("事件名", 事件发生时要调用的函数)`
+
+```js
+// 持续监听USDT合约的Transfer事件，事件发生时打印结果
+contractUSDT.on('Transfer', (from, to, value)=>{
+    console.log(
+        `${from} -> ${to} ${ethers.formatUnits(ethers.getBigInt(value),6)}`
+    )
+})
+```
+
+- 监听过滤
+
+`contract.filters.EVENT_NAME( ...args )`
+
+```js
+contract.filters.Transfer(fromAddress, toAddress)  // 过滤所有从a发给b的Transfer事件
+contract.filters.Transfer(fromAddress)  // 过滤所有从a发出的～
+contract.filters.Transfer(null, toAddress)  // 过滤所有发给b的～
+contract.filters.Transfer(null, [to1Address, to2Address])  // 过滤所有发给b或c的～
+```
+
+实例
+
+```js
+const provider = new ethers.JsonRpcProvider(Infura_URL);
+const addressUSDT = '0xdac17f958d2ee523a2206206994597c13d831ec7'  // USDT合约地址
+const filterBinanceIn = '0x28C6c06298d514Db089934071355E5743bf21d60'  // 某人Binance的热钱包地址
+// 构建ABI
+const abi = [
+  "event Transfer(address indexed from, address indexed to, uint value)",
+  "function balanceOf(address) public view returns(uint)",
+];
+// 构建合约对象
+const contractUSDT = new ethers.Contract(addressUSDT, abi, provider);
+
+// 查询accountA的余额
+const balanceUSDT = await contractUSDT.balanceOf(filterBinanceIn)
+console.log(`USDT余额: ${ethers.formatUnits(balanceUSDT,6)}\n`)
+
+// 过滤Transfer事件：从accountBinance转出USDT
+let filterToBinanceOut = contractUSDT.filters.Transfer(accountBinance);
+console.log(filterToBinanceOut);
+contractUSDT.on(filterToBinanceOut, (res) => {
+    console.log('---------监听USDT转出交易所--------');
+    console.log(
+        `${res.args[0]} -> ${res.args[1]} ${ethers.formatUnits(res.args[2],6)}`
+    )
+});
+
+// 过滤Transfer事件：转入accountBinance
+let filterBinanceIn = contractUSDT.filters.Transfer(null, accountBinance);
+console.log(filterBinanceIn);
+contractUSDT.on(filterBinanceIn, (res) => {
+    console.log('---------监听USDT转入交易所--------');
+    console.log(
+    `${res.args[0]} -> ${res.args[1]} ${ethers.formatUnits(res.args[2],6)}`
+    )
+});
+```
+
 ## BigNumber
 
 可以利用`ethers.BigNumber.from()`函数将string，number，BigNumber等类型转换为BigNumber
@@ -177,4 +455,6 @@ const YEAR = DAY.mul(365);
 
 ```js
 ethers.utils.formatUnits(变量, 单位);
+
+ethers.formatEther(balanceWei);  // 将单位从默认的wei转换为ETH
 ```

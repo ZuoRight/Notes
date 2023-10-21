@@ -70,9 +70,9 @@ INFURA_SECRET_KEY = os.getenv("WEB3_INFURA_PROJECT_ID")
 
 # get w3 endpoint by network name
 def get_w3_by_network(network='mainnet'):
-    infura_url = f'https://{network}.infura.io/v3/{INFURA_SECRET_KEY}'
-    w3 = Web3(Web3.HTTPProvider(infura_url))  # 接入 Infura 节点
-    return w3
+  infura_url = f'https://{network}.infura.io/v3/{INFURA_SECRET_KEY}'
+  w3 = Web3(Web3.HTTPProvider(infura_url))  # 接入 Infura 节点
+  return w3
 
 w3 = get_w3_by_network(network='goerli')
 ```

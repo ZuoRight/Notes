@@ -190,11 +190,13 @@ print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1f
 
 ## ENS
 
+<https://app.ens.domains/>
+
+类似 DNS 的以太坊域名服务 ENS（Ethereum Name Service）
+
 钱包地址类似于IP，可以绑定域名，方便记忆
 
-比如类似 DNS 的以太坊域名服务 ENS（Ethereum Name Service）
-
-<https://app.ens.domains/>
+比如V神的域名为：[vitalik.eth](https://app.ens.domains/vitalik.eth)
 
 ## 钱包
 
