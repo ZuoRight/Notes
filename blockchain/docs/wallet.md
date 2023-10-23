@@ -198,6 +198,11 @@ print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1f
 
 比如V神的域名为：[vitalik.eth](https://app.ens.domains/vitalik.eth)
 
+```js
+// 将ENS解析为地址
+const addressVitalik = await provider.resolveName("vitalik.eth")
+```
+
 ## 钱包
 
 <https://ethereum.org/en/wallets/find-wallet/#main-content>

@@ -1,10 +1,15 @@
 # Ethers
 
-推荐使用较新的v6版本，与v5相比改动较大：<https://docs.ethers.org/v6/getting-started/>
+推荐使用较新的 v6 版本：<https://docs.ethers.org/v6/getting-started/>
 
 ```shell
 npm install ethers --save
 ```
+
+与 v5 相比改动较大，改动或者迁移可参考：
+
+- <https://docs.ethers.org/v6/migrating/>
+- <https://twitter.com/0xAA_Science/status/1645108566221799424>
 
 ## 导入
 
@@ -334,6 +339,27 @@ let tx = await contractERC20.mint("10000")
 await tx.wait()
 ```
 
+## 模拟交易
+
+以太坊节点提供了 `eth_call` 方法，让用户可以模拟一笔交易，根据返回结果预知交易能否成功
+
+Ethers 将其封装在了 contract 对象的 `staticCall()` 方法中方便调用
+
+```js
+const tx = await contract.函数名.staticCall(函数参数, {override})
+// override
+//     from: 可以模拟任何msg.sender调用
+//     value: msg.value
+//     blockTag: 执行时的区块高度
+//     gasPrice
+//     gasLimit
+//     nonce
+
+// 模拟 addressX 给V神转账 1 DAI
+const tx = await contractDAI.transfer.staticCall("vitalik.eth", ethers.parseEther("1"), {from: addressX})
+// 如果交易可以成功则返回true，否则报错并返回原因
+```
+
 ## 事件相关
 
 ```js
@@ -423,13 +449,49 @@ contractUSDT.on(filterBinanceIn, (res) => {
 });
 ```
 
-## BigNumber
+## 单位转换
 
-可以利用`ethers.BigNumber.from()`函数将string，number，BigNumber等类型转换为BigNumber
+- 转为ether：`ethers.formatEther("变量")`
 
 ```js
+ethers.formatEther("1")  // '0.000000000000000001'
+ethers.formatEther("1000000000000000000")  // '1.0'
+```
+
+- 任意转：`ethers.utils.formatUnits("变量", "单位");`
+
+小转大输出类型为`BigInt`，大转小输出类型为`String`
+
+```js
+// 默认转换为ether
+ethers.formatUnits("1");  // 1000000000000000000n
+ethers.formatUnits("1000000000000000000");  // '1.0'
+
+// 可以指定单位
+ethers.formatUnits("1", "ether");  // 1000000000000000000n
+ethers.formatUnits("1", "gwei")  // 1000000000n
+ethers.formatUnits("1", "wei")  // 1n
+
+// 也可以转为任意长度
+ethers.parseUnits("1", 3)  // 1000n
+```
+
+## BigInt
+
+在 Ethers V5 中需要引入 `BigNumber` 库来实现，四则运算需要使用对应方法
+
+```js
+// const { BigNumber } = require('ethers')
+import { BigNumber } from "ethers";
+
+const HOUR = BigNumber.from(60 * 60);  // 3600s
+const DAY = HOUR.mul(24);  // 86400s
+const WEEK = DAY.mul(7);
+const MONTH = DAY.mul(30);
+const YEAR = DAY.mul(365);
+
 const decimals = BigNumber.from("1000000000000000000");
-const oneGwei = ethers.BigNumber.from("1000000000")
+const oneGwei = ethers.BigNumber.from("1000000000");
 
 oneGwei.add(1).toString()  // 加
 oneGwei.sub(1).toString()  // 减
@@ -441,20 +503,11 @@ oneGwei.abs(1).toString()  // 绝对值
 oneGwei.eq(1000000000)  // 比较，是否相等，返回bool值
 ```
 
-```ts
-import { BigNumber } from "ethers";
-
-const HOUR = BigNumber.from(60 * 60);  // 3600s
-const DAY = HOUR.mul(24);  // 86400s
-const WEEK = DAY.mul(7);
-const MONTH = DAY.mul(30);
-const YEAR = DAY.mul(365);
-```
-
-## 单位转换
+在 Ether V6 中，`BigNumber` 库被移除，替换为 JS ES2020 原生的 BigInt 库
 
 ```js
-ethers.utils.formatUnits(变量, 单位);
-
-ethers.formatEther(balanceWei);  // 将单位从默认的wei转换为ETH
+const value1 = 1000n
+const value2 = ethers.getBigInt("1000")  // 将其它类型转换为 BigInt
+console.log(value1 + 1n)  // 基础运算直接用
+console.log(value1 == value2)  // 比较是否相等
 ```
