@@ -96,11 +96,11 @@ select 1
 
 - RESP
 
-以前叫做 Redis Desktop Manager，目前已收费，可试用14天，官网个人版¥129/年，苹果/微软应用商店¥98/永久（不能跨平台使用）
+以前叫做 Redis Desktop Manager，目前已收费，可试用14天，官网个人版 ¥129/年，苹果/微软应用商店¥98/永久（不能跨平台使用）
 
 - [Another Redis Desktop Manager](https://github.com/qishibo/AnotherRedisDesktopManager)
 
-虽然名字有点...但应该是目前最好的开源客户端
+可能是目前最好的开源客户端
 
 Mac 上启动如果报错可以执行：`sudo xattr -rd com.apple.quarantine /Applications/Another\ Redis\ Desktop\ Manager.app`
 

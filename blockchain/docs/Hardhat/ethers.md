@@ -481,8 +481,8 @@ ethers.parseUnits("1", 3)  // 1000n
 在 Ethers V5 中需要引入 `BigNumber` 库来实现，四则运算需要使用对应方法
 
 ```js
-// const { BigNumber } = require('ethers')
-import { BigNumber } from "ethers";
+// import { BigNumber } from "ethers";
+const { BigNumber } = require('ethers')
 
 const HOUR = BigNumber.from(60 * 60);  // 3600s
 const DAY = HOUR.mul(24);  // 86400s

@@ -4,7 +4,8 @@
 node --version  # 查看版本
 node demo.js  # 运行脚本
 
-node  # 进入交互式环境 REPL（Read-Eval-Print Loop），类似于浏览器的控制台
+# 进入交互式环境 REPL（Read-Eval-Print Loop），类似于浏览器的控制台
+node  # 退出：.exit
 ```
 
 ## 安装
