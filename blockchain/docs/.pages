@@ -2,10 +2,12 @@
 
 nav:
   - index.md
-  - Bitcoin
-  - Ethereum
+  - Bitcoin.md
+  - Ethereum.md
   - wallet.md
   - signature.md
+  - 账户模型
+  - 可扩展性
   - DApp
   - Solidity
   - Brownie

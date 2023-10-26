@@ -1,10 +1,4 @@
-# 数字签名
-
-- EIP712 签名脚本: <https://github.com/WTFAcademy/WTF-Ethers/tree/main/26_EIP712>
-- 连接Metamask：<https://github.com/WTFAcademy/WTF-Ethers/tree/main/ET01_Metamask>
-- 实现Metamask签名授权登陆：<https://github.com/WTFAcademy/WTF-Ethers/tree/main/ET02_SignInWithEthereum>
-
-数字签名（也叫数字摘要，类似指纹），作用：防伪造，防篡改，防抵赖。
+# 加密算法
 
 ![20220103171609](http://image.zuoright.com/20220103171609.png)
 
@@ -87,9 +81,15 @@ address = '0x' + digest[-20:].hex()
 print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1fa39f997f06bfb7ca0
 ```
 
-## 数字签名算法
+## 数字签名
+
+数字签名（也叫数字摘要，类似指纹），作用：防伪造，防篡改，防抵赖。
 
 通常由非对称加密算法和哈希算法相结合生成
+
+- EIP712 签名脚本: <https://github.com/WTFAcademy/WTF-Ethers/tree/main/26_EIP712>
+- 连接Metamask：<https://github.com/WTFAcademy/WTF-Ethers/tree/main/ET01_Metamask>
+- 实现Metamask签名授权登陆：<https://github.com/WTFAcademy/WTF-Ethers/tree/main/ET02_SignInWithEthereum>
 
 ### RSA
 

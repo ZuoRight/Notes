@@ -1,4 +1,4 @@
-# 账户模型
+# UTXO
 
 > [bitcoindeveloper·transactions](https://developer.bitcoin.org/devguide/transactions.html)  
 > [廖雪峰区块链教程：P2P交易原理、可编程支付原理](https://www.liaoxuefeng.com/wiki/1207298049439968/1311929802948641)
