@@ -13,41 +13,19 @@ hide:
 
 对于比特币，区块链是一个公开账本，而对于以太坊它是一个智能合约。
 
-三要素
+## 三要素
 
 - 加密算法
-- 共识机制
+- 共识机制：PoW、PoS
 - 账户模型
 
-## 共识机制
-
-- PoW(Proof of Work) 工作量证明
-- PoS(Proof of Stake) 权益证明
-
-## 区块链可视化
+## 可视化
 
 - <https://andersbrownworth.com/blockchain/>
 - <https://txstreet.com/v/eth-btc>
 - <http://ethviewer.live/>
 
 ![20230429200042](http://image.zuoright.com/20230429200042.png)
-
-## 区块浏览器
-
-从技术上看，区块浏览器的主要工作就是把区块扫描到数据库服务器中，然后搭建一个 Web 访问服务，用户只需要输入交易哈希或者区块哈希，即可查询到交易是否已经被打包和确认。
-
-![20231026220750](https://image.zuoright.com/20231026220750.png)
-
-多链：[OKLink](https://www.oklink.com/all-chain)
-
-- <https://www.oklink.com/btc>
-- <https://www.oklink.com/eth>
-
-Ethereum：[Etherscan](https://etherscan.io/)
-
-- [Blocks List](https://info.etherscan.com/exploring-block-page/)
-- [Block Detail](https://info.etherscan.com/exploring-block-details-page/)
-- [Transaction](https://info.etherscan.com/understanding-an-ethereum-transaction/)
 
 ## 提案
 
@@ -57,13 +35,8 @@ Ethereum：[Etherscan](https://etherscan.io/)
 - 以太坊改进提案：EIP（Ethereum Imporvement Proposals）
 - 以太坊意见征求稿：ERC（Ethereum Request For Comment）
 
-## 可扩展性
+## Web3
 
-由于公链生态爆发，所有交易都在链上处理，导致拥堵处理速度越来越慢，手续费越来越高，引发了比特币扩容之争导致软分叉、硬分叉，促使以太坊升级分层，引出跨链，以及各种新公链
-
-![20220729185819](http://image.zuoright.com/20220729185819.png)
-
-跨链项目
-
-- Cosmos（ATOM）
-- Polkadot（DOT）
+- Web1.0 所见即所得
+- Web2.0 所荐即所得
+- Web3.0 所建即所得

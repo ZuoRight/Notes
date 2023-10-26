@@ -1,6 +1,6 @@
-# HD钱包
+# HD Wallet
 
-Find a Wallet：<https://ethereum.org/en/wallets/find-wallet/#main-content>
+Find a Wallet: <https://ethereum.org/en/wallets/find-wallet/#main-content>
 
 - BIP32 — 定义分层确定性钱包（Hierarchical Deterministic Wallets）
 - BIP44 — 定义HD钱包多账户层次结构

@@ -44,7 +44,7 @@ Gavin Wood 写了以太坊的[黄皮书](https://github.com/ethereum/yellowpaper
 - <https://ethos.dev/beacon-chain>
 - <https://stonecoldpat.substack.com/p/how-proof-of-stake-ethereum-works>
 
-The Beacon Chain Ethereum 2.0 采用了 PoS 共识机制，向存储合约质押(Staking) 32 个 $ETH 成为 Validators(验证节点，验证者)
+The Beacon Chain Ethereum 2.0 采用了 PoS(Proof of Stake) 权益证明共识机制，向存储合约质押(Staking) 32 个 $ETH 成为 Validators(验证节点，验证者)
 
 Validators 参与出块获得奖励或惩罚(Staking Rewards and Penalties)会影响质押的$ETH数量变化，当小于 16 $ETH 时将会被取消资格
 
