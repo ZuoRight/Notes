@@ -34,6 +34,10 @@ hide:
 
 ## 区块浏览器
 
+从技术上看，区块浏览器的主要工作就是把区块扫描到数据库服务器中，然后搭建一个 Web 访问服务，用户只需要输入交易哈希或者区块哈希，即可查询到交易是否已经被打包和确认。
+
+![20231026220750](https://image.zuoright.com/20231026220750.png)
+
 多链：[OKLink](https://www.oklink.com/all-chain)
 
 - <https://www.oklink.com/btc>

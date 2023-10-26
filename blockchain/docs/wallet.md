@@ -206,108 +206,6 @@ root_key = base58.b58encode_check(all_bytes).decode('utf8')  # xprv9s21ZrQH143K.
 
 根据派生路径生成子密钥，略过...
 
-### 私钥 => 公钥
-
-密钥是成对的，可以将其中任意一个作为私钥，则另一个即为公钥
-
-- 私钥：64 个十六进制字符（32Bytes）
-- 公钥：128 个十六进制字符（68Bytes）
-
-根据椭圆曲线密码学可通过私钥生成公钥
-
-```python
-p = curve_point_from_int(private_key)
-public_key_bytes = serialize_curve_point(p)
-print(f'public key: 0x{public_key_bytes.hex()}')  # public key: 0x024c8f4044470bd42b81a...
-```
-
-然后生成一个收款地址，a public address is the last 20 Bytes of the Keccak-256 hash of the public key points（取64Bytes的后20Bytes）
-
-```python
-from eth_utils import keccak
-
-digest = keccak(x.to_bytes(32, 'big') + y.to_bytes(32, 'big'))
-address = '0x' + digest[-20:].hex()
-print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1fa39f997f06bfb7ca0
-```
-
-## 比特币钱包地址
-
-![20230509234516](http://image.zuoright.com/20230509234516.png)
-
-比特币地址是交叉兼容的，每种类型的地址都可以给任意类型的地址发送资金，但是手续费不同：`原生隔离见证地址（bc1开头） < 隔离见证兼容地址（部分3开头） < 传统地址（1开头） < 多签地址（部分3开头）`
-
-1. 隔离见证兼容地址转账手续费比传统地址节省 24%
-2. 原生隔离见证地址转账手续费比传统地址节省 35%
-3. 隔离见证地址转账手续费比多签地址最多可以节省 70%
-
-### P2PKH
-
-Pay to PubKey Hash 付款至公钥哈希，最初的传统地址（Legacy）
-
-`Base58(0x00 + Hash160(Public Key) + Checksum)`
-
-编码后 1 开头，34个字符，不包含 0、O、l、I 等容易混淆的字符，比如：`1MbeQFmHo9b69kCfFa6yBr7BQX4NzJFQq9`
-
-假设Alice给Bob转账，相当于将资产放入保险箱，用Bob的公钥加密，Bob只有在向他人转账的时候，才会使用私钥签名打开保险箱，然后将其锁入另一个收款方的保险箱
-
-```text
-OP_DUP 
-
-OP_HASH160 
-
-(Bob 收款地址蕴含的 Public Key Hash) 
-
-OP_EQUALVERIFY 
-
-OP_CHECKSIG
-```
-
-### P2SH
-
-Pay to Script Hash 付款至脚本哈希
-
-- 多签地址：P2SH
-- 隔离见证兼容地址（Nested SegWit）：P2SH-P2WPKH
-
-`Base58(0x05 + Hash160(Script) + Checksum)`
-
-编码后 3 开头，34个字符，比如：`3EmUH8Uh9EXE7axgyAeBsCc2vdUdKkDqWK`
-
-### P2WPKH / Bech32
-
-专为隔离见证设计的格式，2017 年底由 BIP173 定义
-
-原生隔离见证地址（Native SegWit）
-
-Base32 编码，bc1 开头，42个字符，不区分大小写，只包含数字和小写字母：0～9，a~z，比如：`bc1qj89046x7zv6pm4n00qgqp505nvljnfp6xfznyw`
-
-QR 码更小，更容易防错，更安全，更高效，手续费更低
-
-### P2TR / Taproot
-
-## 以太坊钱包地址
-
-Ethereum 有两种账号类型
-
-- 外部账户
-
-EOA（Externally Owned Accounts），由私钥拥有者控制，可以主动发起交易，codeHash 为空
-
-经过 Keccak-256 哈希算法后，取最后 20 字节再加上 0x，变为 42 个字符（十六进制字符串），例如：`0x5e97870f263700f46aa00d967821199b9bc5a120`
-
-ERC20 地址忽略大小写，TRC20 地址大小写敏感
-
-- 合约账户
-
-CA（Contract Accounts），由智能合约代码控制，只能被动交易，没有私钥
-
-由 0x 开头的 42 个字符（十六进制字符串），例如：`0x06012c8cf97bead5deae237070f9587f8e7a266d`
-
-- 抽象账户
-
-Account Abstraction 是指将两种不同的账户合并成一种
-
 ## 使用 Ether.js 生成 HD
 
 - 生成随机助记词
@@ -453,21 +351,82 @@ const json = await hdNode.encrypt(pwd)
 const wallet = await ethers.Wallet.fromEncryptedJson(json, pwd);
 ```
 
-## 签名
+## 比特币钱包地址
 
-### 数字签名
+![20230509234516](http://image.zuoright.com/20230509234516.png)
 
-- EIP712 签名脚本: <https://github.com/WTFAcademy/WTF-Ethers/tree/main/26_EIP712>
-- 连接Metamask：<https://github.com/WTFAcademy/WTF-Ethers/tree/main/ET01_Metamask>
-- 实现Metamask签名授权登陆：<https://github.com/WTFAcademy/WTF-Ethers/tree/main/ET02_SignInWithEthereum>
+比特币地址是交叉兼容的，每种类型的地址都可以给任意类型的地址发送资金，但是手续费不同：`原生隔离见证地址（bc1开头） < 隔离见证兼容地址（部分3开头） < 传统地址（1开头） < 多签地址（部分3开头）`
 
-### 多重签名
+1. 隔离见证兼容地址转账手续费比传统地址节省 24%
+2. 原生隔离见证地址转账手续费比传统地址节省 35%
+3. 隔离见证地址转账手续费比多签地址最多可以节省 70%
 
-为了避免一个私钥的丢失导致地址的资金丢失，引出了多重签名机制，可以实现分散风险的功能。
+### P2PKH
 
-假设N个人分别持有N个私钥，需要要其中M个人同意签名才可以动用某个“联合地址”的资金
+Pay to PubKey Hash 付款至公钥哈希，最初的传统地址（Legacy）
 
-最常见的多重签名是2-3类型。例如，一个提供在线钱包的服务，为了防止服务商盗取用户的资金，可以使用2-3类型的多重签名地址，服务商持有1个私钥，用户持有两个私钥，一个作为常规使用，一个作为应急使用。这样，正常情况下，用户只需使用常规私钥即可配合服务商完成正常交易，服务商因为只持有1个私钥，因此无法盗取用户资金。如果服务商倒闭或者被黑客攻击，用户可使用自己掌握的两个私钥转移资金。
+`Base58(0x00 + Hash160(Public Key) + Checksum)`
+
+编码后 1 开头，34个字符，不包含 0、O、l、I 等容易混淆的字符，比如：`1MbeQFmHo9b69kCfFa6yBr7BQX4NzJFQq9`
+
+假设Alice给Bob转账，相当于将资产放入保险箱，用Bob的公钥加密，Bob只有在向他人转账的时候，才会使用私钥签名打开保险箱，然后将其锁入另一个收款方的保险箱
+
+```text
+OP_DUP 
+
+OP_HASH160 
+
+(Bob 收款地址蕴含的 Public Key Hash) 
+
+OP_EQUALVERIFY 
+
+OP_CHECKSIG
+```
+
+### P2SH
+
+Pay to Script Hash 付款至脚本哈希
+
+- 多签地址：P2SH
+- 隔离见证兼容地址（Nested SegWit）：P2SH-P2WPKH
+
+`Base58(0x05 + Hash160(Script) + Checksum)`
+
+编码后 3 开头，34个字符，比如：`3EmUH8Uh9EXE7axgyAeBsCc2vdUdKkDqWK`
+
+### P2WPKH / Bech32
+
+专为隔离见证设计的格式，2017 年底由 BIP173 定义
+
+原生隔离见证地址（Native SegWit）
+
+Base32 编码，bc1 开头，42个字符，不区分大小写，只包含数字和小写字母：0～9，a~z，比如：`bc1qj89046x7zv6pm4n00qgqp505nvljnfp6xfznyw`
+
+QR 码更小，更容易防错，更安全，更高效，手续费更低
+
+### P2TR / Taproot
+
+## 以太坊钱包地址
+
+Ethereum 有两种账号类型
+
+- 外部账户
+
+EOA（Externally Owned Accounts），由私钥拥有者控制，可以主动发起交易，codeHash 为空
+
+经过 Keccak-256 哈希算法后，取最后 20 字节再加上 0x，变为 42 个字符（十六进制字符串），例如：`0x5e97870f263700f46aa00d967821199b9bc5a120`
+
+ERC20 地址忽略大小写，TRC20 地址大小写敏感
+
+- 合约账户
+
+CA（Contract Accounts），由智能合约代码控制，只能被动交易，没有私钥
+
+由 0x 开头的 42 个字符（十六进制字符串），例如：`0x06012c8cf97bead5deae237070f9587f8e7a266d`
+
+- 抽象账户
+
+Account Abstraction 是指将两种不同的账户合并成一种
 
 ## ENS
 

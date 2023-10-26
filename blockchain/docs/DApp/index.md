@@ -25,7 +25,7 @@ Rust更底层更通用，并不局限于智能合约开发，但学习难度也�
 
 Libra 是 Meta(Facebook) 之前计划推出的稳定币区块链项目，后因监管受阻夭折，转变成了 Diem 项目，但没过多久被迫解散，衍生出了 Aptos 和 Sui 等新的公链项目。
 
-Move 是一种基于 Rust 的语言，最初是为 Libra 项目创造，后被 Aptos 和 Sui 等项目继续使用。
+Move 是一种基于 Rust 的语言，最初是为 Libra 项目创造，后被 Aptos 和 Sui 等项目继续使用，和 Solidity 最大的区别在于，它比较看重资产这个概念，一切设计都以资产的安全为首要目的
 
 zkSync 需要先编译为中间语言Yul，然后再通过LLVM编译为 zkEVM 字节码。
 

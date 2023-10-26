@@ -5,8 +5,8 @@ nav:
   - Bitcoin
   - Ethereum
   - wallet.md
-  - 加密算法.md
-  - Web3
+  - signature.md
+  - DApp
   - Solidity
   - Brownie
   - Hardhat
