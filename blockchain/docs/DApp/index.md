@@ -1,13 +1,5 @@
 # 引言
 
-## 架构
-
-> [参考文章](https://www.preethikasireddy.com/post/the-architecture-of-a-web-3-0-application)
-
-![20230610215948](http://image.zuoright.com/20230610215948.png)
-
-![20230610215825](http://image.zuoright.com/20230610215825.png)
-
 ## 开发语言
 
 - EVM: `Solidity`、`Vyper`
@@ -46,3 +38,15 @@ Truffle 基于 web3.js，Hardhat 基于 ethers.js
 Brownie 是 Curve 协议使用的主要工具之一，但 Brownie 和 Python 社区希望 Apeworx 成为基于 Python 的智能合约框架的继任者。
 
 Foundry 是 Paradigm 团队用 Rust 基于 dapptools 重构的框架，据说 `Foundry` 测试运行速度比 `Hardhat` 快 20 倍，比 `Brownie` 快 40 倍
+
+## 架构
+
+> [参考文章](https://www.preethikasireddy.com/post/the-architecture-of-a-web-3-0-application)
+
+- Web2
+
+![20230610215948](http://image.zuoright.com/20230610215948.png)
+
+- Web3
+
+![20230610215825](http://image.zuoright.com/20230610215825.png)
