@@ -1,65 +1,314 @@
 # HD钱包
 
+Find a Wallet：<https://ethereum.org/en/wallets/find-wallet/#main-content>
+
 - BIP32 — 定义分层确定性钱包（Hierarchical Deterministic Wallets）
 - BIP44 — 定义HD钱包多账户层次结构
-- BIP39 — 使用助记词（Mnemonic code）生成确定性密钥方便记忆，根据助记词即可恢复钱包，所以助记词也叫SRP(Secret Recovery Phrase)
+- BIP39 — 使用助记词（Mnemonic）来生成确定性密钥，根据助记词即可恢复钱包，也SRP(Secret Recovery Phrase)
 
-在 BIP32 推出之前，用户需要记录一堆的私钥才能管理很多钱包。
+在 BIP32 推出之前，用户需要记录一堆的私钥才能管理很多账户
 
-BIP32 提出可以用一个随机种子衍生多个私钥，更方便的管理多个钱包
-
-BIP32 规范指出：
+BIP32 提出可以用一个根密钥（也叫根扩展密钥）根据某种确定性算法派生出多个子密钥，更方便的管理多个账户，即
 
 1. 所有账户都源自一个根密钥（分层）
 2. 给定根密钥，所有子账户都可以可靠地重新计算（确定性）
 
+相当于管理一个扩展私钥（xprv），即可拥有 N 个子私钥，继而拥有多个钱包账户
+
+通过一个扩展公钥（xpub）即可查询账户总余额
+
 ![20231025205912](https://image.zuoright.com/20231025205912.png)
 
-HD 钱包指根据某种确定性算法，用一个根密钥（也叫根扩展密钥）即可衍生出 N 个子密钥，即可以是公钥也可以是私钥，理论上扩展密钥的层数是没有限制的，每一层的数量被限制在0～232
+扩展密钥每一层可派生的数量被限制在0～232个账户，但没有限制可派生的层数
 
-相当于管理一个扩展私钥（xprv），即可拥有 N 个子私钥，继而拥有多个钱包账户，通过一个扩展公钥（xpub）即可查询账户总余额
+BIP44 为 BIP32 的派生路径提供了一套通用规范，适配比特币、以太坊等
 
-BIP44 为 BIP32 的衍生路径提供了一套通用规范，适配比特币、以太坊等
-
-这一套规范包含六层，每层之间用斜线分割
+这一套规范包含六层，每层之间用斜线分割，比如以太坊的默认派生路径为：`m/44'/60'/0'/0/0`
 
 ```shell
+# m 是固定的，表示根扩展密钥
+# ' 表示该值已硬化，防止通过子私钥反推出父私钥
 m / purpose’ / coin_type’ / account’ / change / address_index
-
-# m 表示根扩展密钥
-# ' 表示硬化衍生，防止通过子私钥反推出父私钥
-# purpose’ 固定为 44
-# coin_type：代币类型，比特币主网为0，比特币测试网为1，以太坊主网为60
-# account：账户索引，从0开始
-# change：是否为外部链，0为外部链，1为内部链，一般填0
-# address_index：地址索引，从0开始，想生成新地址就把这里改为1，2，3
+# purpose’ 固定为 44，表示遵循 BIP44 标准
+# coin_type 表示代币类型，比特币主网为0，测试网为1，以太坊主网为60
+# account 表示不同类型的钱包用户，比如同一个公司不同部门，从0开始索引
+# change 是否为外部链，主要用于比特币，以太坊通常为0
+# address_index 账户索引，从0开始
 ```
 
-![20220728154218](http://image.zuoright.com/20220728154218.png)
+![20231026192345](https://image.zuoright.com/20231026192345.png)
 
-## 在线生成
+## 在线生成工具
 
-> 工具：<https://iancoleman.io/bip39/>
-
-比如，以太坊的默认衍生路径为：`m/44'/60'/0'/0`
+- <https://iancoleman.io/bip39/>
+- <https://bip39.onekey.so/>
 
 ![20231026000509](https://image.zuoright.com/20231026000509.png)
 
 ![20231026000641](https://image.zuoright.com/20231026000641.png)
 
-- 助记词
+## 熵 entropy
 
-根据第BIP39，首先需要一个随机数，称之为熵，熵的位数需要是 32 的倍数，熵越大，助记词个数越多
+根据第BIP39，首先需要一个随机数，也称为熵
 
-不同语言可以对应不同的助记词列表：<https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md>
+熵的随机性一定要高，否则就可以被暴力破解，通常要求位数介于 128～256bits 之间，且需要是 32 的倍数，即：`128, 160, 192, 224, 256`
 
-通用的助记词列表一般包含 2048 个助记词，每个助记词对应一个索引
+每 32bits 增加三个助记词，所以熵越大，对应的助记词个数越多，即：`12, 15, 18, 21, 24`
 
-- 私钥：64个十六进制字符（32bytes / 256bits）
-- 公钥：128个十六进制字符（64bytes）
-- 地址：42个十六进制字符（前缀0x+ 20bytes）
+比如常用的 128bits，有 2^128 种可能性，对应有 12 个助记词
 
-## 使用 Ether.js 生成
+```python
+import os
+from bitarray import bitarray
+
+# 设置熵为128bits，8bits=1Bytes，128bits=16Bytes
+entropy_bit_size = 128
+
+# 生成一个不可预测的(unpredictable)随机字节串
+entropy_bytes = os.urandom(entropy_bit_size // 8)
+# b'\xab9k\x1e\x00\xca\tdz\x1f\xb7\xd3\x8d\x06\xe7\xca'
+# len(entropy_bytes) == 16
+
+# 将随机16字节串转为128位二进制格式的熵
+entropy_bits = bitarray()
+entropy_bits.frombytes(entropy_bytes)
+# bitarray('101111000...011111111001010')
+```
+
+熵如果是128bits，需要对应12个助记词，但128并不能被12整除，此时需要在末尾增加校验和 `checksum` 来补位
+
+校验和的长度取决于熵的大小：`checksum_length = entropy_bit_size // 32`，即 4 位
+
+然后取 sha256(entropy_bytes) 摘要的二进制结果的前 4 位作为补到 entropy_bits 后
+
+```python
+import hashlib
+
+hash_bytes = hashlib.sha256(entropy_bytes).digest()  # 256bits
+# b'\xacK#\x93I$\x05b\x0b6\...\xbe\xe9%\xa0\xd7\xa3\x9aDs\xb2'
+
+# 转成二进制
+hash_bits = bitarray()
+hash_bits.frombytes(hash_bytes)
+# bitarray('1010110001001011001...01000111010')
+
+# 需要补4bits凑成可被12整除的132bits
+checksum_length = entropy_bit_size // 32
+checksum = hash_bits[:checksum_length]  # 取前4位，1010
+entropy_bits.extend(checksum)
+```
+
+## 助记词 mnemonic
+
+标准的助记词列表：<https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md>
+
+有不同语言的版本，但通常使用英文，每种语言都包含 2048 个助记词，每个助记词对应一个索引
+
+> 虽然可以自定义助记词列表，但由于不符合 BIP39，可能无法导入常见的钱包中
+
+### entropy => mnemonic
+
+将 132bits 的 `熵 + 校验和` 平分成12组，每组 11bits (132 // 12) ，被称之为 magic number，然后将二进制的 magic number 转换为十进制整数，即得到12个助记词的索引
+
+```python
+from bitarray.util import ba2int
+
+# magic number list
+grouped_bits = tuple(entropy_bits[i * 11: (i + 1) * 11] for i in range(12)
+
+# 助记词索引列表
+indices = tuple(ba2int(ba) for ba in grouped_bits)
+
+# 假设使用English助记词列表
+english_word_list = ['abandon', 'ability', ..., 'zone', 'zoo']
+mnemonic_words = tuple(english_word_list[i] for i in indices)
+# ('face', 'business', 'large', 'tissue', 'print', 'box', 'fix', 'maple', 'arena', 'help', 'critic', 'border')
+```
+
+### mnemonic => seed
+
+助记词只有转化为种子才可以派生出私钥和公钥
+
+种子是根据助记词使用 `PBKDF2`（Password-Based Key Derivation Function）算法生成的 512bits 数，通常表示为 64Bytes 的 16 进制形式
+
+```python
+import hashlib
+
+passphrase = "you-make-this-up"  # 自定义密码，可默认为空
+salt = "mnemonic" + passphrase  # 盐，进一步提高钱包的安全性
+
+# 将12个助记词拼接为以空格分隔的字符串形式
+mnemonic_string = ' '.join(mnemonic_words)  # 'across abstract shine ... uphold already club'
+
+seed = hashlib.pbkdf2_hmac(
+  "sha512",  # 伪随机函数：HMAC-SHA512
+  mnemonic_string.encode("utf-8"),  # 助记词
+  salt.encode("utf-8"),  # salt
+  2048  # 哈希函数将运行的迭代次数
+)
+print(seed)  # b'\xcd@\xd0}\xbc\x17\xd6H\x00\x1c\xdc...'
+print(seed.hex())  # cd40d07dbc17d648001cdc84473be584...
+```
+
+## 根密钥
+
+参考：<https://wolovim.medium.com/ethereum-201-hd-wallets-11d0c93c87f7>
+
+### seed => root key
+
+```python
+import binascii
+import hmac
+import hashlib
+
+# the HMAC-SHA512 `key` and `data` must be Bytes:
+seed_bytes = binascii.unhexlify(seed)
+# I = HMAC-SHA512(Key = “Bitcoin seed”, Data = seed)
+I = hmac.new(b'Bitcoin seed', seed_bytes, hashlib.sha512).digest()
+# Split I into two 32-byte sequences, L and R.
+L, R = I[:32], I[32:]
+# Use parse256(L) as master secret key, and R as master chain code.
+master_private_key = int.from_bytes(L, 'big')
+master_chain_code = R  # 用作熵
+```
+
+root key 通常表示为扩展私钥（xprv开头），根据BIP32，extended private keys are a Base58 encoding of the private key, chain code, and some additional metadata.
+
+> Base58是专为Bitcoin设计的，相比于Base64，去除了`0, O, I, l`等容易被误认的字符
+
+```python
+import base58
+
+VERSION_BYTES = {
+  'mainnet_public': binascii.unhexlify('0488b21e'),
+  'mainnet_private': binascii.unhexlify('0488ade4'),
+  'testnet_public': binascii.unhexlify('043587cf'),
+  'testnet_private': binascii.unhexlify('04358394'),
+}
+version_bytes = VERSION_BYTES['mainnet_private']
+depth_byte = b'\x00'
+parent_fingerprint = b'\x00' * 4
+child_number_bytes = b'\x00' * 4
+key_bytes = b'\x00' + L
+all_parts = (
+  version_bytes,      # 4 Bytes 版本字节
+  depth_byte,         # 1 byte 深度
+  parent_fingerprint,  # 4 Bytes 父密钥指纹
+  child_number_bytes, # 4 Bytes 子编号
+  master_chain_code,  # 32 Bytes 熵
+  key_bytes,          # 33 Bytes 公钥或私钥数据
+)
+all_bytes = b''.join(all_parts)
+root_key = base58.b58encode_check(all_bytes).decode('utf8')  # xprv9s21ZrQH143K...T2emdEXVYsCzC2U
+```
+
+### root key => 子密钥
+
+根据派生路径生成子密钥，略过...
+
+### 私钥 => 公钥
+
+密钥是成对的，可以将其中任意一个作为私钥，则另一个即为公钥
+
+- 私钥：64 个十六进制字符（32Bytes）
+- 公钥：128 个十六进制字符（68Bytes）
+
+根据椭圆曲线密码学可通过私钥生成公钥
+
+```python
+p = curve_point_from_int(private_key)
+public_key_bytes = serialize_curve_point(p)
+print(f'public key: 0x{public_key_bytes.hex()}')  # public key: 0x024c8f4044470bd42b81a...
+```
+
+然后生成一个收款地址，a public address is the last 20 Bytes of the Keccak-256 hash of the public key points（取64Bytes的后20Bytes）
+
+```python
+from eth_utils import keccak
+
+digest = keccak(x.to_bytes(32, 'big') + y.to_bytes(32, 'big'))
+address = '0x' + digest[-20:].hex()
+print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1fa39f997f06bfb7ca0
+```
+
+## 比特币钱包地址
+
+![20230509234516](http://image.zuoright.com/20230509234516.png)
+
+比特币地址是交叉兼容的，每种类型的地址都可以给任意类型的地址发送资金，但是手续费不同：`原生隔离见证地址（bc1开头） < 隔离见证兼容地址（部分3开头） < 传统地址（1开头） < 多签地址（部分3开头）`
+
+1. 隔离见证兼容地址转账手续费比传统地址节省 24%
+2. 原生隔离见证地址转账手续费比传统地址节省 35%
+3. 隔离见证地址转账手续费比多签地址最多可以节省 70%
+
+### P2PKH
+
+Pay to PubKey Hash 付款至公钥哈希，最初的传统地址（Legacy）
+
+`Base58(0x00 + Hash160(Public Key) + Checksum)`
+
+编码后 1 开头，34个字符，不包含 0、O、l、I 等容易混淆的字符，比如：`1MbeQFmHo9b69kCfFa6yBr7BQX4NzJFQq9`
+
+假设Alice给Bob转账，相当于将资产放入保险箱，用Bob的公钥加密，Bob只有在向他人转账的时候，才会使用私钥签名打开保险箱，然后将其锁入另一个收款方的保险箱
+
+```text
+OP_DUP 
+
+OP_HASH160 
+
+(Bob 收款地址蕴含的 Public Key Hash) 
+
+OP_EQUALVERIFY 
+
+OP_CHECKSIG
+```
+
+### P2SH
+
+Pay to Script Hash 付款至脚本哈希
+
+- 多签地址：P2SH
+- 隔离见证兼容地址（Nested SegWit）：P2SH-P2WPKH
+
+`Base58(0x05 + Hash160(Script) + Checksum)`
+
+编码后 3 开头，34个字符，比如：`3EmUH8Uh9EXE7axgyAeBsCc2vdUdKkDqWK`
+
+### P2WPKH / Bech32
+
+专为隔离见证设计的格式，2017 年底由 BIP173 定义
+
+原生隔离见证地址（Native SegWit）
+
+Base32 编码，bc1 开头，42个字符，不区分大小写，只包含数字和小写字母：0～9，a~z，比如：`bc1qj89046x7zv6pm4n00qgqp505nvljnfp6xfznyw`
+
+QR 码更小，更容易防错，更安全，更高效，手续费更低
+
+### P2TR / Taproot
+
+## 以太坊钱包地址
+
+Ethereum 有两种账号类型
+
+- 外部账户
+
+EOA（Externally Owned Accounts），由私钥拥有者控制，可以主动发起交易，codeHash 为空
+
+经过 Keccak-256 哈希算法后，取最后 20 字节再加上 0x，变为 42 个字符（十六进制字符串），例如：`0x5e97870f263700f46aa00d967821199b9bc5a120`
+
+ERC20 地址忽略大小写，TRC20 地址大小写敏感
+
+- 合约账户
+
+CA（Contract Accounts），由智能合约代码控制，只能被动交易，没有私钥
+
+由 0x 开头的 42 个字符（十六进制字符串），例如：`0x06012c8cf97bead5deae237070f9587f8e7a266d`
+
+- 抽象账户
+
+Account Abstraction 是指将两种不同的账户合并成一种
+
+## 使用 Ether.js 生成 HD
 
 - 生成随机助记词
 
@@ -110,6 +359,48 @@ HDNodeWallet {
 
 // 方式2
 const hdNode = ethers.Wallet.fromPhrase(mnemonic)
+
+// 方式3，直接生成随机钱包
+ethers.Wallet.createRandom()
+`
+HDNodeWallet {
+  provider: null,
+  address: '0x69B619CdedB9b7C46efDed3d2FA0C7d9083D0fd8',
+  publicKey: '0x02d474c5d7fa9dedc3707203245368a11f541fb1efe3983eabb3dd6d1a95af7256',
+  fingerprint: '0x013da586',
+  parentFingerprint: '0x0e24401f',
+  mnemonic: Mnemonic {
+    phrase: 'quick large faculty bitter bunker produce identify shine toe staff oil faith',
+    password: '',
+    wordlist: LangEn { locale: 'en' },
+    entropy: '0xafafa5468b61e7575c262fe39a826729'
+  },
+  chainCode: '0x92f9e2c958658f67d19ea0a82ed4f1d7fc8a16b0fefb40eb7716a4351ae101f7',
+  path: "m/44'/60'/0'/0/0",
+  index: 0,
+  depth: 5
+}
+`
+```
+
+- 生成靓号地址
+
+```js
+// 靓号地址不仅好看，而且可以节省 Gas Fee
+import { ethers } from "ethers";
+
+var wallet  // 钱包
+const regex = /^0x000.*$/  // 正则匹配前3位都是0的地址
+
+var isValid = false
+while(!isValid){
+  wallet = ethers.Wallet.createRandom()  // 随机生成钱包
+  isValid = regex.test(wallet.address)  // 选出符合条件的地址后停止循环
+}
+
+console.log(wallet)
+console.log(`靓号地址：${wallet.address}`)
+console.log(`靓号私钥：${wallet.privateKey}`)
 ```
 
 - 派生20个钱包地址
@@ -119,10 +410,10 @@ const hdNode = ethers.Wallet.fromPhrase(mnemonic)
 let basePath = "m/44'/60'/0'/0";
 let wallets = [];
 for (let i = 0; i < 20; i++) {
-    let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
-    let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
-    console.log(`第 ${i+1} 个钱包地址： ${walletNew.address}`)
-    wallets.push(walletNew);
+  let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
+  let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
+  console.log(`第 ${i+1} 个钱包地址： ${walletNew.address}`)
+  wallets.push(walletNew);
 }
 `
 第 1 个钱包地址： 0x9F17034925c638D0b0C886c0ad1863ff330e35c6
@@ -162,155 +453,21 @@ const json = await hdNode.encrypt(pwd)
 const wallet = await ethers.Wallet.fromEncryptedJson(json, pwd);
 ```
 
-## 使用 Python 生成
+## 签名
 
-### 随机数 => mnemonic
+### 数字签名
 
-```python
-import os
-from bitarray import bitarray
+- EIP712 签名脚本: <https://github.com/WTFAcademy/WTF-Ethers/tree/main/26_EIP712>
+- 连接Metamask：<https://github.com/WTFAcademy/WTF-Ethers/tree/main/ET01_Metamask>
+- 实现Metamask签名授权登陆：<https://github.com/WTFAcademy/WTF-Ethers/tree/main/ET02_SignInWithEthereum>
 
-# 设置熵为128bits
-entropy_bit_size = 128
+### 多重签名
 
-# 生成随机字节串，1Bytes=8bits，地板除取整，128bits=12字节
-entropy_bytes = os.urandom(entropy_bit_size // 8)  # b'\xab9k\x1e\x00\xca\tdz\x1f\xb7\xd3\x8d\x06\xe7\xca'
+为了避免一个私钥的丢失导致地址的资金丢失，引出了多重签名机制，可以实现分散风险的功能。
 
-# 将字节串转换为二进制格式
-entropy_bits = bitarray()
-entropy_bits.frombytes(entropy_bytes)  # bitarray('101111000...011111111001010')
-```
+假设N个人分别持有N个私钥，需要要其中M个人同意签名才可以动用某个“联合地址”的资金
 
-熵如果是128bits，需要对应12个助记词，但128并不能被12整除，此时需要在末尾增加checksum来补位
-
-需要补的位数：`checksum_length = entropy_bit_size // 32`
-
-取 sha256(entropy_bytes) 摘要的二进制的前 checksum_length 位作为 checksum 补到 entropy_bits 后面
-
-```python
-import hashlib
-
-hash_bytes = hashlib.sha256(entropy_bytes).digest()  # b'\xacK#\x93I$\x05b\x0b6\...\xbe\xe9%\xa0\xd7\xa3\x9aDs\xb2'
-
-hash_bits = bitarray()
-hash_bits.frombytes(hash_bytes)  # bitarray('1010110001001011001...01000111010') 共256bits
-
-checksum_length = entropy_bit_size // 32  # 128bits 需要补 128/32=4bits 凑成 132bits
-checksum = hash_bits[:checksum_length]  # 取前4位，1010
-entropy_bits.extend(checksum)
-
-# 然后分成12组，132 // 12 = 11，即每组助记词 11bits
-grouped_bits = tuple(entropy_bits[i * 11: (i + 1) * 11] for i in range(len(entropy_bits) // 11))
-```
-
-然后将二进制助记词转换为十进制整数
-
-```python
-from bitarray.util import ba2int
-
-indices = tuple(ba2int(ba) for ba in grouped_bits)
-
-# 假设使用English助记词列表
-english_word_list = ['abandon', 'ability', ..., 'zone', 'zoo']
-mnemonic_words = tuple(english_word_list[i] for i in indices)
-# ('face', 'business', 'large', 'tissue', 'print', 'box', 'fix', 'maple', 'arena', 'help', 'critic', 'border')
-```
-
-### mnemonic => seed
-
-根据助记词生成种子
-
-```python
-import hashlib
-
-mnemonic_string = ' '.join(mnemonic_words)  # 先将元组拼接为空格分隔的字符串形式：'across abstract shine ... uphold already club'
-passphrase = "you-make-this-up"  # 自定义密码
-salt = "mnemonic" + passphrase  # 提高钱包的安全性
-
-# 使用PBKDF2（Password-Based Key Derivation Function）生成512bits的种子，通常表现为64bytes的16进制形式
-seed = hashlib.pbkdf2_hmac(
-   "sha512",  # 伪随机函数：HMAC-SHA512
-   mnemonic_string.encode("utf-8"),  # 助记词
-   salt.encode("utf-8"),  # salt
-   2048  # 哈希函数迭代次数
-)
-print(seed)  # b'\xcd@\xd0}\xbc\x17\xd6H\x00\x1c\xdc...'
-print(seed.hex())  # cd40d07dbc17d648001cdc84473be584...
-```
-
-### seed => root key
-
-![20220728150444](http://image.zuoright.com/20220728150444.png)
-
-```python
-import binascii
-import hmac
-import hashlib
-
-# the HMAC-SHA512 `key` and `data` must be bytes:
-seed_bytes = binascii.unhexlify(seed)
-# I = HMAC-SHA512(Key = “Bitcoin seed”, Data = seed)
-I = hmac.new(b'Bitcoin seed', seed_bytes, hashlib.sha512).digest()
-# Split I into two 32-byte sequences, L and R.
-L, R = I[:32], I[32:]
-# Use parse256(L) as master secret key, and R as master chain code.
-master_private_key = int.from_bytes(L, 'big')
-master_chain_code = R  # 用作熵
-```
-
-root key 通常表示为扩展私钥（xprv开头），根据BIP32，extended private keys are a Base58 encoding of the private key, chain code, and some additional metadata.
-
-> Base58是专为Bitcoin设计的，相比于Base64，去除了`0, O, I, l`等容易被误认的字符
-
-```python
-import base58
-
-VERSION_BYTES = {
-    'mainnet_public': binascii.unhexlify('0488b21e'),
-    'mainnet_private': binascii.unhexlify('0488ade4'),
-    'testnet_public': binascii.unhexlify('043587cf'),
-    'testnet_private': binascii.unhexlify('04358394'),
-}
-version_bytes = VERSION_BYTES['mainnet_private']
-depth_byte = b'\x00'
-parent_fingerprint = b'\x00' * 4
-child_number_bytes = b'\x00' * 4
-key_bytes = b'\x00' + L
-all_parts = (
-    version_bytes,      # 4 bytes 版本字节
-    depth_byte,         # 1 byte 深度
-    parent_fingerprint,  # 4 bytes 父密钥指纹
-    child_number_bytes, # 4 bytes 子编号
-    master_chain_code,  # 32 bytes 熵
-    key_bytes,          # 33 bytes 公钥或私钥数据
-)
-all_bytes = b''.join(all_parts)
-root_key = base58.b58encode_check(all_bytes).decode('utf8')  # xprv9s21ZrQH143K...T2emdEXVYsCzC2U
-```
-
-### root key => 子私钥
-
-这个有些复杂，略过...
-
-### 私钥 => 公钥
-
-生成私钥后根据椭圆曲线密码学即可生成公钥
-
-```python
-p = curve_point_from_int(private_key)
-public_key_bytes = serialize_curve_point(p)
-print(f'public key: 0x{public_key_bytes.hex()}')  # public key: 0x024c8f4044470bd42b81a...
-```
-
-然后生成一个收款地址，a public address is the last 20 bytes of the Keccak-256 hash of the public key points（取64bytes的后20bytes）
-
-```python
-from eth_utils import keccak
-
-digest = keccak(x.to_bytes(32, 'big') + y.to_bytes(32, 'big'))
-address = '0x' + digest[-20:].hex()
-print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1fa39f997f06bfb7ca0
-```
+最常见的多重签名是2-3类型。例如，一个提供在线钱包的服务，为了防止服务商盗取用户的资金，可以使用2-3类型的多重签名地址，服务商持有1个私钥，用户持有两个私钥，一个作为常规使用，一个作为应急使用。这样，正常情况下，用户只需使用常规私钥即可配合服务商完成正常交易，服务商因为只持有1个私钥，因此无法盗取用户资金。如果服务商倒闭或者被黑客攻击，用户可使用自己掌握的两个私钥转移资金。
 
 ## ENS
 
@@ -326,9 +483,3 @@ print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1f
 // 将ENS解析为地址
 const addressVitalik = await provider.resolveName("vitalik.eth")
 ```
-
-## 参考
-
-- <https://ethereum.org/en/wallets/find-wallet/#main-content>
-- <https://wolovim.medium.com/ethereum-201-mnemonics-bb01a9108c38>
-- <https://wolovim.medium.com/ethereum-201-hd-wallets-11d0c93c87f7>

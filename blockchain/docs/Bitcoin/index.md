@@ -2,13 +2,7 @@
 
 比特币是最早被创造出来的去中心化加密货币，诞生于 2008 年世界金融危机之时
 
-> 参考：  
-> [区块链启示录：中本聪文集](https://book.douban.com/subject/30338899/)（The Book Of Satoshi: The Collected Writings of Bitcoin Creator Satoshi Nakamoto）  
-> [Wikipedia：比特币历史](https://zh.wikipedia.org/wiki/%E6%AF%94%E7%89%B9%E5%B9%A3%E6%AD%B7%E5%8F%B2)  
-> 各种语言的白皮书：<https://bitcoin.org/en/bitcoin-paper>  
-> 最新源码：<https://github.com/bitcoin>
-
-- 2008.8.18 `Satoshi Nakamoto`(中本聪) 和 `Martti Malmi`(马尔·蒂马尔米) 注册了域名：[bitcoin.org](https://bitcoin.org)(准官网)
+- 2008.8.18 `Satoshi Nakamoto`(中本聪) 和 `Martti Malmi`(马尔·蒂马尔米) 注册了域名：[bitcoin.org](https://bitcoin.org)（准官网）
 - 2008.11.1 中本聪发表了比特币的白皮书：《Bitcoin: A Peer-to-Peer Electronic Cash System》（比特币：一种点对点的电子现金系统）
 - 2008.11.9 比特币项目在 sourceforge.net 平台注册
 - 2009.1.3 中本聪打包出了创始区块（`Genesis Block`）
@@ -98,3 +92,13 @@
 ## 交易单位
 
 比特币的交易最小单位为聪(Satoshi)，`1 BTC = 10^8 Sats`（1亿聪）
+
+## 参考
+
+- Wikipedia：[比特币历史](https://zh.wikipedia.org/wiki/%E6%AF%94%E7%89%B9%E5%B9%A3%E6%AD%B7%E5%8F%B2)
+- [区块链启示录：中本聪文集](https://book.douban.com/subject/30338899/)（The Book Of Satoshi: The Collected Writings of Bitcoin Creator Satoshi Nakamoto）（[读后感](https://mirror.xyz/wtfacademy.eth/Jezo3dZ_9IJ6yclzT_M21Y_njZaohfy9obiPRlemy8s)）
+- [精通比特币](https://wizardforcel.gitbooks.io/masterbitcoin2cn/content/)
+- 各种语言的白皮书：<https://bitcoin.org/en/bitcoin-paper> （[李笑来翻译的中英对照版](https://lixiaolai.com/#/bitcoin-whitepaper-cn-en-translation/Bitcoin-Whitepaper-EN-CN.html)）
+- [以太坊白皮书](https://ethereum.org/zh/whitepaper/)
+- [比特币准官网的开发者指南](https://developer.bitcoin.org/devguide/block_chain.html)
+- 最新源码：<https://github.com/bitcoin>
