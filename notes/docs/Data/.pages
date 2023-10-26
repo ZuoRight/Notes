@@ -1,6 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - 序列化
+  - MQ
   - DB
   - tablib.md
   - pillow.md
