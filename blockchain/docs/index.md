@@ -15,13 +15,12 @@ hide:
 
 ## 三要素
 
-- 加密算法
-- 共识机制：PoW、PoS
 - 账户模型
+- 共识机制：PoW、PoS
+- Cryptography
 
 ## 可视化
 
-- <https://andersbrownworth.com/blockchain/>
 - <https://txstreet.com/v/eth-btc>
 - <http://ethviewer.live/>
 

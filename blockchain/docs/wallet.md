@@ -1,7 +1,5 @@
 # HD Wallet
 
-Find a Wallet: <https://ethereum.org/en/wallets/find-wallet/#main-content>
-
 - BIP32 — 定义分层确定性钱包（Hierarchical Deterministic Wallets）
 - BIP44 — 定义HD钱包多账户层次结构
 - BIP39 — 使用助记词（Mnemonic）来生成确定性密钥，根据助记词即可恢复钱包，也SRP(Secret Recovery Phrase)
@@ -36,7 +34,9 @@ m / purpose’ / coin_type’ / account’ / change / address_index
 # address_index 账户索引，从0开始
 ```
 
-![20231026192345](https://image.zuoright.com/20231026192345.png)
+![20231027231935](https://image.zuoright.com/20231027231935.png)
+
+参考文章：<https://wolovim.medium.com/ethereum-201-hd-wallets-11d0c93c87f7>
 
 ## 在线生成工具
 
@@ -152,8 +152,6 @@ print(seed.hex())  # cd40d07dbc17d648001cdc84473be584...
 
 ## 根密钥
 
-参考：<https://wolovim.medium.com/ethereum-201-hd-wallets-11d0c93c87f7>
-
 ### seed => root key
 
 ```python
@@ -202,9 +200,31 @@ all_bytes = b''.join(all_parts)
 root_key = base58.b58encode_check(all_bytes).decode('utf8')  # xprv9s21ZrQH143K...T2emdEXVYsCzC2U
 ```
 
-### root key => 子密钥
+### root_key => sub_private_key
 
 根据派生路径生成子密钥，略过...
+
+Extended keys can be identified by the Hash160 (RIPEMD160 after SHA256) of the serialized ECDSA public key K, ignoring the chain code. […] The first 32 bits of the identifier are called the key fingerprint. […] Note that the fingerprint of the parent only serves as a fast way to detect parent and child nodes in software…
+
+### private_key => public_key
+
+```python
+p = curve_point_from_int(private_key)
+public_key_bytes = serialize_curve_point(p)
+print(f'public key: 0x{public_key_bytes.hex()}')  # public key: 0x024c8f4044470bd42b81a...
+```
+
+### public_key => address
+
+a public address is the last 20 Bytes of the Keccak-256 hash of the public key points
+
+```python
+from eth_utils import keccak
+
+digest = keccak(x.to_bytes(32, 'big') + y.to_bytes(32, 'big'))
+address = '0x' + digest[-20:].hex()
+print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1fa39f997f06bfb7ca0
+```
 
 ## 使用 Ether.js 生成 HD
 
@@ -442,3 +462,11 @@ Account Abstraction 是指将两种不同的账户合并成一种
 // 将ENS解析为地址
 const addressVitalik = await provider.resolveName("vitalik.eth")
 ```
+
+## Find a Wallet
+
+<https://ethereum.org/en/wallets/find-wallet/#main-content>
+
+最常用的以太坊钱包是：MetaMask
+
+推荐最好用的多链钱包：OKX Wallet
