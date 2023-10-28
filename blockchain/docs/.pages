@@ -4,8 +4,7 @@ nav:
   - index.md
   - Bitcoin.md
   - Ethereum.md
-  - wallet.md
-  - cryptography.md
+  - Wallet
   - 账户模型
   - 可扩展性
   - DApp
