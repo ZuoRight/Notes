@@ -11,7 +11,7 @@
 
 相当于管理一个扩展私钥（xprv），即可拥有 N 个子私钥，继而拥有多个钱包账户，通过一个扩展公钥（xpub）即可查询账户总余额
 
-## 在线生成工具
+## 在线工具生成
 
 - <https://iancoleman.io/bip39/>
 - <https://bip39.onekey.so/>
@@ -20,7 +20,7 @@
 
 ![20231026000641](https://image.zuoright.com/20231026000641.png)
 
-## 熵 entropy
+## Python 生成
 
 根据第BIP39，首先需要一个随机数，也称为熵
 
@@ -71,17 +71,15 @@ checksum = hash_bits[:checksum_length]  # 取前4位，1010
 entropy_bits.extend(checksum)
 ```
 
-## 助记词 mnemonic
+### entropy => mnemonic
+
+将 132bits 的 `熵 + 校验和` 平分成12组，每组 11bits (132 // 12) ，被称之为 magic number，然后将二进制的 magic number 转换为十进制整数，即得到12个助记词的索引
 
 标准的助记词列表：<https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md>
 
 有不同语言的版本，但通常使用英文，每种语言都包含 2048 个助记词，每个助记词对应一个索引
 
 > 虽然可以自定义助记词列表，但由于不符合 BIP39，可能无法导入常见的钱包中
-
-### entropy => mnemonic
-
-将 132bits 的 `熵 + 校验和` 平分成12组，每组 11bits (132 // 12) ，被称之为 magic number，然后将二进制的 magic number 转换为十进制整数，即得到12个助记词的索引
 
 ```python
 from bitarray.util import ba2int
@@ -114,16 +112,14 @@ salt = "mnemonic" + passphrase  # 盐，进一步提高钱包的安全性
 mnemonic_string = ' '.join(mnemonic_words)  # 'across abstract shine ... uphold already club'
 
 seed = hashlib.pbkdf2_hmac(
-  "sha512",  # 伪随机函数：HMAC-SHA512
-  mnemonic_string.encode("utf-8"),  # 助记词
-  salt.encode("utf-8"),  # salt
-  2048  # 哈希函数将运行的迭代次数
+    "sha512",  # 伪随机函数：HMAC-SHA512
+    mnemonic_string.encode("utf-8"),  # 助记词
+    salt.encode("utf-8"),  # salt
+    2048  # 哈希函数将运行的迭代次数
 )
 print(seed)  # b'\xcd@\xd0}\xbc\x17\xd6H\x00\x1c\xdc...'
 print(seed.hex())  # cd40d07dbc17d648001cdc84473be584...
 ```
-
-## 根密钥
 
 ### seed => root key
 
@@ -151,10 +147,10 @@ root key 通常表示为扩展私钥（xprv开头），根据BIP32，extended pr
 import base58
 
 VERSION_BYTES = {
-  'mainnet_public': binascii.unhexlify('0488b21e'),
-  'mainnet_private': binascii.unhexlify('0488ade4'),
-  'testnet_public': binascii.unhexlify('043587cf'),
-  'testnet_private': binascii.unhexlify('04358394'),
+    'mainnet_public': binascii.unhexlify('0488b21e'),
+    'mainnet_private': binascii.unhexlify('0488ade4'),
+    'testnet_public': binascii.unhexlify('043587cf'),
+    'testnet_private': binascii.unhexlify('04358394'),
 }
 version_bytes = VERSION_BYTES['mainnet_private']
 depth_byte = b'\x00'
@@ -162,12 +158,12 @@ parent_fingerprint = b'\x00' * 4
 child_number_bytes = b'\x00' * 4
 key_bytes = b'\x00' + L
 all_parts = (
-  version_bytes,      # 4 Bytes 版本字节
-  depth_byte,         # 1 byte 深度
-  parent_fingerprint,  # 4 Bytes 父密钥指纹
-  child_number_bytes, # 4 Bytes 子编号
-  master_chain_code,  # 32 Bytes 熵
-  key_bytes,          # 33 Bytes 公钥或私钥数据
+    version_bytes,      # 4 Bytes 版本字节
+    depth_byte,         # 1 byte 深度
+    parent_fingerprint,  # 4 Bytes 父密钥指纹
+    child_number_bytes, # 4 Bytes 子编号
+    master_chain_code,  # 32 Bytes 熵
+    key_bytes,          # 33 Bytes 公钥或私钥数据
 )
 all_bytes = b''.join(all_parts)
 root_key = base58.b58encode_check(all_bytes).decode('utf8')  # xprv9s21ZrQH143K...T2emdEXVYsCzC2U
@@ -218,7 +214,7 @@ address = '0x' + digest[-20:].hex()
 print(f'public address: {address}')  # public address: 0xbbec2620cb01adae3f96e1fa39f997f06bfb7ca0
 ```
 
-## 使用 Ether.js 生成 HD
+## Ether.js 生成
 
 - 生成随机助记词
 
@@ -230,11 +226,11 @@ const ethers = require('ethers')
 const entropy = ethers.randomBytes(32)
 `
 Uint8Array(32) [
-  146, 149,  59,  53, 253,  65, 158,
-  225, 172, 172,  75, 118, 178,  15,
-  235, 114, 233,  26, 196, 105,  13,
-  176, 130, 150, 239, 159, 211, 181,
-  125, 246, 252, 243
+    146, 149,  59,  53, 253,  65, 158,
+    225, 172, 172,  75, 118, 178,  15,
+    235, 114, 233,  26, 196, 105,  13,
+    176, 130, 150, 239, 159, 211, 181,
+    125, 246, 252, 243
 ]
 `
 
@@ -249,21 +245,21 @@ const mnemonic = ethers.Mnemonic.entropyToPhrase(entropy)
 const hdNode = ethers.HDNodeWallet.fromPhrase(mnemonic)
 `
 HDNodeWallet {
-  provider: null,
-  address: '0xE46A4BD6908b05d60E49cb4E52b2425C4d9742B3',
-  publicKey: '0x02bedf3b217145b9ac7d695adead9bfbe13475b7f25c8f4c7295d6addd3aff1e36',
-  fingerprint: '0x57e4f425',
-  parentFingerprint: '0xbddc8a6c',
-  mnemonic: Mnemonic {
-    phrase: 'myth prefer sniff whisper boring ignore razor maximum issue motor width total museum giraffe picnic render little resist tree polar fit window video grab',
-    password: '',
-    wordlist: LangEn { locale: 'en' },
-    entropy: '0x92953b35fd419ee1acac4b76b20feb72e91ac4690db08296ef9fd3b57df6fcf3'
-  },
-  chainCode: '0xd2148e93be5aa3690e17d7f71614d33064a663eded00d5f4513b34ddec16e6ef',
-  path: "m/44'/60'/0'/0/0",
-  index: 0,
-  depth: 5
+    provider: null,
+    address: '0xE46A4BD6908b05d60E49cb4E52b2425C4d9742B3',
+    publicKey: '0x02bedf3b217145b9ac7d695adead9bfbe13475b7f25c8f4c7295d6addd3aff1e36',
+    fingerprint: '0x57e4f425',
+    parentFingerprint: '0xbddc8a6c',
+    mnemonic: Mnemonic {
+        phrase: 'myth prefer sniff whisper boring ignore razor maximum issue motor width total museum giraffe picnic render little resist tree polar fit window video grab',
+        password: '',
+        wordlist: LangEn { locale: 'en' },
+        entropy: '0x92953b35fd419ee1acac4b76b20feb72e91ac4690db08296ef9fd3b57df6fcf3'
+    },
+    chainCode: '0xd2148e93be5aa3690e17d7f71614d33064a663eded00d5f4513b34ddec16e6ef',
+    path: "m/44'/60'/0'/0/0",
+    index: 0,
+    depth: 5
 }
 `
 
@@ -274,21 +270,21 @@ const hdNode = ethers.Wallet.fromPhrase(mnemonic)
 ethers.Wallet.createRandom()
 `
 HDNodeWallet {
-  provider: null,
-  address: '0x69B619CdedB9b7C46efDed3d2FA0C7d9083D0fd8',
-  publicKey: '0x02d474c5d7fa9dedc3707203245368a11f541fb1efe3983eabb3dd6d1a95af7256',
-  fingerprint: '0x013da586',
-  parentFingerprint: '0x0e24401f',
-  mnemonic: Mnemonic {
-    phrase: 'quick large faculty bitter bunker produce identify shine toe staff oil faith',
-    password: '',
-    wordlist: LangEn { locale: 'en' },
-    entropy: '0xafafa5468b61e7575c262fe39a826729'
-  },
-  chainCode: '0x92f9e2c958658f67d19ea0a82ed4f1d7fc8a16b0fefb40eb7716a4351ae101f7',
-  path: "m/44'/60'/0'/0/0",
-  index: 0,
-  depth: 5
+    provider: null,
+    address: '0x69B619CdedB9b7C46efDed3d2FA0C7d9083D0fd8',
+    publicKey: '0x02d474c5d7fa9dedc3707203245368a11f541fb1efe3983eabb3dd6d1a95af7256',
+    fingerprint: '0x013da586',
+    parentFingerprint: '0x0e24401f',
+    mnemonic: Mnemonic {
+        phrase: 'quick large faculty bitter bunker produce identify shine toe staff oil faith',
+        password: '',
+        wordlist: LangEn { locale: 'en' },
+        entropy: '0xafafa5468b61e7575c262fe39a826729'
+    },
+    chainCode: '0x92f9e2c958658f67d19ea0a82ed4f1d7fc8a16b0fefb40eb7716a4351ae101f7',
+    path: "m/44'/60'/0'/0/0",
+    index: 0,
+    depth: 5
 }
 `
 ```
@@ -304,8 +300,8 @@ const regex = /^0x000.*$/  // 正则匹配前3位都是0的地址
 
 var isValid = false
 while(!isValid){
-  wallet = ethers.Wallet.createRandom()  // 随机生成钱包
-  isValid = regex.test(wallet.address)  // 选出符合条件的地址后停止循环
+    wallet = ethers.Wallet.createRandom()  // 随机生成钱包
+    isValid = regex.test(wallet.address)  // 选出符合条件的地址后停止循环
 }
 
 console.log(wallet)
@@ -320,10 +316,10 @@ console.log(`靓号私钥：${wallet.privateKey}`)
 let basePath = "m/44'/60'/0'/0";
 let wallets = [];
 for (let i = 0; i < 20; i++) {
-  let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
-  let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
-  console.log(`第 ${i+1} 个钱包地址： ${walletNew.address}`)
-  wallets.push(walletNew);
+    let hdNodeNew = hdNode.derivePath(basePath + "/" + i);
+    let walletNew = new ethers.Wallet(hdNodeNew.privateKey);
+    console.log(`第 ${i+1} 个钱包地址： ${walletNew.address}`)
+    wallets.push(walletNew);
 }
 `
 第 1 个钱包地址： 0x9F17034925c638D0b0C886c0ad1863ff330e35c6

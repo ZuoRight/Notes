@@ -3,7 +3,7 @@
 > [bitcoindeveloper·transactions](https://developer.bitcoin.org/devguide/transactions.html)  
 > [廖雪峰区块链教程：P2P交易原理、可编程支付原理](https://www.liaoxuefeng.com/wiki/1207298049439968/1311929802948641)
 
-BTC 采用 UTXO 模型，Unspent TX Output，TX指交易(Transaction)，就是还没有被使用的交易输出，可以理解为就是余额
+BTC 采用 UTXO 账户模型，Unspent TX Output，TX指交易(Transaction)，就是还没有被使用的交易输出，可以理解为就是余额
 
 比特币使用 LevelDB 存储 UTXO，比特币的交易就是不断地消耗现有的 UTXO，并产生新的 UTXO
 

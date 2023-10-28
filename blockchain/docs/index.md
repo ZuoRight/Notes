@@ -15,9 +15,9 @@ hide:
 
 ## 三要素
 
-- 账户模型
-- 共识机制：PoW、PoS
 - Cryptography
+- 共识机制：PoW, PoS
+- 账户模型：UTXO, Account-Balance
 
 ## 可视化
 

@@ -1,6 +1,8 @@
 # 普通账户模型
 
-以太坊采用常见的普通账户体系
+账户模型，即记账模式，以太坊采用常见的普通账户模型，也叫账户余额模型（Account-Balance），相对更自由
+
+参考：<https://time.geekbang.org/column/article/6511>
 
 账户拥有4个参数：`{nonce, balance, codeHash, StorageRoot}`
 

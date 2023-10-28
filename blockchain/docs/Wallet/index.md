@@ -25,6 +25,6 @@ const addressVitalik = await provider.resolveName("vitalik.eth")
 
 <https://ethereum.org/en/wallets/find-wallet/#main-content>
 
-最常用的以太坊钱包是：MetaMask
+最常用的以太坊钱包：[MetaMask](https://metamask.io/)
 
 推荐最好用的多链钱包：OKX Wallet
