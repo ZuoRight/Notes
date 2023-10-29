@@ -1,0 +1,8 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - index.md
+  - ddl.md
+  - mysql.md
+  - other.md
+  - db-api.md
+  - ...
