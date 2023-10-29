@@ -1,18 +1,18 @@
 # MySQL
 
-[官方手册](https://dev.mysql.com/doc/refman/8.0/en/installing.html){ .md-button .md-button--primary }
+[官方手册](https://dev.mysql.com/doc){ .md-button .md-button--primary }
 
 ## 安装
 
-> [官网下载](https://dev.mysql.com/downloads/mysql/)
+[官方下载](https://dev.mysql.com/downloads)
 
 ### Mac
 
-M1+下载ARM版本，反之x86，`No thanks, just start my download.`，安装一直下一步即可，最后会默认创建root账户，让你设置一个密码（最少8位，比如：12345678）
+M1+ 下载ARM版本，反之x86，No thanks, just start my download，安装一直下一步即可，最后会默认创建 root 账户，让你设置一个密码（最少8位，比如：12345678）
 
 加密方式
 
-- `mysql_native_password` 即使用明文（Use Legacy Password Encryption）
+- `mysql_native_password` 使用明文（Use Legacy Password Encryption）
 - `caching_sha2_password`，8.0版本新增，某些第三方客户端连接数据库时不兼容新密码验证方式可能会报错
 
 然后配置环境变量
@@ -103,13 +103,11 @@ mysql -h 127.0.0.1 -u root -p  # 使用 -h localhost 可能无法连接
 
 ## 架构
 
+MySQL 是典型的 C/S 架构：`mysql` / `mysqld`
+
 ![20220809201603](http://image.zuoright.com/20220809201603.png)
 
-MySQL 是典型的 C/S 架构（mysql/mysqld）
-
-### 客户端
-
-可以通过命令行或者GUI管理工具来与服务端交互
+### 服务端
 
 - 启动/停止服务
 
@@ -123,43 +121,7 @@ sudo mysql.server start/stop
 # 如果是homebrew安装也可以通过brew services控制
 ```
 
-- 命令行
-
-```shell
-# 连接服务
-mysql -u root -p
-# -h 默认主机名为本机127.0.0.1
-# -P 默认端口号3306
-# -u 指定用户名，默认用户名为本机user名，看到有些文档-uroot这样连着写也没有问题
-# -p 带此参数表明需要密码，反之不需要，回车后密文输入
-
-SELECT VERSION();  # 查看版本
-SELECT NOW()  # 查看当前时间
-
-# 断开连接
-exit
-# 或者
-quit
-```
-
-连接MySQL数据库有两种方式：TCP/IP（一般理解的端口的那种）和 Unix套接字（一般叫socket或者sock）
-
-大部分情况下，可以用localhost代表本机127.0.0.1，但是在MySQL连接时，二者不可混用。
-
-而且MySQL权限设置中localhost与127.0.0.1也是分开设置的。当设置为127.0.0.1时，系统通过TCP/IP方式连接数据库；当设置为localhost时，系统通过socket方式连接数据库。
-
-- GUI管理工具
-
-```text
-官方：Workbench 笨重
-免费：DBeaver、SQLyog等 小巧，够用
-付费：Navicat、DataGrip 强大
-在线：phpMyAdmin 需要自己搭建
-```
-
-### 服务端
-
-服务端mysqld可分为三层
+mysqld 可分为三层
 
 - 连接层：负责跟客户端建立连接、获取权限、维持和管理连接，客户端发送 SQL 至服务器端
 - SQL 层：对 SQL 语句进行查询处理
@@ -181,6 +143,43 @@ SQL层与存储方式无关，结构如下
 - 解析器：在解析器中对 SQL 语句进行语法和语义分析。
 - 优化器：在优化器中会确定 SQL 语句的执行路径，比如是根据全表检索，还是根据索引来检索等。
 - 执行器：在执行之前需要判断该用户是否具备权限，如果具备权限就执行 SQL 查询并返回结果。在 MySQL8.0 以下的版本，如果设置了查询缓存，这时会将查询结果进行缓存
+
+### 客户端
+
+可以通过命令行或者GUI管理工具来与服务端交互
+
+- 命令行
+
+```shell
+# 连接服务
+mysql -h 127.0.0.1 -u root -p  # 12345678
+# -h 默认主机名为本机 127.0.0.1，不可以与localhost混用
+#   当设置为127.0.0.1时，系统通过TCP/IP方式连接数据库
+#   当设置为localhost时，系统通过socket方式连接数据库
+# -u 指定用户名，默认为本机user名，-uroot 这样连着写也没有问题
+# -P 默认端口号3306
+# -p 带此参数表明需要密码，反之不需要，回车后密文输入
+
+SELECT VERSION();  # 查看版本
+SELECT NOW()  # 查看当前时间
+
+show databases;  # exit
+create database;
+use demo;
+show tables;
+
+# 断开连接
+exit  # 或者quit
+```
+
+- GUI管理工具
+
+```text
+官方：Workbench
+免费：DBeaver、SQLyog等 小巧，够用
+付费：Navicat、DataGrip 强大
+在线：phpMyAdmin 需要自己搭建
+```
 
 ## DCL
 
@@ -249,6 +248,16 @@ show variables like '%char%';
 ```sql
 -- 查看有哪些库
 show databases;
+'''
++--------------------+
+| Database           |
++--------------------+
+| mysql              |  主要保存服务器运行时需要的系统信息，比如数据文件夹、当前使用的字符集、约束检查信息等
+| information_schema |  主要保存服务器系统信息，比如数据库名、表名、字段名、存取权限等
+| performance_schema |  监控各类性能指标
+| sys                |  更容易理解的方式展示性能指标供开发人员监控（图形化客户端中仅显示这个）
++--------------------+
+'''
 
 -- 创建库，可以指定指定字符集和校对规则等
 CREATE DATABASE <库名> 
@@ -270,11 +279,23 @@ use <库名>;
 
 唯一索引相当于给普通索引加了一个约束，可以为NULL，目的是保证字段的正确性，比如身份证号等
 
-- 主键，唯一且不能为空（UNIQUE + NOT NULL），一个表只能有一个，可以是一个字段也可以是多个字段的组合（联合主键）
+- 主键
 
-是否为主键：`primary`，是否自动增加：`auto_increme`
+必须可以唯一标识数据表中的记录（`UNIQUE`），且主键不能为空值（`NOT NULL`）
 
-- 外键，一个表中的外键对应另一张表的主键，外键可不唯一也可以为空，关系：一对一，一对多，多对多
+一个表只能有一个主键，可以是一个字段也可以是多个字段的组合（联合主键）
+
+是否为主键：`primary`
+
+是否自动增加：`auto_increme`
+
+- 外键
+
+一个表中的外键对应另一张表的主键
+
+外键可不唯一也可以为空
+
+关系：一对一，一对多，多对多
 
 在项目后期，业务量增大的情况下，你需要更多考虑到数据库性能问题，可以取消外键的约束，转移到业务层来实现。而且在大型互联网项目中，考虑到分库分表的情况，也会降低外键的使用。
 
@@ -285,8 +306,28 @@ show tables;
 show create table <表名>;
 -- 创建表
 create table <表名> (<key1> <key_type> <key_value> 是否自动增加 是否为主键, <key2>...);
+
 -- 查看表结构
-desc students;  -- describe
+describe students;  -- 可简写为 desc
+'''
+mysql> DESCRIBE demo.test;
++-----------+------+------+-----+---------+-------+
+| Field     | Type | Null | Key | Default | Extra |
++-----------+------+------+-----+---------+-------+
+| barcode   | text | YES  |     | NULL    |       |
+| goodsname | text | YES  |     | NULL    |       |
+| price     | int  | YES  |     | NULL    |       |
++-----------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+字段名称
+字段类型
+是否允许空值（允许的话默认为NULL，空值也占用空间），注意：空字符串不是空值，空字符串的长度是0
+键
+默认值
+附加信息
+'''
+
 -- 删除表
 drop table if exist <表名>;
 
