@@ -68,6 +68,32 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JMETER_HOME/l
 
 `Delay Thread creation until needed` 通常不勾选，让其一开始创建所有线程，若勾选后，则需要时才会创建，通常线程数较多时需要勾选，否则一开始创建线程会很消耗 CPU
 
+### 请求设置
+
+- 设置请求的默认参数：HTTP Request Defaults
+
+![20231030191437](https://image.zuoright.com/20231030191437.png)
+
+- 设置请求头：HTTP Header Manager
+
+`Content-Type` 默认为 `application/x-www-form-urlencoded`，如果请求是 `Content-Type:application/json` 需要设置
+
+- 设置请求参数格式
+
+![20231030194857](https://image.zuoright.com/20231030194857.png)
+
+如果是 `x-www-form-urlencoded` 格式，直接使用 Parameters 即可，请求头 `Content-Type` 默认即可
+
+如果是 `form-data` 格式，需要勾选 `Use multipart/form-data`，然后使用 Parameters，并且请求头的 `Content-Type` 需要设置为 `Content-Type:application/json`
+
+如果是 `json` 格式，则使用 Body Data，请求头设置为 `Content-Type:application/json`
+
+### Synchronizing Timer
+
+`Number of Simultaneous Users to Group by` 设置为需要集合的线程数
+
+`timeout in milliseconds` 为超时时间，即多少秒没集合到指定人数就超时
+
 ## 参数化
 
 以 `CSV Data Set Config` 为例
