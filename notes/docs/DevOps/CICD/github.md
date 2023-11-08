@@ -48,7 +48,7 @@ jobs:
 
 - 引用 [GitHub Marketplace](https://github.com/marketplace?type=actions)
 - 引用当前或其它仓库：`uses: actions/setup-python@v4`
-- 引用docker hub中的actions：`uses: docker://alpine:3.8`
+- 引用 DockerHub 中的 actions：`uses: docker://alpine:3.8`
 
 ## 下载指定文件
 
