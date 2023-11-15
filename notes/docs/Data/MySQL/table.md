@@ -60,6 +60,8 @@ show variables like '%char%';
 
 ## 库操作
 
+`Database` is a collection of schemas and `Schema` is a collection of `Tables`. But in MySQL they use it the same way.
+
 ```sql
 -- 查看有哪些库
 show databases;
@@ -75,9 +77,12 @@ show databases;
 '''
 
 -- 创建库，可以指定指定字符集和校对规则等
-CREATE DATABASE <库名> 
+CREATE DATABASE <库名>  -- To use this statement, you need the CREATE privilege for the database.
 CHARACTER SET utf8mb4 
 COLLATE utf8mb4_general_ci;
+
+-- CREATE SCHEMA is a synonym for CREATE DATABASE as of MySQL 5.0.2.
+CREATE DATABASE <库名>  -- 从 v5.0.2 开始，推荐用此语句创建库
 
 -- 删除库
 drop database if exists <库名>;

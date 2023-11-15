@@ -76,12 +76,14 @@ class TestDemo:
     def teardown(cls):
         print("每个方法后执行一次")
 
-    
+
+    # self 必须带
     def test_method1(self):
         print(self.k)  # 调用前置方法中的属性
         print("method1")
 
 
+    # self 必须带
     def test_method2(self):
         print("method2")
 ```

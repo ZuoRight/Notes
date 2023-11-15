@@ -12,31 +12,45 @@
 
 安装：`pip install python-dotenv`
 
-> 文档：<https://pypi.org/project/python-dotenv/>
+> 文档：<https://pypi.org/project/python-dotenv>
 
-根路径创建`.env`文件
-
-> 注意：记得把`.env`文件添加到`.gitignore`（python的.gitignore模版默认已经包含）
+创建一个 `.env` 文件，通常存放在根路径，记得把 `.env` 文件添加到 `.gitignore`
 
 ```shell
-export PRIVATE_KEY="xxxx"
+PRIVATE_KEY="xxxx"
 
 # Flask Config
-export FLASK_APP=app.py  # 执行flask run默认运行app.py文件，不存在则会报错
-export FLASK_ENV=production  # 默认为生产环境，可改为开发环境：development，开启调试模式（启动项目时提示Debugger is active!）
+FLASK_APP=app.py  # 执行flask run默认运行app.py文件，不存在则会报错
+FLASK_ENV=production  # 默认为生产环境，可改为开发环境：development，开启调试模式（启动项目时提示Debugger is active!）
 ```
 
+- 获取环境变量，方式1：load_dotenv
+
 ```python
+# flask、django等框架默认会加载，所以不需要以下两行代码引入
 from dotenv import load_dotenv
-load_dotenv()  # take environment variables from .env
-
+load_dotenv(override=True)  # 默认会覆盖已存在的环境变量，如果不想覆盖override设置为False
 """
-flask、django等框架默认会加载，所以不需要以上这两行代码
+load_dotenv('/path/to/your/.env')  # 如果不在根路径，加载时需要指定路径
+load_dotenv(find_dotenv())  # 可以通过引入find_dotenv()方法自动查找
 """
 
-# 获取环境变量
 import os
-value = os.getenv("KEY")
+value = os.getenv("KEY", "default-value")
+"""
+返回的值都是str类型的，如果要dict可以使用json.loads(value)
+"""
+```
+
+- 获取环境变量，方式2：dotenv_values
+
+不会将变量加载到环境变量中，而是返回一个OrderedDict对象
+
+```python
+from dotenv import dotenv_values
+config = dotenv_values(".env")  # 或者指定任何你想要读取的 .env 文件的路径
+
+print(config["KEY"])
 ```
 
 ## 代码分析工具 Linter

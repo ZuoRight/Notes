@@ -10,7 +10,7 @@ Django采用了MTV的框架模式，即：Model(模型)，Template(模版)，Vie
 mkdir mysite
 cd mysite
 
-python -m venv env  # Django 4.0依赖 Python 3.8+
+python -m venv env  # Django 4.0+ 依赖 Python 3.8+
 pip install django
 
 django-admin startproject mysite .  # 初始化项目，注意结尾的点
@@ -71,7 +71,7 @@ one_app/
     tests.py
     views.py
     # URLconf路由配置文件（也可以是其他任何路径）
-    urls.py  
+    urls.py
     # 模版容器
     templates/
         # 命名空间，由于DjangoTemplates会在每个INSTALL_APPS路径下依次寻找templates子目录，如果多个APP之间模板名称一样，只会匹配到第一个，容易出错
@@ -94,7 +94,7 @@ one_app/
 
 ## 定义模型 models.py
 
-> 参考：<https://docs.djangoproject.com/zh-hans/4.0/topics/db/models/#>
+> 参考：<https://docs.djangoproject.com/zh-hans/4.2/topics/db/models/>
 
 ```python
 from django.db import models
@@ -379,10 +379,11 @@ python manage.py makemigrations [one_app]
 
 # 执行迁移（执行SQL语句）
 python manage.py migrate
+
+# 查看创建了哪些表
 """
-查看创建了哪些表：
-    SQLite: .schema
-    MySQL: SHOW TABLES;
+SQLite: .schema
+MySQL: SHOW TABLES;
 """
 ```
 
