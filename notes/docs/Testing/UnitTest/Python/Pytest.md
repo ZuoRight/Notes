@@ -6,7 +6,8 @@ hide:
 
 # Pytest
 
-官方文档：<https://docs.pytest.org>
+- 官方文档：<https://docs.pytest.org>
+- 插件列表：<https://docs.pytest.org/en/latest/reference/plugin_list.html>
 
 ```shell
 pip install pytest  # install
@@ -326,11 +327,7 @@ markers =
   xxx
 ```
 
-## 插件
-
-插件列表：<https://docs.pytest.org/en/latest/reference/plugin_list.html>
-
-- 执行顺序
+### 执行顺序
 
 Pytest默认按照收集顺序执行（即从上到下）
 

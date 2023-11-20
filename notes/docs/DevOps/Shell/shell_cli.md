@@ -52,20 +52,14 @@ xxx &
 
 执行外部命令时，Shell 会创建一个子进程来启动可执行文件，内部命令则不会
 
-## `$PATH`
+## 变量
 
-环境变量PATH，是一个包含多个目录路径的字符串，它告诉Shell命令解释器去哪里查找可执行文件。
-
-使用 `echo $PATH` 查看它包含的路径：`/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin`（冒号分割，从左到右按顺序加载）
-
-通常我们自己安装软件或工具时，可执行文件都会被放入以上位置，如果不在则需要自己配置到PATH中，否则无法全局使用
+- 查看所有变量
 
 ```shell
-echo 'export PATH=$PATH:/path/to/new/folder' >> ~/.bash_profile  # 新增，也可以直接编辑这个文件
-source ~/.bash_profile  # 重新加载配置文件使其生效
+set  # 本地Shell变量
+env  # 查看环境变量
 ```
-
-## 变量
 
 ```shell
 # 变量赋值，无需声明
@@ -77,9 +71,6 @@ x2="$x1"  # 双引号中的特殊字符保持原义，比如$
 # 取消变量
 unset x  # x前不需要加$
 
-# 查看所有变量
-set
-
 # 引用变量
 y=${x}  # 可省略花括号
 y=$(ls -al)  # 引用命令（推荐）
@@ -89,6 +80,19 @@ y=`ls -al`  # 引用命令
 PATH=$PATH:/home/bin
 PATH="$PATH":/home/bin
 PATH=${PATH}:/home/bin  # 推荐
+```
+
+- `$PATH`
+
+环境变量PATH，是一个包含多个目录路径的字符串，它告诉Shell命令解释器去哪里查找可执行文件。
+
+使用 `echo $PATH` 查看它包含的路径：`/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin`（冒号分割，从左到右按顺序加载）
+
+通常我们自己安装软件或工具时，可执行文件都会被放入以上位置，如果不在则需要自己配置到PATH中，否则无法全局使用
+
+```shell
+echo 'export PATH=$PATH:/path/to/new/folder' >> ~/.bash_profile  # 新增，也可以直接编辑这个文件
+source ~/.bash_profile  # 重新加载配置文件使其生效
 ```
 
 ## 数组

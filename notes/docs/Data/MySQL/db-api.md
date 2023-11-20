@@ -115,10 +115,10 @@ db.close()
 `pip install PyMySQL`
 
 ```shell
-如果使用PyMySQL遇到如下问题
 RuntimeError: 'cryptography' package is required for sha256_password or caching_sha2_password auth methods
-是因为mysql8.0后身份认证插件由mysql_native_password变为caching_sha2_password
-需要安装cryptography来解决：pip3 install cryptography
+# 如果使用 PyMySQL 遇到如上问题
+# 是因为 mysql8.0 后身份认证插件由 mysql_native_password 变为 caching_sha2_password
+# 需要安装 cryptography 来解决：pip3 install cryptography
 ```
 
 也是纯Python实现，性能最差，但最流行，如果项目里用了gevent貌似只能用pymysql

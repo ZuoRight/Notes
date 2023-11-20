@@ -223,33 +223,6 @@ def f1():
     return r  # a=3
 ```
 
-## 类型注解
-
-通过类型注解可以提高代码的可读性和易用性
-
-```python
-"""
-变量类型注解：用 :type 表示
-函数返回值类型注解：用 ->type 表示
-"""
-def func(x:int, y:int) -> int:
-    """
-    :x：xxx
-    :y：xxx
-    """
-    return x + y
-```
-
-对于复杂的数据结构需要借助 typing 模块来表达这些数据结构
-
-```python
-from typing import List, Tuple, Dict
-
-names: List[str] = ['lily', 'tom']
-version: Tuple[int, int, int] = (6, 6, 6)
-operations: Dict[str, bool] = {'sad': False, 'happy': True}
-```
-
 ## 匿名函数(lambda表达式)
 
 `f = lambda 输入 : 输出`

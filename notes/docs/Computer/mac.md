@@ -6,6 +6,7 @@ kill [-9] 3031  # 杀死进程，-9强制杀死
 launchctl  # 类似Linux的systemctl
 which xx  # 查找
 unzip xxx.zip  # 解压
+env  # 查看环境变量
 ```
 
 ## CLT

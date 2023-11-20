@@ -2,6 +2,8 @@
 nav:
   - index.md
   - browser.md
+  - cgi.md
+  - Django
+  - Flask
   - 模型
-  - 框架
   - ...
