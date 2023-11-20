@@ -1,6 +1,6 @@
 # CGI
 
-Web框架（Django、Flask）需要通过一套接口协议（CGI）与应用服务器（uWSGI、Tomcat）交互，通过应用服务器来接收并解析HTTP请求。
+Web 框架（Django、Flask）需要通过一套接口协议（CGI）与应用服务器（uWSGI、Tomcat）交互，通过应用服务器来接收并解析HTTP请求。
 
 CGI(Common Gateway Interface)是早期Web开发的接口规范，FastCGI为其增强版
 

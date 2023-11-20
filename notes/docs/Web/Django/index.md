@@ -238,7 +238,7 @@ python manage.py test --keepdb
 
 ## 部署
 
-> 使用 WSGI 或 ASGI 部署 Django 可以参考[CGI](cgi.md)，或者[官方文档](https://docs.djangoproject.com/zh-hans/4.0/howto/deployment/)
+> 使用 WSGI 或 ASGI 部署 Django 可以参考 CGI 部分的内容，或者[官方文档](https://docs.djangoproject.com/zh-hans/4.0/howto/deployment/)
 
 ### 内置Server启动
 
