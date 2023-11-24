@@ -7,10 +7,10 @@
 `models.py`
 
 ```python
-from django.db import models
-from django.contrib.auth.models import User
+from django.db import models  # 引入ORM
+from django.contrib.auth.models import User  # 内置的用户模型
 
-# 每个类就是一个模型(sheet)，继承自 models.Model
+# 每个类就是一个表，继承自 models.Model
 class Exchange(models.Model):
     """
     每个属性代表一个字段(field)，主键id字段不需要定义，会被自动添加
@@ -180,6 +180,10 @@ class Restaurant(Place):
 
 ## 数据迁移
 
+- 生成SQL语句
+- 根据生成的SQL语句创建或更新数据表
+- 版本跟踪管理
+
 ```shell
 # 查看迁移状态，[x]表示已迁移
 # 也可以用来检查数据库配置是否正确，有问题会报错
@@ -341,4 +345,68 @@ django-admin loaddata filename  # 加载所有格式的数据
 
 # 可同时加载多个fixture
 django-admin loaddata filename_a filename_b filename_c
+```
+
+## 数据库API
+
+> <https://docs.djangoproject.com/zh-hans/4.0/ref/models/querysets/#queryset-api-reference>
+
+```python
+# 可用于admin.py或views.py
+from one_app.models import Blog
+
+# SELECT语句
+Q = Blog.objects  #  Managerd对象，表级操作
+Q.all()  # 等同于Q，返回一个包含所有记录的QuerySet对象集合
+Q.order_by("xxx")  # 按某字段排序
+
+# WHERE子句
+r = Q.get(pk=1)  # 如果查询结果只有一条记录可以用get，但如果查不到或查到多条会报错
+r.xxx  # 会重新访问数据库
+r = Q.select_related("xxx").get(pk=1)
+r.xxx  # 不需要重新访问数据库，性能更高
+
+Q.filter(**kwargs)  # 过滤满足条件的记录，WHERE xxx AND xxx
+Q.exclude(**kwargs)  # 排除满足条件的记录，WHERE NOT(xxx AND xxx)
+Q.exclude().exclude()  # WHERE NOT xxx AND NOT xxx
+
+# LIMIT和OFFSET子句，切片，不支持负数索引，可以用步长2
+Q.all()[:5]  # LIMIT 5 返回前5个对象
+Q.all()[5:10]  # OFFSET 5 LIMIT 5 返回第6～10个对象
+
+r = Blog(Field1="x1", Field2="x2")  # 实例初始化，行级操作
+r.Field1 = "x01"  # 修改字段值
+
+r.save()  # 保存
+```
+
+- 字段查询
+
+```python
+# 完全匹配 =
+Q.get(name__exact="abc")  # WHERE name = "abc";
+Q.get(name="abc")  # 同上
+
+# 比较
+__gt  # 大于
+__gte  # 大于等于
+__lt   # 小于
+__lte  # 小于等于
+
+# LIKE 区分大小写
+Q.get(name__contains="abc")  # WHERE name LIKE '%abc%';
+Q.filter(name__startswith="abc")  # WHERE name LIKE 'abc%';
+Q.filter(name__endswith="abc")  # WHERE name LIKE '%abc';
+
+# ILIKE 不区分大小写
+Q.get(name__iexact="abc")  # WHERE name ILIKE 'abc';
+Q.get(name__icontains="xxx")  # WHERE name ILIKE '%abc%';
+Q.get(name__istartswith="abc")  # WHERE name ILIKE 'abc%';
+Q.get(name__iendswith="abc")  # WHERE name ILIKE '%abc';
+
+# IN
+Q.filter(id__in=[1, 3, 4])  # WHERE id IN (1, 3, 4);
+
+# BETWEEN...AND...
+Q.filter(date__range=(start_date, end_date))  # WHERE date BETWEEN 'start_date' and 'end_date';
 ```

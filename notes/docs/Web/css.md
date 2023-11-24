@@ -1,4 +1,4 @@
-# 布局
+# CSS
 
 - css floats 盒模型：display + position + float
 - flexbox：display: flex | inline-flex;

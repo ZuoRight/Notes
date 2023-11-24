@@ -199,4 +199,4 @@ server {
     }
 ```
 
-配置好后，重新加载Nginx配置，访问：<http://localhost>即可自动代理到<http://localhost:8000>
+配置好后，重新加载 Nginx 配置，访问：<http://localhost> 即可自动代理到 <http://localhost:8000>

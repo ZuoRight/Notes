@@ -1,7 +1,9 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - module.md
+  - models.md
   - admin.md
   - views.md
+  - template.md
+  - 用户认证.md
   - ...

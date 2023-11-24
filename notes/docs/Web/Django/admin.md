@@ -2,6 +2,8 @@
 
 > 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/contrib/admin/>
 
+Django Admin 是一个预构建的应用
+
 ## 注册应用
 
 `admin.py`
@@ -22,6 +24,8 @@ class DemoAdmin(admin.ModelAdmin):
     inlines = [StepInline]  # 改为行内布局，默认StackedInline堆叠布局
     fields = (('is_test', 'expect_succeed'), 'note')  # 显示的字段，同一元组的字段显示在同一行
     exclude = ('creator','created_date','modified_date')  # 不显示的字段
+
+    readonly_fields = ('my_field',)  # 设置字段为只读
 
     # 列表页
     list_display = ("name", 'cmd', "group", 'creator', 'created_date', 'modified_date')  # 在列表中显示的字段

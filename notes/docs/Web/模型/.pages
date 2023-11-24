@@ -1,8 +1,0 @@
-# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
-nav:
-  - html.md
-  - 布局.md
-  - 对象模型.md
-  - Jinja2.md
-  - vue.md
-  - ...

@@ -2,7 +2,9 @@
 
 [Django的官方文档(有中文版)](https://docs.djangoproject.com/zh-hans){ .md-button .md-button--primary }
 
-Django采用了MTV的框架模式，即：Model(模型)，Template(模版)，View(视图)
+Django采用了MVT的框架模式，即：Model(模型)，View(视图)，Template(模版)
+
+用户通过前端 Template 与表单交互，填写数据后提交表单，Views 通过 `HttpRequest` 对象接收用户输入的数据。通常，这些数据可以通过 `request.POST` 或 `request.GET` 访问，然后通过表单系统（`forms.Form` 或 `forms.ModelForm`）对表单数据进行验证和清理，以确保数据的安全性和有效性，一旦验证通过，可以使用这些数据执行相应的操作，如更新数据库、执行业务逻辑等，根据操作的结果，视图将创建一个 `HttpResponse` 对象来返回响应。这可能是一个重定向、渲染一个新的页面，或者仅仅是一个确认消息。
 
 ## 项目
 
@@ -41,9 +43,9 @@ mysite/
 
 - 创建
 
-应用可以存放在任意路径：`django-admin startapp <app_name>`
+应用通常与 `manage.py` 所在路径同级，这样就可以作为顶级模块导入：`python manage.py startapp <app_name>`
 
-不过通常与manage.py同级，这样就可以作为顶级模块导入：`python manage.py startapp <app_name>`
+当然也可以存放在任意路径：`django-admin startapp <app_name>`
 
 - 结构
 
@@ -250,13 +252,14 @@ Django与Flask等框架都会内置一个简易的WSGI服务器，性能不高�
 # 先切换到项目容器内
 cd mysite
 
-# 运行命令行工具manage.py启动项目，默认8000端口
-# 首页地址：127.0.0.1:8000
-# 根据默认配置启动
+# 运行命令行工具manage.py启动项目
+# 根据默认配置启动：127.0.0.1:8000
 python manage.py runserver
-# 可以更改端口
+
+# 指定端口
 python manage.py runserver 8888
-# 可以指定IP，比如监听所有服务器公开IP，0是0.0.0.0的缩写
+
+# 指定IP，比如监听所有服务器公开IP，0是0.0.0.0的缩写
 python manage.py runserver 0:8000
 
 # 指定配置文件启动
@@ -284,7 +287,6 @@ python manage.py runserver --settings=demo.settings.set_prod
 
 ```python
 # manage.py
-
 from django.utils.regex_helper import _lazy_re_compile
 import django.http.request
 
