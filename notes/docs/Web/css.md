@@ -126,3 +126,5 @@ margin属性，设置两列之间的间距
 ## Tailwind CSS
 
 <https://tailwindcss.com/>
+
+和Bootstrap这类直接提供组件的CSS框架相比，Tailwind CSS介于组件和原始CSS之间，它适合需要自定义CSS、希望能有自己风格的网站

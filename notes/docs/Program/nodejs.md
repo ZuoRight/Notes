@@ -2,6 +2,7 @@
 
 ```shell
 node --version  # 查看版本
+
 node demo.js  # 运行脚本
 
 # 进入交互式环境 REPL（Read-Eval-Print Loop），类似于浏览器的控制台
@@ -18,9 +19,10 @@ node  # 退出：.exit
 
 ### Mac
 
+直接安装最新安装包或使用 NVM 版本管理器安装
+
 ```shell
-brew install node  # 安装
-sudo npm install -g npm
+brew install node  # Homebrew 安装，不建议
 ```
 
 ### Ubuntu
@@ -65,10 +67,18 @@ sudo rm /usr/local/bin/node
 nvm 不是一个 npm package，而是一个独立软件包
 
 ```shell
-# 不要使用 sudo 运行，因为这会为 root 用户启用nvm
+# 不要使用 sudo 运行，因为这会为 root 用户启用 nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+# 验证 nvm 是否已安装
+command -v nvm
+
 # 安装后重新打开终端
 nvm --version
+
+nvm ls  # 列出已安装的node
+nvm use x.x.x  # 切换当前版本
+nvm alias default 12.16.3  # 修改默认版本
 
 # 安装
 nvm list-remote  # 列出所有可安装版本
@@ -76,10 +86,6 @@ nvm list-remote  # 列出所有可安装版本
 nvm install node  # 安装最新版本
 nvm install --lts  # 安装最新的LTS版本,比如v18.5.0（推荐）
 nvm install 18.5.0  # 安装指定版本
-
-nvm ls  # 列出已安装的node
-nvm use x.x.x  # 切换当前版本
-nvm alias default 12.16.3  # 修改默认版本
 
 # 如果使用 sudo npm/npx 提示没有权限时，需要link下
 sudo ln -s "$(which node)" /usr/bin/node
@@ -105,15 +111,34 @@ sudo ln -s "$(which npm)" /usr/bin/npm
 npm -v
 npm help
 npm list -g  # 查看已安装包，不带-g看不到全局的包
-
-# 初始化生成 package.json
-npm init -y
-# -y: yes
 ```
 
-不手动初始化也会在安装第一个包时自动生成
+手动初始化，生成 `package.json`
 
-```json
+```shell
+npm init -y  # 加 -y: yes 参数则不会一步步引导，而是直接生成
+'
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help init` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (card_test) 
+version: (1.0.0) 
+description: 
+entry point: (index.js) 
+test command: 
+git repository: 
+keywords: 
+author: 
+license: (ISC) 
+About to write to /Users/xxx/demo/package.json:
+
 {
   "name": "demo",
   "version": "1.0.0",
@@ -122,17 +147,34 @@ npm init -y
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC"
 }
+
+
+Is this OK? (yes) yes
+npm notice 
+npm notice New major version of npm available! 8.19.2 -> 10.2.4
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v10.2.4
+npm notice Run npm install -g npm@10.2.4 to update!
+npm notice 
+'
 ```
 
-默认安装到 `$PWD/node_modules/...`，代码中通过 `require()` 引入
+不手动初始化，在安装第一个包时也会自动生成 `package.json` 和 `package-lock.json` 文件
+
+```json
+{
+  "dependencies": {
+    "ethers": "^6.9.0"
+  }
+}
+```
+
+安装，默认安装到 `$PWD/node_modules/...`
 
 ```shell
-npm install [--save-dev] <xxx>
-# npm install 可简写为 npm i
+npm install xxx  # npm install 可简写为 npm i
 "
 -g/--global
     本地安装（默认）
@@ -160,7 +202,7 @@ npm install npm -g  # 更新npm自身
 npm update <name> [-g] [--save-dev]  # 更新插件，不指定name则更新全部
 ```
 
-NPM 官方源比较慢，可以使用第三方源，NRM可以用来管理NPM源
+NPM 官方源比较慢，可以使用第三方源，NRM 可以用来管理 NPM 源
 
 ```shell
 npm install nrm -g

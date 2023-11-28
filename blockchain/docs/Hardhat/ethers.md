@@ -13,20 +13,11 @@ npm install ethers --save
 
 ## 导入
 
-- CommonJS 方式导入
-
-在 Node 环境下导入
+- Node 环境下导入
 
 ```js
-const ethers = require('ethers');
-```
-
-- ES6 方式导入
-
-在 Node 环境下导入，需要在 `package.json` 中添加配置
-
-```js
-import { ethers } from 'ethers';
+// const ethers = require('ethers');  // CommonJS 方式
+import { ethers } from 'ethers';  // ES6 方式
 
 const main = async () => {
     // code
@@ -37,13 +28,15 @@ main();
 // 运行：node hello.js
 ```
 
+注意：ES6 方式导入需要在 `package.json` 中添加配置
+
 ```json
 {
   "type": "module"
 }
 ```
 
-在 Web 中导入需要加 module 属性
+- Web 中导入，需要加 module 属性
 
 ```html
 <script type="module">
@@ -61,7 +54,7 @@ Provider 类是对以太坊网络连接的抽象，提用于连接以及访问�
 ethers 内置了一些公用的 RPC 方便测试使用，但访问速度有限
 
 ```js
-const provider = ethers.getDefaultProvider();
+const provider = ethers.getDefaultProvider()
 ```
 
 - jsonRpcProvider
@@ -69,7 +62,7 @@ const provider = ethers.getDefaultProvider();
 可以通过 Infura 或 Alchemy 等节点服务商获取个人的URL，更快的连接以太坊网络
 
 ```js
-const INFURA_URL = 'https://sepolia.infura.io/v3/xxx';
+const INFURA_URL = 'https://sepolia.infura.io/v3/xxx'
 const provider = new ethers.JsonRpcProvider(INFURA_URL)
 ```
 
@@ -79,7 +72,7 @@ const provider = new ethers.JsonRpcProvider(INFURA_URL)
 
 ```js
 const network = await provider.getNetwork();
-console.log(network);  // Network {}，不能直接打印
+// console.log(network);  // Network {}，不能直接打印
 console.log(network.toJSON());  // { name: 'mainnet', chainId: '1' }
 ```
 
@@ -161,10 +154,10 @@ Signer 类是抽象类，不能直接实例化，需要用它的子类：Wallet
 
 ```js
 // 私钥由加密安全的熵源生成
-const wallet1 = ethers.Wallet.createRandom()
-const wallet1WithProvider = wallet1.connect(provider)  // 否则provider为null
+const wallet = ethers.Wallet.createRandom()
+const walletWithProvider = wallet.connect(provider)  // 否则provider为null
 
-console.log(wallet1)
+console.log(wallet)
 // HDNodeWallet {
 //   provider: null,
 //   address: '0x7E86Fde7fAEF38c45e4F7f0f40B46987A0F25Da9',
@@ -189,36 +182,36 @@ console.log(wallet1)
 ```js
 // 指定私钥和provider
 const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
-const wallet2 = new ethers.Wallet(privateKey, provider)
+const wallet = new ethers.Wallet(privateKey, provider)
 
-console.log(wallet2)
+console.log(wallet)
 // Wallet {
 //   provider: JsonRpcProvider {},
 //   address: '0xe16C1623c1AA7D919cd2241d8b36d9E79C1Be2A2'
 // }
 
 // 这种方式不能获取助记词
-const mnemonic = wallet2.mnemonic  // undefined
+const mnemonic = wallet.mnemonic  // undefined
 ```
 
 - 从助记词创建
 
 ```js
-const wallet3 = ethers.Wallet.fromPhrase(mnemonic.phrase)
+const wallet = ethers.Wallet.fromPhrase(mnemonic.phrase)
 ```
 
 - 从keystore文件创建
 
 ```js
-const wallet4 = ethers.Wallet.fromEncryptedJson(keystore.json)
+const wallet = ethers.Wallet.fromEncryptedJson(keystore.json)
 ```
 
 ### 获取钱包信息
 
 ```js
 const address = await wallet.getAddress()  // 获取钱包地址
-const pk = wallet2.privateKey  // 获取私钥
-const phrase = wallet.mnemonic.phrase  // wallet2不能获取
+const pk = wallet.privateKey  // 获取私钥
+const phrase = wallet.mnemonic.phrase  // 指定私钥方式生成的钱包不能获取助记词
 
 // 获取交易次数
 const txCount = await provider.getTransactionCount(wallet)  // 参数也可以是address
@@ -232,7 +225,7 @@ const tx = {
     value: ethers.parseEther("0.001")  // 发送数额
 }
 // sendTransaction包含发送地址from、请求数据data、nonce等信息
-const receipt = await wallet2.sendTransaction(tx)
+const receipt = await wallet.sendTransaction(tx)
 await receipt.wait()  // 等待链上确认交易
 
 // 打印交易详情
