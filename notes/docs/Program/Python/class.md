@@ -190,3 +190,50 @@ class Demo(A, B):
     super().add(x, y)  # Py3.x可以简写
 ```
 
+## Mixin 与 类装饰器
+
+混入类主要用于促进代码重用，并避免常见的继承相关的问题
+
+```python
+# 创建一个混入类
+class LoggerMixin:
+    def log(self, message):
+        print(f"日志: {message}")
+
+
+import time
+# 创建一个类装饰器
+def measure_performance(cls):
+    # 对类 cls 进行一些操作
+    class WrappedClass(cls):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+
+        def __getattribute__(self, name):
+            orig_attr = super().__getattribute__(name)
+            if callable(orig_attr):
+                def new_func(*args, **kwargs):
+                    start_time = time.time()
+                    result = orig_attr(*args, **kwargs)
+                    end_time = time.time()
+                    print(f"执行 {name} 耗时: {end_time - start_time} 秒")
+                    return result
+                return new_func
+            return orig_attr
+    # 返回 cls 或返回一个新的类
+    return WrappedClass
+
+
+# 使用类装饰器与混入类
+@measure_performance
+class MyTask(LoggerMixin):
+    def process_task(self):
+        self.log("任务开始执行")
+        # 执行一些操作
+        time.sleep(1)  # 模拟耗时操作
+        self.log("任务执行结束")
+
+# 使用类
+task = MyTask()
+task.process_task()
+```

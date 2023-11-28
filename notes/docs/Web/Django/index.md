@@ -1,8 +1,8 @@
-# Django
+# 配置及部署
 
-[Django的官方文档(有中文版)](https://docs.djangoproject.com/zh-hans){ .md-button .md-button--primary }
+[官方文档](https://docs.djangoproject.com/zh-hans){ .md-button .md-button--primary }
 
-Django采用了MVT的框架模式，即：Model(模型)，View(视图)，Template(模版)
+Django 采用了 MVT 的框架模式，即：Model(模型)，View(视图)，Template(模版)
 
 用户通过前端 Template 与表单交互，填写数据后提交表单，Views 通过 `HttpRequest` 对象接收用户输入的数据。通常，这些数据可以通过 `request.POST` 或 `request.GET` 访问，然后通过表单系统（`forms.Form` 或 `forms.ModelForm`）对表单数据进行验证和清理，以确保数据的安全性和有效性，一旦验证通过，可以使用这些数据执行相应的操作，如更新数据库、执行业务逻辑等，根据操作的结果，视图将创建一个 `HttpResponse` 对象来返回响应。这可能是一个重定向、渲染一个新的页面，或者仅仅是一个确认消息。
 
@@ -118,11 +118,11 @@ urls.py
 import os
 from pathlib import Path
 
-
-# 基础配置
+USE_L10N = True  # 启用本地化，将应用翻译和调整到特定国家或地区
 TIME_ZONE = 'UTC'  # 时区
-LANGUAGE_CODE = 'en-us'  # 语言
 
+USE_I18N = True  # 启用国际化，适应不同的语言和地区而无需进行工程上的更改
+LANGUAGE_CODE = 'en-us'  # 语言
 
 # 静态文件路径配置
 STATIC_URL = '/static/'  # 单独应用
@@ -220,21 +220,85 @@ pymysql.install_as_MySQLdb()
 
 ## 测试
 
-为避免产生冗余数据，Django测试时会创建独立的临时数据库，测试完成后自动删除，因此会拖慢测试时间
-
-如果不想新建数据库有两种处理方式
-
-- 如果测试用例不涉及数据库
+示例1
 
 ```python
-# 使用SimpleTestCase替代TestCase
-from django.test import SimpleTestCase
+# models.py
+from django.db import models
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    published = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def is_published(self):
+        return self.published
+
+
+# tests.py
+from django.test import TestCase
+from .models import BlogPost
+"""
+为避免产生冗余数据，Django测试时会创建独立的临时数据库，测试完成后自动删除，因此会拖慢测试时间
+可以使用 SimpleTestCase 替代 TestCase：from django.test import SimpleTestCase
+"""
+class BlogPostModelTest(TestCase):
+    def test_is_published(self):
+        # 创建一个博客帖子实例
+        blog_post = BlogPost(title="Test Post", content="Test Content", published=True)
+
+        # 测试 is_published 方法
+        self.assertTrue(blog_post.is_published())
 ```
 
-- 使用数据库但测试时复用同一个数据库
+示例2
+
+```python
+from django.test import TestCase
+from .models import MyModel
+
+class MyModelTest(TestCase):
+    def test_name_field(self):
+        # 创建一个 MyModel 实例
+        my_model_instance = MyModel(name="Test Name")
+        my_model_instance.save()
+
+        # 从数据库中检索刚创建的实例
+        retrieved_instance = MyModel.objects.get(id=my_model_instance.id)
+
+        # 断言检查 name 字段是否按预期工作
+        self.assertEqual(retrieved_instance.name, "Test Name")
+```
+
+示例3
+
+```python
+from django.test import TestCase, Client
+"""
+Django提供了一个测试客户端，用于模拟发送 HTTP 请求到你的视图并接收响应
+"""
+class MyViewTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_my_view(self):
+        # 发送 GET 请求到视图
+        response = self.client.get('/my-view-url/')
+
+        # 检查 HTTP 响应状态码
+        self.assertEqual(response.status_code, 200)
+```
+
+运行
 
 ```shell
-# 运行测试时添加--keepdb参数保留临时数据库（首次运行还是会创建的）
+python manage.py test
+python manage.py test app_name
+python manage.py test app_name.tests.MyTestClass
+python manage.py test app_name.tests.MyTestClass.test_my_method
+
+# 执行完测试不销毁临时数据库，而是保留，下次测试复用，可以提高效率
 python manage.py test --keepdb
 ```
 
@@ -293,6 +357,23 @@ import django.http.request
 django.http.request.host_validation_re = _lazy_re_compile(r"^([a-z0-9._.-]+|\[[a-f0-9]*:[a-f0-9:]+\])(:\d+)?$")
 ```
 
-## 性能监控
+## 性能相关
+
+### 优化
+
+- 查询优化：使用 `select_related` 和 `prefetch_related` 来减少数据库查询次数。
+- 使用缓存：利用 Django 的缓存框架来缓存视图、模板和数据。
+- 静态文件优化：使用文件压缩和合并工具来减少静态文件的加载时间，或者托管到CDN。
+- 避免过度使用 ORM：对于非常复杂或性能敏感的操作，考虑使用原生 SQL
+
+### 监控
 
 Silk 是一个用于 Django Web 框架的性能分析工具和调试工具。它允许你监视和记录 Django 应用程序的性能数据，以帮助识别性能瓶颈、慢查询和其他性能问题。
+
+## 扩展
+
+- django-rest-framework: 一个强大的工具集，用于构建 RESTful API。
+- django-allauth: 提供了全面的账户管理功能，支持社交账户认证。
+- django-celery: 集成了 Celery，一个异步任务队列/基于消息传递的分布式任务执行系统。
+- django-cors-headers: 用于处理跨源资源共享（CORS）问题，特别是在开发 API 时非常有用。
+- django-debug-toolbar: 一款强大的调试工具，提供了对 Django 项目的详细内部信息。

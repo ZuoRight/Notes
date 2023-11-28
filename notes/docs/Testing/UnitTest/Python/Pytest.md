@@ -9,6 +9,16 @@ hide:
 - 官方文档：<https://docs.pytest.org>
 - 插件列表：<https://docs.pytest.org/en/latest/reference/plugin_list.html>
 
+| 特性          | unittest                                  | pytest                                       |
+|--------------|-------------------------------------------|----------------------------------------------|
+| 类型         | Python 标准库                              | 第三方库                                       |
+| 风格         | 面向对象（基于类和方法）                      | 函数式，更简洁（支持类和方法）                     |
+| 断言样式      | assertEqual()、assertTrue()等特定的断言方法  | Python 内置的 assert                          |
+| 测试发现机制   | 支持自动发现                               | 强大的自动发现                                  |
+| 前置/后置装饰  | setUp() 和 tearDown()                     | 灵活的 fixture 系统                            |
+| 插件生态系统   | 较少的第三方插件                            | 丰富的插件生态                                  |
+| 适用场景      | 适用于熟悉 xUnit 架构的开发者                | 更高的灵活性和简洁性，适用于各种规模的项目           |
+
 ```shell
 pip install pytest  # install
 
@@ -22,67 +32,56 @@ pytest -h | --help # show help on command line and config file options
 `test_xxx.py` 或 `xxx_test.py`
 
 ```python
+import pytest
+
+
 def setup_module():
     print("模块开始执行一次")
-
 
 def teardown_module():
     print("模块结束执行一次")
 
-
 def setup_function():
     print("每个函数前执行一次")
 
-
 def teardown_function():
     print("每个函数后执行一次")
-
 
 def test_func1():
     print("func1")
     assert a == b  # 断言
 
-
 def test_func2():
     print("func2")
 
-
 class TestDemo:
     # 不能写init方法
-
     def setup_class(cls):
         cls.k = "哈哈"  # 前置方法中的属性可以给其他方法调用
         print("类开始执行一次")
 
-
     def teardown_class(cls):
         print("类结束执行一次")
-
 
     def setup_method(cls):
         print("每个方法前执行一次")
 
-
     def teardown_method(cls):
         print("每个方法后执行一次")
-
 
     # 等价于setup_method的简写
     def setup(cls):
         print(cls.k)  # 调用前置方法中的属性
         print("每个方法前执行一次")
 
-
     # 等价于teardown_method的简写
     def teardown(cls):
         print("每个方法后执行一次")
-
 
     # self 必须带
     def test_method1(self):
         print(self.k)  # 调用前置方法中的属性
         print("method1")
-
 
     # self 必须带
     def test_method2(self):

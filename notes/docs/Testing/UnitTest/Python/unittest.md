@@ -17,7 +17,6 @@ class TestMethod(unittest.TestCase):
     def tearDownClass(cls):
         print('类后')
 
-
     #每个方法执行前都要执行一次
     def setUp(self):
         print('test-->setup')
@@ -29,9 +28,11 @@ class TestMethod(unittest.TestCase):
     #测试方法，必须以“test”开头
     def test_case01(self):
         print('这是第一个测试方法')
+        self.assertEqual(xxx)  # 断言
 
     def test_case02(self):
         print('这是第二个测试方法')
+        self.assertTrue(xxx)  # 断言
 
 
 if __name__ == '__main__':
@@ -43,9 +44,9 @@ if __name__ == '__main__':
 
 ## HTMLTestRunner
 
-是unittest的扩展库，用于生成测试报告
+是unittest用于生成测试报告的扩展库
 
-手动将`HTMLTestRunner.py`文件放置在Python安装路径下的Lib文件夹中，源文件仅支持Python 2.x版本，可自行修改为适配Python3.x版本。
+手动将 `HTMLTestRunner.py` 文件放置在Python安装路径下的Lib文件夹中，源文件仅支持Python 2.x版本，可自行修改为适配Python3.x版本。
 
 > 参考：<https://github.com/Gelomen/HTMLTestReportCN-ScreenShot>
 

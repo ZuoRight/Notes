@@ -1,11 +1,12 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - html.md
+  - 对象模型.md
+  - css.md
+  - browser.md
   - cgi.md
   - Flask
   - Django
-  - html.md
-  - css.md
   - vue.md
-  - browser.md
   - ...

@@ -1,4 +1,4 @@
-# 模板
+# Templates
 
 ```html
 <!DOCTYPE html>
@@ -66,6 +66,8 @@ DEBUG 设置为 False 后 Django 不会再提供静态文件服务
 ```
 
 ## 表单
+
+<https://docs.djangoproject.com/zh-hans/4.2/topics/forms/>
 
 ### 创建表单
 

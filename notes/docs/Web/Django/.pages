@@ -6,4 +6,5 @@ nav:
   - views.md
   - template.md
   - 用户认证.md
+  - drf.md
   - ...
