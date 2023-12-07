@@ -288,3 +288,21 @@ import {foo} from '模块文件的位置';
 ```js
 <script type="module" src="demo.js"></script>
 ```
+
+## 环境变量
+
+隐私信息存储在 `.env` 中
+
+```shell
+INFURA_URL='https://sepolia.infura.io/v3/xxx'
+PRIVATE_KEY="xxx"  # 0x62BABAf230c29e611756e10D4520d0490B189aC1
+```
+
+`npm install dotenv`
+
+```js
+require('dotenv').config();
+
+const INFURA_URL = process.env.INFURA_URL;
+const privateKey = process.env.PRIVATE_KEY;
+```

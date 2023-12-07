@@ -181,7 +181,7 @@ console.log(wallet)
 
 ```js
 // 指定私钥和provider
-const privateKey = '0x227dbb8586117d55284e26620bc76534dfbd2394be34cf4a09cb775d593b6f2b'
+const privateKey = '0x...'
 const wallet = new ethers.Wallet(privateKey, provider)
 
 console.log(wallet)
@@ -217,46 +217,94 @@ const phrase = wallet.mnemonic.phrase  // 指定私钥方式生成的钱包不�
 const txCount = await provider.getTransactionCount(wallet)  // 参数也可以是address
 ```
 
-### 发送交易
-
-```js
-const tx = {
-    to: address1,  // 接收地址
-    value: ethers.parseEther("0.001")  // 发送数额
-}
-// sendTransaction包含发送地址from、请求数据data、nonce等信息
-const receipt = await wallet.sendTransaction(tx)
-await receipt.wait()  // 等待链上确认交易
-
-// 打印交易详情
-console.log(receipt)
-// TransactionResponse {
-//   provider: JsonRpcProvider {},
-//   blockNumber: null,
-//   blockHash: null,
-//   index: undefined,
-//   hash: '0x20282a0bfcfa53adfe8bc354f14b67952bbec8c50058f600233334efc05a1c46',
-//   type: 2,
-//   to: '0x6dC688B011ca7d4BdbcdB3Cf42E7F934A44835d6',
-//   from: '0xE8187F49c358B3989Be39D34312C6fb421Cc4341',
-//   nonce: 82,
-//   gasLimit: 21000n,
-//   gasPrice: undefined,
-//   maxPriorityFeePerGas: 1000000000n,
-//   maxFeePerGas: 1000001864n,
-//   data: '0x',
-//   value: 1000000000000000n,
-//   chainId: 11155111n,
-//   signature: Signature { r: "0x4d292bf9fedabd389f3844965d5ea41450010bf40ac0669d2e0f7f58566fa3b9", s: "0x0403c675c0c44dd4b7f5ba369e6e16c04fe0827d40cbf3b7b23e83908ad8b1f7", yParity: 1, networkV: null },
-//   accessList: []
-// }
-```
-
 ## Contract
 
 Contract 类是对合约（EVM字节码）的抽象，用于与合约交互
 
-- 只读
+ABI(Application Binary Interface) 是与以太坊智能合约交互的标准接口，类似于API
+
+可以直接从编译后生成的 `artifact` 路径下的 json 文件中获取，如果已开源还可以从 EtherScan 中获取
+
+```json
+[
+    {...},
+    {
+        "inputs":[
+
+        ],
+        "name":"name",
+        "outputs":[
+            {
+                "internalType":"string",
+                "name":"",
+                "type":"string"
+            }
+        ],
+        "stateMutability":"view",
+        "type":"function"
+    },
+    {
+        "inputs":[
+            {
+                "internalType":"address",
+                "name":"account",
+                "type":"address"
+            }
+        ],
+        "name":"balanceOf",
+        "outputs":[
+            {
+                "internalType":"uint256",
+                "name":"",
+                "type":"uint256"
+            }
+        ],
+        "stateMutability":"view",
+        "type":"function"
+    },
+    {
+        "inputs":[
+            {
+                "internalType":"address",
+                "name":"to",
+                "type":"address"
+            },
+            {
+                "internalType":"uint256",
+                "name":"amount",
+                "type":"uint256"
+            }
+        ],
+        "name":"transfer",
+        "outputs":[
+            {
+                "internalType":"bool",
+                "name":"",
+                "type":"bool"
+            }
+        ],
+        "stateMutability":"nonpayable",
+        "type":"function"
+    },
+    {...}
+]
+```
+
+不过这种可读性比较差，ethers 引入了 Human-Readable ABI
+
+输入程序需要用到的函数，逗号分隔，ethers会自动帮你转换成相应的abi
+
+```js
+const abiERC20 = [
+    ...,
+    "function name() view returns (string)",
+    "function balanceOf(address) view returns (uint)",
+    "function transfer(address, uint256) public returns (bool)"
+    ...
+];
+```
+
+### 只读
 
 只能调用合约中的 view 和 pure 函数
 
@@ -272,28 +320,7 @@ const main = async () => {
 main()
 ```
 
-ABI(Application Binary Interface) 是与以太坊智能合约交互的标准接口，类似于API
-
-可以直接从编译后生成的`artifact`路径下的json文件中获取，如果已开源还可以从EtherScan中获取
-
-```json
-[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":
-...省略...
-"type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[],"name":"Pause","type":"event"},{"anonymous":false,"inputs":[],"name":"Unpause","type":"event"}]
-```
-
-不过这种可读性比较差，ethers 引入了 Human-Readable ABI
-
-```js
-const abiERC20 = [
-    "function name() view returns (string)",
-    "function symbol() view returns (string)",
-    "function totalSupply() view returns (uint256)",
-    "function balanceOf(address) view returns (uint)",
-];
-```
-
-- 可读写
+### 可读写
 
 可以执行 transaction
 
@@ -301,8 +328,7 @@ const abiERC20 = [
 const contract = new ethers.Contract('address', 'abi', 'signer');
 
 // 也可以先声明一个只读合约，然后再将只读可约转为可写合约
-const contract2 = contract.connect(signer)
-
+const contract = contract.connect(signer)
 
 const tx = await contract.METHOD_NAME(args [, overrides])  // 发送交易
 await tx.wait()  // 等待链上确认交易
@@ -332,7 +358,122 @@ let tx = await contractERC20.mint("10000")
 await tx.wait()
 ```
 
-## 模拟交易
+## 发送交易
+
+### 转ETH
+
+```js
+const ethers = require('ethers');
+
+const main = async () => {
+    const INFURA_URL = 'https://sepolia.infura.io/v3/xxx'
+    const provider = new ethers.JsonRpcProvider(INFURA_URL)
+
+    const privateKey = '0x...'  // from 地址私钥
+    const wallet = new ethers.Wallet(privateKey, provider)
+    const tx = {
+        to: "0x4e6aC3732f9a02eE4D3A8E68e9540ad48E136ca9",  // to 接收地址
+        value: ethers.parseEther("0.0001")  // 发送数量，注意，是字符串格式的
+    }
+    
+    try {
+        const transferTx = await wallet.sendTransaction(tx)  // sendTransaction 包含发送地址from、请求数据data、nonce等信息
+        await transferTx.wait()  // 等待链上确认交易
+        console.log(transferTx)  // 打印交易详情
+    } catch (error) {
+        console.error("交易失败:", error)
+    }
+};
+
+main();
+
+`
+TransactionResponse {
+  provider: JsonRpcProvider {},
+  blockNumber: null,
+  blockHash: null,
+  index: undefined,
+  hash: '0xd331f6ad7136cd6dd84696395458ae3aefc014b186b32027469b409f785e1daf',
+  type: 2,
+  to: '0x4e6aC3732f9a02eE4D3A8E68e9540ad48E136ca9',
+  from: '0x62BABAf230c29e611756e10D4520d0490B189aC1',
+  nonce: 77,
+  gasLimit: 21000n,
+  gasPrice: undefined,
+  maxPriorityFeePerGas: 11n,
+  maxFeePerGas: 373575763n,
+  data: '0x',
+  value: 100000000000000n,
+  chainId: 11155111n,
+  signature: Signature { r: "0x350e8e0de7c8ef831a1349773681a1e1206195425c971ad08e5d499ff9663893", s: "0x6d13778806d686851aa7ff6947e581b59ddf511b316bc28d14f5715f91053237", yParity: 1, networkV: null },
+  accessList: []
+}
+`
+```
+
+### 转其它代币
+
+```js
+const ethers = require('ethers');
+require('dotenv').config();
+
+const main = async () => {
+    const INFURA_URL = process.env.INFURA_URL;
+    const provider = new ethers.JsonRpcProvider(INFURA_URL)
+
+    const privateKey = process.env.PRIVATE_KEY;
+    const wallet = new ethers.Wallet(privateKey, provider)
+
+    const usdcContractAddress = '0xD218270a11a3a8E614Ebf8AE8FD3D269a52ac114';
+    const usdcAbi = [
+        "function transfer(address, uint256) public returns (bool)"
+    ];
+
+    async function transferToken(receiverAddress) {
+        const usdcContract = new ethers.Contract(usdcContractAddress, usdcAbi, wallet);
+        const decimals = 6
+        const amount = ethers.parseUnits('1', decimals);  // 发送数量，注意，是字符串格式的
+    
+        try {
+            const transferTx = await usdcContract.transfer(receiverAddress, amount);
+            await transferTx.wait();
+            console.log(transferTx);
+        } catch (error) {
+            console.error("代币转账失败:", error);
+        }
+    }
+    
+    const receiverAddress = '0x4e6aC3732f9a02eE4D3A8E68e9540ad48E136ca9';
+    transferToken(receiverAddress);
+};
+
+main();
+
+`
+ContractTransactionResponse {
+  provider: JsonRpcProvider {},
+  blockNumber: null,
+  blockHash: null,
+  index: undefined,
+  hash: '0xac0c865f92cc94e44129d175d43eff3d009cfd0063b2c981e26b04e482702de0',
+  type: 2,
+  to: '0xD218270a11a3a8E614Ebf8AE8FD3D269a52ac114',
+  from: '0x62BABAf230c29e611756e10D4520d0490B189aC1',
+  nonce: 78,
+  gasLimit: 51641n,
+  gasPrice: undefined,
+  maxPriorityFeePerGas: 11n,
+  maxFeePerGas: 133888205n,
+  data: '0xa9059cbb0000000000000000000000004e6ac3732f9a02ee4d3a8e68e9540ad48e136ca900000000000000000000000000000000000000000000000000000000000f4240',
+  value: 0n,
+  chainId: 11155111n,
+  signature: Signature { r: "0x97af365b540e922793179b7818b250ed4a899a4ff81bd369a720a10698e0b0cd", s: "0x3332dc750a1a255b60bea02e2c79af9d6b752a6dc618c0c14fa7fb783a1cab8c", yParity: 0, networkV: null },
+  accessList: []
+}
+`
+```
+
+### 模拟交易
 
 以太坊节点提供了 `eth_call` 方法，让用户可以模拟一笔交易，根据返回结果预知交易能否成功
 

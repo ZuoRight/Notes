@@ -218,6 +218,52 @@ pymysql.install_as_MySQLdb()
 """
 ```
 
+## 中间件
+
+MIDDLEWARE 是一个轻量级的、底层的插件系统，用于全局地改变 Django 的输入或输出。每个中间件组件负责执行特定的功能，比如处理请求或响应、处理视图或异常等。
+
+Django 中间件提供了一种强大的方式来扩展 Django 的功能，它可以用于全局请求处理、安全控制、用户认证等多种用途。
+
+中间件应该尽量轻量，避免执行复杂或耗时的操作，以免影响整体响应时间。
+
+- 自带的中间件
+
+```python
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+```
+
+- 自定义中间件
+
+```python
+import time
+from django.utils.deprecation import MiddlewareMixin
+
+# 创建一个类，至少包含一个中间件方法
+"""
+process_request: 在每个请求上调用，可以返回 HttpResponse 对象来提前结束请求处理。
+process_response: 在每个响应上调用，无论视图是否抛出异常。
+process_view: 在 Django 调用视图之前调用。
+process_exception: 当视图抛出异常时调用。
+"""
+# 示例：记录每个请求的处理时间
+class SimpleMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        request.start_time = time.time()
+
+    def process_response(self, request, response):
+        duration = time.time() - request.start_time
+        print(f"Request took {duration} seconds")
+        return response
+```
+
 ## 测试
 
 示例1
