@@ -264,6 +264,39 @@ class SimpleMiddleware(MiddlewareMixin):
         return response
 ```
 
+## 自定义管理命令
+
+需要在应用的 `management/commands` 目录下创建
+
+```python
+# myapp/management/commands/my_custom_command.py
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+    help = '描述你的命令做什么'
+
+    # 添加命令行参数
+    def add_arguments(self, parser):
+        # parser.add_argument('myarg', type=int)
+        parser.add_argument(
+            "--symbol",
+            required=True,
+            help=("gift symbol"),
+        )
+        parser.add_argument(
+            "--amount",
+            required=True,
+            help=("gift amount"),
+        )
+
+    # 命令的逻辑
+    def handle(self, *args, **options):
+        self.stdout.write('执行命令...')  # 使用 self.stdout.write 和 self.stderr.write 来输出信息或错误
+        myarg = options['myarg']  # 根据参数执行操作
+```
+
+执行命令：`python manage.py my_custom_command --symbol=XXX --amount=123`
+
 ## 测试
 
 示例1

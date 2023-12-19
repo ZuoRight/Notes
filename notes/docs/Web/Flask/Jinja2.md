@@ -20,25 +20,25 @@ index.html
 ```html
 {# 注释 #}
 {{ 变量 }}
-{百分号 语句 百分号}
+{% 语句 %}
 
 
 {{ info }}
 {{ info[key] }}
 
 
-{百分号 if info == v1 百分号}
+{% if info == v1 %}
     判断语句
-{百分号 elif info = v2 百分号}
+{% elif info = v2 %}
     ...
-{百分号 else 百分号}
+{% else %}
     ...
-{百分号 endif 百分号}
+{% endif %}
 
 
-{百分号 for i in info 百分号}
+{% for i in info %}
     循环语句
-{百分号 endfor 百分号}
+{% endfor %}
 ```
 
 ## 变量过滤器
