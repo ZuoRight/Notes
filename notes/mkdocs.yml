@@ -96,7 +96,7 @@ plugins:
   #   meta_file: '**/.meta.yml'
   - search:
       lang:
-        - ja
+        - zh  # lunr-languages 1.12 已支持中文
   - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
       type: iso_date
       # enable_creation_date: true  # 显示创建时间
