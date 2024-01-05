@@ -67,7 +67,16 @@ ssh-keygen
 '
 ```
 
-## 获取仓库
+## 远程仓库
+
+```shell
+git remote -v  # 列出添加过的远程库
+git remote remove demo  # 删除已添加的远程库，remove可简写为rm
+git remote show <origin_name>  # 查看远程库详细信息
+git remote rename old_name new_name  # 修改远程库简写名
+```
+
+### 获取仓库
 
 ```shell
 git clone <url> [path_name] -o <origin_name> -b <branch>
@@ -98,52 +107,52 @@ git fetch origin_name
 git checkout -b main
 ```
 
-远程库操作
+### fetch
+
+将远程仓库中有但当前仓库没有的所有数据拉取下来，然后存储在本地仓库中
 
 ```shell
-git remote -v  # 列出添加过的远程库
-git remote remove demo  # 删除已添加的远程库，remove可简写为rm
-git remote show <origin_name>  # 查看远程库详细信息
-git remote rename old_name new_name  # 修改远程库简写名
+git fetch origin dev
+
+# 新建本地dev分支并与远程dev分支关联
+git checkout -b dev origin/dev
 ```
 
-## 完善仓库
+### pull
 
 ```shell
-touch README.md  # 项目介绍文件
-touch LICENSE  # 授权声明文件
-
-# 忽略规则文件
-# 一个项目可以有多个，通常放在根目录一个，子目录也可以有额外的
-touch .gitignore
-# 各语言通用模版：https://github.com/github/gitignore
-# 规则举例
+# 从已跟踪服务器拉取并自动合并，等同于：git fetch + git merge
+git pull [origin main]
 '
-#  表示注释
-!  取反
-?  匹配任意1个
-*  匹配任意个字符
-**  匹配任意中间目录
-[abc]  匹配其中任意一个
-[0-9]  匹配0到9
-
-*.a  忽略所有.a文件
-*.[oa]  忽略以.o或.a结尾的文件
-*~  忽略所有以～结尾的文件
-
-!lib.a  跟踪所有的 lib.a，即便你在前面忽略了 .a 文件
-
-/demo  只忽略当前目录下的 demo 文件，而不忽略 xxx/demo
-demo/  忽略任何目录下名为 demo 的文件夹
-
-doc/*.txt  忽略 doc/notes.txt，但不忽略 doc/server/arch.txt
-doc/**/*.pdf  忽略 doc/ 目录及其所有子目录下的 .pdf 文件
+不带参数，先尝试快进合并，如果不行再进行正常合并生成一个新的提交。
+--ff-only 快进合并，只尝试快进合并，如果不行则终止当前合并操作。
+--no-ff  普通合并，禁止快进合并，即无论是否能快进合并，最后都会进行正常合并生成一个新的提交。
+--rebase  变基合并，先尝试快进合并，如果不行再进行变基合并。
 '
 ```
 
-## 保存
+### push
 
-- 查看状态
+将提交后的代码推到远程仓库
+
+```shell
+# 首次推送加-u参数，设置默认仓库和分支
+git push -u origin_name 远程分支
+git push origin_name 本地分支:远程分支  # 推送到与本地分支名不同的远程分支
+'
+提交后返回的一些信息
+To xxx.git
+  1edee6b..fbff5bc  main -> main
+  (oldref..newref fromref → toref)
+'
+
+# 删除远程分支（仅移除指针，一段时间后才会被垃圾回收，这期间可以恢复）
+git push origin --delete dev
+```
+
+## 本地仓库
+
+### 查看状态
 
 ```shell
 git status
@@ -166,7 +175,7 @@ nothing to commit, working directory clean
 '
 ```
 
-- 查看修改
+### 查看修改
 
 ```shell
 git diff  # 查看未暂存的改动，即工作区和暂存区的比较
@@ -177,7 +186,7 @@ git diff branch1 branch2  # 比较两个提交记录的差异
 git checkout -- xxx
 ```
 
-- add
+### add
 
 ```shell
 # 将未跟踪或已修改文件添加到暂存区，变为已跟踪已暂存状态
@@ -188,14 +197,14 @@ git add .  # 添加全部，也可用-A或--all参数
 git add --patch
 ```
 
-- 重命名
+### 重命名
 
 ```shell
 # 如果只是重命名文件而不修改其内容时可以这样做
 git mv old_name new_name
 ```
 
-- commit
+### commit
 
 ```shell
 # 创建快照，将当前分支指针向前移动
@@ -209,7 +218,9 @@ git commit -m "init"  # 不加-m会打开默认编辑器编辑
 git stash
 ```
 
-- [查看历史](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
+### 查看历史
+
+<https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History>
 
 ```shell
 git log  # 时间倒序列出所有提交记录
@@ -219,25 +230,6 @@ git log  # 时间倒序列出所有提交记录
 --pretty=oneline 每个提交记录放在一行显示
 --pretty=format:"%h - %an, %ar : %s" 显示格式
 '
-```
-
-## 标签
-
-```shell
-git tag  # 列出标签
-git tag -l "v1.8.5*"  # 模糊匹配
-
-git show tag v1.0  # 查看标签信息
-
-git tag tmp1  # 打轻量标签
-git tag -a v1.0 -m "version 1.0"  # 打附注标签
-git tag -a v1.2 9fceb02  # 给过去的某次提交打标签
-
-git push origin v1.0  # 推送分支时不会带上标签，所以标签需要单独推送
-git push origin --tags  # 推送所有标签
-
-git tag -d v0.5  # 删除本地标签
-git push origin --delete v0.5  # 删除远程标签
 ```
 
 ## 分支
@@ -316,49 +308,23 @@ git checkout dev
 git rebase main
 ```
 
-## 与远程库交互
-
-### fetch
-
-将远程仓库中有但是在当前仓库的没有的所有信息拉取下来然后存储在你本地数据库中
+## 标签
 
 ```shell
-git fetch origin dev
+git tag  # 列出标签
+git tag -l "v1.8.5*"  # 模糊匹配
 
-# 新建本地dev分支并与远程dev分支关联
-git checkout -b dev origin/dev
-```
+git show tag v1.0  # 查看标签信息
 
-### pull
+git tag tmp1  # 打轻量标签
+git tag -a v1.0 -m "version 1.0"  # 打附注标签
+git tag -a v1.2 9fceb02  # 给过去的某次提交打标签
 
-```shell
-# 从已跟踪服务器拉取并自动合并，等同于：git fetch + git merge
-git pull [origin main]
-'
-不带参数，先尝试快进合并，如果不行再进行正常合并生成一个新的提交。
---ff-only 快进合并，只尝试快进合并，如果不行则终止当前合并操作。
---no-ff  普通合并，禁止快进合并，即无论是否能快进合并，最后都会进行正常合并生成一个新的提交。
---rebase  变基合并，先尝试快进合并，如果不行再进行变基合并。
-'
-```
+git push origin v1.0  # 推送分支时不会带上标签，所以标签需要单独推送
+git push origin --tags  # 推送所有标签
 
-### push
-
-将提交后的代码推到远程仓库
-
-```shell
-# 首次推送加-u参数，设置默认仓库和分支
-git push -u origin_name 远程分支
-git push origin_name 本地分支:远程分支  # 推送到与本地分支名不同的远程分支
-'
-提交后返回的一些信息
-To xxx.git
-  1edee6b..fbff5bc  main -> main
-  (oldref..newref fromref → toref)
-'
-
-# 删除远程分支（仅移除指针，一段时间后才会被垃圾回收，这期间可以恢复）
-git push origin --delete dev
+git tag -d v0.5  # 删除本地标签
+git push origin --delete v0.5  # 删除远程标签
 ```
 
 ## 回滚
@@ -432,4 +398,38 @@ git reset --hard HEAD^  # 完全撤回，丢弃更改
 
 ```shell
 git revert -m 1 HEAD  # -m 1 表示保留第1个父提交的更改
+```
+
+## 完善仓库
+
+```shell
+touch README.md  # 项目介绍文件
+touch LICENSE  # 授权声明文件
+
+# 忽略规则文件
+# 一个项目可以有多个，通常放在根目录一个，子目录也可以有额外的
+touch .gitignore
+# 各语言通用模版：https://github.com/github/gitignore
+# 规则举例
+'
+#  表示注释
+!  取反
+?  匹配任意1个
+*  匹配任意个字符
+**  匹配任意中间目录
+[abc]  匹配其中任意一个
+[0-9]  匹配0到9
+
+*.a  忽略所有.a文件
+*.[oa]  忽略以.o或.a结尾的文件
+*~  忽略所有以～结尾的文件
+
+!lib.a  跟踪所有的 lib.a，即便你在前面忽略了 .a 文件
+
+/demo  只忽略当前目录下的 demo 文件，而不忽略 xxx/demo
+demo/  忽略任何目录下名为 demo 的文件夹
+
+doc/*.txt  忽略 doc/notes.txt，但不忽略 doc/server/arch.txt
+doc/**/*.pdf  忽略 doc/ 目录及其所有子目录下的 .pdf 文件
+'
 ```
