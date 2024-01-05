@@ -433,3 +433,60 @@ doc/*.txt  忽略 doc/notes.txt，但不忽略 doc/server/arch.txt
 doc/**/*.pdf  忽略 doc/ 目录及其所有子目录下的 .pdf 文件
 '
 ```
+
+## Git Flow
+
+```shell
+# 克隆远程仓库到本地master分支
+git clone git@code.xxx.net:demo/test.git
+'
+如果想参与一个开源项目，但没有代码推送权限，可以
+1. 先 fork 副本到自己的远程仓库
+2. 然后 clone 副本到本地，创建新分支进行修改提交
+3. push 到自己的远程仓库，然后创建一个 PR(Pull Request) 给开源项目，在 GitLab 中叫做 MR（Merge Requests）
+
+关联公用的远程库，命名为upstream
+git remote add upstream common.git
+'
+
+# 新建并切换到新分支开发
+git checkout -b dev
+
+git add .  # 最好每个修改暂存一次，而不是都混在一起
+git commit -m "改动说明"
+
+# 切回本地主分支
+git checkout master
+# 合并dev
+git merge master
+'
+如果有冲突，可以选择终止合并
+git merge --abort
+
+也可以解决冲突后继续合并
+git add 解决了冲突的文件
+git commit -m "冲突修改后说明"
+'
+
+# 获取远程分支是否有新的改动
+git fetch origin master
+'
+如果先前克隆的远程副本，需要获取upstream是否有最新改动
+git fetch upstream
+'
+
+# 如果获取到新的改动则可以变基合并
+git rebase origin/master  # 或者 upstream/master
+'
+如果有冲突则解决
+git add 有冲突修改的文件
+解决冲突后继续合并
+git rebase --continue
+'
+
+# 推送到远程
+git push origin dev
+
+# 删除已被合并的分支
+git checkout -d dev
+```
