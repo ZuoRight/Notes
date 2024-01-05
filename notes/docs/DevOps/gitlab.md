@@ -4,12 +4,9 @@ hide:
   - feedback
 ---
 
-# GitLab CI
+# GitLab
 
-- CI(Continuous Integrationv) 持续集成
-- CD(Continuous Deploymen) 持续部署/交付
-
-![20210808174712](http://image.zuoright.com/20210808174712.png)
+GitLab 是最著名的开源 Git 服务器，[安装指引](https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-GitLab)
 
 ## 安装Runner
 
