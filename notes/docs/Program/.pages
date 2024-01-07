@@ -1,16 +1,13 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - Edit
-  - Compile
-  - verilog.md
-  - asm.md
+  - Build
+  - algorithm
+  - Python
   - c.md
   - java.md
   - go.md
   - nodejs.md
   - JavaScript
   - ts.md
-  - Python
-  - algorithm
   - ...

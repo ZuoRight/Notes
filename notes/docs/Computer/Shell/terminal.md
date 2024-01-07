@@ -1,11 +1,5 @@
 # Terminal
 
-命令行(Command Line) 是通过输入命令使用的任何类型的界面，比如有些程序自身提供的命令行界面，而终端也是其中之一。
-
-终端(Terminal)是基于文本的输入输出机制，需要引入Shell来解释具体的命令及其语法。
-
-当 Shell 启动了某个进程，会调用某个系统API（e.g. `tcsetpgrp`）把进程编号PID与Shell所属的终端关联起来，当终端需要发送信号时，会调用某个系统API（`tcgetpgrp`）获取进程的编号
-
 ## 发展演变
 
 ![20230331133529](http://image.zuoright.com/20230331133529.png)

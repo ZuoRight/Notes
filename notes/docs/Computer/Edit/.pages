@@ -1,6 +1,8 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - index.md
-  - 算法复杂度分析.md
-  - 排序算法.md
+  - vim.md
+  - vscode.md
+  - regex.md
+  - sed.md
+  - awk.md
   - ...

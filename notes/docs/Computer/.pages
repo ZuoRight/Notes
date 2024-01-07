@@ -1,10 +1,14 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - 硬件
+  - CPU
+  - Memory
   - init.md
-  - 进程
+  - Process
+  - Shell
   - Linux
   - mac.md
   - android.md
+  - 虚拟机
+  - Edit
   - ...
