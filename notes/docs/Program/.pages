@@ -1,8 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - Compile
-  - Algo
   - Python
   - c.md
   - java.md
@@ -10,4 +8,5 @@ nav:
   - nodejs.md
   - JavaScript
   - ts.md
+  - Algo
   - ...
