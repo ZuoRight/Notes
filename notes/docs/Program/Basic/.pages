@@ -1,6 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - 算法复杂度分析.md
+  - complexity_analysis.md
   - 排序算法.md
   - ...

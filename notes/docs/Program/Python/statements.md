@@ -335,6 +335,8 @@ else:
 
 > 常用于循环次数限定的时候
 
+比 for 循环自由度更高
+
 ```python
 while condition:
     expression

@@ -84,8 +84,11 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.tabbed  # 分组式代码块
+  - pymdownx.smartsymbols
   - attr_list  # 支持大按钮
   - def_list
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.tasklist:
       custom_checkbox: true
   - toc:
@@ -102,3 +105,11 @@ plugins:
       # enable_creation_date: true  # 显示创建时间
   - glightbox  # 放大图片
   - awesome-pages  # 更方便的设置目录顺序
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css

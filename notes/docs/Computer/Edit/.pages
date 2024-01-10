@@ -5,4 +5,5 @@ nav:
   - regex.md
   - sed.md
   - awk.md
+  - markdown.md
   - ...
