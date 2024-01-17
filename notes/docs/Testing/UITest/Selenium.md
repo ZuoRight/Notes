@@ -6,28 +6,37 @@
 
 ## 核心组成及原理
 
-- Webdriver
-- IDE 浏览器插件
-- Grid 可以做分布式测试
+- IDE 浏览器插件，用于录制简单的脚本
+- Webdriver 底层依赖
+- Grid 支持分布式测试
 
 ## 环境搭建
 
-1. 安装Selenium插件
-    > `pip install selenium`
-2. [下载浏览器驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
-    > 需下载与浏览器版本相同/近的驱动
-    - [chromedriver](https://chromedriver.chromium.org/)  
-    - [geckodriver](https://github.com/mozilla/geckodriver/releases)  
-    - safaridriver 无需下载，已内置(`usr/bin/`)
-3. 配置环境变量
-    > Mac
-    1. 打开Finder，使用快捷键`Command+Shift+G`，前往文件夹`usr/local/bin`，将下载的驱动文件拖入。
-    2. 打开终端，执行`vim ~/.bash_profile`，添加环境变量`export PATH=$PATH:/usr/local/bin/驱动名`，保存后执行`source ~/.bash_profile`生效。
-    3. 执行`驱动名 --version`，如果返回版本号则说明配置正确，如果提示无法验证开发者，需要到`系统偏好设置/安全与隐私/通用`界面准许。
-    > Windows
-    1. 下载的驱动文件可以集中放在一个文件夹内，比如`selenium-driver`
-    2. 然后将该文件路径添加到`环境变量\系统变量\Path`中
-    3. 打开终端，执行`驱动名 --version`，如果返回版本号则说明配置正确
+### 安装Selenium库
+
+`pip install selenium`
+
+### 下载浏览器驱动
+
+[需下载与浏览器版本相同/近的驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
+
+- [chromedriver](https://chromedriver.chromium.org/)  
+- [geckodriver](https://github.com/mozilla/geckodriver/releases)  
+- safaridriver 无需下载，已内置在 `usr/bin/` 中，But You must enable the 'Allow Remote Automation' option in Safari's Develop menu to control Safari via WebDriver.
+
+### 配置环境变量
+
+Mac
+
+1. `mv chromedriver /usr/local/bin`，或者打开 Finder，使用快捷键 `Command+Shift+G`，前往文件夹 `/usr/local/bin`，将下载的驱动文件拖入。
+2. 打开终端，执行 `vim ~/.bash_profile`，添加环境变量 `export PATH=$PATH:/usr/local/bin/chromedriver`，保存后执行 `source ~/.bash_profile` 生效。（如果不是自定义路径，这步可省略）
+3. 执行 `chromedriver --version`，如果返回版本号则说明配置正确，如果提示无法验证开发者，需要到 `系统设置 隐私与安全性` 界面准许权限。
+
+Windows
+
+1. 下载的驱动文件可以集中放在一个文件夹内，比如 `selenium-driver`
+2. 然后将该文件路径添加到 `环境变量\系统变量\Path` 中
+3. 打开终端，执行 `chromedriver --version`，如果返回版本号则说明配置正确
 
 ## 启动浏览器
 
@@ -36,27 +45,42 @@ from selenium import webdriver
 
 # 启动Chrome
 driver = webdriver.Chrome()
+# 如果没有配置环境变量，需要指定路径
+driver = webdriver.Chrome(executable_path='Xxx/chromedriver')
+driver.get("https://baidu.com")  # url必须带 scheme://
+
+# 启动Safari
+"""
+注意：需要先在【Safari浏览器-偏好设置-高级】，勾选【“在菜单中显示开发”】，然后在【开发者设置】中，勾选【允许远程自动化】
+"""
+driver = webdriver.Safari()
 
 # 启动Firefox
 driver = webdriver.Firefox()
-
-# 启动Safari
-# 注意：需要先在【Safari浏览器-偏好设置-高级】，勾选【“在菜单中显示开发”】，然后在【开发】，勾选【允许远程自动化】
-driver = webdriver.Safari()
-
-# 如果没有配置环境变量，需要指定路径
-driver = webdriver.Chrome(executable_path='Xxx/chromedriver')
 ```
+
+### 复用调试
+
+```python
+opt.debugger_address = "localhost:9222"
+```
+
+1. 关闭所有Chrome浏览器窗口，并保证进程已退出
+2. 命令行以调试模式启动Chrome，端口可自定义
+   - windows：`.\chrome --remote-debugging-port=9222`(先切换到chrome.exe所在目录)
+   - mac：`/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222`
+3. 访问 <http://127.0.0.1:9222/> 查看是否复用成功
 
 ### ChromeOptions
 
 [启动Chrome前可以加一些浏览器配置](https://zhuanlan.zhihu.com/p/60852696)
 
 ```python
+import os
 from selenium import webdriver
 
 class BasePage:
-    def __init__(self, driver_base=None):
+    def __init__(self, url, driver_base=None):
         if driver_base is None:
             browser = os.getenv("browser")
             if browser == "headless":
@@ -80,30 +104,23 @@ class BasePage:
                 self.driver.maximize_window()
 
             self.driver.implicitly_wait(5)
-            self.driver.get("https://work.weixin.qq.com/wework_admin/frame#index")
+            self.driver.get(url)
         else:
             self.driver = driver_base
+
+# 实例化
+base = BasePage("https://baidu.com")
 ```
+
+- 设置 `browser` 和 `debug` 变量，并启动
 
 ```shell
 browser="headless" pytest test_xxx.py  # 无头模式启动
 debug=Ture pytest test_xxx.py  # chrome debug模式启动
 
-# cmd中传递变量需要先set变量，然后再执行命令
+# Windows环境，cmd中传递变量需要先set变量，然后再执行命令
 set debug=Ture
 ```
-
-- 复用调试
-
-```python
-opt.debugger_address = "localhost:9222"
-```
-
-1. 关闭所有Chrome浏览器窗口，并保证进程已退出
-2. 命令行以调试模式启动Chrome，端口可自定义
-   - windows：`.\chrome --remote-debugging-port=9222`(先切换到chrome.exe所在目录)
-   - mac：`/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222`
-3. 访问<http://127.0.0.1:9222/>查看是否复用成功
 
 ## 登录
 
