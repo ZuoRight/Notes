@@ -1,46 +1,71 @@
 # VSCode
 
-VSCode只是一个编辑器，而不是IDE
+Visual Studio Code 只是一个编辑器，而不是 IDE
 
-> IDE（Integrated Development Environment）集成开发环境=编辑器+编译器+调试器
+> IDE（Integrated Development Environment）`集成开发环境 = 编辑器 + 编译器 + 调试器`
 
 ## 快捷键
 
 切换终端：`Control` + `~`
 
-## Python
+## Python 配置
 
-使用VSCode自带的Python解析器，如果非根目录下引用了自定义包，在debug时会出现找不到包的情况，这貌似是一个已知但一直未解决的问题
+假设项目结构如下，在 `script.py` 中 `from modules import mod`，则 `PYTHONPATH` 需要设置为 `~/project/`，否则会报错：`ModuleNotFoundError: No module named 'xxx'`
 
-一种解决方式是可以在文件开头加上如下代码，但这样比较麻烦
-
-```python
-import sys
-import os
-curPath = os.path.abspath(os.path.dirname(__file__))
-rootPath = os.path.split(curPath)[0]
-sys.path.append(rootPath)
+```text
+~/project/
+    |
+    |---modules/
+        |
+        |---mod.py
+    |---scripts/
+        |---script.py
 ```
 
-另一种是根据提示在根目录下的`.vscode/launch.json`配置中指定`"env:{}"`，具体如下
+在 PyCharm 中，选择源文件夹会自动设置自动执行的操作来完成的。但在 VSCode 中，需要手动设置。
+
+参考：<https://stackoverflow.com/questions/53653083/how-to-correctly-set-pythonpath-for-visual-studio-code>
+
+如果是在命令行中直接执行脚本，可以在代码中将项目路径加到 sys.path，也可以添加 `.vscode/settings.json` 配置，如果是调试则还需要添加 `.vscode/launch.json` 配置
+
+### 代码中临时设置
+
+可以在文件开头加上如下代码，但如果每个文件都这样设置则比较麻烦
+
+```python
+project_root = '/Users/name/demo'
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+```
+
+### `settings.json`
+
+修改后需要重新加载项目
 
 ```json
 {
-    // 使用 IntelliSense 了解相关属性。 
-    // 悬停以查看现有属性的描述。
-    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "terminal.integrated.env.osx": {"PYTHONPATH": "${workspaceFolder}"},
+    "terminal.integrated.env.linux": {"PYTHONPATH": "${workspaceFolder}"},
+    "terminal.integrated.env.windows": {"PYTHONPATH": "${workspaceFolder}"}
+}
+```
+
+### `launch.json`
+
+如果没有配置 `settings.json` 也没有在代码中将 `project_root` 加到 `sys.path`，则需要添加 `cwd` 和 `env` 字段
+
+```json
+{
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: 当前文件",
+            "name": "Python: Current File",
             "type": "python",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": true,
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            }
+            "cwd": "${fileDirname}",
+            "env": {"PYTHONPATH": "${workspaceFolder}${pathSeparator}${env:PYTHONPATH}"}
         }
     ]
 }

@@ -1,24 +1,27 @@
 # Selenium
 
+`pip install selenium`
+
+- [PyPI](https://pypi.org/project/selenium/)
 - [官方文档](https://www.selenium.dev/documentation/zh-cn/)
 - [API文档](https://www.selenium.dev/selenium/docs/api/py/api.html)
+- [从Selenium3升级到4](https://www.selenium.dev/documentation/webdriver/troubleshooting/upgrade_to_selenium_4/)
 - 用于测试的demo网站：<https://sahitest.com/demo/>
 
 ## 核心组成及原理
 
-- IDE 浏览器插件，用于录制简单的脚本
-- Webdriver 底层依赖
-- Grid 支持分布式测试
+- Selenium IDE 浏览器插件，用于录制简单的脚本
+- Selenium Webdriver 底层依赖
+- Selenium Grid 支持远程和分布式运行测试用例
 
-## 环境搭建
+![20240121190024](https://image.zuoright.com/20240121190024.png)
 
-### 安装Selenium库
+- client：执行代码的计算机
+- remote（end-node）：带有浏览器和驱动程序的计算机
 
-`pip install selenium`
+## 浏览器驱动
 
-### 下载浏览器驱动
-
-[需下载与浏览器版本相同/近的驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
+[下载与浏览器版本相同/近的驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
 
 - [chromedriver](https://chromedriver.chromium.org/)  
 - [geckodriver](https://github.com/mozilla/geckodriver/releases)  
@@ -38,100 +41,137 @@ Windows
 2. 然后将该文件路径添加到 `环境变量\系统变量\Path` 中
 3. 打开终端，执行 `chromedriver --version`，如果返回版本号则说明配置正确
 
-## 启动浏览器
+### 启动
+
+- Chrome
 
 ```python
 from selenium import webdriver
 
-# 启动Chrome
 driver = webdriver.Chrome()
 # 如果没有配置环境变量，需要指定路径
-driver = webdriver.Chrome(executable_path='Xxx/chromedriver')
-driver.get("https://baidu.com")  # url必须带 scheme://
+# driver = webdriver.Chrome(executable_path='Xxx/chromedriver')
 
-# 启动Safari
-"""
-注意：需要先在【Safari浏览器-偏好设置-高级】，勾选【“在菜单中显示开发”】，然后在【开发者设置】中，勾选【允许远程自动化】
-"""
+# url必须带 scheme://
+driver.get("http://selenium.dev")
+driver.quit()
+```
+
+- Safari
+
+需要先在 `Safari浏览器-偏好设置-高级`，勾选 `在菜单中显示开发`，然后在 `开发者设置` 中，勾选 `允许远程自动化`
+
+```python
 driver = webdriver.Safari()
+```
 
-# 启动Firefox
+- FireFox
+
+```python
 driver = webdriver.Firefox()
 ```
 
-### 复用调试
+- PhantomJS
 
 ```python
-opt.debugger_address = "localhost:9222"
+driver = webdriver.PhantomJS()
 ```
 
-1. 关闭所有Chrome浏览器窗口，并保证进程已退出
-2. 命令行以调试模式启动Chrome，端口可自定义
-   - windows：`.\chrome --remote-debugging-port=9222`(先切换到chrome.exe所在目录)
-   - mac：`/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222`
-3. 访问 <http://127.0.0.1:9222/> 查看是否复用成功
+## Browser Options
+
+### 通用选项
+
+- 页面加载策略
+
+```python
+from selenium import webdriver
+options = webdriver.ChromeOptions()
+# 或
+from selenium.webdriver.chrome.options import Options
+options = Options()
+
+options.page_load_strategy = 'eager'
+driver = webdriver.Chrome(options=options)
+"""
+normal 默认值，等待所有资源下载后才开始执行自动化操作
+eager DOM加载完即开始，不等待图像、css、js等资源加载完成，通常这些需要较长时间，但对自动化并不是很重要
+none 仅等待初始页面加载，不会阻塞 WebDriver
+"""
+```
 
 ### ChromeOptions
 
-[启动Chrome前可以加一些浏览器配置](https://zhuanlan.zhihu.com/p/60852696)
+- <https://www.selenium.dev/documentation/webdriver/browsers/chrome/>
+- <https://chromedriver.chromium.org/capabilities>
+- <https://zhuanlan.zhihu.com/p/60852696>
 
 ```python
-import os
-from selenium import webdriver
+options = webdriver.ChromeOptions()
 
-class BasePage:
-    def __init__(self, url, driver_base=None):
-        if driver_base is None:
-            browser = os.getenv("browser")
-            if browser == "headless":
-                self.driver = webdriver.PhantomJS()
-            elif browser == "firefox":
-                self.driver = webdriver.Firefox()
-            else:
-                opt = webdriver.ChromeOptions()
-                debug = os.getenv("debug")
-                if debug:
-                    # 调试模式
-                    opt.debugger_address = "localhost:9222"
-                else:
-                    # 去除Chrome正在受到自动软件的控制的提示
-                    opt.add_experimental_option('useAutomationExtension', False)
-                    opt.add_experimental_option('excludeSwitches', ['enable-automation'])
-                    # 关闭是否保存密码弹框
-                    prefs = {"credentials_enable_service": False, "profile.password_manager_enabled": False}
-                    opt.add_experimental_option("prefs", prefs)
-                self.driver = webdriver.Chrome(options=opt)
-                self.driver.maximize_window()
+options.xxx
 
-            self.driver.implicitly_wait(5)
-            self.driver.get(url)
-        else:
-            self.driver = driver_base
-
-# 实例化
-base = BasePage("https://baidu.com")
+driver = webdriver.Chrome(options=options)
 ```
 
-- 设置 `browser` 和 `debug` 变量，并启动
+- `options.add_argument`
 
-```shell
-browser="headless" pytest test_xxx.py  # 无头模式启动
-debug=Ture pytest test_xxx.py  # chrome debug模式启动
-
-# Windows环境，cmd中传递变量需要先set变量，然后再执行命令
-set debug=Ture
-```
-
-## 登录
+<https://www.selenium.dev/documentation/webdriver/browsers/chrome/#arguments>
 
 ```python
-with open("cookies.pickle", "rb") as f:
-    cookies = pickle.load(f)
-    for cookie in cookies:
-        self.driver.add_cookie(cookie)
+# 以最大化方式启动浏览器
+options.add_argument("--start-maximized")
+# 指定浏览器存储用户配置文件的目录，会话将不再是隐身模式
+options.add_argument("--user-data-dir=...")
+# 以无头模式运行
+options.add_argument("--headless=new")
 ```
 
-## 操控浏览器·WebDriver
+- `options.add_experimental_option`
+
+```python
+# 只要不发送退出命令，进程结束后保持打开状态，即不自动关闭窗口
+options.add_experimental_option("detach", True)
+
+# 去除提示：Chrome正在受到自动软件的控制
+options.add_experimental_option('useAutomationExtension', False)
+options.add_experimental_option('excludeSwitches', ['enable-automation'])
+
+# 关闭：是否保存密码弹框
+prefs = {
+    "credentials_enable_service": False, 
+    "profile.password_manager_enabled": False
+}
+options.add_experimental_option("prefs", prefs)
+```
+
+- 复用调试
+
+```python
+options.debugger_address = "localhost:9222"
+
+"""
+1. 关闭所有Chrome浏览器窗口，并保证进程已退出
+2. 命令行以调试模式启动Chrome，端口可自定义
+
+mac：/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
+
+windows：先切换到chrome.exe所在目录，然后执行 .\chrome --remote-debugging-port=9222
+   
+3. 访问 http://127.0.0.1:9222/ 查看是否复用成功
+"""
+```
+
+## Driver Service Class
+
+<https://www.selenium.dev/documentation/webdriver/drivers/service/>
+
+```python
+# 日志输出到文件
+service = webdriver.ChromeService(log_output=log_path)
+driver = webdriver.Chrome(service=service)
+```
+
+## 操控浏览器
 
 - 属性
 
@@ -147,7 +187,9 @@ print(driver.current_window_handle)  # 当前窗口句柄
 - 方法
 
 ```python
-driver.get_cookies()
+driver.maximize_window()  # 窗口最大化
+
+driver.get_cookies()  # 获取cookies
 
 driver.forward()  # 前进
 driver.back()  # 后退
@@ -196,39 +238,81 @@ code = 'a = document.getElementById("train_date"); a.removeAttribute("readonly")
 driver.execute_script(code)
 ```
 
-## 定位元素
+## Locators
+
+> Selenium v4.x 移除了 `driver.find_element_by_xxx` 这种写法
+
+### Traditional Locators
+
+建议优先选择顺序：ID > CSS Selector > Xpath
 
 ```python
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+
+"""
+<label for="fname"> First name </label>
+<input class="testclass" type="text" id="testid" name="testname" value="testvalue">
+<a href ="www.selenium.dev">Selenium Official Page</a>
+"""
+
+# ID
+driver.find_element(By.ID, "testid")
+
+# Name
+driver.find_element(By.NAME, "testname")
+
+# Class
+driver.find_element(By.CLASS_NAME, "testclass")  # 不支持复合类
+
+# Tag
+driver.find_element(By.TAG_NAME, "input")
+
+# 超链接文本
+driver.find_element(By.LINK_TEXT, "Selenium Official Page")  # 精准匹配
+driver.find_element(By.PARTIAL_LINK_TEXT, "Selenium")  # 模糊匹配
+
+# CSS Selector
+driver.find_element(By.CSS_SELECTOR, "#testid")
+
+# XPath
+driver.find_element(By.XPATH, "//input[@value='testvalue']")
 ```
 
-- XPath
+### Relative Locators
+
+Selenium 4 引入了 RelativeLocator，可连用
+
+- `above`：定位某个元素上方的元素
+- `below`：定位某个元素下方的元素
+- `to_left_of`：定位某个元素左侧的元素
+- `to_right_of`：定位某个元素右侧的元素
+- `near`：定位某个元素附近的元素（默认为50像素内）
 
 ```python
-driver.find_element_by_xpath('//*[@id="id"]')
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.relative_locator import locate_with
 
-loc = (By.XPATH, '//*[@id="id"]')
-driver.find_element(loc)
+driver = webdriver.Chrome()
+driver.get('您的网页URL')
+
+# 假设我们可以直接定位到一个元素
+known_element = driver.find_element(By.ID, 'knownElementId')
+# 定位到已知元素下方tag_name是input的元素
+locator = locate_with(By.TAG_NAME, 'input').below(known_element)
+element_below = driver.find_element(locator)
+
+# 对找到的元素进行操作，例如点击
+element_below.click()
+
+# ... 进行你的其他操作 ...
+
+# 最后，关闭浏览器
+driver.quit()
 ```
 
-- CSS selector
-
-```python
-# 
-driver.find_element_by_css_selector('id')
-
-loc = (By.CSS_SELECTOR, "#id")
-driver.find_element(loc)
-```
-
-- 超链接
-
-```python
-# <a href="http://zuoright.com">ZuoRight</a> 
-driver.find_element_by_link_text("ZuoRight")  # 精准匹配
-driver.find_element_by_partial_link_text("Zuo")  # 模糊匹配
-```
+### Script Locators
 
 - DOM
 
@@ -245,13 +329,85 @@ jq_xpath = '$x("#id")'
 driver.execute_script(jquery)
 ```
 
-tag
+### 定位技巧
 
-name
+如果有多个相同的元素，使用 `find_element` 查找时只会返回第一个，使用 `find_elements` 会以列表的形式全部返回，如果没有匹配项，则返回空列表。
 
-## 操控元素·WebElement
+- 尽量使用 CSS 或 XPATH 选择器替代嵌套查找
 
-- 属性
+- 查找子元素
+
+先定位到父元素，基于父元素定位其子元素
+
+```python
+# 示例1
+fruits = driver.find_element(By.ID, "fruits")
+fruit = fruits.find_element(By.CLASS_NAME,"tomatoes")
+
+# 示例2
+element = driver.find_element(By.TAG_NAME, 'div')
+elements = element.find_elements(By.TAG_NAME, 'p')
+```
+
+- 可以直接移动到活动的元素 active_element
+
+```python
+driver.find_element(By.CSS_SELECTOR, '[name="q"]').send_keys("webElement")
+attr = driver.switch_to.active_element.get_attribute("title")
+```
+
+## 与元素交互
+
+<https://www.selenium.dev/documentation/webdriver/elements/interactions>
+
+### send_keys
+
+- 输入文本内容
+
+需要是 `text` 类型并具有 `content-editable` 属性
+
+```python
+element.send_keys("xxx")
+```
+
+- 输入快捷键
+
+```python
+element.send_keys(Keys.CONTROL, "v")
+```
+
+- 上传文件
+
+如果一个 `input` 元素是 `type` 类型，可以使用 `send_keys` 方法上传文件（需要使用完整路径）
+
+```python
+import os
+current_dir = os.path.dirname(__file__)
+file_path = os.path.join(current_dir, 'images', 'demo.png')
+
+file_input = driver.find_element(By.CSS_SELECTOR, "input[type='file']")
+file_input.send_keys(file_path)
+```
+
+### clear
+
+清空输入内容
+
+需要是 `text` 类型并具有 `content-editable` 属性
+
+```python
+element.clear()
+```
+
+### clear
+
+单击，适用于任何元素
+
+```python
+element.click()
+```
+
+## 获取元素信息
 
 ```python
 e.id  # 标示
@@ -259,16 +415,7 @@ e.size  # 宽高
 e.rect  # 宽高和坐标
 e.text  # 文本内容
 e.tag_name  # 标签名
-```
 
-- 方法
-
-```python
-e.send_keys("xxx")  # 输入内容
-e.send_keys(Keys.CONTROL, "v")  # 还可以输入快捷键
-
-e.clear()  # 清空输入内容
-e.click()  # 单击
 e.is_selected  # 是否被选中
 e.is_enabled  # 是否可用
 e.is_displayed  # 是否显示
@@ -277,9 +424,6 @@ e.value_of_css_property  # css属性值
 e.get_attribute("属性") # 获取属性值
 e.get_attribute("class")  # 获取类
 e.get_attribute("value")  # 获取输入值
-
-# 定位到父元素后还可以继续定位子元素
-e.find_element_by_xx()
 ```
 
 ## 弹框的处理
@@ -353,18 +497,19 @@ print(select.first_selected_option.text)
 
 ```python
 import time
-sleep(5)
+
+time.sleep(5)
 ```
 
 ### 隐性等待
 
-在指定时间内，自动每隔0.5s查找一次元素，找到则退出循环，没找到则继续，超时则抛出异常。
+在指定时间内，自动每隔0.5s查找一次元素，找到则退出循环，没找到则继续，超过指定的时常则抛出异常。
+
+需要注意的是，当定位到元素后与 `.click()` 连用时，隐性等待会失效
 
 ```python
 driver.implicitly_wait(5)
 ```
-
-需要注意的是，当定位到元素后连用`.click()`时，隐性等待会失效
 
 ### 显性等待
 
@@ -378,7 +523,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 wait = WebDriverWait(self.driver, timeout, poll_frequency=0.5, ignored_exceptions=None)
 
 # 满足预期条件时跳出等待向下执行，超时则抛出TimeoutException`、异常
-wait.until/until_not(method, message='')
+wait.until(method, message='')
+wait.until_not(method, message='')
 ```
 
 其中的method可以自定义也可以使用EC模块提供的函数
@@ -401,8 +547,6 @@ EC.visibility_of_element_located(locator)
 # 判断某个元素中是否可点击
 EC.element_to_be_clickable(locator)
 ```
-
----
 
 其它
 
@@ -524,6 +668,15 @@ driver.save_screenshot('xxx.png')  # 保存截图
 driver.get_screenshot_as_file(file_path)  # 获取当前截图的完整路径
 driver.get_screenshot_as_base64()  # 获取当前截图的base64字符串
 driver.get_screenshot_as_png()  # 获取当前截图的二进制数据
+```
+
+## 登录
+
+```python
+with open("cookies.pickle", "rb") as f:
+    cookies = pickle.load(f)
+    for cookie in cookies:
+        self.driver.add_cookie(cookie)
 ```
 
 ## 异常

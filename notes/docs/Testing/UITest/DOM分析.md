@@ -36,10 +36,17 @@
 
 ### Xpath
 
-XML Path Language，适用于XML、HTML DOM、APP DOM等结构。
+XML Path Language，适用于 XML、HTML DOM、APP DOM 等结构。
 
-```xpath
+```text
+// 表示XML选择器，在整个文档中搜索
+
+//*  选取所有元素
+
 @属性
+
+//*[@x="aaa"]  选取所有带x="aaa"属性的元素
+//select[@x='a' and @y='b']  通过多个属性定位元素
 
 /div/p[1]  div子元素的第一个p元素
 
@@ -49,15 +56,12 @@ XML Path Language，适用于XML、HTML DOM、APP DOM等结构。
 
 /p[num>10]  选取值大于10的p元素
 
-//* 选取所有元素
-//*[@x="aaa"]  选取所有带x="aaa"属性的元素
-//select[@x='a' and @y='b']  通过多个属性定位元素
-```
+//div[text()='测试']  找到文本是"测试"的div
 
-```palin
-//div[text()='谷歌']  找到文本是"谷歌"的div
-//div[contains(text(), '谷歌')]")  找到文本含"谷歌"的div
+//li[contains(.,'测试')]  找到所有包含‘测试’的li元素
+//div[contains(text(), '测试')]  找到文本含"测试"的div
 //div[contains(@id,'in')]  找到所有id中包含有in的div
+
 //div[starts-with(@id,'in')]  找到所有id以in开头的div
 //div[starts-with(text()='百度')]  找到所有文本以"百度"开头的div
 //div[starts-with(@id,'in') and contains(@id,'pu')]  找到所有id以in开头，并且id中包含pu的div
@@ -73,7 +77,7 @@ XML Path Language，适用于XML、HTML DOM、APP DOM等结构。
 
 参考：<https://www.runoob.com/cssref/css-selectors.html>
 
-```css
+```text
 *  所有元素
 div
 div,p  选择div和p元素

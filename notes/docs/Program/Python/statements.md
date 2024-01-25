@@ -335,7 +335,7 @@ else:
 
 > 常用于循环次数限定的时候
 
-比 for 循环自由度更高
+比 for 循环自由度更高，因为 for 循环需要依次遍历，而 while 可以根据条件不依次遍历
 
 ```python
 while condition:
