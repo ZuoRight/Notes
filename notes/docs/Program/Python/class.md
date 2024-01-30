@@ -10,29 +10,38 @@ class Foo():
     class_x = "类变量"
     __x = "私有类变量"
 
+
     # 类方法，需要参数，惯用cls
     @classmethod
     def class_method(*args):
         return *args
 
 
-    # 静态方法，无需cls或self参数
-    # 一般用于定义一些不需要与类交互但与类紧密相关的函数，其实也可以放到类外
+    """
+    静态方法，无需cls或self参数
+    一般用于定义一些不需要与类交互但与类紧密相关的函数，其实也可以放到类外
+    """
     @staticmethod
     def static_method(*args):
         return *args
 
-    # 实例初始化方法，有些语言也叫构造函数，类被实例化时自动执行
-    # 至少要有一个self参数，self代表的就是实例化后的实例（类似其它语言中的this）
-    # 只能默认返回None，而不能return其它值
+
+    """
+    实例初始化方法，通常被称作构造器/函数，可以不定义
+    类被实例化时自动执行，主要目的是在对象创建时初始化其属性或执行其他必要的设置工作
+    至少要有一个self参数，self代表的就是实例化后的实例（类似其它语言中的this）
+    只能默认返回None，而不能return其它值
+    """
     def __init__(self, a, b):
         self.a = a  # 实例属性
         self.__b = b  # 私有实例属性
         print("类被实例化时自动执行")
 
+
     # 实例方法，实例化后调用，需要参数，惯用self
     def func(self):
         pass
+
 
     # 私有实例方法，不会被import导入
     def __func(self):
@@ -180,6 +189,28 @@ class Demo(A, B):
     """
     super().add(x, y)  # Py3.x可以简写
     super(Demo, self).add(x, y)  # Py2.x必须这样写，super(子类名, self/父类名).方法名()
+```
+
+```python
+class Parent:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+
+# 如果当前类没有定义构造器，则自动使用父类的构造器
+class Child(Parent):
+    pass
+
+
+# 如果当前类定义了构造器，也可以使用super()方法调用父类的构造器
+class Child(Parent):
+    def __init__(self, a, b):
+        super.__init__(a, b)
+
+
+# 实例化子类时记得传入父类构造器所需的变量
+child_instance = Child(1, 2)
 ```
 
 ## Mixin 与 类装饰器

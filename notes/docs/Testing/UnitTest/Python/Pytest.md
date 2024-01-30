@@ -55,35 +55,37 @@ def test_func2():
     print("func2")
 
 class TestDemo:
-    # 不能写init方法
-    def setup_class(cls):
-        cls.k = "哈哈"  # 前置方法中的属性可以给其他方法调用
+    """
+    不能写init方法
+    前置方法中的 self.xxx 属性可以被其他方法或用例引用
+    """
+
+    def setup_class(self):
+        self.k = "哈哈"
         print("类开始执行一次")
 
-    def teardown_class(cls):
-        print("类结束执行一次")
-
-    def setup_method(cls):
+    def setup_method(self):
         print("每个方法前执行一次")
 
-    def teardown_method(cls):
-        print("每个方法后执行一次")
-
     # 等价于setup_method的简写
-    def setup(cls):
-        print(cls.k)  # 调用前置方法中的属性
+    def setup(self):
         print("每个方法前执行一次")
 
     # 等价于teardown_method的简写
-    def teardown(cls):
+    def teardown(self):
         print("每个方法后执行一次")
 
-    # self 必须带
+    def teardown_method(self):
+        print("每个方法后执行一次")
+
+    def teardown_class(self):
+        print("类结束执行一次")
+
+    # 注意：必须带self
     def test_method1(self):
         print(self.k)  # 调用前置方法中的属性
         print("method1")
 
-    # self 必须带
     def test_method2(self):
         print("method2")
 ```
