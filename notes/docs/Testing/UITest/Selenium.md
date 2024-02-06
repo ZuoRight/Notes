@@ -27,7 +27,7 @@
 - [geckodriver](https://github.com/mozilla/geckodriver/releases)  
 - safaridriver 无需下载，已内置在 `usr/bin/` 中，But You must enable the 'Allow Remote Automation' option in Safari's Develop menu to control Safari via WebDriver.
 
-### 配置环境变量
+将驱动放入PATH环境变量
 
 Mac
 
@@ -41,9 +41,9 @@ Windows
 2. 然后将该文件路径添加到 `环境变量\系统变量\Path` 中
 3. 打开终端，执行 `chromedriver --version`，如果返回版本号则说明配置正确
 
-### 启动
+## 启动
 
-- Chrome
+### Chrome
 
 ```python
 from selenium import webdriver
@@ -56,6 +56,35 @@ driver = webdriver.Chrome()
 driver.get("http://selenium.dev")
 driver.quit()
 ```
+
+### debug 模式启动 Chrome
+
+通过 debug 模式可以让 Selenium 连接到手动打开的浏览器窗口，而不是每次启动一个新的的窗口，通常用于调试定位，而不需要依赖其它页面的操作
+
+首先需要关闭所有Chrome浏览器窗口，并保证进程已退出，命令行以调试模式启动 Chrome
+
+- Mac: `/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222`（空格需要用`\ `转义）
+- Windows: `.\chrome --remote-debugging-port=9222`（先切换到 `chrome.exe` 所在目录）
+
+访问 <http://127.0.0.1:9222>，如果不报错，而是空白页面，这说明调试模式启动成功
+
+手动打开想要调试的页面
+
+然后脚本中即可使用 debug 模式启动，便可连接到已经打开的页面，进行调试
+
+```python
+chrome_options = webdriver.ChromeOptions()
+chrome_options.debugger_address = "localhost:9222"
+# 或者
+from selenium.webdriver.chrome.options import Options
+chrome_options = Options()
+chrome_options.add_experimental_option("debuggerAddress", "localhost:9222")  # add_experimental_option 方法用于添加一些不是常规Chrome选项的实验性或非标准选项
+
+# 设置参数
+driver = webdriver.Chrome(options=chrome_options)
+```
+
+### 其它浏览器
 
 - Safari
 
@@ -142,23 +171,6 @@ prefs = {
     "profile.password_manager_enabled": False
 }
 options.add_experimental_option("prefs", prefs)
-```
-
-- 复用调试
-
-```python
-options.debugger_address = "localhost:9222"
-
-"""
-1. 关闭所有Chrome浏览器窗口，并保证进程已退出
-2. 命令行以调试模式启动Chrome，端口可自定义
-
-mac：/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
-
-windows：先切换到chrome.exe所在目录，然后执行 .\chrome --remote-debugging-port=9222
-   
-3. 访问 http://127.0.0.1:9222/ 查看是否复用成功
-"""
 ```
 
 ## Driver Service Class

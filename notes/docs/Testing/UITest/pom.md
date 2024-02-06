@@ -8,31 +8,29 @@ Page Objects Model，Page Objects 是 Web 应用程序 UI 的简单抽象，是�
 
 ## 原则
 
-可以将页面提供的服务或组件封装到公共方法中，但没必要封装整个页面，断言是测试的一部分，应始终在测试代码中，而不是在PO中。实例化PO时，建议判断一下页面的关键元素是否已正确加载。
-
-    - driver 复用，避免重复初始化
-    - 局部导入，避免循环引用
-    - 链式调用，页面跳转清晰
-        - 调用其它页面：`return OtherPage(self.driver)`
-        - 调用自己：`return self`
----
-
-- 公共方法代表页面提供的服务
+- 测试用例中尽量不要暴露页面的内部结构，可以将页面提供的服务或组件封装到公共方法中，比如 xxx_page，但没必要封装整个页面，也可以是某个功能模块
 
 ```text
 po/
-    base/：存放selenium和appium最基本的方法，其它页面继承base复用__init__()
+    base/：存放selenium和appium最基本的方法，其它页面继承base复用__init__()，避免重复初始化
     app/: 存放appium初始化相关的配置
     web/: 存放selenium初始化相关的配置
-    
 ```
 
-- 测试用例中尽量不要暴露页面的内部结构，而是放入 xxx_page
-- xxx_page 不需要代表整个页面，也可以是某个功能模块
-- xxx_page 中一般不做断言
-- xxx_page 中返回 yyy_page，形成链式调用
 - xxx_page 中同一操作的不同结果最好建模为不同的方法
+- 实例化页面对象时，最好先判断一下页面的关键元素是否已正确加载
+- 断言是测试的一部分，应始终在测试代码中，即 xxx_page 中一般不做断言
+- xxx_page 中返回 yyy_page，形成链式调用，使得逻辑跳转清晰，另外最好使用局部导入，避免循环引用
 
+```python
+# 调用其它页面
+def goto other_page(self):
+    return OtherPage(self.driver)
+
+# 调用自己
+def goto_self(self):
+    return self
+```
 
 ## 测试实践
 

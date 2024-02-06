@@ -77,21 +77,26 @@ XML Path Language，适用于 XML、HTML DOM、APP DOM 等结构。
 
 参考：<https://www.runoob.com/cssref/css-selectors.html>
 
-```text
+```css
 *  所有元素
+#id
+.class
+
 div
-div,p  选择div和p元素
+div:first-child input  第一个div元素下的input元素
 
-div p  选择div下各层级的所有p元素
-div>p  选择div下第一级的所有p元素
+div,p  div和p元素
 
-div~p  选择div同级后面的所有p元素
-div+p  选择div同级后面的第一个p元素
+div p  div下各层级的所有p元素
+div>p  div下第一级的所有p元素
 
-p:nth-of-type(2)  选择某元素下的第2个p元素
+div~p  div同级后面的所有p元素
+div+p  div同级后面的第一个p元素
+
+p:nth-of-type(2)  某元素下的第2个p元素
 p:nth-last-of-type(2)  同上，倒数
 
-p:nth-child(2)  选择元素的第2个子元素是p的所有p元素
+p:nth-child(2)  元素的第2个子元素是p的所有p元素
 p:nth-last-child(n) 同上，倒数
 
 div:read-only  匹配设置了readonly属性的元素，注意要加read和only中间要加-
@@ -100,8 +105,6 @@ div:read-only  匹配设置了readonly属性的元素，注意要加read和only�
 [attribute="aaa"]
 [attribute~="aaa"]  attribute属性中包含"aaa"的元素
 [attribute|="aaa"]  attribute属性中以"aaa"开头的元素
-.class
-#id
 ```
 
 ### JS
