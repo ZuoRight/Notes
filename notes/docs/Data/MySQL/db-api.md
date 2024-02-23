@@ -126,6 +126,105 @@ RuntimeError: 'cryptography' package is required for sha256_password or caching_
 ```python
 import pymysql
 
+class Database:
+    def __init__(self, host, user, password, db):
+        self.conn = pymysql.connect(
+            host=host,
+            user=user,
+            password=password,
+            database=db,
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        """
+        cursorclass 用于指定返回结果集的游标类型
+            pymysql.cursors.Cursor 默认，返回元组列表：[(), ()]，每行数据是一个元组，必须通过索引位置来访问每一列的数据
+            pymysql.cursors.DictCursor 返回字典列表：[{}, {}]，每行数据是一个字典，列名作为字典的键
+        """
+        self.cursor = self.conn.cursor()
+
+    def query(self, sql):
+        try:
+            self.cursor.execute(sql)
+            return self.cursor.fetchall()
+        except Exception as e:
+            print(f"Error executing query: {e}")
+            return None
+
+    # 获取所有结果
+    """
+    pymysql 和许多其他数据库驱动一样，为了避免 SQL 注入等安全问题，默认将一次 execute 调用视为单个语句的执行
+    不支持执行多条 SQL 语句（用分号;分隔），可以多次调用 execute
+    下面是自定义兼容多条语句的查询
+    """
+    def query_multi(self, sql_multi):
+        # 将多条语句在分号处拆散成多个单条语句，并去除末尾分号可能产生的空语句
+        sql_list = [i.strip() for i in sql_multi.split(";") if i.strip() != '']
+        for command in sql_list:
+            try:
+                self.cursor.execute(command)
+                self.conn.commit()
+                return self.cursor.fetchall()  # [item[0] for item in _tuple]
+            # 发生错误时回滚
+            except Exception as e:
+                print(f"Error executing query: {e}")
+                self.conn.rollback()
+                return None
+
+    def update(self, sql):
+        try:
+            self.cursor.execute(sql)
+            self.conn.commit()
+        except Exception as e:
+            print(f"Error executing update: {e}")
+            self.conn.rollback()
+
+    def delete(self, sql):
+        try:
+            self.cursor.execute(sql)
+            self.conn.commit()
+        except Exception as e:
+            print(f"Error executing delete: {e}")
+            self.conn.rollback()
+
+    # 获取表头
+    def get_column_names(self, sql):
+        try:
+            self.cursor.execute(sql)
+            return [column[0] for column in self.cursor.description]
+        except Exception as e:
+            print(f"Error getting column names: {e}")
+            return None
+
+    def close(self):
+        self.cursor.close()  # 关闭游标
+        self.conn.close()  # 关闭连接
+
+
+# 使用示例
+if __name__ == "__main__":
+    db = Database(host='localhost', user='your_username', password='your_password', db='your_dbname')
+
+    # 查询示例
+    query_sql = "SELECT * FROM your_table"
+    results = db.query(query_sql)
+    for row in results:
+        print(row)
+
+    # 更新示例
+    update_sql = "UPDATE your_table SET column_name = 'value' WHERE condition"
+    db.update(update_sql)
+
+    # 删除示例
+    delete_sql = "DELETE FROM your_table WHERE condition"
+    db.delete(delete_sql)
+
+    # 关闭数据库连接
+    db.close()
+
+
+
+import pymysql
+
 class RunSql():
     __host="localhost"
     __port=3306
@@ -144,6 +243,7 @@ class RunSql():
         )
         # 创建游标
         self.__cursor = self.__conn.cursor()
+
         # 将多条语句在分号处拆散成多个单条语句，并去除末尾分号可能产生的空语句
         command_list = [i.strip() for i in sql.split(";") if i.strip() != '']
         # print(command_list)

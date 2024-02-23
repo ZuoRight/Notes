@@ -92,32 +92,40 @@ class TestDemo:
 
 ## 参数化
 
+- 普通形式：`@pytest.mark.parametrize`
+
+不能用于前置方法的参数化，前置方法如果要参数化，可以借助 fixture 来实现
+
 ```python
 import pytest
 
 # 数据驱动：把Case存入YAML、EXCEL等文件中读取
-_list = yaml.safe_load(open(yaml_file))  # [[1,2], [3,4]]
+_list = yaml.safe_load(open(yaml_file))  # [[1,1], [1, 2], [1,3], [2,1], [2,2], [2,3]]
 
-# 参数化，普通形式
+@pytest.mark.parametrize("a,b", _list)
 """
 @pytest.mark.parametrize(
     argnames,  被参数化的变量，字符串中逗号分隔变量，也可以是列表或元组的形式
-    argvalues,  与变量一一对应的一组值，[(),(),()]
+    argvalues,  与变量一一对应的一组值：[(1,2), (1,3), (1,4)]，如果只有一个变量可写成：(1, 2, 3)
     ids=None,  给每组Case起别名
     indirect=False
 )
 """
+def test_demo(a, b):
+    print(a+b)
+```
 
+- 笛卡尔积形式
+
+```python
 # 参数化，笛卡尔积形式：会产生2x3=6条Case，与上面等价
 """
 @pytest.mark.parametrize("a", [1,2])
 @pytest.mark.parametrize("b", [1,2,3])
 """
-
-@pytest.mark.parametrize("a,b", _list)
-def test_demo(a, b):
-    print(a+b)
 ```
+
+`@pytest.mark.parametrize` 和 `fixture` 形式一起使用时也会形成笛卡尔积
 
 ## Fixture
 
@@ -126,26 +134,24 @@ def test_demo(a, b):
 - fixture如果写在conftest.py文件中，则可以被同级目录多个文件一起调用
 
 ```python
+@pytest.fixture(scope="function", autouse=False, params=None, ids=None, name=None)
 """
 scope  作用范围
     session 或 package  多个文件共调用一次，通常把fixture写在conftest.py文件中
     module  模块级，类似于setup/teardown_module，会在第一个调用它的函数前开始执行，在模块最后再执行，每个函数都调用其实是为了得到返回值
     class  类级别，类似于setup/teardown_function + setup/teardown_class
     function  函数或者方法级（默认），类似于setup/teardown_function + setup/teardown_method
-
 autouse
     False  默认，只会在传入函数名的case调用
     True  无需传参，自动为scope范围内的所有case调用，但不能给case返回值
-
 params fixture参数化
 ids  给每组Case起别名
 name  fixture的名称，默认就是函数名
 """
-@pytest.fixture(scope="function", autouse=False, params=None, ids=None, name=None)
 def login():  # 为区别于用例，函数命名不能以test开头
-    print("登入)  # yield前面的类似于setup_xx
+    print("登入")  # yield前面的类似于setup_xx
     yield xxx  # 相当于return，在完成yield前面的操作后返回xxx
-    print("登出)  # yield后面的类似于teardown_xx
+    print("登出")  # yield后面的类似于teardown_xx
 
 
 # 传入fixture函数名login作为参数，可传入多个

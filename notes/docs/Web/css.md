@@ -1,5 +1,7 @@
 # CSS
 
+Cascading Style Sheet，层叠样式表，为网页添加样式的语言。
+
 - css floats 盒模型：display + position + float
 - flexbox：display: flex | inline-flex;
 （一维布局）

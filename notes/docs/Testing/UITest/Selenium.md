@@ -682,15 +682,6 @@ driver.get_screenshot_as_base64()  # 获取当前截图的base64字符串
 driver.get_screenshot_as_png()  # 获取当前截图的二进制数据
 ```
 
-## 登录
-
-```python
-with open("cookies.pickle", "rb") as f:
-    cookies = pickle.load(f)
-    for cookie in cookies:
-        self.driver.add_cookie(cookie)
-```
-
 ## 异常
 
 `from selenium.common.exceptions import TimeoutException`

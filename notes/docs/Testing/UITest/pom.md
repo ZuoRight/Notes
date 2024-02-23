@@ -34,7 +34,7 @@ def goto_self(self):
 
 ## 测试实践
 
-- `base_page.py`
+### `base_page.py`
 
 ```python
 import os
@@ -90,9 +90,7 @@ class BasePage:
         pass        
 ```
 
-- `login_page.py`
-
-登陆如果不是被测试对象，最好不要使用UI自动化的方式实现，而是采用Cookies或接口方式登陆，减少页面加载和等待时间
+### `login_page.py`
 
 ```python
 import time
@@ -126,6 +124,7 @@ class LoginPage(BasePage):
         # 点击登录
         login_button = self.find_button(self._login_button)
         login_button.click()
+        time.sleep(3)  # 强制3s等待页面加载
 
 
     def logout(self):
@@ -134,29 +133,110 @@ class LoginPage(BasePage):
 
     # 跳转其它页面
     def goto_kyc_page(self):
-        time.sleep(3)  # 强制3s等待页面加载
         from po.kyc_page import KYCPage  # 局部引用
         return KYCPage(self.driver)  # 复用driver
 ```
 
-- `kyc_test.py`
+登陆如果不是被测试对象，最好不要使用UI自动化的方式实现，而是采用接口登陆，然后设置浏览器Cookies或Token保持登陆，减少页面加载和等待时间
 
 ```python
+# 接口登陆
+response = requests.post(login_url, data=login_data)
+cookies = response.cookies  # <RequestsCookieJar[<Cookie csrftoken=4NKYzMJ9...b8MzTTJfwF3n for example.com/>, <Cookie sessionid=bq6r4ycioahmt...d2di0srnv1 for example.com/>]>
+token = response.json().get('token')
+```
+
+- 设置 Cookies
+
+```python
+driver.get('https://example.com')  # 打开网站，确保URL匹配Cookies的域
+# 需要将Cookeis对象转换为Dict格式
+cookies_dict = {
+    'name': cookie.name,
+    'value': cookie.value,
+    'path': '/',
+    'domain': cookie.domain
+}
+for cookie in cookies:
+    driver.add_cookie(cookies_dict)
+driver.get('https://example.com')  # 再次访问网站，以便使用新的登录状态
+```
+
+- 设置 Token
+
+Token 通常是存储在 Local Storage 或 Session Storage 或设置在请求头中
+
+```python
+# localStorage和sessionStorage是按照同源策略进行隔离的，这意味着只能在设置了这些数据的相同域名下访问
+# 在设置token前访问一次，确保JavaScript代码在正确的域上下文中运行它们
+driver.get('https://example.com')
+
+# 通过 JavaScript 在 Local Storage 中设置 token
+driver.execute_script("window.localStorage.setItem('token', '{}');".format(token))
+# 或者设置到 Session Storage
+driver.execute_script("window.sessionStorage.setItem('token', '{}');".format(token))
+
+
+# 刷新或导航，以便使用新的登录状态
+driver.get('https://example.com')
+```
+
+- 修改请求头
+
+Selenium WebDriver API 本身不支持直接修改 HTTP 请求头，如果必须要在请求头中携带 token 或其它字段，可以考虑使用代理服务器（如BrowserMob Proxy）来拦截和修改发往服务器的HTTP请求。大致步骤：下载并启动 BrowserMob Proxy，配置 Selenium 使用 BrowserMob Proxy 作为 HTTP 代理，使用 BrowserMob Proxy 的 API 来添加或修改请求头。
+
+### `xxx_test.py`
+
+```python
+import pytest
+
+type_list = ["id", "passport"]
+
 class TestKYC:
-    def setup_class(self):
-        url = "https://.../login"
-        email = 'test@demo.com'
-        password = 'xxx'
+    def setup_class(cls):
+        user_dict = {"email": "test@demo.com", "password": "xxx"}
         from po.login_page import LoginPage
-        self.login_page = LoginPage()
-        self.login_page.login(url, email, password)
+        cls.login_page = LoginPage()
+        # self.login_page.login(user_dict)
+        cls.login_page.login_by_api(user_dict)
 
-
-    def test_submit_kyc(self):
+    @pytest.mark.parametrize("type", type_list)
+    def test_submit_kyc(self, type):
         kyc_page = self.login_page.goto_kyc_page()
-        kyc_page.fill_document()
+        kyc_page.fill_document(type)
         kyc_page.fill_profile()
         kyc_page.fill_address()
-        result = kyc_page.submit()
-        assert result == True
+        assert True
+```
+
+如果测试不同type需要登陆不同的email，可以使用 setup + fixture 的方式
+
+```python
+import pytest
+
+
+test_data = [
+    ('test1@demo.com', 'id'),
+    ("test2@demo.com", 'passport')
+]
+
+
+class TestKYC:
+    # 注意，scope范围要用function
+    @pytest.fixture(scope="function", params=test_data, autouse=True)
+    def setup_class(self, request):
+        email, document_type = request.param
+        user_dict = {"email": email, "password": "xxx"}
+        from po.login_page import LoginPage
+        self.login_page = LoginPage()
+        self.login_page.login_by_api(user_dict)
+        return document_type
+
+    def test_submit_kyc(self, setup_class):
+        document_type = setup_class
+        kyc_page = self.login_page.goto_kyc_page()
+        kyc_page.fill_document(document_type)
+        kyc_page.fill_profile()
+        kyc_page.fill_address()
+        assert True
 ```
