@@ -2,8 +2,11 @@
 nav:
   - index.md
   - html.md
-  - 对象模型.md
   - css.md
+  - element.md
+  - layout.md
+  - 框架.md
+  - object_model.md
   - browser.md
   - cgi.md
   - Flask

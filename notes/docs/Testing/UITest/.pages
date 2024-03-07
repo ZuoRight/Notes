@@ -3,6 +3,6 @@ nav:
   - index.md
   - Selenium.md
   - Appium.md
-  - DOM分析.md
+  - dom_analyze.md
   - pom.md
   - ...
