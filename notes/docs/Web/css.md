@@ -1,4 +1,4 @@
-# 基础
+# CSS
 
 Cascading Style Sheet，层叠样式表，为 HTML 网页添加样式
 

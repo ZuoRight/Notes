@@ -55,7 +55,7 @@ print(config["KEY"])
 
 ## 代码分析工具 Linter
 
-![从头检测 CPython 代码库的结果对比](https://mmbiz.qpic.cn/mmbiz_png/LLRiaS9YfFTMaRu30ej8Lez7W6H5GCTIlNs4FkQugAkicFSiaX9IvVxdcN94F7Xh82kwLPshoiaavbyicibgrI4JkHdg/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1&wx_co=1)
+![20240309001317](https://image.zuoright.com/20240309001317.png)
 
 与其它工具都是由 Python 编写不同，Ruff 是基于 Rust 的，支持 VSCode 插件
 
