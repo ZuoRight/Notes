@@ -485,6 +485,40 @@ div {
 }
 ```
 
+## display 属性
+
+`display` 属性非常强大且灵活，允许开发者精确控制元素及其子元素的布局和表现形式
+
+块级元素的默认值 `display: block`，行内元素默认值是 `display: inline`，列表等元素的默认值是 `display: list-item`
+
+```text
+none: 元素不会被显示，并从文档流中消失。
+contents: 元素本身不会被显示，但其子元素会像平常一样显示。
+run-in: 根据上下文决定该元素是内联还是块级。
+
+inline: 元素显示为内联元素，不会导致文本换行。
+
+block: 元素显示为块级元素，占据全宽，即使后面有内容也会换行显示。
+inline-block: 元素水平排列，类似于inline，但是可以设置宽度和高度。
+
+flex: 元素将变为弹性容器，其直接子元素的布局将受到 Flexbox 布局的影响。
+-webkit-flex: Webkit内核浏览器，比如Safari，必须加上-webkit-前缀
+inline-flex: 元素将变为内联的弹性容器。
+
+grid: 元素将变为网格容器，其直接子元素的布局将受到 CSS 网格布局的影响。
+inline-grid: 元素将变为内联的网格容器。
+
+list-item: 元素会被显示为列表项，类似于 <li> 元素。
+
+table、table-row、table-cell 等: 这些值将元素的行为变得类似于 HTML 表格中的 <table>、<tr>、<td> 等元素。
+```
+
+## 预处理器
+
+CSS 预处理器是一个能让你处理自己独有的语法来生成 CSS 标准语法的程序，绝大多数 CSS 预处理器会增加一些原生 CSS 不具备的特性。
+
+常见的有：Less、Stylus、Sass 等
+
 ## 参考
 
 - <https://developer.mozilla.org/zh-CN/docs/Web/CSS>
