@@ -2,5 +2,8 @@
 nav:
   - index.md
   - complexity_analysis.md
-  - 排序算法.md
+  - array.md
+  - stack.md
+  - binary_search.md
+  - sorting.md
   - ...

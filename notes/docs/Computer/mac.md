@@ -9,6 +9,18 @@ unzip xxx.zip  # 解压
 env  # 查看环境变量
 ```
 
+```shell
+# 测试网速
+networkQuality
+'
+==== SUMMARY ====
+Uplink capacity: 946.545 Kbps
+Downlink capacity: 5.069 Mbps
+Responsiveness: Low (7.500 seconds | 8 RPM)
+Idle Latency: 75.875 milliseconds | 800 RPM
+'
+```
+
 ## CLT
 
 [介绍文档](https://developer.apple.com/library/archive/technotes/tn2339/_index.html)
