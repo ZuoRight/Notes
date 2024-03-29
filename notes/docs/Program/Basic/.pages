@@ -2,8 +2,8 @@
 nav:
   - index.md
   - complexity_analysis.md
-  - array.md
-  - stack.md
+  - array_and_linkedlist.md
+  - stack_and_queque.md
   - binary_search.md
   - sorting.md
   - ...
