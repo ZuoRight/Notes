@@ -20,6 +20,8 @@ nums: list[int] = [1, 3, 2, 5, 4]
 
 ![20240329205920](https://image.zuoright.com/20240329205920.png)
 
+随机访问的复杂度是 $O(1)$，但查找的复杂度并不是。
+
 ```python
 # 随机访问元素
 def random_access(nums: list[int]) -> int:
@@ -71,9 +73,11 @@ def find(nums: list[int], target: int) -> int:
     return -1
 ```
 
-- dynamic array
+## dynamic array
 
-动态数组本质上是在静态数组的基础上增加了自动扩容的机制。这个扩容机制允许数组在原有空间不足以存储更多元素时自动增加容量，从而提供了比静态数组更灵活的数据存储方式。
+动态数组，通常也叫列表
+
+本质上是在静态数组的基础上增加了自动扩容的机制。这个扩容机制允许数组在原有空间不足以存储更多元素时自动增加容量，从而提供了比静态数组更灵活的数据存储方式。
 
 许多编程语言中的标准库提供的列表是基于动态数组实现的，比如 Python 的 List
 
@@ -91,6 +95,8 @@ def extend(nums: list[int], enlarge: int) -> list[int]:
 ```
 
 ## linkedlist
+
+链表要额外存储指针，相比数组更占内存，但利用率更高，因为连续空间如果不足，数组就需要扩容
 
 ![20240329205754](https://image.zuoright.com/20240329205754.png)
 

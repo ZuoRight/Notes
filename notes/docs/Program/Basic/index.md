@@ -61,3 +61,10 @@
     - 二分查找 binary_search
     - 哈希查找
     - 树查找
+
+## 思想
+
+- 分治
+- 动态规划，Dynamic Programming，简称DP，拥有上帝视角，手握无数平行宇宙的历史存档， 同时发展出无数个未来 (Versioned Archive View)
+- 贪心，一条路走到黑，就一次机会，只能哪边看着顺眼走哪边
+- 回溯，一条路走到黑，无数次重来的机会，还怕我走不出来 (Snapshot View) 
