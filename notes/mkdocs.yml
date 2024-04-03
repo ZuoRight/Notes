@@ -1,7 +1,7 @@
 site_name: ZuoRight
 site_description: Right is right, left is also right.
 site_author: 7c
-site_url: https://www.zuoright.com
+site_url: https://zuoright.com
 
 # repo_name: ZuoRight/zuoright.github.io
 # repo_url: https://github.com/ZuoRight/zuoright.github.io
@@ -13,18 +13,24 @@ theme:
   custom_dir: overrides  # 扩展主题
   language: zh
   palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: deep orange
+      primary: white
+      accent: deep purple
       toggle:
-        icon: material/weather-night
+        icon: material/weather-sunny
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: deep orange
+      primary: black
+      accent: deep purple
       toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
+        icon: material/weather-night
+        name: Switch to system preference
   font:
     text: Roboto
     code: Roboto Mono
