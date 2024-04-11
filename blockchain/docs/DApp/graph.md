@@ -1,4 +1,12 @@
-# Graph
+# The Graph
+
+<https://thegraph.com>
+
+Graph 是一个去中心化的协议，用于索引和查询区块链的数据。它会统计某个合约从开始部署到现在所有的事件，Graph 节点不断扫描以太坊的新区块和它们可能包含的子图的数据，这些 API（索引的 "子图"）可以用标准的 GraphQL API 进行查询。
+
+每次查询的平均成本约 0.0002 美元，以 `GRT` 代币支付。
+
+![20240410190706](https://image.zuoright.com/20240410190706.png)
 
 ```shell
 npm install -g @graphprotocol/graph-cli

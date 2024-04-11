@@ -47,7 +47,7 @@ CPU和内存的处理速度远远高于磁盘/外设，比如CPU输出100M的数
 
 同步运行方式
 
-```plain text
+```text
 Make the first request.
 Wait.
 Get the first response.
@@ -59,7 +59,7 @@ Get the second response.
 
 异步运行方式
 
-```plain text
+```text
 Make the first request.
 Make the second request.
 Wait, event loop.

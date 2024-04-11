@@ -6,7 +6,7 @@
 
 ![界面](https://assets.postman.com/postman-docs/navigating-postman-app-overview-v9.24.jpg)
 
-## 发送请求
+## HTTP请求
 
 ![20220831000738](http://image.zuoright.com/20220831000738.png)
 
@@ -30,7 +30,7 @@ HTTP请求中的multipart/form-data，既可以上传文件等二进制数据，
 
 只可以上传二进制数据，通常用来上传文件，一次只能上传一个文件
 
-## 鉴权
+### 鉴权
 
 <https://learning.postman.com/docs/sending-requests/authorization/>
 
@@ -41,6 +41,10 @@ HTTP请求中的multipart/form-data，既可以上传文件等二进制数据，
 - Digest Auth
 - Oauth
 - ...
+
+## WS请求
+
+![20240411115057](https://image.zuoright.com/20240411115057.png)
 
 ## 抓包
 

@@ -1,10 +1,10 @@
-# 用 Python 请求
+# Python 请求库
 
 urllib3 是 Python 内置的 HTTP 请求库
 
 Requests 是由著名开发者 Kenneth Reitz 基于 urllib3 封装的同步请求库，更加易用
 
-AIOHTTP 是基于 ASyncio 实现的异步请求库，适合于纯异步请求的项目，性能更优
+AIOHTTP 是基于 ASyncio 实现的异步请求库，适合于纯异步请求的项目，性能更优，但据说有些坑？
 
 HTTPX 是一个全功能的 HTTP 请求客户端，支持同步和异步请求，并且可支持 HTTP/2
 

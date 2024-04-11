@@ -48,7 +48,7 @@ COMMENT
 
 ## 项目结构
 
-```plain text
+```text
 contracts/: Contract sources
 interfaces/: Interface sources
 scripts/: Scripts for deployment and interaction
@@ -115,7 +115,7 @@ COMMENT
 
 可以通过配置文件优化编译设置，比如指定Solidity版本等，[参考文档](https://eth-brownie.readthedocs.io/en/stable/compile.html#compile-settings)
 
-```plain text
+```text
 compiler:
     evm_version: null
     solc:

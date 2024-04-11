@@ -179,16 +179,14 @@ class A(object):
 
 """
 可以多重继承，按方法解析顺序查找（Method Resolution Order, MRO），但那是危险的，建议使用Mixin
+获取某个类的MRO：print(Demo.mro())
+子类在调用某个方法或属性的时候，首先在自己内部查找，如果没有找到，则开始根据继承机制在父类里查找
+根据父类定义中的顺序，从左到右，以深度优先的方式逐一查找父类！
 """
 class Demo(A, B):
     # 调用父类方法
-    """
-    获取某个类的MRO：print(Demo.mro())
-    子类在调用某个方法或属性的时候，首先在自己内部查找，如果没有找到，则开始根据继承机制在父类里查找
-    根据父类定义中的顺序，从左到右，以深度优先的方式逐一查找父类！
-    """
+    # super(Demo, self).add(x, y)  # Py2.x必须这样写，super(子类名, self/父类名).方法名()
     super().add(x, y)  # Py3.x可以简写
-    super(Demo, self).add(x, y)  # Py2.x必须这样写，super(子类名, self/父类名).方法名()
 ```
 
 ```python
@@ -206,7 +204,7 @@ class Child(Parent):
 # 如果当前类定义了构造器，也可以使用super()方法调用父类的构造器
 class Child(Parent):
     def __init__(self, a, b):
-        super.__init__(a, b)
+        super().__init__(a, b)
 
 
 # 实例化子类时记得传入父类构造器所需的变量

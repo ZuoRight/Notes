@@ -1,8 +1,105 @@
-# Websocket
+# Python 请求库
+
+参考：<https://medium.com/@louis.rosevi/python-web-sockets-5-different-ways-5ffb1a9015f9>
+
+## websockets
+
+> <https://websockets.readthedocs.io>
+
+`pip install websockets`
+
+### server
+
+```python
+import asyncio
+import websockets
+
+"""
+1. 编写异步任务处理函数 handler
+2. 创建 server 对象
+3. 异步运行 server 对象
+4. 启动服务端：python server.py
+"""
+
+"""
+handler基础写法
+客户端断开连接时，服务端会引发ConnectionClosedOK异常
+异常信息会对服务端日志产生噪音
+"""
+# async def handler(websocket):
+#     while True:
+#         message = await websocket.recv()
+#         print(message)
+"""
+handler改进写法，捕获异常
+"""
+# async def handler(websocket):
+#     while True:
+#         try:
+#             message = await websocket.recv()
+#         except websockets.ConnectionClosedOK:
+#             break
+#         print(message)
+"""
+handler最优写法
+websockets 提供了快捷方式接收信息，无需自己处理异常
+"""
+async def handler(websocket):
+    async for message in websocket:
+        print(message)
+
+
+async def main():
+    """
+    main() 协程调用 serve() 来启动 Websockets 服务器
+    创建一个 Future 可等待对象，暂停协程，等待 Future 对象完成
+    但没有任何机制设置其完成状态（比如 set_result 或 set_exception），所以将永远处于等待状态
+    即 WebSockets 服务会持续运行，直到程序被外部信号终止
+    """
+    async with websockets.serve(handler, "localhost", 8001):
+        await asyncio.Future()
+
+
+if __name__ == "__main__":
+    """入口点：创建一个 asyncio 事件循环，运行 main() 协程，然后关闭循环"""
+    asyncio.run(main())
+```
+
+### client
+
+- 命令行
+
+```shell
+python -m websockets ws://localhost:8001
+```
+
+- 代码实现
+
+```python
+import asyncio
+import websockets
+
+"""
+1. 建立与服务器的连接：connect()
+2. 收发消息：recv(), send()
+3. 关闭连接：close()
+"""
+
+async def hello():
+    uri = "ws://localhost:8001"
+    async with websockets.connect(uri) as websocket:
+        await websocket.send("hello")
+
+        # res = await websocket.recv()
+        # print(res)
+
+if __name__ == "__main__":
+    asyncio.run(hello())
+```
 
 ## websocket-client
 
-websocket-client is a WebSocket client for Python
+主要用于创建 WebSocket 客户端，且不支持异步，即不兼容 `aioredis` 等异步库
 
 `pip install websocket-client`
 
@@ -120,11 +217,3 @@ if __name__ == "__main__":
         sslopt={"cert_reqs": ssl.CERT_NONE},  # 禁用ssl
     )
 ```
-
-## websockets
-
-websocket-client只能实现客户端，如果要创建一个 WebSocket 服务器，则需要使用 `websockets`
-
-> <https://websockets.readthedocs.io/>
-
-`pip install websockets`

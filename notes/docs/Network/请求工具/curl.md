@@ -1,6 +1,6 @@
 # cURL
 
-> 官方文档：<https://everything.curl.dev/>
+> 官方文档：<https://everything.curl.dev>
 >
 > `curl -h`：<https://curl.se/docs/manpage.html>
 

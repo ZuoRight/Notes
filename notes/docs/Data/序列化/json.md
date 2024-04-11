@@ -57,26 +57,9 @@ JSON规定了其键以及字符串都必须用双引号括起来，字符集必�
 
 > 文档：<https://docs.python.org/3/library/json.html>
 
-- 读
+- 写，序列化
 
-```python
-import json
-
-# 从内存中读取
-_str = "{'a':1, 'b':2}"
-json.loads(_str)
-"""
-需要注意的是，这里字符串类型的dict，key如果为单引号，loads时会报错，需要转换兼容一下
-方式1：new_str = str.replace('\'', '\"')
-方式2：new_str = json.dumps(ast.literal_eval(str))  # 需要 import ast
-"""
-
-# 从文件中读取
-with open(file_path, "r", encoding='UTF-8') as f:
-    result = json.load(f)
-```
-
-- 写
+内置的 `json` 库在处理大数据时，性能较差，可以考虑使用基于 C 语言的 `ujson` 或基于 Rust 的 `ojson`
 
 ```python
 import json
@@ -93,6 +76,25 @@ with open(file_path, "w", encoding='UTF-8') as f:
     :sort_keys  是否按照字母排序
     :separators  设置分隔符
     """
+```
+
+- 读，反序列化
+
+```python
+import json
+
+# 从内存中读取
+_str = "{'a':1, 'b':2}"
+json.loads(_str)
+"""
+需要注意的是，这里字符串类型的dict，key如果为单引号，loads时会报错，需要转换兼容一下
+方式1：new_str = str.replace('\'', '\"')
+方式2：new_str = json.dumps(ast.literal_eval(str))  # 需要 import ast
+"""
+
+# 从文件中读取
+with open(file_path, "r", encoding='UTF-8') as f:
+    result = json.load(f)
 ```
 
 ## JSONPath

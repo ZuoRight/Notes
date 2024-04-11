@@ -388,10 +388,20 @@ Q.get(name__exact="abc")  # WHERE name = "abc";
 Q.get(name="abc")  # 同上
 
 # 比较
-__gt  # 大于
-__gte  # 大于等于
-__lt   # 小于
-__lte  # 小于等于
+__gt  # 大于 greater than
+__gte  # 大于等于 greater than or equal to
+__lt   # 小于 less than
+__lte  # 小于等于 less than or equal to
+__exact  # 精确等于（区分大小写）
+__iexact  # 精确等于（不区分大小写）
+__contains  # 包含（区分大小写）
+__icontains  # 包含（不区分大小写）
+__in  # 在给定的列表中
+__startswith  # 以指定字符开始（区分大小写）
+__istartswith  # 以指定字符开始（不区分大小写）
+__endswith  # 以指定字符结束（区分大小写）
+__iendswith  # 以指定字符结束（不区分大小写）
+__range  # 在两个值之间（包含边界）
 
 # LIKE 区分大小写
 Q.get(name__contains="abc")  # WHERE name LIKE '%abc%';

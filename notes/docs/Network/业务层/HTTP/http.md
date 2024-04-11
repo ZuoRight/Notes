@@ -1,41 +1,13 @@
-# HTTP
+# 组成
 
-HyperText Transfer Protocol 超文本传输协议
-
-HTTP 的特点是
-
-- 建立在 TCP 之上（通过 Socket 来使用 TCP）
-- 无连接（TCP 就是它的连接）
-- 无状态（后来加了 Cookies、Session 技术，用 KeepAlive 来维持状态）
-- 请求-响应模式
-
-> Socket 做为套接层 API，本身不是协议，只规定了 API
-
-![20230823094945](https://image.zuoright.com/20230823094945.png)
-
-- HTTP/1.1
-  > Port：80  
-  > 对应协议：RFC2616，补充协议：RFC7231、RFC6265
-- HTTPS
-  > Port：443  
-  > 安全：使用 TLS
-- HTTP2/SPDY
-  > Port：沿用 HTTP/HTTPS  
-  > 安全：强制使用TLSv1.2  
-  > 效率：多路复用，头部使用了HPACK压缩算法
-- HTTP3/QUIC
-  > Port：没有指定默认端口号  
-  > 安全：强制使用TLSv1.3  
-  > 效率：传输基于QUIC(Quick UDP Internet Connections)
-
-组成
+## 请求
 
 1. 起始行(HTTP/2中已废除)
 2. 头部
 3. 空行(CRLF，必须有，空行后面都会被当作实体)
 4. 实体(Entity/Body)
 
-## 起始行
+### 起始行
 
 - 请求行(GET / HTTP/1.1)
 - 状态行(HTTP/1.1 200 OK)
@@ -48,9 +20,24 @@ HTTP 的特点是
 - Reason
 ```
 
-## Headers
+### 请求方法
 
-### 伪头部
+不改变状态
+
+- `GET` 获取数据，安全且幂等
+- `HEAD` 与GET相同，但是不返回响应体，安全且幂等
+- `OPTIONS` 用于验证接口服务是否正常，安全且幂等
+
+可改变状态
+
+- `POST` 创建或更新数据，不安全不幂等
+- `PUT` 更新数据，不安全但幂等
+- `PATCH` 与PUT类似，通常用于部分更新，不安全但幂等
+- `DELETE` 删除数据，不安全但幂等
+
+### Headers
+
+#### 伪头部
 
 方便管理和压缩，HTTP/2中用伪头部形式(:key)替代了起始行，废除了没用的Version和Reason
 
@@ -74,7 +61,7 @@ HTTP 的特点是
 - :status 状态码
 ```
 
-### 未分类
+#### 未分类
 
 ```text
 - 没啥用
@@ -97,7 +84,7 @@ HTTP 的特点是
   - Retry-After 返回503错误时提示多久后重试
 ```
 
-### 内容相关
+#### 内容相关
 
 ```text
 - Date: 报文创建时间
@@ -144,7 +131,7 @@ HTTP 的特点是
   - multipart/byteranges：表示实体由多段序列组成
 ```
 
-### Cookie相关(常用来标记用户或授权会话)
+#### Cookie相关(常用来标记用户或授权会话)
 
 ```text
 - Set-Cookie 服务端可以设置多个身份字段
@@ -161,7 +148,7 @@ HTTP 的特点是
 - Cookie 客户端只有一个该字段，多个身份可以用分号分割
 ```
 
-### Cache相关
+#### Cache相关
 
 ```text
 - Cache-Control
@@ -198,7 +185,7 @@ HTTP 的特点是
 - Pragma:no-cache 与Cache- Control:no-cache相同
 ```
 
-### Chrome特有头
+#### Chrome特有头
 
 ```text
 - Sec-Fetch-Dest: 请求的目的地是哪里
@@ -206,38 +193,3 @@ HTTP 的特点是
 - Sec-Fetch-Site: 请求来源与目标之间的关系
 - Sec-Fetch-User: 用于判断触发方式是否合法(目的地为document时才有)
 ```
-
-## session
-
-如果想让两次请求联系起来，或者说共享数据，说着说保持会话状态，需要使用某种手段，比如session，而cookie是实现session最常用的方案之一
-
-服务端接收到请求后，会建立一个session，并返回响应，响应头中包含了set-cookie头部，头部中包含了sessionId
-session包含了用户的认证信息和登录状态等信息
-服务端接收cookie后解析出sessionId，再去session列表中查找，才能找到相应session
-
-## token
-
-token，也称作令牌，由uid+time+sign+[固定参数]，类似于临时的证书签名（是一种服务端无状态的认证方式，即服务端不会保存），保存在localStroage等容器中，cpu加密，服务端解密，不存在负载均衡问题，这个方法叫做JWT(Json Web Token，一种跨域认证方案)
-
-uid：唯一标识
-time：当前时间的时间戳
-sign：签名，使用hash/encrypt压缩成定长的十六进制字符串，防止恶意拼接
-固定参数：可选，避免重复
-
-## 认证 identification
-
-根据一些信息确认用户的身份，比如用户名密码，二维码，指纹等等
-
-## 授权 authorization
-
-资源所有者授予执行者操作资源的权限
-
-授信媒介
-
-- session
-- cookies
-- token
-
-## 鉴权 authentication
-
-验证权限

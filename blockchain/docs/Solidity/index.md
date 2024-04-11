@@ -14,7 +14,7 @@ Docs: <https://remix-ide.readthedocs.io/en/latest/index.html>
 
 在线IDE：<https://remix.ethereum.org>
 
-```Plain text
+```text
 蓝色按钮表示只读方法，不需要支付Gas，可变性为view或pure的函数，或者状态变量
 橙色按钮表示写入方法，需要支付Gas
 红色按钮表示可以向合约支付，可变性为payable的函数

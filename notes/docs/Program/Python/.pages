@@ -8,7 +8,9 @@ nav:
   - function.md
   - 内置函数.md
   - class.md
+  - struct.md
   - library.md
   - 内置模块.md
   - 时间模块.md
+  - 多任务
   - ...
