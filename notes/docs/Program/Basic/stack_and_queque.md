@@ -4,7 +4,7 @@
 
 ![20240327233522](https://image.zuoright.com/20240327233522.png)
 
-先进后出，比如浏览器中的后退与前进、软件中的撤销与反撤销。
+后进先出（Last In, First Out - LIFO），比如浏览器中的后退与前进、软件中的撤销与反撤销。
 
 ### 内置栈
 
@@ -124,7 +124,7 @@ class LinkedListStack:
 
 ![20240327234512](https://image.zuoright.com/20240327234512.png)
 
-先进先出，比如打印机的任务队列、餐厅的出餐队列、购物订单队列
+先进先出（First In, First Out - FIFO），比如打印机的任务队列、餐厅的出餐队列、购物订单队列
 
 在 Python 中，虽然 `queue.Queue()` 是纯正的队列类，但不太好用，通常使用双向队列 `deque` 来当作队列使用
 
