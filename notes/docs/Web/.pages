@@ -12,4 +12,5 @@ nav:
   - Flask
   - Django
   - vue.md
+  - nginx.md
   - ...

@@ -1,4 +1,40 @@
-# 发行版
+# Linux
+
+Linux 是一个 Unix-like 系统，最初由 Linus Torvalds 基于 Unix 所编写
+
+- [Unix timeline](https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg#/media/File:Unix_timeline.en.svg)
+- [Unix history simple](https://zh.wikipedia.org/wiki/File:Unix_history-simple.svg)
+
+![20220707143751](http://image.zuoright.com/20220707143751.png)
+
+## 内核 Kernel
+
+Linux 本身只是一个开源的内核(Kernel)
+
+内核主要负责一些最基本的工作，比如：管理硬件驱动、管理内存、管理文件系统、管理进程等等。
+
+内核是计算机资源的管理者，通过系统 API 函数向用户应用软件提供一些接口，会在处理器的特权模式（宏内核模式）下运行。
+
+微内核架构正好与宏内核架构相反，它提倡内核功能尽可能少：仅仅只有进程调度、处理中断、内存空间映射、进程间通信等功能，这样的内核是不能完成什么实际功能，开发者们把实际的进程管理、内存管理、设备管理、文件管理等服务功能，做成一个个服务进程。和用户应用进程一样，只是它们很特殊，宏内核提供的功能，在微内核架构里由这些服务进程专门负责完成。微内核定义了一种良好的进程间通信的机制：消息。
+
+`uname -a`
+
+![20230401113035](http://image.zuoright.com/20230401113035.png)
+
+内核版本：主版本号.次版本号.末版本号
+
+> 次版本号，奇数为开发版，偶数为稳定版  
+> <https://www.kernel.org/>
+
+![20220707142531](http://image.zuoright.com/20220707142531.png)
+
+## GNU工具集
+
+- GCC/G++：编译环境
+- glibc：C库
+- coreutils：核心工具组
+
+## 发行版
 
 而我们平时常用的Linux其实指的是Linux发行版（distribution），它是在Kernel的基础上定制化扩展了很多服务和功能。
 
@@ -28,12 +64,6 @@ Codename:       bionic
 COMMENT
 ```
 
-## GNU工具集
-
-- GCC/G++：编译环境
-- glibc：C库
-- coreutils：核心工具组
-
 ## Ubuntu
 
 > <https://ubuntu.com/download>
@@ -44,7 +74,7 @@ Ubuntu LTS(长期支持)版本每两年发布一次，一般能提供5年的支�
 - Ubuntu 20.04.5 LTS (Focal Fossa) 内置Py3.8
 - Ubuntu 22.04.1 LTS (Jammy Jellyfish) 内置Py3.10
 
-## 包管理器
+### 包管理器
 
 > 包管理器：`apt`（等价于`apt-get`+`apt-cache`+`apt-config`最常用命令集合）
 >
@@ -84,7 +114,7 @@ dpkg -i /mnt/name-xxx.deb  # 安装
 dpkg -P name  # 卸载
 ```
 
-## 源码编译安装
+### 源码编译安装
 
 ```shell
 wget https://xxx.tar.gz  # 下载tarball(压缩包)文件
@@ -114,7 +144,7 @@ make install  # 将编译完成的文件安装到预定的目录中
 """
 ```
 
-## wget 下载
+### wget 下载
 
 > Linux下一种类似与迅雷的下载软件，通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议下载
 
@@ -122,7 +152,7 @@ make install  # 将编译完成的文件安装到预定的目录中
 wget -c xxx  # -c 支持断点续传
 ```
 
-## PPA
+### PPA
 
 Ubuntu 提供了一个名为 Launchpad 的平台，使软件开发人员能够创建自己的软件仓库，即 Personal Package Archive（个人软件包存档），终端用户可以将 PPA 仓库添加到 sources.list 文件中，然后便可以使用 apt 来安装
 
@@ -132,7 +162,7 @@ sudo apt update
 sudo apt install xxx
 ```
 
-## 常用工具
+### 常用工具
 
 ```shell
 apt install busybox -y  # 精简工具集

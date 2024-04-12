@@ -3,3 +3,5 @@
 命令行(Command Line) 是通过输入命令使用的任何类型的界面，比如有些程序自身提供的命令行界面，而终端也是其中之一。
 
 终端(Terminal)是基于文本的输入输出机制，需要引入 Shell 来解释具体的命令及其语法。
+
+[What's the difference between a console, a terminal, and a shell?](https://www.hanselman.com/blog/whats-the-difference-between-a-console-a-terminal-and-a-shell)

@@ -59,7 +59,7 @@ doSomethingAsync()
     });
 ```
 
-### async/await
+## async/await
 
 `async/await` 是 Promise 的语法糖，避免了复杂的回调和链式调用，让异步编程代码更加简洁，易于理解和使用。
 
@@ -104,16 +104,28 @@ handleAsyncTasks();
 
 ## Event Loop
 
+<https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/7>
+
+在浏览器内核进程（渲染进程）中，GUI 渲染线程与 JS 引擎线程是互斥的
+
+JS 引擎只执行同步任务，异步任务会有工作线程来执行，当需要进行异步操作，主线程会发一个异步任务的请求，相应的工作线程接受请求。当工作线程完成工作之后，通知主线程，主线程接收到通知之后，会执行一定的操作（回调函数）。
+
+主线程和工作线程之间的通知机制就叫做事件循环。
+
+![20240412125540](https://image.zuoright.com/20240412125540.png)
+
 在 JavaScript 的事件循环机制中，任务被分为两种类型：
 
-- 宏任务（Macrotask）：由 JavaScript 引擎线程直接执行的任务，包括
+- 宏任务（Macrotask），又叫 Task，由 JavaScript 引擎线程直接执行的任务，即上图任务队列中的任务，包括
     - 整个脚本（main script）
     - setTimeout 和 setInterval 的回调
     - setImmediate（Node.js环境）等
-- 微任务（Microtask）：微任务是在当前宏任务结束后立即执行的任务，包括
+- 微任务（Microtask），又叫 Jobs，可以看成是插队需要及时处理的任务，是在当前宏任务结束后立即执行的任务，包括
     - Promise 的 then 和 catch 的回调
     - process.nextTick（Node.js环境）
     - MutationObserver的回调（浏览器环境）等
+
+![20240412125642](https://image.zuoright.com/20240412125642.png)
 
 执行步骤：
 

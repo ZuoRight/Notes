@@ -1,8 +1,24 @@
 # 浏览器
 
-## 内核
+- <https://developer.chrome.com>
+- [深入了解现代网络浏览器](https://developer.chrome.com/blog/inside-browser-part1)
 
-浏览器内核分成两部分：渲染引擎和JS脚本引擎，由于脚本引擎越来越独立，内核就倾向于只指渲染引擎
+浏览器是多进程的，通常每打开一个新标签页都会创建一个新的进程（有时多个空白标签会被合并为一个进程），其顶层存在一个 Browser Process 用以协调浏览器的其它进程
+
+![20240412111552](https://image.zuoright.com/20240412111552.png)
+
+- Browser Process 主进程，负责浏览器界面的显示与交互。各个页面的管理,创建和销毁其他进程。网络的资源管理、下载等
+- Plugin Process 第三方插件进程，每种类型的插件对应一个进程，仅当使用该插件时才创建
+- GPU Process GPU 进程，最多一个，用于3D绘制等
+- Renderer Process: 渲染进程，内部是多线程的，每个标签页通常都有自己的渲染进程，用于页面渲染，脚本执行，事件处理等
+
+![20240412120447](https://image.zuoright.com/20240412120447.png)
+
+浏览器内核原本由渲染引擎和JS脚本引擎组成，但由于脚本引擎越来越独立，所以现在内核主要就是指渲染引擎
+
+![20240412115916](https://image.zuoright.com/20240412115916.png)
+
+## 渲染引擎
 
 渲染引擎是一种对HTML文档进行解析并将其显示在页面上的工具，所有网页浏览器、电子邮件客户端、电子阅读器，以及其它需要根据标志性标记语言来显示内容的应用程序都需要渲染引擎
 
@@ -13,10 +29,16 @@
 - Presto（Opera旧内核）
 - KDE 渲染引擎KHTML
 - WebKit（Safari内核） Fork KHTML，渲染引擎WebCore
-- Chromium（Chrome内核） Fork WebKit，渲染引擎：Blink（WebCore的分支，由Google和Opera Software开发），脚本引擎：V8，Node.JS其实就是封装了V8引擎
+- Chromium（Chrome内核） Fork WebKit
+   - 渲染引擎：Blink（WebCore的分支，由Google和Opera Software开发）
+   - 脚本引擎：V8，Node.JS其实就是封装了V8引擎
 - Servo Mozilla与三星合作开发的下一代浏览器渲染引擎
 
-## JS引擎
+### 渲染流程
+
+![20240412120157](https://image.zuoright.com/20240412120157.png)
+
+## JS脚本引擎
 
 JavaScript之所以可以在浏览器中执行，是因为浏览器中的JavaScript解析引擎（也叫虚拟机）
 

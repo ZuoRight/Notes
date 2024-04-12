@@ -2,6 +2,8 @@
 
 官方文档：<https://nginx.org/en/docs/>
 
+Nginx 是支持异步 I/O 的 Web 服务器，它在单核 CPU 上采用单进程模型就可以高效地支持多任务，在多核 CPU 上，可以运行多个进程（数量与 CPU 核心数相同），充分利用多核 CPU
+
 ```shell
 apt install nginx  # ubuntu
 yum install nginx  # centos
