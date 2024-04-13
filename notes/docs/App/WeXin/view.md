@@ -7,9 +7,9 @@
 
 ## 组件
 
-所有组件与属性都是小写，以连字符 `-` 连接
+<https://developers.weixin.qq.com/miniprogram/dev/component/>
 
-### 属性
+所有组件与属性都是小写，以连字符 `-` 连接
 
 所有组件都有以下属性
 
@@ -123,7 +123,7 @@ Page({
 <view style="color:{{color}};" />
 ```
 
-## 外部样式
+### 外部样式
 
 直接写在相应的 `<page>.wxss` 中即可
 

@@ -4,10 +4,10 @@ nav:
   - browser.md
   - pixel.md
   - Web
-  - WeXin
-  - android.md
   - cgi.md
   - nginx.md
   - Flask
   - Django
+  - WeXin
+  - android.md
   - ...

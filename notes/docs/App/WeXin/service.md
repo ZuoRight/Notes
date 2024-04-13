@@ -1,4 +1,4 @@
-# 逻辑层 App Service
+# 逻辑层
 
 `getApp` 和 `getCurrentPages` 方法，分别用来获取 App 实例和当前页面栈。
 
@@ -38,7 +38,9 @@ App({
 
 ## 页面构造器
 
-### `Page({ })` 构造器，适合构造简单的页面
+### `Page({ })` 构造器
+
+适合构造简单的页面
 
 ```js
 const util = require('../../utils/util.js')
@@ -98,7 +100,9 @@ Page({
 })
 ```
 
-### `Component({ })` 构造器，适合构造复杂的页面
+### `Component({ })` 构造器
+
+适合构造复杂的页面
 
 ```js
 Component({
@@ -156,7 +160,7 @@ Page({
 
 ## API
 
-### 事件监听 API
+### 事件监听
 
 以 `on...` 开头，回调函数作为参数，在事件被触发时被调用
 
@@ -166,7 +170,7 @@ wx.onCompassChange(function (res) {
 })
 ```
 
-### 同步 API
+### 同步
 
 以 `...Sync` 结尾，执行结果通过返回值直接获取
 
@@ -180,7 +184,7 @@ try {
 }
 ```
 
-### 异步 API
+### 异步
 
 大多数 API 都是异步的
 
@@ -200,7 +204,7 @@ wx.chooseImage({
 })
 ```
 
-### 云开发 API
+### 云开发
 
 ```js
 wx.cloud.callFunction({
