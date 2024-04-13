@@ -1,0 +1,13 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - index.md
+  - browser.md
+  - pixel.md
+  - Web
+  - WeXin
+  - android.md
+  - cgi.md
+  - nginx.md
+  - Flask
+  - Django
+  - ...

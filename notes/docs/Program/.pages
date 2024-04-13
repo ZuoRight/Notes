@@ -3,10 +3,9 @@ nav:
   - index.md
   - Basic
   - Python
+  - JavaScript
+  - ts.md
   - c.md
   - java.md
   - go.md
-  - nodejs.md
-  - JavaScript
-  - ts.md
   - ...

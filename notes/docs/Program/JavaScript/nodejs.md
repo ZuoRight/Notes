@@ -1,4 +1,4 @@
-# Node.JS
+# Node.js
 
 ```shell
 node --version  # 查看版本
