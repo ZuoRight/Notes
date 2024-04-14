@@ -246,49 +246,6 @@ yarn remove [package]  # 移除
 yarn list  # 查看安装的包，不带global看不到全局的包
 ```
 
-## 模块
-
-JS 本身是没有模块的概念，模块化的演变经历了一个漫长的过程，从最初的 CommonJS ，到后来的 AMD 和 CMD，再到今天的 ES6 模块化方案
-
-### CommonJS
-
-用于在 Node.js 中导入模块的函数，属于同步操作
-
-```js
-// lib.js
-module.exports = 'Hello!';  // 导出模块
-
-// app.js
-let message = require('./lib');  // 导入模块
-console.log(message);  // 输出 'Hello!'
-```
-
-### ES6
-
-用于在 ES6 中导入模块的新关键字，属于异步操作
-
-```js
-export function foo() {
-    pass
-};
-
-import {foo} from '模块文件的位置';
-```
-
-在 Node 环境下若要使用 import 方式导入，需要 在 `package.json` 中添加配置
-
-```json
-{
-  "type": "module"
-}
-```
-
-在 Web 中需要加 module 属性
-
-```js
-<script type="module" src="demo.js"></script>
-```
-
 ## 环境变量
 
 隐私信息存储在 `.env` 中

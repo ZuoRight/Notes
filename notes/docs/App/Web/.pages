@@ -1,10 +1,11 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - html.md
-  - css.md
   - element.md
+  - css.md
   - layout.md
   - css_framework.md
   - object_model.md
+  - event.md
   - vue.md
   - ...

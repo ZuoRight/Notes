@@ -1,8 +1,10 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - nodejs.md
   - basic.md
+  - object.md
   - function.md
+  - async.md
   - class.md
+  - nodejs.md
   - ...

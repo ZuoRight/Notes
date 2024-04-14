@@ -5,9 +5,9 @@ nav:
   - pixel.md
   - Web
   - cgi.md
-  - nginx.md
   - Flask
   - Django
   - WeXin
   - android.md
+  - nginx.md
   - ...

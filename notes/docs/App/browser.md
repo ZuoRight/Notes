@@ -56,21 +56,6 @@ SpiderMonkey 是第一个 JS 引擎
 
 Google Chrome 的 V8 引擎在2008年发布，被认为是 JS 引擎的一个重要里程碑。V8 引擎采用了一种叫做“即时编译”的技术，可以将 JavaScript 代码直接编译成机器码执行，从而大幅提高了 JavaScript 的执行速度。
 
-## 交互函数
-
-```js
-// alert
-alert("Hello");  // 弹出模态窗
-
-// confirm()
-let isTrue = confirm("true or false");  // 第一个模态窗，显示：内容、确定按钮、取消按钮
-alert(`You select ${isTrue}`);  // 第二个模态窗：确定isTrue=true，取消isTrue=false
-
-// prompt(title, [default])
-let age = prompt('How old are you?', 100);  // 第一个模态窗，显示：标题、带默认值的输入框、确定按钮、取消按钮
-alert(`You are ${age} years old!`); // 第一个模态窗：确定age=100，取消age=null
-```
-
 ## Storage
 
 - `Cookies` 最早的本地存储，由浏览器提供的功能，并对服务器和JS开放，所以我们可以通过服务器端或客户端保存Cookies。不过可以存储的数据总量大小只有 4KB

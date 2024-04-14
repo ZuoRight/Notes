@@ -112,6 +112,8 @@ JS 引擎只执行同步任务，异步任务会有工作线程来执行，当�
 
 ![20240412125540](https://image.zuoright.com/20240412125540.png)
 
+事件循环可视化：<https://www.jsv9000.app>
+
 在 JavaScript 的事件循环机制中，任务被分为两种类型：
 
 - 宏任务（Macrotask），又叫 Task，由 JavaScript 引擎线程直接执行的任务，即上图任务队列中的任务，包括
