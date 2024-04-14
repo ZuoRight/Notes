@@ -4,17 +4,15 @@
 
 ## 指令
 
-v- 开头
-
 ### v-bind
 
-简写：:xxx
+简写：`:xxx`
 
 ### v-on:xxx
 
-简写：@xxx
+简写：`@xxx`
 
-#### 绑定原生DOM事件
+- 绑定原生DOM事件
 
 ```text
 @click: 鼠标单击时触发
@@ -23,7 +21,7 @@ v- 开头
 @mouseleave：鼠标移出时触发
 ```
 
-#### 绑定自定义事件
+- 绑定自定义事件
 
 点击按钮，如果想触发自定义事件，需要手动把自定义事件抛出来：$emit
 
@@ -148,4 +146,12 @@ Vue.component('组件名', {
 
 ```html
 <script type="text/javascript" src="{{ url_for('static', filename='login.js') }}"></script>
+```
+
+## 部署
+
+```shell
+npm run dev  # 本地调试
+
+npm run build  # 生成静态文件到dist中，将里面的内容传到服务器即可
 ```
