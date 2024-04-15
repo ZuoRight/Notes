@@ -5,44 +5,53 @@
 
 ```shell
 # 安装
-brew install rabbitmq
+brew install rabbitmq  # Mac
 
-# 启动服务
+# brew 启动/停止服务
+brew services start rabbitmq
+brew services stop rabbitmq
+
+# 或者
 rabbitmq-server  # 前台运行
-# 或
-brew services start rabbitmq  # 后台运行
+rabbitmq-server -detached  # 后台运行
+rabbitmqctl stop
 ```
 
-- rabbitmqctl 用于服务管理和一般操作任务，通常只对管理员可用
-- rabbitmq-diagnostics 用于诊断和健康检查
-- rabbitmq-plugins 用于插件管理
-- rabbitmq-queues 用于队列上的维护任务，特别是仲裁队列
-- rabbitmq-upgrade 用于与升级相关的维护任务
+> 如果更新后遇到服务启动失败的问题可以卸载重装参考这篇：<https://medium.com/@anjantalatatam/how-to-clean-install-rabbitmq-1ae214436b7d>
 
 ## `rabbitmqctl`
 
 > <https://www.rabbitmq.com/cli.html>
 
+安装后默认有一个 guset 用户，根据需求可以添加一些新用户并设置不同权限
+
 ```shell
 rabbitmqctl --help
-rabbitmqctl add_user user_test user_test  # 创建新用户
-rabbitmqctl set_user_tags user_test administrator  # 设为管理员
-rabbitmqctl set_permissions -p / user_test '.*' '.*' '.*'  # 设置权限
+
+# 创建一个 RabbitMQ 用户、一个虚拟主机并允许该用户访问该虚拟主机
+rabbitmqctl add_user user_name user_passwd  # 创建新用户
+rabbitmqctl add_vhost myvhost  # 如果不设置，默认为 /
+rabbitmqctl set_user_tags user_name user_tag  # 设置标签
+rabbitmqctl set_permissions -p myvhost user_name '.*' '.*' '.*'  # 设置权限
+
+# 创建一个具有完全访问权限的用户
+rabbitmqctl add_user full_access s3crEt
+# tag the user with "administrator" for full management UI and HTTP API access
+rabbitmqctl set_user_tags full_access administrator
 ```
 
-## Web 管理工具 `rabbitmq_management`
+## UI管理插件 `rabbitmq_management`
 
 > <https://www.rabbitmq.com/management.html>
 
 ```shell
 rabbitmq-plugins list  # 列出插件
 rabbitmq-plugins enable rabbitmq_management  # 启用管理插件
-rabbitmq-plugins enable rabbitmq_tracing  # 开启消息追踪
 ```
 
-默认提供了基于浏览器的 UI 界面（需要授权才能访问），`http://{node-hostname}:15672/`
+默认提供了基于浏览器的 UI 界面（需要授权才能访问），`http://{node-hostname}:15672/`，本机：<http://localhost:15672/>，默认用户名和密码都是：`guest`
 
-本机访问：<http://localhost:15672>，默认用户名和密码都是：`guest`
+![20240416002802](https://image.zuoright.com/20240416002802.png)
 
 ## 命令行管理工具 `rabbitmqadmin`
 
@@ -73,7 +82,7 @@ Pika比较小巧，仅支持 AMQP 0.9.1 协议
 
 `pip install pika`
 
-### Celery/Kombu
+### Kombu
 
 > [官方文档](https://docs.celeryq.dev/projects/kombu/en/latest/index.html)
 
@@ -88,6 +97,8 @@ Kombu 是为 Celery 而生的，它实现了对 AMQP transport（RabbitMQ） 和
 ### Product/Consumer
 
 一对一生产消费模型
+
+![20240415220259](https://image.zuoright.com/20240415220259.png)
 
 在发送消息前需要确保接收队列存在，否则消息将被丢弃
 
@@ -106,7 +117,9 @@ hello   0
 
 ### Work Queues
 
-循环分发模型，每个c/worker依次收到message
+依次向每个消费者发送消息，消费者之间属于竞争关系
+
+![20240415220517](https://image.zuoright.com/20240415220517.png)
 
 消息确认机制：c收到message后需要给p回复一个ack，p收到ack后则会将message从队列中删除，默认需要手动回复ack，可以设置为`ack=True`，如果因为连接中断等原因30min内（默认）没有ack，message会被重新放入队列（如果忘记设置回复ack，属于是一个低级错误，message被循环重新放入队列消耗内存）
 
@@ -137,7 +150,9 @@ channel.basic_publish(
 
 ### Publish/Subscribe
 
-发布订阅模型，将一份消息发给多个订阅者，每个订阅者都可以收到相同的消息
+发布订阅模型，一次向多个订阅者发送消息，每个订阅者都可以收到相同的消息
+
+![20240415220624](https://image.zuoright.com/20240415220624.png)
 
 rabbitmq中message不能直接发送给queue，需要经过exchange，exchange有`direct`、`topic`、`headers`、`fanout`几种
 

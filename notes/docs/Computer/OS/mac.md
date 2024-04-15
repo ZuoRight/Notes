@@ -6,19 +6,7 @@ kill [-9] 3031  # 杀死进程，-9强制杀死
 launchctl  # 类似Linux的systemctl
 which xx  # 查找
 unzip xxx.zip  # 解压
-env  # 查看环境变量
-```
-
-```shell
-# 测试网速
-networkQuality
-'
-==== SUMMARY ====
-Uplink capacity: 946.545 Kbps
-Downlink capacity: 5.069 Mbps
-Responsiveness: Low (7.500 seconds | 8 RPM)
-Idle Latency: 75.875 milliseconds | 800 RPM
-'
+env  # 查看环境变量，比如path变量以及自定义的临时变量等
 ```
 
 ## CLT
@@ -43,7 +31,7 @@ Mac系统下的一款开源包管理器，[项目地址](https://github.com/Home
 由四部分组成
 
 - Homebrew 源代码仓库
-- Homebrew-core Homebrew 核心源
+- Homebrew-core 核心源
 - Homebrew-cask 提供macos应用和大型二进制文件的安装
 - Homebrew-bottles 预编译二进制软件包
 
@@ -173,3 +161,20 @@ PID: 43685
 ### SIP
 
 SIP(系统完整性保护)安全机制：即使是以root身份也无法删除某些程序，比如`/bin`下的，尽管你可以SIP禁用后删除，但也不建议这样去做。
+
+### 测试网速
+
+- 命令行
+
+```shell
+networkQuality
+'
+==== SUMMARY ====
+Uplink capacity: 946.545 Kbps
+Downlink capacity: 5.069 Mbps
+Responsiveness: Low (7.500 seconds | 8 RPM)
+Idle Latency: 75.875 milliseconds | 800 RPM
+'
+```
+
+- 第三方工具：Speedtest

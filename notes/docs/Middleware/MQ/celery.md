@@ -13,7 +13,7 @@ Celery 是 Python 中最流行的异步消息队列框架，需要使用消息�
 - [Using RabbitMQ](https://docs.celeryq.dev/en/stable/getting-started/backends-and-brokers/rabbitmq.html)
 - [Using Redis](https://docs.celeryq.dev/en/stable/getting-started/backends-and-brokers/redis.html)
 
-## 运行 Celery Worker Server
+## 创建任务
 
 ```python
 # tasks.py
@@ -33,17 +33,39 @@ def add(x, y):
     return x + y
 ```
 
+## 运行 Celery Worker Server
+
 运行一个或多个进程，监听消息队列，等待执行异步任务
 
 ```shell
-celery -A myproject worker --loglevel=info
-```
+celery -A tasks worker --loglevel=info
 
-使用 Celery Flower 监视和管理 Celery 集群
+'
+ -------------- celery@bogon v5.3.6 (emerald-rush)
+--- ***** ----- 
+-- ******* ---- macOS-14.2.1-arm64-arm-64bit 2024-04-15 23:56:39
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         tasks:0x10254aa00
+- ** ---------- .> transport:   amqp://guest:**@localhost:5672//
+- ** ---------- .> results:     disabled://
+- *** --- * --- .> concurrency: 8 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
 
-```shell
-pip install flower
-celery -A myproject flower
+[tasks]
+
+[2024-04-15 23:56:40,089: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
+[2024-04-15 23:56:40,096: INFO/MainProcess] mingle: searching for neighbors
+[2024-04-15 23:56:41,141: INFO/MainProcess] mingle: all alone
+[2024-04-15 23:56:41,175: INFO/MainProcess] celery@bogon ready.
+
+调用任务时，这里将打印日志
+[2024-04-16 00:14:31,215: INFO/MainProcess] Task tasks.add[16f3d49f-9174-4c55-9884-83f54db0f4b2] received
+[2024-04-16 00:14:31,217: INFO/ForkPoolWorker-8] Task tasks.add[16f3d49f-9174-4c55-9884-83f54db0f4b2] succeeded in 0.0008349169999632977s: 5
+'
 ```
 
 ## 调用任务
@@ -52,12 +74,10 @@ celery -A myproject flower
 from tasks import add
 
 # delay() 是 apply_async() 方法的便捷快捷方式
-add.delay(4, 4)
+add.delay(2, 3)  # <AsyncResult: ba0d3172-f2f1-42ee-9323-a78b9e9812d7>
 ```
 
-调用任务会返回一个 `AsyncResult` 实例，可用于检查任务的状态或获取返回值，默认不启用。
-
-如果启用需要在实例化的时候配置 result backend
+因为任务是异步的，调用任务不会直接返回任务结果，而是会返回一个 `AsyncResult` 实例，可用于检查任务的状态或者获取返回值，默认不启用，需要在实例化的时候配置 Result Backend 才可以使用
 
 ```python
 # 任务结果保存到 RPC
@@ -70,9 +90,9 @@ app = Celery('tasks', backend='redis://localhost', broker='pyamqp://')
 ```python
 from tasks import add
 
-result = add.delay(4, 4)
-
+result = add.delay(2, 3)
 result.ready()  # 返回任务是否已完成
+result.get(timeout=1)  # 返回任务执行结果，通常不这么用，因为是异步的
 result.traceback  # 追溯任务异常
 ```
 
@@ -137,6 +157,8 @@ def mul(x, y):
     return x * y
 ```
 
+运行 celery worker server：`celery -A myproject worker --loglevel=info`
+
 ### 触发任务
 
 ```python
@@ -166,9 +188,12 @@ def on_task_success(result):
     print(f"Task completed successfully with result: {result}")
 ```
 
-### 在命令行中启动 Celery worker
+## 监听队列
 
+使用 Celery Flower 监视和管理 Celery 集群
 
 ```shell
-```
+pip install flower
 
+celery -A myproject flower
+```

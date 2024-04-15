@@ -2,5 +2,6 @@
 nav:
   - index.md
   - rabbitmq.md
+  - zeromq.md
   - celery.md
   - ...

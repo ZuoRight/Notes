@@ -12,7 +12,7 @@ MySQL 是典型的 C/S 架构：`mysql` / `mysqld`
 
 ### Mac
 
-M1+ 下载ARM版本，反之x86，No thanks, just start my download，安装一直下一步即可，最后会默认创建 root 账户，让你设置一个密码（最少8位，比如：12345678）
+M1+ 下载 ARM 版本，点击 `No thanks, just start my download` 安装，一直下一步即可，最后会默认创建 `root` 账户，让你设置一个密码（最少8位，比如：12345678）
 
 加密方式
 
