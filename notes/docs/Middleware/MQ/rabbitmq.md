@@ -6,24 +6,22 @@
 ```shell
 # 安装
 brew install rabbitmq
+
 # 启动服务
-rabbitmq-server  # 前台
-brew services start rabbitmq  # 后台
+rabbitmq-server  # 前台运行
+# 或
+brew services start rabbitmq  # 后台运行
 ```
 
-## Command Line Tools
+- rabbitmqctl 用于服务管理和一般操作任务，通常只对管理员可用
+- rabbitmq-diagnostics 用于诊断和健康检查
+- rabbitmq-plugins 用于插件管理
+- rabbitmq-queues 用于队列上的维护任务，特别是仲裁队列
+- rabbitmq-upgrade 用于与升级相关的维护任务
 
-> 文档：<https://www.rabbitmq.com/cli.html>
+## `rabbitmqctl`
 
-```text
-rabbitmqctl 用于服务管理和一般操作任务，通常只对管理员可用
-rabbitmq-diagnostics 用于诊断和健康检查
-rabbitmq-plugins 用于插件管理
-rabbitmq-queues 用于队列上的维护任务，特别是仲裁队列
-rabbitmq-upgrade 用于与升级相关的维护任务
-```
-
-- `rabbitmqctl`
+> <https://www.rabbitmq.com/cli.html>
 
 ```shell
 rabbitmqctl --help
@@ -32,9 +30,9 @@ rabbitmqctl set_user_tags user_test administrator  # 设为管理员
 rabbitmqctl set_permissions -p / user_test '.*' '.*' '.*'  # 设置权限
 ```
 
-- `rabbitmq_management`
+## Web 管理工具 `rabbitmq_management`
 
-RabbitMQ的Web管理工具，文档：<https://www.rabbitmq.com/management.html>
+> <https://www.rabbitmq.com/management.html>
 
 ```shell
 rabbitmq-plugins list  # 列出插件
@@ -42,18 +40,20 @@ rabbitmq-plugins enable rabbitmq_management  # 启用管理插件
 rabbitmq-plugins enable rabbitmq_tracing  # 开启消息追踪
 ```
 
-默认提供了基于浏览器的UI界面（需要授权才能访问）：`http://{node-hostname}:15672/`
+默认提供了基于浏览器的 UI 界面（需要授权才能访问），`http://{node-hostname}:15672/`
 
-> 本机访问：<http://localhost:15672>，默认用户名和密码都是：`guest`
+本机访问：<http://localhost:15672>，默认用户名和密码都是：`guest`
 
-也可以使用management-cli，除了执行一些与UI相同的操作外，还方便做一些自动化任务，命令行工具`rabbitmqadmin`需要单独下载使用
+## 命令行管理工具 `rabbitmqadmin`
 
-> 文档：<https://www.rabbitmq.com/management-cli.html>
->
-> 下载方式1：[复制对应版本的源码](https://github.com/rabbitmq/rabbitmq-server/blob/master/deps/rabbitmq_management/bin/rabbitmqadmin)  
-> 下载方式2：从启用了management的节点直接下载，访问：`http://{node-hostname}:15672/cli/rabbitmqadmin`
+> <https://www.rabbitmq.com/management-cli.html>
 
-下载后放入`/usr/local/bin`，源码是Python3写的，所以运行需要依赖Python3
+除了执行一些与 UI 相同的操作外，还方便做一些自动化任务，需要单独下载使用
+
+- 下载方式1：[复制对应版本的源码](https://github.com/rabbitmq/rabbitmq-server/blob/master/deps/rabbitmq_management/bin/rabbitmqadmin)  
+- 下载方式2：从启用了management的节点直接下载，访问：`http://{node-hostname}:15672/cli/rabbitmqadmin`
+
+下载后放入 `/usr/local/bin`，源码是 Python3 写的，所以运行需要依赖 Python3
 
 ```shell
 rabbitmqadmin --help
@@ -62,24 +62,28 @@ rabbitmqadmin -V test list exchanges
 
 ## 客户端
 
-不同编程语言都有封装好的[Clients Libraries and Developer Tools](https://www.rabbitmq.com/devtools.html)，比如Python有
+不同编程语言都有封装好的 [Clients Libraries and Developer Tools](https://www.rabbitmq.com/devtools.html)，比如 Python 有
 
-- Pika: `pip install pika`
+### Pika
 
 > [官方文档](https://pika.readthedocs.io/en/stable/)  
 > [RabbitMQ 官方示例](https://www.rabbitmq.com/getstarted.html)
 
-- Celery/Kombu: `pip install kombu`
+Pika比较小巧，仅支持 AMQP 0.9.1 协议
+
+`pip install pika`
+
+### Celery/Kombu
 
 > [官方文档](https://docs.celeryq.dev/projects/kombu/en/latest/index.html)
 
-Celery是Python中最流行的异步消息队列框架，支持RabbitMQ、Redis、ZoopKeeper等作为Broker，而对这些消息队列的抽象，都是通过Kombu实现的。Kombu实现了对AMQP transport和non-AMQP transports(Redis、Amazon SQS、ZoopKeeper等)的兼容。
+Kombu 是为 Celery 而生的，它实现了对 AMQP transport（RabbitMQ） 和 non-AMQP transports（Redis）的兼容，相比于 Pika，支持更多的协议，功能也更丰富，代码实现也更抽象。
 
-Pika比较小巧，仅支持 AMQP 0.9.1 协议，Kombu是为Celery而生的，相比于Pika，支持更多的协议，功能也更丰富，代码实现也更抽象。
+`pip install kombu`
 
-## RabbitMQ 消息模型
+## 消息模型
 
-> 文档：<https://www.rabbitmq.com/getstarted.html>
+> <https://www.rabbitmq.com/getstarted.html>
 
 ### Product/Consumer
 

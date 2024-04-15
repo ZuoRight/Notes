@@ -3,9 +3,11 @@ nav:
   - index.md
   - Computer
   - Program
-  - App
-  - Data
+  - Python
+  - JavaScript
+  - Middleware
   - Network
+  - App
   - DevOps
   - Testing
   - ...

@@ -7,4 +7,5 @@ nav:
   - async.md
   - class.md
   - nodejs.md
+  - typescript.md
   - ...

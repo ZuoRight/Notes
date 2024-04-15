@@ -1,9 +1,10 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - c.md
-  - java.md
-  - go.md
-  - 数据结构与算法
-  - 数据转换
+  - db.md
+  - sqlite.md
+  - MySQL
+  - Redis
+  - MQ
+  - nginx.md
   - ...

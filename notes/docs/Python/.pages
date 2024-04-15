@@ -9,9 +9,10 @@ nav:
   - 内置函数.md
   - class.md
   - struct.md
+  - thread.md
+  - coroutine.md
   - library.md
   - 内置模块.md
   - 时间模块.md
-  - thread.md
-  - coroutine.md
+  - 数据处理
   - ...
