@@ -1,10 +1,13 @@
 # Celery
 
-<https://docs.celeryq.dev/en/stable/index.html>
+- <https://docs.celeryq.dev/en/stable/index.html>
+- <https://github.com/HanshengLi1993/celery-python>
 
 `pip install celery`
 
-Celery 是 Python 中最流行的异步消息队列框架，需要使用消息队列作为代理（Broker）与客户端相互通信，任务结果可以保存到不同的 Backend 中。
+Celery 是 Python 中最流行的分布式或异步任务队列框架，使用消息队列作为代理（Broker）与客户端相互通信，任务结果可以保存到不同的后端（Backend）。
+
+![20240416171455](https://image.zuoright.com/20240416171455.png)
 
 默认使用 RabbitMQ 作为 Broker，也可以使用 Redis。
 
@@ -13,7 +16,9 @@ Celery 是 Python 中最流行的异步消息队列框架，需要使用消息�
 - [Using RabbitMQ](https://docs.celeryq.dev/en/stable/getting-started/backends-and-brokers/rabbitmq.html)
 - [Using Redis](https://docs.celeryq.dev/en/stable/getting-started/backends-and-brokers/redis.html)
 
-## 创建任务
+## Celery Worker
+
+### 添加 task
 
 ```python
 # tasks.py
@@ -22,23 +27,29 @@ from celery import Celery
 # Celery库在使用前必须实例化，这个实例是线程安全的
 app = Celery('tasks', broker='pyamqp://guest@localhost//')
 """
-参数1: 当前模块名称
-参数2: 指定broker的url
-    rabbit(默认): amqp://localhost
-    redis: redis://localhost 
+参数1: 模块名或项目名，最好与 __main__ 保持一致，用于帮助定位任务
+参数2: 指定broker的url，redis可以这样: redis://，等价于 redis://localhost:6379/0
 """
+# app.conf.broker_url = 'redis://localhost:6379/0'  # 单独设置broker_url
+# app.conf.result_backend = 'redis://localhost:6379/0'  # 单独设置result_backend
+
 
 @app.task
 def add(x, y):
     return x + y
 ```
 
-## 运行 Celery Worker Server
+### 运行 Server
 
-运行一个或多个进程，监听消息队列，等待执行异步任务
+运行一个或多个 Worker，监听消息队列，等待执行异步任务
 
 ```shell
-celery -A tasks worker --loglevel=info
+# 运行2个Worker
+celery -A tasks worker --loglevel=info -n worker1@%h  # -n或--hostname指定节点名，%h会被替换为主机名
+celery -A tasks worker --loglevel=info -n worker2@%h
+
+# 运行1个Worker，可以不指定节点名
+celery -A tasks worker --loglevel=info  # 可以用concurrency=n指定进程数，默认与CPU数量相同
 
 '
  -------------- celery@bogon v5.3.6 (emerald-rush)
@@ -56,7 +67,6 @@ celery -A tasks worker --loglevel=info
                 .> celery           exchange=celery(direct) key=celery
 
 [tasks]
-
 [2024-04-15 23:56:40,089: INFO/MainProcess] Connected to amqp://guest:**@127.0.0.1:5672//
 [2024-04-15 23:56:40,096: INFO/MainProcess] mingle: searching for neighbors
 [2024-04-15 23:56:41,141: INFO/MainProcess] mingle: all alone
@@ -68,7 +78,7 @@ celery -A tasks worker --loglevel=info
 '
 ```
 
-## 调用任务
+### 调用 task
 
 ```python
 from tasks import add
@@ -80,11 +90,15 @@ add.delay(2, 3)  # <AsyncResult: ba0d3172-f2f1-42ee-9323-a78b9e9812d7>
 因为任务是异步的，调用任务不会直接返回任务结果，而是会返回一个 `AsyncResult` 实例，可用于检查任务的状态或者获取返回值，默认不启用，需要在实例化的时候配置 Result Backend 才可以使用
 
 ```python
-# 任务结果保存到 RPC
+# 任务结果传到RPC，但RPC并不能保存，而是作为消息发送，只能检索一次
 app = Celery('tasks', backend='rpc://', broker='pyamqp://')
 
-# 任务结果保存到 Redis
+# 任务结果保存到Redis
 app = Celery('tasks', backend='redis://localhost', broker='pyamqp://')
+# 设置存储到Redis的Key都加统一前缀，默认没有
+app.conf.result_backend_transport_options = {
+    'global_keyprefix': 'celery_test'
+}
 ```
 
 ```python
@@ -94,6 +108,53 @@ result = add.delay(2, 3)
 result.ready()  # 返回任务是否已完成
 result.get(timeout=1)  # 返回任务执行结果，通常不这么用，因为是异步的
 result.traceback  # 追溯任务异常
+```
+
+![20240416115038](https://image.zuoright.com/20240416115038.png)
+
+## Celery Beat
+
+celery beat 是一个调度程序（scheduler），可以定期启动任务，然后由集群中的可用工作节点执行
+
+### 添加 entry
+
+要定期调用任务，需要添加一个 entry，默认从 beat_schedule 设置获取 entry，也可以从 SQL 读取
+
+```python
+app.conf.beat_schedule = {
+    'add-every-30-seconds': {
+        'task': 'tasks.add',  # 要执行的任务名称，tasks是任务所在模块名(tasks.py)
+        'schedule': 30,  # 执行频率(秒)，可以是整数、timedelta、crontab形式
+        'args': (2, 3)  # 传递给 add() 的参数
+    },
+}
+
+# 默认使用 UTC 时区，Django 中默认使用 TIME_ZONE。
+app.conf.timezone = 'Asia/Shanghai'
+```
+
+### 启动调度程序
+
+Celery Beat 只是定时发送任务到消息队列中，实际执行这些任务的是 Celery Worker，所以启动 Beat 服务前记得先启动 Worker。
+
+```shell
+# 注意：任务结果会输出在 Worker 的日志中
+celery -A tasks beat --loglevel=info  # tasks 是模块名(tasks.py)
+'
+celery beat v5.3.6 (emerald-rush) is starting.
+__    -    ... __   -        _
+LocalTime -> 2024-04-16 16:46:04
+Configuration ->
+    . broker -> amqp://guest:**@localhost:5672//
+    . loader -> celery.loaders.app.AppLoader
+    . scheduler -> celery.beat.PersistentScheduler
+    . db -> celerybeat-schedule
+    . logfile -> [stderr]@%INFO
+    . maxinterval -> 5.00 minutes (300s)
+[2024-04-16 16:46:04,124: INFO/MainProcess] beat: Starting...
+[2024-04-16 16:46:04,162: INFO/MainProcess] Scheduler: Sending due task add-every-monday-morning (tasks.add)
+[2024-04-16 16:46:34,152: INFO/MainProcess] Scheduler: Sending due task add-every-monday-morning (tasks.add)
+'
 ```
 
 ## Using Celery with Django
@@ -188,12 +249,14 @@ def on_task_success(result):
     print(f"Task completed successfully with result: {result}")
 ```
 
-## 监听队列
+## Flower
 
-使用 Celery Flower 监视和管理 Celery 集群
+<https://flower.readthedocs.io/en/latest/index.html>
+
+Flower 是一个基于 Web 的工具，用于监视和管理 Celery 集群(Clusters)
 
 ```shell
 pip install flower
 
-celery -A myproject flower
+celery -A tasks flower --port=5001
 ```

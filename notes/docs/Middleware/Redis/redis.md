@@ -67,12 +67,12 @@ docker run -it --network some-network --rm redis redis-cli -h some-redis
 
 ```shell
 redis-cli
-"""
+'
 -h 127.0.0.1
 -p 6379
--a "password"
+-a "password" 测试环境可省略
 --raw  避免中文乱码
-"""
+'
 ```
 
 连接后，命令行提示符显示为：`127.0.0.1:6379>`
@@ -103,6 +103,8 @@ select 1
 可能是目前最好的开源客户端
 
 Mac 上启动如果报错可以执行：`sudo xattr -rd com.apple.quarantine /Applications/Another\ Redis\ Desktop\ Manager.app`
+
+![20240416112136](https://image.zuoright.com/20240416112136.png)
 
 ## 数据模型和操作
 

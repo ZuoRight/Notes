@@ -1,11 +1,9 @@
 # 操作Redis
 
-Redis官方推荐的两个Python语言的 Redis clients
+Redis 官方推荐的两个 Python 的 Redis Client
 
 - redis-py
-- walrus
-
-walrus 是对 redis-py 的封装，目的是让使用更容易
+- walrus，对 redis-py 的封装，目的是让使用更容易
 
 ## redis-py
 
