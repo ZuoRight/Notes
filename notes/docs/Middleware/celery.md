@@ -9,7 +9,7 @@ Celery 是 Python 中最流行的分布式或异步任务队列框架，使用�
 
 ![20240416171455](https://image.zuoright.com/20240416171455.png)
 
-默认使用 RabbitMQ 作为 Broker，也可以使用 Redis。
+默认使用 RabbitMQ 作为 Broker，也可以使用 Redis，不过据说有些坑。
 
 通常使用 Redis 作为 Backend，RabbitMQ 借助 RPC 也可以作为 Backend 存储结果，或者借助 SQLAlchemy 存储到 PostgreSQL、MySQL。
 
