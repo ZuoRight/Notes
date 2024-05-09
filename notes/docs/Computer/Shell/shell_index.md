@@ -2,7 +2,7 @@
 
 Shell 被称之为用户与内核交互的入口，有以下几种释义
 
-- CLI(Command Line Interface) 命令行交互，通常指的是这个
+- CLI（Command Line Interface） 命令行交互环境，通常指的是这个
 - Script 命令解释器，即脚本
 - 工具箱，提供各种小工具方便使用操作系统的功能
 
@@ -16,30 +16,54 @@ Shell 被称之为用户与内核交互的入口，有以下几种释义
 - Z Shell（zsh）
 - Friendly Interactive Shell（fish）
 
-最常用的 Shell 当属 Bash，它是 GNU 社区对 Bourne shell 的重写，使其符合自由软件协议，其它 Shell 基本都兼容 Bash
+最常用的 Shell 当属 Bash，它是 GNU 社区对 Bourne Shell 的重写，使其符合自由软件协议，其它 Shell 基本都兼容 Bash
 
-## 查看默认Shell
+## 默认 Shell
+
+Ubuntu 默认 Shell 是 dash，性能高，但会导致一些 bash 命令失败
+
+MacOS 默认 Shell 是 zsh
+
+- 查看安装的所有shell
 
 ```shell
-# Ubuntu 默认 Shell 是 dash，性能高，但会导致一些 bash 命令失败
-# MacOS 默认 Shell 是 zsh
-ls -l /bin/sh
-# 也可以用
-echo $SHELL
-
-# 查看内置shell
 cat /etc/shells
+'
+# List of acceptable shells for chpass(1).
+# Ftpd will not allow users to connect who are not using
+# one of these shells.
 
-# 切换shell
+/bin/bash
+/bin/csh
+/bin/dash
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+/opt/homebrew/bin/bash
+'
+```
+
+- 查看默认shell
+
+默认 shell 不一定是当前正在使用的 shell，使用 `ps` 命令返回进程列表，倒数第二个一般是当前正在使用的 shell
+
+```shell
+echo $SHELL
+```
+
+- 切换shell
+
+```shell
 # 需要输入密码，会弹出询问界面，问是否让dash为默认shell，选择否，将会删除dash，默认回到bash
 sudo dpkg-reconfigure dash
 ```
 
-## 设置默认Shell
+## 设置 MacOS 默认 Shell
 
 > 参考译文：<https://juejin.im/post/6844903972294262791>
 
-Mac 系统从 macOS Catalina 版开始默认 Shell 为 zsh，可以切换为bash
+macOS 从 Catalina 版开始默认 Shell 为 zsh，可以切换为 bash
 
 但由于GPLv3的原因，Mac自带的 bash 还是十几年前的 3.2 版本，所以需要先升级一下，即下载新版 bash 并设为默认
 
@@ -65,6 +89,24 @@ chsh -s /usr/local/bin/bash
 # 设置登录shell为新版
 # 即把/usr/local/bin/bash填加到当前系统受信任shells配置文件中，
 sudo vim /etc/shells  # 需要管理者权限
+```
+
+## 快捷键
+
+```text
+Tab 命令及选项补全/提示
+Shift + PageUp/PageDown 向前/后翻看输出信息，清空后则翻不出来
+
+Ctrl + s 打开/关闭回显（即输入不显示在屏幕上，常见于输入密码时）
+
+Ctrl + c 中断目前程序
+Ctrl + d 键盘输入结束EOF(End Of Input)，即关闭shell会话
+
+Ctrl + z 让进程变为后台进程，用 fg 命令切换回前台
+
+Ctrl + w 删除光标前一个单词
+Ctrl + u 删除光标前的单词直到行首
+Ctrl + k 删除光标后的单词直到行尾
 ```
 
 ## 工具箱
