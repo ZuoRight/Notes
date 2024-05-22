@@ -11,5 +11,5 @@ nav:
   - Solidity
   - Brownie
   - Hardhat
-  - 安全测试.md
+  - safe.md
   - ...
