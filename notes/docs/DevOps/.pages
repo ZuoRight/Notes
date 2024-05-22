@@ -1,6 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - dev_model.md
   - git.md
   - gitlab.md
   - github.md

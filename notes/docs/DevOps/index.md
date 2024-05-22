@@ -26,6 +26,8 @@ VCS 主要分为
 ## CICD
 
 - CI(Continuous Integrationv) 持续集成
-- CD(Continuous Deploymen) 持续部署/交付
+- CD(Continuous Deploymen) 持续交付
+
+![20240522103905](https://image.zuoright.com/20240522103905.png)
 
 ![20210808174712](http://image.zuoright.com/20210808174712.png)
