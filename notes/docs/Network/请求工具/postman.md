@@ -63,3 +63,11 @@ HTTP请求中的multipart/form-data，既可以上传文件等二进制数据，
 捕获数据，默认不补货返回信息，可以勾选，还可以筛选等
 
 ![20220902120551](http://image.zuoright.com/20220902120551.png)
+
+## Newman
+
+一个命令行工具，可以直接执行 Postman 导出的测试用例，然后再结合 Jenkins 就可以很方便地实现 API 测试与 CI/CD 流水线的集成。
+
+```shell
+newman run examples/sample-collection.json
+```

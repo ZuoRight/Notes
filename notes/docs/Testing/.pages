@@ -10,4 +10,5 @@ nav:
   - APITest
   - UITest
   - PerformanceTest
+  - Allure.md
   - ...

@@ -52,4 +52,4 @@ if __name__ == '__main__':
 
 ## Mock
 
-Mock在Python3.3以后版本中已经被集成到了unittest单元测试框架中，直接导入使用即可：`from unittest import mock`
+Mock 在 Python3.3 版本已经被集成到了 UnitTest 框架中，直接导入使用即可：`from unittest import mock`

@@ -518,3 +518,9 @@ allure generate ./result/ -o ./report/ --clean
 # 指定IP运行
 allure open -h 127.0.0.1 -p 7788 ./report/
 ```
+
+## 插件
+
+- 外部插件：`pip install` 安装的插件，比如 allure
+- 本地插件：Pytest 自动模块发现机制（conftest.py 存放的）
+- 内置插件：代码内部的 `_pytest` 目录加载

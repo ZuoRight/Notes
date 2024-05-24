@@ -16,33 +16,45 @@ hide:
 
 ## 框架选择
 
-- API自动化
+- API 自动化
 
-如果是HTTP协议接口首选第三方库`Requests`，RPC协议可以选用第三方库`ZeroRPC`，WebSocket协议可以使用系统内置的`webSocket`
+如果是 HTTP 协议接口首选第三方库 `Requests`，RPC 协议可以选用第三方库 `ZeroRPC`，WebSocket 协议可以使用系统内置的 `webSocket`
 
-- UI自动化
+- UI 自动化
 
-Web端可选`Selenium`，移动端可选`Appium`，底层其实都是`Webdriver`
+Web端可选 `Selenium`，移动端可选 `Appium`，底层其实都是 `Webdriver`
 
 ## 测试驱动
 
-首选Pytest
+### DDT
 
-参数化、数据驱动、fixture做接口依赖，allure测试报告插件
+Data-Driven Testing 数据驱动测试
+
+在数据驱动测试中，测试用例的逻辑是固定的，但是测试数据是可变的。测试用例会被设计成使用不同的数据集进行多次执行，以验证系统在不同输入情况下的行为。通常，测试数据以外部文件（如Excel表格、CSV文件、数据库等）的形式存储，并通过自动化测试框架读取和加载。
+
+适用于需要大量重复测试相同逻辑的场景，如表单验证、API测试等
+
+### KDT
+
+Keyword-Driven Testing 关键字驱动测试
+
+通过关键字来描述测试步骤和操作。关键字通常是测试框架提供的预定义操作或自定义操作，例如点击、输入、断言等。测试用例通过组合和调用这些关键字来实现相应的测试场景。
+
+适用于复杂的测试场景，可以通过组合和调用不同的关键字来构建各种测试场景。
 
 ## 数据存取
 
 数据包括：测试用例、配置文件、日志等等
 
-存取数据的格式可以是：json、yaml、excel、database等等
+存取数据的格式可以是：json、yaml、excel、database 等等
 
-如果是类表格形式的数据，比如excel、csv以及list类型的json、yaml等，可以使用tablib这个库来统一处理
+如果是类表格形式的数据，比如 excel、csv 以及 list 类型的 json、yaml 等，可以使用 tablib 这个库来统一处理
 
 使用非数据库格式存取用例的缺点是，增减内容都需要重新提交代码，而且多人协作会有版本不一致的问题
 
-使用数据库相对麻烦一些，但是可以集成Django等框架借助平台来更好的管理用例
+使用数据库相对麻烦一些，但是可以集成 Django 等框架借助平台来更好的管理用例
 
-关于数据库的选型，SQLite比较小巧灵活，但原生支持数据类型较少，MySQL新版本原生支持Json格式存储
+关于数据库的选型，SQLite 比较小巧灵活，但原生支持数据类型较少，MySQL 新版本原生支持 Json 格式存储
 
 - 获取单元格内容（`get_cell_value`）
 
