@@ -56,98 +56,24 @@ clear  # 清除所有断点
 clear 1  # 清除指定断点
 ```
 
-## logging
+## 代码分析工具 Linter
 
-> 参考手册：<https://docs.python.org/zh-cn/3.11/howto/logging.html#logging-basic-tutorial>
+![20240309001317](https://image.zuoright.com/20240309001317.png)
 
-基础
+与其它工具都是由 Python 编写不同，Ruff 是基于 Rust 的，支持 VSCode 插件
 
-```python
-import logging
+```shell
+pip install ruff
 
-logging.basicConfig(
-    filename='example.log', 
-    encoding='utf-8', 
-    format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p',  # format='%(levelname)s:%(message)s'
-    filemode='w',  # 翻盖
-    level=logging.DEBUG
-)
-
-logging.info("xxx")
+ruff check .                        # 分析当前及子目录内的所有文件
+ruff check path/to/code/            # 分析指定目录及子目录内的所有文件
+ruff check path/to/code/*.py        # 分析指定目录内的所有py文件
+ruff check path/to/code/to/file.py  # 分析 file.py
 ```
 
-日志库采用模块化方法，并提供几类组件：记录器、处理器、过滤器和格式器
+## 类型检查工具
 
-```python
-import logging
-
-# 创建一个日志记录器
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)  # 设置日志记录级别为DEBUG
-
-# 创建一个文件处理器，将日志消息输出到文件
-file_handler = logging.FileHandler('my_log.log')
-file_handler.setLevel(logging.DEBUG)  # 设置处理器的日志记录级别为DEBUG
-
-# 创建一个控制台处理器，将日志消息输出到控制台
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO)  # 设置处理器的日志记录级别为INFO
-
-# 创建一个格式化器，定义日志消息的格式
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-console_handler.setFormatter(formatter)
-
-# 将处理器添加到日志记录器
-logger.addHandler(file_handler)
-logger.addHandler(console_handler)
-
-# 发出不同级别的日志消息
-logger.debug('这是一条调试消息')
-logger.info('这是一条信息消息')
-logger.warning('这是一条警告消息')
-logger.error('这是一条错误消息')
-logger.critical('这是一条严重消息')
-```
-
-配置文件
-
-```python
-import logging
-import logging.config
-
-logging.config.fileConfig('logging.conf')
-
-# create logger
-logger = logging.getLogger('simpleExample')
-```
-
-```conf
-[loggers]
-keys=root,simpleExample
-
-[handlers]
-keys=consoleHandler
-
-[formatters]
-keys=simpleFormatter
-
-[logger_root]
-level=DEBUG
-handlers=consoleHandler
-
-[logger_simpleExample]
-level=DEBUG
-handlers=consoleHandler
-qualname=simpleExample
-propagate=0
-
-[handler_consoleHandler]
-class=StreamHandler
-level=DEBUG
-formatter=simpleFormatter
-args=(sys.stdout,)
-
-[formatter_simpleFormatter]
-format=%(asctime)s - %(name)s - %(levelname)s - %(message)s
-```
+- Mypy
+- Pytype
+- Pyright：VSCode的插件Pylance便基于此
+- Pyre

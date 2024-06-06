@@ -6,15 +6,14 @@ nav:
   - context.md
   - 数据类型的操作.md
   - function.md
-  - 内置函数.md
   - oop.md
   - meta.md
   - thread.md
   - coroutine.md
   - library.md
+  - 内置函数.md
   - 内置模块.md
-  - 时间模块.md
-  - 包管理.md
+  - venv.md
+  - log_and_config.md
   - debug.md
-  - tools
   - ...
