@@ -1,18 +1,20 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - 包管理.md
-  - 数据类型.md
-  - 数据类型的操作.md
+  - data_type.md
   - statements.md
+  - context.md
+  - 数据类型的操作.md
   - function.md
   - 内置函数.md
-  - class.md
-  - struct.md
+  - oop.md
+  - meta.md
   - thread.md
   - coroutine.md
   - library.md
   - 内置模块.md
   - 时间模块.md
-  - 数据处理
+  - 包管理.md
+  - debug.md
+  - tools
   - ...

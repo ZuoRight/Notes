@@ -1,127 +1,8 @@
 # 数据类型
 
-![20201129220902](http://image.zuoright.com/20201129220902.png)
+## 原子类型
 
-在Python语言中，内置数据类型可大致划分如上
-
-- 可迭代的，表示一个对象可以用`for`循环语句迭代其中的每个元素，还可以通过`iter()`方法转变为迭代器。
-- 可下标的，表示一个对象可以通过下标的方式索引，还可以使用切片功能。
-- 可哈希的，表示一个对象的哈希值在其生命周期内绝不改变。
-- 不可变的，表示一个对象具有固定的值，约等于可哈希。
-- 不重复的，表示一个对象的元素不能相同。
-
-## 类型判断
-
-- `type()`
-
-```python
-type(None)  # <class 'NoneType'>
-type(True)  # <class 'bool'>
-
-type(123)  # <class 'int'>
-type(1.2)  # <class 'float'>
-type(1 + 2j)  # <class 'complex'>
-
-type(b'_str')  # <class 'bytes'>
-type(_str)  # <class 'str'>
-
-type(_tuple)  # <class 'tuple'>
-type(_list)  # <class 'list'>
-type(_set)  # <class 'set'>
-type(_dict)  # <class 'dict'>
-```
-
-```python
-# 直接与list类比较
-if type(_list) == list:
-    pass
-
-# 转换为字符串后比较
-if str(type(_dict)) == "<class 'dict'>":
-    pass
-```
-
-- `isinstance()`
-
-```python
-isinstance(object, object_type)
-isinstance(object, (int,float))  # 同时判断是否属于多种类型中的一种
-```
-
-还可以进一步判断是否为可迭代的、可反转的、可哈希的、迭代器、生成器等。
-
-（通常需要引入内置库[collections.abc](https://docs.python.org/zh-cn/3.9/library/collections.abc.html)）
-
-```python
-from collections.abc import Iterable, Reversible, Hashable, Iterator, Generator
-
-_num = 123
-_str = "123"
-_tuple = (1,2,3)
-_list = [1, 2, [31, 32]]
-_set = {1,2,3}
-_dict = {"a":1,"b":2,"c":3}
-
-
-# 数值、字符串、元组等不可变的都是可哈希的
-print(isinstance(_num, Hashable))  # True
-print(isinstance(_str, Hashable))  # True
-print(isinstance(_tuple, Hashable))  # True
-
-print(isinstance(_list, Hashable))  # False
-print(isinstance(_set, Hashable))  # False
-print(isinstance(_dict, Hashable))  # False
-
-
-# 除了数值型都是可迭代的
-print(isinstance(_str, Iterable))  # True
-print(isinstance(_tuple, Iterable))  # True
-print(isinstance(_list, Iterable))  # True
-print(isinstance(_set, Iterable))  # True
-print(isinstance(_dict, Iterable))  # True
-
-print(isinstance(_num, Iterable))  # False
-
-
-# 序列都是可反转的
-print(isinstance(_str, Reversible))  # True
-print(isinstance(_tuple, Reversible))  # True
-print(isinstance(_list, Reversible))  # True
-
-print(isinstance(_num, Reversible))  # False
-print(isinstance(_set, Reversible))  # False
-print(isinstance(_dict, Reversible))  # False
-
-# 是否为迭代器
-isinstance(x, Iterator)
-
-# 是否为生成器
-isinstance(x, Generator)
-```
-
-## 不可迭代的
-
-不可迭代对象均是可哈希的，可以作为dict类型的key，以及set类型的元素。（虽然`None`、`True`、`False`也是可哈希的，但一般不用作key）
-
-### NoneType
-
-只有这一个单例对象：`None`
-
-### Boolean
-
-![20201129220346](http://image.zuoright.com/20201129220346.png)
-
-```python
-bool(1)  # True
-
-bool(0)  # False
-bool(None)  # False
-bool('')  # False
-```
-
-### Number
-
-- 整数 int
+### int 整数
 
 ```python
 # 没有大小限制，inf表示无限大
@@ -132,7 +13,7 @@ x = 0o10  # 八进制，8
 x = 0x10 # 十六进制，16
 ```
 
-- 浮点数 float
+### float 浮点数
 
 精度默认与其他语言的双精度一样
 
@@ -141,22 +22,49 @@ x = 0.0001
 x = 1e-04  # 用科学计数法表示
 ```
 
-- 复数 complex
+### complex 复数
 
 ```python
 # 复数由实部和虚部组成，实部和虚部都是浮点型
 # 在数学规范中虚部常用i表示，但Python遵循的电气学规范常用j表示
 x = 1 + 2j
 # 或者complex(real, imag)函数表示
-x = complex(1,2)
+y = complex(2, -3)
 
 print(x)  # (1+2j)
 print(x.real)  # 打印实部，1.0
 print(x.imag)  # 打印虚部，2.0
 print(x.conjugate()) # 打印共轭复数（实部相等，虚部相反），(1-2j)
+print(x + y)  # (3-1j)
 ```
 
-## 可迭代的
+### Fraction 有理数（分数）
+
+```python
+from fractions import Fraction
+
+# 创建一个Fraction对象
+frac = Fraction(3, 2)
+print(frac)  # 输出: 1.5
+print(frac.numerator)  # 输出分子: 3
+print(frac.denominator)  # 输出分母: 2
+```
+
+### bool 布尔值
+
+```python
+bool(1)  # True
+
+bool(0)  # False
+bool(None)  # False
+bool('')  # False
+```
+
+### NoneType 无（未知）
+
+只有这一个单例对象：`None`
+
+## 序列
 
 ### bytes
 
@@ -247,6 +155,8 @@ _list = ["v1", "v2", ["v3", "v4"]]
 _list = ["v1", "v2", {"v3":3, "v4":4}]
 ```
 
+## 散列
+
 ### set
 
 集合中的元素必须为可哈希的，即不允许重复元素，所以很适合用于去重以及执行数学上的集合操作如并集、交集、差集和对称差集等。
@@ -259,6 +169,8 @@ _set = {"k1", "k2", "k3"}
 不可变集合：`frozenset( )`
 
 ### dict
+
+虽然 `None`、`True`、`False` 也是可哈希的，但一般不用作 key
 
 ```python
 # 创建空字典
@@ -278,6 +190,20 @@ _dict = {("k1", "k2"): "v1"}
 
 # 字典的value值，与列表一样，可以是任意类型
 _dict = {"k1":(1,2), "k2":[1,2], "k3":{1,2}, "k4":{"v4": 3}}
+```
+
+## range()
+
+`range(start, stop, step)`
+
+与切片等一样，不包含右边界
+
+```python
+# 生成整数列表的迭代器，需要使用list()转换为列表
+# start默认为0，step默认为1，生成的列表不包含stop
+list(range(5))  # 等价于range(0,5,1)，[0,1,2,3,4]
+list(range(0))  # []
+list(range(0,-5,-1))  # [0,-1,-2,-3,-4]
 ```
 
 ## 推导式
@@ -335,29 +261,39 @@ _tcid = {v:k for k,v in _dict.items()}  # {1: 'a', 2: 'b', 3: 'c'}
 _k = {k for k,v in _dict.items()}  # {'c', 'a', 'b'}
 ```
 
-## 类型注解
+## 迭代器
 
-通过类型注解可以提高代码的可读性和易用性
+### 自定义迭代器
+
+### 生成器
+
+### 内置函数
+
+- `iter(iterable)`
+
+- `filter(function, iterable)`
+
+序列的每个元素作为参数传递给一个返回 `True` 或 `False` 的函数进行判断，将返回 `True` 的所有元素组成一个新的可迭代对象 `filter object`。
 
 ```python
-"""
-变量类型注解：用 :type 表示
-函数返回值类型注解：用 ->type 表示
-"""
-def func(x:int, y:int) -> int:
-    """
-    :x：xxx
-    :y：xxx
-    """
-    return x + y
+def is_even(n):
+    return n % 2 == 0
+
+numbers = [1, 2, 3, 4, 5, 6]
+filtered_numbers = filter(is_even, numbers)
+list(filtered_numbers)  # [2, 4, 6]
 ```
 
-对于复杂的数据结构需要借助 typing 模块来表达这些数据结构
+- `map(func, iterable)`
 
 ```python
-from typing import List, Tuple, Dict
+def square(x):
+    return x ** 2
 
-names: List[str] = ['lily', 'tom']
-version: Tuple[int, int, int] = (6, 6, 6)
-operations: Dict[str, bool] = {'sad': False, 'happy': True}
+numbers = [1, 2, 3, 4, 5, 6]
+m = map(square, numbers)  # 计算列表各个元素的平方，返回迭代器：<map object at 0x100d3d550>     
+list(m)  # [1, 4, 9, 16, 25, 36]
+
+# 通常使用lambda匿名函数来简化以上写法
+map(lambda x: x ** 2, numbers)
 ```

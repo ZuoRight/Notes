@@ -15,7 +15,7 @@ def func_name(param1, param2):
 func(1,2)
 ```
 
-## 参数类型
+## 参数形式
 
 首先要区分形参和实参，形参就是定义函数时候的参数，实参是调用函数时传入的参数。
 
@@ -144,6 +144,31 @@ def func():
         pass
         return
     pass
+```
+
+### 类型注解
+
+顾名思义就是标注变量或返回值的类型，可以提高代码的可读性和易用性
+
+变量类型注解：用 `:type` 表示，函数返回值类型注解：用 `->type` 表示
+
+```python
+def func(x: int, y: int) -> int:
+    """ 参数注释的正确格式
+    :x：xxx
+    :y：xxx
+    """
+    return x + y
+```
+
+对于复杂的数据结构需要借助 typing 模块来表达这些数据结构
+
+```python
+from typing import List, Tuple, Dict
+
+names: List[str] = ['lily', 'tom']
+version: Tuple[int, int, int] = (6, 6, 6)
+operations: Dict[str, bool] = {'sad': False, 'happy': True}
 ```
 
 ## 作用域

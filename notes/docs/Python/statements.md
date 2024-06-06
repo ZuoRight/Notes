@@ -1,13 +1,13 @@
 # 语句
 
-## 变量命名
+## 变量
 
-命名规则，大多数编程语言变量命名都只能由英文、下划线（_）、数字（不能作为开头）构成，且不能是系统保留关键字
+命名规则，不能是系统保留关键字，大多数编程语言变量命名都只能由英文、下划线（`_`）、数字（不能作为开头）构成
 
 - 下划线命名法：用于变量名、函数名、模块名等
 - 驼峰命名法：主要用于类名
 
-大小写敏感，只有少数编程语言大小写敏感，比如C，其它绝大多数都是不敏感的。
+大小写敏感，只有少数编程语言大小写敏感，比如 C，其它绝大多数都是不敏感的。
 
 但是建议始终保持大小写一致，养成良好的编程习惯。一般全大写表示这个变量约等于常量。
 
@@ -27,30 +27,29 @@ math.pi  # 3.141592653589793
 math.e  # 2.718281828459045
 ```
 
-在Python中，将一个对象赋值给一个变量，并不表示拷贝对象给变量，而是让一个变量指向了一个对象，而一个对象，可以被多个变量所指向。
+在 Python 中，将一个对象赋值给一个变量，并不表示拷贝对象给变量，而是让一个变量指向了一个对象，而一个对象，可以被多个变量所指向。
 
-另外变量可以被删除，但是对象无法被删除，只能被垃圾回收。
+变量可以被删除，但对象无法被删除，只能被垃圾回收。
 
-## 运算符
+## 表达式
 
-### 赋值运算符
+### 算术运算
+
+算数运算底层会转换为二进制做计算，而浮点数不能完美的转换为二进制，所以浮点数运算会存在精度问题，比如
 
 ```python
-x = 2
-
-# 同时给多个变量赋值
-x,y,z = 2,3,4
-x,y,z = (2,3,4)
-x,y,z = [2,3,4]
-
-# x做完算数运算后，再赋值给 x
-# 类似其他语言中的递增 ++i 和递减 --i
-x += 2
-x -= 2
-x *= 2
+8.88 - 7.77  # 1.1100000000000012
 ```
 
-### 算术运算符
+如果有高精度要求，可以如下，不过性能会有一些损失。
+
+```python
+from decimal import Decimal
+
+Decimal("8.88") - Decimal("7.77")  # Decimal('1.11')
+```
+
+更高级的运算可以用 `math` 和 `cmath` 函数。
 
 - 加 `+`
 
@@ -80,14 +79,6 @@ x *= 2
 [1] * 2 = [1,1]
 ```
 
-- 求幂
-
-```python
-2**3  # 8
-
-1.5e18  # e是指数exponent的缩写，表示：1.5 ** 18
-```
-
 - 除 `/`
 
 ```python
@@ -96,7 +87,7 @@ x *= 2
 10/3  # 3.3333333333333335
 ```
 
-- 地板除，取整
+- 取整，地板除
 
 ```python
 # 相除只取整数
@@ -111,17 +102,25 @@ x *= 2
 1 % 2  # 1
 ```
 
+- 求幂
+
+```python
+2**3  # 8
+
+1.5e18  # e是指数exponent的缩写，表示：1.5 ** 18
+```
+
 - 分组 `()`
 
-除了分组，还可以用来代码换行，括号里的都算一行，比用反斜杠`\`更易读。
+除了分组，还可以用来代码换行，括号里的都算一行，比用反斜杠 `\` 更易读。
 
-### 比较运算符
+### 比较运算
 
 判断两个对象的值是否相等
 
 `==`、`!=`、`>`、`>=`、`<`、`<=`
 
-### 身份运算符
+### 身份运算
 
 如果需要判断一个单例对象的值，比如是否为None，建议优先使用身份运算符，性能更优
 
@@ -150,18 +149,18 @@ id(a) == id(b)  # False
 a is b  # False
 ```
 
-### 成员运算符
+### 成员运算
 
-判断两个Iterabled对象的包含关系（dict用key值判断）
+判断两个 Iterabled 对象的包含关系（dict 用 key 值判断）
 
 - `in`
 - `not in`
 
-### 布尔运算符
+### 布尔运算
 
 `and`、`or`、`not`
 
-and和or，返回的不是bool值，而是其中的一个变量
+and 和 or，返回的不是 bool 值，而是其中的一个变量
 
 遵循短路规则，即从左到右运算，如果通过前一个变量就能判断出结果，就不需要也不会再去判断后面的变量
 
@@ -196,64 +195,43 @@ not 0  # Ture
 not 1  # False
 ```
 
-### 位运算符
+### 位运算
 
-- 按位与 &
+- 按位与 `&`
 
 ```python
 # 转换为二进制后按位与
 1 & 2  # 0
 ```
 
-- 按位或 |
+- 按位或 `|`
 
 ```python
 # 转换为二进制后按位与
 1 | 2  # 3
 ```
 
-## 表达式
-
-算数运算底层会转换为二进制做计算，而浮点数不能完美的转换为二进制，所以浮点数运算会存在精度问题，比如
+### 集合的运算
 
 ```python
-8.88 - 7.77  # 1.1100000000000012
-```
-
-如果有高精度要求，可以如下，不过性能会有一些损失。
-
-```python
-from decimal import Decimal
-
-Decimal("8.88") - Decimal("7.77")  # Decimal('1.11')
-```
-
-更高级的运算可以用`math`和`cmath`函数。
-
-## 集合的运算
-
-```python
-a = {1,2,3,4}
-b = {3,4,5}
-
-# 子集
-a < b  # False
-a.issubset(b)
-
-# 并集，合并并去重
-a | b  # {1,2,3,4,5}
-a.union(b)
-
+a = {1, 2, 3, 4}
+b = {3, 4, 5}
 
 # 交集，共有元素
 a & b  # {3,4}
 a.intersection(b)
 
+# 并集，合并并去重
+a | b  # {1,2,3,4,5}
+a.union(b)
+
+# 子集
+a < b  # False
+a.issubset(b)
 
 # 对称集，非共有元素
 a ^ b  # # {1,2,5}
 a.symmetric_difference(b)
-
 
 # a相对于b的差集
 a - b  # {1,2}
@@ -264,9 +242,52 @@ b - a  # {5}
 b.difference(a)
 ```
 
+## 赋值语句
+
+- 普通赋值
+
+```python
+x = 2
+```
+
+- 自增自减
+
+```python
+# x 做完算数运算后，再赋值给 x，类似其他语言中的递增 ++i 和递减 --i
+x += 2
+x -= 2
+x *= 2
+```
+
+- 并行赋值
+
+```python
+# 同时给多个变量赋值
+x, y, z = 2, 3, 4
+```
+
+- 交换赋值
+
+```python
+a, b = 5, 10
+a, b = b, a
+```
+
+- 解包
+
+```python
+x,y,z = (2,3,4)  # 元组解包
+x,y,z = [2,3,4]  # 列表解包
+
+# 解包并捕获多余的值
+numbers = [1, 2, 3, 4, 5]
+x, y, *rest = numbers
+print(rest)  # [3, 4, 5]
+```
+
 ## 判断语句
 
-- if
+### if
 
 ```python
 if condition:
@@ -305,8 +326,11 @@ else:
 # 不换行
 if x > y: res = x
 else: res = y
+```
 
-# 三元表达式
+### 三元表达式
+
+```python
 res = x if x > y else y
 res = 1 if 0 else 2 if False else 3  # 3
 ```
@@ -315,11 +339,11 @@ res = 1 if 0 else 2 if False else 3  # 3
 
 循环过程中如果改变了对象长度，则可能会影响循环次数，比如循环一个长度为2列表：`for i in _list`，第一次循环中移除了一个元素，此时列表长度变为1，则不会进入下一次循环，这时候可以这样去循环：`for i in list(_list)`
 
-while 语句比 for 语句自由度更高，因为 for 循环需要依次遍历，而 while 可以根据条件不依次遍历
+for 循环正常只能依次遍历，而 while 可以根据条件不依次遍历，自由度更高
 
-嵌套循环，外层主要用于循环次数，内层用于遍历
+嵌套循环，外层主要控制循环次数，内层用于遍历
 
-- for
+### for
 
 ```python
 for item in iterable:
@@ -329,7 +353,7 @@ else:
     expression
 ```
 
-- while
+### while
 
 ```python
 while condition:
@@ -339,17 +363,13 @@ else:
     expression
 ```
 
-## 控制循环
+## 跳转语句
 
-- pass
-
-用于占位
-
-- continue
+### continue
 
 中止当前循环，继续执行下一次循环
 
-- break
+### break
 
 终止整个循环，但只能结束当前层循环
 
@@ -370,84 +390,46 @@ for i in range(10):
         print(i,j)
 ```
 
-## with 语句
+### return
 
-上下文管理器（Context Manager）是指在一段代码执行之前执行一段代码，用于一些预处理工作。执行之后再执行一段代码，用于一些清理工作。
+## 空操作语句
 
-比如打开文件进行读写，读写完之后需要将文件关闭。又比如在数据库操作中，操作之前需要连接数据库，操作之后需要关闭数据库。
+`pass` 常用于占位
 
-上下文管理器之所以能够实现上述两个功能，是因为定义了上下文管理协议中的两个方法：`__enter__`和`__exit__`。
+## 异常处理语句
+
+### try
 
 ```python
-# 自定义打开文件操作的上下文管理器
-class MyOpen(object):
-    def __init__(self, file_name):
-        """初始化方法"""
-        self.file_name = file_name
-        self.file_handler = None
-        return
-
-    def __enter__(self):
-        """enter方法，返回file_handler"""
-        print("enter:", self.file_name)
-        self.file_handler = open(self.file_name, "r")
-        return self.file_handler
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        """exit方法，关闭文件并返回True"""
-        print("exit:", exc_type, exc_val, exc_tb)
-        if self.file_handler:
-            self.file_handler.close()
-        return True
-
-# 另外还可以使用装饰器实现上下文管理器
-@contextlib.contextmanager
-def open_func(file_name):
-    # yield前为__enter__方法
-    print('open file:', file_name, 'in __enter__')
-    file_handler = open(file_name, 'r')
-
-    yield file_handler
-
-    # yield后为__exit__方法
-    print('close file:', file_name, 'in __exit__')
-    file_handler.close()
-    return
+try:
+    pass  # 可能会出错的地方
+except Xxx1Error as e1:
+    print(e1)
+except Xxx2Error as e2:
+    print(e2)
+except (Xxx3Error,Xxx4Error) as es:
+    print("可以同时捕获多个异常")
+except Exception as e:
+    print('通用异常，可匹配任意异常')
+except:
+    print("如果不写异常名称，将匹配所有异常")
+else:
+    print("如果没有异常则执行")
+finally:
+    print("不管有没有异常最后都会执行")
 ```
 
-- 使用with语句即可调用上下文管理器
+### raise
+
+抛出异常
+
+### assert
+
+断言
 
 ```python
-with MyOpen("python_base.py") as file_in:
-    """
-    1. 执行语句，获取上下文管理器
-    2. 调用上下文管理器中的__enter__方法，该方法执行一些预处理工作
-    3. 将__enter__方法的返回值赋值给file_in，也可以不赋
-    4. 执行以下代码块，file_in可以被当作普通变量使用
-    """
-    for line in file_in:
-        print(line)
-        raise ZeroDivisionError
-    """
-    5. 调用上下文管理器中的的__exit__方法
-        __exit__方法有三个参数：exc_type, exc_val, exc_tb。
-            如果上面代码块发生异常并退出，那么分别对应异常的type、value 和 traceback。
-            否则三个参数全为None。
-        __exit__方法的返回值可以为True或者False
-            如果为True，那么表示异常被忽视，相当于进行了try-except操作（此示例正是这种情况）
-            如果为False，则该异常会被抛出
-    """
-```
+assert n != 0, "n is zero"  # n如果等于0则抛出次错误提示
 
-- 可以嵌套
-
-```python
-with A() as a, B() as b:
-    SUITE
-
-# 等价于
-
-with A() as a:
-    with B() as b:
-        SUITE
+assert A and B and C  # 会从做到有断言，只要断言失败，就不会再继续向右继续断言
+# 但是更建议分开写
 ```

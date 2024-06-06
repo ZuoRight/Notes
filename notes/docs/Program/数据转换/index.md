@@ -9,13 +9,11 @@
 
 > <https://docs.python.org/3/library/codecs.html#standard-encodings>
 
-Python3默认为`utf_8`编码，可用`_`替代`-`，可忽略大小写
-
-所以这些别名也都有效：`utf-8`, `utf8`, `UTF-8`, `U8`, `UTF`, `cp65001`，但使用别名可能会导致执行速度变慢
+Python3 默认为 `utf_8` 编码，可忽略大小写，还可用 `_` 替代 `-`，所以这些别名也都有效：`utf-8`, `utf8`, `UTF-8`, `U8`, `UTF`, `cp65001`，但使用别名可能会导致执行速度变慢
 
 ## 文件读写
 
-使用Python的内置函数`open()`来操作文件
+使用Python的内置函数 `open()` 来操作文件
 
 > 文档：<https://docs.python.org/zh-cn/3.10/library/functions.html#open>
 
@@ -47,7 +45,7 @@ f.write()  # 写入
 f.close()  
 ```
 
-支持with语句触发上下文管理器，自动关闭，自动处理异常
+支持 with 语句触发上下文管理器，自动关闭，自动处理异常
 
 ```python
 with open(filename1, mode) as f:
@@ -65,7 +63,7 @@ with open(filename1, mode) as f:
 
 类型
 
-- `t` 文本模式（默认），可省略，`r`与`rt`等价
+- `t` 文本模式（默认），可省略，`r` 与 `rt`等价
 - `b` 二进制模式，读写bytes数据，比如Excel、图片、视频等，`rb`、`wb`、`ab`
 
 > office文件其实是个压缩包，由很多.xml和其他文件构成，所以属于二进制
