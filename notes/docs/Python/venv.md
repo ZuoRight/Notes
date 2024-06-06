@@ -4,7 +4,7 @@ hide:
   - feedback
 ---
 
-# 虚拟环境和包管理
+# 虚拟环境和第三方库管理
 
 - pip + venv
 - pip + virtualenv + virtualenvwrapper

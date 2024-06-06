@@ -8,11 +8,10 @@ nav:
   - function.md
   - oop.md
   - meta.md
+  - module.md
   - thread.md
   - coroutine.md
-  - library.md
-  - 内置函数.md
-  - 内置模块.md
+  - built_in.md
   - venv.md
   - log_and_config.md
   - debug.md
