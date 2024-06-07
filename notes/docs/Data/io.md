@@ -1,19 +1,11 @@
-# 引言
 
-程序运行的过程中，所有的变量都是在内存中临时存储，把内存中的变量变为可存储或者可传输的，然后才能存储到磁盘或者数据交换，这个过程称之为序列化，反之，称为反序列化
+# I/O 操作
 
-- dump 存/写 序列化
-- load 取/读 反序列化
-
-## 关于编码
-
-> <https://docs.python.org/3/library/codecs.html#standard-encodings>
-
-Python3 默认为 `utf_8` 编码，可忽略大小写，还可用 `_` 替代 `-`，所以这些别名也都有效：`utf-8`, `utf8`, `UTF-8`, `U8`, `UTF`, `cp65001`，但使用别名可能会导致执行速度变慢
+I/O 操作包括从内存、文件、网络、设备等不同数据源读取或写入数据
 
 ## 文件读写
 
-使用Python的内置函数 `open()` 来操作文件
+使用 Python 的内置函数 `open()` 来操作文件
 
 > 文档：<https://docs.python.org/zh-cn/3.10/library/functions.html#open>
 
@@ -138,4 +130,34 @@ f.seek(0)  # 可以将指针移回初始位置，此时再读取将可以读到
 ```python
 # 另外也可以用以下方式获取，不受指针位置影响
 print(f.getvalue())
+```
+
+## Pickle
+
+Python 特有的一种数据格式，用于将 Python 对象序列化为二进制格式，以便存储到文件或传输。
+
+- 写
+
+```python
+import pickle
+
+# 存到内存
+y = pickle.dumps(x)
+
+# 存储到文件，必须是“wb”模式
+with open("test.pickle", "wb") as f:
+    pickle.dump(x, f)
+```
+
+- 读
+
+```python
+import pickle
+
+# 从内存中取出
+pickle.loads(y)
+
+# 从文件中取出，必须是“rb”模式
+with open("test.pickle", "rb") as f:
+    pickle.load(f)
 ```

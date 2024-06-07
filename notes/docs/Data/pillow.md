@@ -1,6 +1,6 @@
 # Pillow
 
-Python内置的图像处理库：PIL(Python Imaging Library)，仅支持2.x，而Pillow是在其基础上开发的，支持3.x的版本，且增加了很多新特性
+Python 内置的图像处理库：PIL(Python Imaging Library)，仅支持 2.x，而 Pillow 是在其基础上开发的，支持 3.x 的版本，且增加了很多新特性
 
 安装：`pip install pillow`
 

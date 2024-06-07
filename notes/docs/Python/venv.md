@@ -254,36 +254,3 @@ workon  # 查看
 workon xxx  # 进入
 deactivate.bat  # 退出
 ```
-
-## Conda
-
-Python常被用于数据的处理，需要基于大量的第三方库，一个个手动安装这些库很麻烦，可以下载已经集成了这些库的发行版Python，比如Anaconda
-
-Anaconda有：社区版（Anaconda Distribution）、企业版（Anaconda Enterprise）、最小发行版（Miniconda）
-
-> 下载安装：<https://www.anaconda.com/download/>
-
-Anaconda社区版包含
-
-- Anaconda Navigator 图形界面
-- Anaconda Cloud 包管理服务
-- Conda 包以及虚拟环境管理工具，还可以管理Python版本，可单独使用
-
-虽然Conda来自Python社区且由Python语言开发，但它不止可以管理Python语言及Python的包，还可以管理其他语言的包（Java，R，Ruby，JS，Lua，Scala，C/C++，Fortran）
-
-```shell
-conda info
-conda help
-
-conda env list
-conda info --envs  # 查看
-conda create -n xxx python=3  # 创建
-conda remove -n xxx --all  # 删除
-
-activate xxx  # 进入
-deactivate xxx  # 退出
-
-conda install xxx
-conda update xxx
-conda remove xxx
-```

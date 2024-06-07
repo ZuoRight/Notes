@@ -91,13 +91,15 @@ EXPOSE 8000
 # CMD ["python", "manage.py", "runserver"]
 ```
 
-## 普通命令行
+## 代码运行
+
+### 普通命令行
 
 用来执行 `.py` 脚本文件
 
 <https://docs.python.org/3.9/using/cmdline.html#command-line-and-environment>
 
-## 交互式命令行
+### 交互式命令行
 
 常用于验证一些代码片段
 
@@ -105,13 +107,34 @@ EXPOSE 8000
 
 自带命令行工具，命令行中输入 `python` 即可进入 Shell 环境
 
-```shell
-"""
-简单：类似自然语言
-明确：做任何事情应有且最好只有一个方法，少即是多。
-优雅：准确的来说应该是实用
-"""
+### IDLE
 
+IDLE 是自带的简易集成开发和学习环境，也可用来调试
+
+命令行中输入 `idle` 或 `idle3` 即可进入 Shell 交互式环境，然后在菜单栏中点击 File，选择 New File 可以打开一个编辑窗口，保存代码后，点击 Run 执行代码，结果会显示在 Shell 窗口。
+
+编辑器窗口快捷键：
+
+```text
+Command + n 新建文件
+Command + s 保存文件
+F5 执行代码
+```
+
+Shell 窗口快捷键
+
+```text
+Control + p 上一句代码
+Control + n 下一句代码
+```
+
+## Python 之禅
+
+- 简单：类似自然语言
+- 明确：做任何事情应有且最好只有一个方法，少即是多。
+- 优雅：准确的来说应该是实用
+
+```shell
 >>> import this
 
 The Zen of Python, by Tim Peters
@@ -152,32 +175,6 @@ If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- lets do more of those!
 # 命名空间是一种绝妙的理念，我们应当多加利用
 ```
-
-### [IPython](https://ipython.org/)
-
-基于 Python Shell 的第三方开源交互命令行，更强大，也是 Jupyter 的内核。
-
-`pip install ipython`
-
-## 编辑器 & IDE
-
-### IDLE
-
-IDLE 是自带的简易集成开发和学习环境
-
-快捷键：`Alt+P` 上一句代码，`Alt+N` 下一句代码
-
-### VSCode
-
-VSCode 其实并不算 IDE，只是一个编辑器，个人比较喜欢用这个开发 Python，而不是更智能的 PyCharm，因为我觉得它过于傻瓜化，用习惯后会影响我的开发能力。
-
-### PyCharm
-
-[PyCharm](https://www.jetbrains.com/pycharm/)是捷克公司 JetBrains 为 Python 语言所生产的商业IDE，社区版免费
-
-具体使用方法可参考：[PyCharm 中文指南](http://pycharm.iswbm.com/zh_CN/latest/)
-
-PyCharm 默认会在创建项目时新建一个虚拟环境，默认名称 venv
 
 ## 参考手册
 

@@ -1,0 +1,10 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - io.md
+  - 序列化
+  - 表格数据处理
+  - spider.md
+  - regex.md
+  - 行文本处理
+  - 数据库
+  - ...

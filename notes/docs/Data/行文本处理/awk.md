@@ -1,25 +1,29 @@
 # AWK
 
-用于数据分析并生成报告
+AWK 是以其创始人 Aho、Weinberger 和 Kernighan 三人的名字命名的
 
-> 并不会对原文件进行修改，需要使用`awk '{print $0 > "filename"}' filename`的方式修改原文件
+Sed 常用于把不规范的文本处理为规范的文本。而 AWK 常用于处理规范的文本，比如配置文件等，常作为 Sed 的补充。
+
+不过 AWK 本身非常强大，可以算是一种编程语言，用于在文本文件或文本流中进行数据提取和报告生成，特别适合处理列式数据，可以对文本的每一行进行模式匹配和操作，然后根据指定的规则进行输出。
+
+不会对原文件进行修改，需要使用 `awk '{print $0 > "filename"}' filename` 重定向的方式修改原文件
 
 https://book.saubcy.com/AwkInAction/
 
-{**这里面放的是处理每一行时要执行的语句，主输入循环**}
+`{ 这里面放的是处理每一行时要执行的语句，主输入循环 }`
 
 - `awk ‘条件 {函数; print $0}’ filename`
   - 原样输出要放在双引号里：`{print "str"}`
   - 带编号输出：`{print x++,$0}`
 - `awk -f script.awk filename`
 
-BEGIN{**这里面放的是执行前的语句，可以做预处理**}
+`BEGIN{ 这里面放的是执行前的语句，可以做预处理 }`
 
 - 指定输入输出分隔符：`awk ‘BEGIN{FS=":";OFS="-"} {print $0}’ filename`
   - 指定多个可用中括号扩起来：`awk ‘BEGIN{FS="[:;]"} {print $0}’ filename`
 - 其它方式：`awk -F ':' ‘{print $0}’ OFS="-" filename`
 
-END{**这里面放的是处理完所有的行后要执行的语句**}
+`END{ 这里面放的是处理完所有的行后要执行的语句 }`
 
 ## 系统变量
 

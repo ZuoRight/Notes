@@ -2,8 +2,6 @@
 nav:
   - vim.md
   - vscode.md
-  - regex.md
-  - sed.md
-  - awk.md
-  - markdown.md
+  - pycharm.md
+  - jupyter.md
   - ...

@@ -1,11 +1,5 @@
 # OpenPyXL
 
-![20211126111629](http://image.zuoright.com/20211126111629.png)
-
-操作Excel2007文件时（`.xls`），不同操作需要使用不同的库
-
-操作Excel2010文件时（`.xlsx/xlsm/xltx/xltm`），`OpenPyXL`库可以同时满足常见的读写等操作
-
 > [OpenPyXL 官方文档](https://openpyxl.readthedocs.io/en/stable/)
 
 安装：`pip install openpyxl`

@@ -1,14 +1,14 @@
 # JSON
 
-[关于Json](https://www.json.org/json-zh.html)
+[关于 JSON](https://www.json.org/json-zh.html)
 
-JSON(JavaScript Object Notation)是一种轻量级的数据交换格式，其数据类型和JS几乎一致，实际就是JS的一个子集
+JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式，其数据类型和JS几乎一致，实际就是JS的一个子集
 
-在JSON出现之前，数据交换一直使用XML，虽然它本身并不复杂，但它有一大堆规范，让人头大。
+在 JSON 出现之前，数据交换一直使用 XML，虽然它本身并不复杂，但它有一大堆规范，让人头大。
 
-但JSON出现后，很快发展为ECMA标准的数据交换格式，所有的编程语言都有解析JSON的库。
+但 JSON 出现后，很快发展为 ECMA 标准的数据交换格式，所有的编程语言都有解析JSON的库。
 
-JSON规定了其键以及字符串都必须用双引号括起来，字符集必须是UTF-8。
+JSON 规定了其键以及字符串都必须用双引号括起来，字符集必须是 UTF-8。
 
 - 对象
 

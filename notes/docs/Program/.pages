@@ -1,10 +1,8 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - index.md
-  - c.md
-  - java.md
-  - go.md
+  - Language
   - 数据结构与算法
-  - 数据转换
-  - 数据处理
+  - encode.md
+  - compile.md
+  - IDE
   - ...

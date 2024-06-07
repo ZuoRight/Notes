@@ -2,7 +2,7 @@
 
 [官方文档](https://tablib.readthedocs.io/en/stable){ .md-button .md-button--primary }
 
-Tablib用于处理表格类数据（tabular dataset），为不同格式的数据集提供一个统一的格式
+Tablib 一个轻量级的数据导入导出库，主要用于处理表格类数据（tabular dataset），可以导入不同格式的数据集，提供一个统一的数据结构，并将其导出为多种格式。
 
 ```shell
 pip install tablib  # 安装，更新加参数：--upgrade
@@ -11,14 +11,12 @@ pip install "tablib[html, pandas, ods, xls, xlsx, yaml]"  # 安装多个依赖
 pip install "tablib[all]"  # 安装所有依赖
 ```
 
-其实就是将操作各种格式的库封装了一层，比如操作`.xlsx`，底层依赖的依然是openpyxl这个库
+## 构建 Dataset
 
-## 构建Dataset
+- `tablib.Databook()` 相当于 Excel 中的 WorkBook，即 Sheet 的集合
+- `tablib.Dataset()` 相当于 Excel 中的 Sheet
 
-- `tablib.Databook()` 相当于Excel中的WorkBook，即Sheet的集合
-- `tablib.Dataset()` 相当于Excel中的Sheet
-
-> 使用场景：由于tablib不能直接导入sql数据，但可以先读取sql之后构建成Dataset格式使用
+> 使用场景：由于 tablib 不能直接导入 sql 数据，但可以先读取 sql 之后构建成 Dataset 格式使用
 
 ```python
 import tablib

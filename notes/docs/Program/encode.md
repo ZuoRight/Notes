@@ -228,6 +228,8 @@ Unicode 只规定了每个字符对应的码点（编号），而一个码点占
 
 Python3、Go、Rust 等语言的字符串默认使用 UTF-8，但 Python2 比 Unicode 诞生要早，所以默认编码是 ASCII，一般需要在源码开头声明编码格式
 
+Python3 中用到 `utf_8` 时可忽略大小写，还可用 `_` 替代 `-`，所以这些别名也都有效：`utf-8`, `utf8`, `UTF-8`, `U8`, `UTF`, `cp65001`，但使用别名可能会导致执行速度变慢
+
 ```python
 #!/usr/bin/python
 # -*- coding: utf-8 -*-

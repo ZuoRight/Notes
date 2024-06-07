@@ -1,6 +1,6 @@
 # Vim
 
-Vi 是终端里的文本编辑器，Vim 是 Vi iMproved，即Vi编辑器的增强版，向上兼容
+Vi 是终端里的文本编辑器，Vim 是 Vi iMproved，即 Vi 编辑器的增强版，向上兼容
 
 `vi` 和 `vim` 命令可以混用，是一样的
 
@@ -83,3 +83,11 @@ shift+n 切换到上一个
 
 - 按`d`删除
 - 按`i`或`I`进行插入，然后按两次`esc`完成块操作
+
+## 配置
+
+Vim 是非常强大的，可以安装各种插件，参考：<https://github.com/amix/vimrc>
+
+比如显示树形目录结构的插件 [NERDTree](https://github.com/preservim/nerdtree)
+
+![20240607121856](https://image.zuoright.com/20240607121856.png)
