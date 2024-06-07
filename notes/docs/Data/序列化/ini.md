@@ -1,6 +1,8 @@
 # INI
 
-`*.ini`初始化文件(Initialization file)，后缀名也可以是`.cfg`、`.conf`、`.txt`等
+`*.ini` 初始化文件(Initialization file)
+
+后缀名也可以是`.cfg`、`.conf`、`.txt` 等
 
 ```ini
 [section]
@@ -8,17 +10,19 @@
 name=value
 ```
 
-## 读写ini
+## 读取 ini
 
-> Windows不要使用中文注释
+> Windows 不要使用中文注释
 
 ```python
 import configparser
 
 # 创建管理对象
 conf = configparser.ConfigParser()
+
 # 读ini文件
 conf.read(conf_path, encoding="utf-8")
+
 # 获取所有的section, 返回list
 sections = conf.sections()
 # 获取某个section下所有(key:value)，每一对用一个元组表示，返回一个元组list

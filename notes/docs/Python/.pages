@@ -9,6 +9,7 @@ nav:
   - oop.md
   - meta.md
   - module.md
+  - io.md
   - thread.md
   - coroutine.md
   - built_in.md

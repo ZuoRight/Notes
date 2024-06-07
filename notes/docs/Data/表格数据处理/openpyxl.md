@@ -1,6 +1,6 @@
 # OpenPyXL
 
-> [OpenPyXL 官方文档](https://openpyxl.readthedocs.io/en/stable/)
+[OpenPyXL 官方文档](https://openpyxl.readthedocs.io/en/stable/)
 
 安装：`pip install openpyxl`
 
@@ -210,9 +210,9 @@ def get_field(self, row, field_name):
     return cell_value
 ```
 
-## 复制Sheet
+## 复制 Sheet
 
-> 并没有一个内置方法可以直接复制Sheet，需要遍历所有单元格内容，写入新创建的一张表
+> 并没有一个内置方法可以直接复制 Sheet，需要遍历所有单元格内容，写入新创建的一张表
 
 ```python
 def copy_sheet(self, ws_old):

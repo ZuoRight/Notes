@@ -55,17 +55,7 @@ date_iso: 2021-08-14T15:02:31+08:00
 
 `pip install pyyaml`
 
-- 读
-
-```python
-import yaml
-
-def read_from_yaml(file_path):
-    with open(file_path, "r", encoding="utf_8") as f:
-        return yaml.safe_load(f.read())
-```
-
-- 写
+- 序列化
 
 ```python
 import yaml
@@ -74,6 +64,16 @@ def write_to_yaml(content, file_path):
     with open(file_path, "w", encoding="utf_8") as f:
         # allow_unicode=True 保证中文写入正常显示
         yaml.dump(content, f, default_flow_style=False, encoding='utf-8', allow_unicode=True)
+```
+
+- 反序列化
+
+```python
+import yaml
+
+def read_from_yaml(file_path):
+    with open(file_path, "r", encoding="utf_8") as f:
+        return yaml.safe_load(f.read())
 ```
 
 - 修改

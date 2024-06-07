@@ -59,11 +59,11 @@ date = 1979-05-27
 ```python
 import toml
 
-# 读
-with open(file_path, "r", encoding='UTF-8') as f:
-    content = toml.load(file_path)
-
-# 写
+# 序列化并写入
 with open(file_path, "w", encoding='UTF-8') as f:
     toml.dump(content, f)
+
+# 读取并反序列化
+with open(file_path, "r", encoding='UTF-8') as f:
+    content = toml.load(file_path)
 ```

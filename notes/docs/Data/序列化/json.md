@@ -53,19 +53,20 @@ JSON 规定了其键以及字符串都必须用双引号括起来，字符集必
 }
 ```
 
-## 读写JSON
+## JSON 操作
 
 > 文档：<https://docs.python.org/3/library/json.html>
 
-- 写，序列化
-
 内置的 `json` 库在处理大数据时，性能较差，可以考虑使用基于 C 语言的 `ujson` 或基于 Rust 的 `ojson`
+
+- 序列化
 
 ```python
 import json
 
-# 存到内存
-cache = json.dumps(x)
+# 序列化为字符串对象
+x = 1
+_str = json.dumps(x)  # "1"
 
 # 序列化并存储到json文件
 with open(file_path, "w", encoding='UTF-8') as f:
@@ -78,13 +79,13 @@ with open(file_path, "w", encoding='UTF-8') as f:
     """
 ```
 
-- 读，反序列化
+- 反序列化
 
 ```python
 import json
 
-# 从内存中读取
-_str = "{'a':1, 'b':2}"
+# 从字符串对象读取并反序列化为Python对象
+_str = '{"a":1, "b":2}'
 json.loads(_str)
 """
 需要注意的是，这里字符串类型的dict，key如果为单引号，loads时会报错，需要转换兼容一下
@@ -92,59 +93,7 @@ json.loads(_str)
 方式2：new_str = json.dumps(ast.literal_eval(str))  # 需要 import ast
 """
 
-# 从文件中读取
+# 从文件对象读取并反序列化为dict
 with open(file_path, "r", encoding='UTF-8') as f:
     result = json.load(f)
 ```
-
-## JSONPath
-
-各种格式的数据反序列化(load)为Python字典(dict)后，如果想更方便的获取指定字段数据，建议使用JsonPath，相当于Xpath之于XML。
-
-> 项目地址：<https://github.com/json-path/JsonPath>
->
-> 在线解析：<https://jsonpath.com/>
-
-`pip install jsonpath`
-
-- `$` 根节点
-- `@` 当前节点
-- `.` 或者 `[]` 子节点
-- `..` 模糊匹配
-- `*` 匹配所有节点
-- `[]` 迭代器标示，可用于数组下标[0]，范围选择[a,c]
-- `()` 支持表达式计算
-- `?()` 过滤操作
-
-```json
-{
-    "A": 123,
-    "B": "str",
-    "C":
-    {
-        "C1":[1,2,3],
-        "C2":
-        {
-            "C2_1":
-            [
-                {"id":1, "name":"yi"},
-                {"id":2, "name":"er"},
-                {"id":3, "name":"san"}
-            ]
-        }
-    }
-}
-```
-
-```python
-import jsonpath
-
-# 结果以list形式返回，匹配不到结果则返回False
-jsonpath.jsonpath(json_obj,'$..name')  # 获取所有“name”的值，['yi', 'er', 'san']
-jsonpath.jsonpath(json_obj,'$..C2_1[*].id')  # 获取所有id的值，[1, 2, 3]
-jsonpath.jsonpath(json_obj,'$..C2_1[1]')  # 获取C2_1对应列表的第二个数据，[{'id': 2, 'name': 'er'}]
-jsonpath.jsonpath(json_obj,'$..C2_1[(@.length-1)]')  # 获取C2_1对应列表的倒数第一个，[{'id': 3, 'name': 'san'}]
-jsonpath.jsonpath(json_obj,'$..C2_1[?(@.id<2)]')  # 过滤出C2_1对应列表中id小于2的值，[{'id': 1, 'name': 'yi'}]
-```
-
-另一个解析JSON的库：[jmespath](https://jmespath.org/tutorial.html)，待研究...

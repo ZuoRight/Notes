@@ -1,4 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - jsonpath.md
+  - deepdiff.md
+  - httprunner.md
   - ...
