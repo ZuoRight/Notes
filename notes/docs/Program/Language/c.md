@@ -110,13 +110,32 @@ int main(void){  // 语句块{}，快内语句可以不缩进，为了美观可�
 
 ## 基本类型
 
-有三种：字符（char）、整数（int）和浮点数（float）
+- 整数：short, int, long
+- 浮点数：float, double, long double
+- 单字符：char
+- 空：void
 
 ```c
 int x = 100;
 int x = 0x1A2B; // 十六进制
+
 float x = 10.5;
+
 char x = 'B';  // 等同于：char c = 66;
+```
+
+## 字符串
+
+C 语言没有单独的字符串类型，字符串实际是字符（char）类型的数组
+
+```c
+char* s = "Hello";  // 指针方式声明，不可以修改，可以指向另一个字符串
+
+char s[] = "Hello";  // 数组的方式声明，可以修改，但是不能指向另一个字符串，{'H', 'e', 'l', 'l', 'o'}
+
+#include <string.h>
+printf("%zd", strlen(s));  // 返回字符串字节长度，5
+printf("%d", sizeof(s));  // 字节长度，6，每个字符串末尾会自动加一个结束符\0（一个全是二进制0的字节）
 ```
 
 ## 数组
@@ -143,23 +162,9 @@ int x[5] = {22, 37, 3490, 18, 95};  // 声明并赋值，此时可省略数组�
 printf("%zu", sizeof(x) / sizeof(int)); // 5=20/4
 ```
 
-## 字符串
+## struct 结构体
 
-C语言没有单独的字符串类型，字符串实际是字符（char）类型的数组
-
-```c
-char* s = "Hello";  // 指针方式声明，不可以修改，可以指向另一个字符串
-
-char s[] = "Hello";  // 数组的方式声明，可以修改，但是不能指向另一个字符串，{'H', 'e', 'l', 'l', 'o'}
-
-#include <string.h>
-printf("%zd", strlen(s));  // 返回字符串字节长度，5
-printf("%d", sizeof(s));  // 字节长度，6，每个字符串末尾会自动加一个结束符\0（一个全是二进制0的字节）
-```
-
-## struct
-
-C语言没有类/对象，struct就类似于其他编程语言的class/object
+C 语言没有类/对象，struct 就类似于其他编程语言的class/object
 
 自定义结构体，可包含不同类型的值
 
@@ -178,7 +183,7 @@ f1.numerator = 22;
 f1.denominator = 7;
 ```
 
-## union
+## union 共用体
 
 可以变换数据类型的自定义类型
 
@@ -194,9 +199,7 @@ union quantity q;
 q.count = 4;  // 想取某个属性的值，就需要先给它赋值
 ```
 
-## enum
-
-枚举类型
+## enum 枚举
 
 ```c
 // 内部常量名通常大写

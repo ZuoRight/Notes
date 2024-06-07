@@ -82,7 +82,7 @@ direction 文字方向，ltr（从左到右），rtl（从右到左），ttb（�
 """
 ```
 
-## 保存为base64格式
+## 保存为 Base64 格式
 
 ```python
 def generate_data_url(im, img_format):

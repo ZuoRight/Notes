@@ -30,3 +30,29 @@ Python库
 - smtplib 内置
 - Zmail 更简单
 - yagmail 更优雅
+
+## smtplib
+
+- 发送带有 Base64 编码附件的电子邮件
+
+```python
+import smtplib
+from email.message import EmailMessage
+import base64
+
+msg = EmailMessage()
+msg['Subject'] = 'Example Email with Attachment'
+msg['From'] = 'sender@example.com'
+msg['To'] = 'recipient@example.com'
+
+# 读取并编码附件文件
+with open('example.png', 'rb') as f:
+    file_data = f.read()
+    file_name = 'example.png'
+    msg.add_attachment(file_data, maintype='image', subtype='png', filename=file_name)
+
+# 发送邮件
+with smtplib.SMTP('smtp.example.com') as smtp:
+    smtp.login('username', 'password')
+    smtp.send_message(msg)
+```

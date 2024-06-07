@@ -1,0 +1,7 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - HTMLTestRunner.md
+  - pytest-html.md
+  - allure.md
+  - email.md
+  - ...

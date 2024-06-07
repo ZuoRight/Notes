@@ -16,4 +16,6 @@ nav:
   - venv.md
   - log_and_config.md
   - debug.md
+  - pillow.md
+  - spider.md
   - ...

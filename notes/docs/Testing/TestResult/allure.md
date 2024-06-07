@@ -27,13 +27,14 @@ hide:
 # 生成报告到指定路径（--clean-alluredir 清除之前运行产生的文件）
 pytest --alluredir=tmp/allure-results [--clean-alluredir]
 
-# 运行allure查看报告
+# 运行生成的json报告文件
 allure serve tmp/allure-results
 ```
 
 ```shell
 # 把报告转成html格式（-o 指定路径，--clean 清除之前运行产生的文件）
 allrue generate tmp/allures [-o tmp/path] [--clean]
+
 # html格式的报告不能直接打开，需用此命令打开
 allure open -h 127.0.0.1 -p 8883 tmp/path
 ```

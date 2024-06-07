@@ -42,14 +42,6 @@ if __name__ == '__main__':
     """
 ```
 
-## HTMLTestRunner
-
-是unittest用于生成测试报告的扩展库
-
-手动将 `HTMLTestRunner.py` 文件放置在Python安装路径下的Lib文件夹中，源文件仅支持Python 2.x版本，可自行修改为适配Python3.x版本。
-
-> 参考：<https://github.com/Gelomen/HTMLTestReportCN-ScreenShot>
-
 ## Mock
 
 Mock 在 Python3.3 版本已经被集成到了 UnitTest 框架中，直接导入使用即可：`from unittest import mock`
