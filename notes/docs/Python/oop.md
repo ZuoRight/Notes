@@ -170,7 +170,7 @@ if __name__ == "__main__":
 
 ```python
 """
-Python中一切都是对象，全部继承自object基类（也称作父类、超类）
+Python中一切皆对象，全部继承自object基类（也称作父类、超类）
 object在Py2.x中必须写，在Py3.x可省略不写
 """
 class A(object):

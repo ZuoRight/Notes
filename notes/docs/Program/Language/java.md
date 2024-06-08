@@ -40,7 +40,7 @@ C:\Program Files\Java\jdk-11.0.12
 
 ## demo
 
-- 代码
+Java 是一种面向对象的编程语言，所有的代码必须在类的上下文中定义和执行。
 
 ```java
 // 定义一个公开的类，一个文件只能有一个public类型的class
@@ -58,10 +58,10 @@ public class Hello {
 
 必需保存为与类名相同的文件名：Hello.java
 
-- 运行
+运行
 
 ```shell
-javac Hello.java  # # 先编译，生成demo.class
+javac Hello.java  # 先编译，生成demo.class
 java Hello  # 参数Hello为类名，JVM会自动查找对应的.class并运行
 ```
 

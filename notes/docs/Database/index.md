@@ -28,7 +28,9 @@ SQLite 2000，非C/S结构的嵌入式数据库，应该是世界上使用最多
 
 - 结构化查询语言（SQL, Structured Query Language）
 
-SQL 是 DBA 与 DBMS 交互的语言，SQL 语言按照功能可划分为
+SQL 是 DBA 与 DBMS 交互的语言，属于一种特定领域专用语言（Domain Specific Language, DSL）
+
+按照功能 SQL 可划分为
 
 ```text
 数据控制语言 DCL(Data Control Language)，用于操作访问权限和安全级别。
