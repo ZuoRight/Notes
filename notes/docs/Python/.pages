@@ -2,9 +2,9 @@
 nav:
   - index.md
   - data_type.md
+  - 数据类型的操作.md
   - statements.md
   - context.md
-  - 数据类型的操作.md
   - func.md
   - generics.md
   - oop.md
