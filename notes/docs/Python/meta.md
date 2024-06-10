@@ -5,16 +5,77 @@
 - 内省（Introspection）：指在运行时检查对象的类型和属性的能力，回答「是什么」的问题
 - 反射（Reflection）：包含内省，不仅可以检查，还可以修改对象的结构和行为，回答「如何做」的问题。
 
-## 内省
+## 元类
 
-- 可迭代的（Iterable），表示一个对象可以用 `for` 循环语句迭代其中的每个元素，还可以通过 `iter()` 方法转变为迭代器。
-- 可重复的，表示一个对象的元素可以相同。
-- 可下标的，表示一个对象可以通过下标的方式索引，还可以使用切片功能。
-- 可哈希的（Hashable），表示一个对象的哈希值在其生命周期内绝不改变。
+元类控制着类的创建、行为和特性，是用来创建类的类。
 
-### 类型判断
+Python 中，所有类都是 `type` 的实例，包括 `object` 和 `type` 自己
 
-- `type()`
+> object 定义了一些基础方法和属性，比如 `__init__`、`__str__`、`__repr__` 等，是所有类的基类（除了它本身），包括 `type`（形成了闭环）
+
+![20240611012144](https://image.zuoright.com/20240611012144.png)
+
+```shell
+>>> type(type)
+<class 'type'>
+
+>>> type(object)
+<class 'type'>
+
+>>> type(list)
+<class 'type'>
+```
+
+也就是说所有类都是由 `type()` 创建的，当系统扫描到 `class` 关键字的时候，就会调用 `type()` 进行类的创建
+
+```python
+# 准备一个基类
+class BaseClass:
+    def talk(self):
+        print("i am people")
+
+# 准备一个方法
+def say(self):
+    print("hello")
+
+# 使用type来创建User类
+User = type("User", (BaseClass, ), {"name": "user", "say": say})
+    """三个参数解析
+    类的名称，若不指定，也要传入空字符串「""」
+    元/父类，以 tuple 的形式传入，若没有父类也要传入空元组「()」，默认继承 (object, )
+    绑定的方法或属性，以 dict 的形式传入
+    """
+```
+
+通常大多数人都不会直接使用到元类，一般只有在框架设计、动态类生成等高级场景中使用，比如 Django 中的 ORM
+
+## 抽象基类
+
+<https://docs.python.org/3/library/collections.abc.html>
+
+`collections.abc` 模块定义了一些常用的抽象基类（Abstract Base Classes, ABC），这些基类用于提供容器对象的基本接口，作为其他类实现接口时的超类或者说父类。
+
+所谓的接口，就是类实现或继承的公开属性和方法，让对象在系统中扮演特定的角色
+
+Python 中没有类似 `interface` 这样的关键字，而且除了抽象基类，每个类都有接口
+
+![20240610225814](https://image.zuoright.com/20240610225814.png)
+
+## 协议
+
+协议可以理解为是非正式的接口，比如一个类只需实现 `__len__` 和 `__next__()` 两个方法，就属于迭代器，即使它只是行为看起来像迭代器。
+
+> 这就是所谓的鸭子类型，不需要检查它是不是真的鸭子，只需要检查它的叫声和走路姿势像不像鸭子
+
+鸭子类型的非正式协议虽然不严谨，但却简单高效，我们没必要为了让编译器高兴，只需要实现功能即可，保持 KISS 原则。
+
+- 猴子补丁
+
+协议是动态的，也就是说，即便对象一开始没有某个方法也没关系，可以后来再提供，比如运行时，甚至可以在交互式控制台中临时修改或扩展代码，而不改动源码，这种技术就叫猴子补丁（Monkey Patch），就像猴子一样灵活和随性。
+
+## 类型检查
+
+### `type()`
 
 ```python
 type(None)  # <class 'NoneType'>
@@ -43,7 +104,7 @@ if str(type(_dict)) == "<class 'dict'>":
     pass
 ```
 
-- `isinstance()`
+### `isinstance()`
 
 ```python
 isinstance(object, object_type)
@@ -51,10 +112,6 @@ isinstance(object, (int,float))  # 同时判断是否属于多种类型中的一
 ```
 
 还可以进一步判断是否为可迭代的、可反转的、可哈希的、迭代器、生成器等。
-
-通常需要引入内置库 [collections.abc](https://docs.python.org/zh-cn/3.9/library/collections.abc.html)
-
-> abc 是 抽象基类（Abstract Base Classes）的意思
 
 ```python
 from collections.abc import Iterable, Reversible, Hashable, Iterator, Generator
@@ -103,66 +160,18 @@ isinstance(x, Iterator)
 isinstance(x, Generator)
 ```
 
-## 反射
-
-可以用来动态地调用对象的方法、创建实例、以及修改类定义。
-
-## 装饰器
-
-装饰器可以用于动态地向类添加方法，从而实现 Mixin 的效果。
-
-```python
-# 创建一个混入类
-class LoggerMixin:
-    def log(self, message):
-        print(f"日志: {message}")
-
-
-import time
-# 创建一个类装饰器
-def measure_performance(cls):
-    # 对类 cls 进行一些操作
-    class WrappedClass(cls):
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-
-        def __getattribute__(self, name):
-            orig_attr = super().__getattribute__(name)
-            if callable(orig_attr):
-                def new_func(*args, **kwargs):
-                    start_time = time.time()
-                    result = orig_attr(*args, **kwargs)
-                    end_time = time.time()
-                    print(f"执行 {name} 耗时: {end_time - start_time} 秒")
-                    return result
-                return new_func
-            return orig_attr
-    # 返回 cls 或返回一个新的类
-    return WrappedClass
-
-
-# 使用类装饰器与混入类
-@measure_performance
-class MyTask(LoggerMixin):
-    def process_task(self):
-        self.log("任务开始执行")
-        # 执行一些操作
-        time.sleep(1)  # 模拟耗时操作
-        self.log("任务执行结束")
-
-# 使用类
-task = MyTask()
-task.process_task()
-```
-
 ## 装饰器 decorator
 
-装饰器是一种语法糖，可以使代码松耦合，能够在不修改原有业务逻辑的情况下对代码进行扩展。
+参考：[Python核心技术与实战-强大的装饰器（极客时间）](https://time.geekbang.org/column/article/100914?utm_source=infoq&utm_medium=sitenavigation)
 
-一个函数前面可以加若干装饰器，类也有装饰器
+装饰器是可调用的对象，其参数是另一个函数（被装饰的函数），装饰器可能会处理被装饰的函数，然后把它返回，或者将其替换成另一个函数或可调用对象。
+
+装饰器可以使代码松耦合，能够在不修改原有业务逻辑的情况下对代码进行扩展。
+
+一个函数可以同时添加多个装饰器。
 
 ```python
-# 装饰器函数，参数，内容，返回都是函数
+# 装饰器函数的参数、内容、返回都是函数
 def decorator(func):
     # 闭包
     def wrapper(*args, **kwargs):
@@ -174,19 +183,130 @@ def decorator(func):
 
     return wrapper
 
-# 调用装饰器
-"""最本质的方式"""
-def demo(x):
-    pass
-
-decorator(demo_func)(x)
-
-"""语法糖"""
+# 装饰器语法糖，等价于：decorator(demo)
 @decorator
-def demo(x):
+def demo():
     pass
 
-demo(x)
+demo()
 ```
 
-参考：[Python核心技术与实战-强大的装饰器（极客时间）](https://time.geekbang.org/column/article/100914?utm_source=infoq&utm_medium=sitenavigation)
+装饰器不仅可以放在函数上，还可以放在类上，实现一些需要使用元类才能完成的工作。还可以用来增强 Mixin。
+
+一些特定场合，装饰器可以和 Mixin 类一起使用实现一些复杂功能
+
+- 权限管理和日志记录
+
+```python
+# 混入类，用于提供日志记录功能
+class LoggerMixin:
+    def log(self, message):
+        print(f"[LOG] {message}")
+
+# 装饰器，用于权限检查
+def require_permission(permission):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            instance = args[0]
+            if hasattr(instance, 'permissions') and permission in instance.permissions:
+                return func(*args, **kwargs)
+            else:
+                print(f"Permission '{permission}' required.")
+                return None
+        return wrapper
+    return decorator
+
+# 使用混入类和装饰器的主类
+class User(LoggerMixin):
+    def __init__(self, name, permissions):
+        self.name = name
+        self.permissions = permissions
+    
+    @require_permission('admin')
+    def access_admin_panel(self):
+        self.log(f"{self.name} accessed admin panel.")
+        print(f"{self.name} is accessing admin panel.")
+
+# 示例使用
+admin_user = User("AdminUser", ["admin", "editor"])
+admin_user.access_admin_panel()
+
+regular_user = User("RegularUser", ["viewer"])
+regular_user.access_admin_panel()
+```
+
+- 数据库操作和事务管理
+
+```python
+# 混入类，提供数据库连接
+class DatabaseMixin:
+    def connect(self):
+        print("Connecting to database...")
+
+# 装饰器，提供事务管理
+def transactional(func):
+    def wrapper(*args, **kwargs):
+        instance = args[0]
+        instance.connect()
+        print("Starting transaction...")
+        try:
+            result = func(*args, **kwargs)
+            print("Committing transaction...")
+            return result
+        except Exception as e:
+            print(f"Transaction failed: {e}")
+            print("Rolling back transaction...")
+            return None
+    return wrapper
+
+# 使用混入类和装饰器的主类
+class DataManager(DatabaseMixin):
+    @transactional
+    def insert_data(self, data):
+        print(f"Inserting data: {data}")
+        # Here would be the logic to insert data into the database
+        if data == "bad data":
+            raise ValueError("Invalid data")
+
+# 示例使用
+manager = DataManager()
+manager.insert_data("good data")
+manager.insert_data("bad data")
+```
+
+- 测试和 Mock
+
+```python
+# 混入类，提供基础测试功能
+class TestMixin:
+    def setUp(self):
+        print("Setting up test environment...")
+    
+    def tearDown(self):
+        print("Tearing down test environment...")
+
+# 装饰器，模拟特定的函数行为
+def mock_function(original_func):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            print(f"Mocking function {original_func.__name__}")
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+# 使用混入类和装饰器的测试类
+class MyTestCase(TestMixin):
+    def __init__(self):
+        self.setUp()
+    
+    @mock_function(print)
+    def test_example(self):
+        print("Executing test example.")
+
+    def __del__(self):
+        self.tearDown()
+
+# 示例使用
+test_case = MyTestCase()
+test_case.test_example()
+```

@@ -9,6 +9,7 @@ nav:
   - oop.md
   - generics.md
   - meta.md
+  - struct.md
   - module.md
   - io.md
   - thread.md
