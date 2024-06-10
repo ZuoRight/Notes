@@ -154,3 +154,39 @@ class MyTask(LoggerMixin):
 task = MyTask()
 task.process_task()
 ```
+
+## 装饰器 decorator
+
+装饰器是一种语法糖，可以使代码松耦合，能够在不修改原有业务逻辑的情况下对代码进行扩展。
+
+一个函数前面可以加若干装饰器，类也有装饰器
+
+```python
+# 装饰器函数，参数，内容，返回都是函数
+def decorator(func):
+    # 闭包
+    def wrapper(*args, **kwargs):
+        print("前置扩展内容，调用装饰器，实现一些权限校验、用户认证等功能")
+
+        demo(*args, **kwargs)  # 使用装饰器的函数被传入到这里，使用可变参数让其更加灵活
+
+        print("后置扩展内容，调用装饰器，实现一些日志记录、性能测试、事务处理、缓存等")
+
+    return wrapper
+
+# 调用装饰器
+"""最本质的方式"""
+def demo(x):
+    pass
+
+decorator(demo_func)(x)
+
+"""语法糖"""
+@decorator
+def demo(x):
+    pass
+
+demo(x)
+```
+
+参考：[Python核心技术与实战-强大的装饰器（极客时间）](https://time.geekbang.org/column/article/100914?utm_source=infoq&utm_medium=sitenavigation)

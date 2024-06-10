@@ -1,11 +1,15 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - 数据结构与算法
-  - Language
   - compile.md
   - encode.md
   - 序列化
   - regex.md
   - 行文本处理
   - IDE
+  - Language
+  - 数据结构与算法
+  - paradigm.md
+  - pattern.md
+  - dev_model.md
+  - test_model.md
   - ...

@@ -263,13 +263,90 @@ _k = {k for k,v in _dict.items()}  # {'c', 'a', 'b'}
 
 ## 迭代器
 
+```python
+# 可以使用 next() 函数逐个获取元素，直到抛出 StopIteration 异常
+r = next(iterator)
+
+# 遍历迭代器
+r = [i for i in iterator]
+
+# 将迭代器转为list
+list(iterator)
+```
+
 ### 自定义迭代器
 
+实现 `__next__()` 方法
+
 ### 生成器
+
+- 生成器表达式
+
+```python
+g = (x for x in range(5))
+```
+
+- 生成器函数
+
+斐波那契数列
+
+```python
+def fib(max):
+    n = 0
+    a, b = 0, 1
+    while n < max:
+        if (counter > n): 
+            return  # 函数执行完return语句就结束了
+        yield b  # 但函数执行完yield语句只是暂停
+        # 执行到此暂停，对象存储到迭代器数据流中
+        # 调用一次next()，将生成器对象返回，然后继续执行后面的代码，循环到此，再一次暂停
+        a, b = b, a + b
+        n = n + 1
+
+g = fib(5)  # <generator object demo at 0x100d55a50>
+next(g)  # 获取生成器对象的值，['...']
+```
+
+消费者-生产者
+
+```python
+# 消费者
+def consumer():
+    message = "start"
+    while True:
+        receiver = yield message  # yield语句执行完，返回message值，然后暂停，可以接收send发送的消息，下一轮启动然后赋值给receiver
+        print("receiver: ", receiver)  # 等待下一次启动才会执行赋值语句
+        if not receiver:
+            return "end"
+        message = "200 OK"  # 执行完这里，会继续返回执行 yield message，也就是说此函数每一轮返回的都是message的值
+
+
+if __name__ == '__main__':
+    gen = consumer()  # <generator object consumer at 0x100d55a50>
+    print(next(gen))  # 预激
+    """
+    在一个生成器函数未启动之前，是不能传递值进去
+    也就是说在使用gen.send(x)之前，必须先使用 next(gen) 或者 gen.send(None) 来返回生成器的第一个值
+    send() 类似 next()，但可以传递参数，发送消息：gen.send("message")
+    """
+    # 模拟生产者
+    print(gen.send(1))  # 200 OK
+    print(gen.send(2))  # 200 OK
+    print(gen.send(3))  # 200 OK
+    print(gen.send(None))  # StopIteration: end
+```
 
 ### 内置函数
 
 - `iter(iterable)`
+
+```python
+iter("123")  # <str_iterator object at 0x10de4aa10>
+iter((1,2,3))  # <tuple_iterator object at 0x10de4a950>
+iter([1,2,3])  # <list_iterator object at 0x10de4aa10>
+iter({1,2,3})  # <set_iterator object at 0x10de4bf50>
+iter({"a":1,"b":2})  # <dict_keyiterator object at 0x10de469b0>
+```
 
 - `filter(function, iterable)`
 
@@ -284,7 +361,9 @@ filtered_numbers = filter(is_even, numbers)
 list(filtered_numbers)  # [2, 4, 6]
 ```
 
-- `map(func, iterable)`
+- `map(function, iterable)`
+
+遍历可迭代对象，将每个元素都作为参数传给函数，最后返回一个新的可迭代对象
 
 ```python
 def square(x):
