@@ -5,9 +5,9 @@ nav:
   - statements.md
   - context.md
   - 数据类型的操作.md
-  - function.md
-  - oop.md
+  - func.md
   - generics.md
+  - oop.md
   - meta.md
   - struct.md
   - module.md
