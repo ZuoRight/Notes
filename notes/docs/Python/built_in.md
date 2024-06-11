@@ -1,21 +1,6 @@
 # 内置函数和标准库
 
-<https://docs.python.org/zh-cn/3.9/library/index.html>
-
 ## 部分内置函数解析
-
-```python
->>>  dir(__builtins__)
-
-# 内置错误类型
-['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BlockingIOError', 'BrokenPipeError', 'BufferError', 'BytesWarning', 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError', 'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning', 'EOFError', 'Ellipsis', 'EnvironmentError', 'Exception', 'False', 'FileExistsError', 'FileNotFoundError', 'FloatingPointError', 'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError', 'ImportWarning', 'IndentationError', 'IndexError', 'InterruptedError', 'IsADirectoryError', 'KeyError', 'KeyboardInterrupt', 'LookupError', 'MemoryError', 'ModuleNotFoundError', 'NameError', 'None', 'NotADirectoryError', 'NotImplemented', 'NotImplementedError', 'OSError', 'OverflowError', 'PendingDeprecationWarning', 'PermissionError', 'ProcessLookupError', 'RecursionError', 'ReferenceError', 'ResourceWarning', 'RuntimeError', 'RuntimeWarning', 'StopAsyncIteration', 'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'TimeoutError', 'True', 'TypeError', 'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning', 'ValueError', 'Warning', 'ZeroDivisionError', 
-
-# 这应该叫啥
-'__build_class__', '__debug__', '__doc__', '__import__', '__loader__', '__name__', '__package__', '__spec__', 
-
-# 内置函数
-'abs', 'all', 'any', 'ascii', 'bin', 'bool', 'breakpoint', 'bytearray', 'bytes', 'callable', 'chr', 'classmethod', 'compile', 'complex', 'copyright', 'credits', 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit', 'filter', 'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass', 'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview', 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property', 'quit', 'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars', 'zip']
-```
 
 - `help()`
 
@@ -84,44 +69,6 @@ print(1，2，3， seq="", end="\n")
 # pprint（pretty print）可以输出格式化的数据
 from pprint import pprint
 pprint(data)
-```
-
-- `eval()`、`exec()`、`compile()`
-
-eval(object, [globals])用于字符串形式的执行单个表达式，不能做赋值循环等操作，返回表达式的结果
-
-```python
-y = eval("1+2")  # y=3
-```
-
-exec(object, [globals])用于执行字符串形式的语句，返回None
-
-```python
-y = exec("x=1+2")  # y=None, x=3
-```
-
-compile(string, "", mode)可以将字符串编译为eval()和exec()可执行的格式，<https://segmentfault.com/q/1010000017171114>
-
-我理解通常代码很复杂或为了复用时才需要compile预先编译，不然并没有什么卵用，直接使用eval/exec即可
-
-```python
-cmd = compile("1+2", "", mode="eval")
-eval(cmd)  # 3
-```
-
-这几个函数一定要慎用，可能会因为代码注入带来安全隐患
-
-比如：`eval("__import__('os').system('rm -rf *')")`
-
-如果字符串中是标准的python数据类型，可以用ast.literal_eval()方法替代，它会判断内容是否为合法的python类型，为否则会报错。
-
-```python
-import ast
-
-_str = "_dcit"
-# 如果_str="faker.name()"这种非合法python类型，则会报错
-# 另外_str=""也会报错
-_dcit = ast.literal_eval(_str)
 ```
 
 ## random
@@ -275,17 +222,6 @@ sys.argv
 比如执行命令：python demo.py arg1 arg2 arg3 ...
 sys.argv获取到的参数list为：["demo.py", "arg1", "arg2", "arg3", ...]
 """
-```
-
-## ast
-
-```python
-import ast
-
-_str = "_dcit"
-# 如果_str="faker.name()"这种非合法python类型，则会报错
-# 另外_str=""也会报错
-_dcit = ast.literal_eval(_str)
 ```
 
 ## webbrowser

@@ -5,75 +5,46 @@
 - 内省（Introspection）：指在运行时检查对象的类型和属性的能力，回答「是什么」的问题
 - 反射（Reflection）：包含内省，不仅可以检查，还可以修改对象的结构和行为，回答「如何做」的问题。
 
-## 元类
+可以理解为内省是了解和获取程序结构的工具，而反射则是基于这些了解进行实际操作和修改的能力。
 
-元类控制着类的创建、行为和特性，是用来创建类的类。
+## 内省
 
-Python 中，所有类都是 `type` 的实例，包括 `object` 和 `type` 自己
+Python 提供了许多内置函数和模块，使得内省成为一种非常直观和容易使用的功能。
 
-> object 定义了一些基础方法和属性，比如 `__init__`、`__str__`、`__repr__` 等，是所有类的基类（除了它本身），包括 `type`（形成了闭环）
+列表形式返回对象所有的属性和方法
 
-![20240611012144](https://image.zuoright.com/20240611012144.png)
+- `dir(object)`
 
-```shell
->>> type(type)
-<class 'type'>
+类型检查
 
->>> type(object)
-<class 'type'>
+- `type(object)` 返回对象的类型
+- `isinstance(object, class)` 检查对象是否是指定类的实例
 
->>> type(list)
-<class 'type'>
-```
+获取、设置或检查对象的属性
 
-也就是说所有类都是由 `type()` 创建的，当系统扫描到 `class` 关键字的时候，就会调用 `type()` 进行类的创建
+- `getattr(object, 'attribute')` 获取对象的属性值。
+- `setattr(object, 'attribute', value)` 设置对象的属性值。
+- `hasattr(object, 'attribute')` 检查对象是否有某个属性。
+
+返回全局和局部命名空间中的字典
+
+- `globals()` 返回一个包含当前全局符号表的字典。
+- `locals()` 返回一个包含当前局部符号表的字典。
+
+### `dir()`
 
 ```python
-# 准备一个基类
-class BaseClass:
-    def talk(self):
-        print("i am people")
+>>>  dir(__builtins__)
 
-# 准备一个方法
-def say(self):
-    print("hello")
+# 内置错误类型
+['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BlockingIOError', 'BrokenPipeError', 'BufferError', 'BytesWarning', 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError', 'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning', 'EOFError', 'Ellipsis', 'EnvironmentError', 'Exception', 'False', 'FileExistsError', 'FileNotFoundError', 'FloatingPointError', 'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError', 'ImportWarning', 'IndentationError', 'IndexError', 'InterruptedError', 'IsADirectoryError', 'KeyError', 'KeyboardInterrupt', 'LookupError', 'MemoryError', 'ModuleNotFoundError', 'NameError', 'None', 'NotADirectoryError', 'NotImplemented', 'NotImplementedError', 'OSError', 'OverflowError', 'PendingDeprecationWarning', 'PermissionError', 'ProcessLookupError', 'RecursionError', 'ReferenceError', 'ResourceWarning', 'RuntimeError', 'RuntimeWarning', 'StopAsyncIteration', 'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'TimeoutError', 'True', 'TypeError', 'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning', 'ValueError', 'Warning', 'ZeroDivisionError', 
 
-# 使用type来创建User类
-User = type("User", (BaseClass, ), {"name": "user", "say": say})
-    """三个参数解析
-    类的名称，若不指定，也要传入空字符串「""」
-    元/父类，以 tuple 的形式传入，若没有父类也要传入空元组「()」，默认继承 (object, )
-    绑定的方法或属性，以 dict 的形式传入
-    """
+# 这应该叫啥
+'__build_class__', '__debug__', '__doc__', '__import__', '__loader__', '__name__', '__package__', '__spec__', 
+
+# 内置函数
+'abs', 'all', 'any', 'ascii', 'bin', 'bool', 'breakpoint', 'bytearray', 'bytes', 'callable', 'chr', 'classmethod', 'compile', 'complex', 'copyright', 'credits', 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit', 'filter', 'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass', 'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview', 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property', 'quit', 'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars', 'zip']
 ```
-
-通常大多数人都不会直接使用到元类，一般只有在框架设计、动态类生成等高级场景中使用，比如 Django 中的 ORM
-
-## 抽象基类
-
-<https://docs.python.org/3/library/collections.abc.html>
-
-`collections.abc` 模块定义了一些常用的抽象基类（Abstract Base Classes, ABC），这些基类用于提供容器对象的基本接口，作为其他类实现接口时的超类或者说父类。
-
-所谓的接口，就是类实现或继承的公开属性和方法，让对象在系统中扮演特定的角色
-
-Python 中没有类似 `interface` 这样的关键字，而且除了抽象基类，每个类都有接口
-
-![20240610225814](https://image.zuoright.com/20240610225814.png)
-
-## 协议
-
-协议可以理解为是非正式的接口，比如一个类只需实现 `__len__` 和 `__next__()` 两个方法，就属于迭代器，即使它只是行为看起来像迭代器。
-
-> 这就是所谓的鸭子类型，不需要检查它是不是真的鸭子，只需要检查它的叫声和走路姿势像不像鸭子
-
-鸭子类型的非正式协议虽然不严谨，但却简单高效，我们没必要为了让编译器高兴，只需要实现功能即可，保持 KISS 原则。
-
-- 猴子补丁
-
-协议是动态的，也就是说，即便对象一开始没有某个方法也没关系，可以后来再提供，比如运行时，甚至可以在交互式控制台中临时修改或扩展代码，而不改动源码，这种技术就叫猴子补丁（Monkey Patch），就像猴子一样灵活和随性。
-
-## 类型检查
 
 ### `type()`
 
@@ -159,6 +130,142 @@ isinstance(x, Iterator)
 # 是否为生成器
 isinstance(x, Generator)
 ```
+
+## 反射
+
+动态地导入模块
+
+`importlib.import_module(module_name)`
+
+动态调用方法或访问对象的属性
+
+```python
+method = getattr(obj, 'method_name')
+result = method()
+```
+
+删除对象的属性和方法
+
+`delattr()`
+
+动态执行 Python 代码
+
+- `eval()`
+- `exec()`
+
+### `eval()`、`exec()`、`compile()`
+
+`eval(object, [globals])`
+
+用于字符串形式的执行单个表达式，不能做赋值循环等操作，返回表达式的结果
+
+```python
+y = eval("1+2")  # y=3
+```
+
+`exec(object, [globals])`
+
+用于执行字符串形式的语句，返回 None
+
+```python
+y = exec("x=1+2")  # y=None, x=3
+```
+
+`compile(string, "", mode)`
+
+可以将字符串编译为 `eval()` 和 `exec()` 可执行的格式，<https://segmentfault.com/q/1010000017171114>
+
+个人理解通常代码很复杂或为了复用时才需要 `compile()` 预先编译，不然并没有什么卵用，直接使用 eval/exec 即可
+
+```python
+cmd = compile("1+2", "", mode="eval")
+eval(cmd)  # 3
+```
+
+### `ast.literal_eval(_str)`
+
+上面几个函数一定要慎用，可能会因为代码注入带来安全隐患
+
+比如：`eval("__import__('os').system('rm -rf *')")`
+
+如果字符串中是标准的 Python 数据类型，可以用 `ast.literal_eval()` 方法替代，它会判断内容是否为合法的 Python 类型，不是则会报错。
+
+```python
+import ast
+
+_str = "_dcit"
+# 如果_str="faker.name()"这种非合法python类型，则会报错
+# 另外_str=""也会报错
+_dcit = ast.literal_eval(_str)
+```
+
+## 元类
+
+元类控制着类的创建、行为和特性，是用来创建类的类。
+
+Python 中，所有类都是 `type` 的实例，包括 `object` 和 `type` 自己
+
+> object 定义了一些基础方法和属性，比如 `__init__`、`__str__`、`__repr__` 等，是所有类的基类（除了它本身），包括 `type`（形成了闭环）
+
+![20240611012144](https://image.zuoright.com/20240611012144.png)
+
+```shell
+>>> type(type)
+<class 'type'>
+
+>>> type(object)
+<class 'type'>
+
+>>> type(list)
+<class 'type'>
+```
+
+也就是说所有类都是由 `type()` 创建的，当系统扫描到 `class` 关键字的时候，就会调用 `type()` 进行类的创建
+
+```python
+# 准备一个基类
+class BaseClass:
+    def talk(self):
+        print("i am people")
+
+# 准备一个方法
+def say(self):
+    print("hello")
+
+# 使用type来创建User类
+User = type("User", (BaseClass, ), {"name": "user", "say": say})
+    """三个参数解析
+    类的名称，若不指定，也要传入空字符串「""」
+    元/父类，以 tuple 的形式传入，若没有父类也要传入空元组「()」，默认继承 (object, )
+    绑定的方法或属性，以 dict 的形式传入
+    """
+```
+
+通常大多数人都不会直接使用到元类，一般只有在框架设计、动态类生成等高级场景中使用，比如 Django 中的 ORM
+
+## 抽象基类
+
+<https://docs.python.org/3/library/collections.abc.html>
+
+`collections.abc` 模块定义了一些常用的抽象基类（Abstract Base Classes, ABC），这些基类用于提供容器对象的基本接口，作为其他类实现接口时的超类或者说父类。
+
+所谓的接口，就是类实现或继承的公开属性和方法，让对象在系统中扮演特定的角色
+
+Python 中没有类似 `interface` 这样的关键字，而且除了抽象基类，每个类都有接口
+
+![20240610225814](https://image.zuoright.com/20240610225814.png)
+
+## 协议
+
+协议可以理解为是非正式的接口，比如一个类只需实现 `__len__` 和 `__next__()` 两个方法，就属于迭代器，即使它只是行为看起来像迭代器。
+
+> 这就是所谓的鸭子类型，不需要检查它是不是真的鸭子，只需要检查它的叫声和走路姿势像不像鸭子
+
+鸭子类型的非正式协议虽然不严谨，但却简单高效，我们没必要为了让编译器高兴，只需要实现功能即可，保持 KISS 原则。
+
+- 猴子补丁
+
+协议是动态的，也就是说，即便对象一开始没有某个方法也没关系，可以后来再提供，比如运行时，甚至可以在交互式控制台中临时修改或扩展代码，而不改动源码，这种技术就叫猴子补丁（Monkey Patch），就像猴子一样灵活和随性。
 
 ## 装饰器 decorator
 

@@ -1,5 +1,7 @@
 # 数据类型
 
+标准库：<https://docs.python.org/zh-cn/3.10/library/index.html>
+
 ## 原子类型
 
 ### int 整数
