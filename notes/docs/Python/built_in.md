@@ -2,18 +2,11 @@
 
 ## 部分内置函数解析
 
-- `help()`
-
-查看内置模块的使用帮助
-
-- `abs(x)`
-
-求绝对值
-
-- `round(x, n)`
+- `help()` 查看内置模块的使用帮助
+- `abs(x)` 求绝对值
+- `round(x, n)` 四舍五入
 
 ```python
-# 四舍五入
 round(1.237, 2)  # 1.24
 ```
 
@@ -233,10 +226,6 @@ import webbrowser
 
 webbrowser.open("http://baidu.com")
 ```
-
-## math
-
-<https://docs.python.org/zh-cn/3.9/library/math.html>
 
 ## subprocess
 

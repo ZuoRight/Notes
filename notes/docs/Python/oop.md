@@ -96,16 +96,41 @@ def function():
 
 ### 内置方法
 
-- 类被释放时自动执行
+虽然在日常使用中，人们经常将 `__init__` 称为构造函数，但从技术上讲，真正的构造函数是 `__new__`。
+
+`__init__` 更准确地说是初始化函数。这种称呼混淆主要是因为在大多数情况下，对象的创建和初始化是在 `__new__` 和 `__init__` 中协作完成的，而大部分开发者只需要关注 `__init__`
 
 ```python
-# 析构方法，内存中被释放（垃圾回收）时自动执行
-# 无须自定义，但也可以在这里定义一些释放时要做的事
-def __del__(self):
-    print("Python自带内存分配和释放机制")
+class MyClass:
+    # 构造函数，属于静态方法
+    """
+    负责创建一个类的实例。这个方法是在对象的内存分配之后调用，但在其初始化之前执行。
+    它是在类层次上操作的，也就是说，它与类本身而非实例相关联。
+    """
+    def __new__(cls, *args, **kwargs):
+        print("Creating instance...")
+        # 接收类本身作为第一个参数（通常命名为 cls），后面跟着其他参数，这些参数将传递给 __init__ 方法
+        instance = super(MyClass, cls).__new__(cls)
+        # 必须返回一个类的实例（通常是通过调用 object.__new__(cls) 实现）
+        return instance
+    
+
+    # 初始化函数，属于实例方法
+    """
+    用于初始化新创建的对象。它在 __new__ 创建了一个实例之后被调用，用来给这个新创建的对象设置初始状态、添加属性等。
+    """
+    def __init__(self, name):
+        print("Initializing instance...")
+        self.name = name
+
+
+    # 析构方法，内存中被释放（垃圾回收）时自动执行
+    # 无须自定义，但也可以在这里定义一些释放时要做的事
+    def __del__(self):
+        print("Python自带内存分配和释放机制")
 ```
 
-- 特殊方式执行
+一些其它方法
 
 ```python
 # obj()带括号时执行
@@ -119,27 +144,6 @@ def __str__(self):
 
 # 通常__repr__与__str__返回值一样，为了调试用的
 __repr__ = __str__
-```
-
-```python
-# 取值函数，触发方式：x = 标识符[]
-def __getitem__(self, key):
-    print('__getitem__',key)
-
-# 赋值函数，触发方式：标识符[] = x
-def __setitem__(self, key, value):
-    print('__setitem__',key,value)
-
-# 删除函数，触发方式：del 标识符[]
-def __delitem__(self, key):
-    print('__delitem__',key)
-
-
-# 使类变为可迭代对象，触发方式：for i in obj: print(i)
-def __iter__(self):
-    yield 1
-    yield 2
-    yield 3
 ```
 
 ### 调用

@@ -18,7 +18,7 @@ from decimal import Decimal
 Decimal("8.88") - Decimal("7.77")  # Decimal('1.11')
 ```
 
-更高级的运算可以用 `math` 和 `cmath` 函数。
+更高级的运算可以用 [`math`](https://docs.python.org/zh-cn/3.9/library/math.html) 和 `cmath` 函数。
 
 - 加 `+`
 

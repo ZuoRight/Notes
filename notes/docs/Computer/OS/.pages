@@ -1,6 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - linux.md
+  - index.md
   - 帮助文档.md
   - 文件管理.md
   - 用户操作.md

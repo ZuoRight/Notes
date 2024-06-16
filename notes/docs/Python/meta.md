@@ -7,6 +7,8 @@
 
 可以理解为内省是了解和获取程序结构的工具，而反射则是基于这些了解进行实际操作和修改的能力。
 
+也可以说反射就是一种基于字符串的事件驱动，通过字符串的形式，导入模块、去模块寻找指定函数并执行、去对象中操作成员。
+
 ## 内省
 
 Python 提供了许多内置函数和模块，使得内省成为一种非常直观和容易使用的功能。
@@ -25,6 +27,21 @@ Python 提供了许多内置函数和模块，使得内省成为一种非常直�
 - `getattr(object, 'attribute')` 获取对象的属性值。
 - `setattr(object, 'attribute', value)` 设置对象的属性值。
 - `hasattr(object, 'attribute')` 检查对象是否有某个属性。
+- `delattr()` 删除对象的属性和方法
+
+```python
+# 取值函数，触发方式：x = 标识符[]
+def __getitem__(self, key):
+    print('__getitem__',key)
+
+# 赋值函数，触发方式：标识符[] = x
+def __setitem__(self, key, value):
+    print('__setitem__',key,value)
+
+# 删除函数，触发方式：del 标识符[]
+def __delitem__(self, key):
+    print('__delitem__',key)
+```
 
 返回全局和局部命名空间中的字典
 
@@ -143,10 +160,6 @@ isinstance(x, Generator)
 method = getattr(obj, 'method_name')
 result = method()
 ```
-
-删除对象的属性和方法
-
-`delattr()`
 
 动态执行 Python 代码
 

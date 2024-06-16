@@ -1,129 +1,101 @@
 # 引言
 
-## 网络分类
+![20240616204339](https://image.zuoright.com/20240616204339.png)
 
-### 体域网
+- P2P（Peer-to-Peer）不区分客户端和服务端，两台主机是对等关系
+- C/S（Client/Server）区分为客户端和服务端，客户端是主机上的程序
+- B/S（Browser/Server）区分为客户端端和服务端，客户端是浏览器
 
-BAN, Body Area Network
+无论服务端，还是客户端，运行的单位都是进程。
 
-主要指无线传感器网络
+一台机器上部署运行了多个服务，比如同时开启了 SSH 服务和 HTTP 服务等。
 
-无线射频识别(RFID，Radio Frequency IDentification)技术则可以让日常物品也成为计算机网络的一部分
+一个客户端，同一个时刻可以建立多个到不同服务器的连接，比如同时购物、刷视频、看新闻等。
 
-### 个域网
+每个连接使用不同的端口来区分不同的服务和客户，服务端的端口是固定的，客户端是系统内核临时分配的。
 
-PAN, Persinal Area Network
+套接字对：`(clientaddr:clientport, serveraddr: serverport)`
 
-个人的电子设备间连接起来的网络，通常采用无线技术，所以也叫 WPAN（Wireless ～）
+![20240616205722](https://image.zuoright.com/20240616205722.png)
 
-- 蓝牙
-- USB
-- 红外
-- NFC
+## 网络通信
 
-### 局域网
+如果想将数据从一台电脑发送到另一台电脑，可以使用 socket 编程，即 tcp 或 udp
 
-LAN, Local Area Network
+但是裸 tcp 会有粘包问题，即无法对字节流进行分词断句
 
-- 有线局域网
-  > 淘汰：令牌环、FDDI、ARCNET  
-  > 现在：基于 IEEE 802.3 标准的以太网(Ethernet)  
-- 虚拟局域网 VLAN(Virtual ~) 主要用于逻辑分组  
-- 无线局域网 WLAN(Wireless ~)
-  > 基于 IEEE 802.11 标准的 Wi-Fi  
-- 存储网 SAN(Storage Area Network)，通常专用于服务器访问数据存储设备
+所以需要加一些协议，用于区分消息边界，于是基于 tcp 就衍生出了 rpc 和 http 等各种协议
 
-无线设备通过无线路由器等接入点连接到有线网络
+![20240612172103](https://image.zuoright.com/20240612172103.png)
 
-![20230512112432](http://image.zuoright.com/20230512112432.png)
+rpc 本身并不是一个具体的协议，而是一种调用方式，即屏蔽掉一些细节，像调用本地方法一样调用远程方法，于是就出现了各种 rpc 协议，至今没有一个统一标准
 
-交换机以特定的网络拓扑将不同的有线设备连接在一起组成有线局域网，即以太网，可以将物理局域网分成不同的逻辑局域网，即虚拟局域网
+> rpc 不一定都是依赖 tcp，也有 依赖 udp 或 http 的
 
-![20210725150926](http://image.zuoright.com/20210725150926.png)
+![20240612165318](https://image.zuoright.com/20240612165318.png)
 
-### 城域网
+起初在 C/S 架构中，客户端只需访问自家公司的服务端即可，所以使用各自的 rpc 协议就可以
 
-MAN, Metropolitan Area Network
+但随着 B/S 浏览器的兴起，需要访问不同公司的服务器，因此需要一个统一的标准协议，不然无法通信，于是诞生了 http
 
-![20230512231928](http://image.zuoright.com/20230512231928.png)
+也就是说 rpc 通常用于 C/S 架构，http 通常用于 B/S 架构，不过如今很多公司的服务端要同时支持移动端、PC 端以及 Web 端，所以通常都使用统一的 http 协议，而 rpc 开始退居幕后，主要用于公司内部集群中各个微服务之间的通信
 
-### 广域网
+- 服务发现
 
-WAN, Wide Area Network
+要向某个服务发起请求，需要先建立连接，也就需要先知道 IP 地址和端口，这个过程即服务发现
 
-通常为跨地区或者国家通信，比如某公司分布式办公，不同地区的主机间通过路由器和通信线路通信，组成通信子网
+在 http 协议中，知道域名后，通过 DNS 服务解析即可获取到 IP，端口默认 80
 
-网络服务由互联网服务提供商（ISP, Internet Service Provider）运营
+rpc 协议中会有专门的中间服务保存服务名和IP信息，比如 consul 或 etcd，甚至是 redis，要想访问某个服务就需要先到这些中间服务获取 IP 和端口信息
 
-![20210725150016](http://image.zuoright.com/20210725150016.png)
+- 底层连接
 
-大ISP自己建造通信线路，小ISP则向电信公司租用通信线路
+主流的 http 1.1 在建立底层 tcp 连接后，会一直保持连接，供之后的请求都复用，
 
-主机必须有IP才能上网，机构和个人向某个ISP交纳规定的费用，即可从该ISP获取所需IP地址的使用权，便可通过该ISP提供的子网接入到互联网
+rpc 协议跟 http 类似，也是建立 tcp 长连接进行数据交互，但不同的地方在于，rpc 协议一般还会再建个连接池，大大的提升了网络请求性能
 
-蜂窝/移动网络（Cellular / Mobile Network）是采用了无线技术的广域网
+> 很多编程语言的网络库也会给 http 加连接池来提高性能，比如 Go
 
-- 2G
-  > GSM 全球移动通信系统  
-  > GPRS 通用数据包无线业务  
-- 3G
-  > UMTS 通用移动通信系统：WCDMA（宽带码分多址）、CDMA（码分多址）  
-  > HSPA  
-- 4G: LTE、LTE-A  
-- 5G: NR
+- 序列化
 
-接入点为基站，基站间通过有线的骨干网连接在一起
+数字和字符都可以通过编码直接转为二进制，而结构体则需要序列化
 
-### 互联网
+http 协议通常使用 json 来序列化结构体数据
 
-Internet 音译：因特网，即互联网
+rpc 不需要考虑重定向等浏览器行为，可以使用体积更小的序列化协议，不同的 rpc 可以根据自身特点定制化，比如 gRPC 使用 protobuf
 
-互联网使用ISP网络连接各种各样的网络，即网络的网络。
+因此 rpc 传输内容性能更好，这就是微服务之间采用 rpc 协议的主要原因
 
-按照规模大小通常可分为三级：骨干网（Backbone Network）、地区网、校园网/企业网/小区网
+不过 http 2.0 改进提升了性能，比很多 rpc 协议还要好，比如 gRPC 底层就使用了 http 2.0
 
-不同规模的ISP骨干网之间通过互联网交换点（IXP, Internet eXchange Point）连接交换数据，相互连接的ISP彼此是对等的（Peer），最顶级的ISP称之为1级ISP。
+tcp 协议虽然是全双工的，但 http 协议是半双工的，同一时间只能一端给另一端发数据
 
-![20230512153113](http://image.zuoright.com/20230512153113.png)
+比如扫码就是客户端请求服务端
 
-按用途划分
+- 轮询
+- 长轮训
 
-- 公用网，即电信公司建造的大型网络
-  > 中国电信互联网 CHINANET  
-  > 中国联通互联网 UNINET  
-  > 中国移动互联网 CMNET  
-  > 中国教育和科研计算机网 CERNET  
-  > 中国科学技术网 CSTNNET
-- 专用网，为满足某个部门或机构而建造的专用网络，比如军队、铁路、银行、电力等
+这是由于当时设计时未考虑像网页游戏这样的场景
 
-### 星际互联网
+于是基于 tcp 的全双工协议 websocket 应运而生
 
-Interplanetary Internet
+使用 websocket 协议需要先发送一个 http 协议，请求头中带上特殊的字段，然后升级为 ws 协议
 
-跨越太空把网络连接起来
+正因如此，有人会说 websocket 是建立在 http 之上的，其实只是建立连接时用到了 http，升级到 ws 后便与 http 没有任何关系了
 
-## 标准化组织
+![20240612192609](https://image.zuoright.com/20240612192609.png)
 
-- IAB（Internet Architecture Board）互联网体系结构委员会，标准制定流程：首先在请求注释(RFC，Request For Comments)中描述整个思想，只有少数可以从互联网草案变为建议标准，最后变为互联网标准
-  > IRTF（Internet Research Task Force）互联网研究任务组，专注长期的研究  
-  > IETF（Internet Engineering Task Force）互联网工程任务组，专注短期的工程事项  
-- ITU（International Telecommunication Union）国际电信联盟，联合国机构
-  > ITU-T 电信标准化部门  
-  > ITU-R 无线电通信部门  
-  > ITU-D 发展部门  
-- ISO（ISO，International Standards Organization）国际标准化组织，非条约性质的组织
-- IEEE（Institute of Electrical and Electronics Engineers）电气和电子工程师协会，世界上最大的专业组织
-- W3C（World Wide Web Consortium）万维网联盟，属于行业联盟，负责开发和给出促进Web长期增长的指导意见
+websocket 完美继承了 tcp 的全双工能力，又解决了粘包问题，适用于客户端与服务器频繁交互的大部分场景，比如网页或小程序游戏、网页聊天室等
 
 ## 网络分层
 
-互联网早期，为了把不同的网络链接起来，1983年推出了互联网协议套件(IPS)：TCP/IP
+阿帕网（互联网的前身，大概1970年）使用网络控制协议（Network Control Protocol, NCP）来连接不同的计算机进行通信，1974 年 NCP 的两位开发者发表了以分组、序列化、流量控制、超时和容错等为核心的一种新型网络互联协议，即后来的互联网协议套件(IPS)：TCP/IP，于 1983 年正式取代 NCP。
 
-在TCP/IP协议的基础之上，1984年ISO又推出了开放式系统互联模型：OSI(Open System Interconnection)
+在 TCP/IP 协议的基础之上，1984 年 ISO 又推出了开放式系统互联模型：OSI(Open System Interconnection)
+
+> 无论 TCP/IP 还是 OSI 都只是参考模型，并不是标准，无论是四层、五层、还是七层，本质都是一样的
 
 OSI 总共分为七层，每一层明确了编号，描述的网络更加完整
-
-无论 TCP/IP 还是 OSI 都只是参考模型，并不是标准，无论是四层、五层、还是七层，本质都是一样的
 
 - L7 应用层：HTTP、SMTP、FTP、DNS、WebSocket
 - L6 表示层，加密解密、转换翻译、压缩解压缩：JPEG、GIF
@@ -152,14 +124,3 @@ OSI 总共分为七层，每一层明确了编号，描述的网络更加完整
 以太网MTU一般默认为1500 Bytes，如果来自传输层的报文超过MTU，IP层则需要分段传输给MAC层。所以需要设置一个合适的段长度，称之为最大段长度（MSS, Maximum Segment Size），过大会导致IP分片传输，过小则网络利用率太低。
 
 `MTU = MSS + TCP首部(20B) + IP首部(20B) + 可选部分`
-
-## 参考
-
-- 计算机网络·谢希仁
-- [Computer Networks](https://book.douban.com/subject/1229951/)
-- <https://en.wikipedia.org/wiki/Internet>
-- [PowerCert Animated Videos](https://www.youtube.com/c/PowerCertAnimatedVideos/featured)
-
-常见的拓扑结构（network topology）
-
-![20210725170757](http://image.zuoright.com/20210725170757.png)

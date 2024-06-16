@@ -1,42 +1,6 @@
 # Linux
 
-Linux 是一个 Unix-like 系统，最初由 Linus Torvalds 基于 Unix 所编写
-
-- [Unix timeline](https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg#/media/File:Unix_timeline.en.svg)
-- [Unix history simple](https://zh.wikipedia.org/wiki/File:Unix_history-simple.svg)
-
-![20220707143751](http://image.zuoright.com/20220707143751.png)
-
-## 内核 Kernel
-
-Linux 本身只是一个开源的内核(Kernel)
-
-内核主要负责一些最基本的工作，比如：管理硬件驱动、管理内存、管理文件系统、管理进程等等。
-
-内核是计算机资源的管理者，通过系统 API 函数向用户应用软件提供一些接口，会在处理器的特权模式（宏内核模式）下运行。
-
-微内核架构正好与宏内核架构相反，它提倡内核功能尽可能少：仅仅只有进程调度、处理中断、内存空间映射、进程间通信等功能，这样的内核是不能完成什么实际功能，开发者们把实际的进程管理、内存管理、设备管理、文件管理等服务功能，做成一个个服务进程。和用户应用进程一样，只是它们很特殊，宏内核提供的功能，在微内核架构里由这些服务进程专门负责完成。微内核定义了一种良好的进程间通信的机制：消息。
-
-`uname -a`
-
-![20230401113035](http://image.zuoright.com/20230401113035.png)
-
-内核版本：主版本号.次版本号.末版本号
-
-> 次版本号，奇数为开发版，偶数为稳定版  
-> <https://www.kernel.org/>
-
-![20220707142531](http://image.zuoright.com/20220707142531.png)
-
-## GNU工具集
-
-- GCC/G++：编译环境
-- glibc：C库
-- coreutils：核心工具组
-
-## 发行版
-
-而我们平时常用的Linux其实指的是Linux发行版（distribution），它是在Kernel的基础上定制化扩展了很多服务和功能。
+而我们平时常用的 Linux 其实指的 Linux 发行版（distribution），它是在 Kernel 的基础上定制化扩展了很多服务和功能。
 
 发行版本千千万，不是红帽就大便，意思就是Linux的发行版有很多，但主要分两个派系：Redhat 和 Debian
 
