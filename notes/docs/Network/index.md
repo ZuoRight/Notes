@@ -14,15 +14,20 @@
 
 每个连接使用不同的端口来区分不同的服务和客户，服务端的端口是固定的，客户端是系统内核临时分配的，每个客户端每个连接的临时端口号都是不同的，确保数据不会混淆。
 
-套接字对：`(clientaddr:clientport, serveraddr: serverport)`
+套接字对（四元组）：`(clientaddr:clientport, serveraddr: serverport)`
 
 ![20240616205722](https://image.zuoright.com/20240616205722.png)
 
 ## Socket
 
+参考：
+
+- <https://time.geekbang.org/column/article/113607>
+- <https://mp.weixin.qq.com/s/fq5uyKXXp7HY8Clxf-AAbQ>
+
 Socket 套接字，起初是由加州大学伯克利分校在 UNIX 的 BSD 分支提出的，所以也被叫做伯克利套接字，本身不是协议，只规定了 API，屏蔽了底层协议栈的差别，抽象出来的一层，可以理解为网络插槽。
 
-![20230823094945](https://image.zuoright.com/20230823094945.png)
+![20240617175426](https://image.zuoright.com/20240617175426.png)
 
 TCP 套接字通常叫做字节流套接字（SOCK_STREAM），UDP 套接字通常叫做数据报套接字（SOCK_DGRAM）
 
