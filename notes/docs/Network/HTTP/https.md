@@ -1,5 +1,7 @@
 # HTTPS
 
+HyperText Transfer Protocol Secure
+
 TLS：开源密码学工具包OpenSSL是SSL/TLS的具体实现
 
 - TLS 1.0/SSLv3.1

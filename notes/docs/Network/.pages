@@ -1,6 +1,5 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - 网络.md
   - index.md
   - L567.md
   - L4.md
