@@ -1,5 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
+  - 网络.md
   - index.md
   - L567.md
   - L4.md
@@ -9,7 +10,7 @@ nav:
   - RPC
   - HTTP
   - WebSocket
+  - net_tools.md
   - 请求工具
   - 抓包
-  - 网络管理.md
   - ...

@@ -1,4 +1,6 @@
-# 网络管理
+# 网络分析和检测
+
+<https://time.geekbang.org/column/article/118990>
 
 - net-tools: ifconfig、netstat
 - iproute2: ip、ss
@@ -154,6 +156,9 @@ port 80  抓取流向指定端口的数据
 - 数据包如果也没问题，检查服务监听范围
 
 ```shell
+# 当前所有连接的详情
+netstat -alepn
+
 # 查看哪个进程绑定到了80端口
 netstat -ntpl | grep :80  
 """
@@ -185,16 +190,82 @@ LISTEN        0           128          [::]:28036               [::]:*          
 """
 ```
 
-## 防火墙
+## 传输层
 
-- 硬件防火墙：防御（比如DDS攻击），兼顾软件数据包过滤功能
-- 软件防火墙：数据包过滤，是否允许某个IP或者端口进入主机或者转发等，又可以分为包过滤防火墙和应用防火墙
+### netcat
 
-从 Linux Kernel 2.4 版开始，内核开放了一套通用的、可供代码干预数据在协议栈中流转的过滤器框架Netfilter，基于 Netfilter 设计的 Xtables 系工具，比如 `iptables`。
+### ss
 
-iptables 的价值便是以配置去实现原本用 Netfilter 编码才能做到的事情。
+### nmap
 
-- 四(规则)表：`filter`、`nat`、`mangle`、`raw`
-- 五(规则)链：`INPUT`、`OUTPUT`、`FORWARD`、`PREROUTING`、`POSTROUTING`
+开源的扫描器
 
-<https://iswbm.com/751.html>
+端口扫描是其功能之一，扫描远程主机监听了哪些传输层端口
+
+## 网络层
+
+### ifconfig
+
+显示当前系统中的所有网络设备，即网卡列表
+
+```shell
+# linux/mac
+ifconfig  # 需要安装 net-tools，已停止维护
+ip addr  # 需要安装 iproute2，逐渐取代 net-tools，推荐
+
+# windows
+ipconfig /all
+```
+
+返回字段解析
+
+```shell
+# 第一行
+eth0: <BROADCAST,MULTICAST,UP,LOWER_UP>  # net_device flags(网络设备状态标识)
+    # BROADCAST 表示这个网卡有广播地址，可以发送广播包
+    # MULTICAST 表示网卡可以发送多播包
+    # UP 表示网卡处于启动的状态
+    # LOWER_UP 表示L1是启动的，也即网线插着呢
+mtu 1500  # 最大传输单元1500字节(这是以太网的默认值)
+    # MAC头后面的正文(包括IP头、TCP头、HTTP头)不允许超过1500个字节，存不下则分片传输
+qdisc pfifo_fast  # queueing discipline(排队规则)
+    # 内核通过某个网络接口发送数据包时，需要按照这个排队规则将数据包加入队列
+state UP
+
+# 第二行
+link/ether 00:15:5d:21:b9:ea brd ff:ff:ff:ff:ff:ff  # mac地址
+
+# 第三行
+xxx.xx.xxx.x scope global eth0  # ethernet 以太网卡，范围global，对外访问
+127.0.0.1/8 scope host lo  # loopback 环回接口，范围host，供本机相互通信
+```
+
+### ping
+
+探测网络连通性，基于 ICMP 协议
+
+不可达的原因
+
+- IP对应的主机关机
+- IP对应的主机断线
+- IP对应的主机拒绝响应ICMP协议
+- 本机到IP对应主机之间有防火墙拦截了ICMP协议
+
+### traceroute
+
+测试本机到目标主机经过哪些路由，基于 ICMP 协议
+
+## 数据链路层
+
+### arp
+
+```shell
+# 查看ARP Cache
+arp -a  # windows
+
+# 动态类型是通过广播获取然后缓存的
+# 否则就是静态的，比如手动添加
+arp -s IP MAC
+```
+
+![20210729233402](http://image.zuoright.com/20210729233402.png)
