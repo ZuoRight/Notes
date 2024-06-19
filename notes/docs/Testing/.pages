@@ -10,4 +10,6 @@ nav:
   - PerformanceTest
   - TestResult
   - 表格数据处理
+  - pm.md
+  - test_model.md
   - ...
