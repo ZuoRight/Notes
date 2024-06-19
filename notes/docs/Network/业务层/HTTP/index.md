@@ -119,11 +119,72 @@ Status Code 用于表示请求的结果
 503 网络服务较忙，是一个临时状态，此时会出现 Retry-After 头告诉多久后重试
 ```
 
+## 鉴权
+
+鉴权通常是认证和授权的统称
+
+- 认证 identification 你是谁？
+
+通过用户名、密码、指纹或其他方式，系统验证用户提供的凭证是否与系统中存储的信息匹配。
+
+- 授权 authorization，能干啥？
+
+谁拥有什么权去操作哪些资源
+
+授权是在认证之后进行的，基于用户的权限和角色，控制用户可以访问哪些资源以及可以执行哪些操作。
+
+认证流程
+
+```
+1. 用户向服务器发送用户名和密码。
+2. 服务器验证通过后，会建立一个 session，保存当前对话的相关数据，比如用户角色、登录时间等等。
+3. 服务器向用户返回 set-cookie: session_id 写入用户的 Cookie。
+4. 用户随后的每一次请求，都会通过 Cookie，将 session_id 传回服务器。
+5. 服务器收到 session_id，找到前期保存的数据，由此得知用户的身份。
+```
+
+```text
+- Cookie 客户端只有一个该字段，多个身份可以用分号分割
+
+- Set-Cookie 服务端可以设置多个身份字段
+  - Expires 过期时间
+  - Max-Age 有效期(优先级高)
+  - Domain 作用域
+  - Path 作用路径
+  - HttpOnly 只能通过浏览器HTTP协议传输Cookie，禁止其他方式访问
+  - SameSite 可以防范XSRF(跨站请求伪造)攻击
+    - None 允许同站跨站都会发送
+    - Lax 允许同站和GET/HEAD等安全方法跨站，但禁止POST跨站发送
+    - Strict 只允许同站，禁止跨站发送
+  - Secure 表示这个Cookie仅能用HTTPS协议加密传输
+```
+
+这种模式在跨域或分布式架构中有一些问题，比如要实现用户只要在其中一个网站登录，再访问另一个网站就会自动登录这种场景，就需要多个网站的服务器间可以共享 session，可以通过写入 redis 等来实现
+
+也可以使用 token 来实现，token，也称作令牌
+
+通常包含以下信息
+
+```text
+uid：唯一标识
+time：当前时间的时间戳
+sign：签名，使用 hash/encrypt 压缩成定长的十六进制字符串，防止恶意拼接
+固定参数：可选，避免重复
+```
+
+最常见的实现就是 JWT(Json Web Tokens)
+
+![20240619133556](https://image.zuoright.com/20240619133556.png)
+
+服务器认证以后，生成一个 JSON 对象，返回给用户，用户与服务端通信的时候，都要发送这个 JSON 对象，这样服务器就不保存任何 session 数据了，即所谓的无状态
+
+类似于临时的证书签名，保存在 localStroage 等容器中，CPU 加密，服务端解密，不存在负载均衡问题，解决了跨域认证。
+
 ## Headers
 
 ### 伪头部
 
-方便管理和压缩，HTTP/2中用伪头部形式(:key)替代了起始行，废除了没用的Version和Reason
+HTTP/2 中用伪头部形式（`:key`）替代了起始行，废除了没用的 `Version` 和 `Reason`，方便管理和压缩
 
 ```text
 - :scheme 协议
@@ -133,74 +194,96 @@ Status Code 用于表示请求的结果
 - :status 状态码
 ```
 
-### 未分类
+### 内容相关
+
+- `Content-Type`
 
 ```text
-- 没啥用
-  - User-Agent：用于描述客户端，但由于历史原因已经非常混乱，基本无用
-    - Mozilla/Chrome/Safari/AppleWebKit
-    - spider(爬虫)
-  - Server 正在提供Web服务的软件名称和版本号，但出于安全考虑通常省略或随便写
-  - Connection: keep-alive(长链接，默认)/close(本次通信后关闭连接)
-  - Keep-Alive: timeout=value(限定长链接超时时间，约束力较弱)
-- 有用
-  - Host：因为同一服务器上可能有多台虚拟主机(IP相同，域名不同)，需要告诉服务器由哪个主机处理请求(v1.1要求必须带)
-  - Referer: 跳转来源，可用于统计分析和防盗链
-  - Referrer Policy: no-referrer-when-downgrade
-  - Origin: 发起一个针对跨来源资源共享的请求
-  - Location: uri 标记了服务器要求重定向的URI
-  - Refresh: n;url=xxx 延迟重定向
-  - Via：标识是否经过代理服务器
-  - Upgrade-Insecure-Requests 告诉服务器可以处理HTTPS协议，以后发请求的时候不用http而用https
-  - Strict-Transport-Security 告诉浏览器必须使用HTTPS访问资源，但为了兼容HTTP协议，所以规定日期内浏览器需要自动把请求中的http转换为https协议发起请求，免去中间人攻击可能，少一次服务端重定向，加快连接速度
-  - Retry-After 返回503错误时提示多久后重试
+- text/html/plain/css 文本/超文本/纯文本/样式表
+- image/gif/jpeg/png
+- audio/mpeg
+- video/mp4
+- application/javascript/pdf/xml 数据格式不固定
+- application/json; charset=UTF-8 Chrome请求体标识为：Request Payload
+- application/x-www-form-urlencoded; charset=UTF-8 表单，Chrome请求体标识为：Form Data
+- application/octet-stream 不透明的二进制数据
 ```
-
-### 内容相关
 
 ```text
 - Date: 报文创建时间
+
 - Vary：记录服务器在内容协商过程中参考的字段
+
 - 内容类型(MIME type)
   - Accept
-  - Content-Type
-    - text/html(超文本文档)/plain(纯文本)/css(样式表)
-    - image/gif/jpeg/png
-    - audio/mpeg
-    - video/mp4
-    - application/javascript/pdf/xml(数据格式不固定)
-    - application/json;charset=UTF-8(Chrome请求体标识为：Request Payload)
-    - application/x-www-form-urlencoded;charset=UTF-8(表单，Chrome请求体标识为：Form Data)
-    - application/octet-stream(不透明的二进制数据)
+
 - 压缩方式
   - Accept-Encoding：为空表示客户端不支持压缩数据
   - Content-Encoding：为空表示服务端没有压缩数据
     - gzip：互联网上最流行的压缩格式，仅对文本文件有较好的压缩率，压缩率60%
     - deflate：流行程度次之
     - br：专为HTTP优化的新压缩算法(Brotli)
-- 自然语言类型(type-subtype)
+
+- 自然语言类型 type-subtype
   - Accept-Language
   - Content-Language
     - en(任意英文)
     - en-US(美式英文)
     - en-GB(英式英文)
     - zh-CN(简体中文)
+
 - 字符集(现在的浏览器均支持多种字符集，通常无需标识)
   - Accept-Charset
   - "charset=xxx"(服务端字符集定义在Content-Type字段中)
     - utf-8
     - gbk
+
 - 长度
-  - Content-Length：没有该字段表示不定长
+  - Content-Length：表示报文长度（压缩后的），没有该字段表示不定长
+
 - 分块传输(不定长时)
   - Transfer-Encoding: chunked
+
 - 范围请求
   - Accept-Ranges
-    - bytes(告知客户端支持范围请求)
-    - none或者没有该字段(告知客户端不支持范围请求)
-  - Ranges: bytes=x-y
+    - bytes 告知客户端支持范围请求
+    - none 或者没有该字段，告知客户端不支持范围请求
+  - Ranges: bytes=x-y 视频播放位置
   - Content-Range: bytes x-y/length(总长度)
   - multipart/byteranges：表示实体由多段序列组成
+
+- Etag: 资源的版本，判断资源是否更新
+```
+
+### Referer
+
+```text
+- Referer: 用户跳转来源，可用于统计分析和防盗链
+- Referrer Policy: 控制 Referrer 信息传不传、传哪些信息、在什么时候传的策略
+    - no-referrer 从不发送
+    - no-referrer-when-downgrade 仅当协议降级时不发送，一般默认是这个
+    - origin 发送但只包含 host 部分
+    - strict-origin-when-cross-origin 只在跨域时发送，只包含 host
+    - unsafe-url 统统发送，所以可能不安全
+```
+
+### 未分类
+
+```text
+- User-Agent：用于描述客户端，但由于历史原因已经非常混乱，基本无用
+    - Mozilla/Chrome/Safari/AppleWebKit
+    - spider 爬虫，robots.txt 规定了哪些该爬哪些不该爬
+- Server 正在提供Web服务的软件名称和版本号，但出于安全考虑通常省略或随便写
+- Connection: keep-alive(长链接，默认)/close(本次通信后关闭连接)
+- Keep-Alive: timeout=value(限定长链接超时时间，约束力较弱)
+- Host：因为同一服务器上可能有多台虚拟主机(IP相同，域名不同)，需要告诉服务器由哪个主机处理请求(v1.1要求必须带)
+- Origin: 发起一个针对跨来源资源共享的请求
+- Location: uri 标记了服务器要求重定向的URI
+- Refresh: n;url=xxx 延迟重定向
+- Via：标识是否经过代理服务器
+- Upgrade-Insecure-Requests 告诉服务器可以处理HTTPS协议，以后发请求的时候不用http而用https
+- Strict-Transport-Security 告诉浏览器必须使用HTTPS访问资源，但为了兼容HTTP协议，所以规定日期内浏览器需要自动把请求中的http转换为https协议发起请求，免去中间人攻击可能，少一次服务端重定向，加快连接速度
+- Retry-After 返回503错误时提示多久后重试
 ```
 
 ### Chrome特有头

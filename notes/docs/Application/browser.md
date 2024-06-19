@@ -56,13 +56,56 @@ SpiderMonkey 是第一个 JS 引擎
 
 Google Chrome 的 V8 引擎在2008年发布，被认为是 JS 引擎的一个重要里程碑。V8 引擎采用了一种叫做“即时编译”的技术，可以将 JavaScript 代码直接编译成机器码执行，从而大幅提高了 JavaScript 的执行速度。
 
+## Cache 缓存
+
+缓存的作用是让网页加载更快，由您访问过的网页的文件、图像、视频、音频、脚本或其他多媒体文件组成。缓存始终存在于用户的计算机中，除非用户手动清除浏览器的缓存
+
+```text
+- Cache-Control
+  - 缓存有效期
+    - max-age=n1：有效期n秒，<=0立即失效
+    - max-stale=n2：过期时间延长为n1+n2秒
+    - min-fresh=n3：过期时间缩短为n1-n3秒
+    - s-maxage=n：仅限制在代理服务器上的有效期
+    - Expires
+
+  - 如何使用缓存
+    - no-store：不允许缓存
+    - no-cache(页面强制刷新时触发)：需要先请求服务器验证是否失效
+    - must-revalidate：缓存过期后再请求服务器验证是否失效
+    - proxy-revalidate：代理服务器的缓存过期就必须回源服务器验证
+
+  - 缓存类别(RFC没有明确规定默认类别)
+    - public：缓存可以在代理服务器保存(专栏里说默认是这个)
+    - private：缓存只能在客户端保存(百度百科说默认是这个)
+  - no-transform：不允许代理对缓存数据做优化
+  - only-if-cached：仅接受代理服务器上缓存的数据
+
+- 验证缓存是否失效
+  - 普通请求(页面后退/前进/重定向时触发)
+    - 不会请求服务器，直接检查缓存(未失效显示：from disk cacahe)
+  - 条件请求(页面刷新时触发)
+    - if-Modified-Since
+      - Last-modified：根据文件最后修改时间验证
+    - If-None-Match
+      - ETag
+        - "根据语义级是否有修改验证"
+        - W/"根据字节级是否有修改验证"
+
+- X-Cache：标识代理服务器缓存是否命中
+- X-Hit：标识代理服务器缓存的命中率
+- Pragma:no-cache 与Cache- Control:no-cache相同
+```
+
 ## Storage
 
-- `Cookies` 最早的本地存储，由浏览器提供的功能，并对服务器和JS开放，所以我们可以通过服务器端或客户端保存Cookies。不过可以存储的数据总量大小只有 4KB
+- `Cookies` 最早的本地存储，由浏览器提供的功能，并对服务器和 JS 开放，所以我们可以通过服务器端或客户端保存 Cookies。不过可以存储的数据总量大小只有 4KB
 - `Local Storage` 持久化的本地存储，除非主动删除，否则会一直存储在本地
-- `Session Storage` 只存在于Session会话中，只有在同一个Session的页面才能使用，当Session会话结束后，数据会自动释放掉。
-- `WebSQL` 一种操作本地RDBMS（SQLite）的网页API接口
-- `IndexedDB` 存储的是key-value类型（NoSQL）的数据，允许存储大量的数据，通常可以超过 250M，并且支持事务，当我们对数据进行增删改查（CRUD）的时候可以通过事务来进行。
+- `Session Storage` 只存在于 Session 会话中，只有在同一个 Session 的页面才能使用，当 Session 会话结束后，数据会自动释放掉。
+- `WebSQL` 一种操作本地 RDBMS（SQLite）的网页 API 接口
+- `IndexedDB` 存储的是 key-value 类型（NoSQL）的数据，允许存储大量的数据，通常可以超过 250M，并且支持事务，当我们对数据进行增删改查的时候可以通过事务来进行。
+
+Cookie 存储与用户网络浏览活动相关的信息，例如用户偏好、登录信息等。作用是跟踪用户的不同浏览活动
 
 Local Storage 与 Session Storage 都属于 Web Storage。Web Storage 和 Cookies 类似，区别在于它有更大容量的存储。
 
