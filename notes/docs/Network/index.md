@@ -191,9 +191,12 @@ IP 和 Port 组成一个四元组，也叫套接字对：`(clientaddr:clientport
 
 ### Mac 地址
 
-每块网卡出厂时都有的唯一标识
+每块网卡出厂时都有的唯一标识，类似于 身份证号，无定位功能
 
-类似于 身份证号，无定位功能
+地址解析协议
+
+- ARP：已知 IP 求 MAC
+- RARP：已知 MAC 求 IP
 
 ## DNS
 
@@ -308,7 +311,7 @@ iptables 的价值便是以配置去实现原本用 Netfilter 编码才能做到
 - W3C（World Wide Web Consortium）万维网联盟，属于行业联盟，负责开发和给出促进 Web 长期增长的指导意见
 - ISO（ISO，International Standards Organization）国际标准化组织，非条约性质的组织，总部位于瑞士日内瓦，成员包括 162 个会员国。
 - IEEE（Institute of Electrical and Electronics Engineers）电气和电子工程师协会，世界上最大的专业组织
-- ICANN：互联网管理组织
+- ICANN：互联网名称与数字地址分配机构，负责管理域名和IP地址的分配
 - IAB（Internet Architecture Board）互联网体系结构委员会，标准制定流程：首先在请求注释(RFC，Request For Comments)中描述整个思想，只有少数可以从互联网草案变为建议标准，最后变为互联网标准
     - IRTF（Internet Research Task Force）互联网研究任务组，专注长期的研究  
     - IETF（Internet Engineering Task Force）互联网工程任务组，专注短期的工程事项  

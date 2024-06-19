@@ -137,26 +137,28 @@ Status Code 用于表示请求的结果
 
 ```
 1. 用户向服务器发送用户名和密码。
-2. 服务器验证通过后，会建立一个 session，保存当前对话的相关数据，比如用户角色、登录时间等等。
-3. 服务器向用户返回 set-cookie: session_id 写入用户的 Cookie。
+2. 服务器验证通过后，会建立一个 Session，保存当前对话的相关数据，比如用户角色、登录时间等等。
+3. 服务器向用户返回 session_id 写入用户的 Cookie。
 4. 用户随后的每一次请求，都会通过 Cookie，将 session_id 传回服务器。
-5. 服务器收到 session_id，找到前期保存的数据，由此得知用户的身份。
+5. 服务器收到 session_id，找到保存的 Session 数据，由此得知用户的身份。
 ```
 
 ```text
-- Cookie 客户端只有一个该字段，多个身份可以用分号分割
-
-- Set-Cookie 服务端可以设置多个身份字段
+- Set-Cookie 服务端返回
   - Expires 过期时间
   - Max-Age 有效期(优先级高)
   - Domain 作用域
   - Path 作用路径
-  - HttpOnly 只能通过浏览器HTTP协议传输Cookie，禁止其他方式访问
+  - HttpOnly 禁止 JS 等其他方式访问
   - SameSite 可以防范XSRF(跨站请求伪造)攻击
     - None 允许同站跨站都会发送
     - Lax 允许同站和GET/HEAD等安全方法跨站，但禁止POST跨站发送
     - Strict 只允许同站，禁止跨站发送
   - Secure 表示这个Cookie仅能用HTTPS协议加密传输
+
+- Cookie 客户端根据服务端返回的 Set-Cookie 保存 Cookie
+  - Expires 过期时间，默认与 Session 一起失效
+  - Max-Age 有效期(优先级高)
 ```
 
 这种模式在跨域或分布式架构中有一些问题，比如要实现用户只要在其中一个网站登录，再访问另一个网站就会自动登录这种场景，就需要多个网站的服务器间可以共享 session，可以通过写入 redis 等来实现
