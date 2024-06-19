@@ -1,7 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - http.md
   - https.md
   - http_python.md
   - http_js.md

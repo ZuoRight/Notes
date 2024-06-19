@@ -2,22 +2,17 @@
 
 HyperText Transfer Protocol Secure
 
-TLS：开源密码学工具包OpenSSL是SSL/TLS的具体实现
+计算机科学领域里的任何问题，都可以通过引入一个中间层来解决，如果一个中间层不行，那就再加一个中间层。
 
-- TLS 1.0/SSLv3.1
-- TLS 1.1(2006)  
-- TLS 1.2(2008)  
-- TLS 1.3(2018)
+HTTPS 就是在 HTTP 和 TCP 之间增加了 SSL/TLS 协议，以此来提高数据传输的安全性。
 
-> 计算机科学领域里的任何问题，都可以通过引入一个中间层来解决，如果一个中间层不行，那就再加一个中间层。
+SSL/TLS 最初叫做 SSL(Secure Sockets Layer)，是由网景公司发明，经历了 v1~v3 版本的迭代，然后改名为 TLS(Transport Layer Security) 继续迭代。
 
-HTTPS就是在HTTP和TCP之间增加了SSL/TLS协议，以此来提高数据传输的安全性。
+TLS 主要由记录协议、警报协议、握手协议、以及密码变更协议四个子协议组成，然后还依赖一些开源的密码学底层库实现各种加密算法等
 
-SSL/TLS最初叫做SSL(Secure Sockets Layer)，是由网景公司发明，经历了v1~v3版本的迭代，然后改名为TLS(Transport Layer Security)继续迭代，目前最常用版本为TLSv1.2。
+> 开源密码学工具包 OpenSSL 是 SSL/TLS 的具体实现
 
-TLS 主要由记录协议、警报协议、握手协议、以及密码变更协议四个子协议组成，然后还依赖一些开源的密码学底层库(比如最常用的OpenSSL)实现各种加密算法等
-
-## TLS四次握手
+## TLS 四次握手
 
 客户端会和服务端共同商议出使用什么对称加密算法
 
