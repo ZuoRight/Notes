@@ -74,15 +74,3 @@ if project_root not in sys.path:
 ```
 
 如果没有配置 `settings.json` 也没有在代码中将 `project_root` 加到 `sys.path`，则需要添加 `cwd` 和 `env` 字段
-
-## PicGo
-
-> <https://picgo.github.io/PicGo-Core-Doc/zh/guide/>
-
-七牛云-密钥管理：<https://portal.qiniu.com/user/key>
-
-![20210808174641](http://image.zuoright.com/20210808174641.png)
-
-- 从剪切板上传：++cmd+opt+u++（Windows用++alt++替代++opt++）
-- 从文件夹上传：++cmd+opt+e++
-- 输入路径上传：++cmd+opt+o++

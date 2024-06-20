@@ -47,22 +47,19 @@ mkdocs build
 
 定制化修改主题：<https://squidfunk.github.io/mkdocs-material/customization/#extending-the-theme>
 
-## GitHub Pages
-
-> 官方文档：<https://docs.github.com/cn/pages>
-
-- 解析域名
-
-![20210725115345](http://image.zuoright.com/20210725115345.png)
-
-- 设置自定义域名
-
-![20210725120036](http://image.zuoright.com/20210725120036.png)
-
-- 访问测试
-
-![20210725122020](http://image.zuoright.com/20210725122020.png)
 
 ## 七牛云图床
 
-更换证书，修改HTTPS配置：<https://portal.qiniu.com/cdn/domain>
+密钥管理：<https://portal.qiniu.com/user/key>
+
+更换证书，修改 HTTPS 配置：<https://portal.qiniu.com/cdn/domain>
+
+### PicGo 上传
+
+- 从剪切板上传：`cmd` + `opt` + `u`
+- 从文件夹上传：`cmd` + `opt` + `e`
+- 输入路径上传：`cmd` + `opt` + `o`
+
+VSCode 安装 [PicGo](https://picgo.github.io/PicGo-Core-Doc/zh/guide/) 插件，配置七牛云密钥
+
+![20210808174641](http://image.zuoright.com/20210808174641.png)

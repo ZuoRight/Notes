@@ -64,6 +64,22 @@ jobs:
 - 引用当前或其它仓库：`uses: actions/setup-python@v4`
 - 引用 DockerHub 中的 actions：`uses: docker://alpine:3.8`
 
+## GitHub Pages
+
+> 官方文档：<https://docs.github.com/cn/pages>
+
+- 解析域名
+
+![20210725115345](http://image.zuoright.com/20210725115345.png)
+
+- 设置自定义域名
+
+![20210725120036](http://image.zuoright.com/20210725120036.png)
+
+- 访问测试
+
+![20210725122020](http://image.zuoright.com/20210725122020.png)
+
 ## 下载指定文件
 
 [SVN](https://www.visualsvn.com/) 是集中式的 VCS，它修复了 CVS（一款更老的集中式VCS）的一些稳定性问题，分为客户端和服务端。
