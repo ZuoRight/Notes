@@ -40,13 +40,16 @@ theme:
   # favicon: images/favicon.png
   features:
     # - navigation.tabs  # 导航标签
+    - navigation.prune  # 导航修剪
     # - navigation.expand  # 导航全部展开
     - navigation.instant  # 内部锚链接即时加载
+    # - navigation.instant.progress
     # - navigation.indexes  # 导航索引
+    - navigation.tracking # 锚点跟踪
     - navigation.top  # 回到顶部
     - header.autohide  # 下滑自动隐藏导航栏
-    # - toc.integrate  # 导航集成到左侧
     - toc.follow  # 导航跟随
+    # - toc.integrate  # 导航集成到左侧
 
 extra:
   homepage: https://zuoright.com  # 点击图标跳转链接
@@ -92,6 +95,7 @@ markdown_extensions:
   - pymdownx.tabbed  # 分组式代码块
   - pymdownx.smartsymbols
   - attr_list  # 支持大按钮
+  - md_in_html
   - def_list
   - pymdownx.arithmatex:
       generic: true
