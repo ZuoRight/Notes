@@ -1,6 +1,8 @@
 # 进程间通信
 
-Inter-Process Communication 进程间通信，指至少两个进程或线程间传送数据或信号的一些技术或方法，简称IPC。
+IPC, Inter-Process Communication 进程间通信，指至少两个进程或线程间传送数据或信号的一些技术或方法。
+
+<https://time.geekbang.org/column/article/576947>
 
 ## 环境变量
 
