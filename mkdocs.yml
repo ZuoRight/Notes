@@ -37,7 +37,7 @@ theme:
   icon:
     logo: material/meditation
     # repo: material/source-branch
-  # favicon: images/favicon.png  # 自定义网站图标
+  favicon: images/favicon.png  # 网站图标
   features:
     - navigation.tabs  # 导航标签
     - navigation.prune  # 导航修剪

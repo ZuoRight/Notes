@@ -69,3 +69,13 @@ mkdocs build
 VSCode 安装 [PicGo](https://picgo.github.io/PicGo-Core-Doc/zh/guide/) 插件，配置七牛云密钥
 
 ![20210808174641](http://image.zuoright.com/20210808174641.png)
+
+## 评论
+
+配置：<https://giscus.app>
+
+```plaintext
+---
+comments: true  开启评论
+---
+```
