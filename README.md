@@ -15,33 +15,39 @@ pip install mkdocs
 # 安装Material for MkDocs主题时会附带安装Mkdocs
 pip install mkdocs-material
 
-# 安装文章底部显示更新时间的插件
-pip install mkdocs-git-revision-date-localized-plugin
+# 安装插件
+pip install mkdocs-glightbox  # 放大图片
+pip install mkdocs-awesome-pages-plugin  # 定义目录顺序
+pip install mkdocs-git-revision-date-localized-plugin  # 文章底部显示更新时间
 ```
 
 ```shell
 # 初始化
 mkdocs new .
-<<'COMMENT'
+
+# 目录结构
+'
 ├─ docs/
 │  └─ index.md
 └─ mkdocs.yml
+'
 
-最小配置
+# 最小配置
+'
 theme:
   name: material
   custom_dir: overrides  # 扩展主题
-COMMENT
+'
 
 mkdocs --help
 
 # 启动本地服务预览
 mkdocs serve
 
-# 手动将docs目录中的markdown构建成html等静态文件
+# 手动将 docs 目录中的 md 构建成 html 等静态文件
 mkdocs build
 
-# 新建gh-deploy分支，自动构建并推送到origin
+# 自动构建并推送到 gh-deploy 分支
 # mkdocs gh-deploy
 ```
 

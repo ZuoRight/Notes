@@ -42,6 +42,7 @@ theme:
     - navigation.tabs  # 导航标签
     - navigation.prune  # 导航修剪
     # - navigation.expand  # 导航全部展开
+    # - navigation.footer  # 上一页下一页
     - navigation.instant  # 内部锚链接即时加载
     - navigation.instant.progress
     - navigation.tracking # 锚点跟踪
@@ -108,9 +109,10 @@ plugins:
   - search:
       lang:
         - zh  # lunr-languages 1.12 已支持中文
-  - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件
-      type: iso_date
+  # - git-revision-date-localized:  # 文章底部显示更新时间，需要先安装插件，影响构建时间
+      # type: iso_date
       # enable_creation_date: true  # 显示创建时间
+      # enabled: !ENV [CI, false]  # 本地不启动
   - glightbox  # 放大图片
   - awesome-pages  # 更方便的设置目录顺序
 

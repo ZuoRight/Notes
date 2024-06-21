@@ -4,40 +4,31 @@ on:
     branches:
       - main
 
+env:
+  PYTHON_VERSION: 3.x
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        # with:
+          # fetch-depth: 0  # 每个页面底部显示文档贡献者和日期时需要设置
           # sparse-checkout: |
           #   docs
           #   includes
-      - uses: actions/setup-python@v4
+
+      - uses: actions/setup-python@v5
         with:
-          python-version: 3.x
-      - uses: actions/cache@v3
-        with:
-          key: ${{ github.ref }}
-          path: .cache
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
       - run: |
-          pip install mkdocs-material
-          pip install mkdocs-git-revision-date-localized-plugin
-          pip install mkdocs-glightbox
-          pip install mkdocs-awesome-pages-plugin
+          pip install -r requirements.txt
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
       - run: |
-          cd notes
-          mkdocs build
-          cd ../blockchain
-          mkdocs build
-      - run: |
-          git add .
-          git rm -r --cached notes/docs
-          git rm -r --cached blockchain/docs
-          git rm -r --cached .github/workflows
-          git commit -m "ci commit"
-          git push origin main:dev --force
+          mkdocs gh-deploy --force

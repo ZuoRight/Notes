@@ -2,12 +2,11 @@
 nav:
   - Computer
   - Program
-  - Network
   - JavaScript
   - Python
+  - Network
   - Database
   - Application
   - Middleware
   - DevOps
-  - Testing
   - ...

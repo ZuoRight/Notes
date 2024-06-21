@@ -56,6 +56,21 @@ jobs:
         env:  # 环境变量
           key: value
         run: action
+
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      # 检出当前代码库，克隆到 GitHub 提供的虚拟环境中
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python runtime
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip  # 缓存 pip 安装的依赖包
+          cache-dependency-path: |  # 监控依赖变化的文件列表
+            requirements.txt
 ```
 
 ### uses

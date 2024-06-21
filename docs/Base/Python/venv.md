@@ -71,23 +71,52 @@ pip install --upgrade xxx  # 更新包，也可以更新pip自己
 pip uninstall xxx  # 卸载包
 ```
 
-- freeze
+- 查看安装包大小
+
+```shell
+pip list | tail -n +3 | awk '{print $1}' | xargs pip show | grep -E 'Location:|Name:' | cut -d ' ' -f 2 | paste -d ' ' - - | awk '{print $2 "/" tolower($1)}' | xargs du -sh 2> /dev/null | sort -hr
+```
+
+### requirements.txt
+
+```shell
+# 注释
+requests==2.25.1  # 指定精确版本
+flask>=1.1.2  # 大于等于
+numpy<=1.19.5  # 小于等于
+
+pandas~=1.2.0  # 兼容版本，安装 1.2.x 系列的最新版本
+
+Django>=2.2,<3.0  # 范围
+
+flask[dev]  # 安装额外依赖
+
+# 指定 GitHub 或 Git 仓库中的包
+git+https://github.com/username/repository.git@branch
+
+# 指定本地路径的包
+-e ./path/to/local/package
+```
+
+- 自动生成
 
 ```shell
 # 查看已安装的包
 pip freeze
 # 将环境中所有已安装的库及其版本导出到指定文件
 pip freeze > requirements.txt
-# 安装指定文件中列出的所有库
-pip install -r requirements.txt
-# 卸载指定文件中列出的所有库
-pip uninstall -r requirements.txt
 ```
 
-- 查看安装包大小
+第三方插件 pipreqs 是一个专门用于生成 requirements.txt 文件的工具，只会包含实际使用到的库
+
+- 安装&卸载
 
 ```shell
-pip list | tail -n +3 | awk '{print $1}' | xargs pip show | grep -E 'Location:|Name:' | cut -d ' ' -f 2 | paste -d ' ' - - | awk '{print $2 "/" tolower($1)}' | xargs du -sh 2> /dev/null | sort -hr
+# 安装指定文件中列出的所有库
+pip install -r requirements.txt
+
+# 卸载指定文件中列出的所有库
+pip uninstall -r requirements.txt
 ```
 
 ### pipdeptree
