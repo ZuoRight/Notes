@@ -4,15 +4,15 @@
 
 ## MKDocs
 
-> [官方文档](https://www.mkdocs.org/)
->
-> [推荐主题：Material for MkDocs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
+[官方文档](https://www.mkdocs.org/)
+
+推荐主题：[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
 
 ```shell
 # 直接安装
 pip install mkdocs
 
-# 安装Material for MkDocs主题时会附带安装Mkdocs
+# 安装 Material for MkDocs 主题时会附带安装 Mkdocs
 pip install mkdocs-material
 
 # 安装插件
