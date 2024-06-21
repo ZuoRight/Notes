@@ -1,3 +1,9 @@
+---
+comments: true
+hide:
+  - feedback
+---
+
 # 编译
 
 用高级语言编写的源码，需要转换为可执行的二进制文件，才能给 CPU 运行

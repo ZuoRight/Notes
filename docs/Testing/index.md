@@ -1,3 +1,9 @@
+---
+comments: true
+hide:
+  - feedback
+---
+
 # 引言
 
 - 早期定义(`1973, Bill Hetz`)：软件测试是对程序能够按预期运行建立起的一种信心。

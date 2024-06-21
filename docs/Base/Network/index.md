@@ -1,3 +1,9 @@
+---
+comments: true
+hide:
+  - feedback
+---
+
 # 引言
 
 互联网 Internet（音译：因特网），通常认为，互联网起源于阿帕网（ARPANET）

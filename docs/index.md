@@ -1,5 +1,6 @@
 ---
 # template: index.html
+comments: true
 hide:
   - footer
   - feedback

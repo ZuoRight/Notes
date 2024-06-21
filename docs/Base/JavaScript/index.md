@@ -1,3 +1,9 @@
+---
+comments: true
+hide:
+  - feedback
+---
+
 # 引言
 
 - <https://github.com/WTFAcademy/WTF-JavaScript/tree/main>

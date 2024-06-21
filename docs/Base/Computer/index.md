@@ -1,3 +1,9 @@
+---
+comments: true
+hide:
+  - feedback
+---
+
 # 引言
 
 [计算机硬件历史](https://en.wikipedia.org/wiki/History_of_computing_hardware)
