@@ -3,6 +3,8 @@
 hide:
   - footer
   - feedback
+  - navigation
+  - toc
 ---
 
 # About
