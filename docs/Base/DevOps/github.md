@@ -83,6 +83,10 @@ jobs:
 
 > 官方文档：<https://docs.github.com/cn/pages>
 
+- 创建入口文件
+
+`index.html`、`index.md` 或 `README.md` 文件
+
 - 解析域名
 
 ![20210725115345](http://image.zuoright.com/20210725115345.png)

@@ -1,6 +1,8 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - pm.md
+  - test_model.md
   - Case.md
   - bug.md
   - AutoTest.md
@@ -10,6 +12,5 @@ nav:
   - PerformanceTest
   - TestResult
   - 表格数据处理
-  - pm.md
-  - test_model.md
+  - 安全测试: https://www.notion.so/chonge/e81eb82997d44e5196fed43f598f8545?pvs=4
   - ...
