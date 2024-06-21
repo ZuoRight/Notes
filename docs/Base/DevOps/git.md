@@ -71,9 +71,12 @@ ssh-keygen
 
 ```shell
 git remote -v  # 列出添加过的远程库
-git remote remove demo  # 删除已添加的远程库，remove可简写为rm
-git remote show <origin_name>  # 查看远程库详细信息
+git remote show origin_name  # 查看远程库详细信息
 git remote rename old_name new_name  # 修改远程库简写名
+git remote remove demo  # 删除已添加的远程库，remove可简写为rm
+
+# 如果远程库修改了名称，可以修改url重新关联
+git remote set-url origin new_url
 ```
 
 ### 获取仓库
