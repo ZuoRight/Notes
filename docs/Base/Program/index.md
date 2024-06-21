@@ -1,6 +1,20 @@
-# 编程范式
+---
+comments: true
+hide:
+  - feedback
+---
 
-编程范式是指在编写和组织计算机程序时采用的基本风格或方法论。
+# 设计模式
+
+![20240608200150](https://image.zuoright.com/20240608200150.png)
+
+> 图片来源：极客时间《设计模式之美》
+
+设计模式主要是为了弥补语言本身的不足，duck typing 的语言通常不需要设计模式，比如 Python，灵活和强大的内置功能使得它们不需要过度依赖设计模式来解决复杂的设计问题
+
+## 编程范式
+
+编程范式（Paradigm）是指在编写和组织计算机程序时采用的基本风格或方法论。
 
 编程语言发展到今天，出现了好多不同的代码编写方式，但不同的方式解决的都是同一个问题，那就是如何写出更为通用、更具可重用性的代码或模块。
 
@@ -12,7 +26,7 @@
 
 ![20240608195636](https://image.zuoright.com/20240608195636.png)
 
-## 声明式编程
+### 声明式编程
 
 SQL、HTML、正则表达式
 
@@ -20,7 +34,7 @@ SQL、HTML、正则表达式
 SELECT name FROM employees WHERE department = 'Sales';
 ```
 
-## 命令式编程
+### 命令式编程
 
 通过一系列指令改变程序状态的编程范式：变量、赋值、循环、控制结构
 
@@ -39,7 +53,7 @@ int main() {
 }
 ```
 
-## 函数式编程
+### 函数式编程
 
 Lisp 是最早的函数式语言，lambda, map, filter, reduce 都是 Lisp 中先出现的
 
@@ -57,7 +71,7 @@ Guido 明确表示 Python 虽然把函数定位一等对象，但他并不把 Py
 
 Python 中可以使用 operator 和 functools 等包实现函数式编程风格
 
-## 面向对象编程
+### 面向对象编程
 
 Object-Oriented Programming, OOP
 
@@ -106,3 +120,31 @@ Meta Programming，能够把程序当做数据来处理，从而让程序产生�
 
 - 自省（introspection）一门语言写的程序，能够报告它自身的信息
 - 反射（reflection）自省之上，还可以操纵自身
+
+## 事件驱动
+
+基于对事件的响应进行操作，事件可以是用户操作（如点击、输入）、系统事件（如文件更改、消息到达）等，系统持续监听各种事件，当事件发生时，调用相应的处理程序。比如在消息队列中通过事件驱动实现消息的发布和订阅，事件驱动系统通常是异步的，可以处理并发的多个事件
+
+- JS 中处理按钮点击事件
+
+```js
+document.getElementById("myButton").addEventListener("click", function() {
+    alert("Button clicked!");
+});
+```
+
+- Python 中异步
+
+```python
+import asyncio
+
+async def handle_event():
+    print("Event handled!")
+
+async def main():
+    print("Waiting for event...")
+    await asyncio.sleep(2)
+    await handle_event()
+
+asyncio.run(main())
+```

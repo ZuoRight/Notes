@@ -83,6 +83,10 @@ jobs:
 
 > 官方文档：<https://docs.github.com/cn/pages>
 
+用户页面（User Pages）：每个用户或组织只能有一个用户页面，`https://<user>.github.io`
+
+项目页面：每个项目一个单独页面，`https://<user>.github.io/<repository>`
+
 - 创建入口文件
 
 `index.html`、`index.md` 或 `README.md` 文件

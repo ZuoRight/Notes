@@ -23,25 +23,23 @@ hide:
 
 另外也不要想着自动化框架一步完美，先能用，再好用。
 
-- 框架选择
-- 执行驱动
+## 框架搭建
+
+主要模块
+
 - 数据存取
 - 依赖处理
 - 结果断言
 - 测试报告
 - 持续集成
 
-## 框架选择
-
-- API 自动化
+### API 自动化
 
 如果是 HTTP 协议接口首选第三方库 `Requests`，RPC 协议可以选用第三方库 `ZeroRPC`，WebSocket 协议可以使用系统内置的 `webSocket`
 
-- UI 自动化
+### UI 自动化
 
 Web端可选 `Selenium`，移动端可选 `Appium`，底层其实都是 `Webdriver`
-
-## 测试驱动
 
 ### DDT
 
@@ -55,9 +53,25 @@ Data-Driven Testing 数据驱动测试
 
 Keyword-Driven Testing 关键字驱动测试
 
-通过关键字来描述测试步骤和操作。关键字通常是测试框架提供的预定义操作或自定义操作，例如点击、输入、断言等。测试用例通过组合和调用这些关键字来实现相应的测试场景。
+通过预定义的关键字来描述测试步骤和操作。
 
-适用于复杂的测试场景，可以通过组合和调用不同的关键字来构建各种测试场景。
+每个关键字对应一种操作或测试步骤，，例如点击、输入、断言等。测试用例通过组合和调用这些关键字来实现相应的测试场景。
+
+```python
+# 定义关键字
+def open_browser(url):
+    print(f"Opening browser with URL: {url}")
+
+def verify_title(expected_title):
+    print(f"Verifying that the title is: {expected_title}")
+
+# 使用关键字编写测试用例
+def test_case():
+    open_browser("https://example.com")
+    verify_title("Example Domain")
+
+test_case()
+```
 
 ## 数据存取
 
@@ -160,7 +174,13 @@ def read_from_json(data, key, value_type=0):
 
 ## 依赖处理
 
-- 使用`$`符和`case_id`处理依赖
+- 全局变量
+- `$` 调用 api 或者 case_id
+- Pytest 的 Fixture
+- Mock，当一个接口依赖另一个接口，由于被依赖接口并不是主要测试对象，则可以使用假数据 Mock 掉
+
+
+- 使用 `$` 和 `case_id` 处理依赖
 
 ```python
 from utils.handle_data import GetData
@@ -242,9 +262,9 @@ def build_payload(self, payload: dict) -> dict:
 
 ## 结果断言（待整理）
 
-主要使用deepdiff模块二次封装
+缓存每次运行的结果，识别发生变化的部分，哪些是预期中的哪些不是，比如时间戳等变化肯定是正常的，可以忽略。
 
-可校验字段类型，字段值，是否缺少字段，还可以忽略校验
+主要使用 deepdiff 模块二次封装
 
 ```json
 {

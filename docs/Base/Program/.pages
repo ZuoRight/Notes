@@ -1,5 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
+  - index.md
   - compile.md
   - encode.md
   - 序列化
@@ -8,6 +9,4 @@ nav:
   - IDE
   - Language
   - 数据结构与算法
-  - paradigm.md
-  - pattern.md
   - ...

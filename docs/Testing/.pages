@@ -9,8 +9,7 @@ nav:
   - UnitTest
   - APITest
   - UITest
-  - PerformanceTest
   - TestResult
-  - 表格数据处理
+  - PerformanceTest
   - 安全测试: https://www.notion.so/chonge/e81eb82997d44e5196fed43f598f8545?pvs=4
   - ...
