@@ -1,4 +1,4 @@
-# JS
+# 单元测试
 
 ```js
 let demoError = new Error("This is an error message");  // 创建一个Error对象

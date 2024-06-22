@@ -2,7 +2,5 @@
 nav:
   - index.md
   - allure.md
-  - pytest-html.md
-  - HTMLTestRunner.md
   - email.md
   - ...

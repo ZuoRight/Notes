@@ -6,18 +6,8 @@ hide:
 
 # Pytest
 
-- 官方文档：<https://docs.pytest.org>
-- 插件列表：<https://docs.pytest.org/en/latest/reference/plugin_list.html>
-
-| 特性          | unittest                                  | pytest                                       |
-|--------------|-------------------------------------------|----------------------------------------------|
-| 类型         | Python 标准库                              | 第三方库                                       |
-| 风格         | 面向对象（基于类和方法）                      | 函数式，更简洁（支持类和方法）                     |
-| 断言样式      | assertEqual()、assertTrue()等特定的断言方法  | Python 内置的 assert                          |
-| 测试发现机制   | 支持自动发现                               | 强大的自动发现                                  |
-| 前置/后置装饰  | setUp() 和 tearDown()                     | 灵活的 fixture 系统                            |
-| 插件生态系统   | 较少的第三方插件                            | 丰富的插件生态                                  |
-| 适用场景      | 适用于熟悉 xUnit 架构的开发者                | 更高的灵活性和简洁性，适用于各种规模的项目           |
+- 官方文档：<https://docs.pytest.org/en/stable/>
+- 插件列表：<https://docs.pytest.org/en/stable/reference/plugin_list.html>
 
 ```shell
 pip install pytest  # install
@@ -27,7 +17,13 @@ pytest --fixtures  # show available builtin function arguments
 pytest -h | --help # show help on command line and config file options
 ```
 
-## Case编写规范
+## 插件
+
+- 内置插件：代码内部的 `_pytest` 目录加载
+- 本地插件：Pytest 自动模块发现机制（`conftest.py` 存放的）
+- 外部插件：`pip install` 安装的插件，比如 allure
+
+## Case 编写规范
 
 `test_xxx.py` 或 `xxx_test.py`
 
@@ -451,8 +447,53 @@ fixture 中的断言如果失败，结果会显示 error，case 中的断言如�
 
 `pytest junitxml=./result.xml`
 
-## 插件
+## pytest-html
 
-- 外部插件：`pip install` 安装的插件，比如 allure
-- 本地插件：Pytest 自动模块发现机制（conftest.py 存放的）
-- 内置插件：代码内部的 `_pytest` 目录加载
+```shell
+pip install pytest-html
+
+# --self-contained-html css样式混在html中，不加则独立
+pytest --html=report.html --self-contained-html
+```
+
+可通过 `conftest.py` 文件修改一些内容
+
+> 修改与汉化：<https://www.cnblogs.com/linuxchao/p/linuxchao-pytest-html.html>
+
+```python
+import pytest
+from py._xmlgen import html
+
+
+# 测试报告标题
+def pytest_html_report_title(report):
+    report.title = "接口自动化测试报告"
+
+# 修改Environment
+def pytest_configure(config):
+    config._metadata.pop("Plugins")  # 删除
+    config._metadata["Data Path"] = "data/"  # 添加
+
+# 修改Summary
+@pytest.mark.optionalhook
+def pytest_html_results_summary(prefix):
+    prefix.extend([html.p("测试项目: EE")])
+
+# 删除header
+@pytest.mark.optionalhook
+def pytest_html_results_table_header(cells):
+    cells.pop(-1)  # link列
+
+# 删除row
+@pytest.mark.optionalhook
+def pytest_html_results_table_row(report, cells):
+    cells.pop(-1)  # link row
+
+# 解决中文乱码
+# @pytest.mark.hookwrapper
+# def pytest_runtest_makereport(item):
+#     outcome = yield
+#     report = outcome.get_result()
+#     getattr(report, 'extra', [])
+#     report.nodeid = report.nodeid.encode("utf-8").decode("unicode_escape")
+```

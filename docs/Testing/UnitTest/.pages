@@ -1,8 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - mock.md
-  - jsonpath.md
-  - deepdiff.md
-  - httprunner.md
+  - unittest.md
+  - pytest.md
   - ...
