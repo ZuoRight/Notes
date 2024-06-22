@@ -460,8 +460,8 @@ git commit -m "改动说明"
 
 # 切回本地主分支
 git checkout master
-# 合并dev
-git merge master
+# 将dev合并到master
+git merge dev
 '
 如果有冲突，可以选择终止合并
 git merge --abort
@@ -491,5 +491,5 @@ git rebase --continue
 git push origin dev
 
 # 删除已被合并的分支
-git checkout -d dev
+git branch -d dev
 ```

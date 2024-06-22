@@ -1,7 +1,11 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - Python
+  - JavaScript
   - c.md
   - java.md
   - go.md
+  - markup_languages.md
+  - 数据结构与算法
   - ...

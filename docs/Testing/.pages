@@ -1,10 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - pm.md
-  - test_model.md
-  - Case.md
-  - bug.md
+  - test_life_cycle.md
   - AutoTest.md
   - UnitTest
   - APITest
@@ -12,4 +9,5 @@ nav:
   - TestResult
   - PerformanceTest
   - 安全测试: https://www.notion.so/chonge/e81eb82997d44e5196fed43f598f8545?pvs=4
+  - pm.md
   - ...
