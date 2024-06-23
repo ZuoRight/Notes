@@ -1,6 +1,6 @@
 # UnitTest
 
-<https://docs.python.org/zh-cn/3.10/library/unittest.html>
+<https://docs.python.org/3.10/library/unittest.html>
 
 测试对象：加减法计算器
 
@@ -129,6 +129,8 @@ if __name__ == '__main__':
 
 除了下面这些，还有很多其它的断言方法
 
+<https://docs.python.org/3.10/library/unittest.html#assert-methods>
+
 ![20240622222725](https://image.zuoright.com/20240622222725.png)
 
 ## 执行
@@ -145,6 +147,18 @@ python -m unittest test_module.TestClass.test_method
 
 专用于 unittest 生成测试报告的扩展库
 
-手动将 `HTMLTestRunner.py` 文件放置在 Python 安装路径下的 Lib 文件夹中，源文件仅支持Python 2.x 版本，可自行修改为适配 Python3.x 版本。
+`pip install html-testRunner`
 
-> 参考：<https://github.com/Gelomen/HTMLTestReportCN-ScreenShot>
+<https://github.com/oldani/HtmlTestRunner>
+
+```python
+import unittest
+import HtmlTestRunner
+
+class TestStringMethods(unittest.TestCase):
+    pass
+
+
+if __name__ == '__main__':
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='example_dir'))
+```

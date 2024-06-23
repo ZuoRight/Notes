@@ -17,11 +17,33 @@
 
 ## 覆盖率
 
-插桩
-
 代码覆盖率是度量测试是否全面的指标之一
 
 但不要过分关注测试覆盖率，单元测试不应该包罗万象，不同粒度的测试应该关注不同的点，它们之间是互补的关系
+
+## 插桩
+
+插桩是一种在软件代码中插入额外代码的技术，用于监控和测量程序的行为、性能、资源使用情况等。这些额外代码被称为”桩”（probes）。
+
+- 代码覆盖率分析：插入代码以跟踪哪些代码路径被执行，帮助评估测试覆盖率。
+- 性能分析工具：如 Profiler 工具，通过插桩收集性能数据。
+- 运行时监控：监控系统或应用程序在运行时的状态和行为。
+
+```python
+import time
+
+def some_function():
+    print("Executing some_function")
+
+# 插桩代码
+def instrumented_function():
+    start_time = time.time()
+    some_function()
+    end_time = time.time()
+    print(f"Execution time: {end_time - start_time} seconds")
+
+instrumented_function()
+```
 
 ## 框架
 
@@ -29,12 +51,4 @@
 - JS：`Mocha + Chai`
 - Python：`Unittest`、`Pytest`
 
-| 特性          | unittest                                  | pytest                               |
-|--------------|-------------------------------------------|-------------------------------------|
-| 类型         | 标准库                                     | 第三方库                                 |
-| 风格         | 面向对象（基于类和方法）                      | 函数式，也支持类和方法                      |
-| 断言样式      | 特定名称的断言方法  | Python 内置的 assert                     |
-| 测试发现机制   | 支持自动发现                               | 强大的自动发现                             |
-| 前置/后置装饰  | setUp() 和 tearDown()                     | 灵活的 fixture 系统                       |
-| 插件生态系统   | 较少的第三方插件                            | 丰富的插件生态                             |
-| 适用场景      | 适用于熟悉 xUnit 架构的开发者                | 适用于各种规模的项目                        |
+![20240623235040](https://image.zuoright.com/20240623235040.png)

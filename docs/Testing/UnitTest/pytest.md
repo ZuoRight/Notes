@@ -6,26 +6,30 @@ hide:
 
 # Pytest
 
-- 官方文档：<https://docs.pytest.org/en/stable/>
-- 插件列表：<https://docs.pytest.org/en/stable/reference/plugin_list.html>
+官方文档：<https://docs.pytest.org/en/stable/contents.html>
+
+API：<https://docs.pytest.org/en/stable/reference/reference.html#>
 
 ```shell
-pip install pytest  # install
+pip install -U pytest
 
-pytest --version   # shows where pytest was imported from
+pytest --version  # shows where pytest was imported from
+pytest --help  # show help on command line and config file options
+
 pytest --fixtures  # show available builtin function arguments
-pytest -h | --help # show help on command line and config file options
 ```
 
-## 插件
+插件列表：<https://docs.pytest.org/en/stable/reference/plugin_list.html>
 
 - 内置插件：代码内部的 `_pytest` 目录加载
-- 本地插件：Pytest 自动模块发现机制（`conftest.py` 存放的）
-- 外部插件：`pip install` 安装的插件，比如 allure
+- 本地插件：`conftest.py` 自动模块发现机制
+- 外部插件：`pip install` 安装的插件，比如 Allure
 
-## Case 编写规范
+## 编写规范
 
 `test_xxx.py` 或 `xxx_test.py`
+
+### setup & teardown
 
 ```python
 import pytest
@@ -86,11 +90,64 @@ class TestDemo:
         print("method2")
 ```
 
+### Fixture
+
+- 详解
+
+```python
+@pytest.fixture(
+    params=None,  # fixture 参数化
+    ids=None,  # 给每组 case 起别名
+    name=None  # fixture 的名称，默认就是函数名
+    autouse=False,
+        # False 默认，只会在传入函数名的 case 调用
+        # True 无需传参，自动为 scope 范围内的所有 case 调用，但不能给 case 返回值
+    scope=function,  # 作用范围
+        # session 或 package 多个文件共调用一次，通常把 fixture 写在 conftest.py 文件中
+        # module 模块级，类似于 setup/teardown_module，会在第一个调用它的函数前开始执行，在模块最后再执行，每个函数都调用其实是为了得到返回值
+        # class 类级别，类似于 setup/teardown_function + setup/teardown_class
+        # function 函数或者方法级（默认），类似于 setup/teardown_function + setup/teardown_method
+)
+```
+
+- 示例
+
+多个 Fixture 之间可以互相调用，Fixture 函数的参数只能是另一个 Fixture，比如 `request`
+
+
+```python
+import pytest
+
+@pytest.fixture(scope="function", autouse=False)
+def login():  # 为区别于用例，函数命名不能以 test 开头
+    print("登入")  # yield 前面的类似于 setup_xx
+    yield xxx  # 在完成 yield 前面的操作后 return xxx
+    print("登出")  # yield 后面的类似于 teardown_xx
+
+
+# 函数前使用 fixture（可同时使用多个）
+def test_01(login):  # 传入 fixture 函数名 login 作为参数
+    print("case_01")  # 先登入，然后运行 case，最后登出
+
+
+# 类前使用 fixture
+"""
+# 默认情况下，如果想让类中每一个方法都调用 fixture，挨个传入 fixture 名比较麻烦
+# 此时则可以使用 usefixtures 装饰器让类中每个函数调用
+# 不过这种方式与 autouse=Ture 一样无法给 case 返回值
+"""
+@pytest.mark.usefixtures("login")  # 注意：login 要写在引号内，可传入多个
+class TestDemo:
+    pass
+```
+
 ## 参数化
 
-- 普通形式：`@pytest.mark.parametrize`
+<https://docs.pytest.org/en/stable/how-to/parametrize.html>
 
-不能用于前置方法的参数化，前置方法如果要参数化，可以借助 fixture 来实现
+### 用例参数化 `@pytest.mark.parametrize`
+
+> 前置方法不能使用装饰器参数化，需要借助 fixture 实现
 
 ```python
 import pytest
@@ -98,276 +155,171 @@ import pytest
 # 数据驱动：把Case存入YAML、EXCEL等文件中读取
 _list = yaml.safe_load(open(yaml_file))  # [[1,1], [1, 2], [1,3], [2,1], [2,2], [2,3]]
 
-@pytest.mark.parametrize("a,b", _list)
 """
 @pytest.mark.parametrize(
     argnames,  被参数化的变量，字符串中逗号分隔变量，也可以是列表或元组的形式
     argvalues,  与变量一一对应的一组值：[(1,2), (1,3), (1,4)]，如果只有一个变量可写成：(1, 2, 3)
     ids=None,  给每组Case起别名
-    indirect=False
+    indirect= bool | Sequence[str]  间接使用同名 Fixture
 )
 """
+@pytest.mark.parametrize("a,b", _list)
+def test_demo(a, b):
+    print(a+b)
+
+
+# 笛卡尔积形式，会产生 2x3=6 条 Case，与上面等价
+@pytest.mark.parametrize("a", [1, 2])
+@pytest.mark.parametrize("b", [1, 2, 3])
 def test_demo(a, b):
     print(a+b)
 ```
 
-- 笛卡尔积形式
-
-```python
-# 参数化，笛卡尔积形式：会产生2x3=6条Case，与上面等价
-"""
-@pytest.mark.parametrize("a", [1,2])
-@pytest.mark.parametrize("b", [1,2,3])
-"""
-```
-
-`@pytest.mark.parametrize` 和 `fixture` 形式一起使用时也会形成笛卡尔积
-
-## Fixture
-
-- 可同时定义多个fixture，作用于不同范围
-- 多个Fixture之间可以互相调用，fixture函数的参数只能是另一个Fixture
-- fixture如果写在conftest.py文件中，则可以被同级目录多个文件一起调用
-
-```python
-@pytest.fixture(scope="function", autouse=False, params=None, ids=None, name=None)
-"""
-scope  作用范围
-    session 或 package  多个文件共调用一次，通常把fixture写在conftest.py文件中
-    module  模块级，类似于setup/teardown_module，会在第一个调用它的函数前开始执行，在模块最后再执行，每个函数都调用其实是为了得到返回值
-    class  类级别，类似于setup/teardown_function + setup/teardown_class
-    function  函数或者方法级（默认），类似于setup/teardown_function + setup/teardown_method
-autouse
-    False  默认，只会在传入函数名的case调用
-    True  无需传参，自动为scope范围内的所有case调用，但不能给case返回值
-params fixture参数化
-ids  给每组Case起别名
-name  fixture的名称，默认就是函数名
-"""
-def login():  # 为区别于用例，函数命名不能以test开头
-    print("登入")  # yield前面的类似于setup_xx
-    yield xxx  # 相当于return，在完成yield前面的操作后返回xxx
-    print("登出")  # yield后面的类似于teardown_xx
-
-
-# 传入fixture函数名login作为参数，可传入多个
-def test_01(login):
-    # 先登入，然后运行case，最后登出
-    print("case_01")
-
-
-# 在默认情况下，如果想让类中每一个方法都调用fixture，挨个传入login比较麻烦
-# 此时则可以使用usefixtures装饰器让类中每个函数调用
-# 不过这种方式与autouse=Ture一样无法给case返回值
-@pytest.mark.usefixtures("login")  # 注意：login要写在引号内，可传入多个
-class TestDemo:
-    pass
-```
-
-### `conftest.py`
-
-一些fixture和hook配置，如果有多个conftest，就近原则，深度查找
-
-```python
-# 解决收集Case中文乱码问题
-def pytest_collection_modifyitems(items):
-    for item in items:
-        item.name = item.name.encode("utf-8").decode("unicode_escape")
-        item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
-
-
-# 动态生成日志文件名，即每执行一次就生成一个单独的日志文件
-@pytest.fixture(scope="session", autouse=True)
-def manage_logs(request):
-    # 时间作为文件名就没必要加-或:等符号了
-    now = time.strftime("%Y%m%d_%H%M%S")
-    # 当前目录为pytest.ini文件所在的位置
-    log_name = f'data/logs/{now}.log'
-    request.config.pluginmanager.get_plugin("logging-plugin").set_log_path(log_name)
-```
-
-### 使用Fixture参数化
+### Fixture 参数化
 
 ```python
 import pytest
 
 @pytest.fixture(params=[(1,2,3), (11,22,33)])
-def login(request):  # request其实是一个内置fixture
+def login(request):  # request 其实是一个内置 Fixture
   return request.param  # 固定用法，通过request.param拿到每一组数据，
 
 def test_01(login):
   print(login[0] + login[1] + login[2])
 ```
 
-### 将Case的参数传递给fixture进行参数化
+### Parametrize 结合 Fixture 使用
 
-给fixture传了参数，可以不使用返回值，但fixture必须要被调用，不然就会报错：`function uses no fixture 'xxx'`
+- `indirect=True` 所有参数都使用同名 Fixture 来处理
+- `indirect=["fixture1"]` 指定参数使用同名 Fixture 来处理
 
-- 用例直接调用
-- 用例调用其它fixture，其它fixture调用这个fixture
+此列表中 argname 对应的 argvalue 将作为 request.param 传递到其各自的 argname 同名的 Fixture 函数，如果为 True，则包含所有 argname。
 
 ```python
+def connect_to_database(config):
+    # 模拟连接数据库
+    if config == "sqlite":
+        return "Connected to SQLite"
+    elif config == "mysql":
+        return "Connected to MySQL"
+    else:
+        raise ValueError("Unsupported database")
+
+
 import pytest
 
-@pytest.fixture()
-def login(request):
+# Fixture 1
+@pytest.fixture
+def db_config(request):
+    config = request.param
+    return connect_to_database(config)
+
+# Fixture 2
+@pytest.fixture
+def timeout(request):
     return request.param
 
-_list = [(1,2,3), (11,22,33)]
 
-# 如果要传多个参数可以使用字典的形式
-_list = [
-    {"username": "jojo", "password": "123456"},
-    {"username": "hanmeimei", "password": "123456"},
-    {"username": "lilei", "password": "123456"}
-]
+# 使用 Fixture 1
+@pytest.mark.parametrize("db_config", ["sqlite", "mysql"], indirect=True)
+def test_database_connection(db_config):
+    assert "Connected" in db_config
 
-@pytest.mark.parametrize("login", _list, indirect=True)
+# 使用 Fixture 1 和 2
+@pytest.mark.parametrize("db_config,timeout", [("sqlite", 10), ("mysql", 20)], indirect=True)
+def test_database_connection(db_config):
+    assert "Connected" in db_config
+
+# 使用 Fixture 1 和 2，也可以写成
+@pytest.mark.parametrize("db_config,timeout", [("sqlite", 10), ("mysql", 20)], indirect=["db_config", "timeout"])
+
+
+# 使用 Fixture1 和 普通参数
 """
-indirect=True时，argnames是一个fixture函数名，_list作为fixture的参数
-可以传多个fixture: @pytest.mark.parametrize("getusername,getpassword", data, indirect=True)
+这里的 timeout 只是普通的参数，不会被传递给 Fixture 2
 """
-def test_01(login):
-    print(login[0] + login[1] + login[2])
+@pytest.mark.parametrize("db_config,timeout", [("sqlite", 10), ("mysql", 20)], indirect=["db_config"])
+def test_partial_indirect(db_config, timeout):
+    assert "Initialized" in db_config
+    assert isinstance(timeout, int)
+    assert timeout in [10, 20]
 ```
 
-## 运行
+## 断言
 
-> 参考文档：<https://docs.pytest.org/en/7.1.x/how-to/usage.html#usage>
-
-- 文件中执行：`pytest.main()`
+### `assert` 语句
 
 ```python
-if __name__ == '__main__':
-    pytest.main(["test_xx.py::类/函数", "-参数"])
+assert xx  # 判断xx为真
+assert not xx  # 判断xx不为真
+assert a in b  # 判断b包含a
+assert a == b  # 判断a等于b
+assert a != b  # 判断a不等于b
 ```
 
-- 命令行执行
+### `pytest.raise()` 上下文管理器
 
-```shell
-# 会收集所有符合编写规范的文件以及文件内的函数和类以及方法，然后根据参数等略过不需要执行的
-pytest
-"""
-collected 7 items / 6 deselected / 1 selected
-"""
-
-# 只收集不执行
-pytest --collect-only
-
-# 查看执行过程，显示fixture关系
-pytest --setup-show
-```
-
-![4663921b77def085d62ac258dac1c94](http://image.zuoright.com/4663921b77def085d62ac258dac1c94.png)
-
-### 测试范围
-
-```shell
-# 测试指定目录下所有文件
-pytest testing/
-
-# 测试指定文件
-pytest test_x.py
-
-# 测试指定方法
-pytest test_x.py::方法名
-# 测试指定类
-pytest test_x.py::类名
-# 测试指定类下的指定方法
-pytest test_x.py::类名::方法名
-
-# 模糊匹配（不区分大小写）
-pytest -k "xxx"  # 测试包含xxx关键字的Case，不区分大小写
-"""表达式
-a
-not a  
-a or b  如果想执行a.py和b.py要用or而不是and
-a and b  如果想执行a_b.py可以用and
-a and not b
-"""
-```
-
-### 参数
-
-- -v, --verbose 增加详细程度
-
-![1f5e32c3bbf3b6e7a345b4dfaa5f72e](http://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png)
-
-- -s, --capture=no 捕获print()信息
-
-![f47d5c603ff0862910a548ead5df0ec](http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png)
-
-- quiet 安静
-
-![0b6becba62a5c6685a92aa82a50b191](http://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png)
-
-- 遇到任一条用例失败立即退出：`pytest -x`
-- 遇到n条失败后退出：`pytest --maxfail=n`
-- 指定标记
-
-也可以跟`-k`一样加逻辑判断：`pytest -m xxx`
+预期异常的断言
 
 ```python
-# 可加多个标记
-@pytest.mark.xxx
-@pytest.mark.yyy
-
-# 内置的跳过标记
-@pytest.mark.skip("原因, 可选参数")
-# 满足条件则跳过
-@pytest.mark.skip(a == 1, reaseon="原因")
-# 满足条件跳过并标记为失败
-@pytest.mark.xfail(a == 1, reaseon="原因")
+def test_zero_division():
+    with pytest.raises(ZeroDivisionError):
+        1 / 0
 ```
 
-```ini
-[pytest]
-; 注册自定义标记，skip标记不需要注册
-; 如果不注册会有PytestUnknownMarkWarning的警告，但不影响运行
-markers = 
-  default
-  base
-  xxx
+- 正则匹配异常信息
+
+```python
+def myfunc():
+    raise ValueError("Exception 123 raised")
+
+def test_match():
+    with pytest.raises(ValueError, match=r".* 123 .*"):
+        myfunc()
 ```
 
-### 执行顺序
+### 多重断言插件
 
-Pytest默认按照收集顺序执行（即从上到下）
+`pip install pytest-assume`
 
-```shell
-# 按指定顺序执行
-pip install pytest-ordering
-"""
-@pytest.mark.run(order=n)  # n: 0、1、2、3、-3、-2、-1
-未指定的用例将在这些指定了顺序的用例后按默认顺序执行
-"""
-
-# 随机执行
-pip install pytest-random-order
+```python
+def test_01(self):
+    pytest.assume(1 == 2)  # 第一个断言失败不影响后面的断言
+    pytest.assume(1 == 1)
 ```
 
-```shell
-# 失败重跑
-pip install pytest-rerunfailures
+## 特殊文件
 
-# 多重断言
-pip install pytest-assume
+- `conftest.py` 一些 Fixture 或 Hooks(钩子函数) 配置
+- `pytest.ini` 配置，可以改变 Pytest 的默认行为，Windows 下不能使用中文
+- `tox.ini` 与 `pytest.ini` 类似，用 tox 工具时候才有用
+- `setup.cfg` 影响 `setup.py` 的行为
 
-# 并发执行（多进程）
-pip install pytest-xdist
-"""
-pytest -n auto  # 自动分配，检测系统空闲cpu数量并发执行
-pytest -n 4  # 限制最多4个cpu并发执行
-"""
+### `conftest.py`
+
+如果有多个 conftest 文件，就近原则，深度查找
+
+Fixture 如果写在 conftest 文件中，则可以被同级目录多个包共享
+
+```python
+# 动态生成日志文件名，即每执行一次就生成一个单独的日志文件
+@pytest.fixture(scope="session", autouse=True)
+def manage_logs(request):
+    # 时间作为文件名就没必要加 - 或 : 等符号了
+    now = time.strftime("%Y%m%d_%H%M%S")
+    # 当前目录为 pytest.ini 文件所在的位置
+    log_name = f'data/logs/{now}.log'
+    request.config.pluginmanager.get_plugin("logging-plugin").set_log_path(log_name)
+
+
+# 解决收集 Case 中文乱码问题
+def pytest_collection_modifyitems(items):
+    for item in items:
+        item.name = item.name.encode("utf-8").decode("unicode_escape")
+        item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
 ```
 
-## 配置文件
-
-- `pytest.ini` pytest的配置文件，可以改变pytest的默认行为，windows下不能使用中文
-- `tox.ini` 与pytest.ini类似，用tox工具时候才有用
-- `setup.cfg` 也是ini格式文件，影响setup.py的行为
-
-pytest.ini
+### `pytest.ini`
 
 ```ini
 [pytest]
@@ -391,15 +343,7 @@ addopts =
   --collect-only  ; 执行预览，并不真的运行
 ```
 
-## 日志
-
-```python
-import logging
-
-logging.info("日志")
-```
-
-pytest对logging模块做了改写，需要在pytest.ini中做一些配置
+Pytest 对 logging 模块做了改写，需要在 `pytest.ini` 中做一些配置
 
 ```ini
 [pytest]
@@ -423,31 +367,192 @@ log_file_format = %(asctime)s [%(levelname)s] %(message)s (%(filename)s:%(lineno
 log_file_date_format = %Y-%m-%d_%H:%M:%S
 ```
 
-## 常用断言
+## 调用
+
+<https://docs.pytest.org/en/stable/how-to/usage.html>
+
+- 代码中调用
 
 ```python
-assert xx  # 判断xx为真
-assert not xx  # 判断xx不为真
-assert a in b  # 判断b包含a
-assert a == b  # 判断a等于b
-assert a != b  # 判断a不等于b
-
-pytest.raise()
+if __name__ == '__main__':
+    # pytest.main()
+    pytest.main(["test_demo.py::类/函数", "-参数"])
 ```
+
+正常运行 `.py` 文件即可触发
+
+- 命令行中调用
+
+```shell
+pytest  # 测试所有路径所有文件中符合编写规范的用例
+pytest test_suite/  # 测试指定路径下的所有文件
+pytest test_mod.py  # 测试指定文件
+pytest test_mod.py::TestClass  # 测试指定类
+pytest test_mod.py::test_func  # 测试指定方法
+pytest test_mod.py::TestClass::test_func  # 测试指定类下的指定方法
+pytest tests/test_mod.py::test_func[x1,y2]  # 测试指定参数化
+```
+
+### 测试指定关键字 -k
+
+模糊匹配，且不区分大小写
+
+```shell
+# 匹配所有带关键字的文件
+pytest -k "a or b"  # Windows环境表达式必须用双引号
+# 表达式形式
+"""
+a  匹配 test_axx.py test_xAx.py 等
+not a  
+a or b  匹配 test_axx.py 和 bxx.py
+a and b  匹配 test_axb.py，即文件名即包含a还得包含b
+a and not b  文件名包含a但不包含b
+"""
+```
+
+### 测试指定标记 -m
+
+```shell
+# 测试所有带 @pytest.mark.P1 装饰器的用例
+# 也可以像 -k 一样使用表达式
+pytest -m P1
+```
+
+- 内置标记 `skip()`、`xfail()`
+
+```python
+# 直接跳过
+@pytest.mark.skip("xx原因，可省略")
+
+# 满足条件，则跳过
+@pytest.mark.skip(a==1, reaseon="xx")
+
+# 满足条件，引发预期失败，不会影响正常运行
+@pytest.mark.xfail(a==1, reaseon="xx")
+def test_demo(self):
+    pass
+```
+
+- 自定义标记
+
+```python
+# 一条用例可加多个标记
+@pytest.mark.xxx
+@pytest.mark.yyy
+def test_demo2(self):
+    pass
+```
+
+自定义标记通常要在配置文件中注册
+
+否则会显示警告 `PytestUnknownMarkWarning`，不过不影响运行
+
+```ini
+[pytest]
+markers = 
+  default
+  P1
+  xxx
+```
+
+### 调用规则文件
+
+可以把上面所有要测试的范围写到 `.txt` 文件中，然后用 `@` 从文件中读取
+
+```shell
+pytest @tests_to_run.txt
+
+# tests_to_run.txt 每行一条
+'
+tests/test_file.py
+tests/test_mod.py::TestClass
+tests/test_mod.py::test_func
+-m P1
+'
+```
+
+可以使用 `--collect-only -q` 收集所有测试用例
+
+- `--collect-only` 收集测试用例，但不执行
+- `-q` 或 `--quiet` 减少冗余信息
+
+### 执行顺序插件
+
+Pytest 默认按照收集顺序执行
+
+- 随机执行
+
+```shell
+pip install pytest-random-order
+```
+
+- 指定顺序执行
+
+```shell
+pip install pytest-ordering
+
+"""
+@pytest.mark.run(order=n)  # n: 0、1、2、3、-3、-2、-1
+未指定的用例将在这些指定了顺序的用例后按默认顺序执行
+"""
+```
+
+- 并发执行（多进程）
+
+```shell
+pip install pytest-xdist
+
+pytest -n auto  # 自动分配，检测系统空闲CPU数量并发执行
+pytest -n 4  # 限制最多4个CPU并发执行
+```
+
+### 失败处理
+
+- 遇到失败，立即退出：`pytest -x`
+- 遇到 n 条失败后退出：`pytest --maxfail=n`
+- 失败重跑插件：`pytest-rerunfailures`
 
 ## 测试结果
 
-> 如果加了 pytest-html 或 Allure 等报告参数，貌似 -s 参数就会失效
+### 命令行打印
 
-`.F.F..` 中的 `.` 代表测试通过，`F`（Fail）代表测试失败
+![4663921b77def085d62ac258dac1c94](http://image.zuoright.com/4663921b77def085d62ac258dac1c94.png)
 
-fixture 中的断言如果失败，结果会显示 error，case 中的断言如果失败，结果会显示 failed
+`.F.F..` 中的 `.` 代表测试通过，`F` 代表测试失败（Fail）
 
-- 生成xml文件
+Case 中的断言如果失败，结果会显示 `failed`
+
+Fixture 中的断言如果失败，结果会显示 `error`
+
+- `--setup-show`
+
+查看执行顺序，显示 Fixture 调用关系
+
+- `-q`
+
+--quite 精简信息
+
+![0b6becba62a5c6685a92aa82a50b191](http://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png)
+
+- `-v`
+
+--verbose 增加详细程度
+
+![1f5e32c3bbf3b6e7a345b4dfaa5f72e](http://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png)
+
+- `-s`
+
+--capture=no 捕获 `print()` 信息
+
+> 输出到测试报告时，-s 参数就会失效
+
+![f47d5c603ff0862910a548ead5df0ec](http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png)
+
+### 生成 XML 报告
 
 `pytest junitxml=./result.xml`
 
-## pytest-html
+### 生成 HTML 报告
 
 ```shell
 pip install pytest-html

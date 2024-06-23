@@ -97,6 +97,18 @@ EXPOSE 8000
 
 用来执行 `.py` 脚本文件
 
+```shell
+python demo.py
+
+# 将当前目录添加到 sys.path 中，然后执行
+python -m ...
+"""
+比如
+python -m venv env
+python -m unittest test.py
+"""
+```
+
 <https://docs.python.org/3.9/using/cmdline.html#command-line-and-environment>
 
 ### 交互式命令行
