@@ -1,25 +1,18 @@
-# Flask
-
-Python诞生于圣诞节，Flask诞生自愚人节。
+# 基本使用
 
 官方文档：<https://flask.palletsprojects.com/en/2.2.x/>
 
-## 基本使用
-
-app.py
-
 ```python
-# 导入Flask类
+# app.py
+
 from flask import Flask
 
 # 实例化
-app = Flask(__name__)
+app = Flask(__name__)  # __name__，表示以当前模块所在路径作为根目录：/
 """
-__name__，表示以当前模块所在路径作为根目录/
 /static 作为静态文件目录
 /templates 作为模版目录
 """
-
 
 # 装饰器用于绑定路由，当用户访问该URL时将触发相应的视图函数
 # 可同时绑定多个
@@ -31,35 +24,27 @@ def hello():
     return 'Hello, World!'
 ```
 
-## 读取配置
-
-配置文档：<https://flask.palletsprojects.com/en/1.0.x/config/>
-
-配置变量名称必须大写，写入配置的语句一般会放到扩展类实例化语句之前
-
-Flask 提供了一个统一的接口来写入和获取这些配置变量：Flask.config字典
-
-```python
-app.config["KEY"] = value
-```
-
-在Flask项目开发中，可以将隐私数据写到`.env`中，而一些不隐私的可以写到`.flaskenv`文件中
-
 ## 基本命令
 
-```shell
-# 运行项目
-flask --app demo run
-"""
-或者：python demo.py
+### 运行项目
 
+- 代码中运行
+
+```shell
 if __name__ == '__main__':
     app.run(debug=True)
-"""
-
-# 激活程序上下文
-flask shell
 ```
+
+- 命令行运行
+
+```shell
+flask --app demo run
+```
+
+### 命令
+
+进入 Shell：`flask shell`
+
 
 ```python
 import click
@@ -72,129 +57,6 @@ def xxx(drop):  # xxx即是命令名称
         db.drop_all()
     db.create_all()
     click.echo('Initialized database.')  # 输出提示信息
-```
-
-## debug参数配置
-
-### 方式1，run方法中配置debug参数
-
-```python
-# 在开发环境下，flask自带服务器启动时，作为入口文件会执行
-if __name__ == "__main__":
-    app.run(debug=True)
-# 在生产环境，ngnix作为前置服务器接收浏览器发来的请求，然后转发给uwsgi，然后uwsgi把main.py当作模块加载，所以此时main.py不再是入口文件，即不会执行
-```
-
-### 方式2，给config配置类直接赋值
-
-```python
-# 注意，配置名需要全大写
-# 会覆盖掉默认值：{"DEBUG":False}
-app.config["DEBUG"] = True
-
-# 同时设置多个值
-app.config.update(
-    "DEBUG" = True,
-    "TESTING" = True
-)
-
-# 如何取值呢
-app.config.get("DEBUG")
-```
-
-### 方式3，通过from_mapping()读取字典或元祖
-
-```python
-# 创建一个字典对象
-config = {
-    'DEBUG': True,
-    'TESTING': False
-}
-
-# 或者一个二维元组对象
-config = (('DEBUG', True), ('TESTING', False))
-
-
-app.config.from_pyfile(config)
-```
-
-### 方式4，通过from_object()读取模块
-
-- 无需导入模块
-
-```python
-# 创建一个/config.py模块
-DEBUG = True
-
-# 传入字符串，会自动在根目录寻找叫做config的模块
-app.config.from_object("config")
-```
-
-- 需要导入模块
-
-```python
-# 创建一个/config.py模块
-DEBUG = True
-
-import config
-app.config.from_object(config)
-```
-
-- 区分环境
-
-```python
-# 创建一个/config.py模块
-# 各个环境均继承默认配置类，根据环境覆盖不同属性
-class Config(object):
-    DEBUG = False
-    TESTING = False
-    DATABASE_URI = "xxx"
-
-# 生产环境
-class ProductionConfig(Config):
-    DATABASE_URI = 'yyy'
-
-# 预发环境
-class TestingConfig(Config):
-    TESTING = True
-
-# 开发环境
-class DevelopmentConfig(Config):
-    DEBUG = True
-
-
-import config
-app.config.from_object(config.DevelopmentConfig)
-```
-
-### 方式5，通过from_pyfile()读取配置文件
-
-```python
-# 创建一个/config.cfg文件，后缀名随意
-DEBUG = True
-
-
-app.config.from_pyfile('config.cfg')
-```
-
-### 方式6，通过from_json()读取json文件
-
-```python
-# 创建一个/config.json文件
-{
-  "DEBUG": true,
-  "TESTING": false,
-  "A": 123
-}
-
-
-app.config.from_json('config.json')
-```
-
-### 方式7，通过from_envvar()读取系统环境变量
-
-```python
-app.config.from_envvar("variable_name")
 ```
 
 ## 视图函数
@@ -437,4 +299,132 @@ def page_not_found(e):  # 接受异常对象作为参数
 def inject_user():  # 函数名可以随意修改
     user = User.query.first()
     return dict(user=user)  # 需要返回字典，等同于 return {'user': user}
+```
+
+## 读取配置
+
+配置文档：<https://flask.palletsprojects.com/en/1.0.x/config/>
+
+配置变量名称必须大写，写入配置的语句一般会放到扩展类实例化语句之前
+
+Flask 提供了一个统一的接口来写入和获取这些配置变量：Flask.config 字典
+
+```python
+app.config["KEY"] = value
+```
+
+在Flask项目开发中，可以将隐私数据写到`.env`中，而一些不隐私的可以写到`.flaskenv`文件中
+
+## debug 参数配置
+
+- 方式1，run方法中配置debug参数
+
+```python
+# 在开发环境下，flask自带服务器启动时，作为入口文件会执行
+if __name__ == "__main__":
+    app.run(debug=True)
+# 在生产环境，ngnix作为前置服务器接收浏览器发来的请求，然后转发给uwsgi，然后uwsgi把main.py当作模块加载，所以此时main.py不再是入口文件，即不会执行
+```
+
+- 方式2，给config配置类直接赋值
+
+```python
+# 注意，配置名需要全大写
+# 会覆盖掉默认值：{"DEBUG":False}
+app.config["DEBUG"] = True
+
+# 同时设置多个值
+app.config.update(
+    "DEBUG" = True,
+    "TESTING" = True
+)
+
+# 如何取值呢
+app.config.get("DEBUG")
+```
+
+- 方式3，通过from_mapping()读取字典或元祖
+
+```python
+# 创建一个字典对象
+config = {
+    'DEBUG': True,
+    'TESTING': False
+}
+
+# 或者一个二维元组对象
+config = (('DEBUG', True), ('TESTING', False))
+
+
+app.config.from_pyfile(config)
+```
+
+- 方式4，通过 from_object() 读取模块
+
+```python
+# 创建一个/config.py模块
+DEBUG = True
+
+# 传入字符串，会自动在根目录寻找叫做 config 的模块
+app.config.from_object("config")
+
+# 或者
+import config
+app.config.from_object(config)
+```
+区分环境
+
+```python
+# 创建一个/config.py模块
+# 各个环境均继承默认配置类，根据环境覆盖不同属性
+class Config(object):
+    DEBUG = False
+    TESTING = False
+    DATABASE_URI = "xxx"
+
+# 生产环境
+class ProductionConfig(Config):
+    DATABASE_URI = 'yyy'
+
+# 预发环境
+class TestingConfig(Config):
+    TESTING = True
+
+# 开发环境
+class DevelopmentConfig(Config):
+    DEBUG = True
+
+
+import config
+app.config.from_object(config.DevelopmentConfig)
+```
+
+- 方式5，通过from_pyfile()读取配置文件
+
+```python
+# 创建一个/config.cfg文件，后缀名随意
+DEBUG = True
+
+
+app.config.from_pyfile('config.cfg')
+```
+
+- 方式6，通过from_json()读取json文件
+
+```python
+# 创建一个/config.json文件
+{
+  "DEBUG": true,
+  "TESTING": false,
+  "A": 123
+}
+
+
+app.config.from_json('config.json')
+```
+
+- 方式7，通过from_envvar()读取系统环境变量
+
+```python
+app.config.from_envvar("variable_name")
 ```
