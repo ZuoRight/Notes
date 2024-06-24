@@ -1,9 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - index.md
-  - charles.md
-  - mitmproxy.md
-  - tcpdump.md
   - wireshark.md
-  - android_tools.md
+  - tcpdump.md
+  - mitmproxy.md
+  - 其它: ./Testing/APITest/抓包/
   - ...

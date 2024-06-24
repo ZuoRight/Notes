@@ -55,13 +55,10 @@ def test_func2():
     print("func2")
 
 class TestDemo:
-    """
-    不能写init方法
-    前置方法中的 self.xxx 属性可以被其他方法或用例引用
-    """
+    # 不能写__init__方法
 
     def setup_class(self):
-        self.k = "哈哈"
+        self.k = "哈哈"  # 前置方法中的 self.xxx 属性可以被其他方法或用例引用
         print("类开始执行一次")
 
     def setup_method(self):
@@ -323,24 +320,23 @@ def pytest_collection_modifyitems(items):
 
 ```ini
 [pytest]
-; 参数化中的非Unicode字符串默认会进行转义，设置这个让它不转义
-; 但这个方法可能会有问题，建议使用conftest.py
+; 参数化中的非 Unicode 字符串默认会进行转义，设置这个让它不转义
+; 但这个方法可能会有问题，建议使用 conftest.py
 disable_test_id_escaping_and_forfeit_all_rights_to_community_support = True
 
-; 指定Case路径
-; 指定后就无法再指定具体文件具体方法等
+; 限定Case路径，指定后就无法再指定具体文件具体方法等
 testpaths = test_case
 
-; 自定义标签加到ini中，则不会警告标签unknown
+; 自定义标签，加到配置避免标签unknown警告
 markers = 
   mark1
   mark2: 可以加一些说明
 
-; 设置运行时自带参数
+; 设置运行时参数
 addopts = 
   -vs  ; 详细信息，打印print
   --setup-show  ; 显示setup和teardown
-  --collect-only  ; 执行预览，并不真的运行
+;   --collect-only  ; 执行预览，并不真的运行
 ```
 
 Pytest 对 logging 模块做了改写，需要在 `pytest.ini` 中做一些配置
@@ -420,6 +416,8 @@ pytest -m P1
 
 - 内置标记 `skip()`、`xfail()`
 
+<https://docs.pytest.org/en/stable/how-to/skipping.html>
+
 ```python
 # 直接跳过
 @pytest.mark.skip("xx原因，可省略")
@@ -427,7 +425,7 @@ pytest -m P1
 # 满足条件，则跳过
 @pytest.mark.skip(a==1, reaseon="xx")
 
-# 满足条件，引发预期失败，不会影响正常运行
+# 满足条件，引发预期失败（XFAIL）或意外通过（XPASS）
 @pytest.mark.xfail(a==1, reaseon="xx")
 def test_demo(self):
     pass
@@ -508,9 +506,42 @@ pytest -n 4  # 限制最多4个CPU并发执行
 
 ### 失败处理
 
-- 遇到失败，立即退出：`pytest -x`
-- 遇到 n 条失败后退出：`pytest --maxfail=n`
-- 失败重跑插件：`pytest-rerunfailures`
+- 遇到失败，立即退出：`-x` 常用于冒烟测试
+- 遇到 n 条失败后退出：`--maxfail=n`
+- 失败重跑
+    - `--lf` 或 `--last-failed` 重跑上一次失败的用例，only re-run the failures
+    - `--ff` 或 `--failed-first` re-run the failures first and then the rest of the tests
+    - 插件 pytest-rerunfailures
+
+重跑依赖 Pytest 内置的缓存机制
+
+<https://docs.pytest.org/en/stable/how-to/cache.html#usage>
+
+```shell
+pytest --cache-show  # 检查缓存内容
+pytest --cache-clear  # 清除缓存内容
+```
+
+多次重跑插件，安装 `pip install pytest-rerunfailures`
+
+使用方法 1
+
+```python
+import pytest
+
+# 如果失败，自动重跑用例 3 次，每次重试之间延迟 2 秒
+@pytest.mark.flaky(reruns=3, reruns_delay=2)
+@pytest.mark.parametrize("number", [1, 2, 3, 4, 5])
+def test_even(number):
+    assert number % 2 == 0  # 这将导致奇数测试失败
+```
+
+使用方法 2
+
+```shell
+pytest --reruns 3  # 失败时重跑5次
+pytest --reruns 3 --maxfail=5  # 如果初次加重跑时，累计失败用例达到5条，则停止测试
+```
 
 ## 测试结果
 
@@ -523,10 +554,6 @@ pytest -n 4  # 限制最多4个CPU并发执行
 Case 中的断言如果失败，结果会显示 `failed`
 
 Fixture 中的断言如果失败，结果会显示 `error`
-
-- `--setup-show`
-
-查看执行顺序，显示 Fixture 调用关系
 
 - `-q`
 
@@ -547,6 +574,10 @@ Fixture 中的断言如果失败，结果会显示 `error`
 > 输出到测试报告时，-s 参数就会失效
 
 ![f47d5c603ff0862910a548ead5df0ec](http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png)
+
+- `--setup-show`
+
+查看执行逻辑，显示 setup 和 teardown，以及 Fixture 调用关系
 
 ### 生成 XML 报告
 

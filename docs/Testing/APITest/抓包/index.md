@@ -14,9 +14,7 @@ hide:
 
 <https://github.com/youngwind/blog/issues/108>
 
-## 工具
-
-### HTTP 协议抓包工具
+## HTTP 协议抓包工具
 
 - Charles
 - Fiddler
@@ -25,7 +23,7 @@ hide:
 - 安卓端: Packet Caputure
 - iOS: Stream、Thor
 
-### TCP/IP 等底层协议抓包工具
+## TCP/IP 等底层协议抓包工具
 
 - tcpdump
 - WireShark
@@ -33,29 +31,8 @@ hide:
     - termshark: tshark的命令行UI版本
     - pyshark: tshark的Python版本
 
-### 其它
+## 其它工具
 
 - mitmproxy 集成定制，测开必备
 - burpsuite 渗透测试工具，黑客必备
 - Postman 虽然也可以抓包，但并不是其主要功能，所以比较弱
-
-## 反抓包
-
-### SSL-Pinning
-
-1. 客户端内置证书，即在客户端内置仅接受指定域名的根证书，而不接受操作系统或浏览器内置的CA根证书对应的任何证书
-2. 客户端内置公钥
-
-### 突破SSL-Pinning
-
-<https://zhuanlan.zhihu.com/p/60392573>
-
-内置证书或者公钥的时候，需要对比验证客户端和服务端的证书或公钥，一般是通用的API，所以可以直接控制这个API的返回结果让验证通过。
-
-1. Xposed+justTrustme：不行？
-2. apk反编译工具
-3. 使用逆向神器Frida：太难？
-
-<https://blog.csdn.net/xiaohua_de/article/details/80259920>
-
-使用模拟器（首选逍遥模拟器），模拟器不行，使用真机，需要root，root工具（首选刷机精灵）

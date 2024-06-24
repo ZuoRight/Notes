@@ -1,12 +1,37 @@
-# 接口测试
+# 引言
 
-API(Application Programming Interface)
+API, Application Programming Interface
 
-测试工具
+<https://apievangelist.com/info/101/>
+
+## 接口服务
+
+- <https://www.example.com>
+- <https://www.example.org>
+
+可用于文档示例的两个 example 域名，由 IANA 提供，无需事先协调或征求许可。
+
+- <http://httpbin.org>
+- <https://httpbin.org>
+
+A simple HTTP Request & Response Service.
+
+还提供了一个表单页面：<https://httpbin.org/forms/post>
+
+若国内访问较慢，可本地运行：`docker run -p 80:80 kennethreitz/httpbin`
+
+> 由 Requests 库作者 Kenneth Reitz 使用 Flask 搭建  
+> 除此之外，他还搭建了很多人性化的工具，其个人网站：<https://kennethreitz.org>
+
+- <https://swagger.io/>
+
+编写 API 文档
+
+## 测试工具
 
 - cURL
 - Postman
-- 基于不同编程语言对应的请求库自建框架，比如开源的 HTTPRunner
+- Pytest + Requests
 
 ## 测试点
 

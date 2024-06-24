@@ -49,56 +49,23 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 
 `emulator -avd 模拟器名 -dns-server 202.106.0.20`
 
-## ADB
+## 逆向反编译
 
-```shell
-# 查看连接设备
-adb devices
+### SSL-Pinning
 
-# 如果有连接多个设备可以用-s udid 指定要控制的设备
+1. 客户端内置证书，即在客户端内置仅接受指定域名的根证书，而不接受操作系统或浏览器内置的CA根证书对应的任何证书
+2. 客户端内置公钥
 
-# 无线连接设备
-adb tcpip
-adb connect
+### 突破 SSL-Pinning
 
-# 关闭adb后台进程
-adb kill-server
+<https://zhuanlan.zhihu.com/p/60392573>
 
-# 查看日志
-adb logcat | grep START  # 获取包名和Activity
+内置证书或者公钥的时候，需要对比验证客户端和服务端的证书或公钥，一般是通用的API，所以可以直接控制这个API的返回结果让验证通过。
 
-# 收集日志数据，用于后续分析，比如耗电量
-adb bugreport
+1. Xposed + justTrustme：不行？
+2. apk 反编译工具
+3. 使用逆向神器 Frida：太难？
 
-# 获取当前界面元素
-adb shell dumpsys activity top
-# 获取任务列表
-adb shell dumpsys activity activities
+<https://blog.csdn.net/xiaohua_de/article/details/80259920>
 
-# 获取入口
-adb logcat| grep -i displayed
-aapt dump badging mobike.apk | grep launchable-activity
-apkanalyzer
-
-adb shell
-    pm
-    am
-    dumpsys
-    uiautomator
-    input
-
-adb shell pm list packages  # 获取所有包名
-adb shell pm dump 包名| grep version  # 查看版本号
-adb shell pm path 包名  # 通过包名获取apk名
-
-adb shell am start 包名/.要启动的Activity  # 启动Activity
-adb shell am start -W -n com.xxx.android/.view.WelcomeActivityAlias -S
-adb shell am force-stop 包名  # 关闭
-
-# 清空缓存数据，重置
-pm clear com.xxx.xx
-```
-
-## 性能统计 dumpsys
-
-![20230902230707](https://image.zuoright.com/20230902230707.png)
+使用模拟器（首选逍遥模拟器），模拟器不行，使用真机，需要 root，root 工具（首选刷机精灵）

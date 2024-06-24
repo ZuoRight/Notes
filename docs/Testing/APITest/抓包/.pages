@@ -1,9 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - Request
-  - 抓包
-  - mock.md
-  - Assert
-  - httprunner.md
+  - charles.md
+  - android_proxy.md
+  - 其它: ./Base/Network/抓包/wireshark/
   - ...
