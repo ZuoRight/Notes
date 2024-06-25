@@ -17,27 +17,75 @@ WSGI Server或者Servlet容器通常被称之为应用服务器，Nginx和Apache
 
 ## Servlet
 
-Java Web 相关的标准都是在EE中定义的，Servlet API是一个jar包，通过构建工具引入它，与其他一些文件按固定结构组织并打包为.war文件
+Java Web 相关的标准都是在EE中定义的，Servlet API是一个 jar 包，通过构建工具引入它，与其他一些文件按固定结构组织并打包为 `.war` 文件
 
-> `war`(Java Web Application Archive) 构建后的Web应用程序
+> `war`(Java Web Application Archive) 构建后的 Web 应用程序
 
-普通的Java程序是通过启动JVM，然后执行main()方法开始运行。
+普通的 Java 程序是通过启动 JVM，然后执行 `main()` 开始运行。
 
-但是Web应用程序，需要启动应用服务器（也称为Servlet容器）加载war包来运行Servlet，常用的Servlet容器有：
+但是 Web 应用程序，需要启动应用服务器（也称为 Servlet 容器）加载 war 包来运行 Servlet，常用的 Servlet 容器有：
 
-- `Jetty`：由Eclipse开发的开源免费服务器
-- `Tomcat`：由Apache开发的开源免费服务器
-- `GlassFish`：一个开源的全功能JavaEE服务器
+- `Jetty`：由 Eclipse 开发的开源免费服务器
+- `Tomcat`：由 Apache 开发的开源免费服务器
+- `GlassFish`：一个开源的全功能 JavaEE 服务器
 
 ## WSGI
 
-WSGI是Python应用程序和应用服务器之间的一种接口，已经被广泛接受，基于此封装的工具主要有：uWSGI、Gunicorn
+WSGI 是 Python 应用程序和应用服务器之间的一种接口，已经被广泛接受，基于此封装的工具主要有：uWSGI、Gunicorn
 
-> WSGI只支持同步代码，异步需要使用ASGI，对应的封装工具有：Daphne、Hypercorn、Uvicorn
+WSGI 只支持同步代码，异步需要使用 ASGI，对应的封装工具有：Daphne、Hypercorn、Uvicorn
+
+### uWSGI
+
+uWSGI 是 C 语言实现的一款 WSGI 工具，它跟 Flask/Django 等主流框架都遵循了WSGI 规范，自然可以与这些框架实现的应用通信，然后它可以用自带的 uwsgi 协议与 Ngnix 进行通信，最终 Nginx 通过 HTTP 协议对外提供服务
+
+> 官方文档：<https://uwsgi.readthedocs.io/en/latest/Configuration.html>
+
+```shell
+# 安装
+python -m pip install uwsgi
+"""
+--home 指定虚拟环境的绝对路径
+--chdir 项目绝对路径
+--wsgi-file 可以指定wsgi.py规范文件的路径
+
+--http 使用uWSGI自带的http协议，方便测试，当和Nginx一起使用时，指定socket或http-socket即可
+--master 指开启master管理进程，建议开启
+--workers 指开启的worker进程数，用于处理请求
+"""
+
+# 命令行指定参数启动
+uwsgi --http 127.0.0.1:3031 --file demo/wsgi.py
+
+# 从配置文件启动，返回[uWSGI] getting INI configuration from uwsgi.ini
+uwsgi --ini path/uwsgi.ini
+
+uwsgi --reload path/uwsgi.pid  # 重启
+uwsgi --stop path/uwsgi.pid  # 停止
+```
+
+```ini
+[uwsgi]
+; 项目路径
+chdir=/app
+; wsgi对象
+module=demo.wsgi:application
+; 主进程
+master=True
+; 保存进程号
+pidfile=/tmp/uwsgi/demo-master.pid
+; 保存日志
+daemonize=/tmp/uwsgi/demo.log
+
+; 使用http协议提供服务，测试时使用
+; http=127.0.0.1:3030
+; 使用socket协议，配合nginx使用，与http端口不能重复
+socket=127.0.0.1:3031
+```
 
 ## Gunicorn
 
-纯Python编写的WSGI服务器，Fork自Ruby的Unicorn项目，名字是Green Unicorn的缩写
+纯 Python 编写的 WSGI 服务器，Fork 自 Ruby 的 Unicorn 项目，名字是 Green Unicorn 的缩写
 
 官网：<https://gunicorn.org/>
 
@@ -111,92 +159,3 @@ gunicorn myproject.wsgi
 --env DJANGO_SETTINGS_MODULE=myproject.settings.set_prod
 """
 ```
-
-## uWSGI
-
-uWSGI是C语言实现的一款WSGI工具，它跟Flask/Django等主流框架都遵循了WSGI规范，自然可以与这些框架实现的应用通信，然后它可以用自带的uwsgi协议与Ngnix进行通信，最终Nginx通过http协议对外提供服务
-
-> 官方文档：<https://uwsgi.readthedocs.io/en/latest/Configuration.html>
-
-```shell
-# 安装
-python -m pip install uwsgi
-"""
---home 指定虚拟环境的绝对路径
---chdir 项目绝对路径
---wsgi-file 可以指定wsgi.py规范文件的路径
-
---http 使用uWSGI自带的http协议，方便测试，当和Nginx一起使用时，指定socket或http-socket即可
---master 指开启master管理进程，建议开启
---workers 指开启的worker进程数，用于处理请求
-"""
-
-# 命令行指定参数启动
-uwsgi --http 127.0.0.1:3031 --file demo/wsgi.py
-
-# 从配置文件启动，返回[uWSGI] getting INI configuration from uwsgi.ini
-uwsgi --ini path/uwsgi.ini
-
-uwsgi --reload path/uwsgi.pid  # 重启
-uwsgi --stop path/uwsgi.pid  # 停止
-```
-
-```ini
-[uwsgi]
-; 项目路径
-chdir=/app
-; wsgi对象
-module=demo.wsgi:application
-; 主进程
-master=True
-; 保存进程号
-pidfile=/tmp/uwsgi/demo-master.pid
-; 保存日志
-daemonize=/tmp/uwsgi/demo.log
-
-; 使用http协议提供服务，测试时使用
-; http=127.0.0.1:3030
-; 使用socket协议，配合nginx使用，与http端口不能重复
-socket=127.0.0.1:3031
-```
-
-## 使用Nginx反向代理和动静分离
-
-以Django举例，当使用内置WSGIServer，或Gunicorn，或uWSGI启动服务后运行在8000端口
-
-此时可以再加一层Nginx做反向代理提高安全性，同时可以把静态文件分离出来提高性能
-
-![20220908232212](http://image.zuoright.com/20220908232212.png)
-
-```ini
-# djanog.conf
-server {
-    listen 80;
-    server_name localhost;
-    ; access_log  /var/log/nginx/example.log;
-
-    ; """动静态分离"""
-    location /static {
-        alias  /path/demo/static_cdn;
-    }
-
-    ; """
-    ; 如果使用内置WSGIServer或者Gunicorn，则直接使用支持http协议的proxy_pass指令设置即可
-    ; """
-    location / {
-        proxy_pass http://localhost:8000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
-
-    ; """
-    ; 如果使用uWSGI，需要通过自主实现的uwsgi协议与Nginx通信
-    ; 此时要用uwsgi_pass指令
-    ; """
-    location / {
-        include   uwsgi_params;
-        uwsgi_pass  http://localhost:8000;  # 与uwsgi.ini中socket字段配置一致
-    }
-```
-
-配置好后，重新加载 Nginx 配置，访问：<http://localhost> 即可自动代理到 <http://localhost:8000>

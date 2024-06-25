@@ -2,11 +2,10 @@
 nav:
   - index.md
   - browser.md
-  - pixel.md
-  - Web
   - cgi.md
   - Flask
   - Django
+  - Web
   - WeXin
   - android.md
   - ...

@@ -1,8 +1,8 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - Redis
   - MQ
+  - Redis
   - celery.md
   - schedules.md
   - nginx.md

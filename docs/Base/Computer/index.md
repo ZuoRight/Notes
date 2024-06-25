@@ -8,6 +8,7 @@ hide:
 
 [计算机硬件历史](https://en.wikipedia.org/wiki/History_of_computing_hardware)
 
+- 机械式 -> 机电式 -> 电子式
 - 真空电子管 -> 晶体管 -> 集成电路
 - 大型 -> 小型 -> 微型
 - 军用 -> 商用 -> 民用

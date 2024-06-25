@@ -288,6 +288,47 @@ server {
 }
 ```
 
+## 使用 Nginx 反向代理和动静分离
+
+以 Django 举例，当使用内置 WSGIServer，或 Gunicorn，或 uWSGI 启动服务后运行在 8000 端口
+
+此时可以再加一层 Nginx 做反向代理提高安全性，同时可以把静态文件分离出来提高性能
+
+![20220908232212](http://image.zuoright.com/20220908232212.png)
+
+```ini
+# djanog.conf
+server {
+    listen 80;
+    server_name localhost;
+    ; access_log  /var/log/nginx/example.log;
+
+    ; """动静态分离"""
+    location /static {
+        alias  /path/demo/static_cdn;
+    }
+
+    ; """
+    ; 如果使用内置WSGIServer或者Gunicorn，则直接使用支持http协议的proxy_pass指令设置即可
+    ; """
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    ; """
+    ; 如果使用uWSGI，需要通过自主实现的uwsgi协议与Nginx通信
+    ; 此时要用uwsgi_pass指令
+    ; """
+    location / {
+        include   uwsgi_params;
+        uwsgi_pass  http://localhost:8000;  # 与uwsgi.ini中socket字段配置一致
+    }
+```
+
+配置好后，重新加载 Nginx 配置，访问：<http://localhost> 即可自动代理到 <http://localhost:8000>
+
 ## 参考
 
 - <https://www.cnblogs.com/itzgr/tag/Nginx/>

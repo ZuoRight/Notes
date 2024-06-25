@@ -8,7 +8,13 @@ hide:
 
 互联网 Internet（音译：因特网），通常认为，互联网起源于阿帕网（ARPANET）
 
-常见的互联网服务有：万维网 WWW、文件传输 FTP、电子邮件 E-mail 等
+常见的互联网服务有：万维网 WWW(World Wide Web)、文件传输 FTP、电子邮件 E-mail 等
+
+万维网是由很多链接在一起的文档和资源构成的，为此万维网联盟（W3C）制定了一系列标准，比如
+
+- 结构标准语言：XML、HTML
+- 行为标准语言：DOM、ECMAScript
+- 表现标准语言：CSS
 
 ## 网络分层
 

@@ -67,15 +67,23 @@ java Hello  # 参数Hello为类名，JVM会自动查找对应的.class并运行
 
 ## 构建工具
 
-Java程序的构建过程一般是：编译、测试、打包。
+Java 程序的构建过程一般是：编译、测试、打包。
 
-如果文件比较少，我们可以手动使用javac、java、jar这些命令手动构建
+如果文件比较少，我们可以手动使用 javac, java, jar 这些命令手动构建
 
 但当工程越来越大，文件越来越多，这些机械重复的工作就需要交给工具来帮我们完成了：
 
-- ant 与makefile比较像，定义任务，规定依赖，执行任务，缺点是没办法管理依赖
-- [Maven](https://www.liaoxuefeng.com/wiki/1252599548343744/1255945359327200) 提出仓库的概念，缺点是使用xml语法不简洁，无法自定义任务
-- gradle 继承maven和ant的优点，可以用仓库管理依赖也能自定义任务，`build.gradle`基于脚本语言Groovy
+- ant 与 makefile 比较像，定义任务，规定依赖，执行任务，缺点是没办法管理依赖
+- [Maven](https://www.liaoxuefeng.com/wiki/1252599548343744/1255945359327200) 提出仓库的概念，缺点是使用 xml 语法不简洁，无法自定义任务
+- gradle 继承 maven 和 ant 的优点，可以用仓库管理依赖也能自定义任务，`build.gradle` 基于脚本语言 Groovy
+
+## JSR
+
+Java Specification Request 是 Java 社区提出的一种标准化 Java 技术的过程。它们定义了在 Java 平台上引入新功能、API、规范和技术的标准方式。JSR 可以包括各种 Java 相关的规范，如 Servlet 规范、Java EE 规范、Java SE 规范等等。JSR 的目的是确保 Java 技术在不同的实现中保持一致性，以促进 Java 生态系统的互操作性和可移植性。
+
+JSR223 允许在 Java 应用程序中嵌入各种脚本语言，例如 Groovy、Python、Ruby 和 JavaScript 等。它提供了一种通用的接口，使开发人员可以使用多种脚本语言编写、编译和执行脚本，而无需修改应用程序的代码。
+
+JSR388 定义了 Java SE 13 平台的规范，包括新的语言功能和库改进。Java SE 13 是 Java SE 的一个重要版本
 
 ## JavaEE
 
@@ -86,15 +94,16 @@ Java EE 是企业版，它只是在 Java SE 的基础上加上了大量的 API �
 - Servlet+JSP+JavaBean，容器：Tomcat
 - Spring MVC，容器：IoC
 - Spring Boot：开箱即用
-- Spring Cloud
 
-## JSR
+## Spring Cloud
 
-Java Specification Request 是 Java 社区提出的一种标准化 Java 技术的过程。它们定义了在 Java 平台上引入新功能、API、规范和技术的标准方式。JSR 可以包括各种 Java 相关的规范，如 Servlet 规范、Java EE 规范、Java SE 规范等等。JSR 的目的是确保 Java 技术在不同的实现中保持一致性，以促进 Java 生态系统的互操作性和可移植性。
+参考：<https://juejin.cn/post/6844904101055037448>
 
-JSR223 允许在 Java 应用程序中嵌入各种脚本语言，例如 Groovy、Python、Ruby 和 JavaScript 等。它提供了一种通用的接口，使开发人员可以使用多种脚本语言编写、编译和执行脚本，而无需修改应用程序的代码。
+![20240625215700](https://image.zuoright.com/20240625215700.png)
 
-JSR388 定义了 Java SE 13 平台的规范，包括新的语言功能和库改进。Java SE 13 是 Java SE 的一个重要版本
+Spring Cloud 包含很多子项目，第一代主要以 Netflix 的开源组件为主，包括 Eureka、Ribbon、Feign、Hystrix、Zuul、Archaius 等，其中 Eureka，Hystrix 等不再维护，但目前不影响使用。
+
+第二代 主要以 Alibaba 生态组件为主
 
 ## JConsole
 

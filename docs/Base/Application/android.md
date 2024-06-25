@@ -5,6 +5,10 @@ Android 操作系统是一种多用户 Linux 系统，其中的每个应用都�
 - 平台架构：<https://developer.android.com/guide/platform>
 - 工具：<https://developer.android.com/studio/command-line#tools-sdk>
 
+Google 的 Android 系统，其实指的是 AOSP + GMS（谷歌移动服务）。AOSP 是开源的，谷歌移动服务是闭源的，华为只是无法使用谷歌地图等谷歌定制应用。
+
+另外「Android」文字及 Logo 属于 Google 公司的商标，需取得谷歌的认可才能进行商业使用。
+
 ## SDK
 
 Software Development Kit 软件开发工具包

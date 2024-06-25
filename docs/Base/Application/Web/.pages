@@ -8,4 +8,5 @@ nav:
   - object_model.md
   - event.md
   - vue.md
+  - pixel.md
   - ...

@@ -34,9 +34,3 @@ hide:
 - 比特币改进提案：[BIP（Bitcoin Improvement Proposal）](https://github.com/bitcoin/bips/tree/master)
 - 以太坊改进提案：EIP（Ethereum Imporvement Proposals）
 - 以太坊意见征求稿：ERC（Ethereum Request For Comment）
-
-## Web3
-
-- Web1.0 所见即所得
-- Web2.0 所荐即所得
-- Web3.0 所建即所得
