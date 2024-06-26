@@ -2,8 +2,8 @@
 nav:
   - index.md
   - git.md
-  - gitlab.md
-  - github.md
-  - jenkins.md
+  - CICD
   - Docker
+  - Virtual
+  - Shell
   - ...

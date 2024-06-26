@@ -1,23 +1,23 @@
 # CGI
 
-Web 框架（Django、Flask）需要通过一套接口协议（CGI）与应用服务器（uWSGI、Tomcat）交互，通过应用服务器来接收并解析HTTP请求。
+![20240627005912](https://image.zuoright.com/20240627005912.png)
 
-CGI(Common Gateway Interface)是早期Web开发的接口规范，FastCGI为其增强版
+Web 框架需要通过一套标准的接口协议与应用服务器交互，通过应用服务器来接收并解析 HTTP 请求。
+
+CGI（Common Gateway Interface, 通用网关接口）是早期 Web 开发的接口规范，FastCGI 为其增强版
 
 某些编程语言有独立的规范，比如
 
 - Java: `Servlet`(Server Applet)，由于提出的较早，比较复杂
-- Python: `WSGI`(Web Server Gateway Interface)，接近CGI，比较简单
+- Python: `WSGI`(Web Server Gateway Interface)，接近 CGI，比较简单
 
-WSGI Server或者Servlet容器通常被称之为应用服务器，Nginx和Apache等通常被称之为Web服务器，或者HTTP服务器
+Servlet 容器或者 WSGI Server 通常被称之为应用服务器
 
-![20220908142430](http://image.zuoright.com/20220908142430.png)
-
-客户端发出一个HTTP请求，到达应用程序，为了提高性能，可以加一层Nginx反向代理处理静态资源，还可以做负载均衡等
+Nginx 和 Apache 等通常被称之为 Web 服务器，或者 HTTP 服务器
 
 ## Servlet
 
-Java Web 相关的标准都是在EE中定义的，Servlet API是一个 jar 包，通过构建工具引入它，与其他一些文件按固定结构组织并打包为 `.war` 文件
+Java Web 相关的标准都是在 EE 中定义的，Servlet API 是一个 jar 包，通过构建工具引入它，与其他一些文件按固定结构组织并打包为 `.war` 文件
 
 > `war`(Java Web Application Archive) 构建后的 Web 应用程序
 
@@ -28,6 +28,10 @@ Java Web 相关的标准都是在EE中定义的，Servlet API是一个 jar 包�
 - `Jetty`：由 Eclipse 开发的开源免费服务器
 - `Tomcat`：由 Apache 开发的开源免费服务器
 - `GlassFish`：一个开源的全功能 JavaEE 服务器
+
+Servlet 运行在 Tomcat 这样的容器中，一行行拼接生成 HTML，效率太低，于是有了JSP
+
+Java Server Pages 动态网页技术，是为了解决 Servelet 开发效率低下不方便开发而生的，本质还是 Servlet，把拼 HTML 自动化了，是对 Servlet 的一种补充
 
 ## WSGI
 

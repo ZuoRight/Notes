@@ -2,39 +2,47 @@
 
 即容器间如何通信
 
-安装 Docker 时会自动在宿主机上创建一个名为 docker0 的网桥（虚拟交换机）
+安装 Docker 时会自动在宿主机上创建一个名为 `docker0` 的网桥，本质上是一个虚拟交换机
 
-> 虚拟网卡：veth，成对出现
->
-> 虚拟交换机：Linux Bridge(网桥)，docker0，网桥是根据 MAC 地址做二层转发的，网桥不允许给接入的设备设置 IP 地址，但与物理交换机不同的是，它允许给自己设置 IP 地址。如果数据包的目的 MAC 地址为网桥本身，并且网桥有设置了 IP 地址的话，那该数据包即被认为是收到发往创建网桥那台主机的数据包，此数据包将不会转发到任何设备，而是直接交给上层（三层）协议栈去处理
->
-> 虚拟路由器：Linux 内核
+- 虚拟路由器：Linux 内核
+- 虚拟交换机：Linux Bridge，docker0
+- 虚拟网卡：成对出现，比如 veth
+
+> 交换机是根据 MAC 地址做二层转发的，不允许给接入的设备设置 IP 地址
+
+网桥与物理交换机不同的是，允许给自己设置 IP 地址。如果数据包的目的 MAC 地址为网桥本身，并且网桥有设置了 IP 地址的话，那该数据包即被认为是收到发往创建网桥那台主机的数据包，此数据包将不会转发到任何设备，而是直接交给上层（三层）协议栈去处理
 
 ## 网络模式
 
 ```shell
 # 查看网络模式
 docker network ls
-"""
+'
 NETWORK ID     NAME      DRIVER    SCOPE
 e01de21fde14   bridge    bridge    local
 28abc4c947b8   host      host      local
 d58fdf42ccb2   none      null      local
-"""
-
-默认有三个SCOPE=local的网络，网络NAME默认与网络DRIVER一样，分别为：`bridge`、`host`、`none`
-此外还有一些其他的网络模式：`container`、`macvlan`、`overlay`，可以通过不同的方式创建添加
-
-host 就是简单粗暴效率高，适合小规模集群的简单拓扑结构
-bridge 适合大规模集群，有了bridge就有更多的可操作空间，比如XLAN和VXLAN这些
-    它可以提供更多的可定制化服务，比如流量控制、灰度策略这些，从而像flannel和Calico这些组件才有了更多的发挥余地
+'
 ```
+
+默认有三个 `SCOPE=local` 的网络模式，NAME 默认同 DRIVER，其他的网络模式可以通过不同的方式创建添加
+
+- null 禁用网络
+- host 主机模式
+- bridge 桥接模式
+- container
+- macvlan
+- overlay
+
+host 简单粗暴效率高，适合小规模集群的简单拓扑结构
+
+bridge 适合大规模集群，有了 bridge 就有更多的可操作空间，比如 XLAN 和 VXLAN 这些，它可以提供更多的可定制化服务，比如流量控制、灰度策略这些，从而像 flannel 和 Calico 这些组件才有了更多的发挥余地。
 
 ### 创建网络
 
-默认的网络模式为`bridge模式`，
+系统默认会有一个叫 bridge 的网络，从名字就可以看出来是 bridge 模式。
 
-默认会自带一个与网络模式同名的网络，名叫bridge，不建议在生产环境中使用，我们可以自己创建网络
+但如果我们在生产环境中想要使用网络时，建议自己创建一个新的网络，而不要用默认的这个名为 bridge 的网络
 
 ```shell
 # 创建网络，--driver/-d 指定网络模式，默认bridge模式
@@ -80,9 +88,7 @@ docker port <容器ID>  # 查看容器端口映射
 
 `docker run --network bridge`
 
-桥接模式下，Docker 会为新容器分配独立的网络名称空间，创建好 veth pair，一端接入容器，另一端接入到 docker0 网桥上。
-
-Docker 为每个容器自动分配好 IP 地址（范围是 172.17.0.0/24），并且设置所有容器的网关均为 docker0（地址默认是 172.17.0.1），这样所有接入同一个网桥内的容器直接依靠二层网络来通信
+桥接模式下，Docker 会为新容器分配独立的网络名称空间，为每个容器自动分配好 IP 地址（范围是 `172.17.0.0/24`），并且设置所有容器的网关均为 docker0（地址默认是 `172.17.0.1`），创建好 veth pair，一端接入容器，另一端接入到 docker0 网桥上，这样所有接入同一个网桥内的容器直接依靠二层网络来通信。
 
 ![20220105231419](http://image.zuoright.com/20220105231419.png)
 
@@ -91,7 +97,7 @@ Docker 为每个容器自动分配好 IP 地址（范围是 172.17.0.0/24），�
 ```shell
 '''
 假设有app-1、app-2、app-3三个容器
-1和2连接默认的网络，即bridge，2和3连接到自定义的net-demo
+1和2连接默认的网络，即 bridge，2和3连接到自定义的 net-demo
 '''
 docker run -dit --name app-1 alpine ash
 docker run -dit --name app-2 --network net-demo alpine ash

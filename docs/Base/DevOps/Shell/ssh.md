@@ -2,7 +2,7 @@
 
 > <https://wangdoc.com/ssh/>
 
-早期远程命令行服务（Telnet）是明文传输的，于是改用了更安全的SSH(Secure Shell)
+早期远程命令行服务（Telnet）是明文传输的，于是改用了更安全的 SSH(Secure Shell)
 
 - SSH 1 有漏洞
 - SSH 2 商业软件

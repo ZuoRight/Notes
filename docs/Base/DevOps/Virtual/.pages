@@ -1,10 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - browser.md
-  - cgi.md
-  - Flask
-  - Django
-  - Web
-  - WeXin
+  - virtualbox.md
+  - utm.md
   - ...
