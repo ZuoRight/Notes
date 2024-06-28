@@ -1,0 +1,25 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - index.md
+  - data_type.md
+  - 数据类型的操作.md
+  - statements.md
+  - context.md
+  - func.md
+  - generics.md
+  - oop.md
+  - meta.md
+  - struct.md
+  - module.md
+  - io.md
+  - thread.md
+  - coroutine.md
+  - built_in.md
+  - venv.md
+  - log_and_config.md
+  - debug.md
+  - pillow.md
+  - spider.md
+  - 序列化
+  - 表格数据处理
+  - ...

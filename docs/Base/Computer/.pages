@@ -1,9 +1,0 @@
-# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
-nav:
-  - index.md
-  - OS
-  - CPU
-  - Memory
-  - init.md
-  - Process
-  - ...

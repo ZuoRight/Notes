@@ -1,7 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - mock.md
-  - Assert
-  - httprunner.md
+  - layout.md
+  - pixel.md
   - ...

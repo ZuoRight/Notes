@@ -1,0 +1,11 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - Language
+  - 数据结构与算法
+  - Shell
+  - IDE
+  - compile.md
+  - encode.md
+  - regex.md
+  - 行文本处理
+  - ...

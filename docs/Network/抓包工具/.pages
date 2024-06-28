@@ -1,7 +1,9 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - mock.md
-  - Assert
-  - httprunner.md
+  - charles.md
+  - android_proxy.md
+  - mitmproxy.md
+  - tcpdump.md
+  - wireshark.md
   - ...

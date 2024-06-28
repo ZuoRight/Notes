@@ -1,7 +1,0 @@
-# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
-nav:
-  - index.md
-  - sqlite.md
-  - MySQL
-  - 表格数据处理
-  - ...

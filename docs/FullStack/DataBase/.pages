@@ -1,7 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - mock.md
-  - Assert
-  - httprunner.md
+  - sqlite.md
+  - MySQL
+  - Redis
   - ...

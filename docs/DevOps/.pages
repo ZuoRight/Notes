@@ -1,7 +1,10 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - mock.md
-  - Assert
-  - httprunner.md
+  - CICD
+  - Process
+  - OS
+  - Docker
+  - Virtual
+  - Computer
   - ...

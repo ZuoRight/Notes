@@ -1,6 +1,0 @@
-# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
-nav:
-  - gitlab.md
-  - github.md
-  - jenkins.md
-  - ...

@@ -1,7 +1,12 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - mock.md
-  - Assert
-  - httprunner.md
+  - browser.md
+  - GUI
+  - Flask
+  - Django
+  - WeXin
+  - DataBase
+  - Server
+  - MQ
   - ...

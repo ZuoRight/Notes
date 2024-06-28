@@ -1,9 +1,0 @@
-# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
-nav:
-  - index.md
-  - 业务层
-  - L4.md
-  - L3.md
-  - L2.md
-  - L1.md
-  - ...

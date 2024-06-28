@@ -2,7 +2,11 @@
 nav:
   - index.md
   - Testing
-  - Base
-  - Language
+  - DevOps
+  - Network
+  - FullStack
+  - Program
+  - Python
+  - JavaScript
   - Blockchain
   - ...
