@@ -17,7 +17,7 @@ CP/M 主要为微型计算机设计，面向个人用户和小型企业，旨在
     - 软实时系统：飞机订票/导弹制导/银行管理系统
     - VxWorks
 
-### UNIX
+## UNIX
 
 <https://zh.wikipedia.org/wiki/UNIX>
 
@@ -34,7 +34,7 @@ BSD 贡献了许多网络相关和系统级的工具，而 GNU 则提供了大�
 
 ![20220707143751](http://image.zuoright.com/20220707143751.png)
 
-### LINUX
+## LINUX
 
 LINUX 本身只是一个开源的内核(Kernel)
 
@@ -52,14 +52,14 @@ LINUX 本身只是一个开源的内核(Kernel)
 
 ![20230401113035](http://image.zuoright.com/20230401113035.png)
 
-内核版本：主版本号.次版本号.末版本号
+内核版本：`主版本号.次版本号.末版本号`
 
 > 次版本号，奇数为开发版，偶数为稳定版  
 > <https://www.kernel.org/>
 
 ![20220707142531](http://image.zuoright.com/20220707142531.png)
 
-### DOS
+## DOS
 
 <https://en.wikipedia.org/wiki/MS-DOS>
 

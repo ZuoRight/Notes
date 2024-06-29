@@ -1,42 +1,6 @@
 # 文件管理
 
-一切皆文件
-
-## 文件系统类型
-
-文件系统是一种存储和组织计算机数据的方法，它使得对其访问和查找变得容易，文件系统使用文件和树形目录的抽象逻辑概念代替了硬盘和光盘等物理设备使用数据块的概念，用户使用文件系统来保存数据不必关心数据实际保存在硬盘的地址为多少的数据块上，只需要记住这个文件的所属目录和文件名。在写入新数据之前，用户不必关心硬盘上的那个块地址没有被使用，硬盘上的存储空间管理（分配和释放）功能由文件系统自动完成，用户只需要记住数据被写入到了哪个文件中。
-
-常见的文件系统有
-
-- FAT 最初为软盘而设计，后用于硬盘
-- NTFS Windows默认文件系统
-- ExtFAT 为闪存盘设计的文件系统
-- ext2 GNU/Linux系统中标准的文件系统
-- ext3 ext2文件系统的日志版本，更安全，兼容性更好
-- ext4 更佳的性能和可靠性，功能更丰富
-- reiserFS Linux环境下的日志文件系统之一
-- VFAT 可以作为Windows和Linux交换文件的分区，因为它兼容这俩系统
-- APFS 苹果设备下的系统
-
-## 存储
-
-### 块存储
-
-最古老的数据存储形式，性能好，吞吐量高，延迟低。数据都储存在固定长度的一个或多个块（Block）中，想要读写访问数据，就必须使用与存储相匹配的协议（SCSI、SATA、SAS、FCP、FCoE、iSCSI……）来进行。
-
-### 文件存储
-
-便于人类使用和管理，POSIX事实标准，绝大多数传统的文件存储都是基于块存储之上去实现的。
-
-人们把定义文件分配表（FAT，专门组织块结构来构成文件的分配表）应该如何实现、储存哪些信息、提供什么功能的标准称为文件系统（File System）
-
-- Linux: XFS, ext2/3/4
-- Windows: NTFS, FAT32, exFAT, BTRFS
-- 网络文件系统: NFS
-
-### 对象存储
-
-是一种随着云数据中心的兴起而发展起来的存储，天生的分布式特性，以及极其低廉的扩展成本，使它很适合于CDN一类的应用，拿来存放图片、音视频等媒体内容，以及网页、脚本等静态资源。
+Linux 中一切皆文件
 
 ## 目录文件
 
@@ -70,14 +34,11 @@
 /var  # 存放一些缓存日志等文件
 ```
 
-### 显示/切换目录
+### 切换目录
 
 ```shell
 # print working directory 显示目录名称(绝对路径)
-pwd [-P]
-"""
--P 显示link文件的真实目录
-"""
+pwd [-P]  # -P 显示link文件的真实目录
 
 basename /etc/path/file  # 返回文件名：file
 dirname /etc/path/file  # 返回目录名：/etc/path
@@ -100,7 +61,7 @@ tree path [-L 2]  # -L 2 只显示到二级目录
 
 # 查看目录，可同时查看多个目录
 ls [-a] path1 path2
-"""
+'
 默认只显示当前目录一级非隐藏文件
   -a 可查看隐藏文件
   -R 递归显示子目录文件
@@ -109,7 +70,7 @@ ls [-a] path1 path2
   -l 文件大小用M为单位显示
   -t 按照时间顺序显示
   -r 时间逆序显示
-"""
+'
 ```
 
 ![20210821163302](http://image.zuoright.com/20210821163302.png)
@@ -117,7 +78,7 @@ ls [-a] path1 path2
 ```shell
 # -d 查看指定文件的长格式
 ls -ld /test
-<<"COMMENT"
+'
 total 文件总数
 - 文件类型，通常目录显示为蓝色，文件为白色
   - 普通文件：纯文本文件(ASCII，源代码)、二进制文件(binary，图片视频等)、数据文件(data)
@@ -138,7 +99,7 @@ total 文件总数
   btime Birth  Time 创建时间
   ctime Change Time 只有文件内容更改才会变
 - 文件名
-COMMENT
+'
 ```
 
 ### 创建/删除目录
@@ -164,6 +125,37 @@ rm -r dir  # 删除时需要确认，加-f不需要确认提示
 
 ## 普通文件
 
+### 查找文件
+
+```shell
+# 全局查找，很慢，默认直接从根目录开始搜索
+find path -mtime -4  # 找出4天内被修改过的文件
+'
+-user 查找属于指定user的文件
+-type 要查找的文件类型
+-regex 使用正则匹配
+'
+
+# 利用/etc/lib/mlocate数据库记录模糊查询文件
+# 只能通过文件名查找，但比find更快
+locate filename
+
+# 可以查找$PATH及系统路径中的各种文件
+whereis filename
+
+# 只能查找$PATH路径中的可执行文件
+which [-a] command  # -a 找出所有
+```
+
+根据内容查找
+
+```shell
+# 查找所有使用了 requests 库的文件
+rg -t py 'import requests'
+# 查找所有没有写 shebang 的文件（包含隐藏文件）
+rg -u --files-without-match "^#!"
+```
+
 ### 查看文件
 
 ```shell
@@ -182,12 +174,12 @@ tac file  # cat的反写，从最后一行开始
 cat -n file | head -10 | tail -4
 
 # 如果内容过多可以过滤
-cat file | more/less
-more file
+more filename
 less filename
+cat filename | more/less  # 结合cat一起使用
 ```
 
-### 创建/删除/复制文件
+### 操作文件
 
 ```shell
 # 创建空文件（还可以用来改mtime）
@@ -198,12 +190,12 @@ rm file  # 如果要删除目录加-r
 
 # 复制文件 copy
 cp 源文件 目标文件
-"""
+'
 -r 如果要复制目录加-r
 -v 显示复制详情
 -i 如果与目标文件重复询问是否覆盖
 -a 等同于-dpR 复制并保留文件所属用户、权限、时间等属性，以及递归复制子目录
-"""
+'
 
 # move 移动/重命名文件
 mv 源文件 目标文件
@@ -277,7 +269,27 @@ chown user1:group1 xxx  # 修改属主和属组
 chgrp [-R] group1 xxx  # 单独更改属组（不常用）将目录的用户组改为group1，（-R 子目录一并修改）
 ```
 
-## 打包与解包
+## 链接
+
+### 硬链接(hard link)
+
+`ln file file_link`
+
+指向文件的 inode，即与原文件共享 i 节点
+
+类似副本但不占用空间，删除原文件不影响硬链接
+
+不允许给目录创建硬链接
+
+### 软链接(symbolic link)
+
+`ln -s file file_link`
+
+也叫符号链接，类似 Win 的快捷方式，只是原文件的文本指针
+
+会占用空间，因为要存储路径信息，删除原文件，软链接将失效
+
+## 解压缩
 
 ```shell
 # 打包
@@ -301,25 +313,3 @@ tar xf /tmp/etc-backup.tar -C /tmp
 tar xfz /tmp/etc-backup.tar.gz -C /tmp
 tar xfj /tmp/etc-backup.tar.bz2 -C /tmp
 ```
-
-## 查找文件
-
-```shell
-which [-a] command  # 只能查找$PATH路径中的可执行文件，-a找出所有
-
-whereis file  # 可以查找$PATH及系统路径中的各种文件
-locate file  # 利用/etc/lib/mlocate数据库记录模糊查询文件
-
-# 全局查找，很慢，默认直接从根目录开始搜索
-find path -mtime -4  # 找出4天内被修改过的文件
-"""
--user 查找属于指定user的文件
--type 要查找的文件类型
--regex 使用正则匹配
-"""
-```
-
-## 链接
-
-- 硬链接(hard link)：以文件副本形式存在，但不占用实际空间，不允许给目录创建硬链接，`ln file file_link`
-- 软链接(symbolic link)：以路径形式存在，类似Win的快捷方式，`ln -s file file_link`

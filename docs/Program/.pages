@@ -2,7 +2,6 @@
 nav:
   - Language
   - 数据结构与算法
-  - Shell
   - IDE
   - compile.md
   - encode.md

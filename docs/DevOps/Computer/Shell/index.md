@@ -1,15 +1,43 @@
-# 帮助文档
+# 帮助
 
-Linux的命令有很多，常用的才能记住，要学会查找帮助文档
+Linux 的命令有很多，常用的才能记住，要学会查找帮助文档
+
+如果只记得命令或选项的开头部分，连续两个 `Tab` 可列出所有可能项
+
+一些程序的安装须知等说明文件可能会放在：`usr/share/doc/...`
+
+查看历史命令：`history | grep xxx`
+
+```shell
+# 查看日历
+cal 3 2019
+
+# 查看时间
+date -R
+'
+Fri, 03 Feb 2019 00:57:49 +0800
+注释：+东区，-西区，所以此处为东八区
+'
+```
+
+## tldr
+
+Too Long; Didn’t Read.
+
+简化 manual 手册，根据二八法则列出最常用的部分
+
+在线查询：<https://tldr.inbrowser.app/>
 
 ## man
 
-用户手册(manual)：`man <key>`
+用户手册(manual)：<https://manned.org/>
+
+格式：`man <key>`
 
 ```shell
-# 查看man本身，即完整的用户手册
+# 查看 man 本身，即完整的用户手册
 man man
-"""
+'
 用户手册按共划分为9章，当我们查看某个关键字的用户手册时，其实就是在这9章内容中去查找
     1   Executable programs or shell commands
         用户可从shell运行的命令
@@ -43,7 +71,7 @@ b 往前一屏
     向下查找：/string
     向上查找：?string
 q 退出手册
-"""
+'
 ```
 
 如果我们只知道key，不知道它属于什么类型时
@@ -56,27 +84,15 @@ q 退出手册
 
 ## help
 
-命令分为内建（shell自带的命令）或外部命令，可以用`type <cmd>`查看
+命令分为内建（shell自带的命令）或外部命令，可以用 `type <cmd>` 查看
 
 当我们查看内建命令的用户手册时，有些系统会返回shell的手册，而有些会返回空
 
-比如cd命令属于内建命令，可以用help查看帮助
+比如 cd 命令属于内建命令，可以用 help 查看帮助
 
 - 查看内部命令：`help <cmd>`
 - 外部命令：`<cmd> --help` （内部命令貌似也可以用）
 
 ## info
 
-info是对help的补充，比help更详细，貌似就是用户手册的内容
-
-## tldr
-
-> <https://github.com/tldr-pages/tldr>
-
-Too Long; Didn’t Read. 简化man手册，根据二八法则列出最常用的部分
-
-## 其它
-
-如果只记得命令或选项的开头部分，连续两个`Tab键`可列出所有可能项
-
-一些程序的安装须知等说明文件可能会放在：`usr/share/doc/...`
+info 是对 help 的补充，比 help 更详细，貌似就是用户手册的内容

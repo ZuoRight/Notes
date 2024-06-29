@@ -1,16 +1,79 @@
-# SSH
+# 终端
 
-> <https://wangdoc.com/ssh/>
+Terminal 终端，是基于文本的输入输出机制，需要引入 Shell 来解释具体的命令及其语法。通过命令行（Command Line）与 Shell 交互。
 
-早期远程命令行服务（Telnet）是明文传输的，于是改用了更安全的 SSH(Secure Shell)
+参考：[What's the difference between a terminal, a console, and a shell?](https://www.hanselman.com/blog/whats-the-difference-between-a-console-a-terminal-and-a-shell)
+
+在计算机早期还是大型机的时代，操作系统由单任务发展为多任务的分时系统(time-sharing)，允许多人同时使用一台机器，于是便引入了终端(terminal)的概念
+
+由系统管理员控制的本地终端被称之为控制台(Console)，由电话网络连入的其它终端被称之为远程终端
+
+![20230330233936](http://image.zuoright.com/20230330233936.png)
+
+## 发展演变
+
+![20230331133529](http://image.zuoright.com/20230331133529.png)
+
+> LDISC(Line DISCipline) 用来撮合底层的硬件驱动与上层的系统调用，并完成某些控制字符的处理与翻译  
+> UART 通用异步接收器和发送器，用来处理物理线路的字符传输（比如错误校验和流控等）
+
+### 硬件终端
+
+最初的终端就是指电传打字机(Teletype)，打印机作为输入，打印纸作为输出，后来使用 CRT 显示器替代了打印纸
+
+> tty 是电传打印机英文单词的缩写，所以通常用 tty 表示终端的统称  
+> 早期连接终端设备是通过串行端口连接的，所以串口设备也常被称呼为 tty 设备
+
+![Teletype Model 33 ASR](http://image.zuoright.com/20230330233916.png)
+
+![VT05 终端](http://image.zuoright.com/20230330233924.png)
+
+三种缓冲模式
+
+- 字符模式：每按一个键就会立即发送，无缓冲，基本淘汰
+- 行模式：按下回车键后发送一整行，用的最多
+- 屏模式：缓存当前屏幕内容，支持方向键移动，用的较少
+
+### 虚拟终端
+
+由内核直接提供的虚拟终端 Virtual Console
+
+Linux 内置了 7 个虚拟终端，前 6 个为字符终端(Character Terminal)，用于命令行交互(CLI)，第 7 个预留给了图形终端(Graphical Terminal)，用于 GUI 操作
+
+可以使用快捷键 `[Ctrl] + Alt + F1/2/3/4/5/6/7` 来切换，每个终端可以登录不同用户，每个用户每次登录后获取 Shell 的 PID 都是不同的，据此可以进行一些个性化设置（`~/.bashrc`），由于 CPU 每秒可以在不同进程之间快速切换，所以多人同时使用系统时是无感知的
+
+> 如果某个终端因某个进程卡死导致界面不能动，可以切换到另一个终端，用 `ps aux` 找出有问题的进程然后 kill 掉，再切回刚才的终端就又恢复了正常
+
+```shell
+toe -a  # 列出系统支持的终端类型
+tty  # 查看当前shell关联到了哪个tty，比如：/dev/ttys010
+lsof /dev/ttys010  # 查看tty被哪些进程打开
+```
+
+### 终端模拟器
+
+Terminal Emulator 终端模拟器，又叫 Terminal Window
+
+伪终端 Pseudo Terminals, PTY 是终端模拟器的软件接口
+
+我们现在连接远程服务器所使用的 SSH、VNC、Fabric 等客户端/软件库属于远程终端模拟器
+
+## SSH
+
+SSH, Secure Shell，参考：<https://wangdoc.com/ssh/>
+
+> 早期远程命令行服务（Telnet）是明文传输的
 
 - SSH 1 有漏洞
 - SSH 2 商业软件
 - OpenSSH(OpenBSD Secure Shell) 开源
 
-OpenSSH 还提供一些辅助工具软件（比如 ssh-keygen 、ssh-agent）和专门的客户端工具（比如 scp 和 sftp）
+```shell
+# 安装 openssh-server 用于远程登录
+apt install -y openssh-server
+```
 
-## OpenSSH
+OpenSSH 还提供一些辅助工具（比如 ssh-keygen 、ssh-agent）和专门的客户端工具（比如 scp 和 sftp）
 
 ```text
  +----------+       +------------+
@@ -52,11 +115,52 @@ OpenSSH 还提供一些辅助工具软件（比如 ssh-keygen 、ssh-agent）和
 - `~/.ssh/id_rsa.pub` RSA公钥
 - `~/.ssh/known_hosts` 包含SSH服务器的公钥指纹
 
-### 快捷登录
+### 登录
+
+- 密钥登陆
+
+`ssh -i 密钥.pem root@ip`
+
+- 免密登录
+
+首先需要先生成公钥
+
+```shell
+# 生成公钥：id_rsa.pub
+ssh-keygen -t rsa
+
+# 查看公钥
+cat ~/.shh/id_rsa.pub
+```
+
+然后将公钥配置到远端服务器中
+
+```shell
+# 使用 SCP 工具把公钥文件复制到远端
+scp -P 22 -p ~/.ssh/id_rsa.pub user@host:~/.ssh/
+'
+-P 指定端口
+-p 保留原文件的修改时间，访问时间和访问权限
+-r 递归复制整个目录
+'
+
+# 或者将公钥内容追加到远端的authorized_keys中
+cat ~/.ssh/id_rsa.pub | ssh user@host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+```
+
+然后便可以免密登录
+
+```shell
+ssh -p 7777 demo@remote.example.com
+
+ssh test  # 还可以快捷登录
+```
+
+- 快捷方式需要以下配置
 
 ```shell
 vim ~/.ssh/config
-<<"COMMENT"
+'
 # 服务器1
 Host 别名
     HostName IP地址
@@ -68,60 +172,30 @@ Host test
     HostName remote.example.com
     Port 7777
     User demo
-COMMENT
-
-# 快捷登录
-ssh test
-# 等同于
-ssh -p 7777 demo@remote.example.com
+'
 ```
-
-### 免密登录
-
-```shell
-# 生成公钥：id_rsa.pub
-ssh-keygen -t rsa
-# 查看公钥
-cat ~/.shh/id_rsa.pub
-# 将公钥文件传输到服务器
-cat ~/.ssh/id_rsa.pub | ssh user@host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
-```
-
-- 密钥登陆
-
-`ssh -i 密钥.pem root@ip`
 
 ### 解决连接不稳定
 
 ```shell
 # 客户端：Mac
 sudo vim /etc/ssh/ssh_config
-"""
+'
 Host *
     SendEnv LANG LC_*
 # 添加以下两行
 ServerAliveInterval 30
 ServerAliveCountMax 2
-"""
+'
 
 # 服务端：Ubuntu
 sudo vim /etc/ssh/sshd_config
-"""
+'
 # 去掉以下两行注释并修改参数
 ClientAliveInterval 30  # 间隔多少30s发送一次心跳数据
 ClientAliveCountMax 1800  # 30min没反应断掉连接
-"""
+'
 sudo systemctl restart sshd
-```
-
-## SCP
-
-```shell
-scp [-P 22] [-p] <~/.ssh/id_rsa.pub> <user@host:~/.ssh/>
-<<"COMMENT"
--P 指定端口
--p 保留原文件的修改时间，访问时间和访问权限
-COMMENT
 ```
 
 ## Fabric

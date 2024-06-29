@@ -1,7 +1,41 @@
 # 引言
 
+## 模式
+
+- 实模式：可以随意执行全部CPU指令，随意直接通过物理地址访问内存
+- 保护模式：将指令划分为ring0到ring3，调用CPU指令或者访问内存需要CPU和操作系统允许
+- 长模式
+
+中断，即通过硬件或软件的方式告诉CPU来执行一段特殊的代码。比如键盘输入，就是通过硬件中断的方式告知操作系统的
+
+## 指令集
+
+参考：<https://time.geekbang.org/column/intro/100117801?tab=catalog>
+
+Intel 和 AMD 以售卖 x86 芯片为主，而 ARM Ltd 直接售卖 ARM 芯片的源码，连生产芯片的步骤都省了。
+
+### CISC 复杂指令集
+
+- AMD64 基于x86架构的64位扩展
+
+于1999年由AMD设计，所以也称之为AMD64(Advanced Micro Devices)，也叫 x86-64、x86_64、x64，后被Intel采用称之为Intel64
+
+### RISC 精简指令集
+
+- ARMv8/AArch64/ARM64 ARM(Advanced RISC Machines)体系架构的64位扩展
+- ARMv7/AArch32
+- RISC-V：基于 RISC 的开源指令集架构，可以在BSD许可下自由使用，指令简单，模块化设计易于扩展
+- 其它（衰退）：mips、sparc
+
+## 汇编语言
+
+assembly language，简称 asm
+
+汇编语言就是用文字指令替代机器指令，方便人类读写，它与机器指令是一一对应的，比如 ADD 对应 00000011，但不同架构 CPU 对应的汇编语言是不一样的
+
+## 查看CPU
+
 ```shell
-# 查看CPU
 lscpu
 '
 Architecture:            x86_64
@@ -44,30 +78,3 @@ Vulnerabilities:
   Tsx async abort:       Not affected
 '
 ```
-
-## 模式
-
-- 实模式：可以随意执行全部CPU指令，随意直接通过物理地址访问内存
-- 保护模式：将指令划分为ring0到ring3，调用CPU指令或者访问内存需要CPU和操作系统允许
-- 长模式
-
-中断，即通过硬件或软件的方式告诉CPU来执行一段特殊的代码。比如键盘输入，就是通过硬件中断的方式告知操作系统的
-
-## 指令集
-
-参考：<https://time.geekbang.org/column/intro/100117801?tab=catalog>
-
-Intel 和 AMD 以售卖 x86 芯片为主，而 ARM Ltd 直接售卖 ARM 芯片的源码，连生产芯片的步骤都省了。
-
-### CISC 复杂指令集
-
-- AMD64 基于x86架构的64位扩展
-
-于1999年由AMD设计，所以也称之为AMD64(Advanced Micro Devices)，也叫 x86-64、x86_64、x64，后被Intel采用称之为Intel64
-
-### RISC 精简指令集
-
-- ARMv8/AArch64/ARM64 ARM(Advanced RISC Machines)体系架构的64位扩展
-- ARMv7/AArch32
-- RISC-V：基于 RISC 的开源指令集架构，可以在BSD许可下自由使用，指令简单，模块化设计易于扩展
-- 其它（衰退）：mips、sparc

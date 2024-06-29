@@ -4,12 +4,18 @@
 
 但也有些进程执行完并不会立刻结束，而是常驻在内存中，这些进程通常都是负责一些系统所提供的功能以服务用户的各项任务，称之为：守护进程(daemon)
 
-> daemon 一般会在文件名后加上d，比如：httpd
+daemon 一般会在文件名后加上d，比如：httpd
 
 daemon 主要分为
 
 - 本地服务
 - 网络服务，网络服务会提供一个端口(port)，供外部客户端请求连接
+
+```shell
+netstat -a | grep 8080  # 查看占用端口
+ps -ax | grep nginx  # 查看进程
+kill -s QUIT pid  # 结束进程
+```
 
 ## Supervisor
 

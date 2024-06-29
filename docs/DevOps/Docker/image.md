@@ -161,7 +161,9 @@ docker commit -m="提交信息" -a="作者" <容器ID> <目标镜像名:tag>
 
 - 示例1
 
-busybox是一个瑞士军刀式的Linux工具箱
+云原生中系统是极其精简的，没有那些乱七八糟的工具，甚至连 apt wget 等都没有
+
+busybox 是一个瑞士军刀式的 Linux 工具箱
 
 ```dockerfile
 # Dockerfile.busybox

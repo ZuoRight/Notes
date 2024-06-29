@@ -2,8 +2,6 @@
 nav:
   - index.md
   - CICD
-  - Process
-  - OS
   - Docker
   - Virtual
   - Computer

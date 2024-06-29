@@ -1,7 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - init.md
   - jobs.md
   - daemon.md
   - ...
