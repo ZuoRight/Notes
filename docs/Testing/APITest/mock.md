@@ -1,36 +1,14 @@
 # 依赖处理
 
 - 全局变量
-- `$` 调用 api 或者 case_id
 - Pytest 的 Fixture
+- `$` 调用 api 或者 case_id，以及自定义处理函数
 - Mock，当一个接口依赖另一个接口，由于被依赖接口并不是主要测试对象，则可以使用假数据 Mock 掉
-    - 打桩：一般在做单元或集成测试时，如果某个程序单元的某条语句，需要调用的一个外部函数还没有设计、编码、调试完成的话，可以只让它简单地返回几个支持测试用例的值就可以了，这种状态的外部函数一般就叫做“打桩”
-
-## Mocking
-
-打桩
-
-- 模拟外部依赖：打桩用于模拟外部服务、数据库或其他模块，以便在没有这些依赖的情况下进行单元测试。
-- 测试隔离：通过替换实际组件，使得测试可以集中在具体的模块上，避免受到外部系统的影响。
-- 控制测试环境：通过打桩，可以精确控制测试输入和输出，验证系统在各种条件下的行为。
-
-### unittest.mock
-
-```python
-from unittest.mock import Mock
-
-# 创建一个 Mock 对象
-mock = Mock()
-
-# 调用 mock 对象的方法
-mock.some_method()
-
-# 验证方法是否被调用
-print(mock.some_method.called)  # 输出: True
-```
-
-### pytest-mock
-
+    - Charles map local/remote
+    - Ngnix 反向代理
+    - Fake
+    - 打桩
+    - Swagger
 
 ## 使用 `$` 和 `case_id` 处理依赖
 
@@ -111,3 +89,29 @@ def build_payload(self, payload: dict) -> dict:
             payload.pop(k)
     return payload
 ```
+
+## Stub
+
+打桩：一般在做单元或集成测试时，如果某个程序单元的某条语句，需要调用的一个外部函数还没有设计、编码、调试完成的话，可以只让它简单地返回几个支持测试用例的值就可以了，这种状态的外部函数一般就叫做“打桩”
+
+- 模拟外部依赖：打桩用于模拟外部服务、数据库或其他模块，以便在没有这些依赖的情况下进行单元测试。
+- 测试隔离：通过替换实际组件，使得测试可以集中在具体的模块上，避免受到外部系统的影响。
+- 控制测试环境：通过打桩，可以精确控制测试输入和输出，验证系统在各种条件下的行为。
+
+### unittest.mock
+
+```python
+from unittest.mock import Mock
+
+# 创建一个 Mock 对象
+mock = Mock()
+
+# 调用 mock 对象的方法
+mock.some_method()
+
+# 验证方法是否被调用
+print(mock.some_method.called)  # 输出: True
+```
+
+### pytest-mock
+
