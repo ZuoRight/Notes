@@ -8,6 +8,8 @@ Linux 的命令有很多，常用的才能记住，要学会查找帮助文档
 
 查看历史命令：`history | grep xxx`
 
+常用命令：<https://wangchujiang.com/reference/docs/linux-command.html>
+
 ```shell
 # 查看日历
 cal 3 2019

@@ -34,10 +34,10 @@ HTTP请求中的multipart/form-data，既可以上传文件等二进制数据，
 
 - Inherit auth from parent 默认继承自集合
 - No Auth
-- Bearer Token 也叫 Json web token
+- Bearer Token, 比如 JWT
 - Basic Auth
 - Digest Auth
-- Oauth
+- OAuth
 - ...
 
 ## WS请求

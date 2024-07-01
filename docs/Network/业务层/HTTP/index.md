@@ -77,7 +77,12 @@ Get 的参数拼接在 URL 中传输，POST 在 Body 中传输。但本质上其
 
 Status Code 用于表示请求的结果
 
-> 注意，状态码仅表示状态，具体还要看返回内容中自定义的错误码
+注意，状态码仅表示状态，具体还要看返回内容中自定义的错误码
+
+参考
+
+- <https://www.cheat-sheet.cn/post/http-status-code/>
+- <https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status>
 
 1xx：提示信息，表示协议处理的中间状态，还需要后续的操作
 
@@ -105,6 +110,7 @@ Status Code 用于表示请求的结果
 
 ```text
 400 通用错误码，请求报文有误，服务器无法处理
+401 未授权
 403 服务器禁止访问资源，其实不属于客户端错误
 404 资源未找到，已经被用滥
 405～431 一般都会返回较明确的备注提示
@@ -118,69 +124,6 @@ Status Code 用于表示请求的结果
 502 一般为网关或者代理服务器出错
 503 网络服务较忙，是一个临时状态，此时会出现 Retry-After 头告诉多久后重试
 ```
-
-## 鉴权
-
-鉴权通常是认证和授权的统称
-
-- 认证 identification 你是谁？
-
-通过用户名、密码、指纹或其他方式，系统验证用户提供的凭证是否与系统中存储的信息匹配。
-
-- 授权 authorization，能干啥？
-
-谁拥有什么权去操作哪些资源
-
-授权是在认证之后进行的，基于用户的权限和角色，控制用户可以访问哪些资源以及可以执行哪些操作。
-
-认证流程
-
-```
-1. 用户向服务器发送用户名和密码。
-2. 服务器验证通过后，会建立一个 Session，保存当前对话的相关数据，比如用户角色、登录时间等等。
-3. 服务器向用户返回 session_id 写入用户的 Cookie。
-4. 用户随后的每一次请求，都会通过 Cookie，将 session_id 传回服务器。
-5. 服务器收到 session_id，找到保存的 Session 数据，由此得知用户的身份。
-```
-
-```text
-- Set-Cookie 服务端返回
-  - Expires 过期时间
-  - Max-Age 有效期(优先级高)
-  - Domain 作用域
-  - Path 作用路径
-  - HttpOnly 禁止 JS 等其他方式访问
-  - SameSite 可以防范XSRF(跨站请求伪造)攻击
-    - None 允许同站跨站都会发送
-    - Lax 允许同站和GET/HEAD等安全方法跨站，但禁止POST跨站发送
-    - Strict 只允许同站，禁止跨站发送
-  - Secure 表示这个Cookie仅能用HTTPS协议加密传输
-
-- Cookie 客户端根据服务端返回的 Set-Cookie 保存 Cookie
-  - Expires 过期时间，默认与 Session 一起失效
-  - Max-Age 有效期(优先级高)
-```
-
-这种模式在跨域或分布式架构中有一些问题，比如要实现用户只要在其中一个网站登录，再访问另一个网站就会自动登录这种场景，就需要多个网站的服务器间可以共享 session，可以通过写入 redis 等来实现
-
-也可以使用 token 来实现，token，也称作令牌
-
-通常包含以下信息
-
-```text
-uid：唯一标识
-time：当前时间的时间戳
-sign：签名，使用 hash/encrypt 压缩成定长的十六进制字符串，防止恶意拼接
-固定参数：可选，避免重复
-```
-
-最常见的实现就是 JWT(Json Web Tokens)
-
-![20240619133556](https://image.zuoright.com/20240619133556.png)
-
-服务器认证以后，生成一个 JSON 对象，返回给用户，用户与服务端通信的时候，都要发送这个 JSON 对象，这样服务器就不保存任何 session 数据了，即所谓的无状态
-
-类似于临时的证书签名，保存在 localStroage 等容器中，CPU 加密，服务端解密，不存在负载均衡问题，解决了跨域认证。
 
 ## Headers
 
@@ -272,9 +215,10 @@ HTTP/2 中用伪头部形式（`:key`）替代了起始行，废除了没用的 
 ### 未分类
 
 ```text
-- User-Agent：用于描述客户端，但由于历史原因已经非常混乱，基本无用
-    - Mozilla/Chrome/Safari/AppleWebKit
-    - spider 爬虫，robots.txt 规定了哪些该爬哪些不该爬
+- User-Agent：用户代理，由于历史原因已经非常混乱，基本无用
+    - 浏览器，比如 Mozilla/Chrome/Safari/AppleWebKit
+    - 爬虫 Spider，robots.txt 规定了哪些该爬哪些不该爬
+    - 邮箱客户端
 - Server 正在提供Web服务的软件名称和版本号，但出于安全考虑通常省略或随便写
 - Connection: keep-alive(长链接，默认)/close(本次通信后关闭连接)
 - Keep-Alive: timeout=value(限定长链接超时时间，约束力较弱)

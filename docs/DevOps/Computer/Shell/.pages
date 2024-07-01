@@ -3,5 +3,5 @@ nav:
   - index.md
   - terminal.md
   - shell.md
-  - path_and_file.md
+  - file.md
   - ...
