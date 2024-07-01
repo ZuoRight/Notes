@@ -94,6 +94,8 @@ def extend(nums: list[int], enlarge: int) -> list[int]:
     return res
 ```
 
+另外 Python 列表之所以可以存储不同的数据类型，是因为存储的是对象的引用或指针，而不是数据本身
+
 ## linkedlist
 
 链表要额外存储指针，相比数组更占内存，但利用率更高，因为连续空间如果不足，数组就需要扩容

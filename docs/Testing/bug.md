@@ -10,6 +10,8 @@
 
 ## Issues
 
+![bugfree](https://image.zuoright.com/bugfree.jpg)
+
 ### 流程
 
 1. QA: 新建问题

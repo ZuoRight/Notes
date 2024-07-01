@@ -1,15 +1,19 @@
 # HD Wallet
 
-- BIP32 — 定义分层确定性钱包（Hierarchical Deterministic Wallets）
-- BIP44 — 定义HD钱包多账户层次结构
-- BIP39 — 使用助记词（Mnemonic）来生成确定性密钥，根据助记词即可恢复钱包，也SRP(Secret Recovery Phrase)
+- BIP32 — 定义 HD 钱包（Hierarchical Deterministic Wallets 分层确定性钱包）
+- BIP44 — 定义 HD 钱包多账户层次结构
+- BIP39 — 使用助记词（Mnemonic）来生成确定性密钥，根据助记词即可恢复钱包，所以助记词也叫 SRP(Secret Recovery Phrase)
 
 在 BIP32 推出之前，用户需要记录一堆的私钥才能管理很多账户，BIP32 提出可以用一个根密钥（也叫根扩展密钥）根据某种确定性算法派生出多个子密钥，更方便的管理多个账户，即
 
 1. 所有账户都源自一个根密钥（分层）
 2. 给定根密钥，所有子账户都可以可靠地重新计算（确定性）
 
-相当于管理一个扩展私钥（xprv），即可拥有 N 个子私钥，继而拥有多个钱包账户，通过一个扩展公钥（xpub）即可查询账户总余额
+相当于管理一个扩展私钥（`xprv`），即可拥有 N 个子私钥，继而拥有多个钱包账户，通过一个扩展公钥（`xpub`）即可查询账户总余额
+
+![20231027231935](https://image.zuoright.com/20231027231935.png)
+
+参考文章：<https://wolovim.medium.com/ethereum-201-hd-wallets-11d0c93c87f7>
 
 ## 在线工具生成
 
@@ -20,15 +24,17 @@
 
 ![20231026000641](https://image.zuoright.com/20231026000641.png)
 
+暴力破解的可能性：决定种子生成的因素有两个，一个是助记词，一个是盐，假设没有盐，12 个助记词，则熵是 128bit，即共有 $2^{128}$ 种可能，钱包中有钱的地址估计不超过 1 亿个，而且大部分存放在交易所和硬件钱包中，每秒钟破解 1 亿个，大约需要 $1.08*10^{23}$ 年，概率几乎为 0
+
 ## Python 生成
 
-根据第BIP39，首先需要一个随机数，也称为熵
+根据第 BIP39，首先需要一个随机数，也称为「熵」
 
 熵的随机性一定要高，否则就可以被暴力破解，通常要求位数介于 128～256bits 之间，且需要是 32 的倍数，即：`128, 160, 192, 224, 256`
 
 每 32bits 增加三个助记词，所以熵越大，对应的助记词个数越多，即：`12, 15, 18, 21, 24`
 
-比如常用的 128bits，有 2^128 种可能性，对应有 12 个助记词
+比如常用的 128bits，有 $2^128$ 种可能性，对应有 12 个助记词
 
 ```python
 import os
@@ -48,11 +54,11 @@ entropy_bits.frombytes(entropy_bytes)
 # bitarray('101111000...011111111001010')
 ```
 
-熵如果是128bits，需要对应12个助记词，但128并不能被12整除，此时需要在末尾增加校验和 `checksum` 来补位
+熵如果是 128bits，需要对应 12 个助记词，但 128 并不能被 12 整除，此时需要在末尾增加校验和 `checksum` 来补位
 
 校验和的长度取决于熵的大小：`checksum_length = entropy_bit_size // 32`，即 4 位
 
-然后取 sha256(entropy_bytes) 摘要的二进制结果的前 4 位作为补到 entropy_bits 后
+然后取 sha256(entropy_bytes) 摘要的二进制结果的前 4 位作为校验和补到 entropy_bits 后
 
 ```python
 import hashlib
@@ -73,7 +79,7 @@ entropy_bits.extend(checksum)
 
 ### entropy => mnemonic
 
-将 132bits 的 `熵 + 校验和` 平分成12组，每组 11bits (132 // 12) ，被称之为 magic number，然后将二进制的 magic number 转换为十进制整数，即得到12个助记词的索引
+将 132bits 的 `熵 + 校验和` 平分成 12 组，每组 11bits (132 // 12) ，被称之为 magic number，然后将二进制的 magic number 转换为十进制整数，即得到 12 个助记词的索引
 
 标准的助记词列表：<https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md>
 
@@ -106,7 +112,7 @@ mnemonic_words = tuple(english_word_list[i] for i in indices)
 import hashlib
 
 passphrase = "you-make-this-up"  # 自定义密码，可默认为空
-salt = "mnemonic" + passphrase  # 盐，进一步提高钱包的安全性
+salt = "mnemonic" + passphrase  # 盐，进一步提高钱包的安全性（可选，目前大部分硬件钱包支持，但软件钱包很少支持）
 
 # 将12个助记词拼接为以空格分隔的字符串形式
 mnemonic_string = ' '.join(mnemonic_words)  # 'across abstract shine ... uphold already club'
@@ -139,9 +145,9 @@ master_private_key = int.from_bytes(L, 'big')
 master_chain_code = R  # 用作熵
 ```
 
-root key 通常表示为扩展私钥（xprv开头），根据BIP32，extended private keys are a Base58 encoding of the private key, chain code, and some additional metadata.
+root key 通常表示为扩展私钥（xprv开头），根据 BIP32，extended private keys are a Base58 encoding of the private key, chain code, and some additional metadata.
 
-> Base58是专为Bitcoin设计的，相比于Base64，去除了`0, O, I, l`等容易被误认的字符
+> Base58 是专为 Bitcoin 设计的，相比于 Base64，去除了 `0, O, I, l` 等容易被误认的字符
 
 ```python
 import base58
@@ -175,7 +181,7 @@ root_key = base58.b58encode_check(all_bytes).decode('utf8')  # xprv9s21ZrQH143K.
 
 ![20231025205912](https://image.zuoright.com/20231025205912.png)
 
-扩展密钥每一层可派生的数量被限制在0～232个账户，但没有限制可派生的层数
+扩展密钥每一层可派生的数量被限制在 0～232 个账户，但没有限制可派生的层数
 
 BIP44 为 BIP32 的派生路径提供了一套通用规范，适配比特币、以太坊等
 
