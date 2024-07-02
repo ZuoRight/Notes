@@ -1,10 +1,12 @@
-# Solc
+# 编译器 Solc
+
+EVM（以太坊虚拟机）是智能合约的运行环境，合约之间是完全隔离的
 
 EVM 无法直接执行 Solidity 代码：我们首先需要将其编译成 EVM 字节码。
 
 这就需要用到 Solc（Solidity Compiler）
 
-原生Solc
+原生 Solc
 
 > Docs: <https://docs.soliditylang.org/en/latest/installing-solidity.html>
 

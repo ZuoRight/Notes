@@ -4,21 +4,23 @@
 
 [官方文档](https://ethereum.org/en/developers/docs/intro-to-ethereum/)
 
-以太坊由俄裔加拿大程序员Vitalik Buterin（维塔利克·布特林，俗称V神，94年）与 Gavin Wood（英国人，计算机科学家，80年） 等人联合发起
+以太坊由 Vitalik Buterin 与 Gavin Wood 等人联合发起
 
-V神写了以太坊的[白皮书](https://ethereum.org/zh/whitepaper/)
+维塔利克·布特林，俗称 V 神，94年，俄裔加拿大程序员，写了以太坊的[白皮书](https://ethereum.org/zh/whitepaper/)
 
-Gavin Wood 写了以太坊的[黄皮书](https://github.com/ethereum/yellowpaper)（[中文版](https://github.com/yuange1024/ethereum_yellowpaper/blob/master/ethereum_yellow_paper_cn.pdf)），是以太坊基金的第一位CTO，提出并参与开发了EVM的编程语言Solidity，2016年离开以太坊基金，后来还开发了用Rust编写的以太坊客户端Parity，后又联合创办了另一个底层公链Polkadot，并为其写了白皮书。
+Gavin Wood，英国人，80年，计算机科学家，以太坊基金的第一位 CTO，写了以太坊的[黄皮书](https://github.com/ethereum/yellowpaper)（[中文版](https://github.com/yuange1024/ethereum_yellowpaper/blob/master/ethereum_yellow_paper_cn.pdf)），提出并参与开发了 EVM 的编程语言 Solidity，还开发过用以太坊的 Rust 版客户端 Parity，2016 年离开以太坊基金会，后联合其他人创办了另一个底层公链 Polkadot，并为其写了白皮书。
 
-以太坊的编程语言与Bitcoin的Script不同，使用了图灵完备的Solidity，称之为智能合约，引发了公链生态，虽然他自己一开始也并没有想到
+以太坊的编程语言与 Bitcoin 的 Script 不同，使用了图灵完备的 Solidity，称之为「智能合约」，引发了公链生态，虽然他自己一开始也并没有想到
 
-> 智能合约的概念是由Nick Szabo（尼克·萨博）于1997年提出的
+智能合约的概念最初是由 Nick Szabo（尼克·萨博）于 1997 年提出的，V 神后来觉得不应该用这个名字
 
 ![20220729195329](http://image.zuoright.com/20220729195329.png)
 
 ## 节点
 
-以太坊是一个由分布式节点构成的去中心化计算机网络，[节点实时分布图](https://etherscan.io/nodetracker)
+以太坊是一个由分布式节点构成的去中心化计算机网络
+
+> [节点实时分布图](https://etherscan.io/nodetracker)
 
 节点分类
 
@@ -27,11 +29,11 @@ Gavin Wood 写了以太坊的[黄皮书](https://github.com/ethereum/yellowpaper
 - Archive node(存档节点)：通常用于区块链浏览器和钱包服务等
 - Simulated node(模拟节点)：用于本地开发测试
 
-客户端是节点的一种实现，以太坊升级前(Eth1.0)只需要运行一个执行客户端(execution clients)，其中Go语言编写的Geth是最早也是使用最多的客户端
+客户端是节点的一种实现，Ethereum 1.0 只需要运行一个执行客户端，其中 Go 语言编写的 Geth 是最早也是使用最多的客户端
 
 ![20220727154624](http://image.zuoright.com/20220727154624.png)
 
-升级后(Eth2.0)需要再运行一个共识客户端(consensus clients)
+Ethereum 2.0 需要再运行一个共识客户端
 
 ![20220727155848](http://image.zuoright.com/20220727155848.png)
 
@@ -44,18 +46,18 @@ Gavin Wood 写了以太坊的[黄皮书](https://github.com/ethereum/yellowpaper
 - <https://ethos.dev/beacon-chain>
 - <https://stonecoldpat.substack.com/p/how-proof-of-stake-ethereum-works>
 
-The Beacon Chain Ethereum 2.0 采用了 PoS(Proof of Stake) 权益证明共识机制，向存储合约质押(Staking) 32 个 $ETH 成为 Validators(验证节点，验证者)
+Ethereum 2.0(The Beacon Chain) 采用了权益证明共识机制（PoS, Proof of Stake），向存储合约质押（Staking）32 个 ETH 成为 验证节点（Validators，验证者）
 
-Validators 参与出块获得奖励或惩罚(Staking Rewards and Penalties)会影响质押的$ETH数量变化，当小于 16 $ETH 时将会被取消资格
+Validators 参与出块获得奖励或惩罚（Staking Rewards and Penalties）会影响质押的 ETH 数量变化，当小于 16 ETH 时将会被取消验证者资格
 
-> Lido 是基于 Ethereum 2.0 Beacon Chain 上建造的Dapp，用户不需要锁定ETH，也不需要达到32ETH的这一巨额门槛即可参与质押挖矿，并且用户将ETH质押到 Lido 合约中会获得等量的 `$stETH`，可用于交易、Swap、借贷等DeFi
+> Lido 是基于 Beacon Chain 上建造的 Dapp，用户不需要锁定 ETH，也不需要达到 32ETH 的这一门槛即可参与质押挖矿，并且用户将 ETH 质押到 Lido 合约中会获得等量的 stETH，可用于交易、Swap、借贷等 DeFi
 
-比特币主要用于支付，需要更多的安全确认，所以限制平均10min出一个块，而以太坊则是执行智能合约为主，支付功能并不是以太坊的主要功能，所以在以太坊中，平均每12秒出一个块
+比特币主要用于支付，需要更多的安全确认，所以限制平均 10min 出一个块
 
-12s 称为一个时间间隙(time slot)，32 个 slot 称作一个纪元(epoch)
+而以太坊则是执行智能合约为主，支付功能并不是主要功能，所以平均每 12 秒出一个块
 
-- 1 slot = 12 s
-- 1 epoch = 32 slot = 384 s (6 min 24 s)
+- 12s 称为一个时间间隙（time slot），即 $1slot = 12s$
+- 32 个 slot 称作一个纪元（epoch）即 $1epoch = 32slot = 384s$ (6 min 24 s)
 
 ![20230507202055](http://image.zuoright.com/20230507202055.png)
 
@@ -71,17 +73,17 @@ Validators 参与出块获得奖励或惩罚(Staking Rewards and Penalties)会�
 
 ![20230508112413](http://image.zuoright.com/20230508112413.png)
 
-虽然每个节点在一个 epoch 只能投一票，但不同节点质押的$ETH余额不同，所以投票的权重不同，若有冲突区块会导致链分叉，则累积质押$ETH最多的链被称之为规范链(canonical chain)
+虽然每个节点在一个 epoch 只能投一票，但不同节点质押的 ETH 余额不同，所以投票的权重不同，若有冲突区块会导致链分叉，则累积质押 ETH 最多的链被称之为规范链(canonical chain)
 
-## 区块状态
+### 区块状态
 
 <https://info.etherscan.com/epoch-in-ethereum/>
 
 - `Unfinalized` 尚未被 Validators 构建和验证的区块，可能会被重组
-- `Unfinalized(Safe)` 已被2/3的 Validators 验证的区块，重组可能性较小
+- `Unfinalized(Safe)` 已被 $2/3$ 的 Validators 验证的区块，重组可能性较小
 - `Finalized` 已由 Validators 完全验证的区块，不太可能被重组
 
-## 区块内容
+### 区块内容
 
 <https://ethereum.org/zh/developers/docs/blocks/>
 
@@ -125,12 +127,12 @@ body：包含一些字段的对象，定义如下
         transactions：要执行交易的列表
 ```
 
-## 区块奖励
+### 区块奖励
 
 区块奖励通常包含：`Static Block Reward + Priority Fees`
 
-> old: 每210,000个区块 Static Block Reward 减半一次，最初为 5 $ETH  
-> new: eth2.0 staking rewards
+- old: 每 210,000 个区块 Static Block Reward 减半一次，最初为 5 ETH  
+- new: ETH 2.0 staking rewards
 
 除了基本的奖励之外，Validators 能够从他们生产的区块内重新排序交易中获得额外的收益，这部分收益称之为 MEV(Maximal Extractable Value)
 
@@ -138,69 +140,72 @@ body：包含一些字段的对象，定义如下
 
 ## 单位
 
-计算机处理浮点数通常会有误差，所以一般涉及到金钱相关的会缩小单位，比如1角应该存储为10分，而不是0.1元
+计算机处理浮点数通常会有误差，所以一般涉及到金钱相关的会缩小单位，比如1角应该存储为 10 分，而不是 0.1 元
 
-以太坊中常用单位：`1 Ether` = `10^9 Gwei` = `10^18 wei`
+以太坊中常用单位：$1 Ether = 10^9 Gwei = 10^{18} wei$
 
-> 在线单位换算工具  
-> <https://etherscan.io/unitconverter>  
-> <https://eth-converter.com/>
+- Gwei 主要用于表示 Gas Fees
+- wei 是以太坊中的最小单位，以 b-money 的发明者 Wei Dai 命名，常用于合约开发中
 
 ![20230508162327](http://image.zuoright.com/20230508162327.png)
 
-- wei 是以太坊中的最小单位（以b-money的发明者 Wei Dai 命名），常用于开发中
-- Gwei 主要用于表示 Gas Fees
+在线单位换算工具
 
-## 交易
+- <https://etherscan.io/unitconverter>
+- <https://eth-converter.com/>
 
-<https://info.etherscan.com/understanding-an-ethereum-transaction/>
-
-交易一般可分为
-
-- 正常交易：充值、提现、转账等等
-- 内部交易：合约间调用
-- 代币转移：ERC20 或 ERC721 等 Token Txns
-
-![20230508165138](http://image.zuoright.com/20230508165138.png)
-
-## Gas Fees
+## Transaction Fee
 
 - [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) ([video](https://www.youtube.com/watch?v=MGemhK9t44Q&ab_channel=Finematics))
 - [Gas 构成](https://medium.com/@b1995/gas-%E7%9A%84%E7%B2%BE%E5%8D%8E%E6%80%BB%E6%95%B4%E7%90%86-8aa579fcde8c)
 
-所有会改变智能合约状态的操作都会消耗 Gas，一笔交易可能包含各种操作，不同操作消耗不同，所以不同种类的交易消耗的 Gas 也不同，Gas 的基本单位为 Gwei
+所有会改变智能合约状态的操作都会消耗 Gas，Gas 的基本单位为 Gwei
+
+一笔交易可能包含各种操作，不同操作消耗不同，所以不同种类的交易 `Gas Used` 也不同
+
+交易时需要设置一个 `Gas Limit`，用于限制 Gas 的最高消耗量，最低为 `21000`
 
 ![20230508162738](http://image.zuoright.com/20230508162738.png)
 
-在 EIP-1599 之前，即传统方式(Legacy)，`Gas Fees = Fees * Gas Limit`，其中 `Fees` 的多少取决于用户愿意支付多少，但矿工会选择多的优先打包，因此产生竞价，波动较大，且难以预估
+EIP-1599 之前，即传统方式(Legacy)，`Gas Fees = Fees * Gas Limit`，其中 `Fees` 的多少取决于用户愿意支付多少，但矿工会选择多的优先打包，因此产生竞价，波动较大，且难以预估
 
-EIP-1599之后，即 2021.8 伦敦升级后的新方式，将 `Fees` 改为 `Base Fee + Priority Fee`
-
-其中 `Priority Fee` 是给矿工的小费，可以设置一个最大值，矿工会优先打包小费高的
-
-而 `Base Fee` 是由当前网络拥堵程度动态决定的，一个区块的最大容量为 25M 个 Gas，如果当前区块容量大于50%，即大于12.5M，则下一个区块的 `Base Fee` 价格上调 12.5%，反之下调
-
-![20230508223644](http://image.zuoright.com/20230508223644.png)
-
-`Base Fee` 最终会被燃烧掉(Burnt)，在交易中需要设置 `Max Fee`，剩余的(`Savings Fees`)会退还回来：`Max Fee - Max Priority Fee - Base Fee`
-
-> 之所以叫 Savings Fees 大概是因为传统方式时的 Fees 用于合约操作剩下的都会被当作矿工小费，不会退还
+EIP-1599 之后，即 2021.8 伦敦升级后的新方式，将 `Fees` 改为 `Base Fee + Priority Fee`
 
 ![20230508163143](http://image.zuoright.com/20230508163143.png)
 
-`Gas Limit` 用于限制 Gas 的最高消耗量，最低为 `21000`
-
 ```python
-Transaction_Fee = Gas_Price * Usage_by_Txn
-Gas_Price ≤ Base + Max_Priority
+单价：Gas_Price ≤ Base + Max_Priority
+总价：Transaction_Fee = Gas_Price * Usage_by_Txn
 Burnt = Base * Usage_by_Txn
 ```
 
-> Gas Price 预估
->
-> - <https://etherscan.io/gastracker>
-> - <https://www.oklink.com/cn/eth/gas-price/price>
+![20230508223644](http://image.zuoright.com/20230508223644.png)
+
+其中 `Priority Fee` 是给矿工的小费，可以设置一个最大值，矿工会优先打包小费高的
+
+`Base Fee` 最终会被燃烧掉(Burnt)，大小是由当前网络拥堵程度动态决定的，一个区块的最大容量为 25M 个 Gas，如果当前区块容量大于 50%，即大于 12.5M，则下一个区块的 `Base Fee` 价格上调 12.5%，反之下调
+
+Gas Tracker
+
+- <https://etherscan.io/gastracker>
+- <https://www.oklink.com/cn/eth/gas-price/price>
+
+在交易时需要设置一个 `Max Fee`，剩余的会退还回来：`Savings Fees = Max Fee - Max Priority Fee - Base Fee`
+
+> 之所以叫 Savings Fees 大概是因为传统方式时的 Fees 用于合约操作剩下的都会被当作矿工小费，不会退还
+
+- ETH 转账
 
 ![ETH转账](http://image.zuoright.com/20230508165817.png)
 
+- ERC20-USDT 转账
+
 ![ERC20-USDT转账](http://image.zuoright.com/20230508165920.png)
+
+## 普通账户模型
+
+账户模型，即记账模式，以太坊采用常见的普通账户模型，也叫账户余额模型（Account-Balance），相对更自由
+
+参考：<https://time.geekbang.org/column/article/6511>
+
+账户拥有4个参数：`{nonce, balance, codeHash, StorageRoot}`

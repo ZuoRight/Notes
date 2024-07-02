@@ -5,5 +5,4 @@ nav:
   - cryptography.md
   - hd_wallet.md
   - address.md
-  - sign.md
   - ...

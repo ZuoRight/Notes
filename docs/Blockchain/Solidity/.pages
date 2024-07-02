@@ -6,7 +6,8 @@ nav:
   - 数据类型.md
   - 语句.md
   - 函数.md
-  - tx.md
-  - 合约.md
   - library.md
+  - 合约.md
+  - tx.md
+  - token.md
   - ...
