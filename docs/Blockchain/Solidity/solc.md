@@ -1,12 +1,14 @@
 # 编译器 Solc
 
-EVM（以太坊虚拟机）是智能合约的运行环境，合约之间是完全隔离的
+EVM（Ethereum Virtual Machine, 以太坊虚拟机）是智能合约的运行环境，合约之间是完全隔离的
+
+可以把智能合约语言（Solidity、Serpent、Vyper 等）编写的代码部署到任何兼容 EVM 的区块链上，比如 Avalanche、Fantom、Polygon
 
 EVM 无法直接执行 Solidity 代码：我们首先需要将其编译成 EVM 字节码。
 
 这就需要用到 Solc（Solidity Compiler）
 
-原生 Solc
+## 原生 Solc
 
 > Docs: <https://docs.soliditylang.org/en/latest/installing-solidity.html>
 
@@ -41,7 +43,7 @@ solc-bin
 - 镜像：<https://binaries.soliditylang.org/>
 - Github: <https://github.com/ethereum/solc-bin/>
 
-## 版本管理
+### 版本管理
 
 `solc-select`: <https://github.com/crytic/solc-select>
 

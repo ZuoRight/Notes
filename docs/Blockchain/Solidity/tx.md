@@ -106,6 +106,7 @@ receive() exists?  fallback()
     /          \
 receive()   fallback()
 */
+
 contract ReceiveEther {
     // 定义一个事件
     event Received(address Sender, uint Value);

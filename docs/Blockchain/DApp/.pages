@@ -3,5 +3,6 @@
 nav:
   - index.md
   - testnet.md
+  - etherscan.md
   - graph.md
   - ...

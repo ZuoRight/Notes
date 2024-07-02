@@ -4,7 +4,7 @@
 
 ![20231013102220](https://image.zuoright.com/20231013102220.png)
 
-以太坊2.0后大部分测试网被废弃，Goerli变为最主要的POS测试网，像Uniswap、OpenSea等大项目都在Goerli测试网搭建了测试环境，但是Goerli测试网代币比较难搞，水龙头比较稀缺
+以太坊 2.0 后大部分测试网被废弃，Goerli 变为最主要的 POS 测试网，像 Uniswap、OpenSea 等大项目都在 Goerli 测试网搭建了测试环境，但是 Goerli 测试网代币比较难搞，水龙头比较稀缺
 
 目前 Goerli 也被废弃，将被 Holesky 取代
 
@@ -130,20 +130,3 @@ eth_chainId
 eth_call
 COMMENT
 ```
-
-## 区块浏览器
-
-从技术上看，区块浏览器的主要工作就是把区块扫描到数据库服务器中，然后搭建一个 Web 访问服务，用户只需要输入交易哈希或者区块哈希，即可查询到交易是否已经被打包和确认。
-
-![20231026220750](https://image.zuoright.com/20231026220750.png)
-
-多链：[OKLink](https://www.oklink.com/all-chain)
-
-- <https://www.oklink.com/btc>
-- <https://www.oklink.com/eth>
-
-Ethereum：[Etherscan](https://etherscan.io/)
-
-- [Blocks List](https://info.etherscan.com/exploring-block-page/)
-- [Block Detail](https://info.etherscan.com/exploring-block-details-page/)
-- [Transaction](https://info.etherscan.com/understanding-an-ethereum-transaction/)

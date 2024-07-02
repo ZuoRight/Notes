@@ -202,6 +202,20 @@ Gas Tracker
 
 ![ERC20-USDT转账](http://image.zuoright.com/20230508165920.png)
 
+### Gas 优化
+
+- 尽量使用常量或不变量
+- 尽量不要存储在内存中
+- 初始化之后不允许改变
+- 用 `if (...) revert xxerror();` 替代 `require();` 语句
+
+```js
+// require(msg.sender == i_owner, "Sender is not owner");
+
+// 比如在合约外自定义错误：error NotOwner(); 然后
+if (msg.sender != i_owner) revert NotOwner();
+```
+
 ## 普通账户模型
 
 账户模型，即记账模式，以太坊采用常见的普通账户模型，也叫账户余额模型（Account-Balance），相对更自由
