@@ -9,6 +9,8 @@
 - Appium
 - Cypress: <https://www.cypress.io/>
 
+Puppeteer 和 Playwright 主要用于开发阶段的测试和自动化
+
 ## Webdriver
 
 Selenium 和 Appium 等大部分框架都是基于 [W3C WebDriver](https://w3c.github.io/webdriver/) 
@@ -53,3 +55,7 @@ Puppeteer（音译：帕破替尔） 提供了一系列 API，通过 CDP 协议�
 - 爬取 SPA 或 SSR 网站
 - 捕获网站的时间线，帮助诊断性能问题
 - ...
+
+## Playwright
+
+由 Microsoft 发布的 Node 库，与 Puppeteer 类似，但支持跨浏览器测试，包括 Chrome、Firefox 和 WebKit。

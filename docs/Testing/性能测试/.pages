@@ -3,4 +3,5 @@ nav:
   - index.md
   - 性能指标.md
   - jmeter.md
+  - wrk.md
   - ...

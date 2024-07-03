@@ -6,6 +6,11 @@
 
 ## 新公链
 
+- Solana
+- TON(Open Network)
+- Aptos
+- Sui
+
 ## 跨链项目
 
 - Cosmos（ATOM）
