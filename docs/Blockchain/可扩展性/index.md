@@ -11,6 +11,8 @@
 - Aptos
 - Sui
 
+每条公链几乎都会产生自己的借贷和 Swap 产品
+
 ## 跨链项目
 
 - Cosmos（ATOM）
