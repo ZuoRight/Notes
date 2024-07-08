@@ -26,15 +26,15 @@
 
 不同的浏览器内核对网页编写语法的解释有所不同，这也是网页编写者需要在不同内核的浏览器中测试网页显示效果的原因
 
-- Trident（IE内核）：Edge浏览器（原名斯巴达，2015年新推出）现在也已经改为Chromium内核
+- Trident（IE 内核）：Edge 浏览器（原名斯巴达，2015年新推出）现在也已经改为 Chromium 内核
 - Gecko（Firefox内核）
 - Presto（Opera旧内核）
 - KDE 渲染引擎KHTML
 - WebKit（Safari内核） Fork KHTML，渲染引擎WebCore
 - Chromium（Chrome内核） Fork WebKit
-   - 渲染引擎：Blink（WebCore的分支，由Google和Opera Software开发）
-   - 脚本引擎：V8，Node.JS其实就是封装了V8引擎
-- Servo Mozilla与三星合作开发的下一代浏览器渲染引擎
+   - 渲染引擎：Blink（WebCore 的分支，由 Google 和 Opera Software 开发）
+   - 脚本引擎：V8，Node.JS 其实就是封装了 V8 引擎
+- Servo Mozilla 与三星合作开发的下一代浏览器渲染引擎
 
 ### 渲染流程
 

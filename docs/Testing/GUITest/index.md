@@ -37,13 +37,17 @@ Cypress 直接在浏览器中运行，消除了网络延迟和协议转换的开
 
 在测试执行过程中，Cypress 可以自动捕捉屏幕截图和视频记录。
 
-## Puppeteer
+## Headless
 
-Chrome 开发团队在 2017 年发布的一个 Node.js 包，用来模拟 Chrome 浏览器的运行
+Headless 是指在无界面的环境中通过命令行或脚本操作 Chrome 等浏览器
 
-> 比较早的类似工具是 PhantomJS，基于 WebKit，已停止维护
+比较早的工具是 PhantomJS，基于 WebKit，现已停止维护
 
-Headless Chrome 是指在无界面的环境中通过命令行或脚本操作 Chrome，启动 Chrome 时添加参数 `--headless` 即可
+### Puppeteer
+
+<https://pptr.dev/>
+
+Chrome 开发团队在 2017 年发布的一个 Node.js 包，用来模拟 Chrome 浏览器的运行，启动 Chrome 时添加参数 `--headless` 即可
 
 与 Chrome 开发者工具一样基于 CDP(Chrome DevTool Protocol) 协议
 
@@ -56,6 +60,24 @@ Puppeteer（音译：帕破替尔） 提供了一系列 API，通过 CDP 协议�
 - 捕获网站的时间线，帮助诊断性能问题
 - ...
 
-## Playwright
+主要是为 Chromium 内核的浏览器和 Node.js 环境设计的
 
-由 Microsoft 发布的 Node 库，与 Puppeteer 类似，但支持跨浏览器测试，包括 Chrome、Firefox 和 WebKit。
+```shell
+npm i puppeteer  # Downloads compatible Chrome during installation.
+npm i puppeteer-core  # Alternatively, install as a library, without downloading Chrome.
+```
+
+### Playwright
+
+由 Microsoft 发布的 Node 库，与 Puppeteer 类似，但支持所有现代浏览器引擎，包括 Chrome、Firefox 和 WebKit。
+
+<https://playwright.dev/docs/intro>
+
+```shell
+npm init playwright@latest
+
+npx playwright test
+npx playwright test --ui  # UI 模式下运行
+
+npx playwright show-report
+```
