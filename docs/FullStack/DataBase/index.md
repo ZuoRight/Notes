@@ -13,7 +13,17 @@ hide:
 
 DBMS 排名：<https://db-engines.com/en/ranking>
 
-## 关系型数据库 Relational
+根据数据模型分类
+
+- 关系 RDBMS
+- 非关系 NoSQL
+
+根据处理类型
+
+- OLTP 在线事务处理，适用于管理日常事务的数据库，比如 MySQL
+- OLAP 在线分析处理，适用于数据分析和复杂查询的数据库，比如 Hive
+
+## 关系型数据库
 
 RDBMS 建立在实体-关系图（Entity Relationship Diagram, ER）的基础上
 
@@ -29,6 +39,7 @@ ER 图三要素：实体、属性、关系
 - SQLite 2000，非 C/S 结构的嵌入式数据库，应该是世界上使用最多的数据库，虽然开源但不接受 PR，属于并用于公共领域
 - PostgreSQL 企业级开源数据库，适合处理大量复杂查询和数据处理需求
 - Snowflake 云原生的数据库存储，适合需要高效、灵活的数据存储和分析能力的企业
+- Hive 建立在Hadoop之上的数据仓库基础设施
 
 ### 结构化查询语言 SQL
 

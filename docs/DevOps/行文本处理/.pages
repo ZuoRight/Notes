@@ -1,7 +1,9 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - index.md
-  - terminal.md
-  - shell.md
   - file.md
+  - regex.md
+  - grep.md
+  - sed.md
+  - awk.md
+  - jq.md
   - ...

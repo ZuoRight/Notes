@@ -60,6 +60,15 @@
 ## 思想
 
 - 分治
-- 动态规划，Dynamic Programming，简称DP，拥有上帝视角，手握无数平行宇宙的历史存档， 同时发展出无数个未来 (Versioned Archive View)
 - 贪心，一条路走到黑，就一次机会，只能哪边看着顺眼走哪边
 - 回溯，一条路走到黑，无数次重来的机会，还怕我走不出来 (Snapshot View) 
+- 动态规划，Dynamic Programming，简称 DP，拥有上帝视角，手握无数平行宇宙的历史存档 (Versioned Archive View)，同时发展出无数个未来，存在递推关系，可以使用动态规划求解
+
+## 参考
+
+- [Hello Algo](https://www.hello-algo.com/)
+- [演算法笔记](https://web.ntnu.edu.tw/~algo/)
+- [Python 数据结构与算法示例](https://github.com/keon/algorithms)
+- [数据结构与算法之美](https://time.geekbang.org/column/intro/100017301), [Python 实现](https://github.com/wangzheng0822/algo/tree/master/python)
+- [labuladong 的算法小抄](https://github.com/labuladong/fucking-algorithm)
+- [Leetcode 力扣](https://leetcode.cn/problemset/)

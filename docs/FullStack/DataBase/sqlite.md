@@ -2,19 +2,19 @@
 
 [SQLite官网](https://www.sqlite.org)
 
-非C/S结构的嵌入式数据库，虽然开源但不接受PR，属于并用于公共领域
+非 C/S 结构的嵌入式数据库，虽然开源但不接受 PR，属于并用于公共领域
 
-> 三大嵌入式数据库：SQLite、Birkeley DB、Firebird
+> 嵌入式数据库：SQLite, Firebird, Realm, RocksDB, LevelDB, Oracle Berkeley DB, 
 
-SQLite应该是世界上被使用最多的数据库，通常内置在浏览器、Android和iOS应用、各种编程语言框架中
+SQLite 应该是世界上被使用最多的数据库，通常内置在浏览器、Android 和 iOS 应用、以及各种编程语言框架中
 
 ## GUI
 
-一般支持MySQL的GUI工具也都支持SQLite，比如开源的DBeaver
+一般支持 MySQL 的 GUI 工具也都支持 SQLite，比如开源的 DBeaver
 
 ## 数据类型
 
-SQLite原生支持的类型比较少，不过它支持[灵活类型](https://www.sqlite.org/flextypegood.html)，在Python中可使用适配器扩展自定义类型
+SQLite 原生支持的类型比较少，不过它支持[灵活类型](https://www.sqlite.org/flextypegood.html)，在 Python 中可使用适配器扩展自定义类型
 
 ```text
 SQLite  Python

@@ -4,5 +4,15 @@ nav:
   - CICD
   - Docker
   - Virtual
-  - Computer
+  - Hardware
+  - OS
+  - Shell
+  - 行文本处理
+  - Edit
+  - compile.md
+  - encode.md
+  - Language
+  - 数据结构与算法
+  - init.md
+  - Process
   - ...

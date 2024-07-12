@@ -1,8 +1,0 @@
-# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
-nav:
-  - init.md
-  - OS
-  - Shell
-  - Process
-  - Hardware
-  - ...

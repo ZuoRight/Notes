@@ -268,6 +268,17 @@ echo ${#x}  # 获取变量长度
 echo ${x:n:m}  # 切片
 ```
 
+- eval
+
+eval 语句告诉 shell，将 eval 的参数作为命令，并通过命令行运行它们
+
+```shell
+foo=10
+x=foo
+y='$'$x  # echo y=$foo
+eval y='$'$x  # echo y=10
+```
+
 ### 运算
 
 ```shell

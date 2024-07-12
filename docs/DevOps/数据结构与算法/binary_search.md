@@ -1,6 +1,6 @@
 # 二分查找
 
-二分查找是将【有序】【数组】从中点索引处分为两部分，然后根据目标值与中间元素值比较结果，决定排除哪一半区间，并在剩余区间执行相同的二分操作。
+二分查找是将「有序」「数组」从中点索引处分为两部分，然后根据目标值与中间元素值比较结果，决定排除哪一半区间，并在剩余区间执行相同的二分操作。
 
 适用场景：有序、数组。若数据无序而为了使用二分查找先排序，则光排序的时间复杂度就比暴力搜索要高，得不偿失。另外二分查找需要跳跃式的访问元素，所以基于链表等非连续内存存储的数据结构效率较低。
 
@@ -70,3 +70,13 @@ def binary_search_insersion(nums, target):
             end = mid - 1
     return start
 ```
+
+## bisect
+
+Python 标准库中提供的二分查找模块
+
+官方文档：<https://docs.python.org/zh-cn/3.10/library/bisect.html>
+
+源码：<https://github.com/python/cpython/blob/3.10/Lib/bisect.py>
+
+参考：<https://www.liujiangblog.com/course/python/57>
