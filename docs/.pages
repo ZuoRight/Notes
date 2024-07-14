@@ -2,10 +2,10 @@
 nav:
   - index.md
   - Testing
-  - DevOps
-  - Network
-  - FullStack
   - Python
   - JavaScript
+  - FullStack
+  - Network
+  - DevOps
   - Blockchain
   - ...

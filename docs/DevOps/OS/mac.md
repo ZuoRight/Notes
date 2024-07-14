@@ -21,19 +21,16 @@ Command Line Tools，是可独立Xcode下载安装的小型工具包，包含了
 
 ## Homebrew
 
-Mac系统下的一款开源包管理器，[项目地址](https://github.com/Homebrew)，[官网](https://brew.sh)
-
-- Homebrew安装路径：`/usr/local/Homebrew/`（Intel），`/opt/homebrew`（Apple）
-- Homebrew安装的软件路径：`/usr/local/Cellar/`（Intel），`/opt/homebrew/Cellar`（Apple），并自动在`/usr/local/bin/`路径下创建link
-
-> 其中Cellar译为酒窖，而Homebrew官方预先编译好的软件叫做Bottle(酒瓶子)，Bottles就是很多酒瓶子(即软件)，Homebrew把安装一个软件叫做把一个酒瓶子pour(倒入)到酒窖里。
+Mac 系统下的一款开源包管理器，[项目地址](https://github.com/Homebrew)，[官网](https://brew.sh)
 
 由四部分组成
 
 - Homebrew 源代码仓库
 - Homebrew-core 核心源
-- Homebrew-cask 提供macos应用和大型二进制文件的安装
+- Homebrew-cask 提供 MacOS 应用和大型二进制文件的安装
 - Homebrew-bottles 预编译二进制软件包
+
+Homebrew 官方把预先编译好的软件叫做 Bottle(酒瓶子)，把酒瓶子倒入（pour）酒窖（Cellar），即安装软件。
 
 ```shell
 # 官方下载（很慢，建议开全局代理）
@@ -53,15 +50,40 @@ M1安装完后会提示配置环境变量
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
 ```
 
+查看 Homebrew 的安装路径
+
+```shell
+brew --prefix
+`
+Intel 处理器:
+    /usr/local/Homebrew/
+    /usr/local/Cellar/
+
+Apple 处理器:
+    /opt/homebrew
+    /opt/homebrew/Cellar 并自动在 /usr/local/bin/ 路径下创建 link
+`
+
+# 打印 Python3 的绝对路径
+echo $(brew --prefix)/bin/python3
+```
+
 ### 更换下载源
 
 > 参考：<https://www.xiebruce.top/720.html>
 
-查看有哪些软件下载源：`brew tap`
+```shell
+brew tap mongodb/brew  # 添加下载源
+brew tap  # 查看有哪些下载源
+`
+homebrew/services
+mongodb/brew
+`
+```
 
 ```shell
 # 更换brew.git源，主要用于更新brew本身
-# 切换到Homebrewan路径：/usr/local/Homebrew/
+# 切换到Homebre源路径：/usr/local/Homebrew/
 cd $(brew --repo)  # 等同于：git -C "$(brew --repo)"
 git remote -v  # 查看远程库信息
 git remote set-url origin https://mirrors.ustc.edu.cn/brew.git  # 换成镜像源
@@ -118,7 +140,7 @@ brew deps --installed --tree  # 查看已安装软件列表，显示为依赖树
 brew leaves  # 列出未被依赖的包
 brew outdated  # 查看哪些软件可更新，先更新brew
 
-brew update  # 更新brew本身
+brew update  # 更新homebrew和Formulae
 brew upgrade  # 更新全部可更新软件
 brew upgrade xxx  # 更新xxx
 ```
