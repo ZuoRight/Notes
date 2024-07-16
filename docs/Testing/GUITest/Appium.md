@@ -61,9 +61,9 @@ driver.get("http://m.baidu.com")
 
 ### 混合应用
 
-如果用真机测试，需要开发将APP的WebView调试开关打开。
+如果用真机测试，需要开发将 APP 的 WebView 调试开关打开。
 
-混合应用caps中不需要配置`browserName`字段，跟原生应用一样即可，但是需要切换上下文。
+混合应用 caps 中不需要配置 `browserName` 字段，跟原生应用一样即可，但是需要切换上下文。
 
 ```python
 import time

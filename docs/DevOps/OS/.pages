@@ -3,5 +3,6 @@ nav:
   - index.md
   - linux.md
   - mac.md
+  - windows.md
   - android.md
   - ...

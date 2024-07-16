@@ -13,11 +13,11 @@ env  # 查看环境变量，比如path变量以及自定义的临时变量等
 
 [介绍文档](https://developer.apple.com/library/archive/technotes/tn2339/_index.html)
 
-安装Homebrew等工具会提示先安装CLT
+Command Line Tools，是可独立 Xcode 下载安装的小型工具包，包含了 MacOS SDK 和一些常用的命令行工具，比如 Git、clang 等
 
-Command Line Tools，是可独立Xcode下载安装的小型工具包，包含了macOS SDK和一些常用的命令行工具，比如git、clang等
+安装 Homebrew 等工具会提示先安装 CLT，比如执行 `git --version` 的时候会弹出安装 CLT 的窗口
 
-有时MacOS更新可能会遇到CLT丢失的问题：`xcrun: error: invalid active developer path ..., missing xcrun at: ...`，导致Git等不能用，根据提示重新安装CTL：`xcode-select --install`即可
+有时 MacOS 更新可能会遇到 CLT 丢失的问题：`xcrun: error: invalid active developer path ..., missing xcrun at: ...`，导致 Git 等不能用，根据提示手动安装 CTL：`xcode-select --install` 即可
 
 ## Homebrew
 
@@ -182,7 +182,7 @@ PID: 43685
 
 ### SIP
 
-SIP(系统完整性保护)安全机制：即使是以root身份也无法删除某些程序，比如`/bin`下的，尽管你可以SIP禁用后删除，但也不建议这样去做。
+SIP(系统完整性保护)安全机制：即使是以root身份也无法删除某些程序，比如 `/bin` 下的，尽管你可以SIP禁用后删除，但也不建议这样去做。
 
 ### 测试网速
 

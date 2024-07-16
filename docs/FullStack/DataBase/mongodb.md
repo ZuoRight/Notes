@@ -2,11 +2,9 @@
 
 官方文档：<https://www.mongodb.com/zh-cn/docs/manual/introduction/>
 
-基于 JSON Document 的数据库，不需要先建模，可动态增加新字段
+MongoDB 将数据记录存储为 BSON 文档（JSON 的二进制形式，但包含的类型比 JSON 多），不要求先建模，可动态增加新字段
 
-数据库 > 集合 > 文档
-
-文档存储在集合中，集合类似数据表
+文档存储在集合中，集合类似数据表：数据库 > 集合 > 文档
 
 ![20240714145638](https://image.zuoright.com/20240714145638.png)
 
@@ -61,7 +59,7 @@ sudo chown <user> ~/data/log/mongodb
 mongod --dbpath ~/data/db --logpath ~/data/log/mongodb/mongo.log --fork
 ```
 
-## 使用
+## 基础操作
 
 连接数据库，默认连接到一个空的 `test` 数据库
 
@@ -148,6 +146,27 @@ db.users.updateMany(
 db.users.deleteMany(
     {status: "reject"}  // delete filter
 )
+```
+
+## BSON 类型
+
+<https://www.mongodb.com/zh-cn/docs/manual/reference/bson-types/#std-label-bson-types>
+
+```js
+{
+    "_id": ObjectId("617f1c7d0e6bfcc4ef1284c2"),
+    "name": "John Doe",
+    "age": 30,
+    "active": true,
+    "tags": ["mongodb", "database", "nosql"],
+    "address": {
+        "city": "New York",
+        "state": "NY",
+        "zip": "10001"
+    },
+    "createdAt": ISODate("2023-11-01T08:00:00Z"),
+    "profilePicture": BinData(0, "base64-encoded-binary-data")
+}
 ```
 
 ## Pymongo

@@ -1,6 +1,8 @@
 # Android
 
-Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户。默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID，每个应用都在其自己的 Linux 进程内运行，每个进程都拥有自己的虚拟机。
+Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户。
+
+默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID，每个应用都在其自己的 Linux 进程内运行，每个进程都拥有自己的虚拟机。
 
 - 平台架构：<https://developer.android.com/guide/platform>
 - 工具：<https://developer.android.com/studio/command-line#tools-sdk>
@@ -13,9 +15,9 @@ Google 的 Android 系统，其实指的是 AOSP + GMS（谷歌移动服务）�
 
 Software Development Kit 软件开发工具包
 
-可单独下载，也可以通过[Android Studio](https://developer.android.google.cn/studio/intro)下载
+可单独下载，也可以通过 [Android Studio](https://developer.android.google.cn/studio/intro) 下载
 
-Android SDK 工具会将您的代码连同任何数据和资源文件编译成一个 APK（Android 软件包），即带有 .apk 后缀的归档文件。一个 APK 文件包含 Android 应用的所有内容，它也是 Android 设备用来安装应用的文件。
+Android SDK 工具会将应用的代码、数据、以及资源文件等所有内容编译成一个 `.apk` 后缀的归档文件，APK（Android Application PacKage）可安装在安卓设备中。
 
 ```shell
 # Android
@@ -37,13 +39,19 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 - 广播接收器 `<receiver>`
 - 内容提供程序 `<provider>`
 
-所有组件必需使用相应的元素在清单文件(`AndroidManifest.xml`)中声明，该文件必须位于应用项目目录的根目录中。清单文件的主要任务是告知系统应用组件的相关信息。
+所有组件必需使用相应的元素在清单文件 `AndroidManifest.xml` 中声明，该文件必须位于应用项目目录的根目录中。清单文件的主要任务是告知系统应用组件的相关信息。
 
-[布局](https://developer.android.com/guide/topics/ui/declaring-layout)定义了应用中的界面结构，布局中的所有元素均使用 View 和 ViewGroup 对象的层次结构进行构建。View 通常称为微件，用于绘制用户可看到并与之交互的内容。ViewGroup 则是不可见的容器，用于定义 View 和其他 ViewGroup 对象的布局结构。
+[布局](https://developer.android.com/guide/topics/ui/declaring-layout)定义了应用中的界面结构
+
+布局中的所有元素均使用 View 和 ViewGroup 对象的层次结构进行构建
+
+View 通常称为微件，用于绘制用户可看到并与之交互的内容
+
+ViewGroup 则是不可见的容器，用于定义 View 和其他 ViewGroup 对象的布局结构
 
 ## 模拟器
 
-安装模拟器建议选择x86 Images标签下x86_64带Google APIs的
+安装模拟器建议选择 x86 Images 标签下 x86_64 带 Google APIs 的
 
 启动模拟器：`emulator @android6`
 

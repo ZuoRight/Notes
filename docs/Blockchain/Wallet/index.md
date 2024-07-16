@@ -35,3 +35,5 @@ const addressVitalik = await provider.resolveName("vitalik.eth")
 最常用的以太坊钱包：[MetaMask](https://metamask.io/)
 
 推荐最好用的多链钱包：OKX Wallet
+
+另外大多数 DApp 通常都支持 WalletConnect 协议扫描二维码连接钱包，V1 建立在 WebSockets 协议上，V2 支持更多传输协议，并增强了安全性和可扩展性。

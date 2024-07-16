@@ -63,4 +63,5 @@ LINUX 本身只是一个开源的内核(Kernel)
 
 <https://en.wikipedia.org/wiki/MS-DOS>
 
-1981 年，微软受 IBM 委托，为其 PC 机开发操作系统，彼时 Tim Paterson 基于 CP/M 改进开发出了 86-DOS，被微软购买后改名为 MS-DOS 卖给了 IBM 进行发售，DOS 后来又参考了 UNIX 的文件系统等，并不断改进，最后演变为了 Windows 系统。
+1981 年，微软受 IBM 委托，为其 PC 机开发操作系统，彼时 Tim Paterson 基于 CP/M 改进开发出了 86-DOS，被微软购买后改名为 MS-DOS，卖给 IBM 以 PC-DOS 进行发售，DOS 后来又参考了 UNIX 的文件系统等，并不断改进，最后演变为了 Windows 系统。
+

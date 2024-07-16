@@ -5,10 +5,12 @@
 
 ## 安装
 
-- Mac：可以下载安装包安装，也可以用 `brew install git` 方式安装，如果安装了 Xcode Command Line Tools 会默认自带，此时用brew安装会提示已经存在，根据提示执行 `brew link --overwrite git` 覆盖
 - Windows：官网下载 `Git for Windows` 客户端安装即可
 - Ubuntu/Debian：`apt install git`
 - CentOS/Fedora：`yum install git`
+- Mac：可以下载安装包安装，也可以用 `brew install git` 方式安装
+
+Mac 中可以查看 Git 版本触发安装 Xcode CLT，CLT 默认自带 Git，此时用 brew 安装会提示已经存在，根据提示执行 `brew link --overwrite git` 覆盖
 
 ```shell
 # 查看版本
