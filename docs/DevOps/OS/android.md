@@ -81,3 +81,9 @@ ViewGroup 则是不可见的容器，用于定义 View 和其他 ViewGroup 对�
 <https://blog.csdn.net/xiaohua_de/article/details/80259920>
 
 使用模拟器（首选逍遥模拟器），模拟器不行，使用真机，需要 root，root 工具（首选刷机精灵）
+
+## 手机投屏到电脑
+
+Android 借助 AirtestIDE 实现
+
+iPhone 可以借助 QuickTime Player 实现
