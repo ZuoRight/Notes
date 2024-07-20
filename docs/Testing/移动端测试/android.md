@@ -13,9 +13,9 @@ Google 的 Android 系统，其实指的是 AOSP + GMS（谷歌移动服务）�
 
 ## SDK
 
-Software Development Kit 软件开发工具包
+Software Development Kit 软件开发工具包，依赖 JDK
 
-可单独下载，也可以通过 [Android Studio](https://developer.android.google.cn/studio/intro) 下载，依赖 Java 环境
+可单独下载，也可以通过 [Android Studio](https://developer.android.google.cn/studio/intro) 下载
 
 Android SDK 工具会将应用的代码、数据、以及资源文件等所有内容编译成一个 `.apk` 后缀的归档文件，APK（Android Application PacKage）可安装在安卓设备中。
 

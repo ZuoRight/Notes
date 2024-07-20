@@ -2,6 +2,6 @@
 nav:
   - index.md
   - Selenium.md
-  - dom_analyze.md
+  - dom_locate.md
   - pom.md
   - ...

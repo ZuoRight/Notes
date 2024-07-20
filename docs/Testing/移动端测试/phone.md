@@ -1,5 +1,15 @@
 # 手机相关
 
+## 手机投屏到电脑
+
+- Android
+
+借助 AirtestIDE 实现，数据线连接电脑后，会显示设备，点击 connect 即可
+
+- iPhone
+
+借助 QuickTime Player 实现
+
 ## 模拟器
 
 ### emulator
@@ -54,16 +64,6 @@ Recovery 模式，可以对手机内部数据或系统进行修改的模式，�
 ![20240720113342](https://image.zuoright.com/20240720113342.png)
 
 4. 开始刷机：`flash-all.bat`，刷完后可能提示是否清除 data 目录，选择 yes，成功后查看系统设置的版本号确认是否正确
-
-## 手机投屏到电脑
-
-- Android
-
-借助 AirtestIDE 实现，数据线连接电脑后，会显示设备，点击 connect 即可
-
-- iPhone
-
-借助 QuickTime Player 实现
 
 ## 特殊拨号
 
