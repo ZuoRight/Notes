@@ -10,7 +10,7 @@ Android Debug Bridge, 一个 C/S 架构的 命令行工具，可以对 Android �
 
 ## 安装和连接
 
-
+ADB 包含在 `SDK/platform-tools` 中
 
 `adb --version`
 
@@ -56,6 +56,9 @@ offline 连接出现异常，设备无响应
 unknown 没有连接设备
 '
 
+# 端口转发
+adb forward tcp:1234 tcp:8888  # 将主机端口映射到设备的端口，方便调试
+
 # 结束/启动 adb 服务
 adb kill-server
 adb start-server
@@ -66,16 +69,6 @@ adb start-server
 ```shell
 # 重启设备
 adb reboot
-'
-adb bootloader  # 重启并进入 fastboot 模式，等价于 adb reboot-bootloader
-adb recovery  # 重启并进入 recovery 模式，刷机时会用到
-'
-
-# 获取日志
-adb logcat | grep START  # 获取包名和 Activity
-
-# 收集 dumpsys、dumpstate、logcat 等数据，用于后续分析，比如耗电量
-adb bugreport > path/bugreport.log
 
 adb install 包名  # 将存放在主机上的apk安装到设备
 '
@@ -94,13 +87,8 @@ adb pull sdcard/demo.txt path/
 # 复制本地文件到手机
 adb push path/demo.txt sdcard/
 
-# 端口转发
-adb forward tcp:1234 tcp:8888  # 将主机端口映射到设备的端口，方便调试
-
-# 获取入口
-adb logcat| grep -i displayed
-aapt dump badging mobike.apk | grep launchable-activity
-apkanalyzer
+# 将 system 分区重新挂在为可读写分区，此命令在操作系统目录时很重要
+adb remount
 ```
 
 ## ADB Shell
@@ -118,8 +106,6 @@ apkanalyzer
 或者执行 `adb shell` 进入 Shell 环境执行
 
 ```shell
-# 输入 su，若 $ 变 # 则表明已 root，否则报错
-
 # 退出
 exit  # 或 Ctrl + D
 
@@ -178,6 +164,8 @@ am monitor
 
 ### dumpsys
 
+可以输出很多系统信息
+
 ```shell
 # 获取所有的dumpsys子命令
 dumpsys | grep -i dump
@@ -194,8 +182,8 @@ dumpsys package com.xueqiu.android
 # 获取系统通知
 dumpsys notification
 
-# 获得内存信息
-dumpsys meminfo com.android.settings
+# 获得内存信息，输出每个 App 的内存使用和系统内存状态，可以指定包名或pid
+dumpsys meminfo com.android.settings > 0.txt
 
 # 获取cpu信息
 dumpsys cpuinfo
@@ -207,29 +195,68 @@ dumpsys gfxinfo com.android.settings
 dumpsys activity broadcasts | grep senderName
 ```
 
+- 耗电测试
+
+```shell
+# 查看电池使用情况
+dumpsys batterystats
+
+# 测试前重置电量数据文件
+adb shell dumpsys batterystats --reset
+
+# 测试完后取回电量数据文件，等一会会生成一个zip文件
+adb bugreport > bugreport.txt
+
+# 数据分析
+#   直接看电量文件
+#   借助 Battery Historian
+```
+
 ### 其它
 
 ```shell
-adb shell screencap -p /sdcard/screen.png  # 截图
-adb shell screenrecord sdcard/record.mp4  # 录屏
-adb shell uiautomator dump  # 获取当前界面的控件信息
+# 查看手机分辨率
+adb shell wm size
+
+# 截图
+adb shell screencap -p /sdcard/screen.png
+
+# 录屏
+# 显示原生分辨率，默认录制 3min(180s) 自动停止，Ctrl+C 随时暂停
+# 不支持在录制时旋转屏幕，否则会被切断
+adb shell screenrecord sdcard/record.mp4
+'
+--time-limit 10  录制 10s
+
+adb pull /sdcard/demo.mp4  导出视频
+'
+```
+
+- input
+
+```shell
+# 模拟点击/按压
+adb shell input tap x y
+# 模拟按键
+adb shell input keyevent keycode
+# 模拟滑动
+adb shell input swipe x1 y1 x2 y2
+# 模拟输入文本
+adb shell input text string
+```
+
+- uiautomator
+
+```shell
+# 获取当前界面的控件信息
+adb shell uiautomator dump
 ```
 
 - 查看单个应用程序的最大内存限制
 
 ```shell
 # Dalvik Heap size 超过这个限制就很可能发生 OOM
-getprop | grep heapgrowthlimit
+adb shell getprop | grep heapgrowthlimit
 # 或者
-getprop dalvik.vm.heapgrowthlimit
-```
-
-- 获取包名
-
-```shell
-'
-在吊起应用时会显示 START：cmp=包名
-所以打印带有 START 关键字的日志就可以找到当前吊起的应用的包名
-'
-logcat | grep START
+adb shell getprop dalvik.vm.heapgrowthlimit
 ```

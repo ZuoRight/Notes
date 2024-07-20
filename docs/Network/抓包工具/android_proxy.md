@@ -60,3 +60,22 @@ VirtualApp + HttpCarry
 VirtualApp+[VirtualXposed](https://github.com/android-hacker/VirtualXposed)
 
 > 参考：<http://jackzhang.info/2018/04/09/VirtualXposed/>
+
+## 逆向反编译
+
+### SSL-Pinning
+
+1. 客户端内置证书，即在客户端内置仅接受指定域名的根证书，而不接受操作系统或浏览器内置的CA根证书对应的任何证书
+2. 客户端内置公钥
+
+### 突破 SSL-Pinning
+
+<https://zhuanlan.zhihu.com/p/60392573>
+
+内置证书或者公钥的时候，需要对比验证客户端和服务端的证书或公钥，一般是通用的API，所以可以直接控制这个API的返回结果让验证通过。
+
+1. Xposed + justTrustme：不行？
+2. apk 反编译工具
+3. 使用逆向神器 Frida：太难？
+
+使用模拟器（首选逍遥模拟器），模拟器不行，使用真机，需要 root，root 工具（首选刷机精灵）

@@ -1,0 +1,9 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - phone.md
+  - android.md
+  - adb.md
+  - log.md
+  - 安卓抓包: /Notes/Network/抓包工具/android_proxy
+  - appium.md
+  - ...

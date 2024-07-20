@@ -16,6 +16,8 @@ Windows XP > Win7 > Win10
 
 ## CMD
 
+CMD 是从 DOS 系统继承下来的产物，而 PowerShell 是支持脚本语言的运行环境，可以使用管道符，底层通过别名的方式，兼容 CMD 和 一些常用的 Linux 命令，比如 `cd` 其实是 `Set-Location` 的别名，`ls` 是 `Get-ChildItem` 的别名
+
 ```shell
 cls  # 清屏
 

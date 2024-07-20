@@ -7,6 +7,7 @@ nav:
   - UnitTest
   - APITest
   - GUITest
+  - 移动端测试
   - 性能测试
   - TestResult
   - pm.md
