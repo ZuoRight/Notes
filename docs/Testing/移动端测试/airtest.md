@@ -4,6 +4,9 @@
 
 参考视频：<https://www.bilibili.com/video/BV1Fs4y187X8>
 
+- Airtest 基于图像识别
+- Poco 基于 UI 控件识别
+
 ## Airtest IDE
 
 是一款跨平台的 UI 自动化测试编辑器，内置了 Airtest 和 Poco 的相关插件功能，能够使用它快速简单地编写 Airtest 和 Poco 代码。

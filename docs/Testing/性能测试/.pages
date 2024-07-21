@@ -4,4 +4,5 @@ nav:
   - 性能指标.md
   - jmeter.md
   - wrk.md
+  - grafana.md
   - ...
