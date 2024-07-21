@@ -24,8 +24,28 @@
 
 WebView（网页视图）是一个在应用程序中显示网页内容的组件或控件，允许开发者在自己的应用中嵌入一个浏览器引擎，用于加载和显示网页内容
 
-电脑连接手机或模拟器，浏览器访问：<chrome://inspect/#devices>，将会看到设备中打开的H5页面，点击 inspect 可以看到时时渲染的页面进行分析。
+如果想查看原生应用中的 WebView 页面，需要应用打开 WebView 调试开关，模拟器中默认是打开的，但真机只能求助开发。
 
-注意，如果想查看原生应用中嵌套的H5，需要应用打开 WebView 调试开关，模拟器中默认是打开的，但真机只能求助开发。
+### Android
+
+[参考文档](https://developer.chrome.com/docs/devtools/remote-debugging?hl=zh-cn)
+
+电脑连接手机或模拟器，浏览器访问：<chrome://inspect/#devices>，将会看到设备中打开的 H5 页面，点击 inspect 可以看到时时渲染的页面进行分析。
 
 ![20210704192754](http://image.zuoright.com/20210704192754.png)
+
+### iOS
+
+可以用 Safari 浏览器来调试 iOS 上 Chrome 或 Safari 中的 H5，以及应用中的 Webview 页面
+
+1. 打开 iOS 中 Safari 或 Chrome 的网页检查器
+
+![20230905133024](https://image.zuoright.com/20230905133024.png)
+
+2. 打开 Mac 中 Safari 的开发
+
+![20230905133101](https://image.zuoright.com/20230905133101.png)
+
+3. 重启手机浏览器，打开要调试的页面，将 iOS 设备连接到 Mac，即可在开发中看到
+
+![20230905133450](https://image.zuoright.com/20230905133450.png)

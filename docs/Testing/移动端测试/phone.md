@@ -36,6 +36,12 @@
 
 需要开启 CPU 的虚拟化功能：BIOS -> VT-x
 
+## MuMu
+
+网易游戏开发的模拟器
+
+<https://mumu.163.com>
+
 ## 刷机
 
 ```shell

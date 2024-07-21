@@ -50,13 +50,15 @@ Logcat 会在「AndroidRuntime」标签下输出 Java 的调用栈
 
 - FC, Force Closed 强制关闭
 
-关键字：`FATAL EXCEPTION`(致命)
+日志关键字：`FATAL EXCEPTION`（致命）
 
 原因：空指针或未捕捉的异常
 
 - ANR, Application No Response 无响应
 
 <https://blog.csdn.net/dadoneo/article/details/8270107>
+
+日志关键字：`ANR `（后面加个空格可以过滤掉很多无效信息）
 
 原因：死锁、系统反应迟钝、CPU 负载过重、应用主线程卡住，对其他请求响应超时
 

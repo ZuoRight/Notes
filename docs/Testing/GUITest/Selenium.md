@@ -5,8 +5,7 @@
 - [PyPI](https://pypi.org/project/selenium/)
 - [官方文档](https://www.selenium.dev/documentation/zh-cn/)
 - [API文档](https://www.selenium.dev/selenium/docs/api/py/api.html)
-- [从Selenium3升级到4](https://www.selenium.dev/documentation/webdriver/troubleshooting/upgrade_to_selenium_4/)
-- 用于测试的demo网站：<https://sahitest.com/demo/>
+- [从 Selenium 3 升级到 4](https://www.selenium.dev/documentation/webdriver/troubleshooting/upgrade_to_selenium_4/)
 
 ## 核心组成及原理
 
@@ -14,20 +13,31 @@
 - Selenium Webdriver 底层依赖
 - Selenium Grid 支持远程和分布式运行测试用例
 
-![20240121190024](https://image.zuoright.com/20240121190024.png)
+![20240721124736](https://image.zuoright.com/20240721124736.png)
 
-- client：执行代码的计算机
-- remote（end-node）：带有浏览器和驱动程序的计算机
+## Webdriver
+
+Selenium 和 Appium 等大部分框架都是基于 W3C Webdriver
+
+[WebDriver](https://w3c.github.io/webdriver/) 采用 C/S 架构的通信模式，客户端（测试脚本）通过发送命令到 Server 端
+
+Server 通过基于 HTTP 的 [JSON Wire Protocol](https://www.selenium.dev/documentation/legacy/json_wire_protocol/) 与 ChromeDriver、GeckoDriver 等驱动通信，继而操控浏览器
+
+缺点就是速度较慢，但优点就是支持多语言，多种浏览器，Server 端可以分布式部署
 
 ## 浏览器驱动
 
-[下载与浏览器版本相同/近的驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
+[ChromeDriver](https://source.chromium.org/chromium/chromium/src/+/main:chrome/test/chromedriver/) 实现了 WebDriver 协议，负责解释 WebDriver 命令，并将其转化为浏览器能理解的操作，通过 CDP 在进程外控制 Chrome。
+
+### 手动管理
+
+第一步：[下载与浏览器版本相近的驱动](https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/)
 
 - [chromedriver](https://chromedriver.chromium.org/)  
 - [geckodriver](https://github.com/mozilla/geckodriver/releases)  
 - safaridriver 无需下载，已内置在 `usr/bin/` 中，But You must enable the 'Allow Remote Automation' option in Safari's Develop menu to control Safari via WebDriver.
 
-将驱动放入PATH环境变量
+第二步：将驱动放入 PATH 环境变量
 
 Mac
 
@@ -40,6 +50,22 @@ Windows
 1. 下载的驱动文件可以集中放在一个文件夹内，比如 `selenium-driver`
 2. 然后将该文件路径添加到 `环境变量\系统变量\Path` 中
 3. 打开终端，执行 `chromedriver --version`，如果返回版本号则说明配置正确
+
+### 自动管理
+
+可依靠第三方驱动程序管理器自动下载维护浏览器驱动，比如 <https://pypi.org/project/webdriver-manager/>
+
+`pip install webdriver-manager`
+
+```python
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+```
+
+从 v4.11 版本开始，官方提供了 [Selenium Manager](https://www.selenium.dev/documentation/selenium_manager/) 来自动发现、下载并缓存这些驱动程序
 
 ## 启动
 

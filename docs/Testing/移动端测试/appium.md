@@ -1,23 +1,23 @@
 # Appium
 
-API文档：<https://appium.io/docs/en/about-appium/api/>
+API 文档：<https://appium.io/docs/en/about-appium/api/>
 
-基于Webdriver做了一些扩展，调用各平台自带的测试框架，测哪个平台就安哪个平台的工具包
+基于 Webdriver 做了一些扩展，调用各平台自带的测试框架，测哪个平台就安哪个平台的工具包
 
-- 测Android，依赖 [UIAutomator2](https://appium.io/docs/en/drivers/android-uiautomator2/)，需要 Android SDK
-- 测iOS真机，依赖[XCUITest](https://appium.io/docs/en/drivers/ios-xcuitest-real-devices/)，需要 XCode
+- 测 Android，依赖 [UIAutomator2](https://appium.io/docs/en/drivers/android-uiautomator2/)，需要 Android SDK
+- 测 iOS，依赖 [XCUITest](https://appium.io/docs/en/drivers/ios-xcuitest-real-devices/)，需要 XCode
 
 ![20240612143636](https://image.zuoright.com/20240612143636.png)
 
 ## 环境搭建
 
-- appium server
-  > [桌面版：Appium Desktop](https://github.com/appium/appium-desktop/releases)：包含 appium 服务，录制工具，查看页面布局及查找元素的功能
+- Appium Server
+  > [桌面版：Appium Desktop](https://github.com/appium/appium-desktop/releases)：包含 Appium 服务，录制工具，查看页面布局及查找元素的功能
   >
   > 命令行版(更稳定)：`npm install -g appium --chromedriver-skip-install`  
   > 环境检查工具：`npm install -g appium-doctor`
 
-- [appium client](https://github.com/appium/python-client)
+- [Appium Client](https://github.com/appium/python-client)
   > `pip install appium-python-client`
 
 ## Demo
@@ -44,9 +44,9 @@ driver=webdriver.Remote("http://localhost:4723/wd/hub", caps)
 
 ### H5
 
-需要下载相应版本的chromedriver，caps中指定`chromedriverExecutable`:`path`
+需要下载相应版本的 Chromedriver，caps 中指定 `chromedriverExecutable:path`
 
-或者放到默认读取的路径下（具体可查看appium日志信息），比如我Windows系统放在`~AppData\Roaming\npm\node_modules`的`\appium\node_modules`下的`\appium-chromedriver\win`中。
+或者放到默认读取的路径下（具体可查看 Appium 日志信息），比如我 Windows 系统放在 `~AppData\Roaming\npm\node_modules` 的 `\appium\node_modules` 下的 `\appium-chromedriver\win` 中。
 
 ```python
 caps={
