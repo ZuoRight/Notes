@@ -8,30 +8,12 @@ CGI（Common Gateway Interface, 通用网关接口）是早期 Web 开发的接�
 
 某些编程语言有独立的规范，比如
 
-- Java: `Servlet`(Server Applet)，由于提出的较早，比较复杂
+- Java: `Servlet`，由于提出的较早，比较复杂
 - Python: `WSGI`(Web Server Gateway Interface)，接近 CGI，比较简单
 
 Servlet 容器或者 WSGI Server 通常被称之为应用服务器
 
 Nginx 和 Apache 等通常被称之为 Web 服务器，或者 HTTP 服务器
-
-## Servlet
-
-Java Web 相关的标准都是在 EE 中定义的，Servlet API 是一个 jar 包，通过构建工具引入它，与其他一些文件按固定结构组织并打包为 `.war` 文件
-
-> `war`(Java Web Application Archive) 构建后的 Web 应用程序
-
-普通的 Java 程序是通过启动 JVM，然后执行 `main()` 开始运行。
-
-但是 Web 应用程序，需要启动应用服务器（也称为 Servlet 容器）加载 war 包来运行 Servlet，常用的 Servlet 容器有：
-
-- `Jetty`：由 Eclipse 开发的开源免费服务器
-- `Tomcat`：由 Apache 开发的开源免费服务器
-- `GlassFish`：一个开源的全功能 JavaEE 服务器
-
-Servlet 运行在 Tomcat 这样的容器中，一行行拼接生成 HTML，效率太低，于是有了JSP
-
-Java Server Pages 动态网页技术，是为了解决 Servelet 开发效率低下不方便开发而生的，本质还是 Servlet，把拼 HTML 自动化了，是对 Servlet 的一种补充
 
 ## WSGI
 

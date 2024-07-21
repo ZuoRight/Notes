@@ -20,7 +20,7 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JMETER_HOME/l
 > 切换语言：`Options > Choose Language`
 
 !!! Tips
-    如果启动后有闪退或者报错等问题，大概率跟jdk版本有关，我在 `jdk-11.0.11` 及以上版本都有遇到过各种问题，然后降低到 `jdk1.8.0_311.jdk` 版本后就稳定多了，哎。
+    如果启动后有闪退或者报错等问题，大概率跟 jdk 版本有关，我在 `jdk-11.0.11` 及以上版本都有遇到过各种问题，然后降低到 `jdk1.8.0_311.jdk` 版本后就稳定多了...
 
 ## 插件管理器
 
