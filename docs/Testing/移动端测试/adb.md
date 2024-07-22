@@ -2,7 +2,7 @@
 
 <https://developer.android.com/tools/adb?hl=zh-cn>
 
-Android Debug Bridge, 一个 C/S 架构的 命令行工具，可以对 Android 应用进行安装、卸载及调试等
+Android Debug Bridge, 一个 C/S 架构的命令行工具，可以安装、卸载、调试 Android 应用等
 
 客户端通过服务端和后台程序之间通信，端口号: 5037
 
@@ -11,6 +11,8 @@ Android Debug Bridge, 一个 C/S 架构的 命令行工具，可以对 Android �
 ## 安装和连接
 
 ADB 包含在 `SDK/platform-tools` 中
+
+[官方单独下载地址](https://developer.android.com/tools/releases/platform-tools?hl=zh-cn)，具体配置参考 Android SDK
 
 `adb --version`
 

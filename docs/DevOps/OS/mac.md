@@ -7,6 +7,9 @@ launchctl  # 类似Linux的systemctl
 which xx  # 查找
 unzip xxx.zip  # 解压
 env  # 查看环境变量，比如path变量以及自定义的临时变量等
+
+# 清理 DNS 缓存
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
 ```
 
 ## CLT

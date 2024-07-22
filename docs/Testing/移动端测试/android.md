@@ -22,7 +22,7 @@ Android SDK 工具会将应用的代码、数据、以及资源文件等所有�
 ```shell
 # Android
 # 可通过 SDK Manager 获取 SDK 所在路径
-export ANDROID_HOME=/Users/7c/Library/Android/sdk
+export ANDROID_HOME=/Users/xxx/Library/Android/sdk
 # 注意顺序：/emulator 要在 /tools 前面，不然会报错
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools

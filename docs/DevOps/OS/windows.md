@@ -33,7 +33,7 @@ netstat -ano  # 查看端口号占用进程
 netstat -aon | findstr "xxx"  # ps
 
 ipconfig /all  # 查看 IP 和 DNS
-ipconfig /flushdns  # 刷新 DNS 解析缓存
+ipconfig /flushdns  # 清理 DNS 缓存
 
 # 使用变量需要先设置
 set key=value

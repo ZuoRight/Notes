@@ -4,11 +4,11 @@
 
 ## 下载与安装
 
-![20210630131230](http://image.zuoright.com/20210630131230.png)
-
 - JRE, Java Runtime Environment
-- JDK, [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)
+- JDK, [Java Development Kit](https://www.oracle.com/java/technologies/downloads/)
     - 有些软件在高版本 JDK 环境下会有各种莫名其妙的问题，可以使用 [Java 8](https://www.oracle.com/java/technologies/downloads/?er=221886#java8)
+    
+![20210630131230](http://image.zuoright.com/20210630131230.png)
 
 - Mac
 
