@@ -17,7 +17,17 @@ HTTPX 是一个全功能的 HTTP 请求客户端，支持同步和异步请求�
 
 ## 内置
 
-快速启动一个服务：`python -m http.server 80`
+快速在当前路径启动一个服务：`python -m http.server 80`
+
+比如电脑要访问 Android 手机的截图，可使用 [Termux](https://termux.dev/) 命令行工具启动一个服务
+
+```shell
+termux-setup-storage  # 开启访问权限
+cd /sdcard/DCIM
+python -m http.server 8080
+```
+
+电脑访问 `http://手机IP地址:8080` 即可查看
 
 ## Requests
 

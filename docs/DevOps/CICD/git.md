@@ -52,21 +52,24 @@ Git 服务器（比如GitLab）或者说远程仓库（比如GitHub）通常会�
 如果使用 SSH 协议传输则需要[配置密钥](https://github.com/settings/keys)进行认证
 
 ```shell
-cd ~/.ssh
-ls
-authorized_keys2  id_dsa       known_hosts
-config            id_dsa.pub
-
-# 查看公钥，将其配置到项目托管平台中
-cat ~/.ssh/id_rsa.pub
-
-# 如果没有，可以生成密钥
+# 如果之前没生成过密钥，需要先生成
 ssh-keygen
 '
 回车，会提示保存位置
 再回车，如果已存在则会提示是否重新生成
+然后会提示设置密码，可以为空直接回车
 如果提示输入密钥类型，推荐选择ed25519，没提示一般默认会是rsa类型
 '
+
+ls ~/.ssh
+'
+authorized_keys2  id_dsa       known_hosts
+config            id_dsa.pub
+'
+# ed类型的文件名为 id_ed25519.pub
+
+# 查看公钥，将其配置到项目托管平台中
+cat ~/.ssh/id_rsa.pub
 ```
 
 ## 远程仓库

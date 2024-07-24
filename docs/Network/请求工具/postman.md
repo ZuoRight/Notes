@@ -4,6 +4,49 @@
 
 ![界面](https://assets.postman.com/postman-docs/navigating-postman-app-overview-v9.24.jpg)
 
+> 貌似首次登录，跳转 Web 注册，注册完再跳回 App 会出现一直 Loading 的问题，退出登录重新登录就好了。当然，不登录也可以使用。
+
+## 变量 Variables
+
+通过将值存储为变量，您可以在整个集合、环境、请求和脚本中引用它
+
+变量范围（Scope）
+
+![20240724213046](https://image.zuoright.com/20240724213046.png)
+
+变量名重复时的优先级：从内到外
+
+### 设置变量
+
+0. 设置入口
+    - 全局变量，通常在侧边栏 Environments 中，选择 Globals 后设置
+    - 集合变量，通常在侧边栏 Collections 中，进入某个集合页面，选择 Variables 选项卡后设置
+    - 环境变量，通常在侧边栏 Environments 中，Add a new variable 后设置
+1. 选择变量类型
+    - Default type 默认，纯文本
+    - Secret type 加密
+2. 选择值类型
+    - Initial value 会同步到 Postman 服务器，与团队共享
+    - Current value 本地变量
+
+### 引用变量
+
+URL 中，比如：`{{base_url}}`
+
+正文中，要放在双引号内：`{"customer_id" : "{{cust_id}}"}`
+
+脚本中：`pm.variables.get("variable_key");`
+
+[预定义动态变量](https://learning.postman.com/docs/tests-and-scripts/write-scripts/variables-list/)，比如：`{{$timestamp}}`
+
+### Data Variables
+
+是从 csv 或 json 文件中读取
+
+<https://learning.postman.com/docs/collections/running-collections/working-with-data-files/>
+
+![20240724223231](https://image.zuoright.com/20240724223231.png)
+
 ## HTTP请求
 
 ![20220831000738](http://image.zuoright.com/20220831000738.png)

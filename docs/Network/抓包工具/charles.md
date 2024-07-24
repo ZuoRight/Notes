@@ -63,7 +63,7 @@ Tips：
 ### iOS 安装证书
 
 1. 手机网络配置代理后，浏览器访问 `chls.pro/ssl`，下载证书
-2. 打开设置 > 通用 > 描述文件 > 点击 Charles 证书 > 安装
+2. 打开设置 > 通用 > VPN 与设备管理 > 点击 Charles 证书 > 安装
 3. 打开设置 > 关于本机 > 证书信任设置 > 找到 Charles 证书 > 启用信任
 
 ![lADPDgQ9vAXnSl_NBQDNAtA_720_1280](http://image.zuoright.com/lADPDgQ9vAXnSl_NBQDNAtA_720_1280.jpg)

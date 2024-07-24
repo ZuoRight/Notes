@@ -2,22 +2,24 @@
 
 [官方手册](https://dev.mysql.com/doc)
 
-[官方下载链接](https://dev.mysql.com/downloads)
-
 MySQL 是典型的 C/S 架构：`mysql` / `mysqld`
 
 ![20220809201603](http://image.zuoright.com/20220809201603.png)
 
 ## 下载安装
 
+[官方下载链接](https://dev.mysql.com/downloads/mysql/)
+
 ### Mac
 
-M1+ 下载 ARM 版本，点击 `No thanks, just start my download` 安装，一直下一步即可，最后会默认创建 `root` 账户，让你设置一个密码（最少8位，比如：12345678）
+选择 LTS 版本，M1+ 选择 ARM OS 版本，点击 `No thanks, just start my download` 下载，安装时，一直下一步即可
+
+最后会默认创建 `root` 账户，让你设置一个密码（最少 8 位）
 
 加密方式
 
 - `mysql_native_password` 使用明文（Use Legacy Password Encryption）
-- `caching_sha2_password`，8.0版本新增，某些第三方客户端连接数据库时不兼容新密码验证方式可能会报错
+- `caching_sha2_password`，8.0 版本新增，某些第三方客户端连接数据库时不兼容新密码验证方式可能会报错
 
 然后配置环境变量
 
@@ -67,8 +69,8 @@ default-storage-engine=INNODB
 
 镜像
 
-- Docker官方提供的（推荐）：<https://hub.docker.com/_/mysql>
-- Oracle官方提供的mysql-server（只适用于linux）：<https://hub.docker.com/r/mysql/mysql-server>
+- Docker 官方提供的（推荐）：<https://hub.docker.com/_/mysql>
+- Oracle 官方提供的 mysql-server（只适用于 Linux）：<https://hub.docker.com/r/mysql/mysql-server>
 
 ```shell
 docker pull mysql:8.0
@@ -172,9 +174,7 @@ exit  # 或者quit
 
 ### GUI 管理工具
 
-```text
-官方：Workbench
-免费：DBeaver、SQLyog等 小巧，够用
-付费：Navicat、DataGrip 强大
-在线：phpMyAdmin 需要自己搭建
-```
+- 官方：[Workbench](https://dev.mysql.com/downloads/workbench/)
+- 免费：DBeaver、SQLyog 等 小巧，够用
+- 付费：Navicat、DataGrip 强大
+- 在线：phpMyAdmin 需要自己搭建
