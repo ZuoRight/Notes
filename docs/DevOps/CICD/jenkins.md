@@ -2,22 +2,48 @@
 
 ## 安装
 
-> 参考：<https://www.jenkins.io/doc/book/installing/>
+参考：<https://www.jenkins.io/doc/book/installing/>
 
-- 使用Jetty、Tomcat等Java Servlet容器运行WAR包
+### WAR file
 
-> 由于下载的`jenkins.war`内置了Jetty，可以直接运行：`[nohub] java -jar jenkins.war [--httpPort=8080]`，然后访问：<http://localhost:8080/>  
-> Jenkins相关的配置等存放在`~/.jenkins`路径下
+Jenkins Web 应用程序 ARchive (WAR) 文件捆绑了 
 
-- 使用Docker镜像运行
+`jenkins.war` 内置了 Winstone（一个 Jetty servlet 容器包装器）
+
+所以可以直接运行
+
+```shell
+java -jar jenkins.war
+# 指定端口，默认 --httpPort=8080
+# 相关的配置等会存放在 ~/.jenkins 路径下
+```
+
+然后访问：<http://localhost:8080/> 等待 Unlock Jenkins 页面出现
+
+![20240725231817](https://image.zuoright.com/20240725231817.png)
+
+获取 Adminstrator password
+
+```shell
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+
+解锁后会出现 Customize Jenkins 页面，可以安装各种插件
+
+安装完插件后会出现 Create First Admin User 页面，设置完便可以使用了
+
+### Docker
 
 ```shell
 mkdir jenkins
 chmod 777 jenkins
+
 docker run -d --name jenkins \
--p 8080:8080 -p 50000:50000 \  # 8080为jenkins服务web端口，50000为jenkins和其他节点通讯用的端口
+-p 8080:8080 \  # 8080 为 Jenkins 服务 Web 端口
+-p 50000:50000 \  # 50000 为 Jenkins 和其他节点通讯用的端口
 -v ${PWD}/jenkins:var/jenkins_home \
-jenkins/jenkins
+jenkins/jenkins:lts
+
 # 查看初始化密码
 docker logs -f jenkins  # 方式1，从日志中查看
 docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword  # 方式2，从容器初始密码文件中看
@@ -30,7 +56,7 @@ cat jenkins/jenkins_home/secrets/initialAdminPassword  # 方式3，直接从宿�
 
 ![20210810141105](http://image.zuoright.com/20210810141105.png)
 
-- 配置Git私钥
+- 配置 Git 私钥
 
 ![20210810140805](http://image.zuoright.com/20210810140805.png)
 

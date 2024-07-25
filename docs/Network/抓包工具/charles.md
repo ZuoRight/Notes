@@ -43,9 +43,11 @@ Tips：端口号随意，通常设为 8888
 Tips：
 
 1. 需要将手机和电脑保持在同一局域网内，然后手动配置下相应网络的 HTTP 代理
-2. 保存后，Charles 界面会弹出确认框，点击允许（若没弹框可以重启下 Charles 试试）
+2. 保存后，Charles 界面会弹出确认框，点击允许
 
-> 如果手机设置了代理，Charles 却没反应，可手动将手机的局域网 IP 配置到 Proxy -> Access Control Settings 中，如果还是不行，重启手机！重启电脑！重启大法！
+若没弹确认框，可手动将手机的局域网 IP 配置到 Proxy -> Access Control Settings 中
+
+如果设置都正常但出现连不上 Charles 的情况，断开电脑网络重连一次，或者重新设置一次手机代理，实在不行使用重启大法！
 
 ![lALPDhYBNT2oVhrNA1LNBsY_1734_850](http://image.zuoright.com/lALPDhYBNT2oVhrNA1LNBsY_1734_850.png)
 
