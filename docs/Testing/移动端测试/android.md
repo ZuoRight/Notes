@@ -11,11 +11,27 @@ Google 的 Android 系统，其实指的是 AOSP + GMS（谷歌移动服务）�
 
 另外「Android」文字及 Logo 属于 Google 公司的商标，需取得谷歌的认可才能进行商业使用。
 
+## IDE
+
+### Eclipse ADT
+
+在 Android Studio 诞生之前，Eclipse 是 Google 官方推荐的 Android 开发 IDE
+
+Eclipse 使用了 ADT (Android Development Tools) 插件为 Eclipse 提供了 Android 开发的支持
+
+DDMS 曾作为 ADT 插件的一部分集成在 Eclipse 中，提供了一个图形化界面，方便开发者使用各种调试工具，例如查看线程、内存使用情况、获取屏幕截图、监控网络流量等
+
+随着 Android Studio 的推出，Google 停止了对 Eclipse ADT 的官方支持。
+
+### Android Studio
+
+<https://developer.android.google.cn/studio/intro>
+
 ## SDK
 
 Software Development Kit 软件开发工具包，依赖 JDK
 
-可单独下载，也可以通过 [Android Studio](https://developer.android.google.cn/studio/intro) 下载
+可单独下载，也可以通过 Android Studio 下载
 
 Android SDK 工具会将应用的代码、数据、以及资源文件等所有内容编译成一个 `.apk` 后缀的归档文件，APK（Android Application PacKage）可安装在安卓设备中。
 

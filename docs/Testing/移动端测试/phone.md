@@ -2,13 +2,47 @@
 
 ## 手机投屏到电脑
 
-- Android
-
-借助 AirtestIDE 实现，数据线连接电脑后，会显示设备，点击 connect 即可
-
 - iPhone
 
 借助 QuickTime Player 实现
+
+手机 USB 连接电脑，新建影片
+
+![20240726223146](https://image.zuoright.com/20240726223146.png)
+
+- Android
+
+可以使用 Android Studio 的 [设备镜像](https://developer.android.com/studio/run/device?hl=zh-cn) 功能实现
+
+在 Running Devices 或 Device Manager 窗口选择一个设备手动开启
+
+> 前提，要先打开一个 Android 项目进入编辑窗口才能看到如下选项，可以随便创建一个空项目或示例项目
+
+![20240726221509](https://image.zuoright.com/20240726221509.png)
+
+也可以在 Settings -> Tools -> Devices Mirroring 这里设置自动开启条件，比如可以设置「连接设备就自动启动镜像」
+
+如果您使用的是搭载 Android 12 的特定设备（例如 Redmi K40、Poco F3 或 Mi 11X），则必须同时启用「USB 调试」和「USB 调试（安全设置）」这两项设置，然后重启设备，才能启用设备镜像
+
+当然也有一些第三方工具可以实现，但是要么收费，要么卡，要么分辨率太低
+
+## 访问手机文件
+
+使用 Android Studio，View > Tool Windows > Device File Explorer 查看
+
+---
+
+另外还可使用 [Termux](https://termux.dev/) 命令行工具在手机上启动一个服务
+
+比如电脑要访问 Android 手机的截图，
+
+```shell
+termux-setup-storage  # 开启访问权限
+cd /sdcard/DCIM
+python -m http.server 8080
+```
+
+电脑访问 `http://手机IP地址:8080` 即可查看
 
 ## 模拟器
 
@@ -31,7 +65,7 @@
 提供了 Android 虚拟环境，需要虚拟机的配合，免费版不提供短信和电话这些测试功能
 
 1. 注册账号
-2. 下载带 virtualBox 的版本
+2. 下载带 VirtualBox 的版本
 3. 安装 -> 登陆 -> 添加/下载镜像
 
 需要开启 CPU 的虚拟化功能：BIOS -> VT-x

@@ -2,8 +2,6 @@
 
 <https://blog.csdn.net/wxlinwzl/article/details/7011755>
 
-使用 DDMS 查看日志
-
 - 时间信息
 - 系统信息：内存，CPU，进程队列，虚拟内存，垃圾回收等
 - 虚拟机信息：进程和线程的跟踪信息
@@ -83,6 +81,10 @@ Tombstone Crash
 Kernel Panic
 
 ## Logcat
+
+集成在 Android Studio 和 Android SDK 中，随时可以通过命令行或 IDE 查看
+
+![20240726225033](https://image.zuoright.com/20240726225033.png)
 
 ```shell
 # 获取日志

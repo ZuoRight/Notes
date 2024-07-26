@@ -1,37 +1,145 @@
 # Python 请求库
 
-urllib3 是 Python 内置的 HTTP 请求库
+内置的 HTTP 请求库
 
-Requests 是由著名开发者 Kenneth Reitz 基于 urllib3 封装的同步请求库，更加易用
+- http.client 用于创建低级别的 HTTP 客户端，可以直接管理 HTTP 请求和响应
+- urllib 提供了一种更高级的接口，适合处理 URL 及 HTTP 请求
+
+第三方库 urllib3 相较于 urllib 提供了许多更高级的功能和增强的性能，尤其是在处理复杂 HTTP 请求时，比如线程安全，更细粒度的错误和异常处理，支持连接池，可以重用连接以提高性能和减少开销等
+
+Requests 是由著名开发者 Kenneth Reitz 基于 urllib3 抽象和封装了许多常用的功能，例如会话管理、认证、cookies、文件上传和下载等，更加易用
 
 AIOHTTP 是基于 ASyncio 实现的异步请求库，适合于纯异步请求的项目，性能更优，但据说有些坑？
 
 HTTPX 是一个全功能的 HTTP 请求客户端，支持同步和异步请求，并且可支持 HTTP/2
 
-除此之外，还有 http.client, urllib3, and httplib2 等请求库
+---
+
+对比
 
 - [Requests vs urllib3](https://gist.github.com/kennethreitz/973705)
 - [HTTPX vs Requests vs AIOHTTP](https://oxylabs.io/blog/httpx-vs-requests-vs-aiohttp)
 
 ![20230813224801](https://image.zuoright.com/20230813224801.png)
 
-## 内置
+## http.client
 
-快速在当前路径启动一个服务：`python -m http.server 80`
+```python
+import http.client
+import json
 
-比如电脑要访问 Android 手机的截图，可使用 [Termux](https://termux.dev/) 命令行工具启动一个服务
+# 发起 GET 请求
+def http_client_get_example():
+    conn = http.client.HTTPSConnection("jsonplaceholder.typicode.com")
+    conn.request("GET", "/todos/1")
+    
+    response = conn.getresponse()
+    print(response.status, response.reason)
+    
+    data = response.read()
+    print(data.decode("utf-8"))
+    
+    conn.close()
 
-```shell
-termux-setup-storage  # 开启访问权限
-cd /sdcard/DCIM
-python -m http.server 8080
+# 发起 POST 请求
+def http_client_post_example():
+    conn = http.client.HTTPSConnection("jsonplaceholder.typicode.com")
+    headers = {'Content-type': 'application/json'}
+    
+    # 发送的数据
+    todo_data = {
+        "userId": 1,
+        "title": "Sample TODO",
+        "completed": False
+    }
+    
+    json_data = json.dumps(todo_data)
+    conn.request("POST", "/todos", body=json_data, headers=headers)
+    
+    response = conn.getresponse()
+    print(response.status, response.reason)
+    
+    data = response.read()
+    print(data.decode("utf-8"))
+    
+    conn.close()
+
+http_client_get_example()
+http_client_post_example()
 ```
 
-电脑访问 `http://手机IP地址:8080` 即可查看
+## urllib
+
+```python
+import urllib.request
+import json
+
+# 发起 GET 请求
+def urllib_get_example():
+    url = "https://jsonplaceholder.typicode.com/todos/1"
+    with urllib.request.urlopen(url) as response:
+        data = response.read()
+        print(data.decode("utf-8"))
+
+# 发起 POST 请求
+def urllib_post_example():
+    url = "https://jsonplaceholder.typicode.com/todos"
+    headers = {'Content-Type': 'application/json'}
+    
+    # 发送的数据
+    todo_data = {
+        "userId": 1,
+        "title": "Sample TODO",
+        "completed": False
+    }
+    
+    json_data = json.dumps(todo_data).encode('utf-8')
+    request = urllib.request.Request(url, data=json_data, headers=headers, method='POST')
+    
+    with urllib.request.urlopen(request) as response:
+        data = response.read()
+        print(data.decode("utf-8"))
+
+urllib_get_example()
+urllib_post_example()
+```
+
+## urllib3
+
+`pip install urllib3`
+
+```python
+import urllib3
+import json
+
+# 创建一个 PoolManager 实例，用于管理连接池
+http = urllib3.PoolManager()
+
+# GET 请求
+response = http.request('GET', 'https://jsonplaceholder.typicode.com/todos/1')
+print(response.status)
+print(json.loads(response.data.decode('utf-8')))
+
+# POST 请求
+todo_data = json.dumps({
+    "userId": 1,
+    "title": "Sample TODO",
+    "completed": False
+}).encode('utf-8')
+
+response = http.request(
+    'POST',
+    'https://jsonplaceholder.typicode.com/todos',
+    body=todo_data,
+    headers={'Content-Type': 'application/json'}
+)
+print(response.status)
+print(json.loads(response.data.decode('utf-8')))
+```
 
 ## Requests
 
-> <https://requests.readthedocs.io/en/latest>
+<https://requests.readthedocs.io/en/latest>
 
 `python -m pip install requests`
 
