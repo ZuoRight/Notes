@@ -3,6 +3,6 @@ nav:
   - index.md
   - image.md
   - container.md
-  - mount.md
+  - storage.md
   - network.md
   - ...

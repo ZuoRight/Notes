@@ -12,6 +12,14 @@ env  # 查看环境变量，比如path变量以及自定义的临时变量等
 sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
 ```
 
+## Xcode
+
+从 Mac App Store 下载
+
+官方文档：<https://developer.apple.com/documentation/xcode/>
+
+截图 iPhone：Window -> Devices and Simulators（需要手机先开启「设置 -> 隐私与安全 -> 开发者模式」）
+
 ## CLT
 
 [介绍文档](https://developer.apple.com/library/archive/technotes/tn2339/_index.html)

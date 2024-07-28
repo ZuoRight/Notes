@@ -1,24 +1,34 @@
 # 镜像
 
-传统虚拟机的镜像大多是一个磁盘的“快照”，磁盘有多大，镜像就至少有多大，而容器镜像（rootfs）只是一个操作系统的所有文件和目录，并不包含内核，最多也就几百兆。
+```shell
+docker images  # 查看本地镜像
 
-Docker 在镜像的设计中，引入了层（layer）的概念，每一行指令都会生成一个只读的层(layer)，即使是设置环境变量的ENV等指令，也会生成一个空层
+# 删除本地镜像，如果同一个镜像有多个标签，则不能使用id删除
+docker rmi <image>
+
+# 查看镜像软件物料清单（Software Bill of Materials）
+docker sbom <image:tag>  # CLI版本貌似还不支持此命令
+```
+
+传统虚拟机的镜像大多是一个磁盘的快照，磁盘有多大，镜像就至少有多大，而容器镜像（`rootfs`）只是一个操作系统的所有文件和目录，并不包含内核，最多也就几百兆。
+
+Docker 在镜像的设计中，引入了层（`layer`）的概念，每一行指令都会生成一个只读的层，即使是设置环境变量的 ENV 等指令，也会生成一个空层
 
 > 所以通常测试时可以分层多一些，但发布镜像的时候尽量精简合并指令，避免镜像过于臃肿
 
-同一layer可以被多个不同的镜像共享，用到了一种叫作联合文件系统（Union File System）的能力，每次构建只会涉及改动的layer，也就是一个增量 rootfs联合挂载在同一挂载点上。
+同一 layer 可以被多个不同的镜像共享，用到了一种叫作联合文件系统（Union File System）的能力，每次构建只会涉及改动的 layer，也就是一个增量 rootfs 联合挂载在同一挂载点上。
 
 ## 镜像仓库
 
-- DockerHub: <https://hub.docker.com> Docker官方仓库
-- Github的镜像库：<ghcr.io>
-- Google的镜像库：<gcr.io>
+- DockerHub: <https://hub.docker.com>
+- Github 的镜像库：ghcr.io
+- Google 的镜像库：gcr.io
 
 由于镜像仓库的镜像鱼龙混杂，拉取时要检查来源，下载量，更新时间，标签等
 
-- Official image，Docker官方提供的，大概100多个，都经过了严格的漏洞扫描和安全检测，有专门的团队负责审核、发布和更新
+- Official image，Docker 官方提供的，大概100多个，都经过了严格的漏洞扫描和安全检测，有专门的团队负责审核、发布和更新
 - Verified publisher，各认证厂商提供的镜像
-- 半官方，由于认证需要交钱，有些厂商没有认证，比如OpenResty
+- 半官方，由于认证需要交钱，有些厂商没有认证，比如 OpenResty
 - 非官方，大多未经过质量测试，且名字很多重复，拉取时可带上用户名
 
 > Alpine、CentOS 的命名比较简单明了，就是数字的版本号，比如 alpine3.15  
@@ -29,24 +39,16 @@ Docker 在镜像的设计中，引入了层（layer）的概念，每一行指�
 
 ```shell
 docker search <image>  # 从镜像库查找镜像
-docker pull <image>  # 默认从DockerHub拉取镜像
-
-docker images  # 查看本地镜像
-
-# 删除本地镜像，如果同一个镜像有多个标签，则不能使用id删除
-docker rmi <image>
-
-# 查看镜像软件物料清单（Software Bill of Materials）
-docker sbom <image:tag>  # CLI版本貌似还不支持此命令
+docker pull <image>  # 默认从 DockerHub 拉取镜像
 ```
 
-## 从Dockerfile构建一个镜像
+## 从 Dockerfile 构建一个镜像
 
 Docs: <https://docs.docker.com/engine/reference/builder/>
 
 [以Python语言快速开始](https://docs.docker.com/language/python/)
 
-### 编写Dockerfile
+### 编写 Dockerfile
 
 ```dockerfile
 # 指令不区分大小写，但习惯大写

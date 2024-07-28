@@ -24,19 +24,19 @@ Python 操作 MySQL 数据库需要遵守 DB-API 规范，有很多封装好的�
 # Mac
 brew install mysql-client
 pip install mysqlclient
-"""
-如果报NameError: name ‘_mysql’ is not defined
-可以添加环境变量：export DYLD_LIBRARY_PATH="/usr/local/mysql/lib:$PATH"
-"""
+'
+如果报 NameError: name ‘_mysql’ is not defined 可以添加环境变量
+export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/mysql/lib"
+'
 
 # Ubuntu
 pip install mysqlclient
-'''
+'
 如果报NameError: name ‘_mysql’ is not defined
     sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
 在docker容器（python:3.9）中实际测试发现貌似并不需要先执行此行命令
 另外apt-get list --installed 发现是有 default-libmysqlclient-dev 这个依赖包的
-'''
+'
 ```
 
 ```python

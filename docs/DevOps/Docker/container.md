@@ -4,21 +4,21 @@
 ## 查看容器
 
 ```shell
-docker container ls
-'''
+# 默认只显示运行的
+docker ps  # 或者 docker container ls
+'
 CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS                     PORTS     NAMES
 5d3804c67526   ee_test   "bash"   23 minutes ago   Exited (0) 3 minutes ago             test
-'''
-# 简写方式
-docker ps [-a] [-f key]
-"""
--a 显示所有容器(包括未运行的)
+'
+# 参数
+'
+-a 显示所有容器
 -q 仅显示容器ID
---no-trunc 参数可以查看更完整的信息，即不会截断显示，比如完整ID和COMMAND等
--f 过滤
+-f key 过滤
   docker ps -aq -f ancestor=<镜像id/name>
   docker ps -aqf exited=0
-"""
+--no-trunc 参数可以查看更完整的信息，即不会截断显示，比如完整ID和COMMAND等
+'
 
 docker stats <container_id>  # 查看容器实时资源占用
 docker logs [-f] <container_id>  # 查看容器日志，-f实时打印
@@ -56,10 +56,10 @@ docker import http://example.com/exampleimage.tgz example/imagerepo
 > 容器共享了宿主机的内核
 
 ```shell
-docker run --name test <镜像名>:tag  # 不加tag默认执行latest版本的镜像
+docker run --name test 镜像名:tag  # 不加tag默认执行latest版本的镜像
 docker create ...  # 创建容器但不运行，用法同run
-"""
---name <name>，指定容器名称
+'
+--name 指定容器名称
 
 -e var 设置单值环境变量
 --env key=value 设置k-v形式的环境变量
@@ -67,16 +67,16 @@ docker create ...  # 创建容器但不运行，用法同run
 –restart=no  默认，不会自动重启
 –restart=always 开机启动，失败也会一直重启，web容器一般用这个
 –restart=on-failure:10 表示出错后重启，可以限制重启次数
-"""
-
+'
 # 运行容器并与之交互
-'''
+'
 -i 交互
 -t 指定伪终端
 
 -d/--detach 后台运行，默认返回容器ID，或者返回命令输出
 --rm 容器退出时自动清理容器内部文件
-'''
+'
+
 sudo docker run --name demo01 python:3.9 bash  # 返回空，容器状态Exited
 sudo docker run --name demo02 python:3.9 "python"  # 返回空，容器状态Exited
 sudo docker run --name demo03 python:3.9 "python --version"  # 返回Python 3.9.13，容器状态Exited
@@ -114,3 +114,13 @@ docker cp path/file <container_id>:path
 # 复制文件：从容器到宿主机
 docker cp <container>:path/file .
 ```
+
+## DinD
+
+DinD, Docker inside Docker
+
+`docker pull docker:dind`
+
+广泛应用于 CI/CD 工作流程，它可以创建用于构建、测试和部署应用程序的独立的一次性环境，从而实现更快、更可靠的自动化管道。
+
+在 Docker 中运行 Docker 允许开发人员创建专门为其应用程序量身定制的隔离环境。这可确保依赖项、配置和运行时环境在不同的开发阶段保持一致，从而更轻松地重现和调试问题。

@@ -24,10 +24,8 @@ MySQL 是典型的 C/S 架构：`mysql` / `mysqld`
 然后配置环境变量
 
 ```shell
-vim ~/.bash_profile
-    export PATH=$PATH:/usr/local/mysql/bin
-    export PATH=$PATH:/usr/local/mysql/support-files
-source ~/.bash_profile
+export PATH=$PATH:/usr/local/mysql/bin
+export PATH=$PATH:/usr/local/mysql/support-files
 ```
 
 ### Windows
@@ -58,8 +56,8 @@ default-storage-engine=INNODB
 
 然后设置环境变量
 
-- `MYSQL_HOME`: `安装路径`
-- `Path`: `%MYSQL_HOME%\bin`
+- `MYSQL_HOME`:`安装路径`
+- `Path`:`%MYSQL_HOME%\bin`
 
 然后以管理员身份打开命令行，输入：`mysqld --initialize --console`，初始化完毕后会生成一个初始密码（记得保存）
 

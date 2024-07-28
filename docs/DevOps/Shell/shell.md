@@ -53,11 +53,11 @@ cat /etc/shells
 
 - 查看默认 Shell
 
-默认 shell 不一定是当前正在使用的 shell，使用 `ps` 命令返回进程列表，倒数第二个一般是当前正在使用的 shell
-
 ```shell
 echo $SHELL
 ```
+
+默认 shell 不一定是当前正在使用的 shell，使用 `ps` 命令返回进程列表，倒数第二个一般是当前正在使用的 shell
 
 - 切换 Shell
 
@@ -72,9 +72,9 @@ sudo dpkg-reconfigure dash
 
 macOS 从 Catalina 版开始默认 Shell 为 zsh，可以切换为 bash
 
-但由于GPLv3的原因，Mac自带的 bash 还是十几年前的 3.2 版本，所以需要先升级一下，即下载新版 bash 并设为默认
+但由于 GPLv3 的原因，Mac 自带的 bash 还是十几年前的 3.2 版本，所以需要先升级一下，即下载新版 bash 并设为默认
 
-> tips：编写shell脚本如果想用新bash解释，需要把 `#!/bin/bash` 改为 `#!/usr/local/bin/bash`  
+> tips：编写 shell 脚本如果想用新 bash 解释，需要把 `#!/bin/bash` 改为 `#!/usr/local/bin/bash`
 
 ```shell
 bash --version  # 查看当前交互shell版本
@@ -353,13 +353,20 @@ y=`ls -al`  # 引用命令
 设置环境变量要用 `export`
 
 ```shell
+# 临时添加
 export ENVVAR="I am an environment variable"
 
-# 扩增PATH变量
+# 从命令行追加到环境变量文件，比如 ~/.bash_profile
+echo 'export PATH="$PATH:/usr/local/bin"' >> ~/.bash_profile
+
+# 或者编辑 .bash_profile 等文件手动添加
+# 扩增 $PATH 变量，冒号作为分隔符，$PATH 也可以放在冒号前或冒号后
 PATH=$PATH:/home/bin
 PATH="$PATH":/home/bin
 PATH=${PATH}:/home/bin  # 推荐
 ```
+
+设置环境变量后需要重启终端，或者重新加载配置文件：`source ~/.bash_profile` 或 `source ~/.zshrc`
 
 ## 数组
 

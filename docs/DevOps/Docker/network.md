@@ -15,7 +15,7 @@
 ## 网络模式
 
 ```shell
-# 查看网络模式
+# 查看有哪些网络模式
 docker network ls
 '
 NETWORK ID     NAME      DRIVER    SCOPE
@@ -68,7 +68,7 @@ docker network inspect net-name
 
 ### 端口映射
 
-容器默认不会对外发布网络，需要使用`-p`（`--publish`）参数将端口映射到宿主机，供docker外部服务或未连接到此容器的其它容器使用，也可以-P随机指定端口映射
+容器默认不会对外发布网络，需要使用`-p` 或 `--publish` 参数将端口映射到宿主机，供docker外部服务或未连接到此容器的其它容器使用，也可以-P随机指定端口映射
 
 host 网络模式下会忽略 -p 选项
 
