@@ -27,6 +27,8 @@ DDMS 曾作为 ADT 插件的一部分集成在 Eclipse 中，提供了一个图�
 
 <https://developer.android.google.cn/studio/intro>
 
+下载 SDK 等需要设置 HTTP 协议代理
+
 ## SDK
 
 Software Development Kit 软件开发工具包，依赖 JDK

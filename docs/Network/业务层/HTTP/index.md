@@ -84,13 +84,17 @@ Status Code 用于表示请求的结果
 - <https://www.cheat-sheet.cn/post/http-status-code/>
 - <https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status>
 
-1xx：提示信息，表示协议处理的中间状态，还需要后续的操作
+### 1xx
+
+提示信息，表示协议处理的中间状态，还需要后续的操作
 
 ```text
 101 更换协议后继续通信
 ```
 
-2xx：成功，报文已经收到并被正确处理
+### 2xx
+
+成功，报文已经收到并被正确处理
 
 ```text
 200 一切正常，通常会返回 body
@@ -98,15 +102,35 @@ Status Code 用于表示请求的结果
 206 正常，只返回部分数据，通常出现在范围请求时
 ```
 
-3xx：重定向，资源位置发生变动，需要客户端重新发送请求
+### 3xx
+
+重定向，资源位置发生变动，需要客户端重新发送请求
 
 ```text
 301 请求资源已不在，永久重定向
 302 请求资源还在，临时重定向，比如系统维护时
-304 重定向到了缓存，一般 与 If-Modified-Since 同在
+304 重定向到了缓存
+    - If-Modified-Since
+    - If-None-Match 与 ETag 一起使用，提供更精确的缓存验证
 ```
 
-4xx 客户端错误
+304 请求
+
+```shell
+# 第一次请求的响应头中包含 Last-Modified
+HTTP/1.1 200 OK
+Last-Modified: Wed, 21 Jul 2024 19:15:56 GMT
+
+# 后续请求
+GET /style.css HTTP/1.1
+If-Modified-Since: Wed, 21 Jul 2024 19:15:56 GMT
+# 请求返回
+HTTP/1.1 304 Not Modified  # 表示请求的资源自上次访问以来没有被修改
+```
+
+### 4xx
+
+客户端错误
 
 ```text
 400 通用错误码，请求报文有误，服务器无法处理
@@ -116,7 +140,9 @@ Status Code 用于表示请求的结果
 405～431 一般都会返回较明确的备注提示
 ```
 
-5xx 服务端错误
+### 5xx
+
+服务端错误
 
 ```text
 500 通用错误码，服务端错误

@@ -140,28 +140,6 @@ cat jenkins-data/secrets/initialAdminPassword
 
 ![20240728225916](https://image.zuoright.com/20240728225916.png)
 
-## Demo
-
-- 源码管理
-
-![20210810141105](http://image.zuoright.com/20210810141105.png)
-
-- 配置 Git 私钥
-
-![20210810140805](http://image.zuoright.com/20210810140805.png)
-
-- 配置Allure：系统管理/全局工具配置/Allure Commandline
-
-![20210810141945](http://image.zuoright.com/20210810141945.png)
-
-- 构建及输出报告配置
-
-![20210810141715](http://image.zuoright.com/20210810141715.png)
-
-- 立即构建
-
-![20210810142615](http://image.zuoright.com/20210810142615.png)
-
 ## Pipeline
 
 Jenkins Pipeline 是一套插件，支持在 Jenkins 中实施和集成持续交付管道（从版本控制到用户获取软件的自动化流程）
@@ -219,3 +197,25 @@ pipeline {
     }
 }
 ```
+
+## Demo
+
+- 源码管理
+
+![20210810141105](http://image.zuoright.com/20210810141105.png)
+
+- 配置 Git 私钥
+
+![20210810140805](http://image.zuoright.com/20210810140805.png)
+
+- 配置 Allure：系统管理 -> 全局工具配置 -> Allure Commandline
+
+![20210810141945](http://image.zuoright.com/20210810141945.png)
+
+- 构建及输出报告配置
+
+![20210810141715](http://image.zuoright.com/20210810141715.png)
+
+- 立即构建
+
+![20210810142615](http://image.zuoright.com/20210810142615.png)

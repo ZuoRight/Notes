@@ -92,6 +92,14 @@ Tips：
 
 ![20200802224002](http://image.zuoright.com/20200802224002.png)
 
+## Proxy
+
+## Recording Settings
+
+- Include
+
+- Exclude
+
 ## External Proxy
 
 如果要抓包的网站，本身就需要代理才能访问，则可以先用 Charles 反向代理后，再充当前置代理将流量转出
@@ -104,7 +112,7 @@ Socket 或 HTTP 都可以，根据自己的代理进行选择，若选了 HTTP �
 
 打断点，修改请求或返回内容
 
-## Bandwidth Throttling
+## Throttle
 
 模拟弱网
 
