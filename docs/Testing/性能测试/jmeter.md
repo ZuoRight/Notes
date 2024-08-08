@@ -20,11 +20,26 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JMETER_HOME/l
 > 切换语言：`Options > Choose Language`
 
 !!! Tips
-    如果启动后有闪退或者报错等问题，大概率跟 jdk 版本有关，我在 `jdk-11.0.11` 及以上版本都有遇到过各种问题，然后降低到 `jdk1.8.0_311.jdk` 版本后就稳定多了...
+    如果启动后有闪退或者报错等问题，大概率跟 jdk 版本有关，我在 `jdk-11.0.11` 及以上版本都有遇到过各种问题，然后降低到 `jdk1.8.0_311.jdk` 版本后就稳定多了
 
-## 插件管理器
+## 测试组件
 
-下载插件Jar包：<https://jmeter-plugins.org/wiki/PluginsManager/>
+> <https://jmeter.apache.org/usermanual/component_reference.html>
+
+测试计划 [Test Plan](https://jmeter.apache.org/usermanual/test_plan.html) 描述了 Jmeter 在运行时将要执行的一系列步骤，由各种组件构成
+
+- Config Element 各种配置元素，比如 HTTP 请求默认配置、计数器、JDBC 连接配置、CSV 配置等
+- Samplers 采样器，添加各种请求
+- Logic Controllers 逻辑控制器，控制如何发送请求
+- Timers 定时器，比如同步定时器可以阻塞线程，达到一定数量后同时下发
+- Pre Processor 预处理器，发出采样请求前执行的操作
+- Post Processor 后处理器，发出采样请求后执行的操作，通常用于处理响应数据，比如正则或者解析 JSON 获取下一个请求的依赖值等
+- Assertions 断言
+- Listeners 侦听器，查看请求响应和断言结果等
+
+还可以通过插件管理器添加其它组件
+
+下载插件管理 Jar 包：<https://jmeter-plugins.org/wiki/PluginsManager/>
 
 将 `jmeter-plugins-manager-1.10.jar` 放入 `apache-jmeter-5.6.2/lib/ext` 路径下
 
@@ -32,53 +47,93 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JMETER_HOME/l
 
 ![20230821172152](https://image.zuoright.com/20230821172152.png)
 
-## 测试组件
+## 线程组 Threads
 
-> <https://jmeter.apache.org/usermanual/component_reference.html>
+线程组是任何测试计划的起点，所有 Samplers 和 Controllers 组件必须位于线程组下
 
-[Test Plan](https://jmeter.apache.org/usermanual/test_plan.html) 描述了 Jmeter 在运行时将要执行的一系列步骤
+组件若放在测试计划下则表示应用于所有线程组
 
-- Config Element 各种配置元素，比如HTTP请求默认配置、计数器、JDBC连接配置、CSV配置等
-- Samplers 采样器，添加各种请求
-- Logic Controllers 逻辑控制器，控制如何发送请求
-- Timers 定时器，比如同步定时器可以阻塞线程，达到一定数量后同时下发
-- Pre Processor 预处理器，发出采样请求前执行的操作
-- Post Processor 后处理器，发出采样请求后执行的操作，通常用于处理响应数据，比如正则或者解析JSON获取下一个请求的依赖值等
-- Assertions 断言
-- Listeners 侦听器，查看请求响应和断言结果等
+![20240808234322](https://image.zuoright.com/20240808234322.png)
 
-### Threads
+### `Number of Threads`
 
-线程组是任何测试计划的起点，所有 Samplers 和 Controllers 必须位于线程组下，其它组件若放在测试计划下则表示应用于所有线程组
+线程数，单位：users
 
-- `Number of Threads (users)` 线程数，用户数，产生TPS
-- `Ramp-up period (seconds)` 斜坡上升周期，递增时间
-- `Loop Count` 循环次数
+在某些工具中，线程也被称作虚拟用户，所以线程数通常也被称作用户数
 
-需要合理的设置 Ramp-up 时间，不能太长也不能太短，比如5秒启动1000个进程，平均每秒200个，但受限于硬件资源，这200个进程可能并不会都在1s内启动，启动过多的线程还可能会导致JVM内存溢出
+但是通常所说的并发不用并发线程数来表示系统的负载能力，而是用 TPS 来表示并发用户数
 
-如果希望一直压下去，可以将 Loop Count 设置为 `Infinite`（无限），然后勾选调度器 `Specify Thread lifetime` 指定线程生命周期
+随着线程数的增加，TPS 也会跟着递增，增加到一定程度后会达到饱和状态
 
-- Duration (seconds) 持续时间
-- Startup Delay (seconds) 线程组启动延迟
+### `Ramp-up period`
 
-> 如果同时设置了 Loop Count 和 Duration，则压测时间为：`min(Loop Count * 响应时间, Duration)`，通常不建议这样做
+斜坡上升周期，递增时间，单位：seconds
+
+即在多少秒内递增到设置的线程数
+
+除了秒杀，在大多数场景中，递增都是必不可少的过程，而且要连续
+
+```text
+Number of Threads 100
+Ramp-up period 10
+
+1s = 1000ms
+100/(10*1000) = 1线程/100ms
+即每 100ms 启动 1 个线程
+```
+
+需要合理的设置 Ramp-up 时间，不能太长也不能太短，比如 5 秒启动 1000 个线程，平均每秒 200 个，但受限于硬件资源，这 200 个线程可能并不会都在 1s 内启动，而且启动过多的线程还可能会导致 JVM 内存溢出
+
+递增的经验值
+
+![20230830001640](https://image.zuoright.com/20230830001640.png)
+
+在每个阶梯递增的过程中，出现了抖动，这就明显是系统设置的不合理导致的，有两种可能性
+
+- 数据没有预热
+- 资源的动态分配不合理，像后端线程池、内存、缓存等等
+
+### 其它参数
+
+- `Loop Count`
+
+循环次数
+
+如果希望一直压下去，可以设置为 `Infinite`（无限），然后勾选调度器 `Specify Thread lifetime` 指定线程生命周期
+
+- Duration
+
+持续时间，单位：seconds
+
+如果同时设置了 Loop Count 和 Duration，则压测时间为：$min(Loop Count * 响应时间, Duration)$，通常不建议这样做
+
+- Startup Delay
+
+线程组启动延迟，单位：seconds
 
 当测试开始时，JMeter 将等待 Startup Delay 秒，然后在 Ramp-up period 内启动 Number of Threads 个线程，并运行 Duration 秒
 
-`Delay Thread creation until needed` 通常不勾选，让其一开始创建所有线程，若勾选后，则需要时才会创建，通常线程数较多时需要勾选，否则一开始创建线程会很消耗 CPU
+- `Delay Thread creation until needed`
 
-### 请求设置
+不勾选，一开始便创建所有线程，勾选后，则需要时才会创建
 
-- 设置请求的默认参数：HTTP Request Defaults
+通常不勾选，线程数较多时需要勾选，否则一开始创建线程会很消耗 CPU
+
+## 请求设置
+
+### 设置请求的默认参数
+
+HTTP Request Defaults
 
 ![20231030191437](https://image.zuoright.com/20231030191437.png)
 
-- 设置请求头：HTTP Header Manager
+### 设置请求头
+
+HTTP Header Manager
 
 `Content-Type` 默认为 `application/x-www-form-urlencoded`，如果请求是 `Content-Type:application/json` 需要设置
 
-- 设置请求参数格式
+### 设置请求参数格式
 
 ![20231030194857](https://image.zuoright.com/20231030194857.png)
 
@@ -88,20 +143,21 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JMETER_HOME/l
 
 如果是 `json` 格式，则使用 Body Data，请求头设置为 `Content-Type:application/json`
 
-### Synchronizing Timer
+## 同步定时器
 
-`Number of Simultaneous Users to Group by` 设置为需要集合的线程数
+Synchronizing Timer
 
-`timeout in milliseconds` 为超时时间，即多少秒没集合到指定人数就超时
+- `Number of Simultaneous Users to Group by` 设置为需要集合的线程数
+- `timeout in milliseconds` 为超时时间，即多少秒没集合到指定人数就超时
 
 ## 参数化
 
-以 `CSV Data Set Config` 为例
+以 CSV Data Set Config 组件为例
 
 ![20230823201405](https://image.zuoright.com/20230823201405.png)
 
-CSV 文件中有两列，分别指定变量名，可在其他组件中引用
-
+- `Filename` 数据文件路径
+- `Variable Names` 指定用户名和密码对应的变量名，英文逗号分隔，对应 CSV 文件中的两列数据，通过用户名在其他组件中引用
 - `Allow quoted data?` 选项设置为 `True` 表示数据中的引号 `"` 不会被编码为 `%22`
 - `Recycle on EOF?` 循环一遍后（遇到文件结束符）是否再循环，`Edit` 表示根据自定义内容调用函数或变量
 - `Stop thread on EOF?` 循环一遍后是否停止线程，不停止且不循环的话可能会导致参数不足
