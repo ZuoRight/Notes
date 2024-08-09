@@ -9,8 +9,6 @@
 - Appium
 - Cypress
 
-用于测试的 Demo 网站：<https://sahitest.com/demo/>
-
 ## CDP
 
 关于开发者工具 [Chrome DevTools](https://developer.chrome.com/docs/devtools/overview?hl=zh-cn) 使用的系列教程
@@ -82,6 +80,14 @@ Cypress 直接在浏览器中运行，消除了网络延迟和协议转换的开
 允许开发者编写断言来验证应用的状态。这些断言直接在浏览器中评估，提供即时的反馈。
 
 在测试执行过程中，Cypress 可以自动捕捉屏幕截图和视频记录。
+
+## WebdriverIO
+
+<https://github.com/webdriverio/webdriverio>
+
+用于浏览器中的端到端以及单元和组件测试，允许您基于 WebDriver 和 WebDriver BiDi 以及 Appium 自动化技术运行测试。
+
+待研究
 
 ## Drissionpage
 
