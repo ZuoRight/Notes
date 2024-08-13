@@ -12,6 +12,10 @@ Python，由荷兰人[吉多·范罗苏姆（Guido van Rossum）](https://gvanro
 
 > 参考：<https://docs.python.org/zh-cn/3/using/index.html>
 
+推荐 3.10，目前有一些第三方库要求 Python 版本大于 3.7 但不高于 3.11
+
+另外 [3.10.11](https://www.python.org/downloads/release/python-31011/) 是官方针对 3.10 版本提供的最后一个安装包
+
 ### Windows
 
 直接去官网下载安装最新稳定版即可

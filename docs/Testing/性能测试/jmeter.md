@@ -4,9 +4,7 @@
 
 ![20211124153427](http://image.zuoright.com/20211124153427.png)
 
-解压后可以命令行切换到 `apache-jmeter-5.4.1/bin` 路径下，使用 `bash jmeter` 命令启动图形化界面，也可以命令行的方式直接使用
-
-为了方便，可以配置环境变量在任意路径下打开，以下是 Mac 系统的环境变量配置
+配置环境变量，Mac 为例
 
 ```shell
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_311.jdk/Contents/Home
@@ -17,7 +15,11 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JMETER_HOME/l
 
 ![20211124154556](http://image.zuoright.com/20211124154556.png)
 
-> 切换语言：`Options > Choose Language`
+- 启动图形化界面：`bash jmeter`
+    - 切换语言：`Options > Choose Language`
+- 脚本的方式使用：`./jmeter -n -t demo.jmx demo.jtl`
+    - `.jmx` 为脚本文件
+    - `.jtl` 为日志文件
 
 !!! Tips
     如果启动后有闪退或者报错等问题，大概率跟 jdk 版本有关，我在 `jdk-11.0.11` 及以上版本都有遇到过各种问题，然后降低到 `jdk1.8.0_311.jdk` 版本后就稳定多了
@@ -253,7 +255,11 @@ vars.put(“pwd”, sign.toUpperCase());  // 改为大写后输出
 
 另外 JS 是基于 Nashorn 引擎的，目前不支持 ES6 语法
 
-## 录制脚本
+## 脚本
+
+JMX 脚本为 XML 文件，不同操作系统下均可直接运行
+
+### 录制脚本
 
 ![20230814231121](https://image.zuoright.com/20230814231121.png)
 

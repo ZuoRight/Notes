@@ -192,3 +192,9 @@ about:dns 显示DNS状态
 about:cache 显示缓存页面
 about:gpu 是否有硬件加速
 ```
+
+## Timing
+
+<https://developer.chrome.com/docs/devtools/network/reference?utm_source=devtools&hl=zh-cn#timing>
+
+![20240810121633](https://image.zuoright.com/20240810121633.png)

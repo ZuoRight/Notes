@@ -4,6 +4,7 @@ nav:
   - bug.md
   - case.md
   - AutoTest.md
+  - test_service.md
   - UnitTest
   - APITest
   - GUITest
