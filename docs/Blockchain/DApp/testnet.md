@@ -54,6 +54,7 @@ Hardhat-Network: 31337
 
 ## 水龙头
 
+- <https://www.okx.com/zh-hans/web3/faucet>
 - <https://faucetlink.to/>
 - <https://bwarelabs.com/faucets>
 - <https://faucet.triangleplatform.com/>
