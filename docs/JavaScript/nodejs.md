@@ -179,10 +179,10 @@ npm install xxx  # npm install 可简写为 npm i
 -g/--global
     本地安装（默认）
     全局安装，可以通过命令行在任何地方调用
---save
-    配置信息存储到 package.json 的 dependencies 字段
---save-dev
-    配置信息存储到 package.json 的 devDependencies 字段
+-S/--save 默认
+    配置信息存储到 package.json 的 dependencies 部分，即项目运行所需的包
+-D/--save-dev
+    配置信息存储到 package.json 的 devDependencies 部分，即开发时所需的包，比如测试框架、构建工具等，部署生产环境无需包含
 --force
     强制 npm 获取远程资源，即使磁盘上存在本地副本也是如此
 "

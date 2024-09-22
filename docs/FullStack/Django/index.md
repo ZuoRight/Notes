@@ -14,11 +14,12 @@ Django 采用了 MVT 的框架模式，即：Model(模型)，View(视图)，Temp
 mkdir mysite
 cd mysite
 
-# Django 4.0+ 依赖 Python 3.8+
-python -m venv env
+# Django 4.0+ 依赖 Python 3.8+，最新 v5.1 版本要求 Python3.10
+python -m venv venv
+source venv/bin/activate
 pip install django
 
-# 初始化项目，注意结尾的点
+# 初始化项目，注意结尾的「.」，表示在当前路径创建项目，否则会出现三层：mysite/mysite/mysite
 django-admin startproject mysite .
 ```
 
@@ -124,11 +125,17 @@ TIME_ZONE = 'UTC'  # 时区
 USE_I18N = True  # 启用国际化，适应不同的语言和地区而无需进行工程上的更改
 LANGUAGE_CODE = 'en-us'  # 语言
 
+# 根目录
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 # 静态文件路径配置
-STATIC_URL = '/static/'  # 单独应用
-STATICFILES_DIRS = [  # 公共
-    os.path.join(BASE_DIR, "statics"),
-]
+STATIC_URL = '/static/'  # 定义了静态文件的 URL 前缀
+STATICFILES_DIRS = [BASE_DIR / 'static']  # 包含了 Django 应该搜索静态文件的目录
+
+LOGIN_URL = '/login/'  # 登陆
+LOGIN_REDIRECT_URL = 'index'  # 登陆后重定向
+LOGOUT_REDIRECT_URL = 'index'  # 登出后重定向
 ```
 
 - set_dev
@@ -387,7 +394,7 @@ python manage.py test --keepdb
 
 ### 内置Server启动
 
-Django与Flask等框架都会内置一个简易的WSGI服务器，性能不高，主要用于开发阶段调试
+Django 与 Flask 等框架都会内置一个简易的 WSGI 服务器，性能不高，主要用于开发阶段调试
 
 > 参考：<https://docs.djangoproject.com/zh-hans/4.0/ref/django-admin/#runserver>
 
@@ -456,3 +463,13 @@ Silk 是一个用于 Django Web 框架的性能分析工具和调试工具。它
 - django-celery: 集成了 Celery，一个异步任务队列/基于消息传递的分布式任务执行系统。
 - django-cors-headers: 用于处理跨源资源共享（CORS）问题，特别是在开发 API 时非常有用。
 - django-debug-toolbar: 一款强大的调试工具，提供了对 Django 项目的详细内部信息。
+- django-extensions: 简化 Django 开发过程和管理任务
+    - Shell Plus：一个扩展的Python shell，它自动导入Django模型和其他有用的模块，方便你在开发或调试时快速使用。
+    - Runserver Plus：一个增强的runserver命令，提供了自动重新加载、自动迁移、自动生成图标、SQL查询分析等功能。
+    - Reset Password：一个命令用于重置用户的密码。
+    - Graph Models：生成Django应用中模型关系的图形表示。
+    - Loaddata/Fixture：提供额外的命令来处理数据装载和卸载。
+    - Secret Key：生成一个Django Secret Key。
+    - Test：增强了Django的测试命令，允许更细粒度地控制测试执行。
+- django-widget-tweaks: 扩展了 Django 表单的功能
+- django-browser-reload: 使页面可以自动重新加载，方便调试

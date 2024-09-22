@@ -141,7 +141,7 @@ print(json.loads(response.data.decode('utf-8')))
 
 <https://requests.readthedocs.io/en/latest>
 
-`python -m pip install requests`
+`pip install requests`
 
 ### requests.request
 

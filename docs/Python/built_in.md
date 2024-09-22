@@ -70,11 +70,11 @@ pprint(data)
 import random
 
 # 随机浮点数
-random.random()  # 0.5842210741472511
-random.uniform(10,20)  # 14.802146907481868
+random.random()  # 区间 [0.0, 1.0)，比如 0.5842210741472511
+random.uniform(10, 20)  # 14.802146907481868
 
 # 随机整数
-random.randint(1,10)  # 7
+random.randint(1, 10)  # 7
 
 # 在等差数列中随机选一个数
 random.randrange(0, 101, 2)  # 随机偶数

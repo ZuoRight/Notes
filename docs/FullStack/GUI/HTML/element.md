@@ -408,7 +408,7 @@ onmousedown、onmouseup：分别在用户按下和释放鼠标按钮时触发
 
 - `<base>`
 
-放在 head 中，用于指定页面中所有相对URL的基础URL，一个文档中只能有一个
+放在 head 中，用于指定页面中所有相对 URL 的基础 URL，一个文档中只能有一个
 
 ```html
 <!DOCTYPE html>

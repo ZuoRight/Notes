@@ -1,4 +1,4 @@
-## 布局
+# 布局
 
 ## Normal
 
@@ -167,9 +167,9 @@ align-content;
 
 ```css
 .wrapper {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 20px;
 }
 ```
 

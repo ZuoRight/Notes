@@ -83,21 +83,31 @@ jobs:
 
 > 官方文档：<https://docs.github.com/cn/pages>
 
-用户页面（User Pages）：每个用户或组织只能有一个用户页面，`https://<user>.github.io`
+每个用户或组织只能有一个主页面：`https://<user>.github.io` 或 `<organization>.github.io`
 
-项目页面：每个项目一个单独页面，`https://<user>.github.io/<repository>`
+用户或组织下的每个项目可以作为子页面：`https://<user>.github.io/<repository>`
 
 - 创建入口文件
 
-`index.html`、`index.md` 或 `README.md` 文件
+创建一个 `<user>.github.io` 的项目，包含 `README.md` 或者 `index.html`、`index.md` 文件
 
 - 解析域名
 
 ![20210725115345](http://image.zuoright.com/20210725115345.png)
 
-- 设置自定义域名
+```shell
+# example.com -> www.example.com -> <user>.github.io
 
-![20210725120036](http://image.zuoright.com/20210725120036.png)
+# 创建 A 记录将 example.com 解析到
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+
+# 设置自定义域名，官方文档建议使用www子域
+# 创建 CNAME 记录将 www.example.com 指向 <user>.github.io
+# 添加自定义域名后，会自动在项目中创建一个 CNAME 文件
+```
 
 - 访问测试
 

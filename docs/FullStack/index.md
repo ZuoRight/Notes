@@ -74,22 +74,32 @@ Model-View-Template
 
 ## 前后端分离
 
-- 未分离
+### 未分离
 
 后端控制前端的展示，渲染页面或重定向，
 
 经典的 MVC 框架时代：Servlet + Jsp + JavaBean
 
-- 半分离
+### 半分离
 
 前端负责开发页面，通过 Ajax 获取数据，采用 Dom 操作对页面进行数据绑定，最终由前端把页面渲染出来
 
 后端框架为主的 Java 框架时代：SSM（Spring + SpringMVC + Mybatis）, SSH（Spring + Struts2 + Hibernate）
 
-- 分离
+### 分离
 
 无论哪种前端，所需的数据基本相同，后端仅需开发一套逻辑对外只提供数据即可
 
-前端框架为主的 MVVM 时代：VueJS、AngularJS、ReactJS
+从前端框架为主的 MVVM 时代，再到 Node.js 引领的全栈时代
 
-再到 Node.js 引领的全栈时代
+SPA(Single Page Application)
+
+- React：由 Facebook 开发，最流行
+- Vue：由 Evan You（尤雨溪）开发，最易上手
+- Angular：由 Google 开发，最难，基于 TypeScript
+
+SSR(Server Side Rendering)
+
+- React 生态的 Next.js
+- Vue 生态的 Nuxt
+- Astro
