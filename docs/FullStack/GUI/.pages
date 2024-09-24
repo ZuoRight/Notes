@@ -2,6 +2,6 @@
 nav:
   - HTML
   - CSS
-  - css_framework.md
+  - tailwind.md
   - vue.md
   - ...
