@@ -1,6 +1,6 @@
 # Tailwind CSS
 
-官网：<https://tailwindcss.com/>
+官方文档：<https://tailwindcss.com/docs>
 
 Playground：<https://play.tailwindcss.com/>
 
@@ -11,7 +11,9 @@ Playground：<https://play.tailwindcss.com/>
 - 安装
 
 ```shell
-npm i -D tailwindcss
+# 通过 npm 安装 tailwindcss
+npm install -D tailwindcss
+# 创建 tailwind.config.js 文件
 npx tailwindcss init
 ```
 
@@ -20,6 +22,7 @@ npx tailwindcss init
 ```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    // 添加所有模版的路径
     content: ["./src/**/*.{html,js}", "./index.html"],
     theme: {
         extend: {},
@@ -28,7 +31,7 @@ module.exports = {
 }
 ```
 
-- `src/input.css`
+- 将 `@tailwind` 指令添加到 `src/input.css`
 
 ```css
 @tailwind base;
@@ -36,20 +39,22 @@ module.exports = {
 @tailwind utilities;
 ```
 
-- 构建
+- 启动 Tailwind CLI 构建进程
 
 ```shell
 npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
 ```
 
-- 使用
+- 开始在 HTML 中使用
 
 ```html
 <!doctype html>
 <html>
     <head>
         <meta charset="UTF-8">
+        <!-- 响应式布局 -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 引入 -->
         <link href="./src/output.css" rel="stylesheet">
     </head>
     <body>
@@ -161,12 +166,13 @@ npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
 - 控制 items 在 flex 和 grid 容器中如何沿主轴定位：`justify-xxx`
 - 控制 rows 在多行 flex 和 grid 容器中定位：`content-xxx`
 - 控制 content 的定位（同时控制 items 和 rows）：`place-content-xxx`
+- 文字居中：`text-center`
 
 ## 容器
 
 Tailwind 的容器不会自动居中，也没有任何内置的水平填充。（可以配置为默认）
 
-`container` 类设置元素的 max-width 以匹配当前断点的 min-width，响应式：`md:container`
+`container` 类设置元素的 max-width 以匹配当前断点的 min-width，响应式（默认 md）：`md:container`
 
 ```html
 <div class="container mx-auto px-4">
@@ -174,22 +180,26 @@ Tailwind 的容器不会自动居中，也没有任何内置的水平填充。�
 </div>
 ```
 
-填充 [Padding](https://tailwindcss.com/docs/padding)
+容器填充 [Padding](https://tailwindcss.com/docs/padding)
 
 - 所有边：`p-*`
 - 水平（padding-left & right）：`px-*`
 - 垂直（padding-top & bottom）：`py-*`
 
-边距 [Margin](https://tailwindcss.com/docs/margin)
+容器的边距 [Margin](https://tailwindcss.com/docs/margin)
 
 - 所有边：`m-*`
-- 水平（margin-left & right）：`mx-*`，水平居中：`mx-auto`
-- 垂直（margin-top & bottom）：`my-*`，垂直居中：`my-auto`
+- 水平（margin-left & right）：`mx-*`，容器水平居中：`mx-auto`
+- 垂直（margin-top & bottom）：`my-*`，容器垂直居中：`my-auto`
 
-尺寸
+容器的尺寸
 
 - 宽：`w-*`，最小宽：`min-w-*`，最大宽：`max-w-*`
-- 高：`h-*`，最小高：`min-h-*`，最大高：`max-h-*`
+- 高：`h-*`
+    - 最小高：`min-h-*`
+        - `min-h-full` 最小高度为父容器的 100%
+        - `min-h-screen` 最小高度为整个视口（viewport）的高度，即充满整个屏幕，通常用在 body 上
+    - 最大高：`max-h-*`
 - 同时设置宽高：`size-*`
 
 ## Django-Tailwind
