@@ -94,13 +94,13 @@ Tips：
 
 ## Proxy
 
-## Recording Settings
+### Recording Settings
 
 - Include
 
 - Exclude
 
-## External Proxy
+### External Proxy
 
 如果要抓包的网站，本身就需要代理才能访问，则可以先用 Charles 反向代理后，再充当前置代理将流量转出
 
@@ -108,25 +108,29 @@ Tips：
 
 Socket 或 HTTP 都可以，根据自己的代理进行选择，若选了 HTTP 通常还需要勾选上 HTTPS，如果不清楚就都配置上
 
-## Breakpoints
+### Breakpoints
 
 打断点，修改请求或返回内容
 
-## Throttle
+### Throttle
 
 模拟弱网
 
 ## Tools
 
-## Map Remote
+### Map Remote
 
 请求重定向，在不修改本地代码的情况下重定向网络流量到测试或开发环境
 
 比如前端改动了一些东西，在发布之前重定向到线上，用真实数据填充查看下效果
 
-## Map Local
+在请求上，右键，选择 「Map Remote」
+
+### Map Local
 
 将网络请求重定向或者说映射到本地，模拟返回内容
+
+在请求上，右键，选择 「Map Local」，然后选择返回的 Json 文件
 
 ### Rewrite
 

@@ -42,13 +42,13 @@ theme:
 mkdocs --help
 
 # 启动本地服务预览
-mkdocs serve
+mkdocs serve  # -a localhost:8000
 
 # 手动将 docs 目录中的 md 构建成 html 等静态文件
 mkdocs build
 
 # 自动构建并推送到 gh-deploy 分支
-# mkdocs gh-deploy
+mkdocs gh-deploy
 ```
 
 定制化修改主题：<https://squidfunk.github.io/mkdocs-material/customization/#extending-the-theme>
