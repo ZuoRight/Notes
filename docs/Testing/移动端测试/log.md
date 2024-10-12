@@ -14,6 +14,57 @@
 MonkeyScreenLog.Log  # 保存 Monkey 测试过程、应用层错误信息，发生 Native Crash 时，在此文件也会有记录
 ```
 
+## Logcat
+
+集成在 Android Studio 和 Android SDK 中，随时可以通过命令行或 IDE 查看
+
+![20240726225033](https://image.zuoright.com/20240726225033.png)
+
+```shell
+# 获取日志，按 Ctrl+C 停止记录
+adb logcat  # 格式：日志时间，进程号，线程号，级别，TAG，内容
+'
+main：主log区，默认
+events：事件相关的log
+radio：射频，telephony相关的log
+'
+
+# 导出日志
+adb logcat > logcat_output.txt
+
+# 清除旧日志
+adb logcat -c
+
+# 格式化输出log
+adb logcat -v <format>
+adb logcat -v time *:D  # 限定日志级别，比如 Debug
+adb logcat -v time MyAppTag:I  # 过滤特定标签，I 表示只显示 Info 级别及以上的日志
+
+adb logcat -f <filename>  # 输出log到指定文件
+adb logcat -b <buffer>  # 打印指定 buffer 的日志信息
+
+# 使用 grep 过滤关键字信息，加 -i 忽略大小写，使用正则 "^..Activity"
+# 获取包名和 Activity
+adb logcat | grep START
+'
+在吊起应用时会显示 START：cmp=包名
+所以打印带有 START 关键字的日志就可以找到当前吊起的应用的包名
+'
+
+# 获取入口
+adb logcat| grep -i displayed
+aapt dump badging mobike.apk | grep launchable-activity
+apkanalyzer
+```
+
+- bugreport
+
+收集 dumpsys、dumpstate、logcat 等数据，用于后续分析，比如耗电量
+
+```shell
+adb bugreport > path/bugreport.log
+```
+
 ## 用户日志上报
 
 应用程序出现问题时，采用 HTTP 的方式将日志及时上报到后台进行分析
@@ -79,45 +130,3 @@ Tombstone Crash
 ### Kernel 层
 
 Kernel Panic
-
-## Logcat
-
-集成在 Android Studio 和 Android SDK 中，随时可以通过命令行或 IDE 查看
-
-![20240726225033](https://image.zuoright.com/20240726225033.png)
-
-```shell
-# 获取日志
-adb logcat  # 格式：日志时间，进程号，线程号，级别，TAG，内容
-
-adb logcat -c  # 清除旧日志
-adb logcat -v <format>  # 格式化输出log
-adb logcat -f <filename>  # 输出log到指定文件
-adb logcat -b <buffer>  # 打印指定 buffer 的日志信息
-'
-main：主log区，默认
-events：事件相关的log
-radio：射频，telephony相关的log
-'
-
-# 使用 grep 过滤关键字信息，加 -i 忽略大小写，使用正则 "^..Activity"
-# 获取包名和 Activity
-adb logcat | grep START
-'
-在吊起应用时会显示 START：cmp=包名
-所以打印带有 START 关键字的日志就可以找到当前吊起的应用的包名
-'
-
-# 获取入口
-adb logcat| grep -i displayed
-aapt dump badging mobike.apk | grep launchable-activity
-apkanalyzer
-```
-
-- bugreport
-
-收集 dumpsys、dumpstate、logcat 等数据，用于后续分析，比如耗电量
-
-```shell
-adb bugreport > path/bugreport.log
-```
