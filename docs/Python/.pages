@@ -18,8 +18,4 @@ nav:
   - venv.md
   - log_and_config.md
   - debug.md
-  - pillow.md
-  - spider.md
-  - 序列化
-  - 表格数据处理
   - ...

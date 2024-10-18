@@ -3,6 +3,7 @@ nav:
   - index.md
   - table.md
   - crud.md
-  - other.md
+  - transaction.md
+  - db-index.md
   - db-api.md
   - ...

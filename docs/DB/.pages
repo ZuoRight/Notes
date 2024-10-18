@@ -1,0 +1,12 @@
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - index.md
+  - Structures
+  - Algo
+  - RDBMS
+  - NoSQL
+  - MQ
+  - 表格数据处理
+  - 序列化
+  - spider.md
+  - ...

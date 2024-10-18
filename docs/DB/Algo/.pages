@@ -1,8 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - MySQL
-  - Redis
-  - mongodb.md
-  - sqlite.md
+  - complexity_analysis.md
+  - binary_search.md
+  - sorting.md
   - ...

@@ -1,12 +1,9 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - complexity_analysis.md
   - array_and_linkedlist.md
   - stack_and_queque.md
   - hash_map.md
   - tree_and_heap.md
   - graph.md
-  - binary_search.md
-  - sorting.md
   - ...

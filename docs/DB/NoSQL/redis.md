@@ -117,8 +117,6 @@ Mac 上启动如果报错可以执行：`sudo xattr -rd com.apple.quarantine /Ap
 
 不同键值数据库采用的索引并不相同，不同的索引结构在性能、空间消耗、并发控制等方面具有不同的特征
 
-> 常见的索引的类型有：哈希表、B+ 树、字典树等。
-
 - RocksDB 采用跳表
 - Memcached 和 Redis 则采用哈希表作为 key-value 索引。
 
