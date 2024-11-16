@@ -1,16 +1,12 @@
 # Charles
 
-对于工具的使用，最好的学习方式就是看 [官方文档](https://www.charlesproxy.com/documentation/tools/)
+[官方文档](https://www.charlesproxy.com)
 
 首次打开记得选择授予特权（Grant Privileges）
 
 Charles 虽然收费，但可以免费试用 30 天，试用期过后，仍可继续使用，但每隔 30min 会强制退出，可以购买 Licenses 授权码，约 $30，填入到 Help -> Register Charles 中即可
 
 > 有 [在线网站](https://www.zzzmode.com/mytools/charles/) 可免费生成 Licenses
-
-- Structure 网络请求按访问域名分类
-- Sequence 网络请求按访问时间排序
-- Focus 聚焦显示想看的域名，其它域名归类到其它
 
 ## 配置代理
 
@@ -58,9 +54,14 @@ Tips：
 ## 抓取 HTTPS 包
 
 1. 配置 SSL 代理，Host 为 `*`，端口号为 `443` 或者也可以是 `*`
-2. 根据不同操作系统安装相应证书
 
 ![20200802230833](http://image.zuoright.com/20200802230833.png)
+
+2. 根据不同操作系统安装相应证书
+
+如果无法通过 `chls.pro/ssl` 下载证书，可以通过 Charles Help -> SSL Proxying -> Save Charles Root Certificate 然后传输到手机端安装
+
+> 不同操作系统安装的证书是一样的，但 Charles 在不同电脑的证书是不一样的，比如一台手机要被两台电脑的 Charles 代理，需要在手机上安装两个证书
 
 ### iOS 安装证书
 
@@ -78,7 +79,7 @@ Tips：
 
 以小米为例，浏览器访问 `chls.pro/ssl`，下载证书
 
-或者 Charles Help -> SSL Proxying -> Save Charles Root Certificate，使用 ADB 将证书传到手机中：`adb push path/charles-ssl-proxying-certificate.cer sdcard/`
+或者使用 ADB 将证书传到手机中：`adb push path/charles-ssl-proxying-certificate.cer sdcard/`
 
 然后在：设置 -> 安全 -> 更多安全设置 -> 更多安全设置 -> 加密与凭证 -> 安装证书 -> CA 证书，路径下找到证书并安装即可
 
@@ -96,12 +97,41 @@ Tips：
 
 ![20200802224002](http://image.zuoright.com/20200802224002.png)
 
+## 过滤请求
+
+### Structure
+
+网络请求按访问域名分类
+
+Filter 可过滤 host，比如输入 test 可过滤出所有 host 包含 test 的：xx1.test.com, xx2.test.com.cn 等
+
+Focus 聚焦显示想看的域名，其它域名归类到 Other Hosts，Focus 多个即可以同时过滤多个域名
+
+还可以通过 View -> Focused Hosts 来自定义设置
+
+### Sequence
+
+网络请求按访问时间排序
+
+可以设置是否 Auto scroll
+
+若勾选 Focused，则只显示 Focus 的请求
+
+Filter 可过滤 Code、Method、Host、Path、Status 等等
+
+还可以设置 Filter uses regex
+
+### Find in Session
+
+Edit -> Find 或者 Command + F 调起 Find 窗口
+
+![20241116122410](https://image.zuoright.com/20241116122410.png)
+
 ## Proxy
 
 ### Recording Settings
 
 - Include
-
 - Exclude
 
 ### External Proxy
