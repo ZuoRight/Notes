@@ -82,9 +82,13 @@ GRUB2，包含 `boot.img`(启动代码) 和 `core.img`(内核镜像)
 /etc/fstab  # 定义了系统中各个文件系统的挂载点和选项
 /etc/passwd  # 用户
 /etc/group  # 用户组
-/etc/hosts  # 定义了主机名和IP地址的对应关系
+/etc/hosts  # 让主机名（域名）映射到指定的IP地址
 /etc/resolv.conf  # 定义了系统使用的DNS服务器地址和搜索域名
+```
 
+比如正在开发一个网站，域名为 `newwebsite.com`，在还没有正式指向线上服务器之前，在开发环境下可使用 `/etc/hosts` 来将域名直接映射到指定 IP 去测试。
+
+```shell
 # 用户级配置文件
 ~/.bashrc  # 每启动shell时都会加载一次，主要用于定义环境变量、命令别名等
 

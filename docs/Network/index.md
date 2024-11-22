@@ -206,7 +206,9 @@ MX, Mail Exchange Record 指向处理邮件的服务器地址
 
 - 首先会查询本地 DNS 缓存是否有该域名的地址记录
 
-先查看浏览器自身的 DNS 缓存，没有再查找操作系统的 DNS 缓存文件 `/etc/hosts`
+先查看浏览器自身的 DNS 缓存 <chrome://net-internals/#dns>
+
+没有再查找操作系统的 DNS 缓存文件 `/etc/hosts`
 
 本地缓存通常包含以下信息
 

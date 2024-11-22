@@ -4,6 +4,6 @@ nav:
   - array_and_linkedlist.md
   - stack_and_queque.md
   - hash_map.md
-  - tree_and_heap.md
+  - tree.md
   - graph.md
   - ...
