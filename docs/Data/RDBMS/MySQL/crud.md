@@ -15,6 +15,10 @@ insert into <表名> (key1, key2, key3, ...)
 VALUES 
     (value1, value2, value3, ...),
     (value1, value2, value3, ...);
+-- 示例
+INSERT INTO demo.test
+(barcode,goodsname,price)
+VALUES ('0001','本',3);
 
 -- 将查询结果作为数据插入
 INSERT INTO statistics (class_id, average) 
