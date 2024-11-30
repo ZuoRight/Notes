@@ -1,10 +1,10 @@
 
 # 增删改查
 
-- Create: Insert
-- Delete
-- Update
-- Retrieve: Select
+- `Insert` 增（Create）
+- `Delete` 删（Delete）
+- `Update` 改（Update）
+- `Select` 查（Retrieve）
 
 ## 增 Insert
 

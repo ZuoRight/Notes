@@ -144,16 +144,35 @@ git pull [origin main]
 将提交后的代码推到远程仓库
 
 ```shell
-# 首次推送加-u参数，设置默认仓库和分支
-git push -u origin_name 远程分支
-git push origin_name 本地分支:远程分支  # 推送到与本地分支名不同的远程分支
+# 从本地仓库中，取出本地 dev 分支的所有最新提交，推送到名为 origin 的远程仓库中的 dev 分支（默认与本地分支同名）
+git push origin_name dev
 '
-提交后返回的一些信息
+如果远程仓库中已有名为 dev 的分支，则会将变更合并到远程的 dev 分支中
+如果没有冲突，远程分支将被更新到与本地分支相同的状态
+
+如果远程仓库中没有名为 dev 的分支，则会创建一个新的 dev 分支，然后将变推送到远程的 dev 分支中
+
+如果本地 dev 分支与远程 dev 分支的历史没有直接的线性关系（比如本地分支已经被重新基于其他提交），可能会遇到一个非快进（non-fast-forward）推送错误。
+在这种情况下，可能需要使用 --force 或 --force-with-lease 选项进行强制推送，或者合并变更到你的本地分支再尝试推送
+'
+
+# 也可以提交到与远程库不同名的分支
+git push origin_name 本地分支:指定远程分支
+
+# 如果第一次推送一个分支到远程，或者希望设置追踪信息，可以使用 -u 或 --set-upstream 选项
+# 推送代码的同时还会设置 dev 分支的上游（upstream）追踪信息，之后便可以使用 git pull 或 git push 而无需指定远程库和分支名
+git push -u origin dev
+
+
+# 提交后返回的一些信息
+'
 To xxx.git
   1edee6b..fbff5bc  main -> main
   (oldref..newref fromref → toref)
 '
+```
 
+```shell
 # 删除远程分支（仅移除指针，一段时间后才会被垃圾回收，这期间可以恢复）
 git push origin --delete dev
 ```
@@ -265,55 +284,19 @@ git branch -m old_name new_name  # 修改本地分支名称
 git branch -M main  # 修改本地主分支（改为main，与GitHub远程主分支保持一致）
 ```
 
-### checkout
+- 切换分支 checkout
 
 ```shell
-# 检出（指针指向），切换分支
+# 切换分支，就是改变指针指向，即检出
 git checkout dev  # 也可以用：git switch dev
 
-# 新建自当前分支，并切换
+# 新建并切换分支
 git checkout -b dev
 
 # 新建自远程xxx分支，并切换
 git checkout -b test origin/xxx
 git checkout --track origin/xxx  # 简写
 git checkout xxx  # 如果本地没有但恰巧远程有唯一匹配的xxx分支，则等同于上面命令
-```
-
-### merge
-
-将其它分支合并到当前分支，创建一个新的合并提交，如果没有冲突则可以快进合并
-
-如果两个分支同时修改了同一处，合并时会产生冲突，此时冲突的文件会变为未追踪状态，文件中会用 ``=======` 上下分割标识出两个分支冲突的部分，需要手动解决后再次add到暂存区后提交。
-
-```shell
-# 将 dev 合并到 main
-git checkout main
-git merge dev
-```
-
-### cherry-pick
-
-只将某个分支上的指定提交合并到当前分支
-
-```shell
-# 比如在 dev 分支修改一个 bug，然后只想将这次修复提交先合并到 main 分支，而不合入其它提交
-git checkout main
-git cherry-pick commit_id
-```
-
-### rebase
-
-变基，改变一个分支的基础，即找出两个分支的共同祖先，然后将当前分支分叉点之后的所有提交当作新的提交重放到目标分支的后面
-
-通常建议只对尚未推送的本地修改执行变基操作
-
-```shell
-# 比如，当本地 main 分支落后于远程 main 分支（此时本地分支被称之为偏离分支），pull 更新
-# 此时 dev 分支想合并 main 的更新，但相对 main 已有新的提交，就可以使用 rebase
-# 将 dev 分支的提交拼接在 main 拉取远程分支后的最新提交后面，看起来就像基于最新的 main 分支检出然后提交的一样
-git checkout dev
-git rebase main
 ```
 
 ## 标签
@@ -333,6 +316,67 @@ git push origin --tags  # 推送所有标签
 
 git tag -d v0.5  # 删除本地标签
 git push origin --delete v0.5  # 删除远程标签
+```
+
+## 合并
+
+![20241130154226](https://image.zuoright.com/20241130154226.png)
+
+### merge
+
+将其它分支合并到当前分支，创建一个新的合并提交，如果没有冲突则可以快进合并
+
+如果两个分支同时修改了同一处，合并时会产生冲突，此时冲突的文件会变为未追踪状态，文件中会用 ``=======` 上下分割标识出两个分支冲突的部分，需要手动解决后再次 add 到暂存区后提交。
+
+```shell
+# 将 dev 合并到 main
+git checkout main
+git merge dev
+'
+如果有冲突，可以选择终止合并
+git merge --abort
+
+也可以解决冲突后继续合并
+git add 有冲突修改的文件
+git commit -m "冲突修改后的说明"
+'
+```
+
+### rebase
+
+变基合并，改变分支的分叉合并点
+
+比如，基于本地 main 分支分叉出一个 dev 分支，然后远程 main 分支有新的更新（此时本地分支被称之为偏离分支），使用 rebase 合并更新，dev 分支的分叉点将变为基于最新的 main 分支
+
+```shell
+git checkout dev
+git rebase origin/main  # 直接基于远程仓库 rebase，当然也可以基于本地 main 分支，但需要先 pull
+'
+如果有冲突，可以取消合并
+git rebase --abort
+
+也可以解决冲突后继续合并
+git add 有冲突修改的文件
+
+解决冲突后继续合并
+git rebase --continue
+'
+# 在 rebase 过程中，冲突可能在每个被重新应用的提交上发生，需要逐个解决，反复重复以上过程
+```
+
+Git 会找到 `dev` 和 `origin/main` 分支的共同祖先，取回所有分叉后的更新重放到 dev 分支，然后再拼接上 dev 分支的提交（已提交的哈希值将会被改变），使 dev 看起来就像基于最新的 main 分支检出然后提交的一样
+
+通常建议只对尚未推送的本地修改执行变基操作，如果本地分支已经推送过远程，并且有人基于它开发，那么 rebase 后会导致其他人的本地仓库与远程仓库不一致
+
+### cherry-pick
+
+只将某个分支上的指定提交合并到当前分支
+
+比如在 dev 分支修改一个 bug，然后只想将这次修复提交先合并到 main 分支，而不合入其它提交
+
+```shell
+git checkout main
+git cherry-pick commit_id
 ```
 
 ## 回滚
@@ -448,53 +492,35 @@ doc/**/*.pdf  忽略 doc/ 目录及其所有子目录下的 .pdf 文件
 # 克隆远程仓库到本地master分支
 git clone git@code.xxx.net:demo/test.git
 '
-如果想参与一个开源项目，但没有代码推送权限，可以
+参与没有代码推送权限的项目，比如开源项目，可以
 1. 先 fork 副本到自己的远程仓库
 2. 然后 clone 副本到本地，创建新分支进行修改提交
 3. push 到自己的远程仓库，然后创建一个 PR(Pull Request) 给开源项目，在 GitLab 中叫做 MR（Merge Requests）
 
-关联公用的远程库，命名为upstream
+关联公用的远程库，假设命名为 upstream
 git remote add upstream common.git
 '
 
 # 新建并切换到新分支开发
 git checkout -b dev
-
 git add .  # 最好每个修改暂存一次，而不是都混在一起
 git commit -m "改动说明"
 
-# 切回本地主分支
-git checkout master
-# 将dev合并到master
-git merge dev
-'
-如果有冲突，可以选择终止合并
-git merge --abort
-
-也可以解决冲突后继续合并
-git add 解决了冲突的文件
-git commit -m "冲突修改后说明"
-'
 
 # 获取远程分支是否有新的改动
 git fetch origin master
-'
-如果先前克隆的远程副本，需要获取upstream是否有最新改动
-git fetch upstream
-'
-
 # 如果获取到新的改动则可以变基合并
-git rebase origin/master  # 或者 upstream/master
+git rebase origin/master
+# 也可以使用 merge 合并
 '
-如果有冲突则解决
-git add 有冲突修改的文件
-解决冲突后继续合并
-git rebase --continue
+git checkout master  # 切回本地主分支
+git pull origin master  # 拉取最新代码，也可以 fetch + merge
+git merge master  # 将 master 合并到 dev
 '
 
-# 推送到远程
+
+# 将 dev 分支推送到远程
 git push origin dev
-
 # 删除已被合并的分支
 git branch -d dev
 ```

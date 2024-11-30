@@ -99,39 +99,6 @@ show tables;
 ## 表操作
 
 ```sql
--- 创建表
-CREATE TABLE <表名>
-(
-    <key1> <key_type> <key_value> [字段级别约束] [默认值], 
-    <key2> ...,
-    ......
-    [表级别约束]
-);
-'''
-字段名称，需要避开系统关键字，比如：key, value
-字段类型
-字段值
-字段级别约束
-默认值：DEFAULT xxx
-表级别约束
-'''
-CREATE TABLE demo.test
-( 
-  barcode text,
-  goodsname text,
-  price int
-); 
-
--- 复制已存在的表结构来创建新表
-CREATE TABLE demo.a_copy LIKE demo.a;
-CREATE TABLE demo.a_snapshot SELECT * FROM a WHERE xxx=yyy;
-
--- 查看创建表的SQL语句
-show create table <表名>;
-
--- 删除表
-drop table if exist <表名>;
-
 -- 查看表结构
 describe students;  -- 可简写为 desc
 '''
@@ -147,17 +114,63 @@ mysql> DESCRIBE demo.test;                 附加信息
 '''
 ```
 
+### 创建表
+
+```sql
+CREATE TABLE <表名>
+(
+    字段名1 数据类型 [字段级别约束] [默认值]，
+    字段名2 数据类型 [字段级别约束] [默认值]，
+    ......
+    [表级别约束]
+);
+'''
+字段名称，需要避开系统关键字，比如：key, value
+默认值：DEFAULT xxx
+'''
+CREATE TABLE demo.importhead
+(
+    listnumber INT,
+    importtype INT DEFAULT 1,
+    quantity DECIMAL(10,3),
+    recordingdate DATETIME
+);
+
+-- 复制已存在的表结构来创建新表
+CREATE TABLE demo.a_copy LIKE demo.a;
+CREATE TABLE demo.a_snapshot SELECT * FROM a WHERE xxx=yyy;
+
+-- 删除表
+drop table if exist <表名>;
+
+-- 查看创建表的 SQL 语句
+show create table <表名>;
+```
+
 ![20211030160722](http://image.zuoright.com/20211030160722.png)
 
-- 修改表
+### 修改表
 
 ```sql
 -- 修改表存储引擎，创建表时默认使用 INNODB 引擎
 ALTER TABLE <表名> ENGINE=INNODB;
 
+-- 修改表名
+ALTER TABLE <表名> RENAME TO <新表名>;
+
+-- 修改字段名
+ALTER TABLE <表名> RENAME <旧字段名> TO <新字段名>;
+
+-- 修改字段类型
+ALTER TABLE <表名> MODIFY <字段名> float(3,1);
+
+-- 修改字段：可以修改类型、名、约束、位置等其中一个或多个属性
+ALTER TABLE <表名> CHANGE <旧字段名> <新字段名> <新类型、约束、位置等>;
+-- 比如字段名等不变，只将字段移动到首位
+ALTER TABLE <表名> CHANGE `itemnumber` `itemnumber` INT NOT NULL AUTO_INCREMENT FIRST;
+
 -- 新增字段
-ALTER TABLE <表名> 
-ADD COLUMN <字段名> INT [FIRST / AFTER <某字段>];
+ALTER TABLE <表名> ADD COLUMN <字段名> INT [FIRST / AFTER <某字段>];
 """
 COLUMN 可省略
 新增字段默认在最后，可以指定位置
@@ -165,41 +178,27 @@ COLUMN 可省略
     AFTER 移到某字段后
 """
 -- 示例，添加主键
-ALTER TABLE demo.test
-ADD COLUMN itemnumber int PRIMARY KEY AUTO_INCREMENT;
+ALTER TABLE demo.test ADD COLUMN itemnumber int PRIMARY KEY AUTO_INCREMENT;
 
--- 修改多个字段
+-- 新增多个字段
 ALTER TABLE <表名> 
 ADD COLUMN `B` TEXT NOT NULL AFTER `A`,
 ADD COLUMN `C` TEXT NOT NULL AFTER `B`;
 
--- 修改表名
-ALTER TABLE <表名> 
-RENAME TO <新表名>;
-
--- 只修改字段名
-ALTER TABLE <表名> 
-RENAME <旧字段名> TO <新字段名>;
-
--- 只修改字段类型
-ALTER TABLE <表名> 
-MODIFY <字段名> float(3,1);
-
--- 修改字段：可以修改名、类型、约束、位置等其中一个或多个属性
-ALTER TABLE <表名> 
-CHANGE <旧字段名> <新字段名> <新类型、约束、位置等>;
--- 比如字段名等不变，只将字段移动到首位
-ALTER TABLE <表名> 
-CHANGE `itemnumber` `itemnumber` INT NOT NULL AUTO_INCREMENT FIRST;
-
 -- 删除字段
-ALTER TABLE <表名>
-DROP <字段名>;
+ALTER TABLE <表名> DROP <字段名>;
 ```
 
 ## 字段类型
 
 合理的定义数据类型，可以提升数据查询和处理速度，反之可能会引发各种错误
+
+经验：
+
+- 确定是整数，就用 INT
+- 浮点数，就用定点数类型 DECIMAL
+- 字符串，只要不是主键，就用 TEXT
+- 日期与时间，就用 DATETIME
 
 ### 整数
 
@@ -215,7 +214,31 @@ DROP <字段名>;
 - `DOUBLE` 双精度浮点数
 - `REAL`，默认为 DOUBLE，也可以设置为 FLOAT：`SET sql_mode="REAL_AS_FLOAT";`
 
-由于浮点数在计算机中需要转换为二进制形式存储，小数部分会有无法精准转换的问题，所以浮点数存储是不精确的
+由于浮点数在计算机中需要转换为二进制形式存储，小数部分乘基取整正序，基为 2，所以尾数若不是 0 或 5，得不到整数，会有无法精准转换的问题
+
+所以浮点数存储是不精确的，金融等对精度要求较高的场景通常使用定点数类型 DECIMAL
+
+```sql
+mysql> SELECT *
+    -> FROM demo.goodsmaster;
++---------+-----------+-------+------------+
+| barcode | goodsname | price | itemnumber |
++---------+-----------+-------+------------+
+| 0001    | 书        |  0.47 |          1 |
+| 0002    | 笔        |  0.44 |          2 |
+| 0002    | 胶水      |  0.19 |          3 |
++---------+-----------+-------+------------+
+3 rows in set (0.00 sec)
+
+
+mysql> SELECT SUM(price)
+    -> FROM demo.goodsmaster;
++--------------------+
+| SUM(price)         |
++--------------------+
+| 1.0999999999999999 |
++--------------------+
+```
 
 ### 定点数
 
@@ -224,10 +247,8 @@ DROP <字段名>;
 所以对精度要求高的业务场景通常使用 `DECIMAL` 类型存储，不过定点数需要更多的存储空间
 
 ```sql
+-- DECIMAL(M,D) M 表示整数加小数的位数，D 表示小数的位数，所以 M>D
 ALTER TABLE demo.goodsmaster MODIFY COLUMN price DECIMAL(5,2);
--- DECIMAL(M,D)
---     M 表示整数加小数的位数
---     D 表示小数的位数，所以 M>D
 ```
 
 ### 字符串
@@ -268,7 +289,11 @@ TIME 的取值范围不是 `-23:59:59～23:59:59`，目的是可以 TIME 来表�
 
 ## 约束
 
-约束限定了表中数据应该满足的条件，MySQL会根据这些限定条件对表进行监控，阻止破坏约束条件的操作执行，并提示错误，从而确保表中的数据的唯一性、合法性、完整性。
+约束限定了表中数据应该满足的条件，MySQL 会根据这些限定条件对表进行监控，阻止破坏约束条件的操作执行，并提示错误，从而确保表中的数据的唯一性、合法性、完整性。
+
+### 默认值约束
+
+`DEFAULT xxx`
 
 ### 非空约束
 
@@ -282,7 +307,19 @@ TIME 的取值范围不是 `-23:59:59～23:59:59`，目的是可以 TIME 来表�
 
 `UNIQUE`
 
-即字段的值不能重复，可以指定多个唯一字段，可以为空值
+即字段的值不能重复，可以指定多个唯一性字段，但主键只能有一个
+
+满足唯一性约束的字段，可以是空值，但满足主键约束的字段，自动满足非空约束
+
+### 自增约束
+
+`AUTO_INCREMENT`
+
+可以被设置自增约束的字段必须是整数类型
+
+可以给自增字段设置值，值可以不连续，若没设置值的时候，会在已有的最大值基础之上自动 `+1` 作为值
+
+通常需要跟唯一约束或主键约束一起使用，为了确保自增字段的唯一性，MySQL 8.0 引入了更严格的自增锁机制，使得在并发插入时更少发生自增值重复的问题。
 
 ### 主键约束
 
@@ -334,15 +371,3 @@ REFERENCES importhead (listnumber)
 - 多对多
 
 外键约束可以保护数据误删的情况，但也比较消耗系统资源，在高并发或者大型互联网项目中，通常会降低外键约束的使用，而是转移到业务层来实现，比如删除主表记录时，增加检查从表中是否应用了这条记录的功能，如果应用了，就不允许删除。
-
-### 自增约束
-
-`AUTO_INCREMENT`
-
-只有整数类型的字段可以被设置自增约束
-
-当没有给自增约束字段设置值的时候，它会在已有的最大值基础之上自动加1作为值
-
-### 默认值约束
-
-`DEFAULT xxx`
