@@ -51,7 +51,7 @@ Redis 使用 ANSI C 语言编写，采用单进程单线程模型和非阻塞多
 
 MySQL 作为数据库，提供持久化功能，并通过主从架构提高数据库服务的高可用性，实际场景中大多数情况下可能都是读操作，可以用 Redis 作为 MySQL 的缓存，降低 I/O 的访问，解决读写效率要求很高的请求，不过它存储的数据量有限，适合存储热点数据。
 
-Redis 作为缓存服务只是最基础的用法，通过扩展插件可以实现更高级的玩法，可以将各种中间件在内存里实现一遍，比如 RedisJson 支持复杂的 Json 查询和更新，相当于内存版的 MongoDB RedisSearch 就是一个简单的内存版的 ES，RedisGraph 支持图数据库功能，类似 neo4j，RedisTimeSeries 处理时间序列数据，即内存版的 InfluxDB
+Redis 作为缓存服务只是最基础的用法，通过扩展插件可以实现更高级的玩法，可以将各种中间件在内存里实现一遍，比如 RedisJson 支持复杂的 JSON 查询和更新，相当于内存版的 MongoDB RedisSearch 就是一个简单的内存版的 ES，RedisGraph 支持图数据库功能，类似 neo4j，RedisTimeSeries 处理时间序列数据，即内存版的 InfluxDB
 
 如果要支持高可用高扩展就涉及到主从、哨兵、集群模式等。
 
@@ -294,9 +294,9 @@ ZRANGE key start stop [WITHSCORES]  # 按score从小到大排
 
 ### RedisJSON
 
-存储 Json 数据，如果更新不频繁，可以用 String，频繁则用 Hash
+存储 JSON 数据，如果更新不频繁，可以用 String，比如说把用户的登陆信息转成 JSON 字符串后缓存起来，频繁则用 Hash
 
-如果需要复杂操作，则需要 Redis 5.0+，安装 RedisJSON 模块，直接支持存储 Json 类型
+如果需要复杂操作，则需要 Redis 5.0+，安装 RedisJSON 模块，直接支持存储 JSON 类型
 
 ## 过期数据处理
 

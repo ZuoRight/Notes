@@ -96,6 +96,24 @@ args=(sys.stdout,)
 format=%(asctime)s - %(name)s - %(levelname)s - %(message)s
 ```
 
+## Loguru
+
+第三方的开源日志库：<https://github.com/Delgan/loguru>
+
+- 默认设置: 提供了友好的默认设置，包括颜色化输出和丰富的信息格式。
+- 易用性: 配置简单，减少了代码量和开发者的学习曲线。
+- 日志管理: 内置了日志轮转、压缩和删除机制，非常适合长期运行的应用。
+- 异常处理: 提供更好的异常追踪和捕获功能。
+- 默认支持线程安全，并且通过 enqueue=True 参数可以轻松实现异步和多进程安全的日志记录
+
+`pip install loguru`
+
+```python
+from loguru import logger
+
+logger.debug("That's it, beautiful and simple logging!")
+```
+
 ## python-dotenv
 
 项目开发（尤其是代码开源）时需要考虑隐私数据脱敏，比如私钥，密码等

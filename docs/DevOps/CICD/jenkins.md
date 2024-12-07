@@ -18,11 +18,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ### WAR File
 
-Jenkins Web 应用程序 ARchive (WAR) 文件捆绑了 
-
-`jenkins.war` 内置了 Winstone（一个 Jetty servlet 容器包装器）
-
-所以可以直接运行
+`jenkins.war` 内置了 Winstone（一个 Jetty servlet 容器包装器），所以可以直接运行
 
 ```shell
 java -jar jenkins.war

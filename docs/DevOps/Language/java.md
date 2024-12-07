@@ -35,7 +35,10 @@ JSR388 定义了重要版本 JavaSE 13 平台的规范，包括新的语言功�
 
 - JRE, Java Runtime Environment
 - JDK, [Java Development Kit](https://www.oracle.com/java/technologies/downloads/)
-    - 有些软件在高版本 JDK 环境下会有各种莫名其妙的问题，可以使用 Java 8，即 [Java 1.8](https://www.oracle.com/java/technologies/downloads/?er=221886#java8)
+
+有些软件在高版本 JDK 环境下会有各种莫名其妙的问题，可以使用较稳定的 Java 8，即 [Java 1.8](https://www.oracle.com/java/technologies/downloads/?er=221886#java8)
+
+其它 LTS(Long Term Support) 版本有：JDK 11、17
 
 ### Mac
 
