@@ -57,21 +57,22 @@ class MyClass:
         return "This is a protected method"
 
     
-    # 实例方法，实例化后调用，需要参数，惯用self
-    def func(self):
-        pass
+    # 实例方法，当需要处理实例的具体状态或行为时使用（即 self 指向的对象）
+    # 实例化后调用，需要参数，惯用 self
+    def get_value(self, value):
+        return self.value
 
     
-    # 类方法，需要参数，惯用cls
+    # 类方法，当需要处理类级别的数据或行为，或者当需要创建类实例的替代方法时使用
+    # 需要参数，惯用 cls
     @classmethod
-    def method_class(*args):
-        return *args
+    def get_count(cls):
+        return cls.count
 
 
-    """
-    静态方法，无需cls或self参数
-    一般用于定义一些不需要与类交互但与类紧密相关的函数，其实也可以放到类外
-    """
+    # 静态方法，当方法与类有关但不需要访问类或实例的任何属性或方法时使用，通常是为了代码的组织性
+    # 无需传递 cls 或 self 参数
+    # 实例方法调用静态方法：self.xxx 或者 <className>.xxx
     @staticmethod
     def method_static(*args):
         return *args
@@ -162,7 +163,7 @@ if __name__ == "__main__":
     obj()  # 自动执行 __call__函数
     print(obj)  # 自动执行__str__函数
 
-    # 访问实例属性，无法访问不加self.的属性
+    # 访问实例属性，无法访问不加 self. 的属性
     print(obj.a)
     print(obj._Foo__b)  # 私有
 
@@ -267,7 +268,8 @@ animal_sound(cat)  # 输出 Meow
 Python 中一切皆对象，全部继承自 object 基类（也称作父类、超类）
 object 在 Py2.x 中必须写，在 Py3.x 可省略不写
 """
-class Parent:
+# class Parent(object)  # py2
+class Parent:  # py3
     def __init__(self, a, b):
         self.a = a
         self.b = b

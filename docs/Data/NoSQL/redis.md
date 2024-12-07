@@ -1,15 +1,59 @@
 # Redis
 
-[官方文档](https://redis.io/docs/getting-started/){ .md-button .md-button--primary }
-
+- [官方文档](https://redis.io/docs/getting-started/)
 - [命令查询](https://redis.io/commands/#string)
-- [在线演练](https://try.redis.io/)
 
-Redis(Remote Dictionary Server)是一个字典结构的基于内存的数据库，可以归为缓存。
+假设某个服务对外提供 10k/s 次查询，但背后的 MySQL 只支持 5k QPS，完全扛不住，这类大流量查询的场景很常见，比如秒杀活动或者抢票，怎么办，没有什么是加个中间层不能解决的，MySQL 主要存储在磁盘中，我们知道查询内存比查询磁盘的速度要快，所以如果能把数据放在内存中，则可以大幅提升查询性能。
+
+> 概念解释参考自：<https://www.bilibili.com/video/BV18jBiYpEDJ>
+
+- 本地缓存
+
+比如可以在内存中申请一个字典，作为本地缓存，查询的时候优先去字典中找数据，通过 key 查询对应的 value，找不到再去查 MySQL，然后返回给用户的同时缓存到字典中，下次就可以直接在字典中查询到。
+
+- 远程缓存
+
+为了保障系统高可用，一般服务通常都不止一个实例，如果每个实例都各自使用一份本地缓存则会造成内存浪费，所以考虑将字典抽离出来，单独做成一个远程缓存服务
+
+![20241207160548](https://image.zuoright.com/20241207160548.png)
+
+但被多个服务调用时会出现并发问题，解决方式是，不管有多少个网络连接，都统一塞到一个线程上，使用单线程对字典进行读写，即可避免并发问题和线程切换开销。
+
+![20241207160458](https://image.zuoright.com/20241207160458.png)
+
+针对以上服务进行优化
+
+- 支持多种数据类型
+
+字典的 key 是字符串，但 value 支持多种类型，除了字符串外，还可以支持先进先出（FIFO）的 List，可以去重的 Set，可以做排行榜的 ZSet
+
+- 缓存过期
+
+随着缓存的数据越来越多，需要一些过期策略让宝贵的内存空间不被浪费，何时过期，客户端可以设置
+
+- 缓存淘汰策略
+
+虽然客户端可以设置过期时间，但不可控，所以还需要缓存服务自己增加一些淘汰策略，比如可以将最近最少使用的内存删掉，即所谓的 LRU(Least Recently Used)
+
+- 持久化
+
+一旦缓存服务重启，那内存里的缓存数据就都没了，所以考虑在缓存服务里加一个异步子进城，定期将全量内存数据生成快照持久化到磁盘文件里，来保证重启后通过加载快照文件恢复缓存数据，这就是所谓的 RDB，还有一种 AOF 方式。
+
+- 简化传输协议
+
+通过 TCP 协议直接传输
+
+![20241207165802](https://image.zuoright.com/20241207165802.png)
+
+经过优化后的远程缓存服务，变成一个高性能、支持多种数据类型、和各种缓存淘汰策略、并提供一定的持久化能力的超级缓存服务，这就是我们常说的 Redis(Remote Dictionary Server)
 
 Redis 使用 ANSI C 语言编写，采用单进程单线程模型和非阻塞多路 I/O 复用机制，查询效率非常高，根据官方提供的数据，每秒最多处理的请求可以达到 10 万次。
 
 MySQL 作为数据库，提供持久化功能，并通过主从架构提高数据库服务的高可用性，实际场景中大多数情况下可能都是读操作，可以用 Redis 作为 MySQL 的缓存，降低 I/O 的访问，解决读写效率要求很高的请求，不过它存储的数据量有限，适合存储热点数据。
+
+Redis 作为缓存服务只是最基础的用法，通过扩展插件可以实现更高级的玩法，可以将各种中间件在内存里实现一遍，比如 RedisJson 支持复杂的 Json 查询和更新，相当于内存版的 MongoDB RedisSearch 就是一个简单的内存版的 ES，RedisGraph 支持图数据库功能，类似 neo4j，RedisTimeSeries 处理时间序列数据，即内存版的 InfluxDB
+
+如果要支持高可用高扩展就涉及到主从、哨兵、集群模式等。
 
 ![20240809170218](https://image.zuoright.com/20240809170218.png)
 
@@ -55,10 +99,10 @@ brew services start/stop redis
 ```shell
 # 启动服务
 docker run --name some-redis -d redis
-"""
+'
 docker run --name some-redis -d redis redis-server --save 60 1 --loglevel warning
 持久化存储，可自定义路径：-v /docker/host/dir:/data
-"""
+'
 # 连接
 docker run -it --network some-network --rm redis redis-cli -h some-redis
 ```
@@ -87,10 +131,10 @@ quit  # 退出连接
 CONFIG GET dir  # 获取安装目录，"/usr/local/redis/bin"
 save  # 备份当前数据库到安装目录中的dump.rdb文件
 
-"""
+'
 默认支持16个库（可以通过配置文件支持更多，无上限），从0开始递增数字命名
 连接后会自动选择0号数据库，可手动切换
-"""
+'
 select 1
 ```
 
@@ -133,42 +177,42 @@ del key  # 删除key
 
 ```shell
 # set key value
-set name zhangsan
+set name zhangsan  # 创建、更新
 # 获取
 get name
 ```
 
 ### Hash
 
-字符串类型的哈希，类似Python的Dict
+哈希，类似其他语言的字典或对象
 
 ```shell
 # 添加：hset key field value
 hset dict1 username zhangsan
 hset dict1 age 28
 
-# 获取field
-hkeys dict
-"""
-1) "username"
-2) "age"
-"""
-
-# 获取value
-hget user1 age  # "28"
+# 设置多个 field：hmset key field1 value1 field2 value2...
+hmset dict1 username zhangsan age 28
 
 # 删除字段
 hdel dict1 age
 
-# 设置多个field：hmset key field1 value1 field2 value2...
-hmset dict1 username zhangsan age 28
+# 获取 field
+hkeys dict
+'
+1) "username"
+2) "age"
+'
 
-# 获取多个field的value
+# 获取 value
+hget user1 age  # "28"
+
+# 获取多个 field 的 value
 hmget user1 username age
-"""
+'
 1) "zhangsan"
 2) "28"
-"""
+'
 ```
 
 ### List
@@ -182,27 +226,28 @@ rpush list dianwei lvbu  # 向列表右侧添加元素
 
 # 删除
 lrem list num value
-"""
+'
 num=0 删除所有value元素
 num>0 从左边查找，删除第n个
 num<0 从右边查找，删除第n个
-"""
+'
 
-# 获取
-llen list  # 返回列表长度
-lindex list 1  # 获取指定index的元素
+# 返回列表长度
+llen list
+# 获取指定 index 的元素
+lindex list 1
 # LRANGE key start stop
-lrange list 0 2
-"""
+lrange list 0 -1  # 获取所有元素
+'
 1) "liubei"
 2) "guanyu"
 3) "zhangfei"
-"""
+'
 ```
 
 ### Set
 
-无序的字符串集合，元素不能重复，与Python集合类似
+无序的字符串集合，元素不能重复
 
 ```shell
 # SADD key member [...]
@@ -217,11 +262,11 @@ scard set  # 获取集合长度
 smembers sets  # 获取集合元素
 ```
 
-### SortedSet
+### ZSet
 
-有序的字符串集合，元素不能重复，简称ZSet，按score排序（添加元素时指定score）
+有序的字符串集合，元素不能重复，SortedSet，简称 ZSet，按 score 排序（添加元素时指定 score）
 
-ZSet与List都是有序的，区别在于底层实现不同，List操作两端的元素很快，但操作中间元素较慢，而ZSet操作中间元素也很快，而且通过score调整顺序也比List更高效，只需要改变score大小即可
+ZSet 与 List 都是有序的，区别在于底层实现不同，List 操作两端的元素很快，但操作中间元素较慢，而 ZSet 操作中间元素也很快，而且通过 score 调整顺序也比 List 更高效，只需要改变 score 大小即可
 
 ```shell
 # ZADD key score member [...]
@@ -236,32 +281,42 @@ zscore heroScore liubei  # 获取score
 
 # 排序
 ZREVRANGE heroScore 0 2  # 显示排名前三的英雄及数值
-"""
+'
 ZREVRANGE key start stop [WITHSCORES]  # 按score从大到小排
 ZRANGE key start stop [WITHSCORES]  # 按score从小到大排
 可选项withscore 显示score分数
-"""
+'
 ```
 
 ### Streams
 
-数据流，5.0版本新增的，主要用于消息队列
+数据流，5.0 版本新增的，主要用于消息队列
+
+### RedisJSON
+
+存储 Json 数据，如果更新不频繁，可以用 String，频繁则用 Hash
+
+如果需要复杂操作，则需要 Redis 5.0+，安装 RedisJSON 模块，直接支持存储 Json 类型
 
 ## 过期数据处理
 
-随着缓存的数据越来越多，需要给缓存加一个过期时间（由应用程序设置），定期清理过期数据，但如果全部扫描一遍要花费大量时间，所以选择随机删除，但有可能某些数据一直不会被随机算法选中，所以又增加了惰性删除，即如果有请求访问到过期数据，则立刻删除，但如果有些键值一直没有请求，则依然不会被删除而占据内存空间，所以还需要内存淘汰策略。
+随着缓存的数据越来越多，需要给缓存加一个过期时间（由应用程序设置），定期清理过期数据
 
-查询的数据如果不存在，则无法缓存，称之为缓存穿透
+但如果全部扫描一遍要花费大量时间，所以选择随机删除
 
-如果某热点数据缓存过期被删除时恰好遇到大规模请求，则请求会抵达mysql，称之为缓存击穿。
+但有可能某些数据一直不会被随机算法选中，所以又增加了惰性删除，即如果有请求访问到过期数据，则立刻删除
 
-如果恰巧一大批热点数据缓存同时过期，则会发生缓存雪崩。
+但如果有些键值一直没有请求，则依然不会被删除而占据内存空间，所以还需要内存淘汰策略。
+
+- 缓存穿透：查询的数据如果不存在，则无法缓存
+- 缓存击穿：如果某热点数据缓存过期被删除时恰好遇到大规模请求，则请求会抵达 MySQL
+- 缓存雪崩：如果恰巧一大批热点数据缓存同时过期
 
 所以应用程序最好将缓存过期时间设置的分散一些，还可以将热点数据设置为永不过期。
 
 ## 持久化存储
 
-Memcached 和 Redis 都是属于内存键值数据库，但Redis有两种持久化存储方式
+Memcached 和 Redis 都是属于内存键值数据库，但 Redis 有两种持久化存储方式
 
 > 键值对保存在内存和外存的优缺点  
 > 保存在内存的好处是读写很快，毕竟内存的访问速度一般都在百 ns 级别，但是，潜在的风险是一旦掉电，所有的数据都会丢失。  

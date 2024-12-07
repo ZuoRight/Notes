@@ -102,15 +102,17 @@ string.digits: '0123456789'
 
 ## os
 
-os模块封装了操作系统的目录和文件操作  
-注意：有些在os模块中，有些在os.path模块中  
-另外：**shutil** 模块是对os模块的一个补充
+`os` 模块封装了操作系统的目录和文件操作
 
-`import os`
+> 注意：有些在 `os` 模块中，有些在 `os.path` 模块中
+
+`shutil` 模块是对 `os` 模块的一个补充
 
 ### os.xxx
 
 ```python
+import os
+
 os.name  # 操作系统类型（posix代表Linux/Unix/Mac OS X，nt代表Windows）
 os.uname()  # 获取详细操作系统信息（Windows不支持）
 ```
@@ -133,17 +135,23 @@ os.remove()  # 移除文件
 ### os.path.xxx
 
 ```python
-os.path.dirname(__file__)  # 获取文件的目录
-os.path.dirname(os.path.dirname(__file__))  # 获取上级目录
-os.path.abspath(__file__)  # 获取文件的绝对路径/完整路径，带文件名
+import os
 
-os.path.splitext('/path/to/file.txt')  # ('/path/to/file', '.txt')
+os.path.abspath(__file__)  # 获取当前文件的绝对路径（包含文件名） /Users/chonge/path/to/file.txt
+os.path.dirname(__file__)  # 获取当前文件的目录（不包含文件名） /Users/chonge/path/to
+os.path.dirname(os.path.dirname(__file__))  # 获取上级目录 /Users/chonge/path
 
 base_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+os.path.splitext('/path/to/file.txt')  # 分离路径和后缀 ('/path/to/file', '.txt')
+os.path.join("/path/to/", "file.txt")  # 拼接，注意，/ 不要加到文件名前面，而是加到路径最后
 ```
 
+检测文件路径是否存在，不存在则新建
+
 ```python
-# 检测文件路径是否存在，不存在则新建
+import os
+
 result_path = "/xxx"
 if not os.path.exists(result_path):
     os.mkdir(result_path)
@@ -167,18 +175,45 @@ os.system("bash command")  # 运行shell命令
 
 ### os.walk()
 
+用于遍历目录树
+
+```python
+os.walk(top, topdown=True, onerror=None, followlinks=False)
+'''
+top: 要遍历的目录路径的字符串。
+topdown: 
+    如果为 True，则目录是自顶向下遍历；
+    如果为 False，则是自底向上遍历。默认是 True。
+onerror: 
+    如果处理过程中发生错误，可以通过这个回调函数来处理错误。
+    默认是 None，意味着会抛出异常。
+followlinks: 
+    如果为 True，会遍历符号链接（软链接）的目录。
+    默认是 False。
+'''
+
+# 会生成一个三元组的迭代器：(dirpath, dirnames, filenames)
+# dirpath: 当前目录的路径 str
+# dirnames: 所有子目录的列表 list
+# filenames: 所有文件的列表 list
+```
+
+基础使用
+
 ```python
 import os
 
-# 基础方法
 for dirpath, dirnames, filenames in os.walk(path):
     print(dirpath, dirnames, filenames)
     """
     har ['haha'] ['11.har']
     har/haha [] ['22.har']
     """
+```
 
-# 获取路径下指定后缀的所有文件名
+获取路径下指定后缀的所有文件名
+
+```python
 def get_files(path, file_type=None):
     _list = []
     for dirpath, dirnames, filenames in os.walk(path):
