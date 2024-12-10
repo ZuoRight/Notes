@@ -81,7 +81,7 @@ docker volume rm hello  # 删除数据卷
 docker volume prune  # 删除所有未使用的卷
 ```
 
-挂载
+创建卷并挂载到容器内的某个路径
 
 ```shell
 # 方式1
@@ -98,5 +98,5 @@ dst
 '
 
 # 方式2，不支持与 docker services 一起使用
-docker run -v volume_name:/app/data image:tag
+docker run --volume/-v volume_name:/app/data image:tag
 ```

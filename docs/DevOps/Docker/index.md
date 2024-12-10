@@ -275,7 +275,7 @@ docker inspect --format '{{ .State.Pid }}' <容器ID>
 ls -l /proc/<容器pid>/ns
 
 # 指定–net=host，就意味着这个容器不会为进程启用 Network Namespace。这就意味着，这个容器拆除了 Network Namespace 的“隔离墙”，所以，它会和宿主机上的其他普通进程一样，直接共享宿主机的网络栈。这就为容器直接操作和使用宿主机网络提供了一个渠道。
-docker run -it --net container:4ddf4638572d busybox ifconfig
+docker run -it --network container:4ddf4638572d busybox ifconfig
 ```
 
 ### Cgroup

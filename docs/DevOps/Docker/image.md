@@ -167,6 +167,11 @@ docker commit -m="提交信息" -a="作者" <容器ID> <目标镜像名:tag>
 
 busybox 是一个瑞士军刀式的 Linux 工具箱
 
+```shell
+# 命令以 busybox 开头，比如
+busybox ping 172.18.0.3
+```
+
 ```dockerfile
 # Dockerfile.busybox
 FROM busybox
@@ -182,13 +187,6 @@ CMD echo "hello world"
 # Removing intermediate container c5a762edd1c8
 #  ---> b61882f42db7
 # Successfully built b61882f42db7
-```
-
-等价于
-
-```shell
-docker pull busybox      
-docker run busybox echo hello world
 ```
 
 - 示例2

@@ -28,11 +28,11 @@ java -jar jenkins.war
 
 ### Docker
 
-[官方镜像](https://hub.docker.com/r/jenkins/jenkins/)：`jenkins/jenkins`
-
-该镜像不包含 Docker CLI，并且未捆绑常用的 Blue Ocean 插件及其功能
+- 运行 docker in docker
 
 为了在 Jenkins 容器内执行 Docker 命令，需要在 Docker 中运行一个专用于 Jenkins 的 Docker 容器，即：`docker:dind`
+
+> <https://hub.docker.com/_/docker>
 
 先创建个网络：`docker network create jenkins`
 
@@ -41,7 +41,7 @@ docker run \
   --name jenkins-docker \  # 指定容器名称
   --rm \  # 关闭时自动删除容器
   --detach \  # 后台运行
-  --privileged \  # 需要特权才能访问 DinD
+  --privileged \  # 目前，在 Docker 中运行 Docker 需要特权访问才能正常运行，应谨慎使用，因为它提供了对主机环境的完全访问权限
   --network jenkins \  # 指定网络，以便于 Jenkins 主容器和 DinD 之间的通信
   --network-alias docker \  # 为 DinD 指定网络别名为 docker，方便在同一网络内的其他容器通过该别名访问它
   --env DOCKER_TLS_CERTDIR=/certs \  # 允许在 Docker 服务器中使用 TLS
@@ -64,7 +64,11 @@ docker run --name jenkins-docker --rm --detach \
 docker stop jenkins-docker
 ```
 
-运行 Jenkins 容器
+- 运行 Jenkins 容器
+
+[官方镜像](https://hub.docker.com/r/jenkins/jenkins/)：`jenkins/jenkins`
+
+该镜像不包含 Docker CLI，并且未捆绑常用的 Blue Ocean 插件及其功能
 
 ```shell
 docker run \ 
@@ -78,7 +82,7 @@ docker run \
   -p 8080:8080 \  # 8080 为 Jenkins 服务 Web 端口
   -p 50000:50000 \  # 50000 为 Jenkins 和其他节点通讯用的端口
   --volume jenkins-docker-certs:/certs/client:ro \ 
-  --volume jenkins-data:/var/jenkins_home \ 
+  --volume jenkins-data:/var/jenkins_home \  # 创建或使用一个名为jenkins-data的Docker卷，挂载到容器内的/var/jenkins_home目录
   jenkins/jenkins:lts
 
 # 无注释版，方便复制粘贴
@@ -90,6 +94,21 @@ docker run --name jenkins --restart=on-failure --detach \
   --volume jenkins-docker-certs:/certs/client:ro \
   jenkins/jenkins:lts
 ```
+
+在 Jenkins 容器中安装工具
+
+```shell
+docker exec -it -u root jenkins bash  # 以root身份进入容器
+apt update
+
+# 安装 busybox
+apt install busybox  # busybox ping 172.18.0.3
+
+# 或者安装 ping
+apt install iputils-ping
+```
+
+## 初始化
 
 然后访问：<http://localhost:8080/> 等待 Unlock Jenkins 页面出现
 
@@ -122,9 +141,13 @@ cat jenkins-data/secrets/initialAdminPassword
 
 解锁后会出现 Customize Jenkins 页面，可以选择「安装推荐的插件」
 
+> 也可以跳过后面再安装，吐槽下：Jenkins 插件管理页面搜索时，如果搜不到插件，可能是左边的 Tab 定位在了 Updates，此时就搜不到可用插件
+
 ![20240728220421](https://image.zuoright.com/20240728220421.png)
 
 安装完插件后会自动出现 Create First Admin User 页面，也可以选择使用 admin 账户继续
+
+> 设置了新管理员并完成初始化后，admin 账户将失效
 
 ![20240728220756](https://image.zuoright.com/20240728220756.png)
 
@@ -136,9 +159,57 @@ cat jenkins-data/secrets/initialAdminPassword
 
 ![20240728225916](https://image.zuoright.com/20240728225916.png)
 
+## 基础用法
+
+新建任务（Job），选择「构建一个自由风格的软件项目」，输入项目名称，确定后跳转配置页面
+
+- Build Steps
+
+选择无源码，直接增加构建步骤，选择「执行 shell」，输入 `echo "Hello, World!"`，保存后，立即构建，即可在控制台输出中看到结果
+
+![20241208204427](https://image.zuoright.com/20241208204427.png)
+
+### 源码管理
+
+![20210810141105](http://image.zuoright.com/20210810141105.png)
+
+如果是私有仓库，则需要添加凭证：<http://localhost:8080/manage/credentials/>
+
+![20210810140805](http://image.zuoright.com/20210810140805.png)
+
+```text
+-----BEGIN OPENSSH PRIVATE KEY-----
+配置私钥时上下这两句话也记得复制，而不要只复制中间的部分
+-----END OPENSSH PRIVATE KEY-----
+```
+
+注意，首次连接，[全局安全配置](http://localhost:8080/manage/configureSecurity/)这里如果没选 `Accept first connection` 会找不到 known_hosts 中对应的 key
+
+![20241208215730](https://image.zuoright.com/20241208215730.png)
+
+### 配置 Allure
+
+- 系统管理 -> 全局工具配置 -> Allure Commandline
+
+![20210810141945](http://image.zuoright.com/20210810141945.png)
+
+- 构建及输出报告配置
+
+![20210810141715](http://image.zuoright.com/20210810141715.png)
+
+- 立即构建
+
+![20210810142615](http://image.zuoright.com/20210810142615.png)
+
 ## Pipeline
 
 Jenkins Pipeline 是一套插件，支持在 Jenkins 中实施和集成持续交付管道（从版本控制到用户获取软件的自动化流程）
+
+新建任务（Job），选择「流水线」，输入项目名称，确定后跳转配置页面
+
+![20241209004952](https://image.zuoright.com/20241209004952.png)
+
+在项目根路径下创建 [Jenkinsfile](https://www.jenkins.io/zh/doc/book/pipeline/jenkinsfile/) 文件
 
 - Node 执行 Pipeline 的机器
 - Pipeline 整个构建过程
@@ -146,11 +217,9 @@ Jenkins Pipeline 是一套插件，支持在 Jenkins 中实施和集成持续交
 - Stage 任务子集，比如不同阶段：Build, Test, Deploy
 - Step 单个任务
 
-Pipeline 使用基于 [Groovy](http://groovy-lang.org/) 的 DSL 定义在 [Jenkinsfile](https://www.jenkins.io/zh/doc/book/pipeline/jenkinsfile/) 中
+Jenkinsfile 语法基于 [Groovy](http://groovy-lang.org/) 的 DSL
 
-Jenkinsfile 可以使用两种类型的语法编写
-
-- 脚本式 Scripted
+### 脚本式 Scripted
 
 ```groovy
 node {  // 分配执行器和工作区
@@ -166,7 +235,7 @@ node {  // 分配执行器和工作区
 }
 ```
 
-- 声明式 Declarative
+### 声明式 Declarative
 
 比脚本式语法更丰富，更易编写和阅读
 
@@ -193,25 +262,3 @@ pipeline {
     }
 }
 ```
-
-## Demo
-
-- 源码管理
-
-![20210810141105](http://image.zuoright.com/20210810141105.png)
-
-- 配置 Git 私钥
-
-![20210810140805](http://image.zuoright.com/20210810140805.png)
-
-- 配置 Allure：系统管理 -> 全局工具配置 -> Allure Commandline
-
-![20210810141945](http://image.zuoright.com/20210810141945.png)
-
-- 构建及输出报告配置
-
-![20210810141715](http://image.zuoright.com/20210810141715.png)
-
-- 立即构建
-
-![20210810142615](http://image.zuoright.com/20210810142615.png)

@@ -231,6 +231,9 @@ r.raise_for_status()
 - 响应内容
 
 ```python
+# 查看真实请求的 URL，比如 GET 请求拼接 params 后的 URL
+r.url
+
 # 字节码形式
 r.content
 """

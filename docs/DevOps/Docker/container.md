@@ -68,7 +68,11 @@ docker create ...  # 创建容器但不运行，用法同run
 –restart=always 开机启动，失败也会一直重启，web容器一般用这个
 –restart=on-failure:10 表示出错后重启，可以限制重启次数
 '
-# 运行容器并与之交互
+```
+
+运行容器并与之交互
+
+```shell
 '
 -i 交互
 -t 指定伪终端
@@ -77,16 +81,21 @@ docker create ...  # 创建容器但不运行，用法同run
 --rm 容器退出时自动清理容器内部文件
 '
 
-sudo docker run --name demo01 python:3.9 bash  # 返回空，容器状态Exited
-sudo docker run --name demo02 python:3.9 "python"  # 返回空，容器状态Exited
-sudo docker run --name demo03 python:3.9 "python --version"  # 返回Python 3.9.13，容器状态Exited
+sudo docker run --name demo01 python:3.9 bash  # 返回空，容器状态 Exited
+sudo docker run --name demo02 python:3.9 "python"  # 返回空，容器状态 Exited
+sudo docker run --name demo03 python:3.9 "python --version"  # 返回Python 3.9.13，容器状态 Exited
 
-sudo docker run -it --name demo11 python:3.9 bash  # 容器前台运行，退出后容器状态Exited
-sudo docker run -it --rm python:3.9 bash  # 容器前台运行，退出后容器自动删除，此时没必要指定--name，随机就好
+sudo docker run -it --name demo11 python:3.9 bash  # 容器前台运行，退出后容器状态 Exited
+sudo docker run -it --rm python:3.9 bash  # 容器前台运行，退出后容器自动删除，此时没必要指定 --name，随机就好
 
-sudo docker run -dit --name demo13 python:3.9 bash  # 容器后台运行，容器状态UP
-sudo docker exec -it demo13 bash  # 与运行中的容器进行交互，退出后容器还是UP状态
+sudo docker run -dit --name demo13 python:3.9 bash  # 容器后台运行，容器状态 UP
 sudo docker attach demo13  # 将运行中的后台放到前台，退出后容器变为Exited状态
+```
+
+与运行中的容器进行交互
+
+```shell
+sudo docker exec -it demo13 bash  # 退出后容器还是 UP 状态
 ```
 
 - 还原启动容器时的参数
