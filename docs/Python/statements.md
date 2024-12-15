@@ -309,6 +309,13 @@ res = x if x > y else y
 res = 1 if 0 else 2 if False else 3  # 3
 ```
 
+```python
+_s = "a,bb,ccc"
+res = a.split(",") if a else []
+# 另一种写法
+res = a and a.split(",") or []
+```
+
 ## 循环语句
 
 循环过程中如果改变了对象长度，则可能会影响循环次数，比如循环一个长度为2列表：`for i in _list`，第一次循环中移除了一个元素，此时列表长度变为1，则不会进入下一次循环，这时候可以这样去循环：`for i in list(_list)`

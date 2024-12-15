@@ -18,6 +18,9 @@ Python 的模块不需要 `main` 函数，参考：[Python为什么没有main函
 __author__ = '7c'  # 标注作者
 
 
+"""
+引入书写优先级：内置模块 > 第三方模块 > 自定义模块
+"""
 import sys
 import os
 # sys.path.append("..")

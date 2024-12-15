@@ -39,6 +39,7 @@ r.exists(key)
 r.get('hello')
 r.type('hello')
 r.hgetall("test")
+r.smembers("set_string")  # 获取集合set的成员 {'a', 'b', 'c'}
 
 # 1千次写
 for i in range(1000):

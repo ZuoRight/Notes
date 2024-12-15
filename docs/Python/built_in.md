@@ -7,6 +7,7 @@
 - `round(x, n)` 四舍五入
 
 ```python
+round(1.237)  # 1
 round(1.237, 2)  # 1.24
 ```
 
@@ -307,12 +308,14 @@ const receiverAddress = parsedInput.receiverAddress;
 import time
 
 # 获取当前时间戳
-stp = time.time()
+stp = time.time()  # 1234567890.12345
 """
 <class 'float'>
-1609670371.4864702
+整数部分是秒，10位
+小数部分是毫秒，具体位数取决于系统的精度，每3位1个单位，比如 123.45 毫秒，或者说 123450 微秒
 """
-stp_int = int(stp)  # 不带毫秒
+int(stp)  # 秒 1234567890
+int(round(stp * 1000))  # 毫秒 1234567890000
 ```
 
 ### 获取时区 time_zone

@@ -18,6 +18,8 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ### WAR File
 
+> 官网下载页面：<https://www.jenkins.io/zh/download/>
+
 `jenkins.war` 内置了 Winstone（一个 Jetty servlet 容器包装器），所以可以直接运行
 
 ```shell
