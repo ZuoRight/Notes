@@ -10,9 +10,7 @@ Android Debug Bridge, 一个 C/S 架构的命令行工具，可以安装、卸�
 
 ## 安装和连接
 
-ADB 包含在 `SDK/platform-tools` 中
-
-[官方单独下载地址](https://developer.android.com/tools/releases/platform-tools?hl=zh-cn)，具体配置参考 Android SDK
+ADB 包含在 `SDK/Platform-Tools` 中，可通过 SDK 套件下载使用，也可以只下载[ Platform-Tools](https://developer.android.com/tools/releases/platform-tools?hl=zh-cn) 单独使用
 
 `adb --version`
 

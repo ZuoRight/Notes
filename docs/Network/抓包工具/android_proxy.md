@@ -1,10 +1,12 @@
 # Android 抓包
 
-Android 7.0+（`targetSdkVersion>=24`）系统不再信任用户证书，Google Play 以及国内应用市场逐步响应这种限制
+Android 7.0+（`targetSdkVersion>=24`）系统不再信任用户证书，从 SDCard 安装用户级证书将无法拦截应用流量，Google Play 以及国内应用市场逐步响应这种限制，所以使用 Charles 等常用工具则很难再正常抓取到 HTTPS 接口的请求内容，应对方式有以下几种
 
-所以使用 Charles 等常用工具则无法再正常抓取到 HTTPS 接口的请求内容，应对方式有以下几种
+- Root，将用户证书安装到系统证书目录
 
-> <https://juejin.im/post/6844903831579394055>
+> 需要 Root 权限
+
+从抓包工具导出证书（以 `.0` 系统证书格式），用 MT 管理器将证书复制或者通过 `adb remount` 到系统根证书目录下（`/etc/security/cacerts/`）
 
 - 修改配置文件 AndroidManifest
 
@@ -12,17 +14,15 @@ AndroidManifest 中配置 networkSecurityConfig
 
 > <https://developer.android.com/training/articles/security-config>
 
-- 调低 targetSdkVersion<24
+- 调低 `targetSdkVersion<24`
 
 GooglePlay 限制 `targetSdkVersion>=28`，国内应用市场也开始逐步响这种限制。绝大多数 App 的 targetSdkVersion 都将大于 24 了，也就意味着抓 HTTPS 的包越来越难操作了。
 
-- Root，将用户证书安装到系统证书目录
-
-从抓包工具导出证书（以`.0`系统证书格式），用MT管理器将证书复制或者通过 `adb remount` 到 `/etc/security/cacerts/` 目录下（不要在 sdcard 中找这个目录直接拖拽过去）
-
 - 借助 `targetSdkVersion<24` 的应用作为宿主容器
 
-比如 HttpCanary + 平行空间 / VirtualApp，或者 VirtualApp + VirtualXposed
+比如 HttpCanary +  平行空间 / VirtualApp
+
+或者 VirtualApp + VirtualXposed
 
 ## 平行空间
 

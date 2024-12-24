@@ -1,4 +1,4 @@
-# 引言
+# HTTP
 
 HTTP 是无状态的，后来加了 Cookies、Session 技术，用 KeepAlive 来维持状态
 

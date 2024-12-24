@@ -134,15 +134,17 @@ Edit -> Find 或者 Command + F 调起 Find 窗口
 - Include
 - Exclude
 
-### External Proxy
+### External Proxy 外部代理
 
-如果要抓包的网站，本身就需要代理才能访问，则可以先用 Charles 反向代理后，再充当前置代理将流量转出
+在一些复杂的网络结构中，可能需要经过多重代理才能访问某些服务或资源，比如要抓包的网站，本身就需要代理才能访问，则需要让 Charles 将所有流量先发送到这个外部代理，然后再进行自己的代理操作
 
 ![20240706143357](https://image.zuoright.com/20240706143357.png)
 
 Socket 或 HTTP 都可以，根据自己的代理进行选择，若选了 HTTP 通常还需要勾选上 HTTPS，如果不清楚就都配置上
 
-### Breakpoints
+![20241220224326](https://image.zuoright.com/20241220224326.png)
+
+### Breakpoints 断点
 
 打断点，修改请求或返回内容
 

@@ -67,7 +67,7 @@ comments: true  开启评论
 
 密钥管理：<https://portal.qiniu.com/user/key>
 
-更换证书，修改 HTTPS 配置：<https://portal.qiniu.com/cdn/domain>
+更换证书，[修改 HTTPS 配置](https://portal.qiniu.com/cdn/domain)，勾选「同意七牛云代申请免费证书」即可，有效期 3 个月，证书虽然免费，但 HTTPS 服务是按量计费的。
 
 ### PicGo 上传
 
@@ -78,3 +78,9 @@ comments: true  开启评论
 VSCode 安装 [PicGo](https://picgo.github.io/PicGo-Core-Doc/zh/guide/) 插件，配置七牛云密钥
 
 ![20210808174641](http://image.zuoright.com/20210808174641.png)
+
+## 备案
+
+阿里云备案信息核查存在问题：已备案域名未使用阿里云中国内地节点服务器
+
+解决方式：添加 A 记录，将二级域名，比如 <http://aliyun.zuoright.com> 解析到阿里云的某个服务器，比如 `39.100.0.23`

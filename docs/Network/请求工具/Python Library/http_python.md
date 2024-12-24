@@ -1,4 +1,4 @@
-# Python 请求库
+# HTTP 请求库
 
 内置的 HTTP 请求库
 

@@ -1,15 +1,22 @@
 # Android
 
-Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户。
+Android 操作系统是一种多用户 Linux 系统，其中的每个应用都是一个不同的用户。默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID，每个应用都在其自己的 Linux 进程内运行，每个进程都拥有自己的虚拟机。
 
-默认情况下，系统会为每个应用分配一个唯一的 Linux 用户 ID，每个应用都在其自己的 Linux 进程内运行，每个进程都拥有自己的虚拟机。
+Google 的 Android 系统，其实指的是 AOSP + GMS（谷歌移动服务）。GMS 是闭源的，但 [AOSP](https://source.android.com/docs/setup/about?hl=zh-cn) 是开源的，华为只是无法使用谷歌地图等谷歌定制应用。
+
+> Android Logo 及文字属于 Google 公司的商标，需取得谷歌的认可才能进行商业使用。
 
 - 平台架构：<https://developer.android.com/guide/platform>
-- 工具：<https://developer.android.com/studio/command-line#tools-sdk>
 
-Google 的 Android 系统，其实指的是 AOSP + GMS（谷歌移动服务）。AOSP 是开源的，谷歌移动服务是闭源的，华为只是无法使用谷歌地图等谷歌定制应用。
+![20241222000900](https://image.zuoright.com/20241222000900.png)
 
-另外「Android」文字及 Logo 属于 Google 公司的商标，需取得谷歌的认可才能进行商业使用。
+- 版本
+
+<https://developer.android.com/about/versions?hl=zh-cn>
+
+- 测试
+
+<https://developer.android.com/training/testing?hl=zh-cn>
 
 ## IDE
 
@@ -27,19 +34,46 @@ DDMS 曾作为 ADT 插件的一部分集成在 Eclipse 中，提供了一个图�
 
 <https://developer.android.google.cn/studio/intro>
 
-下载 SDK 等需要设置 HTTP 协议代理
+![20241222140938](https://image.zuoright.com/20241222140938.png)
 
-## SDK
+> 下载插件或编译时若遇到 `java.net.ConnectException: Connection refused` 可设置 HTTP 代理解决
+
+```text
+Platform 平台版本管理
+    必须安装至少一个版本的 Android 平台，才能编译应用
+emulator 模拟器
+    emulator
+    mksdcard
+Tools
+    /Command-Line Tools 命令行工具
+        sdkmanager
+        apkanalyzer
+        avdmanager
+        lint
+        retrace
+    /Build-Tools 构建工具
+        AAPT2
+        apksigner
+        zipalign
+    Platform-Tools 平台工具
+        adb
+        logcat
+        fastboot
+        etc1tool
+```
+
+## Android SDK
+
+<https://developer.android.com/studio/command-line#tools-sdk>
 
 Software Development Kit 软件开发工具包，依赖 JDK
 
-可单独下载，也可以通过 Android Studio 下载
+- 通过 Android Studio 下载管理
 
-Android SDK 工具会将应用的代码、数据、以及资源文件等所有内容编译成一个 `.apk` 后缀的归档文件，APK（Android Application PacKage）可安装在安卓设备中。
+配置环境变量
 
 ```shell
-# Android
-# 可通过 SDK Manager 获取 SDK 所在路径
+# 在 SDK Tools 中获取 SDK 所在路径
 export ANDROID_HOME=/Users/xxx/Library/Android/sdk
 # 注意顺序：/emulator 要在 /tools 前面，不然会报错
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -48,10 +82,35 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 ```
 
-## 项目结构
+- 使用命令行工具 sdkmanager 直接下载
+
+<https://developer.android.com/tools/sdkmanager?hl=zh-cn>
+
+- 只下载 Platform-Tools
+
+如果只想使用 ADB，则可以只下载 Platform-Tools 即可
+
+<https://developer.android.com/tools/releases/platform-tools?hl=zh-cn>
+
+
+## 开发
+
+开发者指南：<https://developer.android.com/guide?hl=zh_cn>
+
+![20241222151948](https://image.zuoright.com/20241222151948.png)
+
+### 示例
+
+New Project -> Empty Activity -> Finish
+
+![20241222145858](https://image.zuoright.com/20241222145858.png)
+
+Build 后会生成 Android 视图
+
+![20241222164320](https://image.zuoright.com/20241222164320.png)
 
 ```text
-/java  写 Java 代码的地方，业务功能都在这里实现
+/kotlin+java  写 Kotlin 或 Java 代码的地方，业务功能都在这里实现
 /res
     1.所有的资源文件都会在 R.java 文件下生成对应的资源id（R文件可以理解为字典，res下每个资源都都会在这里生成一个唯一的id）
     2.可以直接通过资源id访问到对应的资源
@@ -61,15 +120,7 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 /activity_main.xml  布局文件
 ```
 
-## APK 结构
-
-- 基本结构
-
-![20240720120727](https://image.zuoright.com/20240720120727.png)
-
-- 一般结构
-
-![20240720120804](https://image.zuoright.com/20240720120804.png)
+Android SDK 工具会将应用的代码、数据、以及资源文件等所有内容编译成一个 `.apk` 后缀的归档文件，APK（Android Application PacKage）可安装在安卓设备中。
 
 ```text
 META-INF  存放签名文件签名信息的目录，用于系统签名校验

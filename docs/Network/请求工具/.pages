@@ -2,5 +2,6 @@
 nav:
   - curl.md
   - postman.md
-  - Python 请求库: ./Base/Network/业务层/HTTP/http_python/
+  - Python Library
+  - JS Library
   - ...
