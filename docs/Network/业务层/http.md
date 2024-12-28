@@ -165,20 +165,61 @@ HTTP/2 中用伪头部形式（`:key`）替代了起始行，废除了没用的 
 - :status 状态码
 ```
 
-### 内容相关
+### Content-Type
 
-- `Content-Type`
+- 多部分类型（Multipart Types）
 
 ```text
-- text/html/plain/css 文本/超文本/纯文本/样式表
-- image/gif/jpeg/png
-- audio/mpeg
-- video/mp4
-- application/javascript/pdf/xml 数据格式不固定
-- application/json; charset=UTF-8 Chrome请求体标识为：Request Payload
-- application/x-www-form-urlencoded; charset=UTF-8 表单，Chrome请求体标识为：Form Data
-- application/octet-stream 不透明的二进制数据
+multipart/form-data：用于表单提交，特别是包含文件上传的表单
+multipart/byteranges：响应中包含多个部分的字节范围
 ```
+
+- 应用类型（Application Types）
+
+```text
+application/x-www-form-urlencoded：表单提交数据，通常用于HTML表单
+application/octet-stream：二进制数据流，通常用于文件下载
+application/json：JSON格式
+application/xml：XML格式
+application/pdf：PDF文档格式
+application/zip：ZIP压缩文件格式
+```
+
+- 文本类型（Text Types）
+
+```text
+text/plain：纯文本格式
+text/html：HTML格式
+text/css：CSS格式
+text/javascript：JS代码格式
+```
+
+- 图像类型（Image Types）
+
+```text
+image/jpeg：JPEG图像格式
+image/png：PNG图像格式
+image/gif：GIF图像格式
+image/webp：WebP图像格式
+```
+
+- 音频类型（Audio Types）
+
+```text
+audio/mpeg：MP3音频格式
+audio/wav：WAV音频格式
+audio/ogg：OGG音频格式
+```
+
+- 视频类型（Video Types）
+
+```text
+video/mp4：MP4视频格式
+video/webm：WebM视频格式
+video/ogg：OGG视频格式
+```
+
+### 内容相关
 
 ```text
 - Date: 报文创建时间

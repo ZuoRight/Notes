@@ -143,6 +143,26 @@ print(json.loads(response.data.decode('utf-8')))
 
 `pip install requests`
 
+### requests.method
+
+```python
+import requests
+
+payload = {'key1': 'value1', 'key2': 'value2'}
+# 请求方式非常简单易懂
+r = requests.get('https://httpbin.org/get', params=payload)
+r = requests.head('https://httpbin.org/get')
+r = requests.options('https://httpbin.org/get')
+
+r = requests.post('https://httpbin.org/post', data=payload)
+r = requests.put('https://httpbin.org/put', data=payload)
+r = requests.patch('https://httpbin.org/patch', data=payload)
+
+r = requests.delete('https://httpbin.org/delete')
+
+print(r)  # <Response [200]>
+```
+
 ### requests.request
 
 <https://requests.readthedocs.io/en/latest/api/#requests.request>
@@ -156,39 +176,52 @@ r = requests.request(method, url, **kwars)
 :method: GET/POST/PUT/DELETE/PATCH/OPTIONS/HEAD
 :url 请求url
 :**kwarts
-    params=_dict  # url参数，即查询字符串
-    data=_dict  # 表单
-    json=_dict  # 表单，自动编码
-    headers=_dict  # 请求头
-    cookies=_dict  # Dict or CookieJar object
-    files={"f1": open("xxx.xls", "rb"), "f2": open(...)}  # 文件
-    proxies={"http": "127.0.0.1:8888", "https": "127.0.0.1:8888"}  # 设置代理
-    verify="/path/to/certifile"
-    timeout=0.01  # 设置连接超时时间，建议设为比3的倍数略大的一个数值，因为TCP数据包重传窗口的默认大小是3
-    allow_redirects=True  # 自动重定向，默认True
+    params = _dict  # url参数，即查询字符串
+    data = _dict  # 表单
+    json = _dict  # 表单，自动编码
+    headers = _dict  # 请求头
+    cookies = _dict  # Dict or CookieJar object
+    files = {'file': open(file_path, 'rb')}  # 文件
+    proxies = {"http": "127.0.0.1:8888", "https": "127.0.0.1:8888"}  # 设置代理
+    verify = "/path/to/certifile"
+    timeout = 0.01  # 设置连接超时时间，建议设为比3的倍数略大的一个数值，因为TCP数据包重传窗口的默认大小是3
+    allow_redirects = True  # 自动重定向，默认True
 """
 ```
 
-### requests.method
+- 上传文件
 
 ```python
-import requests
+# 完整格式：files = [('field_name', (file_name, file_object, file_type))]
+files = [
+    (
+        'file',  # 服务端设置的字段名，比如 file
+        (
+            'test.png',  # 文件在上传时的名称，服务器端接收到文件后，会将其保存为这个名称，可以与你本地文件的名称不同
+            open("./demo.png", 'rb'),  # 本地文件
+            'image/png'  # 文件的 MIME 类型，告诉服务器如何解释文件的内容，决定文件上传后的格式
+        )
+    )
+]
 
-payload = {'key1': 'value1', 'key2': 'value2'}
-# 请求方式非常简单易懂
-r = requests.get('https://httpbin.org/get', params=payload)
-r = requests.head('https://httpbin.org/get')
-r = requests.options('https://httpbin.org/get')
-
-r = requests.post('https://httpbin.org/post', data=payload)
-
-r = requests.put('https://httpbin.org/put', data=payload)
-r = requests.patch('https://httpbin.org/patch', data=payload)
-
-r = requests.delete('https://httpbin.org/delete')
-
-print(r)  # <Response [200]>
+# 文件名和 MIME 类型可以由 requests 库自动处理，可简写为：files = {'file': open(file_path, 'rb')}
+files = {
+    'file1': open('./image1.png', 'rb'),
+    'file2': open('./image2.jpg', 'rb')
+}
 ```
+
+### 请求头
+
+主要说下 Content-Type
+
+如果请求体为 `json=payload`，需要设置为 `application/json`
+
+如果请求体为 `data=payload`，通常需要设置为 `application/x-www-form-urlencoded`
+
+如果请求体为 `files=file`，不需要手动设置，Requests 会自动设置，比如 `application/form-data; boundary=----WebKitFormBoundary2nBQbB9yT9q20g7U`
+
+> boundary 是一个分隔符，用于分隔请求体中的不同部分，boundary 通常是由客户端生成的，并且需要确保它是唯一且不冲突的。Requests 库会自动处理 boundary 的生成
 
 ### requests.Response
 

@@ -47,29 +47,51 @@ URL 中，比如：`{{base_url}}`
 
 ![20240724223231](https://image.zuoright.com/20240724223231.png)
 
-## HTTP请求
+## HTTP 请求
 
 ![20220831000738](http://image.zuoright.com/20220831000738.png)
 
 ### Params
 
+![20241228225601](https://image.zuoright.com/20241228225601.png)
+
+查询参数，会被附加到 URL 的尾部，位于 `?` 后面，以键值对形式列出，用 `&` 分隔，比如 `?id=1&type=new`
+
+要指定路径参数，可以在 URL 框中以 `:xx` 的形式指定参数名
+
+参数不会自动进行 URL 编码，选中变量后，弹出设置框，选择更多中的 `EncodeURIComponent` 对参数进行手动编码
+
 ### Body
-
-- form-data
-
-HTTP请求中的multipart/form-data，既可以上传文件等二进制数据，也可以上传表单键值对，只是最后会转化为一条信息
-
-- x-www-form-urlencoded
-
-只能上传键值对，并且键值对都是间隔分开的
 
 - raw
 
-可以上传多种文本格式：text、json、xml、html
+可以上传多种文本格式
+
+Postman 会自动设置请求头的 Content-Type 为
+
+```text
+Text: text/plain
+HTML: text/html
+JSON: application/json
+XML: application/xml
+JavaScript: application/javascript
+```
+
+- form-data
+
+通常用于上传表单，并可以附加文件
+
+Postman 会自动设置请求头为 `Content-Type: multipart/form-data; boundary=<calculated when request is sent>`，boundary 在在发送请求的时候自动计算出值
+
+- x-www-form-urlencoded
+
+Postman 会自动设置请求头为 `Content-Type: application/x-www-form-urlencoded`
 
 - binary
 
-只可以上传二进制数据，通常用来上传文件，一次只能上传一个文件
+可以使用二进制数据发送无法在 Postman 编辑器中手动输入的信息以及请求正文，例如图像、音频和视频文件等
+
+Postman 会根据上传文件的不同类型，自动设置不同类型的 Content-Type 请求头
 
 ### 鉴权
 
@@ -83,9 +105,13 @@ HTTP请求中的multipart/form-data，既可以上传文件等二进制数据，
 - OAuth
 - ...
 
-## WS请求
+## WS 请求
 
 ![20240411115057](https://image.zuoright.com/20240411115057.png)
+
+## GraphQL 请求
+
+<https://learning.postman.com/docs/sending-requests/graphql/graphql-overview/>
 
 ## 抓包
 
