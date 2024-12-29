@@ -14,7 +14,7 @@ Gavin Wood，英国人，80年，计算机科学家，以太坊基金的第一�
 
 智能合约的概念最初是由 Nick Szabo（尼克·萨博）于 1997 年提出的，V 神后来觉得不应该用这个名字
 
-![20220729195329](http://image.zuoright.com/20220729195329.png)
+![20220729195329](https://image.zuoright.com/20220729195329.png)
 
 ## 节点
 
@@ -31,15 +31,15 @@ Gavin Wood，英国人，80年，计算机科学家，以太坊基金的第一�
 
 客户端是节点的一种实现，Ethereum 1.0 只需要运行一个执行客户端，其中 Go 语言编写的 Geth 是最早也是使用最多的客户端
 
-![20220727154624](http://image.zuoright.com/20220727154624.png)
+![20220727154624](https://image.zuoright.com/20220727154624.png)
 
 Ethereum 2.0 需要再运行一个共识客户端
 
-![20220727155848](http://image.zuoright.com/20220727155848.png)
+![20220727155848](https://image.zuoright.com/20220727155848.png)
 
 升级后交互示意图
 
-![20220727154452](http://image.zuoright.com/20220727154452.png)
+![20220727154452](https://image.zuoright.com/20220727154452.png)
 
 ## 区块
 
@@ -59,7 +59,7 @@ Validators 参与出块获得奖励或惩罚（Staking Rewards and Penalties）�
 - 12s 称为一个时间间隙（time slot），即 $1slot = 12s$
 - 32 个 slot 称作一个纪元（epoch）即 $1epoch = 32slot = 384s$ (6 min 24 s)
 
-![20230507202055](http://image.zuoright.com/20230507202055.png)
+![20230507202055](https://image.zuoright.com/20230507202055.png)
 
 每个 epoch 会有 32 个 Validators 参与权益证明(PoS)协议，这些节点组成一个验证者委员会，出于安全目的，Validators 在每个 epoch 开始时通过混洗协议(swap-or-not)被重新随机分配到委员会中，委员会中还有一个额外的角色叫做聚合者（自愿）
 
@@ -71,7 +71,7 @@ Validators 参与出块获得奖励或惩罚（Staking Rewards and Penalties）�
 
 如果轮到某个 Validators 提议区块时但刚好不在线，则 slot 可能为空
 
-![20230508112413](http://image.zuoright.com/20230508112413.png)
+![20230508112413](https://image.zuoright.com/20230508112413.png)
 
 虽然每个节点在一个 epoch 只能投一票，但不同节点质押的 ETH 余额不同，所以投票的权重不同，若有冲突区块会导致链分叉，则累积质押 ETH 最多的链被称之为规范链(canonical chain)
 
@@ -147,7 +147,7 @@ body：包含一些字段的对象，定义如下
 - Gwei 主要用于表示 Gas Fees
 - wei 是以太坊中的最小单位，以 b-money 的发明者 Wei Dai 命名，常用于合约开发中
 
-![20230508162327](http://image.zuoright.com/20230508162327.png)
+![20230508162327](https://image.zuoright.com/20230508162327.png)
 
 在线单位换算工具
 
@@ -165,13 +165,13 @@ body：包含一些字段的对象，定义如下
 
 交易时需要设置一个 `Gas Limit`，用于限制 Gas 的最高消耗量，最低为 `21000`
 
-![20230508162738](http://image.zuoright.com/20230508162738.png)
+![20230508162738](https://image.zuoright.com/20230508162738.png)
 
 EIP-1599 之前，即传统方式(Legacy)，`Gas Fees = Fees * Gas Limit`，其中 `Fees` 的多少取决于用户愿意支付多少，但矿工会选择多的优先打包，因此产生竞价，波动较大，且难以预估
 
 EIP-1599 之后，即 2021.8 伦敦升级后的新方式，将 `Fees` 改为 `Base Fee + Priority Fee`
 
-![20230508163143](http://image.zuoright.com/20230508163143.png)
+![20230508163143](https://image.zuoright.com/20230508163143.png)
 
 ```python
 单价：Gas_Price ≤ Base + Max_Priority
@@ -179,7 +179,7 @@ EIP-1599 之后，即 2021.8 伦敦升级后的新方式，将 `Fees` 改为 `Ba
 Burnt = Base * Usage_by_Txn
 ```
 
-![20230508223644](http://image.zuoright.com/20230508223644.png)
+![20230508223644](https://image.zuoright.com/20230508223644.png)
 
 其中 `Priority Fee` 是给矿工的小费，可以设置一个最大值，矿工会优先打包小费高的
 
@@ -196,11 +196,11 @@ Gas Tracker
 
 - ETH 转账
 
-![ETH转账](http://image.zuoright.com/20230508165817.png)
+![ETH转账](https://image.zuoright.com/20230508165817.png)
 
 - ERC20-USDT 转账
 
-![ERC20-USDT转账](http://image.zuoright.com/20230508165920.png)
+![ERC20-USDT转账](https://image.zuoright.com/20230508165920.png)
 
 ### Gas 优化
 

@@ -6,25 +6,25 @@ UTM 采用 Apple 的 Hypervisor 虚拟化框架，以接近本机的速度在 Ap
 
 UTM 是永久且完全免费和开源的。GitHub 与 App Store 下载是一样的，后者可以获得自动更新，之所以收费下载目的等同于捐款。
 
-![20221116132653](http://image.zuoright.com/20221116132653.png)
+![20221116132653](https://image.zuoright.com/20221116132653.png)
 
-![20221116163555](http://image.zuoright.com/20221116163555.png)
+![20221116163555](https://image.zuoright.com/20221116163555.png)
 
-![20221116164819](http://image.zuoright.com/20221116164819.png)
+![20221116164819](https://image.zuoright.com/20221116164819.png)
 
-![20221116164901](http://image.zuoright.com/20221116164901.png)
+![20221116164901](https://image.zuoright.com/20221116164901.png)
 
-![20221116164928](http://image.zuoright.com/20221116164928.png)
+![20221116164928](https://image.zuoright.com/20221116164928.png)
 
-![20221116165127](http://image.zuoright.com/20221116165127.png)
+![20221116165127](https://image.zuoright.com/20221116165127.png)
 
-![20221116165228](http://image.zuoright.com/20221116165228.png)
+![20221116165228](https://image.zuoright.com/20221116165228.png)
 
-![20221116165347](http://image.zuoright.com/20221116165347.png)
+![20221116165347](https://image.zuoright.com/20221116165347.png)
 
-![20221116165433](http://image.zuoright.com/20221116165433.png)
+![20221116165433](https://image.zuoright.com/20221116165433.png)
 
-![20221116170950](http://image.zuoright.com/20221116170950.png)
+![20221116170950](https://image.zuoright.com/20221116170950.png)
 
 ## 安装桌面
 
@@ -44,7 +44,7 @@ sudo apt install spice-vdagent
 
 ## 文件共享
 
-![20221116203730](http://image.zuoright.com/20221116203730.png)
+![20221116203730](https://image.zuoright.com/20221116203730.png)
 
 ```shell
 sudo mkdir /media/share  # create mount point

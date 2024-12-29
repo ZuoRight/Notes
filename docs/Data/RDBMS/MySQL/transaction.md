@@ -99,7 +99,7 @@ SET GLOBAL TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 
 不同隔离级别会产生的问题
 
-![20211103154025](http://image.zuoright.com/20211103154025.png)
+![20211103154025](https://image.zuoright.com/20211103154025.png)
 
 - 脏读（Dirty Read），一个事务会读到另一个事务未提交的更新，如果另一个事务回滚，那么当前事务读到的数据就是脏数据。
 - 不可重复读（Non-Repeatable Read），在一个事务内，多次读同一数据，在这个事务还没有结束时，如果另一个事务恰好修改了这个数据，那么，在第一个事务中，两次读取的数据就可能不一致。

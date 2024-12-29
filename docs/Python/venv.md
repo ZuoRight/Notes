@@ -19,7 +19,7 @@ hide:
 
 pip 是 easy_install（setuptools）的改进版，提供更好的提示信息，删除package等功能
 
-![20230205022458](http://image.zuoright.com/20230205022458.png)
+![20230205022458](https://image.zuoright.com/20230205022458.png)
 
 pip 可以下载安装
 

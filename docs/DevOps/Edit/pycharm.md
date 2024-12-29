@@ -4,6 +4,4 @@
 
 个人觉得它过于傻瓜化，用习惯后会影响我的开发能力
 
-具体使用方法可参考：[PyCharm 中文指南](http://pycharm.iswbm.com/zh_CN/latest/)
-
 PyCharm 默认会在创建项目时新建一个虚拟环境，默认名称 venv

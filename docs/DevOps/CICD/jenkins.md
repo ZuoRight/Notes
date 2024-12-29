@@ -173,11 +173,11 @@ cat jenkins-data/secrets/initialAdminPassword
 
 ### 源码管理
 
-![20210810141105](http://image.zuoright.com/20210810141105.png)
+![20210810141105](https://image.zuoright.com/20210810141105.png)
 
 如果是私有仓库，则需要添加凭证：<http://localhost:8080/manage/credentials/>
 
-![20210810140805](http://image.zuoright.com/20210810140805.png)
+![20210810140805](https://image.zuoright.com/20210810140805.png)
 
 ```text
 -----BEGIN OPENSSH PRIVATE KEY-----
@@ -193,15 +193,15 @@ cat jenkins-data/secrets/initialAdminPassword
 
 - 系统管理 -> 全局工具配置 -> Allure Commandline
 
-![20210810141945](http://image.zuoright.com/20210810141945.png)
+![20210810141945](https://image.zuoright.com/20210810141945.png)
 
 - 构建及输出报告配置
 
-![20210810141715](http://image.zuoright.com/20210810141715.png)
+![20210810141715](https://image.zuoright.com/20210810141715.png)
 
 - 立即构建
 
-![20210810142615](http://image.zuoright.com/20210810142615.png)
+![20210810142615](https://image.zuoright.com/20210810142615.png)
 
 ## Pipeline
 

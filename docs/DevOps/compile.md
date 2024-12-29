@@ -14,7 +14,7 @@ hide:
 >
 > objcopy 是将一种格式的目标文件转换成另一种格式的目标文件
 
-![20221119003533](http://image.zuoright.com/20221119003533.png)
+![20221119003533](https://image.zuoright.com/20221119003533.png)
 
 - 配置：确定当前系统环境，通常由 `autoconf` 工具生成 `configure` 脚本
     - 标准库和头文件的位置
@@ -42,7 +42,7 @@ hide:
 - 优化器(Optimizer)：对前段生成的中间代码进行优化
 - 后端(backEnd)：将优化的中间代码转换为针对各自平台的机器码
 
-![20221119003207](http://image.zuoright.com/20221119003207.png)
+![20221119003207](https://image.zuoright.com/20221119003207.png)
 
 ### GCC
 

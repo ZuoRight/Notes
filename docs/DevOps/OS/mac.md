@@ -189,7 +189,7 @@ PID: 43685
 
 ### 开启三指拖移
 
-![20220305004724](http://image.zuoright.com/20220305004724.png)
+![20220305004724](https://image.zuoright.com/20220305004724.png)
 
 ### SIP
 

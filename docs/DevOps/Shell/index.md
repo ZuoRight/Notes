@@ -82,7 +82,7 @@ q 退出手册
 - `man -k key` 模糊查询包含key的相关章节，简写：`apropos key`
 - `man -a key` 列出所有的手册，挨个查看，如果不是则跳过(ctrl-d)，继续展示下一个
 
-![20210821144749](http://image.zuoright.com/20210821144749.png)
+![20210821144749](https://image.zuoright.com/20210821144749.png)
 
 ## help
 

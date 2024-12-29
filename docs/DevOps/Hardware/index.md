@@ -23,11 +23,11 @@ hide:
 - 控制器：控制程序执行
 - 运算器：完成数据加工处理
 
-![20221119130345](http://image.zuoright.com/20221119130345.png)
+![20221119130345](https://image.zuoright.com/20221119130345.png)
 
-![20221119181117](http://image.zuoright.com/20221119181117.png)
+![20221119181117](https://image.zuoright.com/20221119181117.png)
 
-![20230204004035](http://image.zuoright.com/20230204004035.png)
+![20230204004035](https://image.zuoright.com/20230204004035.png)
 
 ### 主板
 
@@ -41,13 +41,13 @@ hide:
 
 - old
 
-![20221122011508](http://image.zuoright.com/20221122011508.png)
+![20221122011508](https://image.zuoright.com/20221122011508.png)
 
 - new
 
 现在北桥的功能已被集成到了CPU，南桥被PCH/FCH取代（或者说换了个名称：I/O Hub），通过DMI（Direct Media Interface）与CPU连接
 
-![20221122010527](http://image.zuoright.com/20221122010527.png)
+![20221122010527](https://image.zuoright.com/20221122010527.png)
 
 ### I/O
 
@@ -57,7 +57,7 @@ hide:
 
 ### USB
 
-![20230329221305](http://image.zuoright.com/20230329221305.png)
+![20230329221305](https://image.zuoright.com/20230329221305.png)
 
 ## 驱动
 

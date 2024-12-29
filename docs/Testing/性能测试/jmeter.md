@@ -2,7 +2,7 @@
 
 [官网](https://jmeter.apache.org){ .md-button .md-button--primary }
 
-![20211124153427](http://image.zuoright.com/20211124153427.png)
+![20211124153427](https://image.zuoright.com/20211124153427.png)
 
 配置环境变量，Mac 为例
 
@@ -13,7 +13,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$PATH:.:$JMETER_HOME/bin:$PATH
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JMETER_HOME/lib/ext/ApacheJMeter_core.jar:$JMETER_HOME/lib/jorphan.jar
 ```
 
-![20211124154556](http://image.zuoright.com/20211124154556.png)
+![20211124154556](https://image.zuoright.com/20211124154556.png)
 
 - 启动图形化界面：`bash jmeter`
     - 切换语言：`Options > Choose Language`

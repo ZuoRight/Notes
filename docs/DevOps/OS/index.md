@@ -32,7 +32,7 @@ BSD 贡献了许多网络相关和系统级的工具，而 GNU 则提供了大�
 - [Unix timeline](https://commons.wikimedia.org/wiki/File:Unix_timeline.en.svg#/media/File:Unix_timeline.en.svg)
 - [Unix history simple](https://zh.wikipedia.org/wiki/File:Unix_history-simple.svg)
 
-![20220707143751](http://image.zuoright.com/20220707143751.png)
+![20220707143751](https://image.zuoright.com/20220707143751.png)
 
 ## LINUX
 
@@ -50,14 +50,14 @@ LINUX 本身只是一个开源的内核(Kernel)
 
 `uname -a`
 
-![20230401113035](http://image.zuoright.com/20230401113035.png)
+![20230401113035](https://image.zuoright.com/20230401113035.png)
 
 内核版本：`主版本号.次版本号.末版本号`
 
 > 次版本号，奇数为开发版，偶数为稳定版  
 > <https://www.kernel.org/>
 
-![20220707142531](http://image.zuoright.com/20220707142531.png)
+![20220707142531](https://image.zuoright.com/20220707142531.png)
 
 ## DOS
 

@@ -4,7 +4,7 @@
 
 算法并不一定涉及复杂的数学，而是更多的依赖基本逻辑，这些逻辑在我们的日常中随处可见。
 
-![20210911230835](http://image.zuoright.com/20210911230835.png)
+![20210911230835](https://image.zuoright.com/20210911230835.png)
 
 ## 搜索算法 searching_algorithm
 

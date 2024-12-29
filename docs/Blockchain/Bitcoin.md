@@ -7,13 +7,13 @@
 - 2008.11.9 比特币项目在 sourceforge.net 平台注册
 - 2009.1.3 中本聪打包出了创始区块（`Genesis Block`）
 
-![20220718221933](http://image.zuoright.com/20220718221933.png)
+![20220718221933](https://image.zuoright.com/20220718221933.png)
 
 > 创始区块中附带了一段文本：  
 > The Times 03/Jan/2009 Chancellor on brink of second bailout for banks  
 > 《泰晤士报》 2009年1月3日 英国财政大臣正欲对银行业实施第二轮救助
 
-![20220718221945](http://image.zuoright.com/20220718221945.png)
+![20220718221945](https://image.zuoright.com/20220718221945.png)
 
 - 2009.1.9 中本聪在 sourceforge.net 发布了比特币 `0.01` 版本源码
 - 2010.5.22 拉斯诺用挖到的比特币购买了两个比萨，共花费 10000 BTC，这是比特币第一次被用于实物支付
@@ -32,7 +32,7 @@
 
 打包区块的过程叫做工作量证明(PoW)，因为可以从中获取奖励，所以俗称挖矿，由分布式网络中的节点来完成，俗称矿工，用户购买硬件成为矿工。
 
-![20220721193416](http://image.zuoright.com/20220721193416.png)
+![20220721193416](https://image.zuoright.com/20220721193416.png)
 
 每个区块由区块头和区块体两部分组成
 
@@ -63,7 +63,7 @@
 - Nonce（随机数）
 - 其它：区块高度、bits(难度系数)、时间戳等
 
-![20220721173614](http://image.zuoright.com/20220721173614.png)
+![20220721173614](https://image.zuoright.com/20220721173614.png)
 
 然后将区块头哈希，如果生成的哈希值小于某个目标值，便可以广播到区块链网络，反之则需要重新哈希。
 
@@ -117,11 +117,11 @@ BTC 采用 UTXO 账户模型，Unspent TX Output，TX 指交易(Transaction)，�
 
 如果 B 只转 5BTC 给 C，剩下的 5BTC 需要转给自己（UTXO），这就是 1 输入 2 输出，如果此时再有个人给 C 转 5BTC，那 C 的这 10BTC 就对应两个输入
 
-![20220721233301](http://image.zuoright.com/20220721233301.png)
+![20220721233301](https://image.zuoright.com/20220721233301.png)
 
 无论输入还是输出实际上都是一个脚本，输出是一个锁定脚本，输入是一个解锁脚本，比特币的脚本语言是一种类似 FORTH 的基于栈结构的低级语言，为了安全特意被设计为无状态且非图灵完备。
 
-![20220721233710](http://image.zuoright.com/20220721233710.png)
+![20220721233710](https://image.zuoright.com/20220721233710.png)
 
 ```text
 FROM: UTXO Hash#index
@@ -129,7 +129,7 @@ AMOUNT: 0.5 btc
 TO: OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG
 ```
 
-![20220722103520](http://image.zuoright.com/20220722103520.png)
+![20220722103520](https://image.zuoright.com/20220722103520.png)
 
 ```text
            Sig 48 (30450221...68fa9b01)
@@ -141,7 +141,7 @@ OP_EQUALVERIFY 88
    OP_CHECKSIG ac
 ```
 
-![20220722103438](http://image.zuoright.com/20220722103438.png)
+![20220722103438](https://image.zuoright.com/20220722103438.png)
 
 每一笔交易都有一个唯一的 TXID，可以在区块链浏览器中查询交易相关的信息
 

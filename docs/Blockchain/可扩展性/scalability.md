@@ -19,7 +19,7 @@
 
 > [闪电网络简史](https://www.theblockbeats.info/news/31352)
 
-![20230510225325](http://image.zuoright.com/20230510225325.png)
+![20230510225325](https://image.zuoright.com/20230510225325.png)
 
 闪电网络属于工作在比特币上的二层支付协议，凭借理论上 `无限TPS + 即时支付 + 超低费用 + 安全 + 较为去中心化` 的特性被寄予厚望
 

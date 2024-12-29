@@ -47,7 +47,7 @@ allure open -h 127.0.0.1 -p 8883 tmp/path
 
 - 静态属性: 装饰器形式使用
 
-![20220607201628](http://image.zuoright.com/20220607201628.png)
+![20220607201628](https://image.zuoright.com/20220607201628.png)
 
 ```python
 import allure

@@ -6,7 +6,7 @@
 
 > 发行版列表：<https://zh.wikipedia.org/wiki/Linux%E5%8F%91%E8%A1%8C%E7%89%88>
 
-![20220707151705](http://image.zuoright.com/20220707151705.png)
+![20220707151705](https://image.zuoright.com/20220707151705.png)
 
 > 发行版选择器：<https://distrochooser.de/>
 
@@ -63,7 +63,7 @@ sudo apt install xxx
 
 > 等价于旧命令集合 `apt-get` + `apt-cache` + `apt-config`
 
-![20220712160747](http://image.zuoright.com/20220712160747.png)
+![20220712160747](https://image.zuoright.com/20220712160747.png)
 
 ```shell
 apt update
@@ -211,13 +211,13 @@ who  # 或者 w
 >
 > 密码为x，表示需要密码，如果为空表示不需要密码
 
-![20210827231927](http://image.zuoright.com/20210827231927.png)
+![20210827231927](https://image.zuoright.com/20210827231927.png)
 
 - `/etc/shadow`
 
 > 早期密码存在`/etc/passwd`中，但后来因为安全原因单独存到了：`/etc/shadow`
 
-![20210827233831](http://image.zuoright.com/20210827233831.png)
+![20210827233831](https://image.zuoright.com/20210827233831.png)
 
 > 最近修改日期：是从1(1970.1.1)开始累计的，多少天内不可修改或需要修改，为0则表示可任意修改，99999为273年，即不限制
 
@@ -238,6 +238,6 @@ mesg n/y  # 拒绝或允许接收消息，root用户默认拒绝，普通用户�
 mail -s "test content" [chonge@localhost]  # 发送邮件，也可以给离线用户发，给本机用户可以省略[chonge@localhost]，对方可以使用mail命令来接收查看邮件内容
 ```
 
-![20210828001620](http://image.zuoright.com/20210828001620.png)
+![20210828001620](https://image.zuoright.com/20210828001620.png)
 
-![20210828001628](http://image.zuoright.com/20210828001628.png)
+![20210828001628](https://image.zuoright.com/20210828001628.png)

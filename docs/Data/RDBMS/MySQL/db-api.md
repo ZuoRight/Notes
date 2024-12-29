@@ -2,7 +2,7 @@
 
 Python 操作 MySQL 数据库需要遵守 DB-API 规范，有很多封装好的驱动库供我们选择
 
-![20220809200749](http://image.zuoright.com/20220809200749.png)
+![20220809200749](https://image.zuoright.com/20220809200749.png)
 
 步骤
 

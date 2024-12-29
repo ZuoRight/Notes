@@ -21,7 +21,7 @@ docker plugin install
 
 Docker 有如下几种挂载方式
 
-![20220109200730](http://image.zuoright.com/20220109200730.png)
+![20220109200730](https://image.zuoright.com/20220109200730.png)
 
 mount 挂载，动词，表示将某个外部存储挂载到容器
 

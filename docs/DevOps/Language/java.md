@@ -31,7 +31,7 @@ JSR388 定义了重要版本 JavaSE 13 平台的规范，包括新的语言功�
 
 ## 环境搭建
 
-![20210630131230](http://image.zuoright.com/20210630131230.png)
+![20210630131230](https://image.zuoright.com/20210630131230.png)
 
 - JRE, Java Runtime Environment
 - JDK, [Java Development Kit](https://www.oracle.com/java/technologies/downloads/)

@@ -1,6 +1,6 @@
 # tcpdump
 
-![20210809185523](http://image.zuoright.com/20210809185523.png)
+![20210809185523](https://image.zuoright.com/20210809185523.png)
 
 参考：[全网最全tcpdump抓包指南](https://iswbm.com/70.html#9)
 

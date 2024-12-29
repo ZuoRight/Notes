@@ -38,7 +38,7 @@ sudo docker run -d --name gitlab-runner --restart always \
 
 ## 注册runner
 
-![20220305002455](http://image.zuoright.com/20220305002455.png)
+![20220305002455](https://image.zuoright.com/20220305002455.png)
 
 - 命令行自动注册
 
@@ -266,11 +266,11 @@ staging:
 - include 包含local/file/remote/template的.yml文件
 - extends 加载重复配置（也可以用锚点实现，但不易读）
 
-![20220715185455](http://image.zuoright.com/20220715185455.png)
+![20220715185455](https://image.zuoright.com/20220715185455.png)
 
 - anchors(锚点)
 
-![20220715185639](http://image.zuoright.com/20220715185639.png)
+![20220715185639](https://image.zuoright.com/20220715185639.png)
 
 ## 变量
 

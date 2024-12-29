@@ -47,7 +47,7 @@ RE（Regular Expression）是一种描述文本内容组成规律的表示方式
 - `\d`（digit）任意数字，等同于：`[0-9]`
 - `\w`（word）任意字母数字下划线（包括中文）
 
-![20211025175108](http://image.zuoright.com/20211025175108.png)
+![20211025175108](https://image.zuoright.com/20211025175108.png)
 
 ### 匹配多个
 
@@ -88,7 +88,7 @@ re.sub(regex, subst, test_str)  # "the little cat is in the hat, we like it."
 
 - `\b`
 
-![20211026182643](http://image.zuoright.com/20211026182643.png)
+![20211026182643](https://image.zuoright.com/20211026182643.png)
 
 ### 限定文本的边界
 

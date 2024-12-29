@@ -71,7 +71,7 @@ build-error: 1 (30 days)
 - Mac(Intel): `usr/local/etc/nginx/...` 自定义配置可以放入 `servers/` 路径下
 - Mac(Apple): `/opt/homebrew/etc/nginx/...` 自定义配置可以放入 `servers/` 路径下
 
-![20210919194707](http://image.zuoright.com/20210919194707.png)
+![20210919194707](https://image.zuoright.com/20210919194707.png)
 
 默认的根目录，欢迎页 `index.html` 通常位于以下路径
 
@@ -192,7 +192,7 @@ server {
 
 ## 动静分离
 
-![20220909112752](http://image.zuoright.com/20220909112752.png)
+![20220909112752](https://image.zuoright.com/20220909112752.png)
 
 动静分离就是把很少会发生修改的静态资源文件放置在单独的服务器上，而动态请求则由另外一台服务器上进行。
 
@@ -253,7 +253,7 @@ server {
 
 此时可以再加一层 Nginx 做反向代理提高安全性，同时可以把静态文件分离出来提高性能
 
-![20220908232212](http://image.zuoright.com/20220908232212.png)
+![20220908232212](https://image.zuoright.com/20220908232212.png)
 
 ```ini
 ; djanog.conf

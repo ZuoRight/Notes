@@ -147,7 +147,7 @@ drop table if exist <表名>;
 show create table <表名>;
 ```
 
-![20211030160722](http://image.zuoright.com/20211030160722.png)
+![20211030160722](https://image.zuoright.com/20211030160722.png)
 
 ### 修改表
 

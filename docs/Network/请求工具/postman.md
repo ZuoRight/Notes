@@ -49,7 +49,7 @@ URL 中，比如：`{{base_url}}`
 
 ## HTTP 请求
 
-![20220831000738](http://image.zuoright.com/20220831000738.png)
+![20220831000738](https://image.zuoright.com/20220831000738.png)
 
 ### Params
 
@@ -117,17 +117,17 @@ Postman 会根据上传文件的不同类型，自动设置不同类型的 Conte
 
 默认使用代理方式，还可以使用拦截器方式（需要单独安装 Chrome 插件）
 
-![20220902121108](http://image.zuoright.com/20220902121108.png)
+![20220902121108](https://image.zuoright.com/20220902121108.png)
 
 抓取HTTPS协议接口，需要安装证书，在路径 `~/Library/Application Support/Postman/proxy` 找到证书文件双击后信任
 
 将浏览器或者设备代理到 5555 端口（我这里使用的是Chrome插件：SwitchyOmega）
 
-![20220902121514](http://image.zuoright.com/20220902121514.png)
+![20220902121514](https://image.zuoright.com/20220902121514.png)
 
 捕获数据，默认不捕获返回信息，可以勾选，还可以筛选等
 
-![20220902120551](http://image.zuoright.com/20220902120551.png)
+![20220902120551](https://image.zuoright.com/20220902120551.png)
 
 ## Newman
 

@@ -179,7 +179,7 @@ WebSQL 与 IndexedDB 都是最新的 HTML5 本地缓存技术，相比于 Web St
 </html>
 ```
 
-![20220811131255](http://image.zuoright.com/20220811131255.png)
+![20220811131255](https://image.zuoright.com/20220811131255.png)
 
 ## Chrome 隐藏入口
 

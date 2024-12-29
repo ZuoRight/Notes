@@ -10,13 +10,13 @@ Layer1 和 Layer2 的关系，有点像个人电脑时代里的 CPU 硬件和操
 
 Layer2 的几种解决方式
 
-![20220731183253](http://image.zuoright.com/20220731183253.png)
+![20220731183253](https://image.zuoright.com/20220731183253.png)
 
 Rollup 是将运算移到链下，数据留在链上，安全性依赖底层公链，其它几种是将数据与运算都放在链下处理，会有中心化的问题
 
 > 图片参考：<https://twitter.com/321bigcat/status/1553004159208529920>
 
-![20220731183608](http://image.zuoright.com/20220731183608.png)
+![20220731183608](https://image.zuoright.com/20220731183608.png)
 
 ## State Channel（状态通道）
 

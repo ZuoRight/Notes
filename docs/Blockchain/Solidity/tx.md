@@ -20,7 +20,7 @@
 - 代币转移（Token Transfer）ERC20 或 ERC721 等 Token Txns，通过调用智能合约的特定函数（如 `transfer` 或 `transferFrom`）来实现
 - DeFi 操作，DeFi 平台的借贷、Swap、流动性提供、Flash Loan 等，通常涉及复杂的智能合约交互和内部交易
 
-![20230508165138](http://image.zuoright.com/20230508165138.png)
+![20230508165138](https://image.zuoright.com/20230508165138.png)
 
 ## Sending Ether
 
@@ -143,11 +143,11 @@ contract ReceiveEther {
 
 对于 ERC-20 代币来说，会有两个账本，一个维护用户余额（balance），另一个维护授权列表和授权额度（allowance）
 
-![20230603160539](http://image.zuoright.com/20230603160539.png)
+![20230603160539](https://image.zuoright.com/20230603160539.png)
 
 `approve()` 函数本身是根据 `msg.sender` 定义的，初始操作必须由 EOA 执行，如果用户需要与智能合约交互，那么他们需要进行 2 笔交易（`approve` 和 `transferFrom`）
 
-![20230603160752](http://image.zuoright.com/20230603160752.png)
+![20230603160752](https://image.zuoright.com/20230603160752.png)
 
 ### Permit
 

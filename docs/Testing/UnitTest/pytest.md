@@ -547,7 +547,7 @@ pytest --reruns 3 --maxfail=5  # 如果初次加重跑时，累计失败用例�
 
 ### 命令行打印
 
-![4663921b77def085d62ac258dac1c94](http://image.zuoright.com/4663921b77def085d62ac258dac1c94.png)
+![4663921b77def085d62ac258dac1c94](https://image.zuoright.com/4663921b77def085d62ac258dac1c94.png)
 
 `.F.F..` 中的 `.` 代表测试通过，`F` 代表测试失败（Fail）
 
@@ -559,13 +559,13 @@ Fixture 中的断言如果失败，结果会显示 `error`
 
 --quite 精简信息
 
-![0b6becba62a5c6685a92aa82a50b191](http://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png)
+![0b6becba62a5c6685a92aa82a50b191](https://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png)
 
 - `-v`
 
 --verbose 增加详细程度
 
-![1f5e32c3bbf3b6e7a345b4dfaa5f72e](http://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png)
+![1f5e32c3bbf3b6e7a345b4dfaa5f72e](https://image.zuoright.com/1f5e32c3bbf3b6e7a345b4dfaa5f72e.png)
 
 - `-s`
 
@@ -573,7 +573,7 @@ Fixture 中的断言如果失败，结果会显示 `error`
 
 > 输出到测试报告时，-s 参数就会失效
 
-![f47d5c603ff0862910a548ead5df0ec](http://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png)
+![f47d5c603ff0862910a548ead5df0ec](https://image.zuoright.com/f47d5c603ff0862910a548ead5df0ec.png)
 
 - `--setup-show`
 

@@ -164,7 +164,7 @@ Mac 上启动如果报错可以执行：`sudo xattr -rd com.apple.quarantine /Ap
 - RocksDB 采用跳表
 - Memcached 和 Redis 则采用哈希表作为 key-value 索引。
 
-![20211109191640](http://image.zuoright.com/20211109191640.png)
+![20211109191640](https://image.zuoright.com/20211109191640.png)
 
 ```shell
 type key  # 查看key的类型

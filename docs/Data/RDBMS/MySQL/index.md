@@ -6,7 +6,7 @@ MySQL 在设计上受 Oracle 影响颇深
 
 MySQL 是典型的 C/S 架构
 
-![20220809201603](http://image.zuoright.com/20220809201603.png)
+![20220809201603](https://image.zuoright.com/20220809201603.png)
 
 ## 客户端
 
@@ -88,7 +88,7 @@ net start/stop mysql
 
 对 SQL 语句进行查询处理，涵盖 MySQL 的大多数核心服务功能
 
-![20220809202624](http://image.zuoright.com/20220809202624.png)
+![20220809202624](https://image.zuoright.com/20220809202624.png)
 
 - 查询缓存：命中则直接返回结果
 

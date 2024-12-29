@@ -1,4 +1,4 @@
-# [ZuoRight](http://zuoright.com)
+# [ZuoRight](https://zuoright.com)
 
 > `VSCode` + `MarkDown` + `七牛云图床` + `Git` + `Github`(`Pages`, `Actions`, `Discussions`)
 
@@ -77,7 +77,7 @@ comments: true  开启评论
 
 VSCode 安装 [PicGo](https://picgo.github.io/PicGo-Core-Doc/zh/guide/) 插件，配置七牛云密钥
 
-![20210808174641](http://image.zuoright.com/20210808174641.png)
+![20210808174641](https://image.zuoright.com/20210808174641.png)
 
 ## 备案
 

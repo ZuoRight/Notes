@@ -6,11 +6,11 @@
 
 安装3.0版本：`pip3 install git+https://github.com/httprunner/httprunner.git@master`
 
-![20220804104402](http://image.zuoright.com/20220804104402.png)
+![20220804104402](https://image.zuoright.com/20220804104402.png)
 
-![20220804104436](http://image.zuoright.com/20220804104436.png)
+![20220804104436](https://image.zuoright.com/20220804104436.png)
 
-![20220804104451](http://image.zuoright.com/20220804104451.png)
+![20220804104451](https://image.zuoright.com/20220804104451.png)
 
 ```shell
 # 主要命令：httprunner
@@ -100,7 +100,7 @@ HttpRunner v3.x 支持3种用例格式：pytest、YAML和JSON
 
 > 关于为什么从HttpRunner v3.x开始，作者比较建议python脚本编写用例。主要是编写Python可以复用IDE的能力，包括语法提示、自动补全，这些都会是Yaml/Json比较欠缺的。
 
-![20220804104511](http://image.zuoright.com/20220804104511.png)
+![20220804104511](https://image.zuoright.com/20220804104511.png)
 
 测试用例字段解释：[https://ontheway.cool/HttpRunner3DocsForCN/concepts/testcase_structure](https://ontheway.cool/HttpRunner3DocsForCN/concepts/testcase_structure/)
 

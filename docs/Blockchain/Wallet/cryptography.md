@@ -1,6 +1,6 @@
 # Cryptography
 
-![20220103171609](http://image.zuoright.com/20220103171609.png)
+![20220103171609](https://image.zuoright.com/20220103171609.png)
 
 <https://rakhesh.com/infrastructure/notes-on-cryptography-ciphers-rsa-dsa-aes-rc4-ecc-ecdsa-sha-and-so-on/>
 

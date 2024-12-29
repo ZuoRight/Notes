@@ -107,7 +107,7 @@ urls.py
 
 拆分后，如果要在非默认环境下启动和数据迁移等涉及数据库相关的命令记得加`--settings=config_path`
 
-![20210826183930](http://image.zuoright.com/20210826183930.png)
+![20210826183930](https://image.zuoright.com/20210826183930.png)
 
 > 设置`manage.py`默认使用`set_dev`配置：`os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onestep.settings.set_dev')`
 >
@@ -429,7 +429,7 @@ python manage.py runserver --settings=demo.settings.set_prod
 
 报错信息：`The domain name provided is not valid according to RFC 1034/1035`
 
-![20220705105539](http://image.zuoright.com/20220705105539.png)
+![20220705105539](https://image.zuoright.com/20220705105539.png)
 
 大概原因是Django主机验证的正则表达式与我们的域名不匹配（比如域名包含了下划线），返回了空，所以需要我们覆盖这个正则
 

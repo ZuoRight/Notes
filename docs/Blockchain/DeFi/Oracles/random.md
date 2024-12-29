@@ -21,7 +21,7 @@ function getRandomOnchain() public view returns(uint256) {
 
 Chainlink 提供了可验证随机函数(Verifiable Randomness Function)
 
-![20230129205531](http://image.zuoright.com/20230129205531.png)
+![20230129205531](https://image.zuoright.com/20230129205531.png)
 
 - V1版本：<https://docs.chain.link/vrf/v1/introduction>
 - V2版本：<https://docs.chain.link/vrf/v2/introduction>

@@ -10,9 +10,156 @@ hide:
 
 常见的互联网服务有：万维网 WWW(World Wide Web)、文件传输 FTP、电子邮件 E-mail 等
 
+## 网络分类
+
+### 互联网
+
+![20240620103939](https://image.zuoright.com/20240620103939.png)
+
+大概 1970 年
+
+![20240620104031](https://image.zuoright.com/20240620104031.png)
+
+互联网使用 ISP 网络连接各种各样的网络
+
+按照规模大小通常可分为三级：骨干网（Backbone Network）、地区网、校园网/企业网/小区网
+
+![20240620104009](https://image.zuoright.com/20240620104009.png)
+
+不同规模的 ISP 骨干网之间通过互联网交换点（IXP, Internet eXchange Point）连接交换数据，相互连接的 ISP 彼此是对等的（Peer），最顶级的 ISP 称之为 1 级 ISP。
+
+![20240620104052](https://image.zuoright.com/20240620104052.png)
+
+- 公用网，即电信公司建造的大型网络
+
+```text
+中国电信互联网 CHINANET  
+中国联通互联网 UNINET  
+中国移动互联网 CMNET  
+中国教育和科研计算机网 CERNET  
+中国科学技术网 CSTNNET
+```
+
+- 专用网，为满足某个部门或机构而建造的专用网络，比如军队、铁路、银行、电力等
+- 星际互联网（Interplanetary Internet）：跨越太空把网络连接起来
+
+![20230512153113](https://image.zuoright.com/20230512153113.png)
+
+![20240625235956](https://image.zuoright.com/20240625235956.png)
+
+Centralized(集中式), Decentralized(去中心化式), Distributed(分布式)
+
+![中国互联网发展](https://image.zuoright.com/按用途划分.png)
+
+```text
+1994 亚马逊
+1995 雅虎
+1996 搜狐
+1997 网易
+1998 新浪、腾讯
+1999 阿里巴巴
+2000 百度
+2004 Facebook
+2005 YouTube
+```
+
+### 广域网
+
+WAN, Wide Area Network
+
+通常为跨地区或者国家通信，比如某公司分布式办公，不同地区的主机间通过路由器和通信线路通信，组成通信子网
+
+网络服务由互联网服务提供商（ISP, Internet Service Provider）运营
+
+![20210725150016](https://image.zuoright.com/20210725150016.png)
+
+大 ISP 自己建造通信线路，小 ISP 则向电信公司租用通信线路
+
+主机必须有IP才能上网，机构和个人向某个ISP交纳规定的费用，即可从该ISP获取所需IP地址的使用权，便可通过该ISP提供的子网接入到互联网
+
+蜂窝/移动网络（Cellular / Mobile Network）是采用了无线技术的广域网
+
+- 2G
+  > GSM 全球移动通信系统  
+  > GPRS 通用数据包无线业务  
+- 3G
+  > UMTS 通用移动通信系统：WCDMA（宽带码分多址）、CDMA（码分多址）  
+  > HSPA  
+- 4G: LTE、LTE-A  
+- 5G: NR
+
+接入点为基站，基站间通过有线的骨干网连接在一起
+
+### 城域网
+
+MAN, Metropolitan Area Network
+
+![20230512231928](https://image.zuoright.com/20230512231928.png)
+
+### 局域网
+
+LAN, Local Area Network
+
+- 有线局域网
+  > 淘汰：令牌环、FDDI、ARCNET  
+  > 现在：基于 IEEE 802.3 标准的以太网(Ethernet)  
+- 虚拟局域网 VLAN(Virtual ~) 主要用于逻辑分组  
+- 无线局域网 WLAN(Wireless ~)
+  > 基于 IEEE 802.11 标准的 Wi-Fi  
+- 存储网 SAN(Storage Area Network)，通常专用于服务器访问数据存储设备
+
+无线设备通过无线路由器等接入点连接到有线网络
+
+![20230512112432](https://image.zuoright.com/20230512112432.png)
+
+交换机以特定的网络拓扑将不同的有线设备连接在一起组成有线局域网，即以太网，可以将物理局域网分成不同的逻辑局域网，即虚拟局域网
+
+![20210725150926](https://image.zuoright.com/20210725150926.png)
+
+### 个域网
+
+PAN, Persinal Area Network
+
+个人的电子设备间连接起来的网络，通常采用无线技术，所以也叫 WPAN（Wireless ～）
+
+- 蓝牙
+- USB
+- 红外
+- NFC
+
+### 体域网
+
+BAN, Body Area Network
+
+主要指无线传感器网络
+
+无线射频识别(RFID，Radio Frequency IDentification)技术则可以让日常物品也成为计算机网络的一部分
+
+## 网络访问范围
+
+### 明网
+
+可以在正常浏览器搜索引擎搜到的网站
+
+### 深网
+
+如局域网或公司内网，需要先登录和身份验证才能访问
+
+### 暗网
+
+暗网中的网站和网页通过搜索引擎无法直接找到，即使知道暗网网站，普通的浏览器也无法浏览。
+
+暗网的网址通常以 `.onion` 后缀结尾，`.onion` 不是顶级域名，但它是暗网里是唯一且通用的顶级后缀
+
+访问暗网的浏览器
+
+- PC 端：Tor
+- 移动端：Orbot
+- 搜索引擎：DuckDuckGo 暗网版
+
 ## 网络分层
 
-阿帕网（互联网的前身，大概1970年）使用网络控制协议（Network Control Protocol, NCP）来连接不同的计算机进行通信，1974 年 NCP 的两位开发者发表了以分组、序列化、流量控制、超时和容错等为核心的一种新型网络互联协议套件（IPS）于 1983 年正式取代 NCP，即后来的 TCP/IP 协议簇。
+阿帕网使用网络控制协议（Network Control Protocol, NCP）来连接不同的计算机进行通信，1974 年 NCP 的两位开发者发表了以分组、序列化、流量控制、超时和容错等为核心的一种新型网络互联协议套件（IPS）于 1983 年正式取代 NCP，即后来的 TCP/IP 协议簇。
 
 在 TCP/IP 协议的基础之上，1984 年 ISO 又推出了开放式系统互联模型：OSI(Open System Interconnection)。
 
@@ -108,7 +255,7 @@ TCP 是一种基于字节流的协议，字节流是一种抽象，表示一系�
 
 `MTU = MSS + TCP首部(20B) + IP首部(20B) + 可选部分`
 
-![20230518083859](http://image.zuoright.com/20230518083859.png)
+![20230518083859](https://image.zuoright.com/20230518083859.png)
 
 如果来自传输层的报文超过 MTU，IP 层则需要分段传输给 MAC 层。所以需要设置一个合适的段长度「MSS」，过大会导致 IP 分片传输，过小则网络利用率太低。
 
@@ -233,28 +380,6 @@ TTL（Time to Live）有效期限
 基于 UDP 的 DNS 分级查询意味着每一级都有可能受到中间人攻击的威胁，比如域名劫持、域名污染/欺骗
 
 可以使用安全的DNS协议来解决，比如 DoH（[DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS)）
-
-## 网络访问范围
-
-### 明网
-
-可以在正常浏览器搜索引擎搜到的网站
-
-### 深网
-
-如局域网或公司内网，需要先登录和身份验证才能访问
-
-### 暗网
-
-暗网中的网站和网页通过搜索引擎无法直接找到，即使知道暗网网站，普通的浏览器也无法浏览。
-
-暗网的网址通常以 `.onion` 后缀结尾，`.onion` 不是顶级域名，但它是暗网里是唯一且通用的顶级后缀
-
-访问暗网的浏览器
-
-- PC 端：Tor
-- 移动端：Orbot
-- 搜索引擎：DuckDuckGo 暗网版
 
 ## 防火墙
 

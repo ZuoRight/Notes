@@ -44,7 +44,7 @@ df -h
 
 > 磁盘可读写的最小单位是一个逻辑扇区是（即一个簇只包含一个逻辑扇区的情况）
 
-![20221127221555](http://image.zuoright.com/20221127221555.png)
+![20221127221555](https://image.zuoright.com/20221127221555.png)
 
 如果分区的起始位置没有对齐到某个物理扇区的边缘，格式化后，所有的簇也将无法对齐到物理扇区的边缘，则会导致读取一个簇需要对应读取两个物理扇区，会造成读写性能的严重下降，于是便有了[4K对齐那些事](https://www.diskgenius.cn/exp/about-4k-alignment.php)
 
@@ -54,7 +54,7 @@ df -h
 
 ### MBR
 
-![20221128013051](http://image.zuoright.com/20221128013051.png)
+![20221128013051](https://image.zuoright.com/20221128013051.png)
 
 磁盘的第一个逻辑扇区叫做引导扇区，包含：主引导记录 MBR(Master Boot Record) + 分区表 + Magic Bumber(以 0x55 0xAA 结尾的标志符)
 
@@ -68,6 +68,6 @@ MBR 用于查找活动分区，并加载执行活动分区的 PBR，PBR 查找�
 
 GPT/GUID 分区表（Globally Unique Identifier Partition Table）全局唯一标识码分区表
 
-![20221128020857](http://image.zuoright.com/20221128020857.png)
+![20221128020857](https://image.zuoright.com/20221128020857.png)
 
 属于 UEFI 规范下的衍生品，可管理的空间和分区数量都没有限制，PMBR 部分用于兼容 BIOS 启动方式

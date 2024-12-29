@@ -84,7 +84,7 @@ export PATH=$PATH:/Applications/Docker.app/Contents/Resources/bin
 
 参考：[阿里云镜像加速器](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
 
-![20210726135953](http://image.zuoright.com/20210726135953.png)
+![20210726135953](https://image.zuoright.com/20210726135953.png)
 
 ### OrbStack
 
@@ -237,7 +237,7 @@ Docker 使用可 C/S 架构，docker-cli 传输命令给 docker daemon 执行
 
 操作系统分为用户空间和内核空间，应用程序运行在用户空间。Docker 将程序和环境（`用户空间 + 文件系统 + 依赖库` 等）一起打包压缩成「基础镜像」。然后将 `基础镜像 + 程序 + DockerFile` 打包压缩成「容器镜像」
 
-![20220704225726](http://image.zuoright.com/20220704225726.png)
+![20220704225726](https://image.zuoright.com/20220704225726.png)
 
 - Images 镜像：包含运行软件所需的一切要素（代码和运行时）
 - Container 容器：镜像的实例
@@ -245,7 +245,7 @@ Docker 使用可 C/S 架构，docker-cli 传输命令给 docker daemon 执行
 - Docker Compose：使用 YAML 文件对多个容器进行编排，即一整套服务的部署
 - Docker Swarm：调度一整套服务在多台机器上的集群部署
 
-![20210910000945](http://image.zuoright.com/20210910000945.png)
+![20210910000945](https://image.zuoright.com/20210910000945.png)
 
 - 容器进程，运行在由 Linux Namespace 和 Cgroups 构成的隔离环境里
 - 可读写层，它以 Copy-on-Write 的方式存放任何对只读层的修改，容器声明的 Volume 挂载点就在这层。
