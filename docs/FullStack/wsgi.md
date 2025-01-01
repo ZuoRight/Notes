@@ -1,29 +1,12 @@
-# CGI
+# WSGI
 
-![20240627005912](https://image.zuoright.com/20240627005912.png)
-
-Web 框架需要通过一套标准的接口协议与应用服务器交互，通过应用服务器来接收并解析 HTTP 请求。
-
-CGI（Common Gateway Interface, 通用网关接口）是早期 Web 开发的接口规范，FastCGI 为其增强版
-
-某些编程语言有独立的规范，比如
-
-- Java: `Servlet`，由于提出的较早，比较复杂
-- Python: `WSGI`(Web Server Gateway Interface)，接近 CGI，比较简单
-
-Servlet 容器或者 WSGI Server 通常被称之为应用服务器
-
-Nginx 和 Apache 等通常被称之为 Web 服务器，或者 HTTP 服务器
-
-## WSGI
-
-WSGI 是 Python 应用程序和应用服务器之间的一种接口，已经被广泛接受，基于此封装的工具主要有：uWSGI、Gunicorn
+WSGI（Web Server Gateway Interface）是 Python 应用程序和应用服务器之间的一种接口，已经被广泛接受，基于此封装的工具主要有：uWSGI、Gunicorn
 
 WSGI 只支持同步代码，异步需要使用 ASGI，对应的封装工具有：Daphne、Hypercorn、Uvicorn
 
-### uWSGI
+## uWSGI
 
-uWSGI 是 C 语言实现的一款 WSGI 工具，它跟 Flask/Django 等主流框架都遵循了WSGI 规范，自然可以与这些框架实现的应用通信，然后它可以用自带的 uwsgi 协议与 Ngnix 进行通信，最终 Nginx 通过 HTTP 协议对外提供服务
+uWSGI 是 C 语言实现的一款 WSGI 工具，它跟 Flask/Django 等主流框架都遵循了 WSGI 规范，自然可以与这些框架实现的应用通信，然后它可以用自带的 uwsgi 协议与 Ngnix 进行通信，最终 Nginx 通过 HTTP 协议对外提供服务
 
 > 官方文档：<https://uwsgi.readthedocs.io/en/latest/Configuration.html>
 
@@ -136,7 +119,7 @@ bind = "127.0.0.1:8000"
 workers = multiprocessing.cpu_count() * 2 + 1
 ```
 
-- 启动Django
+- 启动 Django
 
 ```shell
 gunicorn myproject.wsgi

@@ -1,8 +1,8 @@
 # WireShark
 
-Wireshark（最早叫做：Ethereal），Wireshark使用WinPCAP作为接口，直接与网卡进行数据报文交换
+Wireshark（最早叫做：Ethereal）使用 WinPCAP 作为接口，工作在数据链路层，直接与网卡进行数据报文交换
 
-Mac安装如下图，同时包含了卸载程序，可以阅读文档查看具体安装卸载方法
+Mac 安装如下图，同时包含了卸载程序，可以阅读文档查看具体安装卸载方法
 
 ![20210809131330](https://image.zuoright.com/20210809131330.png)
 
@@ -10,11 +10,11 @@ Mac安装如下图，同时包含了卸载程序，可以阅读文档查看具�
 
 ![20210809131957](https://image.zuoright.com/20210809131957.png)
 
-在`View/Internals/Supported Protocols`菜单下可以看到WireShark支持的所有协议以及支持的过滤属性等
+在 `View/Internals/Supported Protocols` 菜单下可以看到 WireShark 支持的所有协议以及支持的过滤属性等
 
 ![20210809165259](https://image.zuoright.com/20210809165259.png)
 
-## 抓包iPhone
+## 抓包 iPhone
 
 将手机连接电脑，当手机上弹出如下图的提示框，选择信任
 

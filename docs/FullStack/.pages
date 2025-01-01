@@ -2,9 +2,10 @@
 nav:
   - index.md
   - browser.md
+  - Server
+  - wsgi.md
   - GUI
   - Flask
   - Django
   - WeXin
-  - Server
   - ...

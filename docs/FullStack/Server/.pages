@@ -3,6 +3,5 @@ nav:
   - index.md
   - nginx.md
   - cdn.md
-  - cgi.md
   - Auth.md
   - ...
