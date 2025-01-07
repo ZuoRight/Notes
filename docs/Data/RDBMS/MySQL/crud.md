@@ -89,31 +89,27 @@ SELECT A.key_a, B.key_b
 FROM table_A AS A, table_B AS B;  -- 表可以设置别名方便引用
 ```
 
-### JOIN
-
-用于连接多个表的列，即字段合并，横向扩展
-
-- 内连接 INNER JOIN
+### 内连接
 
 返回符合连接条件的记录，即返回关联表共有的数据，即取交集
 
-可写作 `CROSS JOIN`，或者就简写为 `JOIN`，需要与 `ON` 一起使用
-
-- 外连接 OUTER JOIN
-
-```text
-LEFT ~ 返回左表和关联表共有的数据
-RIGHT ~ 返回右表和关联表共有的数据
-FULL ~ 返回全部的数据，即并集
-```
+可写作 `CROSS JOIN`，或简写为 `JOIN`，需要与 `ON` 一起使用
 
 ```sql
 -- 连接查询，on后面接连接条件
 SELECT A.key_a a, B.key_b b, C.key_c c, C.key_d d  -- 字段也可以设置别名方便引用
 FROM table_A AS A
-JOIN table_B AS B  -- JOIN 默认指内连接 INNER JOIN
+JOIN table_B AS B
 JOIN table_C AS C
 ON (a=c AND b=d);
+```
+
+### 外连接
+
+```text
+LEFT ~ 返回左表和关联表共有的数据
+RIGHT ~ 返回右表和关联表共有的数据
+FULL ~ 返回全部的数据，即并集
 ```
 
 ### UNION
@@ -122,9 +118,7 @@ ON (a=c AND b=d);
 
 `UNION` 与 `UNION ALL` 的区别在于前者会去重，而后者不会去重
 
-## 过滤
-
-- SQ语句执行顺序
+## 语句执行顺序
 
 ```sql
 """
@@ -143,7 +137,14 @@ FROM
 
 所以在一些复杂的查询时要善用 `HAVING`，并且可以结合 `WHERE` 提高性能。
 
-### 表达式
+## 表达式
+
+```sql
+SELECT * 
+FROM students 
+WHERE (score < 80 OR score > 90) 
+AND gender = 'M';
+```
 
 ```sql
 =  -- 等于
@@ -160,8 +161,27 @@ NOT 条件1
 xx IN ('xxx', 'xx')  -- 比如，HAVING transdate IN ('2015-12-01', '2015-12-03')
 ```
 
+## 函数
+
+### 数值函数
+
 ```sql
-SELECT * FROM students WHERE (score < 80 OR score > 90) AND gender = 'M';
+SELECT ABS(-5); -- 返回 5
+SELECT ROUND(1.2345, 2); -- 返回 1.23
+```
+
+### 字符串函数
+
+```sql
+SELECT UPPER('hello'); -- 返回 'HELLO'
+SELECT CONCAT('Hello', ' ', 'World'); -- 返回 'Hello World'
+```
+
+### 日期时间函数
+
+```sql
+SELECT NOW(); -- 返回当前日期和时间
+SELECT DATEDIFF('2025-01-06', '2025-01-01'); -- 返回 5
 ```
 
 ### 聚合函数
@@ -190,4 +210,29 @@ FROM <表名>;
 SELECT class_id, gender, COUNT(*) num  -- num 是虚拟字段的别名
 FROM students
 GROUP BY class_id, gender;  -- 通常分组字段可被写在SELECT后，方便查询结果中区分
+```
+
+### 逻辑函数
+
+```sql
+-- IF 根据工资返回 'High' 或 'Low'
+SELECT IF(salary > 5000, 'High', 'Low') FROM employees;
+
+-- CASE 用于实现复杂的条件判断
+SELECT 
+  CASE 
+    WHEN salary > 5000 THEN 'High'
+    WHEN salary > 3000 THEN 'Medium'
+    ELSE 'Low'
+  END AS salary_level
+FROM employees;
+
+-- 返回第一个不为 NULL 的值
+SELECT COALESCE(NULL, NULL, 'Hello', 'World');  -- 'Hello'
+
+-- 如果 expr1 为 NULL，则返回 expr2，否则返回 expr1 的值
+SELECT IFNULL(commission_pct, 0) AS commission_pct
+
+-- 如果 expr1 等于 expr2，则返回 NULL，否则返回 expr1
+SELECT NULLIF(10, 10); -- 返回 NULL
 ```
