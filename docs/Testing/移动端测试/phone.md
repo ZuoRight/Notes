@@ -34,6 +34,10 @@
 
 ## 手机投屏到电脑
 
+有一些第三方工具可以实现，但是要么收费，要么卡，要么分辨率太低
+
+[Wormhole](https://er.run/) 支持 Android 和 iOS，Android 端基础功能可以免费使用
+
 ### iPhone
 
 借助 QuickTime Player 实现
@@ -55,8 +59,6 @@
 也可以在 Settings -> Tools -> Devices Mirroring 这里设置自动开启条件，比如可以设置「连接设备就自动启动镜像」
 
 如果您使用的是搭载 Android 12 的特定设备（例如 Redmi K40、Poco F3 或 Mi 11X），则必须同时启用「USB 调试」和「USB 调试（安全设置）」这两项设置，然后重启设备，才能启用设备镜像
-
-当然也有一些第三方工具可以实现，但是要么收费，要么卡，要么分辨率太低
 
 ## 访问手机文件
 

@@ -1,7 +1,9 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - curl.md
-  - postman.md
-  - Python Library
-  - JS Library
+  - init.md
+  - OS
+  - Hardware
+  - Virtual
+  - Docker
+  - Process
   - ...

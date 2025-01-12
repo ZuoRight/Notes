@@ -12,6 +12,7 @@ nav:
   - struct.md
   - module.md
   - io.md
+  - network
   - thread.md
   - coroutine.md
   - built_in.md

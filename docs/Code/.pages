@@ -1,17 +1,10 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - index.md
-  - CICD
-  - Docker
-  - Virtual
-  - Hardware
-  - OS
+  - architecture.md
+  - Language
   - Shell
   - 行文本处理
   - Edit
   - compile.md
   - encode.md
-  - Language
-  - init.md
-  - Process
   - ...

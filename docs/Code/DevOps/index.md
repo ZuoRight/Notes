@@ -6,6 +6,8 @@ hide:
 
 # 引言
 
+DevOps(Development and Operations) 是一种文化、运动或实践，提倡尽可能地自动化软件开发和部署流程。
+
 DevOps 依赖一系列工具来实现其目标，包括版本控制系统、自动化部署工具、配置管理工具、监控服务等
 
 - CI(Continuous Integrationv) 持续集成

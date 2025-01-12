@@ -8,5 +8,4 @@ nav:
   - dom_analyze.md
   - appium.md
   - airtest.md
-  - 安卓抓包: /Notes/Network/抓包工具/android_proxy
   - ...

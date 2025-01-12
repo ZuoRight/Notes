@@ -1,15 +1,16 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - index.md
+  - PM.md
+  - QA.md
   - bug.md
   - case.md
   - AutoTest.md
-  - test_service.md
   - UnitTest
   - APITest
   - GUITest
   - 移动端测试
   - 性能测试
   - TestResult
-  - pm.md
+  - 抓包
+  - test_service.md
   - ...

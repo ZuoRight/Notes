@@ -1,12 +1,13 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - Code
   - Testing
+  - FullStack
   - Python
   - JavaScript
   - Data
-  - FullStack
+  - Computer
   - Network
-  - DevOps
   - Blockchain
   - ...
