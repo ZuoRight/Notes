@@ -1,6 +1,6 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - PM.md
+  - Model.md
   - QA.md
   - bug.md
   - case.md
