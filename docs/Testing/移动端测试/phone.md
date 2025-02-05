@@ -2,19 +2,30 @@
 
 ## 模拟器
 
-### emulator
+### AVD
 
-`SDK/emulator`
+> <https://developer.android.com/studio/run/managing-avds?hl=zh-cn>
 
-安装模拟器建议选择 x86 Images 标签下带 Google APIs 的 x86_64
+创建设备，建议选择 x86 Images 标签下带 Google APIs 的 x86_64 镜像
 
-启动模拟器：`emulator @android6`
+命令行使用 `emulator` 启动模拟器
 
-如果想让模拟器联网需要从命令行启动并配置 DNS
+<https://developer.android.com/studio/run/emulator-commandline?hl=zh-cn>
 
-参考：<https://www.jianshu.com/p/cb738ad177ac>
+```shell
+# 查看设备列表
+emulator -list-avds
 
-`emulator -avd 模拟器名 -dns-server 202.106.0.20`
+# 命令行启动模拟器
+emulator -avd avd_name {-option [value]} ...
+# 或者
+emulator @avd_name ...
+
+# option 参数
+'
+-http-proxy myserver:1981
+'
+```
 
 ### Genymotion
 

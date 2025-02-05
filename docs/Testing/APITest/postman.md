@@ -97,13 +97,18 @@ Postman 会根据上传文件的不同类型，自动设置不同类型的 Conte
 
 <https://learning.postman.com/docs/sending-requests/authorization/>
 
-- Inherit auth from parent 默认继承自集合
-- No Auth
-- Bearer Token, 比如 JWT
-- Basic Auth
-- Digest Auth
-- OAuth
-- ...
+```text
+Inherit auth from parent 默认继承自上层
+API Key
+Bearer Token, 比如 JWT
+Basic Auth 用户名密码
+Digest Auth Basic 的加强版
+OAuth2.0
+```
+
+假设集合下所有请求头都需要添加相同的 `xx-Token` 字段，就可以选择 API Key，设置 `key` 和 `value` 到 `Header`
+
+这里只是设置 Token，关于怎么获取 Token 是另一个问题。
 
 ## WS 请求
 

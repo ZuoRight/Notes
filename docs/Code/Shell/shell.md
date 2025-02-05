@@ -10,6 +10,25 @@ Shell 被称之为用户与内核交互的入口，常见的 Shell 有
 - Z Shell（zsh）
 - Friendly Interactive Shell（fish）
 
+```shell
+# 查看系统安装的所有 Shell
+cat /etc/shells
+'
+# List of acceptable shells for chpass(1).
+# Ftpd will not allow users to connect who are not using
+# one of these shells.
+
+/bin/bash
+/bin/csh
+/bin/dash
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+/opt/homebrew/bin/bash
+'
+```
+
 最常用的 Shell 当属 Bash，它是 GNU 社区对 Bourne Shell 的重写，使其符合自由软件协议，其它 Shell 基本都兼容 Bash
 
 ```shell
@@ -29,48 +48,27 @@ exit  # 退出
 
 Ubuntu 默认 Shell 是 dash，性能高，但会导致一些 bash 命令失败
 
-MacOS 默认 Shell 是 zsh
-
-- 查看安装的所有shell
-
-```shell
-cat /etc/shells
-'
-# List of acceptable shells for chpass(1).
-# Ftpd will not allow users to connect who are not using
-# one of these shells.
-
-/bin/bash
-/bin/csh
-/bin/dash
-/bin/ksh
-/bin/sh
-/bin/tcsh
-/bin/zsh
-/opt/homebrew/bin/bash
-'
-```
-
-- 查看默认 Shell
-
-```shell
-echo $SHELL
-```
-
 默认 shell 不一定是当前正在使用的 shell，使用 `ps` 命令返回进程列表，倒数第二个一般是当前正在使用的 shell
 
-- 切换 Shell
-
 ```shell
-# 需要输入密码，会弹出询问界面，问是否让dash为默认shell，选择否，将会删除dash，默认回到bash
+# 查看默认 Shell
+echo $SHELL
+
+# 切换 Shell
+# 需要输入密码，会弹出询问界面，问是否让 dash 为默认 shell，选择否，将会删除 dash，默认回到 bash
 sudo dpkg-reconfigure dash
 ```
 
-## 设置 MacOS 默认 Shell
+macOS 从 Catalina 版开始默认 Shell 为 zsh
+
+- `.zprofile` 用于登录时的初始化，适合设置与系统环境相关的内容
+- `.zshrc` 用于交互式 shell 的配置，适合设置动态的、与交互相关的内容（如别名、函数、动态环境切换等）
+
+### 设置 MacOS 默认 Shell
 
 > 参考译文：<https://juejin.im/post/6844903972294262791>
 
-macOS 从 Catalina 版开始默认 Shell 为 zsh，可以切换为 bash
+可以将默认 shell 切换为 bash
 
 但由于 GPLv3 的原因，Mac 自带的 bash 还是十几年前的 3.2 版本，所以需要先升级一下，即下载新版 bash 并设为默认
 
@@ -83,18 +81,18 @@ echo $BASH_VERSION  # 查看默认交互shell版本
 # 安装新版
 brew install bash
 
-# 查看bash路径
+# 查看 bash 路径
 which -a bash
 # 新版：/usr/local/bin/bash
 # 旧版：/bin/bash，为了保证系统的完整性，不建议删除
 
 # 设置交互shell为新版
 chsh -s /usr/local/bin/bash
-# 改回旧版bash：chsh -s /bin/bash
-# 改回zsh：chsh -s /bin/zsh
+# 改回旧版 bash：chsh -s /bin/bash
+# 改回 zsh：chsh -s /bin/zsh
 
-# 设置登录shell为新版
-# 即把/usr/local/bin/bash填加到当前系统受信任shells配置文件中，
+# 设置登录 shell 为新版
+# 即把 /usr/local/bin/bash 填加到当前系统受信任 shells 配置文件中，
 sudo vim /etc/shells  # 需要管理者权限
 ```
 
@@ -366,7 +364,7 @@ PATH="$PATH":/home/bin
 PATH=${PATH}:/home/bin  # 推荐
 ```
 
-设置环境变量后需要重启终端，或者重新加载配置文件：`source ~/.bash_profile` 或 `source ~/.zshrc`
+设置环境变量后需要重启终端，或者重新加载配置文件：`source ~/.bash_profile` 或 `source ~/.zprofile`
 
 ## 数组
 
