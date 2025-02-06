@@ -6,7 +6,7 @@
 - 事件源，触发事件的元素，比如：按钮、链接、输入框等
 - 事件处理程序，响应事件的函数，在事件发生时被调用
 
-## HTML属性直接绑定
+## 元素属性绑定
 
 不推荐，不安全且代码难以维护
 
@@ -16,7 +16,7 @@
 <script src="./test.js"></script>
 ```
 
-## DOM属性绑定
+## DOM 属性绑定
 
 ```js
 // DOM属性绑定事件，按钮被点击时触发，弹出警告框
@@ -26,13 +26,9 @@ btn.onclick = function() {
 };
 ```
 
-## `addEventListener` 推荐
+## 事件监听器（推荐）
 
 ```js
-const btn = document.getElementById('myButton');
-btn.addEventListener('click', function (event) {
-  
-})
 const btn = document.getElementById('myButton');
 btn.addEventListener(
   'click',

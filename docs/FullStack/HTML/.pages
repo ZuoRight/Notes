@@ -1,6 +1,11 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - element.md
+  - CSS.md
   - layout.md
+  - tailwind.md
+  - vue.md
   - pixel.md
+  - markup_languages.md
   - ...

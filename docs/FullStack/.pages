@@ -4,8 +4,8 @@ nav:
   - browser.md
   - Server
   - wsgi.md
-  - GUI
   - Flask
   - Django
+  - HTML
   - WeXin
   - ...

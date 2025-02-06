@@ -1,4 +1,4 @@
-# 引言
+# CSS
 
 Cascading Style Sheet，层叠样式表，为 HTML 网页添加样式
 
@@ -162,25 +162,37 @@ p::first-line {
 }
 ```
 
-## CSS函数
+## display 属性
 
-```css
-/* RGB颜色 */
-background-color: rgb(255, 0, 0);
+`display` 属性非常强大且灵活，允许开发者精确控制元素及其子元素的布局和表现形式
 
-/* 从文件返回图像 */
-background-image: url(./img/wtflogo.png);
+块级元素的默认值 `display: block`，行内元素默认值是 `display: inline`，列表等元素的默认值是 `display: list-item`
 
-/* 动态计算 */
-padding-right: calc(100vw - 100%);
-/* 100vw是视口宽度，100%是内容宽度，那100vw - 100%就是滚动条宽度了，设置padding-right 为滚动条的宽度，解决滚动条隐藏和出现时导致的网页抖动问题 */
+```text
+block: 元素显示为块级元素，占据全宽，即使后面有内容也会换行显示。
+inline: 元素显示为内联元素，不会导致文本换行。
+flex: 元素将变为弹性容器，其直接子元素的布局将受到 Flexbox 布局的影响。
+grid: 元素将变为网格容器，其直接子元素的布局将受到 CSS 网格布局的影响。
+list-item: 元素会被显示为列表项，类似于 <li> 元素。
+table、table-row、table-cell 等: 这些值将元素的行为变得类似于 HTML 表格中的 <table>、<tr>、<td> 等元素。
+
+run-in: 根据上下文决定该元素是块级还是内联。
+inline-block: 元素水平排列，类似于inline，但是可以设置宽度和高度。
+inline-flex: 元素将变为内联的弹性容器。
+inline-grid: 元素将变为内联的网格容器。
+-webkit-flex: Webkit 内核浏览器，比如 Safari，必须加上 -webkit- 前缀
+
+none: 元素不会被显示，并从文档流中消失。
+contents: 元素本身不会被显示，但其子元素会像平常一样显示。
 ```
 
 ## 盒模型
 
 ![20240229151147](https://image.zuoright.com/20240229151147.png)
 
-默认情况下，使用标准盒模型时，用 `width` 和 `height` 属性设置 `Content` 区域的宽和高，不包含边距和边框，但在替代盒模型（也叫 IE 或怪异盒模型）中，设置的是整个盒子的宽高，即包含内边距和边框。
+默认情况下，使用标准盒模型时，用 `width` 和 `height` 属性设置 `Content` 区域的宽和高，不包含边距和边框
+
+但在替代盒模型（也叫 IE 或怪异盒模型）中，设置的是整个盒子的宽高，即包含内边距和边框。
 
 ```css
 xxx {
@@ -203,39 +215,9 @@ yyy {
 }
 ```
 
-### 内边距
-
-`Padding` 指的是内容和边框之间的透明空间
-
-可取值
-
-- length 以固定值为内边距，不可以为负值，比如：1px
-- percentage 相对于包含块的宽度，以百分比值为内边距，比如：5%
-
-```css
-div {
-    /* 全局值 */
-    padding: inherit;
-    padding: initial;
-    padding: unset;
-
-    /* 应用于四个方向的内边距 */
-    padding: 1em;
-
-    /* 上下边 左右边 */
-    padding: 5% 10%;
-
-    /* 上边 左右边 下边 */
-    padding: 1em 2em 2em;
-
-    /* 顺时针：上边 右边 下边 左边 */
-    padding: 5px 1em 0 2em;
-}
-```
-
 ### 边框
 
-`border` 包裹着内边距和内容区域，可以设置其
+`border` 包裹着内边距和内容区域，可以设置：
 
 - 宽度
 - 样式
@@ -311,6 +293,36 @@ div {
 }
 ```
 
+### 内边距
+
+`Padding` 指的是内容和边框之间的透明空间
+
+可取值
+
+- length 以固定值为内边距，不可以为负值，比如：1px
+- percentage 相对于包含块的宽度，以百分比值为内边距，比如：5%
+
+```css
+div {
+    /* 全局值 */
+    padding: inherit;
+    padding: initial;
+    padding: unset;
+
+    /* 应用于四个方向的内边距 */
+    padding: 1em;
+
+    /* 上下边 左右边 */
+    padding: 5% 10%;
+
+    /* 上边 左右边 下边 */
+    padding: 1em 2em 2em;
+
+    /* 顺时针：上边 右边 下边 左边 */
+    padding: 5px 1em 0 2em;
+}
+```
+
 ### 内容溢出
 
 内容溢出虽然不会影响到内外边距本身的大小或位置，但溢出的内容可以覆盖相邻元素的内容或外边距区域，使用 `overflow` 属性可以控制元素溢出的方式，其只工作于指定高度的块元素上
@@ -324,9 +336,7 @@ div {
 
 同时设置多个背景属性，推荐顺序：`background: color image repeat attachment position/size`
 
-### 背景颜色
-
-### `background-color`
+- `background-color`
 
 背景色作用于内容区和内边距
 
@@ -339,7 +349,7 @@ div {
 }
 ```
 
-### `background-image`
+- `background-image`
 
 设置背景图
 
@@ -355,7 +365,7 @@ div {
 }
 ```
 
-### `background-repeat`
+- `background-repeat`
 
 控制背景图的平铺方式
 
@@ -377,7 +387,7 @@ div {
 }
 ```
 
-### background-size
+- background-size
 
 ```css
 .bgs1 {
@@ -393,7 +403,7 @@ div {
 }
 ```
 
-### background-position
+- background-position
 
 设置背景图起始位置，表示一组2D坐标，默认左上角`（0, 0）`
 
@@ -407,7 +417,7 @@ div {
     background-position: top 20px;
 ```
 
-### background-attachment
+- background-attachment
 
 ```css
 .bga1 {
@@ -423,32 +433,18 @@ div {
 }
 ```
 
-## display 属性
+## CSS 函数
 
-`display` 属性非常强大且灵活，允许开发者精确控制元素及其子元素的布局和表现形式
+```css
+/* RGB颜色 */
+background-color: rgb(255, 0, 0);
 
-块级元素的默认值 `display: block`，行内元素默认值是 `display: inline`，列表等元素的默认值是 `display: list-item`
+/* 从文件返回图像 */
+background-image: url(./img/wtflogo.png);
 
-```text
-none: 元素不会被显示，并从文档流中消失。
-contents: 元素本身不会被显示，但其子元素会像平常一样显示。
-run-in: 根据上下文决定该元素是内联还是块级。
-
-inline: 元素显示为内联元素，不会导致文本换行。
-
-block: 元素显示为块级元素，占据全宽，即使后面有内容也会换行显示。
-inline-block: 元素水平排列，类似于inline，但是可以设置宽度和高度。
-
-flex: 元素将变为弹性容器，其直接子元素的布局将受到 Flexbox 布局的影响。
--webkit-flex: Webkit内核浏览器，比如Safari，必须加上-webkit-前缀
-inline-flex: 元素将变为内联的弹性容器。
-
-grid: 元素将变为网格容器，其直接子元素的布局将受到 CSS 网格布局的影响。
-inline-grid: 元素将变为内联的网格容器。
-
-list-item: 元素会被显示为列表项，类似于 <li> 元素。
-
-table、table-row、table-cell 等: 这些值将元素的行为变得类似于 HTML 表格中的 <table>、<tr>、<td> 等元素。
+/* 动态计算 */
+padding-right: calc(100vw - 100%);
+/* 100vw是视口宽度，100%是内容宽度，那100vw - 100%就是滚动条宽度了，设置padding-right 为滚动条的宽度，解决滚动条隐藏和出现时导致的网页抖动问题 */
 ```
 
 ## 预处理器

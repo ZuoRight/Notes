@@ -59,6 +59,16 @@
 
 ![20240304111612](https://image.zuoright.com/20240304111612.png)
 
+通常用于做导航
+
+```html
+<ol>
+    <li> <a href="#">首页</a> </li>
+	<li> <a href="#">推荐</a> </li>
+	<li> <a href="#">关于</a> </li>
+</ol>
+```
+
 相同或不同列表间可以互相嵌套，需要注意的是，子列表要嵌套在父列表的列表项中
 
 ```html
@@ -356,16 +366,20 @@ type: 创建不同类型的输入字段
 	color: 颜色选择器，用户可以选择颜色
 	file: 允许用户选择一个或多个文件从他们的存储设备上传
 	hidden: 隐藏的输入字段，用户不可见，但表单数据会被发送到服务器
+
 name: 字段名称，用于在表单提交时标识不同的输入字段
-value: 输入字段的值，也可以是按钮上的文字
+value: 字段值，也可以是按钮上的文字
+
 placeholder: 在输入字段为空时显示的提示文本
 min 和 max: 为 number、date 等类型的输入定义可接受的最小和最大值
 step: 为 number 类型的输入定义合法的数字间隔
 pattern: 定义一个正则表达式，输入字段的值必须与之匹配
+
 autofocus 页面加载完后自动获得焦点
 autocomplete:
 	on 默认，点击时浏览器基于用户之前输入的值提供完成建议
 	off 禁止
+
 required: 必填，提交表单时必须输入值
 readonly: 只读，用户不能修改，但值会被提交
 disabled: 禁用该字段，其值也不会被提交到服务器
@@ -406,6 +420,34 @@ onmousedown、onmouseup：分别在用户按下和释放鼠标按钮时触发
 
 ## 超链接
 
+- 普通链接
+
+```html
+<!-- hover 时显示 title 内容 -->
+<a href="https://zuoright.com/" title="demo" target="_blank">ZuoRight</a>
+```
+
+- 锚点链接
+
+```html
+<!-- 使用 name 或 id 属性来设置锚点 -->
+<a name="section1"></a>
+
+<a href="#section1">跳转到指定锚点</a>
+```
+
+- 邮箱链接
+
+```html
+<a href="mailto:example@demo.com">发送邮件</a>
+```
+
+- 下载链接
+
+```html
+<a href="path/to/your/file.zip" download="example-file.zip">下载</a>
+```
+
 - `<base>`
 
 放在 head 中，用于指定页面中所有相对 URL 的基础 URL，一个文档中只能有一个
@@ -426,33 +468,6 @@ onmousedown、onmouseup：分别在用户按下和释放鼠标按钮时触发
 </html>
 ```
 
-- 普通链接
-
-```html
-<!-- hover 时显示 title内容 -->
-<a href="https://zuoright.com/" title="demo" target="_blank">ZuoRight</a>
-```
-
-- 锚点链接
-
-```html
-<!-- 使用 name 或 id 属性来设置锚点 -->
-<a name="section1"></a>
-<a href="#section1">跳转到指定锚点</a>
-```
-
-- 邮箱链接
-
-```html
-<a href="mailto:example@demo.com">发送邮件</a>
-```
-
-- 下载链接
-
-```html
-<a href="https://xxx.demo/img.png" download="logo">下载</a>
-```
-
 ## 图片
 
 可以设置图片的宽度和高度，但为了不影响图片原本的比例，通常只设置其中一个，另一个自动
@@ -460,7 +475,7 @@ onmousedown、onmouseup：分别在用户按下和释放鼠标按钮时触发
 ```html
 <img src="https://demo.com/img.png" width="200" alt="图片加载失败时显示"/>
 
-<!-- 图片还可以加链接 -->
+<!-- 给图片加链接，点击图片跳转 -->
 <a href="https://google.com/">
 	<img src="https://demo.com/img.png" class="img" alt="logo" />
 </a>

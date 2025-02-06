@@ -6,6 +6,8 @@ nav:
   - function.md
   - async.md
   - class.md
+  - object_model.md
+  - event.md
   - unit_test.md
   - nodejs.md
   - typescript.md
