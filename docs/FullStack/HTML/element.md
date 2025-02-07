@@ -1,4 +1,75 @@
-# 常用元素
+# 常用元素及样式
+
+## 语义化
+
+在 HTML5 中，引入了一系列新的语义化标签，可以更清晰地描述内容和页面结构，使代码更易读易懂，方便屏幕阅读器和移动设备等解析，同时也有助于搜索引擎优化 (SEO)
+
+- 全用 div
+
+div 可用来划分或组织 HTML 的元素
+
+![20240304132749](https://image.zuoright.com/20240304132749.png)
+
+- 语义化
+
+![20240304132758](https://image.zuoright.com/20240304132758.png)
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 语义化标签示例</title>
+</head>
+<body>
+    <header>
+        <h1>网站名称</h1>
+        <nav>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">产品服务</a></li>
+                <li><a href="#">联系方式</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <header>
+                <h2>文章标题</h2>
+                <p>发布日期：2024-03-04</p>
+            </header>
+            <section>
+                <h3>章节标题</h3>
+                <p>这里是章节内容。</p>
+            </section>
+            <section>
+                <h3>另一个章节标题</h3>
+                <p>这里是另一个章节的内容。</p>
+            </section>
+            <footer>
+                <p>作者：张三</p>
+            </footer>
+        </article>
+
+        <aside>
+            <h4>侧边栏标题</h4>
+            <p>这里是侧边栏的内容，通常包括链接、广告或其他信息。</p>
+        </aside>
+    </main>
+
+    <footer>
+        <p>版权所有 © 2024 网站名称</p>
+        <address>
+            联系我们：<a href="mailto:info@example.com">info@example.com</a><br>
+            电话：<a href="tel:+1234567890">+123-456-7890</a>
+        </address>
+    </footer>
+</body>
+</html>
+```
 
 ## 文本
 
@@ -24,6 +95,8 @@
     测试测试<mark>此处高亮</mark>测试测试
 </p>
 <p>段落3，这是一个<sub>下标</sub>和<sup>上标</sup>的例子</p>
+
+<blockquote>引用</blockquote>
 ```
 
 ![20240304110315](https://image.zuoright.com/20240304110315.png)
@@ -59,14 +132,16 @@
 
 ![20240304111612](https://image.zuoright.com/20240304111612.png)
 
-通常用于做导航
+无序列表通常用于做导航，li 元素被设置为 `display: inline` 后，标记（如圆点或编号）会消失掉
+
+> 边距过小时也会让标记显示不出来
 
 ```html
-<ol>
-    <li> <a href="#">首页</a> </li>
-	<li> <a href="#">推荐</a> </li>
-	<li> <a href="#">关于</a> </li>
-</ol>
+<ul>
+    <li><a href="#">首页</a></li>
+	<li><a href="#">推荐</a></li>
+	<li><a href="#">关于</a></li>
+</ul>
 ```
 
 相同或不同列表间可以互相嵌套，需要注意的是，子列表要嵌套在父列表的列表项中
@@ -172,8 +247,8 @@
         }
         th, td {
             padding: 10px;
-            text-align: center;  /* 表格文本水平对其方式：left(默认), center, right */
-            vertical-align: center;  /* 表格文本垂直对其方式：top, center(默认), bottom */
+            text-align: center;
+            vertical-align: center;
         }
 		/* hover 表格某一横行时高亮显示，不设置的话默认没有 */
         tr:hover {
@@ -349,7 +424,7 @@ target: 提交表单后，响应返回的位置
 </form>
 ```
 
-### input
+### 输入框
 
 `<input type=text name="" value="">`
 
@@ -370,7 +445,6 @@ type: 创建不同类型的输入字段
 name: 字段名称，用于在表单提交时标识不同的输入字段
 value: 字段值，也可以是按钮上的文字
 
-placeholder: 在输入字段为空时显示的提示文本
 min 和 max: 为 number、date 等类型的输入定义可接受的最小和最大值
 step: 为 number 类型的输入定义合法的数字间隔
 pattern: 定义一个正则表达式，输入字段的值必须与之匹配
@@ -383,9 +457,23 @@ autocomplete:
 required: 必填，提交表单时必须输入值
 readonly: 只读，用户不能修改，但值会被提交
 disabled: 禁用该字段，其值也不会被提交到服务器
+
+placeholder: 在输入字段为空时显示的提示文本
 ```
 
-## 按钮
+```css
+input:focus {
+    outline: none;  /* 去掉输入框聚焦时的边框 */
+    border-color: #E0E9A3;  /* 设置聚焦时的边框颜色 */
+}
+
+/* 设置 placeholder 的颜色 */
+input::placeholder {
+    color: #DDDDDD;
+}
+```
+
+### 按钮
 
 `<input>` 和 `<button>` 标签均可创建按钮
 
@@ -399,7 +487,7 @@ disabled: 禁用该字段，其值也不会被提交到服务器
 </button>
 ```
 
-type 属性都有三个值
+type 属性有三个值
 
 ```text
 reset: 重置按钮，将表单的所有字段重置为其初始值
@@ -416,6 +504,19 @@ onblur：当按钮失去焦点时触发
 onmouseover：当鼠标指针移动到按钮上时触发
 onmouseout：当鼠标指针移出按钮时触发
 onmousedown、onmouseup：分别在用户按下和释放鼠标按钮时触发
+```
+
+常用样式
+
+```css
+{
+	cursor: pointer;  /* 设置鼠标样式，hover 时显示手指 */
+	background-color: transparent;  /* 透明背景 */
+    color: white;  /* 设置文字颜色 */
+	padding: 10px;
+    border: 1px solid #949d9a;  /* 设置边框 */
+    border-radius: 5px;
+}
 ```
 
 ## 超链接
@@ -497,7 +598,109 @@ img {
 }
 
 img {
-	text-align: center;  /* 行内元素时居中 */
+	text-align: center;  /* 图片作为行内元素时居中 */
+}
+```
+
+## 背景相关
+
+同时设置多个背景属性，推荐顺序：
+
+`background: color image repeat attachment position/size`
+
+- `background-color`
+
+背景色作用于内容区和内边距
+
+```css
+/* 颜色值有三种定义方式 */
+div {
+    background-color: green;  /* 颜色名称，透明色 transparent */
+    background-color: #fff;  /* 十六进制 */
+    background-color: rgb(255, 0, 0);  /* RGB */
+	background-color: rgba(35, 28, 26, 0.8);  /* 增加透明度*/
+}
+```
+
+- `background-image` 设置背景图
+
+```css
+.bgi {
+    /* 使用url函数指向图像文件 */
+    background-image: url(./img/demo.png);
+}
+
+.gradient {
+    /* 渐变 */
+    background-image: linear-gradient(90deg, rgba(119,0,255,1) 39%, rgba(0,212,255,1) 100%);
+}
+```
+
+- background-size 设置背景图大小
+
+```css
+.bgs1 {
+    background-size: auto;  /* 维持图片原本大小，未覆盖部分重复平铺，默认值 */
+}
+
+.bgs2 {
+    background-size: contain;  /* 图像等比例缩放，直到宽或高较长的一边先占满容器为止，未覆盖部分显示背景色 */
+}
+
+.bgs3 {
+    background-size: cover;  /* 按图像比例一直放大，直到覆盖整个区域，超出部分裁剪 */
+}
+```
+
+![20250207201954](https://image.zuoright.com/20250207201954.png)
+
+- `background-repeat` 控制背景图的平铺方式
+
+```css
+.bgr1 {
+    background-repeat: repeat;  /* 水平和垂直方向都重复（默认） */
+}
+
+.bgr2 {
+    background-repeat: repeat-x;  /* 水平方向重复 */
+}
+
+.bgr3 {
+    background-repeat: repeat-y;  /* 垂直方向重复 */
+}
+
+.bgr4 {
+    background-repeat: no-repeat;  /* 仅平铺一次 */
+}
+```
+
+- background-position 设置背景图位置
+
+可以设置背景图起始坐标，默认从左上角起始：`(0, 0)`
+
+也可以用长度、百分比、以及混合来设置
+
+还可以用关键字：`left|right|top|bottom|center`，表示将元素与指定边对齐，如果只设置一个轴的关键字，另一个轴则默认为 center
+
+```css
+    background-position: top center;
+    background-position: 20px 10%;
+    background-position: top 20px;
+```
+
+- background-attachment 背景图附着方式
+
+```css
+.bga1 {
+    background-attachment: scroll;  /* 背景图随网页滚动而移动（默认） */
+}
+
+.bga2 {
+    background-attachment: fixed;  /* 背景图固定不动 */
+}
+
+.bga3 {
+    background-attachment: local;  /* 背景图随元素内容滚动 */
 }
 ```
 

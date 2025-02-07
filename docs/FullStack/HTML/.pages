@@ -2,10 +2,9 @@
 nav:
   - index.md
   - element.md
-  - CSS.md
+  - pixel.md
   - layout.md
   - tailwind.md
   - vue.md
-  - pixel.md
   - markup_languages.md
   - ...

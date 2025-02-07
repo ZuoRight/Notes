@@ -1,5 +1,7 @@
 # 引言
 
+## HTML
+
 Hypertext Markup Language，超文本标记语言，用于定义网页的结构和内容
 
 > [关于标记语言](./markup_languages.md)
@@ -30,11 +32,6 @@ HTML 由元素组成，元素由开始标签、内容和结束标签组成，元
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <!-- 收藏夹icon -->
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
-        <!-- 内部样式 -->
-        <style> * {margin: 0; padding: 0} </style>
-        <!-- 引入样式 -->
-        <link rel="stylesheet" type="text/css" href="demo.css">
     </head>
 
     <body>
@@ -43,47 +40,6 @@ HTML 由元素组成，元素由开始标签、内容和结束标签组成，元
     </body>
 </html>
 ```
-
-在 HTML 中，可以使用 `<script>` 标签插入 JavaScript 代码。可以放在 HTML 文档的 `<head>` 或 `<body>` 部分，但为了避免阻塞页面的渲染，通常会放在 `<body>` 标签的末尾。
-
-```html
-<body>
-    ......
-    
-    <!-- 内部脚本 -->
-    <script> alert('Hi!'); </script>
-
-    <!-- 嵌入脚本 -->
-    <script src="/path/to/script.js"></script>
-</body>
-```
-
-## 元素属性
-
-元素属性定义在开始标签中，用于提供有关元素的更多信息，或者定义某些行为
-
-格式：`<div name1="value1" name2="value2">`
-
-- `name`
-- `id`
-- `class`
-- `style`
-- `src` Source，用于嵌入资源，如图像、脚本、iframe，常见于 `<img>`, `<script>`, `<iframe>`, `<video>`, `<audio>` 等标签中
-- `href` Hypertext Reference，用于链接资源，如网页、样式表、锚点，常见于 `<a>`, `<link>` 等标签中
-
-## 元素分类
-
-### 区块元素
-
-block-level elements，比如：`<div>`, `<p>`, `<ul>`, `<h1> ~ <h6>` 等
-
-以块的形式在页面中独占一行，与其他区块元素上下堆叠，可以设置宽高，默认为父容器的 100%
-
-### 行内元素
-
-inline elements，比如：`<img>`, `<input>`, `<span>`, `<strong>` 等
-
-在文本中流动，不会开始新的一行，不可设置宽高，仅占据它们包含的内容所需要的宽度
 
 ### 空元素
 
@@ -107,76 +63,188 @@ HTML5 旨在简化网页的编码，并增强网页的兼容性和灵活性，�
 
 而 XML 以及 XHTML 等要求所有元素都必须被正确地闭合：`<br />`, `<hr />`
 
-## 语义化
+### 元素属性
 
-在 HTML5 中，引入了一系列新的语义华标签，可以更清晰地描述内容和页面结构，使代码更易读易懂，方便屏幕阅读器和移动设备等解析，同时也有助于搜索引擎优化 (SEO)
+元素属性定义在开始标签中，用于提供有关元素的更多信息，或者定义某些行为
 
-- 全用 div
-![20240304132749](https://image.zuoright.com/20240304132749.png)
+格式：`<div name1="value1" name2="value2">`
 
-- 语义化
+- `name`
+- `id`
+- `class`
+- `style`
+- `src` Source，用于嵌入资源，如图像、脚本、iframe，常见于 `<img>`, `<script>`, `<iframe>`, `<video>`, `<audio>` 等标签中
+- `href` Hypertext Reference，用于链接资源，如网页、样式表、锚点，常见于 `<a>`, `<link>` 等标签中
 
-![20240304132758](https://image.zuoright.com/20240304132758.png)
+## CSS
+
+Cascading Style Sheet，层叠样式表，为 HTML 网页添加样式
+
+由选择器和声明组成，声明由属性和值组成，声明以分号结尾，放在花括号中
+
+```css
+selector {
+    property1: value;
+    property2: value;
+}
+```
+
+### 样式优先级
+
+- 内联样式 > 内部样式 > 外部样式 > 浏览器自定义/插件样式 > 浏览器默认样式
+- ID 选择器 > 类/伪类/属性选择器 > 元素/伪元素选择器
+- 添加了 `!important` 的样式具有最高优先级
+- 优先级相同时，后出现的会覆盖先出现的
+
+### 引入方式
 
 ```html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML5 语义化标签示例</title>
-</head>
+<html>
+    <head>
+        <!-- 内部样式 -->
+        <style> * {margin: 0; padding: 0} </style>
+
+        <!-- 引入样式，代码写在单独的 .css 文件中 -->
+        <link rel="stylesheet" type="text/css" href="demo.css">
+    </head>
+    <body>
+        <!-- 内联样式，直接在元素的标签中使用 style 属性添加 -->
+        <p style="color: red; font-size: 20px;"> hello </p>
+    </body>
+<html>
+```
+
+### 选择器
+
+- 基本选择器
+
+```css
+/* 通用选择器 */
+* {
+    ...
+}
+
+/* 元素选择器 */
+element_name {
+    ...
+}
+
+/* 类选择器 */
+.class_name {
+    ...
+}
+
+/* id选择器 */
+#id_name {
+    ...
+}
+
+/* 属性选择器 */
+[property_name="value"] {
+    ...
+}
+```
+
+- 分组选择器
+
+```css
+/* 同时匹配A,B选择器 */
+div, span {
+    ...
+}
+```
+
+- 组合选择器
+
+```css
+/* 匹配所有位于任意 <div> 元素之内的 <span> 元素 */
+div span {
+    ...
+}
+
+/* 匹配直接嵌套在 <ul> 元素内的所有 <li> 元素 */
+ul > li {
+    ...
+}
+
+/* 匹配同一父元素下，<p> 元素后的所有 <span> 元素 */
+p ~ span {
+    ...
+}
+
+/* 匹配所有紧邻在 <p> 元素后的 <span> 元素 */
+p + span {
+
+}
+```
+
+- 伪选择器
+
+[伪类](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes)
+
+```css
+/* 匹配选择具有焦点的 <input> 元素 */
+input:focus {
+    ...
+}
+```
+
+[伪元素](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-elements)
+
+```css
+/* 匹配所有 <p> 元素的第一行 */
+p::first-line {
+    ...
+}
+```
+
+### 函数
+
+```css
+/* 从文件返回图像 */
+background-image: url(./img/wtflogo.png);
+
+/* RGB颜色 */
+background-color: rgb(255, 0, 0);
+
+/* 动态计算宽度 */
+padding-right: calc(100vw - 100%);
+/* 100vw 是视口宽度，100% 是内容宽度，那 100vw - 100% 就是滚动条宽度了，设置 padding-right 为滚动条的宽度，解决滚动条隐藏和出现时导致的网页抖动问题 */
+```
+
+### 预处理器
+
+常见的有：Less、Stylus、Sass 等
+
+可以让你处理自己独有的语法来生成 CSS 标准语法的程序，绝大多数 CSS 预处理器会增加一些原生 CSS 不具备的特性。
+
+## JS 脚本
+
+在 HTML 中，可以使用 `<script>` 标签插入 JavaScript 代码。可以放在 HTML 文档的 `<head>` 或 `<body>` 部分，但为了避免阻塞页面的渲染，通常会放在 `<body>` 标签的末尾。
+
+```html
 <body>
-    <header>
-        <h1>网站名称</h1>
-        <nav>
-            <ul>
-                <li><a href="#">首页</a></li>
-                <li><a href="#">关于我们</a></li>
-                <li><a href="#">产品服务</a></li>
-                <li><a href="#">联系方式</a></li>
-            </ul>
-        </nav>
-    </header>
+    ......
+    
+    <!-- 内部脚本 -->
+    <script> alert('Hi!'); </script>
 
-    <main>
-        <article>
-            <header>
-                <h2>文章标题</h2>
-                <p>发布日期：2024-03-04</p>
-            </header>
-            <section>
-                <h3>章节标题</h3>
-                <p>这里是章节内容。</p>
-            </section>
-            <section>
-                <h3>另一个章节标题</h3>
-                <p>这里是另一个章节的内容。</p>
-            </section>
-            <footer>
-                <p>作者：张三</p>
-            </footer>
-        </article>
-
-        <aside>
-            <h4>侧边栏标题</h4>
-            <p>这里是侧边栏的内容，通常包括链接、广告或其他信息。</p>
-        </aside>
-    </main>
-
-    <footer>
-        <p>版权所有 © 2024 网站名称</p>
-        <address>
-            联系我们：<a href="mailto:info@example.com">info@example.com</a><br>
-            电话：<a href="tel:+1234567890">+123-456-7890</a>
-        </address>
-    </footer>
+    <!-- 嵌入脚本 -->
+    <script src="/path/to/script.js"></script>
 </body>
-</html>
 ```
 
 ## 参考
 
+- <https://www.bilibili.com/video/BV1Wr4y1R7Bd>
+
+---
+
 - <https://wangdoc.com/html/intro.html>
 - <https://www.wtf.academy/docs/html-101/HelloHTML/>
 - <https://developer.mozilla.org/zh-CN/docs/Learn/HTML>
+
+---
+
+- <https://www.wtf.academy/docs/css-101/HelloCSS/>
+- <https://developer.mozilla.org/zh-CN/docs/Web/CSS>
