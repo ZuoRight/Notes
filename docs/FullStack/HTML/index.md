@@ -73,8 +73,8 @@ HTML5 旨在简化网页的编码，并增强网页的兼容性和灵活性，�
 - `id`
 - `class`
 - `style`
-- `src` Source，用于嵌入资源，如图像、脚本、iframe，常见于 `<img>`, `<script>`, `<iframe>`, `<video>`, `<audio>` 等标签中
-- `href` Hypertext Reference，用于链接资源，如网页、样式表、锚点，常见于 `<a>`, `<link>` 等标签中
+- `src` Source，用于嵌入资源，如图像、脚本、iframe，当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕。常见于 `<img>`, `<script>`, `<iframe>`, `<video>`, `<audio>` 等标签中
+- `href` Hypertext Reference，用于链接资源，会下载资源但不会停止对当前文档的处理，如网页、样式表、锚点，常见于 `<a>`, `<link>` 等标签中
 
 ## CSS
 
@@ -220,7 +220,7 @@ padding-right: calc(100vw - 100%);
 
 ## JS 脚本
 
-在 HTML 中，可以使用 `<script>` 标签插入 JavaScript 代码。可以放在 HTML 文档的 `<head>` 或 `<body>` 部分，但为了避免阻塞页面的渲染，通常会放在 `<body>` 标签的末尾。
+在 HTML 中，可以使用 `<script>` 标签引入 JavaScript 代码。可以放在 HTML 文档的 `<head>` 或 `<body>` 部分，但为了避免阻塞页面的渲染，通常会放在 `<body>` 标签的末尾。
 
 ```html
 <body>

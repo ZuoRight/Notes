@@ -41,6 +41,8 @@ none: 元素不会被显示，并从文档流中消失。
 contents: 元素本身不会被显示，但其子元素会像平常一样显示。
 ```
 
+- 对齐
+
 ```css
 {
 	text-align: center;  /* 设置块级元素的文本水平对齐方式，left（左对齐，默认）、right（右对齐）、center（居中对齐）、justify（两端对齐） */
@@ -68,7 +70,9 @@ yyy {
 
 ### 边框
 
-`border` 包裹着内边距和内容区域，可以设置：
+`border` 包裹着内边距和内容区域
+
+可以设置如下样式：
 
 ```css
 div {
@@ -81,9 +85,15 @@ div {
 }
 ```
 
-还可以单独设置每个边的宽度
+很多元素的边框默认样式是 none 或者宽度是 0，但都可以设置
 
-![20250207164057](https://image.zuoright.com/20250207164057.png)
+还可以单独设置每个边及其宽度
+
+```css
+li {
+    border-bottom: 1px solid #f0f0f0;  /* 给 li 元素设置一条下灰线，看起来更工整 */
+}
+```
 
 ```html
 <head>
@@ -107,6 +117,8 @@ div {
 </body>
 ```
 
+![20250207164057](https://image.zuoright.com/20250207164057.png)
+
 设置圆角
 
 ```css
@@ -120,6 +132,10 @@ div {
 ```
 
 ![20240229190444](https://image.zuoright.com/20240229190444.png)
+
+表单、可交互、可聚焦元素在获得焦点时，浏览器会显示一个 `outline`，帮助用户识别焦点所在的元素
+
+`outline` 边框不占据空间，不会影响元素的布局，但若影响美观，可以去除：`outline: none;`
 
 ### 外边距
 
@@ -202,6 +218,23 @@ overflow: visible;  默认值，内容溢出会显示在元素框之外
 overflow: hidden;  内容溢出部分不可见
 overflow: scroll;  内容溢出显示滚动条，不溢出也显示
 overflow: auto;  内容溢出显示滚动条，不溢出不显示
+```
+
+示例
+
+```html
+<div class="todoInput">
+    <input type="text" id="input" placeholder="请输入待办事项">
+    <button id="btn">+</button>
+</div>
+
+<!-- 给 div 设置圆角时不会有效果，因为子元素溢出父元素的边界，所以需要隐藏掉溢出的部分才会显示父元素的圆角 -->
+<style>
+    .todoInput {
+        border-radius: 25px;
+        overflow: hidden;
+    }
+</style>
 ```
 
 ## Position
@@ -351,6 +384,8 @@ flex-wrap: 溢出时如何处理
     nowrap 不换行
     wrap 向下换行
     wrap-reverse 向上换行
+
+flex-grow: 1  自动伸展填满横向空间
 ```
 
 - 简写

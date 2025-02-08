@@ -135,6 +135,8 @@ div 可用来划分或组织 HTML 的元素
 无序列表通常用于做导航，li 元素被设置为 `display: inline` 后，标记（如圆点或编号）会消失掉
 
 > 边距过小时也会让标记显示不出来
+>
+> 还可以主动去掉标记：`list-style-type: none;`
 
 ```html
 <ul>
@@ -589,11 +591,14 @@ onmousedown、onmouseup：分别在用户按下和释放鼠标按钮时触发
 ```css
 img {
 	display: block;
-	margin: 0 auto;  /* 块级元素时居中 */
 	width: 200px;
 	height: 100px;
+
+    margin: 0 auto;  /* 块级元素时居中 */
+
+    border-radius: 8px;  /* 圆角，设置50%为圆形 */
+
 	opacity: 0.5;  /* 设置透明度，0全透明，0.5半透明 */
-	border-radius: 8px;  /* 圆角，设置50%为圆形 */
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  /* 阴影 */
 }
 
