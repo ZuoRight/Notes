@@ -77,13 +77,13 @@ const child = new Child();  // 实例化
 console.log(child.getName());  // 输出："Child"
 ```
 
-## 模块
+## 模块化
 
 JS 本身是没有模块的概念，模块化的演变经历了一个漫长的过程，从最初的 CommonJS ，到后来的 AMD 和 CMD，再到今天的 ES6 模块化方案
 
 ### CommonJS
 
-用于在 Node.js 中导入模块的函数，属于同步操作
+用于在 Node.js 中导入模块的函数，属于同步操作，不推荐！
 
 ```js
 // app.js
@@ -96,10 +96,9 @@ console.log(message);  // 输出 'Hello!'
 module.exports = 'Hello!';  // 导出模块
 ```
 
-
 ### ES6
 
-用于在 ES6 中导入模块的新关键字，属于异步操作
+用于在 ES6 中导入模块的新关键字，属于异步操作，推荐！
 
 ```js
 // app.js

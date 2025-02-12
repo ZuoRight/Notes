@@ -6,6 +6,6 @@ nav:
   - wsgi.md
   - Flask
   - Django
-  - HTML
+  - Web
   - WeXin
   - ...

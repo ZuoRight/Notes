@@ -4,7 +4,10 @@ nav:
   - element.md
   - pixel.md
   - layout.md
+  - dom_and_event.md
   - tailwind.md
   - vue.md
+  - HTMX.md
   - markup_languages.md
+  - seo.md
   - ...

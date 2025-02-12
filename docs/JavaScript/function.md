@@ -193,7 +193,7 @@ console.log(result); // 输出: 6
 
 ## 匿名函数
 
-- 函数表达式
+### 函数表达式
 
 ```js
 let sum = function(x, y) {
@@ -203,7 +203,7 @@ let sum = function(x, y) {
 data: function () { pass }  // 可简写为 data () { pass }
 ```
 
-- 箭头函数
+### 箭头函数
 
 > ES6 新增
 

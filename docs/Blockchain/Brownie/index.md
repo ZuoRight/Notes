@@ -42,9 +42,9 @@ SUCCESS: A new Brownie project has been initialized at /Users/chonge/code/blockc
 COMMENT
 ```
 
-另外 brownie 预制了一些项目模版，可以直接使用模版快速初始化项目，比如react、github-actions等
+另外 brownie 预制了一些项目模版，可以直接使用模版快速初始化项目，比如 react、github-actions 等
 
-比如基于ERC-20创建Token：`brownie bake token`，这将会自动从<https://github.com/brownie-mix>下载对应的模版到本地
+比如基于 ERC-20 创建 Token：`brownie bake token`，这将会自动从 <https://github.com/brownie-mix> 下载对应的模版到本地
 
 ## 项目结构
 

@@ -36,9 +36,52 @@ for (let i = 0; i < numArr.length; i++) {
 console.log(`平均值为: ${average}`)  // 17.6
 ```
 
+### `.map()`
+
+`.map()` 方法在处理数据转换、创建新的数据结构以及保持代码的简洁性和可读性方面非常有用。
+
+它接受一个回调函数和一个可选的 `this` 参数，返回一个新数组
+
+回调函数有三个参数
+
+```js
+//  currentValue (必需) - 当前元素的值。
+//  index (可选) - 当前元素的索引。
+//  array (可选) - 调用 map 的数组。
+function callback(currentValue, index, array) {
+  // 你的逻辑
+}
+```
+
+示例
+
+```js
+let numbers = [1, 4, 9, 16];
+
+let roots = numbers.map(Math.sqrt);  // [1, 2, 3, 4]
+
+// 使用箭头函数
+const map1 = numbers.map(x => x * 2);
+console.log(map1);  // [2, 8, 18, 32]
+
+// 使用更复杂的回调函数
+const map2 = numbers.map((num, index) => {
+  return { index: index, value: num * 2 };
+});
+console.log(map2);
+// [
+//   { index: 0, value: 2 },
+//   { index: 1, value: 8 },
+//   { index: 2, value: 18 },
+//   { index: 3, value: 32 }
+// ]
+```
+
+值得注意的是 `map()` 方法是同步执行的，这意味着它会阻塞主线程直到所有元素都被处理完毕。
+
 ## Object
 
-类似 Python 的 dict，`{key: value}`，键是字符串，值可以是任意其它类型（包括函数）
+类似 Python 的 Dict，`{key: value}`，键是字符串，值可以是任意其它类型（包括函数）
 
 ```js
 let obj = {
@@ -98,7 +141,7 @@ console.log(map.size); // 输出: 0
 
 ## Set
 
-值的集合，与 Python的 Set 类似，不允许存储重复元素
+值的集合，与 Python 的 Set 类似，不允许存储重复元素
 
 ```js
 let set = new Set();

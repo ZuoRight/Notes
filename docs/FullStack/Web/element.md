@@ -1,16 +1,32 @@
 # 常用元素及样式
 
-## 语义化
-
-在 HTML5 中，引入了一系列新的语义化标签，可以更清晰地描述内容和页面结构，使代码更易读易懂，方便屏幕阅读器和移动设备等解析，同时也有助于搜索引擎优化 (SEO)
-
-- 全用 div
+## div
 
 div 可用来划分或组织 HTML 的元素
 
 ![20240304132749](https://image.zuoright.com/20240304132749.png)
 
-- 语义化
+空 div 要有宽高和背景色才能被看到
+
+对齐
+
+```css
+{
+	text-align: center;  /* 设置块级元素的文本水平对齐方式，left（左对齐，默认）、right（右对齐）、center（水平居中对齐）、justify（两端对齐） */
+	vertical-align: middle  /* 用于设置内联元素或表格单元格的垂直对齐方式，baseline（基线对齐）、top（顶部对齐）、middle（垂直居中对齐）、bottom（底部对齐，默认）、sub（下标对齐）、super（上标对齐）、text-top（与父元素的文本顶部对齐）、text-bottom（与父元素的文本底部对齐） */
+
+    /* 设置最后一行文本的水平对齐方式 */
+    text-align-last
+
+    /* 行高与容器高度相等时，可实现容器内「单行文本垂直居中对齐」 */
+    height: 10px
+    line-height: 10px
+}
+```
+
+## 语义化
+
+在 HTML5 中，引入了一系列新的语义化标签，可以更清晰地描述内容和页面结构，使代码更易读易懂，方便屏幕阅读器和移动设备等解析，同时也有助于搜索引擎优化 (SEO)
 
 ![20240304132758](https://image.zuoright.com/20240304132758.png)
 
@@ -100,6 +116,24 @@ div 可用来划分或组织 HTML 的元素
 ```
 
 ![20240304110315](https://image.zuoright.com/20240304110315.png)
+
+```css
+/* 设置文本的修饰，简写属性 */
+text-decoration：underline wavy red;  /* 下划线、波浪线、红色 */
+/* 也可单独设置 */
+text-decoration-line： /* 设置文本修饰的具体类型：默认无装饰 none、下划线 underline、上划线 overline、删除线 line-through */
+text-decoration-style： /* 设置文本修饰的样式：默认实线 solid、虚线 dashed、波浪线 wavy、点线 dotted、双线 double */
+text-decoration-color： /* 设置文本修饰的颜色 */
+
+text-underline-position：设置文本下划线的位置，通常取决于文本的排列方向
+text-shadow：设置文本的阴影效果。
+
+text-indent：设置文本的首行缩进。
+text-justify：设置对齐文本时使用的对齐方法。
+text-overflow：设置当文本溢出包含元素时的处理方式。
+
+text-transform：设置文本的大小写转换方式。
+```
 
 ## 列表
 
@@ -615,7 +649,7 @@ img {
 
 - `background-color`
 
-背景色作用于内容区和内边距
+背景颜色作用于内容区和内边距
 
 ```css
 /* 颜色值有三种定义方式 */
@@ -624,6 +658,8 @@ div {
     background-color: #fff;  /* 十六进制 */
     background-color: rgb(255, 0, 0);  /* RGB */
 	background-color: rgba(35, 28, 26, 0.8);  /* 增加透明度*/
+    background-color: linear-gradient(to right, #ff7e5f, #feb47b);  /* 线性渐变，从左到右 */
+    background-color: radial-gradient(circle, #ff7e5f, #feb47b);  /* 径向渐变，从中心向外扩展 */
 }
 ```
 
@@ -714,6 +750,8 @@ div {
 HTML5 新增了一些富媒体元素，意味着不需要再装 Flash 等插件即可操作媒体文件，极大的增强了用户体验。
 
 ### 音视频
+
+> 可自定义的开源播放器：<https://github.com/sampotts/plyr>
 
 `<audio>` 和 `<video>` 分别用于嵌入音频和视频文件，并提供控件来控制播放。
 

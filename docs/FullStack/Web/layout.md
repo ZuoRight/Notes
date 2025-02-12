@@ -41,15 +41,6 @@ none: 元素不会被显示，并从文档流中消失。
 contents: 元素本身不会被显示，但其子元素会像平常一样显示。
 ```
 
-- 对齐
-
-```css
-{
-	text-align: center;  /* 设置块级元素的文本水平对齐方式，left（左对齐，默认）、right（右对齐）、center（居中对齐）、justify（两端对齐） */
-	vertical-align: middle  /* 用于设置内联元素或表格单元格的垂直对齐方式，baseline（基线对齐）、top（顶部对齐）、middle（垂直居中对齐）、bottom（底部对齐，默认）、sub（下标对齐）、super（上标对齐）、text-top（与父元素的文本顶部对齐）、text-bottom（与父元素的文本底部对齐） */
-}
-```
-
 ## 盒模型
 
 ![20240229151147](https://image.zuoright.com/20240229151147.png)

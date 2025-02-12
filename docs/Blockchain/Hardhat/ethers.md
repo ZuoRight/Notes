@@ -17,7 +17,7 @@ npm install ethers --save
 
 ```js
 // const ethers = require('ethers');  // CommonJS 方式
-import { ethers } from 'ethers';  // ES6 方式
+import { ethers } from 'ethers';  // ES6 方式(推荐)
 
 const main = async () => {
     // code

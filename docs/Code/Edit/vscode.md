@@ -8,7 +8,11 @@ VSCode 的一些配置等多端同步，现在已经不需要再使用 `Settings
 
 ## 快捷键
 
-切换终端：`Control` + `~`
+```text
+切换终端 Control + ~
+行注释 Command + /
+块注释 Shift + Option + A
+```
 
 ## Python 配置
 

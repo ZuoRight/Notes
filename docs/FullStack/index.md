@@ -112,12 +112,11 @@ Model-View-Template
 
 SPA(Single Page Application)
 
-- React：由 Facebook 开发，最流行
-- Vue：由 Evan You（尤雨溪）开发，最易上手
-- Angular：由 Google 开发，最难，基于 TypeScript
+- Angular：由 Google 开发
+- React：由 Facebook 开发
+- Vue：由 Evan You（尤雨溪）开发
 
 SSR(Server Side Rendering)
 
 - React 生态的 Next.js
 - Vue 生态的 Nuxt
-- Astro

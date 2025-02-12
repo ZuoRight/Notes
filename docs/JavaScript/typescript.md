@@ -3,7 +3,7 @@
 - <https://www.typescriptlang.org/>
 - <https://wangdoc.com/typescript/intro>
 
-TypeScript 由 Microsoft 开发，是 ES 的超集，TS包含了ES的所有特性，同时还扩展了一些新的功能，如静态类型、接口、枚举、泛型等等。TS在编写代码时提供了更好的类型检查和代码提示功能，从而提高了代码的可维护性和可读性。
+TypeScript 由 Microsoft 开发，是 ES 的超集，TS 包含了 ES 的所有特性，同时还扩展了一些新的功能，如静态类型、接口、枚举、泛型等等。TS在编写代码时提供了更好的类型检查和代码提示功能，从而提高了代码的可维护性和可读性。
 
 > Angular2.0 和 Vue 3.0 都是基于 TypeScript 的
 

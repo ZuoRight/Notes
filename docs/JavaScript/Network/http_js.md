@@ -32,7 +32,7 @@ xhr.onreadystatechange = function () {
 xhr.send();
 ```
 
-jQuery 提供了简化 AJAX 操作的方法，许多现代框架和库（如 React, Angular, Vue.js）也提供了自己的方式来处理 AJAX 请求
+jQuery 提供了简化 AJAX 操作的方法，许多现代框架和库（如 React, Angular, Vue）也提供了自己的方式来处理 AJAX 请求
 
 ```js
 $.get("someurl", function(data) {
