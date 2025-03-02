@@ -55,6 +55,42 @@ true || false;  // 或
 
 检查某个值或键是否存在
 
+### 扩展运算符
+
+- 数组拆包
+
+```js
+let arr = [3,4,5,6]
+console.log(arr)  // 普通：[3, 4, 5, 6]
+console.log(...arr)  // 拆包：3, 4, 5, 6
+
+// 拼接数组
+let arr2 = [1, 2, ...arr, 7]
+console.log(arr2)  // [1, 2, 3, 4, 5, 6, 7]
+```
+
+- 对象拆包
+
+```js
+let obj = {name:'alice', age:18, sex:'女'}
+let obj2 = {mz:'bob', nl:19, xb:'男'}
+
+// console.log(...obj)  对象不能直接这么拆
+console.log({...obj})  // 要放在 {} 里面拆
+const cloneObj = {...obj, name:'张岩'}  // 拆包并给name重新赋值
+const cloneObj2 = {...obj, ...obj2}  // 拼接对象
+```
+
+- 解构时可使用扩展语法收集剩余元素
+
+```js
+const arr = [1, 2, 3, 4];
+const [first, ...rest] = arr;  // first = 1, rest = [2, 3, 4]
+
+const obj = { a: 1, b: 2, c: 3 };
+const { a, ...restObj } = obj;  // a = 1, restObj = { b: 2, c: 3 }
+```
+
 ## 语句
 
 ### 条件语句
@@ -176,7 +212,21 @@ function sum({x=0, y=0}) {
 sum({x:1, y:2})  // 3
 ```
 
-- 扩展运算符
+- 打包
+
+不知道接收多少个变量，可以使用 ... 将参数都打包到一个变量里
+
+```js
+// 
+function demo(...params) {
+    console.log('我收到的参数为：', params)
+}
+demo(1, 2, 3)
+```
+
+- 拆包
+
+使用扩展运算符将数组中的元素展开作为函数的参数
 
 ```js
 function addNumbers(x, y, z) {
@@ -184,10 +234,7 @@ function addNumbers(x, y, z) {
 }
 
 const numbers = [1, 2, 3];
-
-// 使用扩展运算符将数组中的元素展开作为函数的参数
 const result = addNumbers(...numbers);
-
 console.log(result); // 输出: 6
 ```
 
@@ -205,15 +252,21 @@ data: function () { pass }  // 可简写为 data () { pass }
 
 ### 箭头函数
 
-> ES6 新增
+ES6 新增，`function()` 可简写为 `() =>`
+
+箭头函数没有自己的 this，会继承外层作用域的 this
 
 ```js
-let sum = (x, y) => {
-  return x + y;
+let demo = (x, y) => {
+    return x + y;
+}
+// 等价于
+let demo = function(x, y) {
+    return x + y;
 }
 
-// 只有一个 return 语句时，可不写 return，并省略掉花括号
-let y = x => x * x;
+// 函数内只有单一表达式时，可省略掉花括号和return
+let demo = (x, y) => x + y;
 ```
 
 ## 闭包
@@ -245,5 +298,57 @@ alert(`You select ${isTrue}`);  // 第二个模态窗：确定isTrue=true，取�
 
 // prompt(title, [default])
 let age = prompt('How old are you?', 100);  // 第一个模态窗，显示：标题、带默认值的输入框、确定按钮、取消按钮
-alert(`You are ${age} years old!`); // 第一个模态窗：确定age=100，取消age=null
+alert(`You are ${age} years old!`);  // 第一个模态窗：确定age=100，取消age=null
+```
+
+## this
+
+- 普通函数调用: this 指向全局对象
+    - 严格模式下为 undefined
+    - 非严格模式下为 window
+- 方法调用: this 指向调用该方法的对象
+- 构造函数调用: this 指向新创建的实例
+- 箭头函数: this 绑定到定义时所在的作用域，不随调用方式变化
+
+JS 中的 `this` 是一个上下文相关的关键字，它的值取决于函数如何被调用，而不是函数定义的位置
+
+有时不符合我们的预期，就需要改变 this 绑定
+
+### 改变 this 绑定
+
+- `function.call(thisArg, arg1, arg2, ...)`
+
+调用一个函数，并显式指定函数执行时的 this 值（thisArg），同时传入参数
+
+```js
+function sayHello(greeting) {
+  console.log(`${greeting}, ${this.name}`);
+}
+const person = { name: "Alice" };
+sayHello.call(person, "Hi"); // 输出: Hi, Alice
+```
+
+- `function.apply(thisArg, [argsArray])`
+
+调用函数并指定 this 值（thisArg），但参数以数组形式传递
+
+```js
+function sayHello(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+const person = { name: "Bob" };
+sayHello.apply(person, ["Hello", "!"]); // 输出: Hello, Bob!
+```
+
+- `function.bind(thisArg, arg1, arg2, ...)`
+
+创建一个新函数，并永久绑定指定的 this 值（thisArg）和部分参数，但不会立即执行
+
+```js
+function sayHello(greeting) {
+  console.log(`${greeting}, ${this.name}`);
+}
+const person = { name: "Dave" };
+const boundFunc = sayHello.bind(person, "Hey");
+boundFunc(); // 输出: Hey, Dave
 ```

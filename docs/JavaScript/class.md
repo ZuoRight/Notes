@@ -4,9 +4,49 @@
 
 JS 中的类是基于原型（Prototype）实现的，原型是 JS 中的一个内部对象，它可以让我们共享方法和属性。
 
-ES6 引入了 class 关键字
+ES6 引入了 class 关键字，推荐
 
-### 方式1：构造函数
+### 方式一：class
+
+```js
+// 定义一个Person类
+class Person {
+    static b = 2  // 类属性
+    a = 1  // 实例属性
+
+    // 构造器，不是必须要写的，但如果想给实例添加一些自己独有的属性，那么就要写构造器
+    constructor(name, age){
+        // 构造器中的this，是指类的实例化对象
+        this.name = name
+        this.age = age
+    }
+
+    // 方法不需要 funtion 关键字
+    speak(){
+        console.log(`我叫${this.name}，我今年${this.age}了`)
+    }
+}
+
+// 继承
+class Student extends Person{
+    // 如果当前类没有定义构造器则自动使用父类的构造器
+    constructor(name, age, grade){
+        super(name, age)  // 如果要新增属性，则需要使用super调用父类的属性
+        this.grade = grade
+    }
+
+    // 可以重写从父类继承过来的方法
+    speak(){
+        console.log(`我叫${this.name}，我今年${this.age}了，我读${this.grade}年级了`)
+        this.study()
+    }
+}
+
+// 实例化
+const me = new Student('7c', 18, 3);
+```
+
+### 方式二：构造函数
 
 ```js
 // 声明一个函数对象
@@ -35,7 +75,7 @@ let alice = new Person('Alice', 25);  // 形成一条原型链（__proto__）：
 alice.greet();  // Hello, 我叫 Alice, 我 25 岁了.
 ```
 
-### 方式2：Object.create()
+### 方式三：`Object.create()`
 
 使用现有对象创建新对象
 
@@ -50,31 +90,6 @@ let rabbit = Object.create(animal);
 
 console.log(rabbit.__proto__ === animal);  // true
 console.log(rabbit.eats);  // true
-```
-
-### 方式3：class
-
-```js
-class Parent {
-  constructor() {
-    this.name = 'Parent';
-  }
-
-  getName() {
-    return this.name;
-  }
-}
-
-// extends 继承父类
-class Child extends Parent {
-  constructor() {
-    super();  // 调用父类的 constructor
-    this.name = 'Child';
-  }
-}
-
-const child = new Child();  // 实例化
-console.log(child.getName());  // 输出："Child"
 ```
 
 ## 模块化

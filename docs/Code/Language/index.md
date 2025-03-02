@@ -94,11 +94,28 @@ let x = 1;  // let是用来改善var的，作用域为{}，同作用域内不允
 let x = "hello world"  // JS语句可以用`;`结尾，也可以忽略
 const PI = 3.14;  // const用于声明常量，作用域也是{}，声明常量必须初始化赋值，且不能重新赋值
 
-// ES6新增，解构赋值：同时给多个变量赋值
-let [x, y, z] = ['hello', 'JavaScript', 'ES6'];
-let {x, y} = {x: 1, y: 2}
-
 console.log(1 + '1');  // "11"
+```
+
+- 解构赋值：同时给多个变量赋值（ES6 新增）
+
+> 只有数组和对象可以被解构赋值
+
+```js
+let arr = [2, 4, 6, 8, 10];
+const [,,x] = arr  // 6
+
+let obj = {a:1, b:2, c:{x:11, y:22}}
+// 传统赋值
+const b = obj.b  // 2
+const x = obj.c.x  // 11
+// 解构赋值
+const {b} = obj  // 2
+const {x} = obj.c  // x=11
+const {x:new_x} = obj.c  // 解构+重命名，new_x=11
+// 连续解构赋值，不推荐
+const {c:{x}} = obj  // 先解构c再解构x，x=11，c=undefined
+const {c:{x:new_x}} = obj  // 连续解构+重命名
 ```
 
 ### TypeScript

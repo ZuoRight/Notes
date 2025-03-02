@@ -111,15 +111,14 @@ parseFloat("string")  // 将字符串转换为浮点数
 
 ```js
 let x = {
-  name: "wtf",
-  age: 18,
-  arr: [],
-  obj: {
-    a: 1,
-  },
+    name: "wtf",
+    age: 18,
+    arr: [],
+    obj: {
+        a: 1,
+    }
 };
 
 let y = JSON.parse(JSON.stringify(x));  // 深拷贝
-
 y.obj.a = 2;  // 不会影响 x.obj.a
 ```

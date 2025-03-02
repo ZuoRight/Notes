@@ -2,7 +2,6 @@
 nav:
   - index.md
   - basic.md
-  - object.md
   - function.md
   - async.md
   - class.md

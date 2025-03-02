@@ -107,7 +107,7 @@ setInterval(() => {
 
 ```text
 事件源，触发事件的元素，比如：按钮、链接、输入框等
-事件类型，由浏览器预定义的行为，比如：click, mouseover, keyup, keydown 等，也可以自定义事件
+事件类型，由浏览器预定义的行为，比如：click, mouseover, onblur, keyup, keydown 等，也可以自定义事件
 事件处理程序，响应事件的函数，在事件发生时被调用
 ```
 
@@ -117,8 +117,6 @@ setInterval(() => {
 
 ```html
 <button id="myButton" onclick="alert('Hello!')">Click Me!</button>
-
-<script src="./test.js"></script>
 ```
 
 - DOM 属性绑定
@@ -176,14 +174,25 @@ ul.addEventListener('click', function (event) {
 
 ### 自定义事件
 
+`new CustomEvent()`
+
 ```js
-const customEvent = new CustomEvent('myEvent', {
-  detail: { message: '这是一个自定义事件' },
+const myEvent = new CustomEvent('myEvent', {
+    detail: { message: '这是一个自定义事件' },  // detail 用于传递自定义数据，可以是任何值（对象、字符串等）
+    bubbles: true,  // 事件是否会向上冒泡到父元素（默认 false）
+    cancelable: true  // 事件是否可以用 preventDefault() 取消（默认 false）
 })
 
 document.addEventListener('myEvent', (event) => {
-  console.log('自定义事件被触发了：', event.detail.message)
+    console.log('自定义事件被触发了：', event.detail.message)
 })
 
-document.dispatchEvent(customEvent)  // 触发事件
+document.dispatchEvent(myEvent)  // 触发事件
+```
+
+`new Event()`
+
+```js
+// 如果不需要传递数据，可以直接使用 Event 构造函数来自定义事件
+const myEvent = new Event('mySimpleEvent');
 ```
