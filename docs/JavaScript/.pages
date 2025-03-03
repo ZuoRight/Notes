@@ -3,6 +3,7 @@ nav:
   - index.md
   - basic.md
   - function.md
+  - dom_and_event.md
   - async.md
   - class.md
   - unit_test.md

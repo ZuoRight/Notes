@@ -360,65 +360,64 @@ text-transform：设置文本的大小写转换方式。
 使用 `<form>` 来创建表单，当用户完成数据输入并点击提交按钮时，浏览器会收集表单内所有控件的 `name` 和 `value` 属性，将它们作为请求参数发送到表单的 `action` 属性指定的路由。
 
 ```html
-<!DOCTYPE html>
-<html>
 <body>
-<h2>表单示例</h2>
-<form action="/submit-your-form" method="post">
-	<!-- 单行文本 -->
-    <label for="fname">名字：</label>
-    <input type="text" id="fname" name="firstname" placeholder="你的名字...">
-    <br><br>
+    <h2>表单示例</h2>
+    <form action="/submit-your-form" method="post">
+        <!-- 单行文本 -->
+        <label for="fname">名字：</label>
+        <input type="text" id="fname" name="firstname" placeholder="你的名字...">
+        <br><br>
 
-    <label for="lname">姓氏：</label>
-    <input type="text" id="lname" name="lastname" placeholder="你的姓氏...">
-    <br><br>
+        <label for="lname">姓氏：</label>
+        <input type="text" id="lname" name="lastname" placeholder="你的姓氏...">
+        <br><br>
 
-    <label for="email">邮箱：</label>
-    <input type="email" id="email" name="email" placeholder="你的邮箱...">
-    <br><br>
+        <label for="email">邮箱：</label>
+        <input type="email" id="email" name="email" placeholder="你的邮箱...">
+        <br><br>
 
-    <label for="password">密码：</label>
-    <input type="password" id="password" name="password" placeholder="设置密码...">
-    <br><br>
+        <label for="password">密码：</label>
+        <input type="password" id="password" name="password" placeholder="设置密码...">
+        <br><br>
 
-	<!-- 单选框 -->
-	性别：
-	<label for="male">男</label>
-    <input type="radio" id="male" name="gender" value="male">
-    <label for="female">女</label>
-    <input type="radio" id="female" name="gender" value="female">
-    <br><br>
+        <!-- 单选框 -->
+        性别：
+        <label for="male">男</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="female">女</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <br><br>
 
-	<!-- 复选框 -->
-    <input type="checkbox" id="subscribe" name="subscribe" value="newsletter">
-    <label for="subscribe">订阅新闻邮件</label>
-    <br><br>
+        <!-- 复选框 -->
+        <input type="checkbox" id="subscribe" name="subscribe" value="newsletter">
+        <label for="subscribe">订阅新闻邮件</label>
+        <br><br>
 
-	<!-- 下拉选择框 -->
-    <label for="country">国家：</label>
-    <select id="country" name="country">
-        <option value="none" selected>选择国家</option>
-        <option value="china">中国</option>
-        <option value="usa">美国</option>
-        <option value="uk">英国</option>
-    </select>
-    <br><br>
+        <!-- 下拉选择框 -->
+        <label for="country">国家：</label>
+        <select id="country" name="country">
+            <option value="none" selected>选择国家</option>
+            <option value="china">中国</option>
+            <option value="usa">美国</option>
+            <option value="uk">英国</option>
+        </select>
+        <br><br>
 
-	<!-- 多行文本 -->
-	<label for="note">自我介绍：</label>
-	<textarea id="note" name="note" rows="4" cols="15"></textarea>
-	<br><br>
+        <!-- 多行文本 -->
+        <label for="note">自我介绍：</label>
+        <textarea id="note" name="note" rows="4" cols="15"></textarea>
+        <br><br>
 
-    <input type="submit" value="提交">
-</form>
+        <input type="submit" value="提交">
+    </form>
 </body>
-</html>
 ```
 
 ![20240307115246](https://image.zuoright.com/20240307115246.png)
 
 ### form
+
+通常不会用 action 提交表单，因为会引起页面的刷新，而是用 AJAX 无刷新与服务器交互
 
 ```text
 action: 提交表单后，数据发送到的位置，不指定则默认发送到当前页面

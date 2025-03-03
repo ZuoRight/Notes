@@ -414,3 +414,85 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
     </script>
 </body>
 ```
+
+## 表单提交
+
+### 非受控组件
+
+表单中的数据，在需要的时候，现用现取（通过 ref 获得到节点，进而访问到 value 值）
+
+```html
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Login extends React.Component{
+            render(){
+                return (
+                    <form onSubmit={this.handleLogin}>
+                        {/* 在 React 里 label 标签的 for 要写成 htmlFor，否则会与 React 本身的语法冲突 */}
+                        <label htmlFor="username">用户名：</label>
+                        <input id="username" type="text" ref={c => this.userNameNode = c}/><br/><br/>
+                        密码：<input type="password" ref={c => this.passwordNode = c}/><br/><br/>
+                        <button>登录</button>
+                    </form>
+                )
+            }
+            handleLogin = (event)=>{
+                event.preventDefault()  // 组织表单默认行为-刷新
+                const {userNameNode, passwordNode} = this
+                alert(`用户名是${userNameNode.value}，密码是${passwordNode.value}`)
+            }
+        }
+
+        ReactDOM.render(<Login/>,document.getElementById('test'))
+    </script>
+</body>
+```
+
+## 受控组件
+
+表单中输入类的 DOM，随着用户的输入，将值收集到 state 中
+
+```html
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Login extends React.Component{
+            state = {
+                username:'',
+                password:''
+            }
+            
+            render(){
+                return (
+                    <form onSubmit={this.handleLogin}>
+                        用户名：<input type="text" onChange={this.saveUsername}/><br/><br/>
+                        密码：<input type="password" onChange={this.savePassword}/><br/><br/>
+                        <button>登录</button>
+                    </form>
+                )
+            }
+
+            // 保存用户名到 state 中
+            saveUsername = (event)=>{
+                this.setState({username:event.target.value})  // setState 不会造成无关数据的丢失
+            }
+
+            // 保存密码到 state 中
+            savePassword = (event)=>{
+                this.setState({password:event.target.value})
+            }
+
+            handleLogin = (event)=>{
+                event.preventDefault()
+                const {username,password} = this.state
+                alert(`用户名是${username}，密码是${password}`)
+            }
+        }
+
+        ReactDOM.render(<Login/>,document.getElementById('test'))
+    </script>
+</body>
+```
