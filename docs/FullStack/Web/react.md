@@ -415,11 +415,11 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
 </body>
 ```
 
-## 表单提交
+## 收集表单数据
 
-### 非受控组件
+### 非受控组件，现用现取
 
-表单中的数据，在需要的时候，现用现取（通过 ref 获得到节点，进而访问到 value 值）
+表单中的数据，在提交的时候获取。通过 ref 获得到节点，进而访问到 value 值。
 
 ```html
 <body>
@@ -450,7 +450,7 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
 </body>
 ```
 
-## 受控组件
+### 受控组件，收集数据
 
 表单中输入类的 DOM，随着用户的输入，将值收集到 state 中
 
@@ -485,6 +485,104 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
                 this.setState({password:event.target.value})
             }
 
+            handleLogin = (event)=>{
+                event.preventDefault()
+                const {username,password} = this.state
+                alert(`用户名是${username}，密码是${password}`)
+            }
+        }
+
+        ReactDOM.render(<Login/>,document.getElementById('test'))
+    </script>
+</body>
+```
+
+### 高阶函数，收集数据
+
+```text
+高阶函数
+    - 若A函数，接收的参数是一个函数，那么A就可以称之为高阶函数。比如：Promise、setTimeout、arr.map()
+    - 若A函数，调用的返回值依然是一个函数，那么A就可以称之为高阶函数。比如：bind
+
+函数的柯里化：通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式
+    function sum(a){
+        return (b)=>{
+            return (c)=>{
+                return a+b+c
+            }
+        }
+    }
+```
+
+```js
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Login extends React.Component{
+            //初始化状态
+            state = {
+                username:'',
+                password:''
+            }
+            
+            render(){
+                return (
+                    <form onSubmit={this.handleLogin}>
+                        用户名：<input type="text" onChange={this.saveFormData('username')}/><br/><br/>
+                        密码：<input type="password" onChange={this.saveFormData('password')}/><br/><br/>
+                        <button>登录</button>
+                    </form>
+                )
+            }
+
+            // 函数柯里化，闭包
+            saveFormData = (type)=>{
+                return (event)=> this.setState({[type]:event.target.value})
+            }
+
+            // 登录按钮的回调
+            handleLogin = (event)=>{
+                event.preventDefault()
+                const {username,password} = this.state
+                alert(`用户名是${username}，密码是${password}`)
+            }
+        }
+
+        ReactDOM.render(<Login/>,document.getElementById('test'))
+    </script>
+</body>
+```
+
+### 非高阶函数，收集数据
+
+```html
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Login extends React.Component{
+            //初始化状态
+            state = {
+                username:'',
+                password:''
+            }
+            
+            render(){
+                return (
+                    <form onSubmit={this.handleLogin}>
+                        用户名：<input type="text" onChange={ event => this.saveFormData(event,'username') }/><br/><br/>
+                        密码：<input type="password" onChange={ event => this.saveFormData(event,'password') }/><br/><br/>
+                        <button>登录</button>
+                    </form>
+                )
+            }
+
+            saveFormData = (event, type)=>{
+                this.setState({[type]:event.target.value})
+            }
+
+            //登录按钮的回调
             handleLogin = (event)=>{
                 event.preventDefault()
                 const {username,password} = this.state

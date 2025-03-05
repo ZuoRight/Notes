@@ -192,25 +192,25 @@ console.log(map2);
 
 ## Object
 
-类似 Python 的 Dict，`{key: value}`，键是字符串，值可以是任意其它类型（包括函数）
+类似 Python 的 Dict，`{key: value}`，键必须是字符串，值可以是任意其它类型（包括函数）
 
 ```js
 let obj = {
-  name: '7c',
-  age: 25,
-  hello: function() {
-    console.log('Hello');
-  }
+    name: '7c',
+    age: 25,
+    hello: function() {
+        console.log('Hello');
+    }
 };
 
-// 调用
+// 调用-原始形式
+obj["age"] = 30  // 存在则修改，不存在则新增
 obj["name"];
+
+// 调用-简写形式
+obj.gender = "male"
 obj.age;
 obj.hello();
-
-// 存在则修改，不存在则新增
-obj["age"] = 30
-obj.gender = "male"
 
 // 删除
 delete obj.gender;  // 不存在或成功后返回 true
