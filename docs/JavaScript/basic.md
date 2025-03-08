@@ -203,6 +203,12 @@ let obj = {
     }
 };
 
+// 对象的简写方式
+let x = "hello";
+let obj = {x};  // {x: x} 可简写为 {x}，前提是 x 必须先被声明
+console.log(obj); // 输出: {x: "hello"}
+
+
 // 调用-原始形式
 obj["age"] = 30  // 存在则修改，不存在则新增
 obj["name"];

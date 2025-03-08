@@ -497,7 +497,7 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
 </body>
 ```
 
-### 高阶函数，收集数据
+### 高阶函数，收集数据（推荐）
 
 ```text
 高阶函数
@@ -591,6 +591,74 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
         }
 
         ReactDOM.render(<Login/>,document.getElementById('test'))
+    </script>
+</body>
+```
+
+## 生命周期钩子（函数）
+
+旧生命周期钩子
+
+![20250308205144](https://image.zuoright.com/20250308205144.png)
+
+新生命周期钩子（React 17+）
+
+![20250308224408](https://image.zuoright.com/20250308224408.png)
+
+```html
+<body>
+    <div id="test"></div>
+
+    <script type="text/babel">
+        class Life extends React.Component{
+            state = {opacity:1}
+
+            // 只调1次  通常做一些初始化的事情：开启定时器、发送ajax请求、订阅消息等等
+            componentDidMount(){
+                console.log('componentDidMount')
+                // 定时器
+                this.timer = setInterval(() => {
+                    // 1.获取原来的opacity
+                    let {opacity} = this.state
+                    // 2.递减
+                    opacity -= 0.1
+                    if(opacity <= 0) opacity = 1
+                    // 3.赋回去
+                    this.setState({opacity})
+                }, 200);
+            }
+
+            // 控制组件是否更新（该钩子可以进行组件的优化），强制更新不需要经过此钩子
+            shouldComponentUpdate(){
+                console.log('shouldComponentUpdate')
+                return false
+            }
+            
+            // 收尾的事，组件卸载前被调用
+            componentWillUnmount(){
+                console.log('componentWillUnmount')
+                // 清除定时器
+                clearInterval(this.timer)
+            }
+
+            render() { // 1+n 次：只要状态更新，就会被执行
+                console.log('render')
+                const  {opacity} = this.state
+
+                return (
+                    <div>
+                        <h1 style={{opacity}}>分手了怎么办？</h1>	
+                        <button onClick={this.death}>不活了</button>
+                    </div>
+                )
+            }
+            
+            death = ()=>{
+                // 卸载组件
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+            }
+        }
+        ReactDOM.render(<Life/>,document.getElementById('test'))
     </script>
 </body>
 ```

@@ -87,18 +87,53 @@ const height = window.innerHeight  // 获取窗口高度
 console.log(`窗口宽度：${width}，窗口高度：${height}`)
 ```
 
-- 设置定时器
+### setTimeout 定时器
+
+只执行一次，之后停止，除非手动再次调用。
 
 ```js
 // 1 秒后输出 Hello!
 setTimeout(() => {
-  console.log('Hello!')
+    console.log('Hello!')
 }, 1000)
+```
 
-// 每隔 1 秒输出一次 Hello!
+### setInterval 定时器
+
+`setInterval(callback, delay[, ...args]);`
+
+内置函数，是浏览器环境（window 对象）和 Node.js 环境（全局对象）都支持的定时器方法。可以让代码每隔一段时间自动运行一次，直到被手动清除为止。
+
+基本用法
+
+```js
 setInterval(() => {
-  console.log('Hello!')
+    console.log('Hello!')  // 每隔 1 秒输出一次 Hello!
 }, 1000)
+```
+
+带参数的函数
+
+```js
+function sayHello(name) {
+    console.log(`Hello, ${name}!`);
+}
+
+setInterval(sayHello, 1000, "Alice");
+```
+
+停止定时器：调用 `clearInterval` 并传入它的标识符
+
+```js
+let count = 0;
+const intervalId = setInterval(() => {
+    console.log("Count:", count);
+    count++;
+    if (count === 5) {
+        clearInterval(intervalId);  // 停止定时器
+        console.log("Stopped!");
+    }
+}, 1000);
 ```
 
 ## 事件

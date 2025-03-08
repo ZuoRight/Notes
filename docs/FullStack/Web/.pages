@@ -4,8 +4,6 @@ nav:
   - element.md
   - pixel.md
   - layout.md
-  - react.md
-  - vue.md
   - tailwind.md
   - HTMX.md
   - markup_languages.md
