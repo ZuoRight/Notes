@@ -98,11 +98,11 @@ JS 本身是没有模块的概念，模块化的演变经历了一个漫长的�
 
 ### CommonJS
 
-用于在 Node.js 中导入模块的函数，属于同步操作，不推荐！
+用于在 Node.js 中引入模块的函数，属于同步操作，不推荐！
 
 ```js
 // app.js
-let message = require('./lib');  // 导入模块
+let message = require('./lib');  // 引入模块
 console.log(message);  // 输出 'Hello!'
 ```
 
@@ -113,21 +113,11 @@ module.exports = 'Hello!';  // 导出模块
 
 ### ES6
 
-用于在 ES6 中导入模块的新关键字，属于异步操作，推荐！
+使用 `export` 和 `import` 关键字，属于异步操作，推荐！
 
-```js
-// app.js
-import {foo} from '模块文件的位置';
-```
+在 Node 环境下若要使用 import 方式引入，需要将文件扩展名改为 `.mjs `
 
-```js
-// lib.js
-export function foo() {
-    pass
-};
-```
-
-在 Node 环境下若要使用 import 方式导入，需要 在 `package.json` 中添加配置
+或者在 `package.json` 中添加配置
 
 ```json
 {
@@ -135,8 +125,86 @@ export function foo() {
 }
 ```
 
-在 Web 中需要加 module 属性
+在浏览器中使用需要
 
 ```js
 <script type="module" src="demo.js"></script>
+```
+
+---
+
+如何引入取决于如何导出
+
+- 默认导出&引入
+
+```js
+const person = {name: 'John', age: 30};
+export default person;
+export default {name: 'John', age: 30};  // 也可以直接导出
+```
+
+```js
+// 引入默认导出 - 可以使用任意名称
+import User from './person.js';  // .js 和 .jsx 后缀可省略，其它后缀不能省略
+console.log(User.name);
+
+// 引入默认函数
+import myFunction from './utils.js';
+myFunction();
+```
+
+---
+
+- 命名导出，需使用 `{}`
+
+```js
+export const PI = 3.14159;
+
+export function add(a, b) {
+    return a + b;
+}
+
+const subtract = (a, b) => a - b;
+const multiply = (a, b) => a * b;
+export { subtract, multiply };  // 可以一起导出多个
+
+const divide = (a, b) => a / b;
+export { divide as division };  // 导出时重命名
+```
+
+```js
+import * as MathUtils from './math.js';  // 引入所有命名导出
+console.log(MathUtils.subtract(5, 2));
+console.log(MathUtils.division(10, 2));
+
+import { PI, add } from './math.js';  // 引入特定命名导出
+console.log(PI);
+console.log(add(1, 2));
+
+import { multiply as mul } from './math.js';
+console.log(mul(2, 3));  // 引入时重命名
+```
+
+---
+
+```js
+// 同时引入默认和命名导出
+import App, { version } from "./module.js";
+
+const app = new App();
+app.run(); // "App is running"
+console.log(version); // "1.0"
+```
+
+---
+
+- 动态引入
+
+```js
+async function loadModule() {
+    const math = await import('./math.js');
+    console.log(math.add(2, 3)); // 5
+}
+
+loadModule();
 ```

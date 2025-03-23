@@ -19,11 +19,9 @@ JS 本身是运行在前端浏览器中的语言，但 Node.js 为 JS 提供了�
 
 ## ES6
 
-ECMAScript，简称 ES，是 JS 的语言规范
+ECMAScript，简称 ES，是 JS 的语言规范，ES6（ECMAScript 2015）引入了许多新的特性和语法，使得 JS 更加强大和灵活。
 
 > ECMA(European Computer Manufacturers Association) 欧洲计算机制造商协会
-
-ES6（ECMAScript 2015）是 JavaScript 语言的一个重要的更新，引入了许多新的特性和语法，使得 JavaScript 更加强大和灵活。
 
 比如
 
@@ -39,6 +37,8 @@ ES6（ECMAScript 2015）是 JavaScript 语言的一个重要的更新，引入�
 - Symbol 类型
 - 新的数据结构：Map、Set
 - 新的数组和对象的方法
+
+ES6 模块默认运行在严格模式 (`use strict`)
 
 ## 数据类型
 

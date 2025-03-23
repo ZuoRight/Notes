@@ -39,17 +39,17 @@ JSX = JS + XML
 ```
 
 ```text
-- 创建虚拟DOM时，不要写引号，多行标签可以放到 () 中
+- 创建虚拟 DOM 时，不要写引号，多行标签可以放到 () 中
 - 只能有一个根标签
 - 标签必须闭合
 - 标签中引入 JS 表达式，注意只能是表达式，要用 {...}，包括注释也要写在 {/* */} 中
 - 标签中的内联样式要用 {{...}}，且注属性名转为小驼峰：style={{color:'white', fontSize:'30px'}}
 - 标签中样式的类名要用 className 指定
 - 标签首字母：小写为标签名，大写为组件
-    - 若首字母小写，那么React就会去寻找与之同名的html标签
-        若找见，直接转为html同名元素
+    - 若首字母小写，那么 React 就会去寻找与之同名的 html 标签
+        若找见，直接转为 html 同名元素
         若未找见，报错
-    - 若首字母大写，那么React就会去寻找与之同名的组件
+    - 若首字母大写，那么 React 就会去寻找与之同名的组件
         若找见，那么就是用组件
         若未找见，报错
 ```
@@ -62,6 +62,22 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
 
 - 简单组件
 - 复杂组件（有状态组件）
+
+```text
+拆分组件，按功能命名或者位置命名，也可以混用
+编写静态组件
+实现动态组件
+    动态显示初始化数据
+        数据类型
+        数据名称
+        保存在哪个组件：有些状态虽然只属于当前组件，但其它组件也要用，即组件间的通信方式
+            0. props 只能用于 父组件给子组件传递
+            1. 存放到他们共同的父组件中，称之为「状态提升」
+            2. 使用消息订阅，比如 pubsub、event 等
+            3. 使用集中管理状态的第三方库，比如 redux、dva 等
+            4. 生产者-消费者模式 conText，开发用的少，封装插件用的多
+    交互，从绑定事件监听开始
+```
 
 ### 函数式组件
 
@@ -115,11 +131,11 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
 </body>
 ```
 
-## 组件核心属性
+## 组件核心概念
 
-### state
+### state 状态
 
-存储数据，驱动组件页面的展示
+存储数据，驱动组件页面的展示，是组件内部私有的，用于管理组件自身的状态
 
 - 基本使用
 
@@ -176,14 +192,18 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
 </body>
 ```
 
-### props
+### props 属性
 
-类组件使用 props
+用于接收外部传递的数据，比如子组件接收父组件传递过来的数据或函数。
+
+它是只读的，子组件不能直接修改 props 的值。
+
+- 类组件使用 props
 
 ```html
 <head>
     ...
-    <!-- 需要引入 prop-types，用于对标签属性进行限制 -->
+    <!-- 引入 prop-type，用于限制数据类型 -->
     <script type="text/javascript" src="../js/prop-types.js"></script>
 </head>
 
@@ -232,7 +252,7 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
 </body>
 ```
 
-函数式组件使用 props
+- 函数式组件使用 props
 
 ```html
 <body>
@@ -268,13 +288,13 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
 </body>
 ```
 
-### refs
+### refs 引用
 
-用于与真实 DOM 交互，比如管理焦点、触发强制动画、集成第三方 DOM 库等
+refs 是 React 提供的一个后门，让你可以直接与真实 DOM 交互或保存值，比如管理焦点、触发强制动画、集成第三方 DOM 库等
 
-有三种使用方法，官方推荐 createRef 形式的 ref
+React 推崇声明式编程，refs 是命令式的，而且会增加内存占用，如果能通过 state 和 props 解决问题，则尽可能不使用 refs
 
-但由于 refs 会增加内存占用，官方建议能不用就不用
+有三种使用方法，官方推荐 createRef 形式的 ref，其它两种形式在 `React.StrictMode` 下都会报错
 
 - 字符串形式
 
@@ -662,3 +682,48 @@ Component，用于实现局部功能的资源集合（HTML、CSS、JS、音视�
     </script>
 </body>
 ```
+
+## 脚手架
+
+可以引入 Babel 可以将 JSX 动态转为 JS，但性能比较差，所以实际开发中通常使用脚手架，使得项目更加模块化、组件化、工程化
+
+```html
+<head>
+	<!-- 引入 React 核心库 -->
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<!-- 引入 React-DOM，用于支撑 React 操作 DOM -->
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<!-- 引入 Babel，用于将 JSX 转为 JS -->
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+</head>
+
+<body>
+	<!-- 准备好一个容器 -->
+	<div id="test"></div>
+
+	<script type="text/babel">  /* 此处 type 必须写成 babel */
+		// 1.创建一个虚拟 DOM
+		let VDOM = <h1>Hello, React</h1>;  // 此处一定不要加引号，因为不是字符串，是虚拟DOM
+		// 2.让 React 将虚拟 DOM 转为真实 DOM，渲染到页面
+		ReactDOM.render(VDOM, document.getElementById("test"));  // 这行代码，不是追加的动作，而是替换的动作
+	</script>
+</body>
+```
+
+所谓的脚手架，就是用于帮程序员快速创建一个基于 React 的模版项目，包含所有需要的配置（语法检查、JSX 编译等等）和依赖，可以直接运行一个简单效果
+
+create-react-app 主要基于 React + Webpack + ES6 + ESlint
+
+```shell
+# 安装
+npm i -g create-react-app
+
+# 切换到想存放项目的目录，然后
+npx create-react-app my-app  # 创建项目
+cd my-app
+npm start
+```
+
+尽管 Create React App 使入门变得容易，但存在一些限制，这使得构建高性能的生产应用程序变得困难。
+
+推荐使用 Vite、Parcel 或 Rsbuild
