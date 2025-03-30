@@ -4,20 +4,25 @@ hide:
   - feedback
 ---
 
-# 虚拟环境和第三方库管理
+# 开发环境
 
 - pip + venv
 - pip + virtualenv + virtualenvwrapper
 - pipenv
+
+版本管理
+
+- pyenv
 - conda
+- uv 推荐，Rust 编写的
 
 ## pip
 
 > 文档：<https://pip.pypa.io/en/stable/cli/>
 
-老版本的python中只有easy_install，easy_install 只能 install 不能 uninstall，也不能 freeze 出 requirements.txt
+老版本的 Python 中只有 easy_install，easy_install 只能 install 不能 uninstall，也不能 freeze 出 `requirements.txt`
 
-pip 是 easy_install（setuptools）的改进版，提供更好的提示信息，删除package等功能
+pip 是 easy_install（setuptools）的改进版，提供更好的提示信息，删除 package 等功能
 
 ![20230205022458](https://image.zuoright.com/20230205022458.png)
 
@@ -181,15 +186,36 @@ pip install -r requirements.txt
 deactivate
 ```
 
-## pipx
+## virtualenv + virtualenvwrapper
 
-经常发现一些框架推荐使用 `pipx insgall xxx` 的方式来安装，究其原因是这些框架依赖过多，pipx可以将它们安装到自动创建的虚拟环境中。
+`pip install virtualenv`
 
-私以为手动venv创建虚拟环境，然后用pip安装足矣。
+除非还使用 Python2.x 版本，否则使用自带的 venv 即可
+
+```shell
+virtualenv xxx  # 创建
+rm -rf xxx  # 删除，或者手动删除对应文件夹
+
+activate.bat  # 进入
+deactivate.bat  # 退出
+```
+
+为了便于对虚拟环境集中管理，可搭配虚拟环境管理器 virtualenvwrapper 使用
+
+`pip install virtualenvwrapper-win`
+
+```shell
+mkvirtualenv xxx  # 创建
+rmvirtualenv xxx  # 删除
+workon  # 查看
+
+workon xxx  # 进入
+deactivate.bat  # 退出
+```
 
 ## pipenv
 
-由requests库的作者Kenneth Reitz基于pip和virtualenv所编写
+由 Requests 库的作者 Kenneth Reitz 基于 pip 和 virtualenv 编写的
 
 > 参考：<https://www.liujiangblog.com/blog/18/>
 
@@ -200,14 +226,14 @@ deactivate
 
 ### 初始化项目
 
-如果是新项目，可以先用`pipenv --python 3`初始化(可指定具体版本)一个虚拟环境，查看当前环境所在路径：`pipenv --venv`，一般默认路径为：
+如果是新项目，可以先用 `pipenv --python 3` 初始化（可指定具体版本）一个虚拟环境，查看当前环境所在路径：`pipenv --venv`，一般默认路径为：
 
 - Windows：`~\.virtualenvs\`
 - Mac：`~/.local/share/virtualenvs/`
 
 > 删除虚拟环境：`pipenv --rm`
 
-项目路径下会生成一个TOML格式的Pipfile文件，内容如下：
+项目路径下会生成一个 TOML 格式的 Pipfile 文件，内容如下：
 
 ```TOML
 [[source]]
@@ -223,13 +249,13 @@ name = "pypi"
 python_version = "3.7"
 ```
 
-其中url字段为官方下载源，比较慢，建议替换为国内镜像源，比如：`https://mirrors.aliyun.com/pypi/simple/`。
+官方下载源比较慢，可替换为国内镜像源，比如：`https://mirrors.aliyun.com/pypi/simple/`
 
 ### 安装项目依赖
 
-`packages`和`dev-packages`节点下列出了生产和开发环境所需的依赖，可以使用`pipenv install [--dev]`一键安装
+`packages` 和 `dev-packages` 节点下列出了生产和开发环境所需的依赖，可以使用 `pipenv install [--dev]` 一键安装
 
-> tips：如果没有初始化项目(或者说没有Pipfile文件)，直接执行`pipenv install [--two/three]会自动初始化并生成Pipfile。
+> tips：如果没有初始化项目（或者说没有 Pipfile 文件），直接执行 `pipenv install [--two/three]` 会自动初始化并生成 Pipfile。
 
 ```shell
 pipenv install -r requirements.txt  # 从requirements.txt中安装
@@ -241,45 +267,114 @@ pipenv graph  # 查看依赖关系及信息
 pipenv update  # 更新所有依赖
 ```
 
-安装完依赖后会自动生成一个JSON格式的`Pipfile.lock`文件，保存着所有依赖的版本和hash信息（默认使用sha256算法给每一个包进行hash，可以保证在不安全的网络环境下也能下载到正确的包），每次更新或卸载依赖包都会更新此文件，即lock，类似于当前环境的一个快照，不要手动修改其内容。也可以手动lock：`pipenv lock`。
+安装完依赖后会自动生成一个 JSON 格式的 `Pipfile.lock` 文件，保存着所有依赖的版本和 hash 信息（默认使用 sha256 算法给每一个包进行 hash，可以保证在不安全的网络环境下也能下载到正确的包），每次更新或卸载依赖包都会更新此文件，即 lock，类似于当前环境的一个快照，不要手动修改其内容。也可以手动 lock：`pipenv lock`。
 
-- 生成依赖列表（为了迁移回venv）：`pipenv lock -r`
+- 生成依赖列表（为了迁移回 venv）：`pipenv lock -r`
 
 ### 运行项目
 
 `pipenv run python xxx.py`
 
-如果python命令比较长，可以在Pipfile中添加`[scripts]`节点，然后创建一个别名，比如：
+如果 Python 命令比较长，可以在 Pipfile 中添加 `[scripts]` 节点，然后创建一个别名，比如：
 
 `alias = "python3 manage.py runserver 0.0.0.0:8000"`
 
-然后执行`pipenv run alias`即可
+然后执行 `pipenv run alias` 即可
 
-当然还可以`pipenv shell`进入到虚拟环境中执行，退出：`exit`
+当然还可以 `pipenv shell` 进入到虚拟环境中执行，退出：`exit`
 
-## virtualenv + virtualenvwrapper
+## pipx
 
-`pip install virtualenv`
+经常发现一些框架推荐使用 `pipx insgall xxx` 的方式来安装，究其原因是这些框架依赖过多，pipx 可以将它们安装到自动创建的虚拟环境中。
 
-除非还使用Python2.x版本，否则使用自带的venv即可
+个人认为使用 venv 创建虚拟环境，然后用 pip 安装足矣。
+
+## uv
+
+<https://docs.astral.sh/uv/>
 
 ```shell
-virtualenv xxx  # 创建
-rm -rf xxx  # 删除，或者手动删除对应文件夹
+# 安装
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# 或
+wget -qO- https://astral.sh/uv/install.sh | sh
 
-activate.bat  # 进入
-deactivate.bat  # 退出
+# 添加环境变量到 ~/.zshrc
+. "$HOME/.local/bin/env"
+# 自动补全
+echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.zshrc
+echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
+
+# 升级
+uv self update
+
+# 卸载
+uv cache clean
+rm -r "$(uv python dir)"
+rm -r "$(uv tool dir)"
 ```
 
-为了便于对虚拟环境集中管理，可搭配虚拟环境管理器virtualenvwrapper使用
+```shell
+# 查看帮助
+uv
 
-`pip install virtualenvwrapper-win`
+# 查看可安装的python版本
+uv python list
+# 安装python版本
+uv python install  # 最新版本
+uv python install 3.12  # 指定版本
+uv python install 3.11 3.12  # 安装多个版本
+uv python install --reinstall  # 重新安装
+```
+
+默认情况下，如果在系统上找不到 Python 版本，uv 将自动下载 Python 版本
+
+通过 uv 安装的 Python 将不会被全局可用
 
 ```shell
-mkvirtualenv xxx  # 创建
-rmvirtualenv xxx  # 删除
-workon  # 查看
+uv venv
+uv venv --python 3.11.6
 
-workon xxx  # 进入
-deactivate.bat  # 退出
+source .venv/bin/activate  # 激活
+deactivate  # 退出
+```
+
+```shell
+# 初始化项目
+uv init hello-world
+'
+.
+├── .venv  虚拟环境
+│   ├── bin
+│   ├── lib
+│   └── pyvenv.cfg
+├── .python-version  此文件告诉 uv 在创建项目的虚拟环境时要使用哪个 Python 版本
+├── README.md
+├── main.py
+├── pyproject.toml  使用此文件指定依赖项，以及有关工程的详细信息
+└── uv.lock  跨平台的 lockfile，其中包含有关项目依赖项的确切信息，不应手动编辑
+'
+# 添加依赖到 pyproject.toml，将更新 lockfile 和项目环境
+uv add requests
+uv add 'requests==2.31.0'
+# 删除依赖
+uv remove requests
+# 手动同步
+uv sync
+```
+
+```shell
+# 运行脚本
+uv run example.py
+uv run --with rich example.py  # 指定未安装的依赖项
+uv run --with 'rich>12,<13' example.py  # 指定依赖项版本
+
+# 携带参数
+uv run -- flask run -p 3000
+
+# 指定python版本运行
+uv run --python 3.10 example.py
+
+# 锁定依赖项
+uv lock --script example.py
 ```

@@ -67,6 +67,8 @@ npx playwright test --ui  # UI 模式下运行
 npx playwright show-report
 ```
 
+默认情况下，测试将以无头模式使用 3 个 worker 在 Chromium、Firefox 和 WebKit 3 个浏览器上运行。这可以在 `playwright.config` 文件中进行配置。在终端中输出测试结果和测试日志。
+
 ## Cypress
 
 <https://www.cypress.io/>
