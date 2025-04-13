@@ -87,14 +87,18 @@ git remote set-url origin new_url
 ### 获取仓库
 
 ```shell
-git clone <url> [path_name] -o <origin_name> -b <branch>
+git clone <url>
+git clone <url> path_name  # 克隆到自定义目录
+git clone <url> .  # 克隆到当前目录 
 '
-url
-  https协议：https://github.com/ZuoRight/demo.git
-  ssh协议：git@github.com:ZuoRight/demo.git
-path_name 默认同远程库名称
-origin_name 默认为 origin
-默认拷贝主分支，也可指定分支
+url 克隆如果超时就尝试另一个协议试一试
+  ssh协议：git@github.com:user/repo.git
+  https协议：https://github.com/user/repo.git
+-o origin_name 默认为 origin
+-b branch 默认拷贝主分支，也可指定分支
+--depth 1
+  浅克隆 Shallow Clone，只克隆最新 1 次提交（HEAD），而不包含完整的历史记录。
+  可以显著减少下载时间和磁盘占用，比如 CI/CD 流水线
 '
 ```
 

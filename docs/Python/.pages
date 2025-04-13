@@ -11,12 +11,11 @@ nav:
   - meta.md
   - struct.md
   - module.md
-  - io.md
-  - network
   - thread.md
   - coroutine.md
   - built_in.md
   - venv.md
-  - log_and_config.md
   - debug.md
+  - log_and_config.md
+  - io.md
   - ...

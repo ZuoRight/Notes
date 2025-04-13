@@ -30,7 +30,7 @@ VSCode 的一些配置等多端同步，现在已经不需要再使用 `Settings
 
 > 在 PyCharm 中，选择源文件夹会自动设置自动执行的操作来完成的。但在 VSCode 中，需要手动设置。
 
-### 代码中临时设置
+- 代码中临时设置
 
 如果是在命令行中直接执行脚本，可以在代码中将项目路径加到 sys.path
 
@@ -42,7 +42,7 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 ```
 
-### `.vscode/settings.json`
+- `.vscode/settings.json` 中设置
 
 参考：<https://stackoverflow.com/questions/53653083/how-to-correctly-set-pythonpath-for-visual-studio-code>
 
@@ -56,7 +56,7 @@ if project_root not in sys.path:
 }
 ```
 
-### `launch.json`
+- `launch.json`
 
 如果是调试则还需要添加 `.vscode/launch.json` 配置
 

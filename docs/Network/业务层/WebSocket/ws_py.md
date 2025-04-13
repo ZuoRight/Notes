@@ -1,4 +1,4 @@
-# WS 请求库
+# Python WS
 
 参考：<https://medium.com/@louis.rosevi/python-web-sockets-5-different-ways-5ffb1a9015f9>
 
@@ -10,28 +10,29 @@
 
 ### server
 
+1. 编写异步任务处理函数 handler
+2. 创建 server 对象
+3. 异步运行 server 对象
+4. 启动服务端：`python server.py`
+
 ```python
 import asyncio
 import websockets
 
-"""
-1. 编写异步任务处理函数 handler
-2. 创建 server 对象
-3. 异步运行 server 对象
-4. 启动服务端：python server.py
-"""
 
 """
-handler基础写法
-客户端断开连接时，服务端会引发ConnectionClosedOK异常
+handler 基础写法
+客户端断开连接时，服务端会引发 ConnectionClosedOK 异常
 异常信息会对服务端日志产生噪音
 """
 # async def handler(websocket):
 #     while True:
 #         message = await websocket.recv()
 #         print(message)
+
+
 """
-handler改进写法，捕获异常
+handler 改进写法，捕获异常
 """
 # async def handler(websocket):
 #     while True:
@@ -40,8 +41,10 @@ handler改进写法，捕获异常
 #         except websockets.ConnectionClosedOK:
 #             break
 #         print(message)
+
+
 """
-handler最优写法
+handler 最优写法
 websockets 提供了快捷方式接收信息，无需自己处理异常
 """
 async def handler(websocket):
@@ -67,23 +70,22 @@ if __name__ == "__main__":
 
 ### client
 
-- 命令行
+1. 建立与服务器的连接：`connect()`
+2. 收发消息：`recv()`, `send()`
+3. 关闭连接：`close()`
+
+- 使用命令行连接
 
 ```shell
 python -m websockets ws://localhost:8001
 ```
 
-- 代码实现
+- 代码实现连接
 
 ```python
 import asyncio
 import websockets
 
-"""
-1. 建立与服务器的连接：connect()
-2. 收发消息：recv(), send()
-3. 关闭连接：close()
-"""
 
 async def hello():
     uri = "ws://localhost:8001"

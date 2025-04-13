@@ -4,6 +4,7 @@ nav:
   - browser.md
   - Server
   - wsgi.md
+  - FastAPI.md
   - Flask
   - Django
   - Web

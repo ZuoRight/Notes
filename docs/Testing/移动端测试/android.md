@@ -92,14 +92,13 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 
 <https://developer.android.com/tools/releases/platform-tools?hl=zh-cn>
 
-
 ## 开发
 
 开发者指南：<https://developer.android.com/guide?hl=zh_cn>
 
 ![20241222151948](https://image.zuoright.com/20241222151948.png)
 
-### 示例
+示例
 
 New Project -> Empty Activity -> Finish
 
@@ -133,13 +132,65 @@ assets  原始资源文件夹，一般用于存放原始的网页、音频等
 lib  引用的第三方 sdk 的 so 文件
 ```
 
+## [应用基础](https://developer.android.com/guide/components/fundamentals)
+
+应用组件是 Android 应用的基本构建块。每个组件都是一个入口点，系统或用户可通过该入口点进入您的应用，共有四种应用组件类型，每种类型都有不同的用途和生命周期。
+
+- Activity `<activity>`
+- 服务 `<service>`
+- 广播接收器 `<receiver>`
+- 内容提供程序 `<provider>`
+
+所有组件必需使用相应的元素在清单文件 `AndroidManifest.xml` 中声明，该文件必须位于应用项目目录的根目录中。清单文件的主要任务是告知系统应用组件的相关信息。
+
+[布局](https://developer.android.com/guide/topics/ui/declaring-layout)定义了应用中的界面结构
+
+布局中的所有元素均使用 View 和 ViewGroup 对象的层次结构进行构建
+
+View 通常称为微件，用于绘制用户可看到并与之交互的内容
+
+ViewGroup 则是不可见的容器，用于定义 View 和其他 ViewGroup 对象的布局结构
+
+## 逆向工程
+
+通过动态加静态分析全面理解程序的运行机制，包括代码逻辑、加密算法、协议等，可能涉及
+
+- 静态分析（反编译、字符串搜索、控制流分析）
+- 动态调试（Frida Hook、内存 Dump、网络抓包）
+- 行为监控（文件操作、系统调用追踪）
+
+反编译是逆向的基础步骤，若代码被混淆或加密，需用 Frida Hook 方法参数，或内存 Dump 解密数据
+
+比如破解某 App 的 VIP 验证：反编译 APK → 发现校验函数被混淆 → Frida Hook 该函数 → 分析返回值规律 → 修改 Smali 代码绕过验证 → 重打包签名
+
+Frida Hook 是一种动态代码注入技术，通过注入 JavaScript/Python 脚本到目标进程内存中，实时 Hook（钩住）函数调用，在运行时拦截和修改 Android/iOS/Windows 等平台的应用行为，无需修改原始程序文件
+
+```text
+
+场景	        技术实现
+绕过 Root 检测	Hook SystemProperties.get() 返回假值
+破解加密算法	 拦截 javax.crypto.Cipher.init() 提取密钥
+网络协议逆向	 Hook OkHttp/HttpURLConnection 捕获请求/响应
+游戏修改	    修改 Unity/Cocos2d 游戏的内存数值（金币/血量）
+脱壳	        Dump 内存中的解密 DEX（如针对梆梆加固）
+```
+
 ## 反编译 APK
 
 直接把 APK 解压是没有办法进行阅读的，因为在打包这个过程中经过了 build-tools 打包工具处理
 
 可以通过反编译将 APK 拆成我们可以阅读的文件
 
-虽然有加固服务可用于对抗反编译，但是加固后安装包存在的诸多问题，所以在一些大厂的应用中都没发现有加固的
+反编译前查看有没有加固或混淆，即所谓的壳，如果有壳需要先脱壳，否则直接反编译得到的是壳的代码，而非原始逻辑
+
+> 加固后安装包存在的诸多问题，所以在一些大厂的应用中都没发现有加固的
+
+- 查壳（ApkScan-PKID / 摸瓜）→ 确认加固类型
+- 脱壳（Frida / drizzleDumper）→ 获取原始 DEX
+    - Frida-DEXDump：基于 Frida 动态脱壳，适用于多数加固方案
+    - drizzleDumper：针对特定加固（如腾讯、梆梆）的脱壳工具
+    - 手动脱壳：调试分析壳的加载流程，提取解密后的 DEX
+- 反编译（Jadx / Apktool）→ 分析代码逻辑
 
 ### ClassyShark
 
@@ -171,21 +222,35 @@ lib  引用的第三方 sdk 的 so 文件
 
 进入 bin 目录下执行 `jadx-gui.bat` 进入 GUI 界面，打开将要反编译的 APK 即可
 
-## [应用基础](https://developer.android.com/guide/components/fundamentals)
+## 刷机
 
-应用组件是 Android 应用的基本构建块。每个组件都是一个入口点，系统或用户可通过该入口点进入您的应用，共有四种应用组件类型，每种类型都有不同的用途和生命周期。
+```shell
+adb root  # 以 root 权限重启 adb
+# 输入 su，若 $ 变 # 则表明已 root，否则报错
 
-- Activity `<activity>`
-- 服务 `<service>`
-- 广播接收器 `<receiver>`
-- 内容提供程序 `<provider>`
+adb bootloader  # 重启并进入 fastboot 模式，等价于 adb reboot-bootloader
+adb recovery  # 重启并进入 recovery 模式，刷机时会用到
+```
 
-所有组件必需使用相应的元素在清单文件 `AndroidManifest.xml` 中声明，该文件必须位于应用项目目录的根目录中。清单文件的主要任务是告知系统应用组件的相关信息。
+Root，即获取根权限
 
-[布局](https://developer.android.com/guide/topics/ui/declaring-layout)定义了应用中的界面结构
+BootLoader，是启动操作系统内核前运行的小程序，BL 锁住则不能刷入 Recovery，也就不能刷机
 
-布局中的所有元素均使用 View 和 ViewGroup 对象的层次结构进行构建
+Recovery 模式，可以对手机内部数据或系统进行修改的模式，该模式下，可以备份和升级系统，只有刷入了第三方的 Recovery 才可以刷入第三方的 ROM 包，手机系统自带的 Revovery 只能刷官方提供的 ROM
 
-View 通常称为微件，用于绘制用户可看到并与之交互的内容
+TWRP 是一个由 Team Win 团队开发的第三方恢复环境，允许用户在 Android 设备的恢复模式下执行高级操作，取代了设备出厂时自带的官方恢复模式，提供更强大的功能，特别适合刷机、Root、备份和恢复等操作
 
-ViewGroup 则是不可见的容器，用于定义 View 和其他 ViewGroup 对象的布局结构
+---
+
+Pixel 刷机步骤
+
+1. 镜像下载后解压，<https://developers.google.cn/android/images?hl=zh-cn#instructions>
+
+![20240720113516](https://image.zuoright.com/20240720113516.png)
+
+2. 进入 fastboot 模式：`adb reboot bootloader`，同时按住「电源键 & 音量减」也可进入 bootloader 界面
+3. 解锁 bootloader
+
+![20240720113342](https://image.zuoright.com/20240720113342.png)
+
+4. 开始刷机：`flash-all.bat`，刷完后可能提示是否清除 data 目录，选择 yes，成功后查看系统设置的版本号确认是否正确

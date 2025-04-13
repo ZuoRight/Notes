@@ -1,7 +1,5 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - index.md
-  - RPC
-  - HTTP
-  - WebSocket
+  - rpc.md
+  - zerorpc.md
   - ...

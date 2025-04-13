@@ -163,7 +163,8 @@ Python v3.6 开始，官方移除了`·pyenv`，推荐使用新的 `venv` 来创
 
 ```shell
 # 在当前目录创建一个名为env(可自定义)的虚拟环境，删除它即删除了虚拟环境
-python3 -m venv venv [--without-pip]
+# 通常命名为 .venv 或 venv 或 .virtualenvs
+python3 -m venv .venv [--without-pip]
 """
 为了确保在安装 Python 或创建虚拟环境时不需要网络访问，ensurepip 模块将会把 pip 的完整副本及其依赖项安装到目标环境中
 可以使用 --without-pip 选项不让 ensurepip 将 pip 引导到虚拟环境中

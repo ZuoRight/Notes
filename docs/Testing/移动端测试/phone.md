@@ -37,11 +37,10 @@ emulator @avd_name ...
 
 需要开启 CPU 的虚拟化功能：BIOS -> VT-x
 
-### MuMu
+### 其它
 
-网易游戏开发的模拟器
-
-<https://mumu.163.com>
+- 逍遥模拟器
+- MuMu：网易游戏开发的模拟器
 
 ## 手机投屏到电脑
 
@@ -90,35 +89,6 @@ python -m http.server 8080
 ```
 
 电脑访问 `http://手机IP地址:8080` 即可查看
-
-## 刷机
-
-```shell
-adb root  # 以 root 权限重启 adb
-# 输入 su，若 $ 变 # 则表明已 root，否则报错
-
-adb bootloader  # 重启并进入 fastboot 模式，等价于 adb reboot-bootloader
-adb recovery  # 重启并进入 recovery 模式，刷机时会用到
-```
-
-Root，即获取根权限
-
-BootLoader，是启动操作系统内核前运行的小程序，BL 锁住则不能刷入 Recovery，也就不能刷机
-
-Recovery 模式，可以对手机内部数据或系统进行修改的模式，该模式下，可以备份和升级系统，只有刷入了第三方的 Recovery 才可以刷入第三方的 ROM 包，手机系统自带的 Revovery 只能刷官方提供的 ROM
-
-### Pixel 刷机步骤
-
-1. 镜像下载后解压，<https://developers.google.cn/android/images?hl=zh-cn#instructions>
-
-![20240720113516](https://image.zuoright.com/20240720113516.png)
-
-2. 进入 fastboot 模式：`adb reboot bootloader`，同时按住「电源键 & 音量减」也可进入 bootloader 界面
-3. 解锁 bootloader
-
-![20240720113342](https://image.zuoright.com/20240720113342.png)
-
-4. 开始刷机：`flash-all.bat`，刷完后可能提示是否清除 data 目录，选择 yes，成功后查看系统设置的版本号确认是否正确
 
 ## 特殊拨号
 

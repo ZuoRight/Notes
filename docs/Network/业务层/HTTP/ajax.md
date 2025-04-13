@@ -1,4 +1,4 @@
-# HTTP 请求库
+# AJAX
 
 AJAX, Asynchronous JavaScript and XML，由 Jesse James Garrett 在 2005 年提出，标志着 Web 2.0 的开端
 
