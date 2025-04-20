@@ -3,4 +3,5 @@ nav:
   - index.md
   - jobs.md
   - daemon.md
+  - IPC.md
   - ...

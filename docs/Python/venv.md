@@ -157,6 +157,64 @@ COMMENT
 pip-autoremove Flask -y
 ```
 
+## `pyproject.toml`
+
+统一项目配置：替代 `setup.py + requirements.txt + MANIFEST.in`
+
+```toml
+# 构建配置
+[build-system]
+requires = ["setuptools>=42", "wheel"]  # 构建依赖
+build-backend = "setuptools.build_meta"  # 指定构建工具
+
+# 项目元数据（PEP 621）
+[project]
+name = "my_package"  # 包名
+version = "0.1.0"  # 版本号
+description = "A sample package"  # 描述
+# 作者列表
+authors = [
+    {name = "Alice", email = "alice@example.com"},
+]
+# 必须依赖
+dependencies = [
+    "requests>=2.25.0",
+    "numpy>=1.20.0",
+]
+# 可选依赖
+optional-dependencies = {
+    "zookeeper" = ["kazoo>=2.0"],
+    "test" = ["pytest>=6.0"],
+}
+
+# 命令行入口
+[project.scripts]
+cli-tool = "my_package.cli:main"
+
+# 工具特定配置
+[tool.setuptools]
+packages = ["my_package"]  # 手动指定包目录
+```
+
+- 构建安装包
+
+```shell
+python -m build  # 生成 .tar.gz 和 .whl 文件
+```
+
+- 安装包
+
+```shell
+# 从当前目录安装（自动读取 pyproject.toml）
+pip install .
+
+# 安装可选依赖
+pip install ".[zookeeper,test]"
+
+# 可编辑模式
+pip install -e .
+```
+
 ## venv
 
 Python v3.6 开始，官方移除了`·pyenv`，推荐使用新的 `venv` 来创建虚拟环境

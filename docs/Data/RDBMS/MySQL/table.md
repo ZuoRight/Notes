@@ -5,7 +5,7 @@
 ```sql
 -- 查看用户
 select user,host from mysql.user;
-'''
+/*
 +------------------+-----------+
 | user             | host      |
 +------------------+-----------+
@@ -16,7 +16,7 @@ select user,host from mysql.user;
 | mysql.sys        | localhost |
 +------------------+-----------+
 5 rows in set (0.00 sec)
-'''
+*/
 
 -- 创建用户（%表示所有IP都可以访问）
 CREATE USER 'qadmin'@'%' IDENTIFIED BY 'passwd';
@@ -45,7 +45,7 @@ revoke all privileges on *.* from 'qadmin'@'%';
 ```sql
 -- 显示字符集相关变量
 show variables like '%char%';
-'''
+/*
 存储字符集
     utf8 支持最长三个字节的UTF-8字符
     utf8mb4 支持四字节的UTF-8字符，默认，推荐
@@ -57,7 +57,7 @@ show variables like '%char%';
         0900 指的是 Unicode 校对算法版本
         ai 指的是口音不敏感，也就是说，排序时 e，è，é，ê 和 ë 之间没有区别。
         ci 表示不区分大小写，也就是说，排序时 p 和 P 之间没有区别
-'''
+*/
 ```
 
 ## 库操作
@@ -67,7 +67,7 @@ show variables like '%char%';
 ```sql
 -- 查看有哪些库
 show databases;
-'''
+/*
 +--------------------+
 | Database           |
 +--------------------+
@@ -76,7 +76,7 @@ show databases;
 | performance_schema |  监控各类性能指标
 | sys                |  以更容易理解的方式展示性能指标供开发人员监控（图形化客户端中仅显示这个）
 +--------------------+
-'''
+*/
 
 -- 创建库，可以指定指定字符集和校对规则等
 CREATE DATABASE <库名>  -- To use this statement, you need the CREATE privilege for the database.
@@ -101,7 +101,7 @@ show tables;
 ```sql
 -- 查看表结构
 describe students;  -- 可简写为 desc
-'''
+/*
 mysql> DESCRIBE demo.test;                 附加信息
 +-----------+------+------+-----+---------+-------+
 | Field     | Type | Null | Key | Default | Extra |
@@ -111,7 +111,7 @@ mysql> DESCRIBE demo.test;                 附加信息
 | price     | int  | YES  |     | NULL    |       |
 +-----------+------+------+-----+---------+-------+
 3 rows in set (0.00 sec)
-'''
+*/
 ```
 
 ### 创建表
@@ -124,10 +124,10 @@ CREATE TABLE <表名>
     ......
     [表级别约束]
 );
-'''
+/*
 字段名称，需要避开系统关键字，比如：key, value
 默认值：DEFAULT xxx
-'''
+*/
 CREATE TABLE demo.importhead
 (
     listnumber INT,
@@ -171,12 +171,12 @@ ALTER TABLE <表名> CHANGE `itemnumber` `itemnumber` INT NOT NULL AUTO_INCREMEN
 
 -- 新增字段
 ALTER TABLE <表名> ADD COLUMN <字段名> INT [FIRST / AFTER <某字段>];
-"""
+/*
 COLUMN 可省略
 新增字段默认在最后，可以指定位置
     FIRST 移到首位
     AFTER 移到某字段后
-"""
+*/
 -- 示例，添加主键
 ALTER TABLE demo.test ADD COLUMN itemnumber int PRIMARY KEY AUTO_INCREMENT;
 

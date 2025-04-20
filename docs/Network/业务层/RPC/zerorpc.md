@@ -1,19 +1,19 @@
 
 # ZeroRPC
 
-Python3 RPC方式
+Python3 RPC 方式
 
-- xmlrpc：系统内置库`SimpleXMLRPCServer` + `xmlrpclib`，基于HTTP
-- jsonrpc：第三方库`jsonrpclib` 或 `python-jsonrpc`，基于HTTP
-- zerorpc：基于ZeroMQ+MessagePack的第三方库，基于TCP，由dotcloud公司在PyCon 2012大会上开源
+- xmlrpc：系统内置库 `SimpleXMLRPCServer` + `xmlrpclib`，基于HTTP
+- jsonrpc：第三方库 `jsonrpclib` 或 `python-jsonrpc`，基于HTTP
+- ZeroRPC：基于 ZeroMQ + MessagePack(序列化) 的第三方库，基于 TCP，由 dotcloud 公司在 PyCon 2012 大会上开源
 
 [ZeroRPC 官网](https://www.zerorpc.io/){ .md-button .md-button--primary }
 
-ZeroRPC分为三层：
+ZeroRPC 分为三层：
 
-- Wire (or transport) layer 利用ZeroMQ和MessagePack进行通信
-- Event (or message) layer 最复杂的一层，处理心跳，事件等
-- RPC layer RPC Request+Response
+- Wire (or transport) layer, 利用 ZeroMQ 和 MessagePack 进行通信
+- Event (or message) layer, 最复杂的一层，处理心跳，事件等
+- RPC layer, RPC Request + Response
 
 ## 基础用法
 
@@ -79,10 +79,6 @@ subtract <undocumented>
 # 查看方法的文档
 zerorpc --inspect tcp://127.0.0.1:4242 hello
 ```
-
-## MessagePack
-
-ZeroRPC选择MessagePack作为序列化工具，相比于JSON/BSON/YAML等格式，MsgPack提供20~50倍的序列化速度以及1/2大小的序列化产出。
 
 ## 参考
 

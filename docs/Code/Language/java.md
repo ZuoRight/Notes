@@ -12,11 +12,6 @@ JavaSE 是标准版，包含 JVM 和标准库
 
 JavaEE 是企业版，在 JavaSE 的基础上加上了大量的 API 和库，以便方便开发 Web 应用、数据库、消息服务等
 
-- Servlet + JSP + JavaBean，容器：Tomcat
-- Spring MVC，容器：IoC, AOP
-- Spring Boot 开箱即用
-- Spring Cloud 分布式云开发框架
-
 ## JSR
 
 JSR, Java Specification Request 是 Java 社区提出的一种标准化 Java 技术的过程。
@@ -89,7 +84,109 @@ IDE
 - Eclipse
 - IntelliJ Idea
 
-## demo
+## Java Web
+
+Java Web 相关的标准都是在 EE 中定义的
+
+基本架构：Client → Web Server (如 Apache) → Tomcat (Servlet 容器) → Servlet/JSP → 业务逻辑
+
+演进路线：Servlet → JSP/JavaBeans → Struts → Spring MVC → Spring Boot → Spring Cloud
+
+### WAR
+
+Web Application Archive
+
+![20250416203124](https://image.zuoright.com/20250416203124.png)
+
+普通的 Java 程序是通过启动 JVM，然后执行 `main()` 开始运行。而 Java Web 应用程序，需要启动 Servlet 容器加载 WAR 包来运行 Servlet
+
+WAR 包是 Java web 应用的完整部署单元，将 WAR 包部署到 Tomcat 等 Servlet 容器中，容器会解析其中的 Servlet 并使其可用
+
+```text
+MyWebApp.war
+├── META-INF/           # 包含应用元数据
+│   └── MANIFEST.MF     # 应用清单文件
+├── WEB-INF/            # 包含非公开访问的资源
+│   ├── web.xml         # 部署描述文件（配置Servlet等，定义了 Servlet 的映射规则）
+│   ├── classes/        # 编译后的Java类文件（包括Servlet）
+│   │   └── com/
+│   │       └── example/
+│   │           └── MyServlet.class
+│   └── lib/            # 依赖的JAR包
+│       └── dependency.jar
+├── index.jsp           # 公开可访问的JSP文件
+├── images/             # 静态资源
+└── css/                # 样式文件
+```
+
+### Servlet + JSP + JavaBean
+
+![20250416201618](https://image.zuoright.com/20250416201618.png)
+
+Servlet 是 Java Web 开发的起点，提供了处理 HTTP 请求的底层 API。
+
+```java
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+
+public class SimpleServlet extends HttpServlet {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        out.println("<h1>Hello World</h1>");
+        out.println("</body></html>");
+    }
+}
+```
+
+Servlet 一行行拼接生成 HTML，效率太低，于是有了 JSP(Java Server Pages) 动态网页技术，可以在 HTML 中嵌入 Java 代码用于创建动态网页，本质是 Servlet 的语法糖。
+
+常用的 Servlet 容器有
+
+- `Jetty`：由 Eclipse 开发的开源免费服务器
+- `Tomcat`：由 Apache 开发的开源免费服务器
+- `GlassFish`：一个开源的全功能 JavaEE 服务器
+
+### Spring
+
+Servlet 的痛点：大量的样板代码，需要手动解析请求参数和管理响应，控制器逻辑与视图逻辑混合，复杂的 XML 配置，难以进行单元测试
+
+Spring MVC 作为 Spring 框架的一部分，带来了结构化的 MVC 模式，显著简化了 Web 开发。
+
+Spring 框架的核心概念
+
+- IoC 通过将依赖管理转移给框架，减少组件间耦合，增强可测试性和灵活性
+- AOP 允许横切关注点的模块化，减少重复代码，增强代码的可维护性
+
+但仍存在问题：需要大量配置 XML (应用上下文、视图解析器等)、项目搭建和依赖管理复杂、需要手动部署到外部 Servlet 容器 (Tomcat)
+
+Spring Boot 基于 Spring MVC 做了彻底的革新，默认集成大量组件，比如内嵌了 Servlet 容器
+
+Spring Cloud 是基于 Spring Boot 的分布式云开发框架
+
+参考：<https://juejin.cn/post/6844904101055037448>
+
+![20240625215700](https://image.zuoright.com/20240625215700.png)
+
+Spring Cloud 包含很多子项目，第一代主要以 Netflix 的开源组件为主，包括 Eureka、Ribbon、Feign、Hystrix、Zuul、Archaius 等，其中 Eureka，Hystrix 等不再维护，但目前不影响使用。
+
+第二代 主要以 Alibaba 生态组件为主
+
+## JConsole
+
+命令行输入 `jconsole` 启动控制台，可以看到运行了哪些 Java 进程
+
+![20230823121213](https://image.zuoright.com/20230823121213.png)
+
+比如选择连接 Jmeter，可以看到它的使用情况
+
+![20230823121321](https://image.zuoright.com/20230823121321.png)
+
+![20230823121452](https://image.zuoright.com/20230823121452.png)
+
+## 基础语法
 
 Java 是一种面向对象的编程语言，所有的代码必须在类的上下文中定义和执行。
 
@@ -117,45 +214,3 @@ java Hello  # JVM 会自动查找与 Hello 对应的 .class 运行
 Hello, world!
 '
 ```
-
-## Servlet
-
-Java Web 相关的标准都是在 EE 中定义的，Servlet(Server Applet) API 是一个 jar 包，通过构建工具引入它，与其他一些文件按固定结构组织并打包为 `.war` 文件
-
-> WAR, Java Web Application Archive 构建后的 Web 应用程序
-
-普通的 Java 程序是通过启动 JVM，然后执行 `main()` 开始运行。
-
-但是 Web 应用程序，需要启动应用服务器（也称为 Servlet 容器）加载 war 包来运行 Servlet
-
-常用的 Servlet 容器有
-
-- `Jetty`：由 Eclipse 开发的开源免费服务器
-- `Tomcat`：由 Apache 开发的开源免费服务器
-- `GlassFish`：一个开源的全功能 JavaEE 服务器
-
-Servlet 运行在 Tomcat 这样的容器中，一行行拼接生成 HTML，效率太低，于是有了 JSP, Java Server Pages 动态网页技术
-
-JSP 是为了解决 Servelet 开发效率低下不方便开发而生的，本质还是 Servlet，把拼 HTML 自动化了，是对 Servlet 的一种补充
-
-## Spring Cloud
-
-参考：<https://juejin.cn/post/6844904101055037448>
-
-![20240625215700](https://image.zuoright.com/20240625215700.png)
-
-Spring Cloud 包含很多子项目，第一代主要以 Netflix 的开源组件为主，包括 Eureka、Ribbon、Feign、Hystrix、Zuul、Archaius 等，其中 Eureka，Hystrix 等不再维护，但目前不影响使用。
-
-第二代 主要以 Alibaba 生态组件为主
-
-## JConsole
-
-命令行输入 `jconsole` 启动控制台，可以看到运行了哪些 Java 进程
-
-![20230823121213](https://image.zuoright.com/20230823121213.png)
-
-比如选择连接 Jmeter，可以看到它的使用情况
-
-![20230823121321](https://image.zuoright.com/20230823121321.png)
-
-![20230823121452](https://image.zuoright.com/20230823121452.png)

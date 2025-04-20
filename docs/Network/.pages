@@ -1,10 +1,10 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
-  - L12.md
-  - L3.md
-  - L4.md
   - 业务层
+  - L4.md
+  - L3.md
+  - L12.md
   - 分析工具.md
   - 通信.md
   - 通信设备.md

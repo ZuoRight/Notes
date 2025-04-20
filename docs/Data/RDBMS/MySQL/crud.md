@@ -68,14 +68,16 @@ SELECT 1+2;  -- 3
 
 -- 完整语法
 SELECT [DISTINCT] 字段列表|*
--- 加 DISTINCT 可以去除重复行
--- * 为通配符
--- 可以接聚合函数
+/*
+加 DISTINCT 可以去除重复行，但不会去除 NULL 行，通常与 WHERE x IS NOT NULL 一起使用
+* 为通配符
+可以接聚合函数
+*/
 FROM 数据源  -- 数据源可以是表
 -- 也可以是其它查询结果（即虚拟表，也叫派生表，或者子查询），必须要用AS起一个别名
 WHERE 条件  -- 查询条件
 GROUP BY 字段  -- 分组，常与聚合函数一起使用
-HAVING 条件  -- 筛选查询结果
+HAVING 条件  -- 筛选 GROUP 分组后的结果
 ORDER BY 字段A ASC|DESC, 字段B ASC|DESC  -- 默认升序 ASC
 -- 先按字段A顺序排，如果有相同的则按字段B顺序排
 LIMIT 起始索引，行数  -- 索引0表示从第一行起
@@ -106,10 +108,10 @@ ON (a=c AND b=d);
 
 ### 外连接
 
-```text
-LEFT ~ 返回左表和关联表共有的数据
-RIGHT ~ 返回右表和关联表共有的数据
-FULL ~ 返回全部的数据，即并集
+```sql
+LEFT ~  -- 返回左表和关联表共有的数据
+RIGHT ~  -- 返回右表和关联表共有的数据
+FULL ~  -- 返回全部的数据，即并集
 ```
 
 ### UNION
@@ -121,16 +123,16 @@ FULL ~ 返回全部的数据，即并集
 ## 语句执行顺序
 
 ```sql
-"""
+/*
 FROM
     WHERE
         JOIN
             GROUP BY
                 HAVING
-                    SELECT DISTINCT
+                    SELECT
                         ORDER BY
                             LIMIT
-"""
+*/
 ```
 
 从执行顺序可以看出，`WHERE` 是先筛选后连接（即可以先缩小范围再连接），而 `HAVING` 是先连接后筛选，由于 `WHERE` 在连接前缩小了范围，所以效率更高，但 `HAVING` 在 `GROUP BY` 后，可以用来过滤分组，另外还可以接聚合函数。
@@ -148,17 +150,38 @@ AND gender = 'M';
 
 ```sql
 =  -- 等于
-<>  -- 不等于
 >
->=
 <
+<>  -- 不等于，也可以写作 !=，或者 NOT ... = ...
+>=
 <=
-LIKE _  -- 一个任意字符
-LIKE % 多个任意字符  -- 示例，以a开头：a%，以a结尾：%a，包含a：%a%
-NOT 条件1
-条件1 AND 条件2
+
+IS NULL  -- 空
+IS NOT NULL  -- 非空，等价于 <> NULL
+
+LIKE '张_'   -- _ 表示一个任意字符
+LIKE 'a%'  -- % 表示多个任意字符
+/*
+示例：
+以a开头：a%
+以a结尾：%a
+包含a：%a%
+*/
+
+条件1 AND 条件2  -- AND 的优先级高于 OR
+x BETWEEN 60 AND 90  -- 等价于 x >=60 AND x < 90
+
 条件1 OR 条件2
-xx IN ('xxx', 'xx')  -- 比如，HAVING transdate IN ('2015-12-01', '2015-12-03')
+xx IN ('xxx', 'xx')  -- 可视作 OR 的简写
+
+NOT 条件
+/*
+NOT IN
+NOT LIKE
+NOT BETWEEN
+NOT EXISTS
+IS NOT NULL
+*/
 ```
 
 ## 函数
@@ -186,13 +209,17 @@ SELECT DATEDIFF('2025-01-06', '2025-01-01'); -- 返回 5
 
 ### 聚合函数
 
-```text
-COUNT(*) 计数
-SUM() 求和
-AVG() 平均值
-MAX() 最大值
-MIN() 最小值
-LEFT(str，n) 返回字符串左边的几个字符
+```sql
+COUNT(*|字段)  -- 计数，会忽略 NULL 的行
+COUNT(DISTINCT x)  -- 通常与 DISTINCT 一起使用，去重
+
+SUM()  -- 求和
+
+MAX()  -- 最大值
+MIN()  -- 最小值
+AVG()  -- 平均值
+
+LEFT(str，n)  -- 返回字符串左边的几个字符
 ```
 
 ```sql

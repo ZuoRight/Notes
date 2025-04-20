@@ -46,3 +46,7 @@ SQL 是 DBA 与 DBMS 交互的语言，属于一种特定领域专用语言（Do
 - SQL 保留字、函数名、绑定变量等都大写
 - 表名、表别名、字段名、字段别名等都小写
 - 字段名以下划线命名
+
+## 练习
+
+sqliteviz: <https://sqliteviz.com/app/#/>
