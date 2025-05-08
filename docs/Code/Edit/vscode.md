@@ -8,8 +8,10 @@ VSCode 的一些配置等多端同步，现在已经不需要再使用 `Settings
 
 ## 快捷键
 
+注意：要切换到英文输入法
+
 ```text
-切换终端 Control + ~
+隐藏终端 Control + ~
 行注释 Command + /
 块注释 Shift + Option + A
 ```

@@ -354,7 +354,12 @@ git commit -m "冲突修改后的说明"
 
 ```shell
 git checkout dev
-git rebase origin/main  # 直接基于远程仓库 rebase，当然也可以基于本地 main 分支，但需要先 pull
+# 基于本地的远程 main 分支 rebase（记得先 fetch），当然也可以基于本地 main 分支（记得先 pull）
+git fetch origin main
+git rebase origin/main
+# 等价于
+git pull --rebase origin main
+
 '
 如果有冲突，可以取消合并
 git rebase --abort
@@ -511,10 +516,13 @@ git add .  # 最好每个修改暂存一次，而不是都混在一起
 git commit -m "改动说明"
 
 
-# 获取远程分支是否有新的改动
-git fetch origin master
-# 如果获取到新的改动则可以变基合并
-git rebase origin/master
+git fetch origin master  # 获取远程分支是否有新的改动
+git rebase origin/master  # 如果获取到新的改动则可以变基合并
+# 等价于
+'
+git pull --rebase origin master
+'
+
 # 也可以使用 merge 合并
 '
 git checkout master  # 切回本地主分支
@@ -528,3 +536,8 @@ git push origin dev
 # 删除已被合并的分支
 git branch -d dev
 ```
+
+## 其它
+
+- `... origin xxx` 操作远程仓库时使用空格的形式
+- `... origin/xxx` 操作本地远程分支时使用斜杠的形式

@@ -1,4 +1,4 @@
-# Java
+# 引言
 
 [廖雪峰 Java 教程](https://www.liaoxuefeng.com/wiki/1252599548343744/1255883772263712)
 
@@ -6,11 +6,11 @@ Java 最初由 SUN 公司从 Oak 语言改造而来，后被 Oracle 收购
 
 Java 将代码编译成一种字节码，然后不同平台的虚拟机（JVM）负责加载并执行字节码，即所谓的一次编写，到处运行
 
-JavaSE 是标准版，包含 JVM 和标准库
-
 ![20230925100617](https://image.zuoright.com/20230925100617.png)
 
-JavaEE 是企业版，在 JavaSE 的基础上加上了大量的 API 和库，以便方便开发 Web 应用、数据库、消息服务等
+- JavaME 是一个裁剪版的 JDK，现在使用很少
+- JavaSE, Java Platform Standard Edition 标准版，包含 JVM 和标准库
+- JavaEE, Java Platform Enterprise Edition 企业版，最早叫 J2EE，现在叫 Jakarta EE，是在 JavaSE 的基础上多了一些服务器相关的库和 API，以便开发 Web 应用、数据库、消息服务等，最核心的组件就是基于 Servlet 标准的 Web 服务器
 
 ## JSR
 
@@ -25,6 +25,12 @@ JSR223 允许在 Java 应用程序中嵌入各种脚本语言，例如 Groovy、
 JSR388 定义了重要版本 JavaSE 13 平台的规范，包括新的语言功能和库改进。
 
 ## 环境搭建
+
+IDE
+
+- Eclipse
+- IntelliJ Idea
+- VSCode + Extension Pack for Java
 
 ![20210630131230](https://image.zuoright.com/20210630131230.png)
 
@@ -57,11 +63,6 @@ C:\Program Files\Java\jdk-11.0.12
 
 ## 构建工具
 
-```shell
-javac -version
-java -version
-```
-
 Java 程序的构建过程一般是：编译、测试、打包。
 
 ![20240725214548](https://image.zuoright.com/20240725214548.png)
@@ -73,16 +74,86 @@ Java 程序的构建过程一般是：编译、测试、打包。
 - java 启动 JVM 执行编译后的代码
 - jar 把一组 `.class` 文件打包成 `.jar` 包，便于发布
 
+```shell
+# 查看编译器版本
+javac -version
+'
+javac 22.0.2
+'
+
+# 查看虚拟机版本
+java -version
+'
+java 22.0.2 2024-07-16
+Java(TM) SE Runtime Environment (build 22.0.2+9-70)
+Java HotSpot(TM) 64-Bit Server VM (build 22.0.2+9-70, mixed mode, sharing)
+'
+```
+
 但当工程越来越大，文件越来越多，这些机械重复的工作就需要交给工具来完成了：
 
 - Ant 与 Makefile 比较像，定义任务，规定依赖，执行任务，缺点是没办法管理依赖
 - [Maven](https://www.liaoxuefeng.com/wiki/1252599548343744/1255945359327200) 提出仓库的概念，缺点是使用 xml 语法不简洁，无法自定义任务
 - Gradle 继承 Maven 和 Ant 的优点，可以用仓库管理依赖也能自定义任务，`build.gradle` 基于脚本语言 Groovy
 
-IDE
+### Maven
 
-- Eclipse
-- IntelliJ Idea
+使用 Maven 时，基本上只会用到 mvn 这一个命令：`mvn -version`
+
+标准结构，不要乱改
+
+```text
+project/
+├── src/
+│   ├── main/
+│   │   ├── java/            # Java 源代码目录
+│   │   │   └── com/example/Main.java    # 主类（入口）
+│   │   ├── resources/       # 配置文件目录（如 application.properties）
+|   |
+│   └── test/
+│       └── java/            # 测试源码目录
+│       └── resources/       # 测试资源目录
+|
+├── target                   # 所有编译、打包生成的文件会放在这里
+│   ├── classes/
+│   │   ├── com/example/Main.class       # Java 编译后的字节码文件
+│   └── test-classes/
+|
+├── pom.xml                  # Maven 配置文件
+```
+
+- `pom.xml `
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 一个Maven工程由以下三个字段唯一标识，即可被其它库引入：groupId:artifactId:version -->
+    <!-- com.example:demo:1.0-SNAPSHOT -->
+    <groupId>com.example</groupId>  <!-- 类似于 Java 包名，通常用公司或组织名称 -->
+    <artifactId>demo</artifactId>  <!-- 类似于 Java 类名，通常是项目名称 -->
+    <version>1.0-SNAPSHOT</version>  <!-- 版本号 -->
+
+    <!-- 固定JDK版本，防止同一个项目的不同的开发者各自使用不同版本的JDK -->
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>  <!-- 表示Java编译器读取的源码版本 -->
+        <maven.compiler.target>17</maven.compiler.target>  <!-- 表示Java编译器编译的Class版本 -->
+        <!-- maven.compiler.release 使用的JDK版本 -->
+    </properties>
+
+    <!-- 声明依赖，Maven会自动下载这个依赖包并把它放到classpath中 -->
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.16</version>
+        </dependency>
+	</dependencies>
+</project>
+```
 
 ## Java Web
 
@@ -162,7 +233,7 @@ Spring 框架的核心概念
 
 但仍存在问题：需要大量配置 XML (应用上下文、视图解析器等)、项目搭建和依赖管理复杂、需要手动部署到外部 Servlet 容器 (Tomcat)
 
-Spring Boot 基于 Spring MVC 做了彻底的革新，默认集成大量组件，比如内嵌了 Servlet 容器
+Spring Boot 是一个基于 Spring 的套件，预组装了 Spring 的一系列组件（比如内嵌了 Servlet 容器），以便以尽可能少的代码和配置来开发基于 Spring 的 Java 应用程序。
 
 Spring Cloud 是基于 Spring Boot 的分布式云开发框架
 
@@ -185,32 +256,3 @@ Spring Cloud 包含很多子项目，第一代主要以 Netflix 的开源组件�
 ![20230823121321](https://image.zuoright.com/20230823121321.png)
 
 ![20230823121452](https://image.zuoright.com/20230823121452.png)
-
-## 基础语法
-
-Java 是一种面向对象的编程语言，所有的代码必须在类的上下文中定义和执行。
-
-```java
-// 定义一个公开的类，一个文件只能有一个 public class
-public class Hello {
-    // Java 规定程序固定从 main() 开始执行
-    // 定义一个公开的静态方法，void 为返回值类型
-    // 参数类型为 String[]
-    public static void main(String[] args) {
-        // 打印一个字符串到屏幕上
-        System.out.println("Hello, world!");  // 代码行以分号结尾
-    }
-}
-```
-
-必需保存为与类名完全一致的文件名：`Hello.java`
-
-运行
-
-```shell
-javac Hello.java  # 先编译，生成 Hello.class
-java Hello  # JVM 会自动查找与 Hello 对应的 .class 运行
-'
-Hello, world!
-'
-```

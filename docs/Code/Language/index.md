@@ -44,14 +44,20 @@ hide:
 ### Java
 
 ``` java
-int x = 1;  // 未赋值时初始值为：0
+int x = 1;
+int x;  // 未赋值时初始值为：0
+
+final double PI = 3.14;  // 常量
+
+// 根据赋值语句自动推断变量类型
+var sb = new StringBuilder();  // 等价于 StringBuilder sb = new StringBuilder();
 ```
 
 ### Python
 
 ```python
 # 变量不需要关键字声明
-x = None  # 初始值可以赋值为：None
+x = None  # 必须赋值，初始值可以赋值为 None
 x = 1
 x = "demo"
 
@@ -92,6 +98,7 @@ var x = 1;  // var是ES6前的关键字，在函数外声明的就是全局变�
 
 let x = 1;  // let是用来改善var的，作用域为{}，同作用域内不允许重复声明，声明变量可以只声明不赋值，未赋值默认为 undefined
 let x = "hello world"  // JS语句可以用`;`结尾，也可以忽略
+
 const PI = 3.14;  // const用于声明常量，作用域也是{}，声明常量必须初始化赋值，且不能重新赋值
 
 console.log(1 + '1');  // "11"
