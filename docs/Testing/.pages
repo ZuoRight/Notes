@@ -11,6 +11,5 @@ nav:
   - 移动端测试
   - 性能测试
   - TestResult
-  - 抓包
   - test_service.md
   - ...

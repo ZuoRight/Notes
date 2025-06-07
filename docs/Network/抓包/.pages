@@ -1,9 +1,9 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
   - index.md
+  - wireshark.md
   - charles.md
   - android_proxy.md
   - mitmproxy.md
   - tcpdump.md
-  - wireshark.md
   - ...

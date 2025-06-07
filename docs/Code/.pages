@@ -1,6 +1,5 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - architecture.md
   - Language
   - Shell
   - 行文本处理

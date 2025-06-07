@@ -96,14 +96,30 @@ CA 审核通过后，会按照 X.509 标准的格式，将所有的必要信息�
 
 在 TCP 连接建立之后，开始进行 TLS 握手，用于建立安全的通信通道，客户端会和服务端共同商议使用什么对称加密算法
 
-<https://www.thesslstore.com/blog/explaining-ssl-handshake/>
+TLS 中有两种主要类型的握手：一种基于 RSA，另一种基于 Diffie-Hellman
 
-### TLS 1.2
+SSL/TLS 协议早期版本使用 RSA 进行身份验证和密钥交换(将共享密钥用非对称加密后传给对方)，后期版本将 RSA(身份验证) 和 DH(密钥交换) 进行结合使用
 
-![20240619155421](https://image.zuoright.com/20240619155421.png)
+![20250607195819](https://image.zuoright.com/20250607195819.png)
+
+```text
+
+```
+
+![20250607200618](https://image.zuoright.com/20250607200618.png)
+
+参考文章：
+
+- <https://hjk.life/posts/tls-tech/#rsa-%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2>
+- <https://blog.cloudflare.com/keyless-ssl-the-nitty-gritty-technical-details/>
+- <https://www.thesslstore.com/blog/explaining-ssl-handshake/>
+
+### TLS 1.2 四次握手
 
 ![20231028131504](https://image.zuoright.com/20231028131504.png)
 
-### TLS 1.3
+![20240619155421](https://image.zuoright.com/20240619155421.png)
+
+### TLS 1.3 三次握手
 
 ![20240619155433](https://image.zuoright.com/20240619155433.png)

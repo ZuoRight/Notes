@@ -1,5 +1,9 @@
 # 手机相关
 
+UDID, Unique Device Identifier，设备的唯一识别码
+
+iPhone 可以通过：[蒲公英·工具箱扫码获取](https://www.pgyer.com/tools/udid)
+
 ## 模拟器
 
 ### AVD
@@ -44,9 +48,9 @@ emulator @avd_name ...
 
 ## 手机投屏到电脑
 
-有一些第三方工具可以实现，但是要么收费，要么卡，要么分辨率太低
+[Wormhole](https://er.run/) 支持 Android 和 iOS，Android 端基础功能可以免费使用，推荐
 
-[Wormhole](https://er.run/) 支持 Android 和 iOS，Android 端基础功能可以免费使用
+大多数第三方工具可以实现，但是要么收费，要么卡，要么分辨率太低
 
 ### iPhone
 
@@ -71,6 +75,12 @@ emulator @avd_name ...
 如果您使用的是搭载 Android 12 的特定设备（例如 Redmi K40、Poco F3 或 Mi 11X），则必须同时启用「USB 调试」和「USB 调试（安全设置）」这两项设置，然后重启设备，才能启用设备镜像
 
 ## 访问手机文件
+
+### LocalSend
+
+<https://localsend.org/zh-CN>
+
+跨电脑和移动设备互传图片文本等，推荐
 
 ### Device File Explorer
 

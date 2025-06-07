@@ -163,3 +163,20 @@ public class Main {
     }
 }
 ```
+
+### if
+
+```java
+if (n >= 90) {
+    System.out.println("优秀");
+} else if (n >= 60) {
+    System.out.println("及格了");
+} else {
+    System.out.println("挂科了");
+}
+System.out.println("END");
+
+// 当{}内只有一行语句时，可以省略{}，但不建议
+if (n >= 60)
+    System.out.println("及格了");
+```

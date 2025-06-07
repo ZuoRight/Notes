@@ -1,6 +1,7 @@
 # https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
 nav:
-  - index.md
+  - architecture.md
+  - proxy.md
   - nginx.md
   - cdn.md
   - Auth.md
