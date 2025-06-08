@@ -2,7 +2,6 @@
 
 nav:
   - index.md
-  - cryptography.md
   - hd_wallet.md
   - address.md
   - ...

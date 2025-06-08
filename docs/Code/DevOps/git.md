@@ -72,6 +72,14 @@ config            id_dsa.pub
 cat ~/.ssh/id_rsa.pub
 ```
 
+- 配置代理
+
+```shell
+# 如果报错：Failed to connect to github.com port 443 after 1 ms: Couldn't connect to server
+# 可以加代理试试
+git config --global http.proxy 127.0.0.1:10808
+```
+
 ## 远程仓库
 
 ```shell

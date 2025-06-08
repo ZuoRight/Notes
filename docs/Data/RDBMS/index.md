@@ -47,6 +47,12 @@ SQL 是 DBA 与 DBMS 交互的语言，属于一种特定领域专用语言（Do
 - 表名、表别名、字段名、字段别名等都小写
 - 字段名以下划线命名
 
-## 练习
+## GUI 管理工具
 
-sqliteviz: <https://sqliteviz.com/app/#/>
+- 在线练习：[sqliteviz](https://sqliteviz.com/app/#/)
+- 付费：Navicat、DataGrip
+- 免费
+    - DBeaver 开源、推荐
+    - SQLyog 小巧、够用
+    - Navicat Premium Lite 免费版的 Navicat，还支持非关系型数据库，但体验一般
+    - [Workbench](https://dev.mysql.com/downloads/workbench/) MySQL 官方出品

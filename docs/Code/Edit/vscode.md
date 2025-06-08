@@ -1,10 +1,12 @@
 # VSCode
 
-Visual Studio Code 只是一个编辑器，而不是 IDE
+Visual Studio Code 不是 IDE，只是一个编辑器，但拥有丰富的插件
 
 > IDE（Integrated Development Environment）`集成开发环境 = 编辑器 + 编译器 + 调试器`
 
 VSCode 的一些配置等多端同步，现在已经不需要再使用 `Settings Sync` 扩展来管理，只需要登陆账号即可自动同步。
+
+可以直接在网页端打开 GitHub 开源项目：在项目页面点击快捷键「.」（英文句号）
 
 ## 快捷键
 

@@ -6,9 +6,10 @@ API, Application Programming Interface
 
 ## 测试工具
 
-- cURL
-- Postman
-- Pytest + Requests
+- cURL 命令行
+- Postman 图形化
+- [Bruno](https://github.com/usebruno/bruno) 是 Postman 的开源轻量替代品，仅支持离线使用，不会云同步，确保了数据安全性
+- Pytest + Requests 自动化
 
 ## 测试点
 

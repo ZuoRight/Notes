@@ -57,7 +57,7 @@
 
 Google 强化了证书固定（Certificate Pinning），用户 CA 证书作用域受限，部分关键服务（如 Google Play 服务）完全屏蔽用户证书，仅信任 Google 内置的 CA。开发者可通过声明式配置（如 AndroidManifest.xml）或代码级固定（如 OkHttp 的 CertificatePinner）
 
-限制调试和 Hook 工具，增强对 Xposed、Frida 等动态注入工具的检测，导致 JustTrustMe 等模块失效，对非官方签名应用（如修改后的 APK）限制网络权限
+限制调试，增强对 Xposed、Frida 等 Hook 工具的检测，导致 JustTrustMe 等模块失效，对非官方签名应用（如修改后的 APK）限制网络权限
 
 解决方法
 
@@ -65,7 +65,52 @@ Google 强化了证书固定（Certificate Pinning），用户 CA 证书作用�
 - Root 并手动导入 CA 证书到系统目录
 - 使用 MagiskTrustUserCerts 模块强制系统信任用户证书
 
-## 平行空间
+## 攻防策略
+
+<https://mp.weixin.qq.com/s?__biz=MzI3Mzk2OTkxNg==&mid=2247484870&idx=1&sn=3e3f96d3d1824a76503dfe9c949b9e74>
+
+### 单向认证
+
+通过 Hook 突破 SSL Pinning
+
+SSL Pinning 是一种安全机制，用于防止中间人攻击（MITM），确保客户端只信任特定的服务器证书或公钥，而不是所有由系统信任的 CA 签发的证书
+
+内置证书或者公钥的时候，需要对比验证客户端和服务端的证书或公钥，一般是通用的 API，所以可以直接控制这个 API 的返回结果让验证通过。
+
+通过 hook 技术绕过
+
+### 双向校验
+
+对抗双向认证需要完成两个环节：
+
+1. 让客户端认为 burp 是服务端，这一步其实就是破解 ssl Pinning，方法和上述过程完全相同。 
+2. 让服务端认为 burp 是客户端，这一步需要导入客户端的证书到 burp，客户端的证书一定会存在本地代码中，而且还可能会有密码，这种情况下需要逆向客户端 App，找到证书和密码，并转为 pkcs12 格式导入到 burp。`User options -> SSL -> Client SSL Certificate`
+
+Frida + Magisk + Lsposed
+
+### VPN 检测
+
+Postern VPN 可以设备流量转发到抓包工具，解决部分 App 直接设置代理无法抓包的问题
+
+## Hook
+
+Hook 是一种拦截和修改程序行为的技术，修改或监听某个函数/方法的执行流程（如替换函数指针、修改内存代码）
+
+- Cydia Substrate，iOS/macOS 的 Hook 框架
+- Xposed，Android 的 Java 层 Hook 框架，通过修改运行时环境实现
+- Frida，跨平台注入工具，通过动态注入 JavaScript 脚本，然后 Hook
+
+### Xposed
+
+是一款强大的 Android 框架，允许用户在不修改 APK 文件的情况下，动态修改系统和应用的行为。它通过钩子（Hook）技术拦截并改变 Java 方法调用，在 Android 的 Zygote 进程（所有 App 的父进程）中注入代码，劫持目标方法并替换逻辑，可安装一些第三方模块，比如 JustTrustMe.apk, JustMePlush.apk 等，实现各种高级定制功能（如去广告、破解会员、修改 UI 等）
+
+劣质模块可能导致系统崩溃或耗电增加，恶意模块可能窃取密码、银行卡信息，所以支付宝微信等支付金融，以及游戏 App 会检测并封禁 Xposed
+
+仅支持 Android 5.0~8.1，需刷入系统分区，因此需要解锁 Bootloader 并 Root，影响 OTA 更新
+
+## 宿主容器
+
+### 平行空间
 
 > HttpCanary 设置中可以直接安装 v4.0.8625 以下版本  
 > v2.8.0 前导出的证书名称不对，尽量用 v2.8.0 之后的版本
@@ -74,20 +119,12 @@ HttpCanary 使用指南及抓包解决方案，<https://juejin.cn/post/684490374
 
 对 HTTP2 协议的抓包和注入，<https://juejin.cn/post/6844903760867639310>
 
-## VirtualApp
+### VirtualApp
 
 <https://github.com/asLody/VirtualApp/releases>
 
 - VirtualApp + HttpCarry
 - VirtualApp + [VirtualXposed](https://github.com/android-hacker/VirtualXposed)，参考：<http://jackzhang.info/2018/04/09/VirtualXposed/>
-
-## Xposed
-
-是一款强大的 Android 框架，允许用户在不修改 APK 文件的情况下，动态修改系统和应用的行为。它通过钩子（Hook）技术拦截并改变 Java 方法调用，在 Android 的 Zygote 进程（所有 App 的父进程）中注入代码，劫持目标方法并替换逻辑，可安装一些第三方模块，比如 JustTrustMe.apk, JustMePlush.apk 等，实现各种高级定制功能（如去广告、破解会员、修改 UI 等）
-
-劣质模块可能导致系统崩溃或耗电增加，恶意模块可能窃取密码、银行卡信息，所以支付宝微信等支付金融，以及游戏 App 会检测并封禁 Xposed
-
-仅支持 Android 5.0~8.1，需刷入系统分区，因此需要解锁 Bootloader 并 Root，影响 OTA 更新
 
 ## Magisk
 
@@ -118,21 +155,3 @@ Magisk 支持安装一些模块添加功能（比如广告屏蔽、系统优化�
 <https://github.com/NVISOsecurity/MagiskTrustUserCerts>
 
 一个 Magisk/KernelSU 模块，可自动将用户证书添加到系统根 CA 存储区
-
-## 突破 SSL Pinning
-
-SSL Pinning 是一种安全机制，用于防止中间人攻击（MITM），确保客户端只信任特定的服务器证书或公钥，而不是所有由系统信任的 CA 签发的证书
-
-内置证书或者公钥的时候，需要对比验证客户端和服务端的证书或公钥，一般是通用的 API，所以可以直接控制这个 API 的返回结果让验证通过。
-
-通过 hook 技术绕过
-
-## 双向校验
-
-通常客户端验证服务端的证书通过后就已经建立了安全通信，然后用账号、密码等手段就能够确认用户的真实身份。
-
-但为了防止账号、密码被盗，还会采取双向证书校验，即服务端也要校验客户端的证书，这样会更加安全，比如网上银行使用 U 盾给用户颁发客户端证书，由于服务器端需要维护所有客户端的证书，大多数情况下一般不会双向校验。
-
-Frida + Magisk + Lsposed
-
-客户端的证书一定会存在本地代码中，逆向客户端 App，找到证书和密钥，转为 pkcs12 格式导入到 burp

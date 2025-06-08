@@ -202,9 +202,9 @@ sudo systemctl restart sshd
 
 版本
 
-- Fabric1：旧版本，只支持Python2
-- Fabric2：官方版本同时支持Python2和3
-- Fabric3：非官方支持Python2和3版本
+- Fabric1：旧版本，只支持 Python2
+- Fabric2：官方版本同时支持 Python2 和 3
+- Fabric3：非官方支持 Python2 和 3 版本
 
 ```python
 import paramiko
@@ -266,3 +266,9 @@ class RunShell():
 
         return result
 ```
+
+## Tabby
+
+<https://github.com/eugeny/tabby>
+
+Tabby（以前称为 Terminus）是适用于 Windows、macOS 和 Linux 的高度可配置的终端仿真器、SSH 和串行客户

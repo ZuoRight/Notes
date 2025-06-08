@@ -34,6 +34,8 @@ Mac 安装包
 
 ![20210809131957](https://image.zuoright.com/20210809131957.png)
 
+![20250608131032](https://image.zuoright.com/20250608131032.png)
+
 在 `View/Internals/Supported Protocols` 菜单下可以看到 WireShark 支持的所有协议以及支持的过滤属性等
 
 ![20210809165259](https://image.zuoright.com/20210809165259.png)
@@ -59,16 +61,31 @@ Capture -> Capture Filters
 根据条件过滤已经捕获的数据包
 
 ```text
-ip.addr == xxx.xx.xx.x
-&&
-http
-&&
+and 或者 &&
+or
+eq 或者 == 完全匹配
+contains 模糊匹配
+
+ws.col.info contains "200 OK"
+
+http.host contains "example.com"
+http.request.method == "GET"
+
 tcp.port == 80
-&&
-ws.col.info contains "200 OK" 模糊匹配 info 中包含的内容
+tcp.stream == index
+
+ip.addr == xxx.xx.xx.x
 ```
 
+Wireshark 为了方便跟踪每一个流，根据「原 ip 和 端口号，目标 ip 和 端口号」计算出一个 Stream index 用于唯一标识一个数据流
+
 如果不知道过滤器怎么写，在任意条数据上右键，选择作为过滤器应用即可
+
+### Flow Graph
+
+Statistics -> Flow Graph
+
+![20250608122918](https://image.zuoright.com/20250608122918.png)
 
 ## 协议分析
 
@@ -80,7 +97,7 @@ ws.col.info contains "200 OK" 模糊匹配 info 中包含的内容
 
 ### TCP
 
-![20250607193515](https://image.zuoright.com/20250607193515.png)
+![20250608125414](https://image.zuoright.com/20250608125414.png)
 
 ### TLS
 
@@ -114,11 +131,11 @@ open -a "Microsoft Edge" --args --ssl-key-log-file=$SSLKEYLOGFILE  # 或者 Goog
 
 将手机连接电脑，当手机上弹出如下图的提示框，选择信任
 
-> 如果Mac没有弹出信任提示框，可在：`Finder(访达)-位置-「设备名」`中点一下信任，然后查看手机
+> 如果 Mac 没有弹出信任提示框，可在：`Finder(访达)-位置-「设备名」`中点一下信任，然后查看手机
 
 ![20210809180340](https://image.zuoright.com/20210809180340.png)
 
-然后打开终端，借助 rvictl(Remote Virtual Interface) 工具开启虚拟网卡，开启后可在WireShark中看到虚拟网卡「rvi0」，双击即可抓包
+然后打开终端，借助 rvictl(Remote Virtual Interface) 工具开启虚拟网卡，开启后可在 WireShark 中看到虚拟网卡「rvi0」，双击即可抓包
 
 ```shell
 rvictl -s udid  # 开启虚拟网卡：rvi0

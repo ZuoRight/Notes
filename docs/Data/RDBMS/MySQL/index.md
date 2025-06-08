@@ -42,13 +42,6 @@ show tables;
 exit  # 或者quit
 ```
 
-### GUI 管理工具
-
-- 官方：[Workbench](https://dev.mysql.com/downloads/workbench/)（体验较差）
-- 免费：Navicat Premium Lite（推荐）、DBeaver、SQLyog 等（小巧、够用）
-- 付费：Navicat、DataGrip
-- 在线：phpMyAdmin 需要自己搭建
-
 ## 服务端
 
 - 启动/停止服务
