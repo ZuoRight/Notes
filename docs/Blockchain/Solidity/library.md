@@ -19,19 +19,19 @@
 
 ### SafeMath
 
-solidity0.8之前，safemath是使用最多的的库，因为int和uint是运行在unchecked概念下的
+solidity 0.8 之前，safemath 是使用最多的的库，因为 int 和 uint 是运行在 unchecked 概念下的
 
-uint的最大数255再加1会变为0，整数上溢，最小数0减1会变为255，即整数下溢
+uint 的最大数 255 再加 1 会变为 0，整数上溢，最小数 0 减 1 会变为 255，即整数下溢
 
-可以使用SafeMath来进行溢出(overflow)检查
+可以使用 SafeMath 来进行溢出(overflow)检查
 
-solidity0.8之后，默认会检查溢出，如果有必要可以使用：`unchecked{a = 255 + 1}` 变成跟旧版本一样，这样更节省Gas
+solidity 0.8 之后，默认会检查溢出，如果有必要可以使用：`unchecked{a = 255 + 1}` 变成跟旧版本一样，这样更节省 Gas
 
 ## 使用库
 
 - 方式1：`using <库> for <某种数据类型>`
 
-```js
+```solidity
 import "./String.sol";
 
 // 库函数会自动被添加为uint256型变量的成员
@@ -44,7 +44,7 @@ function getString1(uint256 _number) public pure returns(string memory){
 
 - 方式2：通过名称调用
 
-```js
+```solidity
 import "./String.sol";
 
 // 直接通过库合约名调用

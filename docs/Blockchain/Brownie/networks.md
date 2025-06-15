@@ -1,6 +1,6 @@
 # brownie networks
 
-brownie框架默认集成了一些Ganache等，可以通过`brownie networks ...`来管理
+Brownie 框架默认集成了 Ganache 等，可以通过 `brownie networks ...` 来管理
 
 ## 查看网络
 

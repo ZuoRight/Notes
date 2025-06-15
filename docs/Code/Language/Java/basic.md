@@ -180,3 +180,17 @@ System.out.println("END");
 if (n >= 60)
     System.out.println("及格了");
 ```
+
+### for
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        int sum = 0;
+        for (int i=1; i<=100; i++) {
+            sum = sum + i;
+        }
+        System.out.println(sum);
+    }
+}
+```

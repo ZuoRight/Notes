@@ -17,8 +17,8 @@ hide:
 ## 三要素
 
 - 加密算法：Cryptography
-- 共识机制：PoW, PoS
-- 账户模型：UTXO, Account-Balance
+- 共识机制：PoW、PoS 等
+- 账户模型，即记账模式：UTXO、Account-Balance
 
 ## 可视化
 
@@ -34,3 +34,9 @@ hide:
 - 比特币改进提案：[BIP（Bitcoin Improvement Proposal）](https://github.com/bitcoin/bips/tree/master)
 - 以太坊改进提案：EIP（Ethereum Imporvement Proposals）
 - 以太坊意见征求稿：ERC（Ethereum Request For Comment）
+
+## Gas Tracker
+
+<https://www.oklink.com/zh-hans/ethereum/gas-price>
+
+<https://etherscan.io/gastracker>

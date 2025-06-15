@@ -343,9 +343,18 @@ for 循环正常只能依次遍历，而 while 可以根据条件不依次遍历
 ```python
 for item in iterable:
     expression
-# 正常结束循环时，else子句执行
 else:
     expression
+```
+
+for 循环后可以接 else 语句，正常结束循环时执行，但如果 break 打断循环则不执行
+
+```python
+for i in range(10):
+  if i == 5:
+    break  # 终止循环，且不会执行 else 语句
+else:
+  print("循环完成")
 ```
 
 ### while

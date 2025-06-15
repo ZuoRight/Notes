@@ -6,7 +6,7 @@ brownie test [--network xxx] [--pdb]  # 加pdb可以进入调试模式（连接I
 
 ## Fixture
 
-Brownie集成了Pytest作为测试框架，内置了一些Fixture方便与智能合约交互
+Brownie 集成了 Pytest 作为测试框架，内置了一些 Fixture 方便与智能合约交互
 
 ```python
 """
@@ -19,7 +19,7 @@ def test_transfer(Token, accounts):
 
 ## 隔离测试
 
-可以使用以下Fixture实现隔离测试
+可以使用以下 Fixture 实现隔离测试
 
 - `module_isolation` 运行测试模块前后重置本地链
 - `fn_isolation` 运行测试前快照当前状态，测试结束后恢复

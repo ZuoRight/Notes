@@ -22,15 +22,15 @@ Docs: <https://remix-ide.readthedocs.io/en/latest/index.html>
 
 ## 规范
 
-```js
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.4 <0.9.0;
 /**
  * 上面第一行代码：需要注释智能合约所用的许可证，如果不写编译时会警告
  *     遵循 SPDX(Software Package Data Exchange) 国际标准规范的许可证
  *     如果没想好或者没有则可以写成：UNLICENSED
- * 上面第二行代码：Pragmas 是编译器关于如何处理源代码的常用指令，比如用来声明编译器版本
- *     可简写为：^0.8.4，^表示向上兼容
+ * 上面第二行代码：pragma 是编译器关于如何处理源代码的常用指令，比如用来声明编译器版本
+ *     可简写为：^0.8.4，^表示向上兼容到 0.8 的最后一个版本
  */
 
 // 语句以分号结尾
@@ -96,7 +96,7 @@ contract Coin {
 - constant 常量，必须在声明的时候初始化
 - immutable 不变量，可以在声明时或构造函数中初始化
 
-```js
+```solidity
 // 长量一般大写
 uint256 public constant MY_NUMBER = 777;
 address public constant MY_ADDRESS = 0xabc123...;
@@ -119,7 +119,7 @@ address public immutable i_owner;
 
 预留关键字，无需声明，可直接使用
 
-```js
+```solidity
 block.number: (uint)  // 当前区块高度
 block.timestamp: (uint)  // 当前区块的时间戳
 block.coinbase: (address payable)  // 当前区块矿工的地址
@@ -138,7 +138,7 @@ msg.data: (bytes calldata)  // 完整call data
 
 `delete x` 方法可以让变量恢复为初始值
 
-```js
+```solidity
 bool public _bool; // false
 string public _string; // ""
 uint public _uint; // 0

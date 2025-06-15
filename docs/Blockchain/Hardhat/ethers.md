@@ -59,7 +59,7 @@ const provider = ethers.getDefaultProvider()
 
 - jsonRpcProvider
 
-可以通过 Infura 或 Alchemy 等节点服务商获取个人的URL，更快的连接以太坊网络
+可以通过 Infura 或 Alchemy 等节点服务商获取个人的 URL，更快的连接以太坊网络
 
 ```js
 const INFURA_URL = 'https://sepolia.infura.io/v3/xxx'
@@ -105,7 +105,7 @@ console.log(block);
 // }
 ```
 
-- `getFeeData()` 查询当前建议的Gas设置
+- `getFeeData()` 查询当前建议的 Gas 设置
 
 ```js
 const feeData = await provider.getFeeData();
@@ -148,7 +148,7 @@ Signer 类是对以太坊账户的抽象，可用于给消息和交易签名并�
 
 Signer 类是抽象类，不能直接实例化，需要用它的子类：Wallet
 
-### 创建wallet对象
+### 创建 wallet 对象
 
 - 随机私钥
 
@@ -200,7 +200,7 @@ const mnemonic = wallet.mnemonic  // undefined
 const wallet = ethers.Wallet.fromPhrase(mnemonic.phrase)
 ```
 
-- 从keystore文件创建
+- 从 keystore 文件创建
 
 ```js
 const wallet = ethers.Wallet.fromEncryptedJson(keystore.json)
@@ -221,7 +221,7 @@ const txCount = await provider.getTransactionCount(wallet)  // 参数也可以�
 
 Contract 类是对合约（EVM字节码）的抽象，用于与合约交互
 
-ABI(Application Binary Interface) 是与以太坊智能合约交互的标准接口，类似于API
+ABI(Application Binary Interface) 是与以太坊智能合约交互的标准接口，类似于 API
 
 可以直接从编译后生成的 `artifact` 路径下的 json 文件中获取，如果已开源还可以从 EtherScan 中获取
 
@@ -360,7 +360,7 @@ await tx.wait()
 
 ## 发送交易
 
-### 转ETH
+### 转 ETH
 
 ```js
 const ethers = require('ethers');
@@ -585,7 +585,7 @@ contractUSDT.on(filterBinanceIn, (res) => {
 
 ## 单位转换
 
-- 转为ether：`ethers.formatEther("变量")`
+- 转为 ether：`ethers.formatEther("变量")`
 
 ```js
 ethers.formatEther("1")  // '0.000000000000000001'
@@ -594,7 +594,7 @@ ethers.formatEther("1000000000000000000")  // '1.0'
 
 - 任意转：`ethers.utils.formatUnits("变量", "单位");`
 
-小转大输出类型为`BigInt`，大转小输出类型为`String`
+小转大输出类型为 `BigInt`，大转小输出类型为 `String`
 
 ```js
 // 默认转换为ether

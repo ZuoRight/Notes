@@ -60,14 +60,14 @@ reports/: JSON report files for use in the GUI
 ## 使用流程
 
 1. 初始化项目
-2. 将合约源码放入`contracts/...`路径下
-3. 编译合约源码（可以不用手动编译，每次加载时Brownie会自动编译）
-4. 在`scripts/...`路径下编写Python脚本用于部署和与智能合约交互
-5. 部署脚本到本地测试区块链网络，借助Ganache
-6. 在`tests/...`路径下编写单元测试脚本，验证合约功能
-7. 部署脚本到公共测试区块链网络，比如Goerli
+2. 将合约源码放入 `contracts/...` 路径下
+3. 编译合约源码（可以不用手动编译，每次加载时 Brownie 会自动编译）
+4. 在 `scripts/...` 路径下编写 Python 脚本用于部署和与智能合约交互
+5. 部署脚本到本地测试区块链网络，借助 Ganache
+6. 在 `tests/...` 路径下编写单元测试脚本，验证合约功能
+7. 部署脚本到公共测试区块链网络，比如 Goerli
 
-也可以通过Brownie自带的控制台快速测试本地合约，或者与链上合约交互
+也可以通过 Brownie 自带的控制台快速测试本地合约，或者与链上合约交互
 
 ```shell
 # brownie shell is a python shell with all of our smart contract features
@@ -113,7 +113,7 @@ Project has been compiled. Build artifacts saved at /Users/chonge/code/blockchai
 COMMENT
 ```
 
-可以通过配置文件优化编译设置，比如指定Solidity版本等，[参考文档](https://eth-brownie.readthedocs.io/en/stable/compile.html#compile-settings)
+可以通过配置文件优化编译设置，比如指定 Solidity 版本等，[参考文档](https://eth-brownie.readthedocs.io/en/stable/compile.html#compile-settings)
 
 ```text
 compiler:
@@ -141,8 +141,8 @@ def main():
 ```shell
 brownie run scripts/deploy.py [--network goerli]
 
-# 默认使用ganache-cli创建并运行本地区块链网络，也可以替换成hardhat、anvil等
-# 也可以 --network 使用infura测试网，需要在.env文件中export WEB3_INFURA_PROJECT_ID（固定写法）
+# 默认使用 ganache-cli 创建并运行本地区块链网络，也可以替换成 hardhat、anvil 等
+# 也可以 --network 使用 infura 测试网，需要在 .env 文件中 export WEB3_INFURA_PROJECT_ID（固定写法）
 
 <<'COMMENT'
 BrownieSimpleStorageProject is the active project.

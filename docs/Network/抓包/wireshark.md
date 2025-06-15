@@ -135,7 +135,9 @@ open -a "Microsoft Edge" --args --ssl-key-log-file=$SSLKEYLOGFILE  # 或者 Goog
 
 ![20210809180340](https://image.zuoright.com/20210809180340.png)
 
-然后打开终端，借助 rvictl(Remote Virtual Interface) 工具开启虚拟网卡，开启后可在 WireShark 中看到虚拟网卡「rvi0」，双击即可抓包
+然后打开终端，借助 rvictl 工具开启虚拟网卡，开启后可在 WireShark 中看到虚拟网卡「rvi0」，双击即可抓包
+
+> rvictl, Remote Virtual Interface，是 Xcode 带的一个工具，可以在 macOS 上为连接的 iOS 设备创建一个虚拟网络接口
 
 ```shell
 rvictl -s udid  # 开启虚拟网卡：rvi0

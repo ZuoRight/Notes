@@ -23,7 +23,7 @@
 
 视频参考：<https://wtf.academy/solidity-application/ERC20/>
 
-```js
+```solidity
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
@@ -34,7 +34,7 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
 ```
 
-```js
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -60,7 +60,7 @@ ERC20 标准的出现简化了代币发行，但是 ETH 本身并不符合 ERC20
 
 ## ERC777
 
-更丰富的可替代代币标准，兼容ERC20
+更丰富的可替代代币标准，兼容 ERC20
 
 ## ERC721
 
@@ -68,7 +68,7 @@ NFT(non-fungible tokens) 不可替代代币
 
 通常用于收藏品和游戏
 
-```js
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -95,4 +95,4 @@ contract GameItem is ERC721URIStorage {
 
 ## ERC1155
 
-一种新的多代币标准，允许单个合约代表多个可替代和不可替代的代币，以及用于提高 gas 效率的批量操作
+一种新的多代币标准，允许单个合约代表多个可替代和不可替代的代币，以及用于提高 Gas 效率的批量操作

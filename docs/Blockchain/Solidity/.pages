@@ -2,12 +2,12 @@
 
 nav:
   - index.md
-  - solc.md
+  - 合约.md
   - 数据类型.md
   - 语句.md
   - 函数.md
   - library.md
-  - 合约.md
   - tx.md
   - token.md
+  - solc.md
   - ...

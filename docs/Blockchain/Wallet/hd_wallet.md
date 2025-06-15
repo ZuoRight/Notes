@@ -34,7 +34,7 @@
 
 每 32bits 增加三个助记词，所以熵越大，对应的助记词个数越多，即：`12, 15, 18, 21, 24`
 
-比如常用的 128bits，有 $2^128$ 种可能性，对应有 12 个助记词
+比如常用的 128bits，有 $2^{128}$ 种可能性，对应有 12 个助记词
 
 ```python
 import os
@@ -91,12 +91,12 @@ entropy_bits.extend(checksum)
 from bitarray.util import ba2int
 
 # magic number list
-grouped_bits = tuple(entropy_bits[i * 11: (i + 1) * 11] for i in range(12)
+grouped_bits = tuple(entropy_bits[i * 11: (i + 1) * 11] for i in range(12))
 
 # 助记词索引列表
 indices = tuple(ba2int(ba) for ba in grouped_bits)
 
-# 假设使用English助记词列表
+# 假设使用 English 助记词列表
 english_word_list = ['abandon', 'ability', ..., 'zone', 'zoo']
 mnemonic_words = tuple(english_word_list[i] for i in indices)
 # ('face', 'business', 'large', 'tissue', 'print', 'box', 'fix', 'maple', 'arena', 'help', 'critic', 'border')
@@ -351,7 +351,7 @@ for (let i = 0; i < 20; i++) {
 `
 ```
 
-- 将钱包保存为加密Json数据
+- 将钱包保存为加密 Json 数据
 
 ```js
 const pwd = "password"  // 设置加密Json用的密码
@@ -359,7 +359,7 @@ const json = await hdNode.encrypt(pwd)
 `{"address":"e46a4bd6908b05d60e49cb4e52b2425c4d9742b3","id":"775c9c19-c95c-48bb-8fc0-b13f70e0034a","version":3,"Crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"a78beec4021ca1be6e6f0147b25d9f4a"},"ciphertext":"a4efc0ca71596530722f97ffcab7c08883b822b4aec4fc350e79e21b012bbefc","kdf":"scrypt","kdfparams":{"salt":"573fcd06d419c5122f54678bacf9055eb7c9edeb431a70e6d2780b0187afa662","n":131072,"dklen":32,"p":1,"r":8},"mac":"a562d79e62ea3329b7ad41caaf301e93ff022e68883e5fa13ae6beed16457544"},"x-ethers":{"client":"ethers/6.7.0","gethFilename":"UTC--2023-10-25T14-43-29.0Z--e46a4bd6908b05d60e49cb4e52b2425c4d9742b3","path":"m/44'/60'/0'/0/0","locale":"en","mnemonicCounter":"bc4e276f1b2958826bb7f53e21629e12","mnemonicCiphertext":"ce9524a3fbccd4ad2a6597c094d418ceaba6e94ad4badcca4ea619f7208551c8","version":"0.1"}}`
 ```
 
-- 从加密Json中读取钱包
+- 从加密 Json 中读取钱包
 
 ```js
 const wallet = await ethers.Wallet.fromEncryptedJson(json, pwd);

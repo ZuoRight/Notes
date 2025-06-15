@@ -81,7 +81,7 @@ socljs --version
 
 Python wrapper around the solc Solidity compiler.
 
-主要用于集成到Python环境用于下载和编译Solidity
+主要用于集成到 Python 环境用于下载和编译 Solidity
 
 - ethereum/`py-solc` <https://github.com/ethereum/py-solc>
 - iamdefinitelyahuman/`py-solc-x` Forked from py-solc

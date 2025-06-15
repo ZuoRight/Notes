@@ -91,11 +91,9 @@ const obj = { a: 1, b: 2, c: 3 };
 const { a, ...restObj } = obj;  // a = 1, restObj = { b: 2, c: 3 }
 ```
 
-## 语句
+## 条件语句
 
-### 条件语句
-
-- `if () {} else {}`
+### `if () {} else {}`
 
 ```js
 let x = 1;
@@ -109,13 +107,13 @@ if (x === 0) {
 }
 ```
 
-- 简写：三元运算符
+### 简写：三元运算符
 
 ```js
 const r = x > y ? x : y;  // 如果 x>y 则 r=x，否则 r=y
 ```
 
-- `switch () {}`
+### `switch () {}`
 
 ```js
 switch (x) {
@@ -134,9 +132,11 @@ switch (x) {
 }
 ```
 
-### 循环语句
+## 循环语句
 
-- `for (声明循环变量赋初始值; 循环条件; 增量表达式) {执行语句}`
+### for
+
+- 经典 C 风格
 
 ```js
 for (let i = 0; i < 3; i++) {
@@ -144,7 +144,29 @@ for (let i = 0; i < 3; i++) {
 }
 ```
 
-- `while (循环条件) {增量表达式}`
+- `for...of` 遍历可迭代对象
+
+类似 Python 的 `for...in...`
+
+```js
+const arr = [1, 2, 3];
+for (const item of arr) {
+  console.log(item);
+}
+```
+
+- `for...in` 遍历对象的可枚举属性
+
+```js
+const obj = { a: 1, b: 2 };
+for (const key in obj) {
+  console.log(key, obj[key]);
+}
+```
+
+### while
+
+`while (循环条件) {增量表达式}`
 
 ```js
 let i = 0
@@ -154,7 +176,9 @@ while (i < 3) {
 }
 ```
 
-- `do {增量表达式} while (循环条件)`
+### do while
+
+`do {增量表达式} while (循环条件)`
 
 无论条件是否为真，先执行一次语句，再做判断循环
 
@@ -166,7 +190,7 @@ do {
 } while (i < 3);
 ```
 
-### 跳转语句
+## 跳转语句
 
 - `break` 跳出循环
 - `continue` 跳过本次循环，进入下次循环

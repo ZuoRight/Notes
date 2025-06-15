@@ -5,14 +5,14 @@
 ![20231026220750](https://image.zuoright.com/20231026220750.png)
 
 - 多链：[OKLink](https://www.oklink.com/all-chain)
-    - <https://www.oklink.com/btc>
-    - <https://www.oklink.com/eth>
 - Ethereum：<https://etherscan.io/>
 - BSC 币安智能链：<https://bscscan.com/>
 - Polygon：<https://polygonscan.com/>
 - Arbitrum：<https://arbiscan.io/>
 
-Etherscan 参考官方文档及以下文章
+## Etherscan
+
+参考官方文档及以下文章
 
 - <https://metatraining.buidlerdao.xyz/buidlerdao/6-2-Etherscan-07a5de0512ab423ebc172b2c9653a03b>
 - <https://x.com/jianshubiji/status/1559842293070581760>
@@ -63,7 +63,7 @@ Token Tracker
 
 ```python
 # publish_source表示发布合约源码
-fund_me = FundMe.deploy({"from": account}, publish_source=True)
+fund_me = FundMe.deploy({'from': account}, publish_source=True)
 
 # 打印信息
 """

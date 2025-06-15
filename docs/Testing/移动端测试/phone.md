@@ -1,8 +1,16 @@
 # 手机相关
 
-UDID, Unique Device Identifier，设备的唯一识别码
+## 获取 UDID
 
-iPhone 可以通过：[蒲公英·工具箱扫码获取](https://www.pgyer.com/tools/udid)
+UDID, Unique Device Identifier，iOS 设备的唯一识别码
+
+```shell
+brew install libimobiledevice
+# 手机USB连接到电脑
+idevice_id -l
+```
+
+或者可以通过：[蒲公英·工具箱扫码获取](https://www.pgyer.com/tools/udid)
 
 ## 模拟器
 

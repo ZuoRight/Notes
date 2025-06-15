@@ -2,7 +2,7 @@
 
 ## 测试账户
 
-使用本地环境默认生成10个测试账户
+使用本地环境默认生成 10 个测试账户
 
 ```python
 from brownie import accounts
@@ -56,7 +56,7 @@ COMMENT
 
 - 使用 Local accounts
 
-Local accounts 账户不能直接使用，必须先unlock
+Local accounts 账户不能直接使用，必须先 unlock
 
 ```python
 # 私钥存储在Keystore中

@@ -14,7 +14,9 @@
 
 公共网络提供的持久化区块链，即指 `Ethereum` 的 `Mainnet`(主网)、`Goerli`(测试网)等，通常使用以太坊节点与公网交互
 
-可以借助`Geth`等客户端运行自己的个人节点，也可以使用 RPC Node Provider 提供的托管节点，比如：
+可以借助 `Geth` 等客户端运行自己的个人节点
+
+也可以使用 RPC Node Provider 提供的托管节点，比如：
 
 - [Infura](https://app.infura.io/dashboard)
 - [Alchemy](https://dashboard.alchemy.com/)
@@ -41,7 +43,7 @@ Chain ID 是在 EIP-155 中引入的，以防止主 ETH 和 ETC 链之间的重�
 
 <https://chainlist.org/?search=eth&testnets=true> (old url: chainid.network)
 
-Chainlist 是 EVM 网络的列表。用户可以使用这些信息将他们的钱包和 Web3 中间件提供商连接到适当的Chain ID 和网络 ID，以连接到正确的链。
+Chainlist 是 EVM 网络的列表。用户可以使用这些信息将他们的钱包和 Web3 中间件提供商连接到适当的 Chain ID 和网络 ID，以连接到正确的链。
 
 ```bash
 # 常见网络ID
@@ -86,34 +88,36 @@ Base Goerli
 
 ## Ganache
 
-- UI文档：<https://trufflesuite.com/docs/ganache/>
-- RPC交互式文档：<https://ganache.dev/>
-- CLI文档：<https://github.com/trufflesuite/ganache#readme>
+- UI 文档：<https://trufflesuite.com/docs/ganache/>
+- RPC 交互式文档：<https://ganache.dev/>
+- CLI 文档：<https://github.com/trufflesuite/ganache#readme>
 
 Ganache 是 Truffle Suite 之一
 
 - 安装
 
-如果只使用UI版本可直接下载安装包，命令行版可使用NPM来安装
+如果只使用 UI 版本可直接下载安装包，命令行版可使用 NPM 来安装
 
 ```shell
-npm install ganache -g  # ganache-cli已被弃用，最新为ganache
+# ganache-cli 已被弃用，最新为 ganache
+npm install ganache -g
+
 ganache --version  # ganache v7.7.2 (@ganache/cli: 0.8.1, @ganache/core: 0.8.1)
 ganache --help
 ```
 
 - 运行
 
-有Tx才会产生新的区块
+有 Tx 才会产生新的区块
 
 ```shell
-# 如果运行了UI需要关闭，否则可能会冲突
+# 如果运行了 UI 版需要关闭，否则可能会冲突
 # 如果每次运行想保持生成的测试账户地址和私钥不变，可以加参数：-d（daterministic 确定性的）
 ganache [-d]
 
-# 每一次调用是一个json rpc调用区块链来进行交互
-# Ganache控制台日志
-<<'COMMENT'
+# 每一次调用是一个 json rpc 调用区块链来进行交互
+# Ganache 控制台日志
+`
 eth_getTransactionCount
 eth_gasPrice
 eth_chainId
@@ -129,5 +133,5 @@ eth_sendRawTransaction
 eth_getTransactionReceipt
 eth_chainId
 eth_call
-COMMENT
+`
 ```
