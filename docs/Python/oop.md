@@ -1,8 +1,8 @@
 # 面向对象编程
 
-面向对象编程的四个特性：封装、抽象、继承、多态
+面向对象编程的四个特性：封装（Encapsulation）、继承（Inheritance）、多态（Polymorphism）、抽象（Abstraction）
 
-## 封装 Encapsulation
+## 封装
 
 封装就是将数据（属性）和代码（方法）绑定到单一的单位（类）中，并限制对某些组件的直接访问
 
@@ -213,55 +213,7 @@ if __name__ == "__main__":
     """
 ```
 
-## 抽象 Abstraction
-
-抽象是隐藏复杂性只暴露必要功能的过程。
-
-抽象类不能被实例化，只能被其他类继承。
-
-抽象方法定义在抽象类中，必须在继承抽象类的子类中实现。
-
-```python
-from abc import ABC, abstractmethod
-
-class Vehicle(ABC):
-    @abstractmethod
-    def move(self):
-        pass
-
-class Car(Vehicle):
-    def move(self):
-        print("The car is moving")
-```
-
-## 多态 Polymorphism
-
-多态是指相同的函数或方法在不同的对象上可以有不同的实现。在 Python中，它是通过简单地定义具有相同名称的多个方法，或者通过重写继承的方法来实现的。
-
-```python
-class Animal:
-    def speak(self):
-        pass
-
-class Dog(Animal):
-    def speak(self):
-        print("Bark")
-
-class Cat(Animal):
-    def speak(self):
-        print("Meow")
-
-def animal_sound(animal):
-    animal.speak()  # 调用实际传入对象的speak方法
-
-dog = Dog()
-cat = Cat()
-
-animal_sound(dog)  # 输出 Bark
-animal_sound(cat)  # 输出 Meow
-```
-
-## 继承 Inheritance
+## 继承
 
 ```python
 """
@@ -323,6 +275,55 @@ class D(B, C):
 
 # 查看调用顺序，也可以用 D.__mro__
 D.mro()  # [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>
+```
+
+## 多态
+
+多态是指相同的函数或方法在不同的对象上可以有不同的实现。
+
+在 Python 中，它是通过简单地定义具有相同名称的多个方法，或者通过重写继承的方法来实现的。
+
+```python
+class Animal:
+    def speak(self):
+        pass
+
+class Dog(Animal):
+    def speak(self):
+        print("Bark")
+
+class Cat(Animal):
+    def speak(self):
+        print("Meow")
+
+def animal_sound(animal):
+    animal.speak()  # 调用实际传入对象的speak方法
+
+dog = Dog()
+cat = Cat()
+
+animal_sound(dog)  # 输出 Bark
+animal_sound(cat)  # 输出 Meow
+```
+
+## 抽象
+
+通常指通过抽象类(abstract class)和接口(interface)来定义行为的规范，而不提供具体实现。
+
+抽象方法定义在抽象类中，抽象类不能被实例化，只能被其他类继承，必须在继承抽象类的子类中实现。
+
+```python
+from abc import ABC, abstractmethod
+
+# 继承 ABC 表示这是一个抽象基类
+class Vehicle(ABC):
+    @abstractmethod
+    def move(self):
+        pass
+
+class Car(Vehicle):
+    def move(self):
+        print("The car is moving")
 ```
 
 ## 混入类

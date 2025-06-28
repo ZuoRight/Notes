@@ -19,12 +19,6 @@ pytest --help  # show help on command line and config file options
 pytest --fixtures  # show available builtin function arguments
 ```
 
-插件列表：<https://docs.pytest.org/en/stable/reference/plugin_list.html>
-
-- 内置插件：代码内部的 `_pytest` 目录加载
-- 本地插件：`conftest.py` 自动模块发现机制
-- 外部插件：`pip install` 安装的插件，比如 Allure
-
 ## 编写规范
 
 `test_xxx.py` 或 `xxx_test.py`
@@ -89,6 +83,8 @@ class TestDemo:
 
 ### Fixture
 
+可以实现与 setup 和 teardown 类似的效果，比如数据库连接、临时文件/目录创建、模拟对象、共享测试数据等
+
 - 详解
 
 ```python
@@ -110,7 +106,6 @@ class TestDemo:
 - 示例
 
 多个 Fixture 之间可以互相调用，Fixture 函数的参数只能是另一个 Fixture，比如 `request`
-
 
 ```python
 import pytest
@@ -592,7 +587,13 @@ pip install pytest-html
 pytest --html=report.html --self-contained-html
 ```
 
-可通过 `conftest.py` 文件修改一些内容
+## Hook
+
+用于自定义或扩展 Pytest 本身的行为，比如修改收集的测试项、添加自定义命令行选项、改变测试报告生成方式、在测试生命周期特定点执行代码
+
+在 `conftest.py` 或插件中实现特定的 hook 函数
+
+比如修改 HTML 报告
 
 > 修改与汉化：<https://www.cnblogs.com/linuxchao/p/linuxchao-pytest-html.html>
 
@@ -633,3 +634,11 @@ def pytest_html_results_table_row(report, cells):
 #     getattr(report, 'extra', [])
 #     report.nodeid = report.nodeid.encode("utf-8").decode("unicode_escape")
 ```
+
+## 插件
+
+插件列表：<https://docs.pytest.org/en/stable/reference/plugin_list.html>
+
+- 内置插件：代码内部的 `_pytest` 目录加载
+- 本地插件：`conftest.py` 自动模块发现机制，它的 hook 和 fixture 会自动被 Pytest 加载
+- 外部插件：`pip install` 安装的插件，比如 Allure
