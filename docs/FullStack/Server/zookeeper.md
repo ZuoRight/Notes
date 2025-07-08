@@ -1,6 +1,6 @@
 # Zookeeper
 
-Zookeeper 是一个分布式协调中间件服务，主要用途为配置中心和注册中心等
+Zookeeper 是一个分布式协调中间件服务，不仅可以用于服务注册和发现，还可用于分布式锁、配置管理等场景
 
 从官网下载二进制包：<https://zookeeper.apache.org/releases.html>
 

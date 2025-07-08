@@ -43,6 +43,10 @@ Tips：
 
 若没弹确认框，可手动将手机的局域网 IP 配置到 Proxy -> Access Control Settings 中
 
+如果无法抓包可以检查下是否被防火墙拦截了
+
+![20250707142307](https://image.zuoright.com/20250707142307.png)
+
 如果设置都正常但出现连不上 Charles 的情况，断开电脑网络重连一次，或者重新设置一次手机代理，实在不行使用重启大法！
 
 ![lALPDhYBNT2oVhrNA1LNBsY_1734_850](https://image.zuoright.com/lALPDhYBNT2oVhrNA1LNBsY_1734_850.png)

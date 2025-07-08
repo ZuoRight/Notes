@@ -2,8 +2,6 @@
 
 API, Application Programming Interface
 
-<https://apievangelist.com/info/101/>
-
 ## 测试工具
 
 - cURL 命令行
