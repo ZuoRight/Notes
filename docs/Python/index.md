@@ -99,18 +99,26 @@ EXPOSE 8000
 
 ### 普通命令行
 
-用来执行 `.py` 脚本文件
-
 ```shell
 python demo.py
+```
 
-# 将当前目录添加到 sys.path 中，然后执行
-python -m ...
+- `-m`
+
+```python
+# 以模块（model）模式运行代码，比如运行一个已安装的模块
+python -m module_name [args]
 """
-比如
+比如 pip、http.server
 python -m venv env
 python -m unittest test.py
 """
+
+# 检查模块是否能被正确找到
+python -m module_name
+
+# 如果一个 Python 包中包含 __main__.py，则可以通过 python -m package_name 直接运行它
+python -m package_name
 ```
 
 <https://docs.python.org/3.9/using/cmdline.html#command-line-and-environment>

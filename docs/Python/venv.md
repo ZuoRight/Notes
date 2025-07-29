@@ -33,23 +33,6 @@ pip 可以下载安装
 - distribution file: `.sdist`, `.whl`
 - requirements.txt
 
-如果觉得官方下载源比较慢，可以设置镜像
-
-- `~/.pip/pip.conf`
-
-```conf
-[global]
-index-url = https://mirrors.aliyun.com/pypi/simple/
-trusted-host=mirrors.aliyun.com
-```
-
-- `~/.pydistutils.cfg`
-
-```conf
-[easy_install]
-index-url = http://mirrors.tencentyun.com/pypi/simple    
-```
-
 ```shell
 pip  # 查看所有命令参数
 
@@ -65,15 +48,32 @@ pip search xxx  # 搜索包，PyPI no longer supports pip search (or XML-RPC sea
 
 pip download xxx  # 下载包
 
-pip install xxx  # 安装，默认安装最新版本
+pip install xxx  # 安装，默认安装最新版本，xxx也可以是本地的 .whl 文件
 pip install xxx==version  # 指定版本
 pip install [--user] xxx  # 安装到～/.local/bin
 pip install --no-cache-dir xxx  # 不使用本地缓存安装
-pip install xxx -i 镜像源 --trusted-host 镜像地址对应的host  # 指定镜像源
+pip install xxx -i 镜像源 --trusted-host 镜像地址对应的 host  # 指定镜像源
 
 pip install --upgrade xxx  # 更新包，也可以更新pip自己
 
 pip uninstall xxx  # 卸载包
+```
+
+如果觉得官方下载源比较慢，可以设置镜像
+
+- `~/.pip/pip.conf`
+
+```conf
+[global]
+index-url = https://mirrors.aliyun.com/pypi/simple/
+trusted-host=mirrors.aliyun.com
+```
+
+- `~/.pydistutils.cfg`
+
+```conf
+[easy_install]
+index-url = http://mirrors.tencentyun.com/pypi/simple    
 ```
 
 - 查看安装包大小

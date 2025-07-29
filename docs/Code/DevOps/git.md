@@ -96,8 +96,7 @@ git remote set-url origin new_url
 
 ```shell
 git clone <url>
-git clone <url> path_name  # 克隆到自定义目录
-git clone <url> .  # 克隆到当前目录 
+git clone <url> path_name  # 克隆到自定义目录，比如当前目录「.」
 '
 url 克隆如果超时就尝试另一个协议试一试
   ssh协议：git@github.com:user/repo.git
@@ -123,18 +122,21 @@ git init
 git remote add origin_name url
 # 获取远程库数据
 git fetch origin_name
-# 检出并创建一个同远程主分支相同的本地分支
+# 创建并检出一个同远程主分支相同的本地分支
 git checkout -b main
 ```
 
 ### fetch
 
-将远程仓库中有但当前仓库没有的所有数据拉取下来，然后存储在本地仓库中
-
 ```shell
-git fetch origin dev
+# 将远程仓库中有但当前仓库没有的所有数据拉取下来，然后存储在本地仓库中
+git fetch origin  # 获取所有远程分支信息
 
-# 新建本地dev分支并与远程dev分支关联
+# 自动跟踪远程的 origin/dev 分支并在本地创建同名的 dev 分支
+git checkout dev
+
+# 如果无法自动匹配，也可以手动指定
+git fetch origin dev  # 获取远程的 dev 分支信息
 git checkout -b dev origin/dev
 ```
 
@@ -275,15 +277,18 @@ git log  # 时间倒序列出所有提交记录
 
 ```shell
 # 查看分支
-git branch
+git branch  # 默认只显示本地分支，-r 只显示远程分支，-a 显示所有本地和远程分支
 '
--a 显示远程分支
 -v 显示最后一次提交
 --merged 已合并到当前分支的分支
 --no-merged main 没有合并到当前分支的分支
 
 -vv 查看各分支正在跟踪的上游分支
 -u 或 --set-upstream-to 显示设置当前分支正在跟踪的上游分支，clone 或 checkout 时会自动设置
+
+如果分支有很多，返回会分页（显示冒号:）
+  向下翻页：⬇，或者「空格键」直接显示剩余所有，最后会显示 END
+  向上翻页：⬆，或者「b」键回到开始
 '
 
 # 新建分支

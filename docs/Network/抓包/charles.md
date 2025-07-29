@@ -77,6 +77,8 @@ Tips：
 
 ![20241014144545](https://image.zuoright.com/20241014144545.png)
 
+需要注意下证书是否过期，过期后代理会报连接超时的错误
+
 ![lADPDgQ9vAXnSl_NBQDNAtA_720_1280](https://image.zuoright.com/lADPDgQ9vAXnSl_NBQDNAtA_720_1280.jpg)
 
 ### Android

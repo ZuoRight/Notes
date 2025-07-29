@@ -12,12 +12,12 @@ hide:
 
 ## 本地安装
 
-> 运行依赖JRE
+> 运行依赖 JRE
 
-[下载allure-commandline新版zip包](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/)
+[下载 allure-commandline 新版 .zip 包](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/)
 
-- Mac：解压到usr/local/下，把bin路径添加到环境变量中。还可以直接用`brew install allure`快速安装
-- Windows：解压到非中文路径下，把bin目录添加到系统环境变量PATH中。
+- Mac：解压到 `usr/local/` 下，把 bin 路径添加到环境变量中。还可以直接用 `brew install allure` 快速安装
+- Windows：解压到非中文路径下，把 bin 目录添加到系统环境变量 PATH 中
 
 ## Allure to Pytest
 
