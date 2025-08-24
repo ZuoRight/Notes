@@ -1,41 +1,5 @@
 # 基础语法
 
-Java 是一种面向对象的编程语言，程序的基本单位就是 class，所有的代码必须在类的上下文中定义和执行。
-
-```java
-/**
- * 特殊的多行注释
- * 需要写在类和方法的定义处，可以用于自动创建文档
- * @auther test
- */
-
-/* 
-定义一个公开的类，一个文件只能有一个 public class
-public 是访问修饰符
-*/
-public class Hello {
-    /*
-    Java 规定程序必须从 main() 开始，而且必须是静态的，且参数必须是 String 数组
-    static 表示静态方法，void 为返回值类型，表示没有返回值，String[] 是参数类型
-    */
-    public static void main(String[] args) {
-        System.out.println("Hello, world!");  // 代码行以分号结尾，打印一个字符串到屏幕上
-    }
-}
-```
-
-必需保存为与类名完全一致的文件名：`Hello.java`
-
-运行
-
-```shell
-javac Hello.java  # 先编译，生成 Hello.class
-java Hello  # JVM 会自动查找与 Hello 对应的 .class 运行
-'
-Hello, world!
-'
-```
-
 ## 基本类型
 
 不同数据类型占用的字节数不一样
