@@ -15,15 +15,24 @@ pip install -U pytest
 
 pytest --version  # shows where pytest was imported from
 pytest --help  # show help on command line and config file options
-
-pytest --fixtures  # show available builtin function arguments
 ```
 
-## 编写规范
+## 插件
 
-`test_xxx.py` 或 `xxx_test.py`
+插件列表：<https://docs.pytest.org/en/stable/reference/plugin_list.html>
 
-### setup & teardown
+- 内置插件：代码内部的 `_pytest` 目录加载，包含内置 Fixture
+- 本地插件：`conftest.py` 自动模块发现机制，如果有多个 conftest 文件，就近原则，深度查找
+
+在这里可自定义 Fixture 和 Hooks 钩子函数，会自动被 Pytest 加载
+
+钩子函数用于扩展 Pytest 本身的行为，比如修改收集的测试项、添加自定义命令行选项、改变测试报告生成方式、在测试生命周期特定点执行代码
+
+- 外部插件：`pip install` 安装的插件，比如 Allure
+
+## 基础使用
+
+测试文件命名：`test_xxx.py` 或 `xxx_test.py`
 
 ```python
 import pytest
@@ -81,7 +90,7 @@ class TestDemo:
         print("method2")
 ```
 
-### Fixture
+## Fixture
 
 可以实现与 setup 和 teardown 类似的效果，比如数据库连接、临时文件/目录创建、模拟对象、共享测试数据等
 
@@ -131,6 +140,54 @@ def test_01(login):  # 传入 fixture 函数名 login 作为参数
 @pytest.mark.usefixtures("login")  # 注意：login 要写在引号内，可传入多个
 class TestDemo:
     pass
+```
+
+### 内置 Fixture
+
+```shell
+# 查看所有可用的 fixture（包括内置的和自定义的）
+pytest --fixtures
+pytest --fixtures -v  # 更详细的信息
+```
+
+常见内置 Fixture
+
+```python
+def test_multiple_fixtures(tmpdir, capsys, monkeypatch):
+    # tmpdir: 临时目录
+    test_file = tmpdir.join("test.txt")
+    test_file.write("test")
+
+    # capsys: 捕获输出
+    print("Captured output")
+    captured = capsys.readouterr()
+
+    # monkeypatch: 临时修改环境
+    monkeypatch.setenv("TEST_VAR", "test_value")
+
+    assert "TEST_VAR" in os.environ
+```
+
+### 自定义 Fixture
+
+定义在 conftest 文件中的 Fixture，可以被同级目录多个包共享
+
+```python
+# 动态生成日志文件名，即每执行一次就生成一个单独的日志文件
+@pytest.fixture(scope="session", autouse=True)
+def manage_logs(request):
+    # 时间作为文件名就没必要加 - 或 : 等符号了
+    now = time.strftime("%Y%m%d_%H%M%S")
+    # 当前目录为 pytest.ini 文件所在的位置
+    log_name = f'data/logs/{now}.log'
+    request.config.pluginmanager.get_plugin("logging-plugin").set_log_path(log_name)
+
+
+# 解决收集 Case 中文乱码问题
+def pytest_collection_modifyitems(items):
+    for item in items:
+        item.name = item.name.encode("utf-8").decode("unicode_escape")
+        item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
 ```
 
 ## 参数化
@@ -280,97 +337,19 @@ def test_01(self):
     pytest.assume(1 == 1)
 ```
 
-## 特殊文件
-
-- `conftest.py` 一些 Fixture 或 Hooks(钩子函数) 配置
-- `pytest.ini` 配置，可以改变 Pytest 的默认行为，Windows 下不能使用中文
-- `tox.ini` 与 `pytest.ini` 类似，用 tox 工具时候才有用
-- `setup.cfg` 影响 `setup.py` 的行为
-
-### `conftest.py`
-
-如果有多个 conftest 文件，就近原则，深度查找
-
-Fixture 如果写在 conftest 文件中，则可以被同级目录多个包共享
-
-```python
-# 动态生成日志文件名，即每执行一次就生成一个单独的日志文件
-@pytest.fixture(scope="session", autouse=True)
-def manage_logs(request):
-    # 时间作为文件名就没必要加 - 或 : 等符号了
-    now = time.strftime("%Y%m%d_%H%M%S")
-    # 当前目录为 pytest.ini 文件所在的位置
-    log_name = f'data/logs/{now}.log'
-    request.config.pluginmanager.get_plugin("logging-plugin").set_log_path(log_name)
-
-
-# 解决收集 Case 中文乱码问题
-def pytest_collection_modifyitems(items):
-    for item in items:
-        item.name = item.name.encode("utf-8").decode("unicode_escape")
-        item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
-```
-
-### `pytest.ini`
-
-```ini
-[pytest]
-; 参数化中的非 Unicode 字符串默认会进行转义，设置这个让它不转义
-; 但这个方法可能会有问题，建议使用 conftest.py
-disable_test_id_escaping_and_forfeit_all_rights_to_community_support = True
-
-; 限定Case路径，指定后就无法再指定具体文件具体方法等
-testpaths = test_case
-
-; 自定义标签，加到配置避免标签unknown警告
-markers = 
-  mark1
-  mark2: 可以加一些说明
-
-; 设置运行时参数
-addopts = 
-  -vs  ; 详细信息，打印print
-  --setup-show  ; 显示setup和teardown
-;   --collect-only  ; 执行预览，并不真的运行
-```
-
-Pytest 对 logging 模块做了改写，需要在 `pytest.ini` 中做一些配置
-
-```ini
-[pytest]
-
-;控制台日志开关 true false
-log_cli = true
-;日志级别
-log_cli_level = info
-;日志格式: 时间 级别 信息 文件名及行号
-log_cli_format = %(asctime)s [%(levelname)s] %(message)s (%(filename)s:%(lineno)s)
-;日志日期格式
-log_cli_date_format = %Y-%m-%d_%H:%M:%S
-
-;日志保存到文件的位置，当前目录为调用pytest.ini的文件所在的位置
-log_file = ./data/logs/test.log
-;日志级别
-log_file_level = info
-;日志格式: 时间 级别 信息 文件名及行号
-log_file_format = %(asctime)s [%(levelname)s] %(message)s (%(filename)s:%(lineno)s)
-;日志日期格式
-log_file_date_format = %Y-%m-%d_%H:%M:%S
-```
-
 ## 调用
 
 <https://docs.pytest.org/en/stable/how-to/usage.html>
 
 - 代码中调用
 
+正常运行 `.py` 文件即可触发
+
 ```python
 if __name__ == '__main__':
     # pytest.main()
     pytest.main(["test_demo.py::类/函数", "-参数"])
 ```
-
-正常运行 `.py` 文件即可触发
 
 - 命令行中调用
 
@@ -384,7 +363,7 @@ pytest test_mod.py::TestClass::test_func  # 测试指定类下的指定方法
 pytest tests/test_mod.py::test_func[x1,y2]  # 测试指定参数化
 ```
 
-### 测试指定关键字 -k
+### 测试指定关键字 `-k`
 
 模糊匹配，且不区分大小写
 
@@ -401,7 +380,7 @@ a and not b  文件名包含a但不包含b
 """
 ```
 
-### 测试指定标记 -m
+### 测试指定标记 `-m`
 
 ```shell
 # 测试所有带 @pytest.mark.P1 装饰器的用例
@@ -448,7 +427,7 @@ markers =
   xxx
 ```
 
-### 调用规则文件
+### 测试指定规则文件 `@file.txt`
 
 可以把上面所有要测试的范围写到 `.txt` 文件中，然后用 `@` 从文件中读取
 
@@ -464,19 +443,19 @@ tests/test_mod.py::test_func
 '
 ```
 
-可以使用 `--collect-only -q` 收集所有测试用例
+### 管理用例执行顺序
 
-- `--collect-only` 收集测试用例，但不执行
-- `-q` 或 `--quiet` 减少冗余信息
+`pytest --collect-only` 收集所有测试用例（但不执行），查看执行顺序
 
-### 执行顺序插件
+Pytest 收集测试用例时，不同模块之间会按文件系统顺序（通常是字母顺序），深度优先，而同一模块中，会按类和函数的定义顺序
 
-Pytest 默认按照收集顺序执行
+- 使用钩子自定义排序
 
-- 随机执行
-
-```shell
-pip install pytest-random-order
+```python
+# conftest.py
+def pytest_collection_modifyitems(items):
+    # 自定义排序逻辑
+    items.sort(key=lambda x: x.name)  # 按名称字母排序
 ```
 
 - 指定顺序执行
@@ -490,6 +469,12 @@ pip install pytest-ordering
 """
 ```
 
+- 随机执行
+
+```shell
+pip install pytest-random-order
+```
+
 - 并发执行（多进程）
 
 ```shell
@@ -499,27 +484,95 @@ pytest -n auto  # 自动分配，检测系统空闲CPU数量并发执行
 pytest -n 4  # 限制最多4个CPU并发执行
 ```
 
-### 失败处理
+### 管理用例间依赖关系
 
-- 遇到失败，立即退出：`-x` 常用于冒烟测试
-- 遇到 n 条失败后退出：`--maxfail=n`
-- 失败重跑
-    - `--lf` 或 `--last-failed` 重跑上一次失败的用例，only re-run the failures
-    - `--ff` 或 `--failed-first` re-run the failures first and then the rest of the tests
-    - 插件 pytest-rerunfailures
+`pip install pytest-dependency`
 
-重跑依赖 Pytest 内置的缓存机制
+如果被依赖的用例 `SKIPPED` 或者 `FAIL`，则本条用例会自动 `SKIPPED`
+
+如果执行用例时，被依赖用例还未被执行，则会先执行被依赖用例
+
+```python
+import pytest
+
+# 标记被依赖用例，并起个名字，scope 可以指定范围，默认 module
+@pytest.mark.dependency(name="user_registration", scope="class")
+def test_user_registration():
+    pass
+
+# name 可以省略，会自动以函数名命名
+@pytest.mark.dependency()
+def test_user_login():
+    pass
+
+# 使用依赖，可以依赖多个用例，被依赖用例全部通过才会执行此用例
+@pytest.mark.dependency(depends=["user_registration", "test_user_login"])
+def test_user_profile_update():
+    pass
+```
+
+### 缓存机制
 
 <https://docs.pytest.org/en/stable/how-to/cache.html#usage>
 
+pytestconfig 是 Pytest 的一个内置 Fixture，它提供了对 Pytest 配置对象、命令行参数、插件等的访问
+
+```python
+cache = pytestconfig.cache
+cache.set(key, value)  # 写入缓存
+cache.get(key, default)  # 读取缓存
+```
+
+缓存的数据会被写入项目根目录下的 `.pytest_cache` 文件中，只能缓存可被 JSON 序列化的数据，不能缓存数据库连接、文件对象等非序列化对象
+
 ```shell
-pytest --cache-show  # 检查缓存内容
+pytest --cache-show  # 查看缓存内容
 pytest --cache-clear  # 清除缓存内容
 ```
 
-多次重跑插件，安装 `pip install pytest-rerunfailures`
+```python
+def test_expensive_computation(pytestconfig):
+    # 1. 尝试从缓存中读取
+    cache = pytestconfig.cache
+    cached_result = cache.get("my_expensive_value", None)
 
-使用方法 1
+    # 2. 如果缓存中没有，则进行计算并缓存
+    if cached_result is None:
+        print("计算中...（这只会发生一次）")
+        cached_result = 42 * 2  # 模拟昂贵计算
+        cache.set("my_expensive_value", cached_result)
+    else:
+        print("从缓存中读取！")
+
+    # 3. 使用计算结果进行断言
+    assert cached_result == 84
+
+def test_another_test_that_needs_the_value(pytestconfig):
+    # 这个测试也可以访问同一个缓存值
+    cache = pytestconfig.cache
+    value = cache.get("my_expensive_value")
+    # 因为上一个测试已经设置过缓存，这里可以直接使用
+    assert value is not None
+    print(f"在另一个测试中获取到值: {value}")
+```
+
+### 用例执行失败处理
+
+- 遇到失败，立即退出：`-x` 常用于冒烟测试
+- 遇到 n 条失败后退出：`--maxfail=n`
+- 失败重跑：重跑底层依赖了 Pytest 内置的缓存机制
+    - `--lf` 或 `--last-failed` 重跑上一次失败的用例，only re-run the failures
+    - `--ff` 或 `--failed-first` re-run the failures first and then the rest of the tests
+    - 插件：`pip install pytest-rerunfailures`
+
+运行时指定
+
+```shell
+pytest --reruns 3  # 失败时重跑5次
+pytest --reruns 3 --maxfail=5  # 如果初次加重跑时，累计失败用例达到5条，则停止测试
+```
+
+或者标记中指定
 
 ```python
 import pytest
@@ -529,13 +582,6 @@ import pytest
 @pytest.mark.parametrize("number", [1, 2, 3, 4, 5])
 def test_even(number):
     assert number % 2 == 0  # 这将导致奇数测试失败
-```
-
-使用方法 2
-
-```shell
-pytest --reruns 3  # 失败时重跑5次
-pytest --reruns 3 --maxfail=5  # 如果初次加重跑时，累计失败用例达到5条，则停止测试
 ```
 
 ## 测试结果
@@ -550,9 +596,7 @@ Case 中的断言如果失败，结果会显示 `failed`
 
 Fixture 中的断言如果失败，结果会显示 `error`
 
-- `-q`
-
---quite 精简信息
+- `-q` 或 `--quiet` 精简信息
 
 ![0b6becba62a5c6685a92aa82a50b191](https://image.zuoright.com/0b6becba62a5c6685a92aa82a50b191.png)
 
@@ -587,13 +631,7 @@ pip install pytest-html
 pytest --html=report.html --self-contained-html
 ```
 
-## Hook
-
-用于自定义或扩展 Pytest 本身的行为，比如修改收集的测试项、添加自定义命令行选项、改变测试报告生成方式、在测试生命周期特定点执行代码
-
-在 `conftest.py` 或插件中实现特定的 hook 函数
-
-比如修改 HTML 报告
+- 修改 HTML 报告
 
 > 修改与汉化：<https://www.cnblogs.com/linuxchao/p/linuxchao-pytest-html.html>
 
@@ -635,10 +673,55 @@ def pytest_html_results_table_row(report, cells):
 #     report.nodeid = report.nodeid.encode("utf-8").decode("unicode_escape")
 ```
 
-## 插件
+## 配置文件
 
-插件列表：<https://docs.pytest.org/en/stable/reference/plugin_list.html>
+- `pytest.ini` 可以改变 Pytest 的默认行为，Windows 下不能使用中文
+- `tox.ini` 与 `pytest.ini` 类似，用 tox 工具时候才有用
+- `setup.cfg` 影响 `setup.py` 的行为
 
-- 内置插件：代码内部的 `_pytest` 目录加载
-- 本地插件：`conftest.py` 自动模块发现机制，它的 hook 和 fixture 会自动被 Pytest 加载
-- 外部插件：`pip install` 安装的插件，比如 Allure
+比如 `pytest.ini`
+
+```ini
+[pytest]
+; 参数化中的非 Unicode 字符串默认会进行转义，设置这个让它不转义
+; 但这个方法可能会有问题，建议使用 conftest.py
+disable_test_id_escaping_and_forfeit_all_rights_to_community_support = True
+
+; 限定Case路径，指定后就无法再指定具体文件具体方法等
+testpaths = test_case
+
+; 自定义标签，加到配置避免标签unknown警告
+markers = 
+  mark1
+  mark2: 可以加一些说明
+
+; 设置运行时参数
+addopts = 
+  -vs  ; 详细信息，打印print
+  --setup-show  ; 显示setup和teardown
+;   --collect-only  ; 执行预览，并不真的运行
+```
+
+Pytest 对 logging 模块做了改写，需要在 `pytest.ini` 中做一些配置
+
+```ini
+[pytest]
+
+;控制台日志开关 true false
+log_cli = true
+;日志级别
+log_cli_level = info
+;日志格式: 时间 级别 信息 文件名及行号
+log_cli_format = %(asctime)s [%(levelname)s] %(message)s (%(filename)s:%(lineno)s)
+;日志日期格式
+log_cli_date_format = %Y-%m-%d_%H:%M:%S
+
+;日志保存到文件的位置，当前目录为调用pytest.ini的文件所在的位置
+log_file = ./data/logs/test.log
+;日志级别
+log_file_level = info
+;日志格式: 时间 级别 信息 文件名及行号
+log_file_format = %(asctime)s [%(levelname)s] %(message)s (%(filename)s:%(lineno)s)
+;日志日期格式
+log_file_date_format = %Y-%m-%d_%H:%M:%S
+```
