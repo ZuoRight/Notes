@@ -334,15 +334,21 @@ python manage.py tailwind update  # 将运行 npm update
 
 但目前也有很多基于 Tailwind CSS 的预定义组件库
 
-### [Flowbite](https://flowbite.com/docs)
+### Flowbite
 
-### [Shadcn/UI](https://ui.shadcn.com/)
+<https://flowbite.com/docs>
+
+### Shadcn/UI
+
+<https://ui.shadcn.com/>
 
 基于 Radix UI 和 Tailwind CSS 的组件库，使用 TypeScript 编写，主要用于 React 框架，需要通过 JSX 来使用，风格偏商业。
 
 AI 应用程序 <https://v0.dev/chat> 可生成由 Shadcn/UI 组成的 JSX 代码。
 
-### [Daisyui](https://daisyui.com/)
+### Daisyui
+
+<https://daisyui.com/components/>
 
 ```shell
 # 先切换到项目目录，比如 cd theme/static_src
