@@ -1,0 +1,2492 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Right is right, left is also right.">
+      
+      
+        <meta name="author" content="7c">
+      
+      
+        <link rel="canonical" href="https://zuoright.com/Notes/Code/DevOps/git/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../gitlab/">
+      
+      
+      <link rel="icon" href="../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
+    
+    
+      
+        <title>Git - ZuoRight</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a40c8224.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-6CVJ632G5J"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-6CVJ632G5J",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-6CVJ632G5J",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="https://zuoright.com/" title="ZuoRight" class="md-header__button md-logo" aria-label="ZuoRight" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .9-2 2-2m9 12v-2c-2.24 0-4.16-.96-5.6-2.68l-1.34-1.6A1.98 1.98 0 0 0 12.53 9H11.5c-.61 0-1.17.26-1.55.72l-1.34 1.6C7.16 13.04 5.24 14 3 14v2c2.77 0 5.19-1.17 7-3.25V15l-3.88 1.55c-.67.27-1.12.95-1.12 1.66C5 19.2 5.8 20 6.79 20H9v-.5a2.5 2.5 0 0 1 2.5-2.5h3c.28 0 .5.22.5.5s-.22.5-.5.5h-3c-.83 0-1.5.67-1.5 1.5v.5h7.21c.99 0 1.79-.8 1.79-1.79 0-.71-.45-1.39-1.12-1.66L14 15v-2.25c1.81 2.08 4.23 3.25 7 3.25"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZuoRight
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-purple"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Testing/Model/" class="md-tabs__link">
+          
+  
+  Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../Language/" class="md-tabs__link">
+          
+  
+  Code
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Python/" class="md-tabs__link">
+          
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../JavaScript/" class="md-tabs__link">
+          
+  
+  JavaScript
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Java/" class="md-tabs__link">
+          
+  
+  Java
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../FullStack/" class="md-tabs__link">
+          
+  
+  FullStack
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Data/" class="md-tabs__link">
+          
+  
+  Data
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Network/" class="md-tabs__link">
+          
+  
+  Network
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Computer/init/" class="md-tabs__link">
+          
+  
+  Computer
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Blockchain/" class="md-tabs__link">
+          
+  
+  Blockchain
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://zuoright.com/" title="ZuoRight" class="md-nav__button md-logo" aria-label="ZuoRight" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4c1.11 0 2 .89 2 2s-.89 2-2 2-2-.89-2-2 .9-2 2-2m9 12v-2c-2.24 0-4.16-.96-5.6-2.68l-1.34-1.6A1.98 1.98 0 0 0 12.53 9H11.5c-.61 0-1.17.26-1.55.72l-1.34 1.6C7.16 13.04 5.24 14 3 14v2c2.77 0 5.19-1.17 7-3.25V15l-3.88 1.55c-.67.27-1.12.95-1.12 1.66C5 19.2 5.8 20 6.79 20H9v-.5a2.5 2.5 0 0 1 2.5-2.5h3c.28 0 .5.22.5.5s-.22.5-.5.5h-3c-.83 0-1.5.67-1.5 1.5v.5h7.21c.99 0 1.79-.8 1.79-1.79 0-.71-.45-1.39-1.12-1.66L14 15v-2.25c1.81 2.08 4.23 3.25 7 3.25"/></svg>
+
+    </a>
+    ZuoRight
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../Testing/Model/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Code
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Code
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../Language/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Language
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../Shell/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Shell
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%A1%8C%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/file/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    行文本处理
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../Edit/vim/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Edit
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../encode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Encode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DevOps
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            DevOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    引言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Git
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Git
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      远程仓库
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="远程仓库">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      获取仓库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull" class="md-nav__link">
+    <span class="md-ellipsis">
+      pull
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push" class="md-nav__link">
+    <span class="md-ellipsis">
+      push
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      本地仓库
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="本地仓库">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看状态
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看修改
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    <span class="md-ellipsis">
+      add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      重命名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看历史
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      分支
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      标签
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      合并
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="合并">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      rebase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cherry-pick" class="md-nav__link">
+    <span class="md-ellipsis">
+      cherry-pick
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      回滚
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="回滚">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      取消暂存
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      取消合并
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      完善仓库
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      其它
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitLab
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jenkins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jenkins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../Python/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../JavaScript/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    JavaScript
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../Java/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Java
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../FullStack/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    FullStack
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../Data/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Data
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../Network/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Network
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../Computer/init/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Computer
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../Blockchain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Blockchain
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      远程仓库
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="远程仓库">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      获取仓库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull" class="md-nav__link">
+    <span class="md-ellipsis">
+      pull
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push" class="md-nav__link">
+    <span class="md-ellipsis">
+      push
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      本地仓库
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="本地仓库">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看状态
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看修改
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    <span class="md-ellipsis">
+      add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      重命名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      查看历史
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      分支
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      标签
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      合并
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="合并">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      rebase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cherry-pick" class="md-nav__link">
+    <span class="md-ellipsis">
+      cherry-pick
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      回滚
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="回滚">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      取消暂存
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      取消合并
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      完善仓库
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Flow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      其它
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="git">Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h1>
+<ul>
+<li>官网：<a href="https://git-scm.com/">https://git-scm.com/</a></li>
+<li>官方文档：<a href="https://git-scm.com/book/zh/v2">https://git-scm.com/book/zh/v2</a></li>
+</ul>
+<h2 id="_1">安装<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Windows：官网下载 <code>Git for Windows</code> 客户端安装即可</li>
+<li>Ubuntu/Debian：<code>apt install git</code></li>
+<li>CentOS/Fedora：<code>yum install git</code></li>
+<li>Mac：可以下载安装包安装，也可以用 <code>brew install git</code> 方式安装</li>
+</ul>
+<p>Mac 中可以查看 Git 版本触发安装 Xcode CLT，CLT 默认自带 Git，此时用 brew 安装会提示已经存在，根据提示执行 <code>brew link --overwrite git</code> 覆盖</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看版本</span>
+git<span class="w"> </span>--version
+
+<span class="c1"># 查看帮助</span>
+git<span class="w"> </span><span class="nb">help</span>
+git<span class="w"> </span>xxx<span class="w"> </span>-h<span class="w">  </span><span class="c1"># 或 --help</span>
+</code></pre></div>
+<h2 id="_2">配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 优先级及影响范围依次为</span>
+<span class="s1">&#39;</span>
+<span class="s1">--local 对当前用户、当前仓库有效，默认（.git/config）</span>
+<span class="s1">--global 对当前用户、所有仓库有效（~/.config/git/config）</span>
+<span class="s1">--system 对所有用户、所有仓库有效，需要root权限（/etc/gitconfig）</span>
+<span class="s1">&#39;</span>
+
+<span class="c1"># 查看配置</span>
+git<span class="w"> </span>config<span class="w"> </span>--list
+git<span class="w"> </span>config<span class="w"> </span>--list<span class="w"> </span>--show-origin<span class="w">  </span><span class="c1"># 显示配置路径</span>
+git<span class="w"> </span>config<span class="w"> </span>--list<span class="w"> </span>--global
+git<span class="w"> </span>config<span class="w"> </span>user.name
+</code></pre></div>
+<ul>
+<li>配置代码提交者信息</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;demo&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;demo@test.com&quot;</span>
+</code></pre></div>
+<ul>
+<li>配置密钥</li>
+</ul>
+<p>Git 服务器（比如GitLab）或者说远程仓库（比如GitHub）通常会支持两种传输协议：HTTPS 和 SSH</p>
+<p>如果使用 SSH 协议传输则需要<a href="https://github.com/settings/keys">配置密钥</a>进行认证</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 如果之前没生成过密钥，需要先生成</span>
+ssh-keygen
+<span class="s1">&#39;</span>
+<span class="s1">回车，会提示保存位置</span>
+<span class="s1">再回车，如果已存在则会提示是否重新生成</span>
+<span class="s1">然后会提示设置密码，可以为空直接回车</span>
+<span class="s1">如果提示输入密钥类型，推荐选择ed25519，没提示一般默认会是rsa类型</span>
+<span class="s1">&#39;</span>
+
+ls<span class="w"> </span>~/.ssh
+<span class="s1">&#39;</span>
+<span class="s1">authorized_keys2  id_dsa       known_hosts</span>
+<span class="s1">config            id_dsa.pub</span>
+<span class="s1">&#39;</span>
+<span class="c1"># ed类型的文件名为 id_ed25519.pub</span>
+
+<span class="c1"># 查看公钥，将其配置到项目托管平台中</span>
+cat<span class="w"> </span>~/.ssh/id_rsa.pub
+</code></pre></div>
+<ul>
+<li>配置代理</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 如果报错：Failed to connect to github.com port 443 after 1 ms: Couldn&#39;t connect to server</span>
+<span class="c1"># 可以加代理试试</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>http.proxy<span class="w"> </span><span class="m">127</span>.0.0.1:10808
+</code></pre></div>
+<h2 id="_3">远程仓库<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>-v<span class="w">  </span><span class="c1"># 列出添加过的远程库</span>
+git<span class="w"> </span>remote<span class="w"> </span>show<span class="w"> </span>origin_name<span class="w">  </span><span class="c1"># 查看远程库详细信息</span>
+git<span class="w"> </span>remote<span class="w"> </span>rename<span class="w"> </span>old_name<span class="w"> </span>new_name<span class="w">  </span><span class="c1"># 修改远程库简写名</span>
+git<span class="w"> </span>remote<span class="w"> </span>remove<span class="w"> </span>demo<span class="w">  </span><span class="c1"># 删除已添加的远程库，remove可简写为rm</span>
+
+<span class="c1"># 如果远程库修改了名称，可以修改url重新关联</span>
+git<span class="w"> </span>remote<span class="w"> </span>set-url<span class="w"> </span>origin<span class="w"> </span>new_url
+</code></pre></div>
+<h3 id="_4">获取仓库<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>&lt;url&gt;
+git<span class="w"> </span>clone<span class="w"> </span>&lt;url&gt;<span class="w"> </span>path_name<span class="w">  </span><span class="c1"># 克隆到自定义目录，比如当前目录「.」</span>
+<span class="s1">&#39;</span>
+<span class="s1">url 克隆如果超时就尝试另一个协议试一试</span>
+<span class="s1">  ssh协议：git@github.com:user/repo.git</span>
+<span class="s1">  https协议：https://github.com/user/repo.git</span>
+<span class="s1">-o origin_name 默认为 origin</span>
+<span class="s1">-b branch 默认拷贝主分支，也可指定分支</span>
+<span class="s1">--depth 1</span>
+<span class="s1">  浅克隆 Shallow Clone，只克隆最新 1 次提交（HEAD），而不包含完整的历史记录。</span>
+<span class="s1">  可以显著减少下载时间和磁盘占用，比如 CI/CD 流水线</span>
+<span class="s1">&#39;</span>
+</code></pre></div>
+<p><code>git clone</code> 其实是对以下命令的封装</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建新目录</span>
+mkdir<span class="w"> </span>demo
+<span class="c1"># 切换到新目录</span>
+<span class="nb">cd</span><span class="w"> </span>demo
+<span class="c1"># 初始化，生成 .git 跟踪文件</span>
+git<span class="w"> </span>init
+<span class="c1"># 为指定的 url 添加一个远程库，默认名称 origin</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin_name<span class="w"> </span>url
+<span class="c1"># 获取远程库数据</span>
+git<span class="w"> </span>fetch<span class="w"> </span>origin_name
+<span class="c1"># 创建并检出一个同远程主分支相同的本地分支</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>main
+</code></pre></div>
+<h3 id="fetch">fetch<a class="headerlink" href="#fetch" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 将远程仓库中有但当前仓库没有的所有数据拉取下来，然后存储在本地仓库中</span>
+git<span class="w"> </span>fetch<span class="w"> </span>origin<span class="w">  </span><span class="c1"># 获取所有远程分支信息</span>
+
+<span class="c1"># 自动跟踪远程的 origin/dev 分支并在本地创建同名的 dev 分支</span>
+git<span class="w"> </span>checkout<span class="w"> </span>dev
+
+<span class="c1"># 如果无法自动匹配，也可以手动指定</span>
+git<span class="w"> </span>fetch<span class="w"> </span>origin<span class="w"> </span>dev<span class="w">  </span><span class="c1"># 获取远程的 dev 分支信息</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>dev<span class="w"> </span>origin/dev
+</code></pre></div>
+<h3 id="pull">pull<a class="headerlink" href="#pull" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 从已跟踪服务器拉取并自动合并，等同于：git fetch + git merge</span>
+git<span class="w"> </span>pull<span class="w"> </span><span class="o">[</span>origin<span class="w"> </span>main<span class="o">]</span>
+<span class="s1">&#39;</span>
+<span class="s1">不带参数，先尝试快进合并，如果不行再进行正常合并生成一个新的提交。</span>
+<span class="s1">--ff-only 快进合并，只尝试快进合并，如果不行则终止当前合并操作。</span>
+<span class="s1">--no-ff  普通合并，禁止快进合并，即无论是否能快进合并，最后都会进行正常合并生成一个新的提交。</span>
+<span class="s1">--rebase  变基合并，先尝试快进合并，如果不行再进行变基合并。</span>
+<span class="s1">&#39;</span>
+</code></pre></div>
+<h3 id="push">push<a class="headerlink" href="#push" title="Permanent link">&para;</a></h3>
+<p>将提交后的代码推到远程仓库</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 从本地仓库中，取出本地 dev 分支的所有最新提交，推送到名为 origin 的远程仓库中的 dev 分支（默认与本地分支同名）</span>
+git<span class="w"> </span>push<span class="w"> </span>origin_name<span class="w"> </span>dev
+<span class="s1">&#39;</span>
+<span class="s1">如果远程仓库中已有名为 dev 的分支，则会将变更合并到远程的 dev 分支中</span>
+<span class="s1">如果没有冲突，远程分支将被更新到与本地分支相同的状态</span>
+
+<span class="s1">如果远程仓库中没有名为 dev 的分支，则会创建一个新的 dev 分支，然后将变推送到远程的 dev 分支中</span>
+
+<span class="s1">如果本地 dev 分支与远程 dev 分支的历史没有直接的线性关系（比如本地分支已经被重新基于其他提交），可能会遇到一个非快进（non-fast-forward）推送错误。</span>
+<span class="s1">在这种情况下，可能需要使用 --force 或 --force-with-lease 选项进行强制推送，或者合并变更到你的本地分支再尝试推送</span>
+<span class="s1">&#39;</span>
+
+<span class="c1"># 也可以提交到与远程库不同名的分支</span>
+git<span class="w"> </span>push<span class="w"> </span>origin_name<span class="w"> </span>本地分支:指定远程分支
+
+<span class="c1"># 如果第一次推送一个分支到远程，或者希望设置追踪信息，可以使用 -u 或 --set-upstream 选项</span>
+<span class="c1"># 推送代码的同时还会设置 dev 分支的上游（upstream）追踪信息，之后便可以使用 git pull 或 git push 而无需指定远程库和分支名</span>
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>dev
+
+
+<span class="c1"># 提交后返回的一些信息</span>
+<span class="s1">&#39;</span>
+<span class="s1">To xxx.git</span>
+<span class="s1">  1edee6b..fbff5bc  main -&gt; main</span>
+<span class="s1">  (oldref..newref fromref → toref)</span>
+<span class="s1">&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># 删除远程分支（仅移除指针，一段时间后才会被垃圾回收，这期间可以恢复）</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>dev
+</code></pre></div>
+<h2 id="_5">本地仓库<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">查看状态<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status
+<span class="s1">&#39;</span>
+<span class="s1">On branch main</span>
+<span class="s1">当前分支</span>
+<span class="s1">Your branch is up-to-date with &quot;origin/main&quot;.</span>
+<span class="s1">当前分支是最新的，没有落后远程分支</span>
+<span class="s1">nothing to commit, working directory clean</span>
+<span class="s1">工作区是干净的，没有文件需要提交</span>
+<span class="s1">&#39;</span>
+
+<span class="c1"># 文件主要有以下状态</span>
+<span class="s1">&#39;</span>
+<span class="s1">未跟踪 new file untracked</span>
+<span class="s1">已跟踪</span>
+<span class="s1">  未修改 unmodified</span>
+<span class="s1">  已修改未暂存 modified unstage</span>
+<span class="s1">  已暂存准备提交 modified staged</span>
+<span class="s1">&#39;</span>
+</code></pre></div>
+<h3 id="_7">查看修改<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>diff<span class="w">  </span><span class="c1"># 查看未暂存的改动，即工作区和暂存区的比较</span>
+git<span class="w"> </span>diff<span class="w"> </span>--staged<span class="w">  </span><span class="c1"># 查看已暂存但未提交的改动，也可用--cached</span>
+git<span class="w"> </span>diff<span class="w"> </span>branch1<span class="w"> </span>branch2<span class="w">  </span><span class="c1"># 比较两个提交记录的差异</span>
+
+<span class="c1"># 撤销修改</span>
+git<span class="w"> </span>checkout<span class="w"> </span>--<span class="w"> </span>xxx
+</code></pre></div>
+<h3 id="add">add<a class="headerlink" href="#add" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 将未跟踪或已修改文件添加到暂存区，变为已跟踪已暂存状态</span>
+git<span class="w"> </span>add<span class="w"> </span>xx<span class="w">  </span><span class="c1"># 添加某个</span>
+git<span class="w"> </span>add<span class="w"> </span>.<span class="w">  </span><span class="c1"># 添加全部，也可用-A或--all参数</span>
+
+<span class="c1"># 部分暂存</span>
+git<span class="w"> </span>add<span class="w"> </span>--patch
+</code></pre></div>
+<h3 id="_8">重命名<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 如果只是重命名文件而不修改其内容时可以这样做</span>
+git<span class="w"> </span>mv<span class="w"> </span>old_name<span class="w"> </span>new_name
+</code></pre></div>
+<h3 id="commit">commit<a class="headerlink" href="#commit" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建快照，将当前分支指针向前移动</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;init&quot;</span><span class="w">  </span><span class="c1"># 不加-m会打开默认编辑器编辑</span>
+<span class="s1">&#39;</span>
+<span class="s1">-a，可以不用先git add，直接提交</span>
+<span class="s1">--ament 重新提交，可以覆盖上一次的提交</span>
+<span class="s1">&#39;</span>
+
+<span class="c1"># 如果切换分支但开发到一半不想提交，可以先临时储存</span>
+git<span class="w"> </span>stash
+</code></pre></div>
+<h3 id="_9">查看历史<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><a href="https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History">https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History</a></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>log<span class="w">  </span><span class="c1"># 时间倒序列出所有提交记录</span>
+<span class="s1">&#39;</span>
+<span class="s1">--patch/-p 显示每次提交所引入的差异</span>
+<span class="s1">--graph 在日志旁以 ASCII 图形显示分支与合并历史</span>
+<span class="s1">--pretty=oneline 每个提交记录放在一行显示</span>
+<span class="s1">--pretty=format:&quot;%h - %an, %ar : %s&quot; 显示格式</span>
+<span class="s1">&#39;</span>
+</code></pre></div>
+<h2 id="_10">分支<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看分支</span>
+git<span class="w"> </span>branch<span class="w">  </span><span class="c1"># 默认只显示本地分支，-r 只显示远程分支，-a 显示所有本地和远程分支</span>
+<span class="s1">&#39;</span>
+<span class="s1">-v 显示最后一次提交</span>
+<span class="s1">--merged 已合并到当前分支的分支</span>
+<span class="s1">--no-merged main 没有合并到当前分支的分支</span>
+
+<span class="s1">-vv 查看各分支正在跟踪的上游分支</span>
+<span class="s1">-u 或 --set-upstream-to 显示设置当前分支正在跟踪的上游分支，clone 或 checkout 时会自动设置</span>
+
+<span class="s1">如果分支有很多，返回会分页（显示冒号:）</span>
+<span class="s1">  向下翻页：⬇，或者「空格键」直接显示剩余所有，最后会显示 END</span>
+<span class="s1">  向上翻页：⬆，或者「b」键回到开始</span>
+<span class="s1">&#39;</span>
+
+<span class="c1"># 新建分支</span>
+git<span class="w"> </span>branch<span class="w"> </span>dev
+
+<span class="c1"># 删除分支，删除未合并的分支需要用-D强制删除</span>
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>dev1<span class="w"> </span>dev2
+
+git<span class="w"> </span>branch<span class="w"> </span>-m<span class="w"> </span>old_name<span class="w"> </span>new_name<span class="w">  </span><span class="c1"># 修改本地分支名称</span>
+git<span class="w"> </span>branch<span class="w"> </span>-M<span class="w"> </span>main<span class="w">  </span><span class="c1"># 修改本地主分支（改为main，与GitHub远程主分支保持一致）</span>
+</code></pre></div>
+<ul>
+<li>切换分支 checkout</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 切换分支，就是改变指针指向，即检出</span>
+git<span class="w"> </span>checkout<span class="w"> </span>dev<span class="w">  </span><span class="c1"># 也可以用：git switch dev</span>
+
+<span class="c1"># 新建并切换分支</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>dev
+
+<span class="c1"># 新建自远程xxx分支，并切换</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="nb">test</span><span class="w"> </span>origin/xxx
+git<span class="w"> </span>checkout<span class="w"> </span>--track<span class="w"> </span>origin/xxx<span class="w">  </span><span class="c1"># 简写</span>
+git<span class="w"> </span>checkout<span class="w"> </span>xxx<span class="w">  </span><span class="c1"># 如果本地没有但恰巧远程有唯一匹配的xxx分支，则等同于上面命令</span>
+</code></pre></div>
+<h2 id="_11">标签<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>tag<span class="w">  </span><span class="c1"># 列出标签</span>
+git<span class="w"> </span>tag<span class="w"> </span>-l<span class="w"> </span><span class="s2">&quot;v1.8.5*&quot;</span><span class="w">  </span><span class="c1"># 模糊匹配</span>
+
+git<span class="w"> </span>show<span class="w"> </span>tag<span class="w"> </span>v1.0<span class="w">  </span><span class="c1"># 查看标签信息</span>
+
+git<span class="w"> </span>tag<span class="w"> </span>tmp1<span class="w">  </span><span class="c1"># 打轻量标签</span>
+git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v1.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;version 1.0&quot;</span><span class="w">  </span><span class="c1"># 打附注标签</span>
+git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v1.2<span class="w"> </span>9fceb02<span class="w">  </span><span class="c1"># 给过去的某次提交打标签</span>
+
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>v1.0<span class="w">  </span><span class="c1"># 推送分支时不会带上标签，所以标签需要单独推送</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--tags<span class="w">  </span><span class="c1"># 推送所有标签</span>
+
+git<span class="w"> </span>tag<span class="w"> </span>-d<span class="w"> </span>v0.5<span class="w">  </span><span class="c1"># 删除本地标签</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>v0.5<span class="w">  </span><span class="c1"># 删除远程标签</span>
+</code></pre></div>
+<h2 id="_12">合并<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="https://image.zuoright.com/20241130154226.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="20241130154226" src="https://image.zuoright.com/20241130154226.png" /></a></p>
+<h3 id="merge">merge<a class="headerlink" href="#merge" title="Permanent link">&para;</a></h3>
+<p>将其它分支合并到当前分支，创建一个新的合并提交，如果没有冲突则可以快进合并</p>
+<p>如果两个分支同时修改了同一处，合并时会产生冲突，此时冲突的文件会变为未追踪状态，文件中会用 <code>`=======</code> 上下分割标识出两个分支冲突的部分，需要手动解决后再次 add 到暂存区后提交。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 将 dev 合并到 main</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>merge<span class="w"> </span>dev
+<span class="s1">&#39;</span>
+<span class="s1">如果有冲突，可以选择终止合并</span>
+<span class="s1">git merge --abort</span>
+
+<span class="s1">也可以解决冲突后继续合并</span>
+<span class="s1">git add 有冲突修改的文件</span>
+<span class="s1">git commit -m &quot;冲突修改后的说明&quot;</span>
+<span class="s1">&#39;</span>
+</code></pre></div>
+<h3 id="rebase">rebase<a class="headerlink" href="#rebase" title="Permanent link">&para;</a></h3>
+<p>变基合并，改变分支的分叉合并点</p>
+<p>比如，基于本地 main 分支分叉出一个 dev 分支，然后远程 main 分支有新的更新（此时本地分支被称之为偏离分支），使用 rebase 合并更新，dev 分支的分叉点将变为基于最新的 main 分支</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>dev
+<span class="c1"># 基于本地的远程 main 分支 rebase（记得先 fetch），当然也可以基于本地 main 分支（记得先 pull）</span>
+git<span class="w"> </span>fetch<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>rebase<span class="w"> </span>origin/main
+<span class="c1"># 等价于</span>
+git<span class="w"> </span>pull<span class="w"> </span>--rebase<span class="w"> </span>origin<span class="w"> </span>main
+
+<span class="s1">&#39;</span>
+<span class="s1">如果有冲突，可以取消合并</span>
+<span class="s1">git rebase --abort</span>
+
+<span class="s1">也可以解决冲突后继续合并</span>
+<span class="s1">git add 有冲突修改的文件</span>
+
+<span class="s1">解决冲突后继续合并</span>
+<span class="s1">git rebase --continue</span>
+<span class="s1">&#39;</span>
+<span class="c1"># 在 rebase 过程中，冲突可能在每个被重新应用的提交上发生，需要逐个解决，反复重复以上过程</span>
+</code></pre></div>
+<p>Git 会找到 <code>dev</code> 和 <code>origin/main</code> 分支的共同祖先，取回所有分叉后的更新重放到 dev 分支，然后再拼接上 dev 分支的提交（已提交的哈希值将会被改变），使 dev 看起来就像基于最新的 main 分支检出然后提交的一样</p>
+<p>通常建议只对尚未推送的本地修改执行变基操作，如果本地分支已经推送过远程，并且有人基于它开发，那么 rebase 后会导致其他人的本地仓库与远程仓库不一致</p>
+<h3 id="cherry-pick">cherry-pick<a class="headerlink" href="#cherry-pick" title="Permanent link">&para;</a></h3>
+<p>只将某个分支上的指定提交合并到当前分支</p>
+<p>比如在 dev 分支修改一个 bug，然后只想将这次修复提交先合并到 main 分支，而不合入其它提交</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>cherry-pick<span class="w"> </span>commit_id
+</code></pre></div>
+<h2 id="_13">回滚<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 回滚到某个版本，注意，之后的版本都将消失</span>
+git<span class="w"> </span>reset<span class="w"> </span><span class="o">[</span>--参数<span class="o">]</span><span class="w"> </span>版本<span class="w"> </span><span class="o">[</span>指定文件<span class="o">]</span>
+git<span class="w"> </span>push<span class="w"> </span>--force<span class="w">  </span><span class="c1"># 回滚后要推向远程，否则会报错</span>
+
+<span class="c1"># 参数</span>
+<span class="s1">&#39;</span>
+<span class="s1">--soft 回到 commit 前的状态</span>
+<span class="s1">--mixed 回到 add 前的状态，默认</span>
+<span class="s1">--hard 回到工作区修改前状态，重置</span>
+<span class="s1">&#39;</span>
+
+<span class="c1"># 版本，有3种形式</span>
+<span class="s1">&#39;</span>
+<span class="s1">版本号：后七位即可</span>
+<span class="s1">标签</span>
+<span class="s1">HEAD指针</span>
+<span class="s1">  HEAD 当前版本</span>
+<span class="s1">  HEAD^ 上个版本，如果有多个父提交，则表示第1个父提交HEAD^1</span>
+<span class="s1">  HEAD^^ 上上版本</span>
+
+<span class="s1">  HEAD~ 上个版本，如果有多个父提交，则表示直接的父提交，表示其它父提交需要用HEAD^n</span>
+<span class="s1">  HEAD~100 上100个版本</span>
+<span class="s1">&#39;</span>
+</code></pre></div>
+<p>比如不小心提交了隐私记录，可以reset到这次提交前的版本</p>
+<blockquote>
+<p>注意，删除后通过 <a href="https://github.com/ZuoRight/demo/commit/hash_id">https://github.com/ZuoRight/demo/commit/hash_id</a> 依然可以访问到</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>log<span class="w">  </span><span class="c1"># 查看提交记录，找到包含隐私的那一次提交记录，copy它上一个版本的hash_id</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>hash_id
+git<span class="w"> </span>push<span class="w"> </span>--force<span class="w"> </span>origin<span class="w"> </span>HEAD
+</code></pre></div>
+<h3 id="_14">取消暂存<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>reset<span class="w"> </span>HEAD
+
+<span class="c1"># 变为未跟踪状态但不删除文件</span>
+git<span class="w"> </span>rm<span class="w"> </span>--cached<span class="w"> </span>xxx
+
+<span class="c1"># 删除已跟踪文件，如果已修改或已暂存，需要加 -f</span>
+git<span class="w"> </span>rm<span class="w"> </span>xxx
+</code></pre></div>
+<h3 id="_15">取消合并<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>如果合并尚未提交</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>merge<span class="w"> </span>--abort
+<span class="c1"># 或</span>
+git<span class="w"> </span>reset<span class="w"> </span>--merge
+</code></pre></div>
+<ul>
+<li>如果合并已提交，但还没推送到远程</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>reset<span class="w"> </span>--soft<span class="w"> </span>HEAD^<span class="w">  </span><span class="c1"># 撤回到合并前状态，保留更改</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD^<span class="w">  </span><span class="c1"># 完全撤回，丢弃更改</span>
+</code></pre></div>
+<ul>
+<li>如果合并已提交，并且已推送到远程</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>revert<span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>HEAD<span class="w">  </span><span class="c1"># -m 1 表示保留第1个父提交的更改</span>
+</code></pre></div>
+<h2 id="_16">完善仓库<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>touch<span class="w"> </span>README.md<span class="w">  </span><span class="c1"># 项目介绍文件</span>
+touch<span class="w"> </span>LICENSE<span class="w">  </span><span class="c1"># 授权声明文件</span>
+
+<span class="c1"># 忽略规则文件</span>
+<span class="c1"># 一个项目可以有多个，通常放在根目录一个，子目录也可以有额外的</span>
+touch<span class="w"> </span>.gitignore
+<span class="c1"># 各语言通用模版：https://github.com/github/gitignore</span>
+<span class="c1"># 规则举例</span>
+<span class="s1">&#39;</span>
+<span class="s1">#  表示注释</span>
+<span class="s1">!  取反</span>
+<span class="s1">?  匹配任意1个</span>
+<span class="s1">*  匹配任意个字符</span>
+<span class="s1">**  匹配任意中间目录</span>
+<span class="s1">[abc]  匹配其中任意一个</span>
+<span class="s1">[0-9]  匹配0到9</span>
+
+<span class="s1">*.a  忽略所有.a文件</span>
+<span class="s1">*.[oa]  忽略以.o或.a结尾的文件</span>
+<span class="s1">*~  忽略所有以～结尾的文件</span>
+
+<span class="s1">!lib.a  跟踪所有的 lib.a，即便你在前面忽略了 .a 文件</span>
+
+<span class="s1">/demo  只忽略当前目录下的 demo 文件，而不忽略 xxx/demo</span>
+<span class="s1">demo/  忽略任何目录下名为 demo 的文件夹</span>
+
+<span class="s1">doc/*.txt  忽略 doc/notes.txt，但不忽略 doc/server/arch.txt</span>
+<span class="s1">doc/**/*.pdf  忽略 doc/ 目录及其所有子目录下的 .pdf 文件</span>
+<span class="s1">&#39;</span>
+</code></pre></div>
+<h2 id="git-flow">Git Flow<a class="headerlink" href="#git-flow" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 克隆远程仓库到本地master分支</span>
+git<span class="w"> </span>clone<span class="w"> </span>git@code.xxx.net:demo/test.git
+<span class="s1">&#39;</span>
+<span class="s1">参与没有代码推送权限的项目，比如开源项目，可以</span>
+<span class="s1">1. 先 fork 副本到自己的远程仓库</span>
+<span class="s1">2. 然后 clone 副本到本地，创建新分支进行修改提交</span>
+<span class="s1">3. push 到自己的远程仓库，然后创建一个 PR(Pull Request) 给开源项目，在 GitLab 中叫做 MR（Merge Requests）</span>
+
+<span class="s1">关联公用的远程库，假设命名为 upstream</span>
+<span class="s1">git remote add upstream common.git</span>
+<span class="s1">&#39;</span>
+
+<span class="c1"># 新建并切换到新分支开发</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>dev
+git<span class="w"> </span>add<span class="w"> </span>.<span class="w">  </span><span class="c1"># 最好每个修改暂存一次，而不是都混在一起</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;改动说明&quot;</span>
+
+
+git<span class="w"> </span>fetch<span class="w"> </span>origin<span class="w"> </span>master<span class="w">  </span><span class="c1"># 获取远程分支是否有新的改动</span>
+git<span class="w"> </span>rebase<span class="w"> </span>origin/master<span class="w">  </span><span class="c1"># 如果获取到新的改动则可以变基合并</span>
+<span class="c1"># 等价于</span>
+<span class="s1">&#39;</span>
+<span class="s1">git pull --rebase origin master</span>
+<span class="s1">&#39;</span>
+
+<span class="c1"># 也可以使用 merge 合并</span>
+<span class="s1">&#39;</span>
+<span class="s1">git checkout master  # 切回本地主分支</span>
+<span class="s1">git pull origin master  # 拉取最新代码，也可以 fetch + merge</span>
+<span class="s1">git merge master  # 将 master 合并到 dev</span>
+<span class="s1">&#39;</span>
+
+
+<span class="c1"># 将 dev 分支推送到远程</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>dev
+<span class="c1"># 删除已被合并的分支</span>
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>dev
+</code></pre></div>
+<h2 id="_17">其它<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>... origin xxx</code> 操作远程仓库时使用空格的形式</li>
+<li><code>... origin/xxx</code> 操作本地远程分支时使用斜杠的形式</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        此页面内容对您是否有帮助？
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="有用的" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9v12H1V9zm4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21zm0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="没啥用" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 15V3h4v12zM15 3a2 2 0 0 1 2 2v10c0 .55-.22 1.05-.59 1.41L9.83 23l-1.06-1.06c-.27-.27-.44-.64-.44-1.06l.03-.31.95-4.57H3a2 2 0 0 1-2-2v-2c0-.26.05-.5.14-.73l3.02-7.05C4.46 3.5 5.17 3 6 3zm0 2H5.97L3 12v2h8.78l-1.13 5.32L15 14.97z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              感谢反馈，欢迎随时<a href="mailto:zuoright@foxmail.com" target=_blank>发邮件</a>跟我交流
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              感谢反馈，欢迎<a href="mailto:zuoright@foxmail.com" target=_blank>发邮件</a>给我提出改进建议
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2016 ~ Forever 7c
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ZuoRight" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:zuoright@foxmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.prune", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "header.autohide", "toc.follow"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+        <script src="../../../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
