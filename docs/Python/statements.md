@@ -105,6 +105,19 @@ $a\%b$ 的结果满足以下数学关系：$a=b×(a//b)+(a\%b)$
 
 `==`、`!=`、`>`、`>=`、`<`、`<=`
 
+比较版本
+
+```python
+import sys
+
+print(sys.version_info)
+# 输出: sys.version_info(major=3, minor=10, micro=8, releaselevel='final', serial=0)
+
+# 使用元组比较
+print(sys.version_info >= (3, 10))  # 如果是 3.10.8，输出: True
+print(sys.version_info >= (3, 10, 0))  # 更精确的比较
+```
+
 ### 身份运算
 
 如果需要判断一个单例对象的值，比如是否为None，建议优先使用身份运算符，性能更优

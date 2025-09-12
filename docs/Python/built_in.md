@@ -59,6 +59,7 @@ r = input("请输入...")  # 返回str类型
 # 1. 同时输出多个值，默认空格分隔，可以自定义seq变量控制
 # 2. 输出结束会末尾会自动加一个换行，可以自定义end变量控制
 print(1，2，3， seq="", end="\n")
+print(*_list)  # 将列表中的每个元素打印出来
 
 # pprint（pretty print）可以输出格式化的数据
 from pprint import pprint

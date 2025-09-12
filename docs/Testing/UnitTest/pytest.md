@@ -22,12 +22,7 @@ pytest --help  # show help on command line and config file options
 插件列表：<https://docs.pytest.org/en/stable/reference/plugin_list.html>
 
 - 内置插件：代码内部的 `_pytest` 目录加载，包含内置 Fixture
-- 本地插件：`conftest.py` 自动模块发现机制，如果有多个 conftest 文件，就近原则，深度查找
-
-在这里可自定义 Fixture 和 Hooks 钩子函数，会自动被 Pytest 加载
-
-钩子函数用于扩展 Pytest 本身的行为，比如修改收集的测试项、添加自定义命令行选项、改变测试报告生成方式、在测试生命周期特定点执行代码
-
+- 本地插件：`conftest.py` 在这里可添加钩子函数（Hooks）和自定义 Fixture，如果有多个 conftest 文件，就近原则，深度查找
 - 外部插件：`pip install` 安装的插件，比如 Allure
 
 ## 基础使用
@@ -190,6 +185,67 @@ def pytest_collection_modifyitems(items):
         item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
 ```
 
+## Hooks
+
+Pytest 提供了很多内置钩子函数（Hooks），用于扩展 Pytest 本身的行为，在特定事件时自动被调用
+
+查看内置钩子：`python -m pytest --trace-config`
+
+<https://docs.pytest.org/en/stable/how-to/writing_hook_functions.html>
+
+可以通过这些内置钩子来修改收集的测试项、添加自定义命令行选项、改变测试报告生成方式、在测试生命周期特定点执行代码等
+
+```python
+# conftest.py
+# 按调用顺序如下
+
+import pytest
+
+def pytest_configure(config):
+    print("1. pytest_configure - 配置初始化")
+
+def pytest_sessionstart(session):
+    print("2. pytest_sessionstart - 会话开始")
+
+def pytest_collection(session):
+    print("3. pytest_collection - 开始收集测试")
+
+def pytest_collection_modifyitems(session, config, items):
+    print(f"4. pytest_collection_modifyitems - 修改测试项，处理 {len(items)} 个测试")
+
+def pytest_collection_finish(session):
+    print("5. pytest_collection_finish - 收集完成")
+
+
+def pytest_runtest_protocol(item, nextitem):
+    print(f"6. pytest_runtest_protocol - 测试协议开始: {item.name}")
+
+def pytest_runtest_setup(item):
+    print(f"7. pytest_runtest_setup - 设置阶段: {item.name}")
+
+def pytest_runtest_call(item):
+    print(f"8. pytest_runtest_call - 执行测试: {item.name}")
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
+    print(f"9. pytest_runtest_makereport - 生成报告: {report.outcome}")
+
+def pytest_runtest_logreport(report):
+    print(f"10. pytest_runtest_logreport - 记录报告: {report.when} {report.outcome}")
+
+def pytest_runtest_teardown(item, nextitem):
+    print(f"11. pytest_runtest_teardown - 清理阶段: {item.name}")
+
+
+def pytest_sessionfinish(session, exitstatus):
+    print(f"12. pytest_sessionfinish - 会话结束: {exitstatus}")
+
+def pytest_unconfigure(config):
+    print("13. pytest_unconfigure - 配置清理")
+```
+
 ## 参数化
 
 <https://docs.pytest.org/en/stable/how-to/parametrize.html>
@@ -207,7 +263,7 @@ _list = yaml.safe_load(open(yaml_file))  # [[1,1], [1, 2], [1,3], [2,1], [2,2], 
 """
 @pytest.mark.parametrize(
     argnames,  被参数化的变量，字符串中逗号分隔变量，也可以是列表或元组的形式
-    argvalues,  与变量一一对应的一组值：[(1,2), (1,3), (1,4)]，如果只有一个变量可写成：(1, 2, 3)
+    argvalues,  与变量一一对应的一组值：[(1,2), (1,3), (1,4)]，这里最好用列表，而不要用元组，元组只有一个元素时如果忘记加逗号很容出错
     ids=None,  给每组Case起别名
     indirect= bool | Sequence[str]  间接使用同名 Fixture
 )
@@ -316,7 +372,7 @@ def test_zero_division():
         1 / 0
 ```
 
-- 正则匹配异常信息
+正则匹配异常信息
 
 ```python
 def myfunc():
@@ -386,23 +442,6 @@ a and not b  文件名包含a但不包含b
 # 测试所有带 @pytest.mark.P1 装饰器的用例
 # 也可以像 -k 一样使用表达式
 pytest -m P1
-```
-
-- 内置标记 `skip()`、`xfail()`
-
-<https://docs.pytest.org/en/stable/how-to/skipping.html>
-
-```python
-# 直接跳过
-@pytest.mark.skip("xx原因，可省略")
-
-# 满足条件，则跳过
-@pytest.mark.skip(a==1, reaseon="xx")
-
-# 满足条件，引发预期失败（XFAIL）或意外通过（XPASS）
-@pytest.mark.xfail(a==1, reaseon="xx")
-def test_demo(self):
-    pass
 ```
 
 - 自定义标记
@@ -556,14 +595,57 @@ def test_another_test_that_needs_the_value(pytestconfig):
     print(f"在另一个测试中获取到值: {value}")
 ```
 
-### 用例执行失败处理
+## 用例执行失败处理
 
-- 遇到失败，立即退出：`-x` 常用于冒烟测试
-- 遇到 n 条失败后退出：`--maxfail=n`
-- 失败重跑：重跑底层依赖了 Pytest 内置的缓存机制
-    - `--lf` 或 `--last-failed` 重跑上一次失败的用例，only re-run the failures
-    - `--ff` 或 `--failed-first` re-run the failures first and then the rest of the tests
-    - 插件：`pip install pytest-rerunfailures`
+### 跳过
+
+<https://docs.pytest.org/en/stable/how-to/skipping.html>
+
+```python
+# 直接跳过
+@pytest.mark.skip("xx原因，可省略")
+
+# 满足条件，则跳过
+@pytest.mark.skipif(a==1, reaseon="xx")
+
+# 满足条件，引发预期失败（XFAIL）或意外通过（XPASS）
+@pytest.mark.xfail(a==1, reaseon="已知问题，待修复")
+def test_demo(self):
+    pass
+```
+
+### 退出
+
+```shell
+pytest -x  # 遇到失败，立即退出，常用于冒烟测试
+pytest --maxfail=n  # 遇到 n 条失败后退出
+```
+
+### 重跑
+
+重跑底层依赖了 Pytest 内置的缓存机制，失败记录在 `.pytest_cache/v/cache/lastfailed` 文件中
+
+```json
+{
+  "test_file.py::test_function1": true,
+  "test_file.py::TestClass::test_method2": false
+}
+```
+
+- 内置方法
+
+```shell
+# only re-run the failures
+pytest --lf  # 等价于 --last-failed 
+
+# 先运行失败的测试，然后再运行其他的
+pytest --ff  # 等价于 --failed-first
+
+# 先运行新添加的或修改的测试（基于 git）
+pytest --nf
+```
+
+- 插件：`pip install pytest-rerunfailures`
 
 运行时指定
 
